@@ -1,6 +1,5 @@
 :root{
   --bg:#0b1220;
-  --panel:#0f1a33;
   --card:#121f3f;
   --text:#eaf0ff;
   --muted:#a9b7e6;
@@ -13,6 +12,7 @@
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -76,7 +76,6 @@ svg{ width:100%; height:auto; display:block; }
   font-size: 13px;
 }
 .badge strong{ color: var(--text); }
-
 .muted{ color:var(--muted); }
 
 .card{
@@ -112,40 +111,29 @@ svg{ width:100%; height:auto; display:block; }
 .dot.good{ background: var(--good); }
 .dot.warn{ background: var(--warn); }
 
-.route{
-  margin-top:12px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.chip{
-  border-radius: 14px;
-  padding:10px 12px;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
+.moveLines{ margin-top: 12px; display:flex; flex-direction:column; gap:10px; }
+.moveLine{
+  font-size: 12.8px;
+  line-height: 1.45;
   color: var(--text);
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 12px;
+  padding: 10px 12px;
   display:flex;
   flex-direction:column;
   gap:8px;
 }
-
-.chipHead{
+.moveHead{
   display:flex;
   gap:8px;
   align-items:center;
   flex-wrap:wrap;
-  color: var(--muted);
-  font-size: 13px;
 }
-
-.chipHead strong{ color: var(--text); }
-
-.chipBody{
-  margin-left: 18px;
-  font-size: 13px;
-  line-height: 1.45;
+.moveBody{
+  margin-left:18px;
   color: var(--text);
+  text-align:left;
 }
 
 .btn{
@@ -167,9 +155,6 @@ svg{ width:100%; height:auto; display:block; }
 
 .ring{ stroke: rgba(147,197,253,.55); stroke-width: 3.2; fill: none; }
 .innerRing{ stroke: rgba(255,255,255,.08); stroke-width: 2; fill: none; }
-
-.hex{ display:none; }
-.tri{ display:none; }
 
 .centerTitle{ fill: rgba(234,240,255,.85); font-size: 15px; font-weight: 700; }
 .centerSub{ fill: rgba(169,183,230,.95); font-size: 12px; }
