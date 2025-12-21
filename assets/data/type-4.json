@@ -1,0 +1,159 @@
+{
+  "type": 4,
+  "name": "L'Individualiste",
+  "tagline": "Le Romantique ou le Tragico-Romantique",
+  "quick": {
+    "center": "Émotionnel",
+    "wings": "3 et 5",
+    "integr": "→ 1",
+    "disint": "→ 2"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Structure fondamentale et centres",
+      "desc": "Centre, hiérarchie, direction, problématique.",
+      "items": [
+        { "label": "Centre d’intelligence", "value": "Émotionnel (Centre du Cœur)." },
+        {
+          "label": "Hiérarchie des centres",
+          "children": [
+            { "label": "Centre préféré", "value": "Émotionnel." },
+            { "label": "Centre de support", "value": "Mental ou Instinctif." },
+            { "label": "Centre réprimé", "value": "Instinctif/Action ou Mental." }
+          ]
+        },
+        { "label": "Direction d’utilisation", "value": "Vers l'intérieur : focalisation sur ses ressentis pour définir son identité." },
+        { "label": "Problématique centrale", "value": "Identité (Qui suis-je), valeur personnelle, gestion de la honte." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Dynamiques de l'ego",
+      "desc": "Compulsion, passion, fixation, défense, fierté, peur, désir.",
+      "items": [
+        { "label": "Compulsion (Évitement)", "value": "Éviter à tout prix la banalité ou l'ordinaire." },
+        { "label": "Passion (Vice)", "value": "Envie : sentiment que les autres ont quelque chose de fondamental qui manque en soi." },
+        { "label": "Fixation", "value": "Mélancolie (Spleen), parfois vécue comme un raffinement esthétique de la souffrance." },
+        { "label": "Mécanismes de défense", "value": "Introjection (absorber des affects extérieurs pour se sentir exister) et sublimation artistique." },
+        { "label": "Fierté égotique", "value": "Je suis différent, je suis sensible." },
+        { "label": "Peur de base", "value": "N'avoir aucune identité réelle ou aucune signification personnelle." },
+        { "label": "Désir de base", "value": "Être soi-même : créer une identité unique à partir de l'expérience intérieure." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Sous-types et styles sociaux",
+      "desc": "Instincts, style social, gestion des conflits.",
+      "items": [
+        {
+          "label": "Instincts / Sous-types",
+          "children": [
+            {
+              "label": "Auto-conservation",
+              "value": "Intrépidité / Ténacité (le Sensualiste) : endure en silence, peut prendre des risques pour se sentir vivant ou nier sa vulnérabilité."
+            },
+            {
+              "label": "Social",
+              "value": "Honte (l'Outsider) : se sent incapable de s'intégrer, expose sa sensibilité et sa tristesse pour être accepté."
+            },
+            {
+              "label": "Tête-à-tête (Sexuel)",
+              "value": "Compétition / Haine : refuse la honte via compétition et arrogance, veut être le plus spécial pour le partenaire."
+            }
+          ]
+        },
+        { "label": "Style social", "value": "Retrait (Withdrawn) : se retire pour protéger son univers intérieur." },
+        { "label": "Gestion des conflits", "value": "Réactif : réagit intensément aux pertes et demande une réponse émotionnelle forte." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Dynamiques de mouvement",
+      "desc": "Ailes, intégration, désintégration.",
+      "items": [
+        { "label": "Ailes", "value": "Aile 3 (plus extraverti, image) et aile 5 (plus solitaire, intellectuel, excentrique)." },
+        { "label": "Intégration (Santé)", "value": "→ 1 : plus objectif, discipliné, ancré dans l'action, moins esclave des humeurs." },
+        { "label": "Désintégration (Stress)", "value": "→ 2 : dépendant, manipulateur, cherche l'attention via faveurs ou scènes émotionnelles." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Identité spirituelle et noyau",
+      "desc": "Idée sacrée, vertu, aspect, noyau, enfant de l’âme.",
+      "items": [
+        { "label": "Idée Sacrée", "value": "Origine Sacrée : l'âme est indissociable de sa source, tout émane de l'Être." },
+        { "label": "Vertu", "value": "Équanimité : rester présent sans être emporté par les vagues de l'imagination." },
+        { "label": "Aspect idéalisé", "value": "Identité essentielle (le Point) : présence lumineuse, unique, irremplaçable." },
+        {
+          "label": "Noyau de la fixation",
+          "children": [
+            { "label": "Difficulté spécifique", "value": "Abandon / Déconnexion : sentiment d'être étranger à la réalité." },
+            { "label": "Réaction spécifique", "value": "Contrôle : régenter le vécu intérieur pour masquer la peur de la perte." },
+            { "label": "Illusion spécifique", "value": "Identité séparée : croire que le Moi est une entité isolée." }
+          ]
+        },
+        { "label": "Enfant de l'âme", "value": "Petit 1 intérieur : se sentait défectueux, a appris à utiliser le drame pour exister." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Style de parole, malentendu.",
+      "items": [
+        { "label": "Style de parole", "value": "Histoires tristes / Drame : langage imagé, symbolique, intense." },
+        { "label": "Malentendu de communication", "value": "Authenticité-Affectation : la quête de vérité peut être perçue comme théâtralité artificielle." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Évolution et relationnel",
+      "desc": "Alertes, pratiques, confusions, interactions.",
+      "items": [
+        { "label": "Signes d'alerte", "value": "Imagination utilisée massivement pour intensifier les sentiments." },
+        { "label": "Pratiques de croissance", "value": "Ne pas s'identifier aux sentiments, s'ancrer dans le présent, discipline quotidienne : faire avant ressentir." },
+        { "label": "Confusions fréquentes", "value": "1 (idéalisme), 2 (lien), 6 (anxiété), 9 (retrait)." },
+        {
+          "label": "Interactions et ententes",
+          "children": [
+            { "label": "En amour", "value": "Intense, push-pull : attire puis repousse par peur d'être envahi ou abandonné." },
+            { "label": "Au travail", "value": "Intuition et créativité, mais irrégularité possible selon les climats intérieurs." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Niveaux et conscience",
+      "desc": "Niveaux 1–9, conscience, spirale, analogie.",
+      "items": [
+        {
+          "label": "Niveaux de développement",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Créateur inspiré : présence authentique, révélatrice, profondeur claire." },
+            { "n": 2, "text": "Auto-conscient et intuitif : sens fin, créativité au service du vrai." },
+            { "n": 3, "text": "Authentique : exprime l'unicité sans dramatisation, ancré dans le réel." },
+            { "n": 4, "text": "Esthète imaginatif : recherche d'intensité, coloration émotionnelle forte." },
+            { "n": 5, "text": "Romantique auto-absorbé : rumination, comparaison, nostalgie." },
+            { "n": 6, "text": "Exception capricieuse : hypersensibilité, exigences affectives, humeurs." },
+            { "n": 7, "text": "Dépressif aliéné : sentiment de manque, retrait, impuissance." },
+            { "n": 8, "text": "Émotionnellement tourmenté : douleur amplifiée, instabilité, désespoir." },
+            { "n": 9, "text": "Auto-destructeur : effondrement, sabotage, perte de repères." }
+          ]
+        },
+        { "label": "Conscience", "value": "Passer de la transe de l'émotion subjective au souvenir de soi." },
+        { "label": "Spirale Dynamique", "value": "Souvent en phase avec VERT : empathie, respect de l'unicité humaine." },
+        { "label": "Analogie", "value": "Plongeur en eau profonde : ramène des trésors de sens depuis les abysses de la souffrance humaine." }
+      ]
+    }
+  ]
+}
