@@ -1,135 +1,149 @@
 {
   "type": 2,
-  "title": "Ennéatype 2",
-  "subtitle": "L'Altruiste, l'Aidant ou le Giver",
-  "meta": {
+  "name": "L’Altruiste",
+  "tagline": "L’Aidant ou le Giver",
+  "quick": {
     "center": "Émotionnel",
     "wings": "1 et 3",
-    "integration": "→ 4",
-    "disintegration": "→ 8"
+    "integr": "→ 4",
+    "disint": "→ 8"
   },
   "sections": [
     {
       "id": "structure",
       "icon": "🧩",
       "title": "Structure fondamentale et centres",
+      "desc": "Centre, hiérarchie, direction, problématique.",
       "items": [
-        { "k": "Centre d’intelligence", "v": "Émotionnel (Cœur)." },
+        { "label": "Centre d’intelligence", "value": "Émotionnel (Cœur)." },
         {
-          "k": "Hiérarchie des centres",
-          "v": "Centre préféré : Émotionnel. Centre de support : Instinctif ou Mental. Centre réprimé : Mental ou Instinctif."
+          "label": "Hiérarchie des centres",
+          "children": [
+            { "label": "Centre préféré", "value": "Émotionnel." },
+            { "label": "Centre de support", "value": "Instinctif ou Mental." },
+            { "label": "Centre réprimé", "value": "Mental ou Instinctif." }
+          ]
         },
-        {
-          "k": "Direction d’utilisation",
-          "v": "Vers l'extérieur (se focalise sur les besoins et sentiments d'autrui pour définir son identité)."
-        },
-        {
-          "k": "Problématique centrale",
-          "v": "L'Identité et l'Image (besoin d'être aimé et apprécié pour se sentir exister)."
-        }
+        { "label": "Direction d’utilisation", "value": "Vers l’extérieur (se focalise sur les besoins et sentiments d’autrui pour définir son identité)." },
+        { "label": "Problématique centrale", "value": "Identité et Image : besoin d’être aimé et apprécié pour se sentir exister." }
       ]
     },
     {
       "id": "ego",
       "icon": "⚙️",
-      "title": "Dynamiques de l'ego",
+      "title": "Dynamiques de l’ego",
+      "desc": "Compulsion, passion, fixation, défense, fierté, peur, désir.",
       "items": [
-        { "k": "Compulsion (évitement)", "v": "Éviter à tout prix de reconnaître ses propres besoins." },
-        { "k": "Passion (vice)", "v": "L'Orgueil (inflation de l'ego, se croire indispensable et sans besoins)." },
-        { "k": "Fixation", "v": "La Flatterie (donner des compliments et de l'attention pour s'assurer d'être aimé)." },
-        { "k": "Mécanisme de défense", "v": "La Répression (refouler les sentiments ou besoins \"non aimables\" hors de la conscience)." },
-        { "k": "Fierté égotique", "v": "J'aime, j'aide." },
-        { "k": "Peur de base", "v": "Être indigne d'être aimé pour soi-même." },
-        { "k": "Désir de base", "v": "Se sentir aimé." }
+        { "label": "Compulsion (Évitement)", "value": "Évite à tout prix de reconnaître ses propres besoins." },
+        { "label": "Passion (Vice)", "value": "Orgueil : inflation de l’ego, se croire indispensable et sans besoins." },
+        { "label": "Fixation", "value": "Flatterie : donner attention/compliments pour s’assurer d’être aimé." },
+        { "label": "Mécanisme de défense", "value": "Répression : refouler les sentiments/besoins jugés “non aimables” hors de la conscience." },
+        { "label": "Fierté égotique", "value": "Je l’aime, j’aide." },
+        { "label": "Peur de base", "value": "Être indigne d’être aimé pour soi-même." },
+        { "label": "Désir de base", "value": "Se sentir aimé." }
       ]
     },
     {
       "id": "subtypes",
       "icon": "🧭",
       "title": "Sous-types et styles sociaux",
+      "desc": "Instincts, style social, gestion des conflits.",
       "items": [
         {
-          "k": "Auto-conservation",
-          "v": "Privilège (ou \"Me First\") : se comporte de manière enfantine ou charmante pour attirer la protection et des avantages."
+          "label": "Instincts / Sous-types",
+          "children": [
+            { "label": "Auto-conservation", "value": "Privilège (Me First) : charme/enfantin pour attirer protection et avantages." },
+            { "label": "Social", "value": "Ambition : être indispensable/influent dans les groupes, auprès de personnes puissantes." },
+            { "label": "Tête-à-tête (Sexuel)", "value": "Conquête / Séduction agressive : charme intense pour captiver une personne spécifique." }
+          ]
         },
-        {
-          "k": "Social",
-          "v": "Ambition : cherche à être indispensable ou influent au sein de groupes ou auprès de personnes puissantes."
-        },
-        {
-          "k": "Tête-à-tête (Sexuel)",
-          "v": "Conquête / Séduction agressive : utilise un charme intense pour captiver des individus spécifiques."
-        },
-        {
-          "k": "Style social (Groupe Hornévien)",
-          "v": "Compliant : va vers les gens en suivant les impératifs de son surmoi (il faut aider)."
-        },
-        {
-          "k": "Gestion des conflits (Groupe Harmonique)",
-          "v": "Optimisme (Positive Outlook) : cherche à éviter la douleur en se concentrant sur le positif et l'aide."
-        }
+        { "label": "Style social (Hornévien)", "value": "Compliant : va vers les gens en suivant les impératifs du surmoi (il faut aider)." },
+        { "label": "Gestion des conflits (Harmonique)", "value": "Optimisme : évite la douleur en se centrant sur le positif et l’aide." }
       ]
     },
     {
-      "id": "moves",
+      "id": "movement",
       "icon": "↗️",
       "title": "Dynamiques de mouvement",
+      "desc": "Ailes, intégration, désintégration.",
       "items": [
-        { "k": "Ailes", "v": "Aile 1 (plus moralisatrice et rigoureuse) et aile 3 (plus ambitieuse et soucieuse de son image)." },
-        { "k": "Intégration (santé)", "v": "Vers le Type 4 : devient plus honnête envers ses besoins, plus introspectif et authentique." },
-        { "k": "Désintégration (stress)", "v": "Vers le Type 8 : devient colérique, agressif, dominateur et vindicatif." }
+        { "label": "Ailes", "value": "Aile 1 (plus moralisatrice) et aile 3 (plus ambitieuse, image)." },
+        { "label": "Intégration (Santé)", "value": "Vers le type 4 : plus honnête avec ses besoins, plus introspectif et authentique." },
+        { "label": "Désintégration (Stress)", "value": "Vers le type 8 : devient colérique, agressif, dominateur, vindicatif." }
       ]
     },
     {
       "id": "spirit",
       "icon": "✨",
       "title": "Identité spirituelle et noyau",
+      "desc": "Idée sacrée, vertu, aspect, noyau, enfant de l’âme.",
       "items": [
+        { "label": "Idée Sacrée", "value": "Volonté Sacrée et Liberté Sacrée : comprendre que l’univers soutient chacun sans manipulation." },
+        { "label": "Vertu", "value": "Humilité : reconnaître ses limites et sa juste place, sans inflation." },
+        { "label": "Aspect idéalisé", "value": "Amour fusionnel / Or fusionnel : connexion divine nourrissante ininterrompue." },
         {
-          "k": "Idée Sacrée",
-          "v": "Volonté Sacrée et Liberté Sacrée (comprendre que l'univers soutient chaque être sans manipulation)."
+          "label": "Noyau de la fixation",
+          "children": [
+            { "label": "Difficulté spécifique", "value": "Castration humiliante : sentiment de ne pas obtenir le soutien nécessaire." },
+            { "label": "Réaction spécifique", "value": "Action obstinée : vouloir faire à sa manière pour compenser." },
+            { "label": "Illusion spécifique", "value": "Volonté séparée : croire que l’on possède une volonté indépendante de l’univers." }
+          ]
         },
-        { "k": "Vertu", "v": "L'Humilité (reconnaître ses limites et sa juste place, sans inflation)." },
-        { "k": "Aspect idéalisé", "v": "L'Amour Fusionnel / Or Fusionnel (connexion divine nourrissante ininterrompue)." },
-        { "k": "Difficulté spécifique", "v": "Castration humiliante (sentiment de ne pas obtenir le soutien nécessaire)." },
-        { "k": "Réaction spécifique", "v": "Action obstinée (vouloir faire les choses à sa manière pour compenser)." },
-        { "k": "Illusion spécifique", "v": "Volonté séparée (croire que l'on possède une volonté propre indépendante de l'univers)." },
-        { "k": "Enfant de l'âme", "v": "Le petit 4 intérieur (abandonné ou spécial ; a appris à plaire pour être aimé)." }
+        { "label": "Enfant de l’âme", "value": "Petit 4 intérieur : se sentait abandonné/spécial et a appris à plaire pour être aimé." }
       ]
     },
     {
-      "id": "comms",
+      "id": "com",
       "icon": "🗣️",
       "title": "Communication",
+      "desc": "Style de parole, malentendu.",
       "items": [
-        { "k": "Style de parole", "v": "Aide-avis / Saga (conseils non sollicités, récits relationnels)." },
-        { "k": "Malentendu de communication", "v": "Amour-Intrusion (perçu comme invasion plutôt que don)." }
+        { "label": "Style de parole", "value": "Aide-avis / Saga : conseils non sollicités, histoires relationnelles." },
+        { "label": "Malentendu de communication", "value": "Amour-Intrusion : le don est perçu comme une invasion." }
       ]
     },
     {
-      "id": "rel",
+      "id": "evol",
       "icon": "🤝",
       "title": "Évolution et relationnel",
+      "desc": "Alertes, pratiques, confusions, relations.",
       "items": [
-        { "k": "Signes d'alerte", "v": "Se sentir indispensable, devenir envahissant, se plaindre de son épuisement (martyre)." },
+        { "label": "Signes d’alerte", "value": "Se sentir indispensable, devenir envahissant, se plaindre d’épuisement (martyre)." },
+        { "label": "Pratiques de croissance", "value": "Dire non, solitude, identifier ses besoins avant d’aider, accepter de ne pas être aimé de tout le monde." },
+        { "label": "Confusion fréquente entre types", "value": "Souvent confondu avec 4, 7 ou 9." },
         {
-          "k": "Pratiques de croissance",
-          "v": "Apprendre à dire non, pratiquer la solitude, identifier ses besoins avant d'aider, accepter de ne pas être aimé de tout le monde."
-        },
-        { "k": "Confusions fréquentes", "v": "Souvent confondu avec le 4, le 7 ou le 9." },
-        { "k": "En amour", "v": "Très dévoué, peut devenir possessif et jaloux s'il manque de reconnaissance." },
-        { "k": "Au travail", "v": "Excellent pour le réseautage et le soutien moral, peut faire preuve de favoritisme." }
+          "label": "Interactions et ententes",
+          "children": [
+            { "label": "En amour", "value": "Très dévoué ; peut devenir possessif/jaloux s’il manque de reconnaissance." },
+            { "label": "Au travail", "value": "Réseautage et soutien moral ; risque de favoritisme." }
+          ]
+        }
       ]
     },
     {
       "id": "levels",
       "icon": "📈",
       "title": "Niveaux et conscience",
+      "desc": "Développement 1–9, conscience, spirale, analogie.",
       "items": [
-        { "k": "Niveaux de développement (1–9)", "v": "Sain : altruiste désintéressé, personne attentionnée, aidant nourricier. Moyen : ami effusif, intime possessif, saint plein d'importance. Malsain : manipulateur trompeur, dominateur coercitif, victime psychosomatique." },
-        { "k": "Conscience", "v": "Passer de la transe de l'aidant (conscience subjective) au Souvenir de soi." },
-        { "k": "Spirale Dynamique", "v": "Souvent en adéquation avec le niveau VERT (empathie, consensus, importance des relations humaines)." },
-        { "k": "Analogie", "v": "Station-Service Émotionnelle : remplit les réservoirs des autres en oubliant de ravitailler les siens, jusqu'à la panne sèche." }
+        {
+          "label": "Niveaux de développement (1 à 9)",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Présence aimante et lucide : aide sans se perdre." },
+            { "n": 2, "text": "Générosité stable : donne avec discernement." },
+            { "n": 3, "text": "Bienveillance engagée : soutient sans contrôler." },
+            { "n": 4, "text": "Recherche d’amour : commence à attendre en retour." },
+            { "n": 5, "text": "Envahissement : devient indispensable, se fatigue." },
+            { "n": 6, "text": "Martyre : se plaint, culpabilise, manipule subtilement." },
+            { "n": 7, "text": "Agressivité défensive : exige, reproche, se durcit." },
+            { "n": 8, "text": "Domination : contrôle et punit la “déloyauté”." },
+            { "n": 9, "text": "Effondrement : victimisation, dépendances, somatisation." }
+          ]
+        },
+        { "label": "Conscience", "value": "Passer de la transe de l’aidant (conscience subjective) au Souvenir de soi." },
+        { "label": "Spirale Dynamique", "value": "Souvent en adéquation avec VERT (empathie, consensus, relations)." },
+        { "label": "Analogie", "value": "Station-service émotionnelle : remplit les autres en oubliant son propre réservoir, jusqu’à la panne sèche." }
       ]
     }
   ]
