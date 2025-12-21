@@ -1,0 +1,150 @@
+{
+  "type": 9,
+  "name": "Le Médiateur",
+  "tagline": "Le Pacificateur ou le Préservationniste",
+  "quick": {
+    "center": "Instinctif",
+    "wings": "8 et 1",
+    "integr": "→ 3",
+    "disint": "→ 6"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Structure fondamentale et centres",
+      "desc": "Centre, hiérarchie, direction, problématique.",
+      "items": [
+        { "label": "Centre d’intelligence", "value": "Instinctif (Corps/Gut)." },
+        {
+          "label": "Hiérarchie des centres",
+          "children": [
+            { "label": "Centre préféré", "value": "Instinctif." },
+            { "label": "Centre de support", "value": "Émotionnel ou Mental." },
+            { "label": "Centre réprimé", "value": "Instinctif : paradoxe du 9, utilise l’énergie du corps pour stabiliser l’environnement plutôt que pour agir sur lui." }
+          ]
+        },
+        { "label": "Direction d’utilisation", "value": "À la fois vers l’intérieur et vers l’extérieur : recherche d’équilibre pour éviter les perturbations." },
+        { "label": "Problématique centrale", "value": "Maintenir autonomie et paix intérieure face à un monde perçu comme envahissant." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Dynamiques de l'ego",
+      "desc": "Compulsion, passion, fixation, défense, fierté, peur, désir.",
+      "items": [
+        { "label": "Compulsion (Évitement)", "value": "Éviter à tout prix les conflits et les tensions." },
+        { "label": "Passion (Vice)", "value": "Paresse (Acidia) : paresse de la conscience, réticence à se mobiliser et s’engager pleinement." },
+        { "label": "Fixation", "value": "Indolence / oubli de soi : délaisser ses priorités pour des choses secondaires." },
+        { "label": "Mécanisme de défense", "value": "Narcotisation : s’engourdir par routines/distractions (TV, nourriture, habitudes) pour ne pas sentir malaise ou colère." },
+        { "label": "Fierté égotique", "value": "Je suis bien, calme et facile à vivre." },
+        { "label": "Peur de base", "value": "Perte de connexion, séparation, fragmentation." },
+        { "label": "Désir de base", "value": "Paix de l’esprit et complétude." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Sous-types et styles sociaux",
+      "desc": "Instincts, style social, gestion des conflits.",
+      "items": [
+        {
+          "label": "Instincts / Sous-types",
+          "children": [
+            { "label": "Auto-conservation", "value": "Appétit (chercheur de confort) : petits plaisirs matériels pour compenser le manque d’attention à l’être." },
+            { "label": "Social", "value": "Participation : travaille dur pour le groupe, oublie ses besoins pour pallier le sentiment de ne pas appartenir." },
+            { "label": "Tête-à-tête (Sexuel)", "value": "Union / symbiose : fusion avec une personne ou un idéal pour se sentir exister." }
+          ]
+        },
+        { "label": "Style social", "value": "Retrait (withdrawn) : se retire pour protéger son autonomie et éviter d’être bousculé." },
+        { "label": "Gestion des conflits", "value": "Optimisme (Positive Outlook) : minimise, se focalise sur le positif pour maintenir l’harmonie." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Dynamiques de mouvement",
+      "desc": "Ailes, intégration, désintégration.",
+      "items": [
+        { "label": "Ailes", "value": "Aile 8 (plus affirmé, terre-à-terre) et aile 1 (plus idéaliste, consciencieux)." },
+        { "label": "Intégration (Santé)", "value": "→ 3 : devient actif, se valorise, prend ses priorités en main, agit pour lui-même." },
+        { "label": "Désintégration (Stress)", "value": "→ 6 : anxieux, méfiant, réactif, préoccupé par le regard des autres." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Identité spirituelle et noyau",
+      "desc": "Idée sacrée, vertu, aspect, noyau, enfant de l’âme.",
+      "items": [
+        { "label": "Idée Sacrée", "value": "Amour Sacré : réalité fondamentalement bonne et aimante, de manière non localisée." },
+        { "label": "Vertu", "value": "Action juste (activité) : s’engager avec vitalité et intention dans l’essentiel." },
+        { "label": "Aspect idéalisé", "value": "Or de la lumière du jour (Living Daylight) : soutien d’une présence universelle bienveillante." },
+        {
+          "label": "Noyau de la fixation",
+          "children": [
+            { "label": "Difficulté spécifique", "value": "Infériorité : se sentir sans importance ou indigne d’amour." },
+            { "label": "Réaction spécifique", "value": "S’endormir (falling asleep) : devenir inconscient de ses désirs et de la réalité objective." },
+            { "label": "Illusion spécifique", "value": "Amour localisé : croire que la bonté est à l’extérieur et inaccessible en soi." }
+          ]
+        },
+        { "label": "Enfant de l'âme", "value": "Petit 3 intérieur : besoin d’être vu et de briller, caché derrière la modestie du 9." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Style de parole, malentendu.",
+      "items": [
+        { "label": "Style de parole", "value": "Saga / histoires épiques : détails et points de vue multiples, risque de noyer l’essentiel." },
+        { "label": "Malentendu de communication", "value": "Apaisement-Flou : neutralité pacifique perçue comme indécision ou manque de clarté." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Évolution et relationnel",
+      "desc": "Alertes, pratiques, confusions, interactions.",
+      "items": [
+        { "label": "Signes d'alerte", "value": "Se perdre dans routines, devenir têtu/inerte, nier des problèmes de santé ou financiers évidents." },
+        { "label": "Pratiques de croissance", "value": "Identifier la colère, définir ses priorités, pratiquer le souvenir de soi, agir même dans le malaise." },
+        { "label": "Confusions fréquentes", "value": "2 (serviabilité), 5 (calme/retrait)." },
+        {
+          "label": "Interactions et ententes",
+          "children": [
+            { "label": "En amour", "value": "Soutenant et doux ; peut devenir absent émotionnel par peur du conflit." },
+            { "label": "Au travail", "value": "Médiateur stable ; peut saboter passivement si trop poussé." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Niveaux et conscience",
+      "desc": "Niveaux 1–9, conscience, spirale, analogie.",
+      "items": [
+        {
+          "label": "Niveaux de développement",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Guide plein de maîtrise de soi : présence, paix active, force tranquille." },
+            { "n": 2, "text": "Personne réceptive : écoute profonde, ouverture, stabilité." },
+            { "n": 3, "text": "Pacificateur soutenant : harmonie, médiation, bienveillance ferme." },
+            { "n": 4, "text": "Joueur de rôle accommodant : s’adapte, s’oublie, évite la tension." },
+            { "n": 5, "text": "Participant désengagé : inertie, procrastination, anesthésie." },
+            { "n": 6, "text": "Fataliste résigné : renonce, se dissout, passivité." },
+            { "n": 7, "text": "Paillasson niant la réalité : effacement, déni, fuite du réel." },
+            { "n": 8, "text": "Automate dissocié : engourdissement, routines, coupure intérieure." },
+            { "n": 9, "text": "Spectre s’abandonnant lui-même : disparition du désir, extinction du soi." }
+          ]
+        },
+        { "label": "Conscience", "value": "Passer de l’état de zombie/sommeil au souvenir de soi (Self-remembering)." },
+        { "label": "Spirale Dynamique", "value": "VERT (consensus, harmonie de groupe, empathie)." },
+        { "label": "Analogie", "value": "Miroir : absorbe l’image de l’autre jusqu’à oublier sa propre présence." }
+      ]
+    }
+  ]
+}
