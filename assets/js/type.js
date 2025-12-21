@@ -8,7 +8,7 @@ function getTypeParam(){
 }
 
 const TYPE = getTypeParam();
-const DATA_URL = `assets/data/type-${TYPE}.json?v=12`;
+const DATA_URL = `assets/data/type-${TYPE}.json?v=99`;
 
 const elTitle = qs("#typeTitle");
 const elSubtitle = qs("#typeSubtitle");
@@ -50,11 +50,10 @@ function closeDrawer(){
   document.body.style.overflow = "";
   currentSectionId = null;
 }
+drawerOverlay?.addEventListener("click", closeDrawer);
+btnClose?.addEventListener("click", closeDrawer);
 
-drawerOverlay.addEventListener("click", closeDrawer);
-btnClose.addEventListener("click", closeDrawer);
-
-btnPin.addEventListener("click", ()=>{
+btnPin?.addEventListener("click", ()=>{
   pinned = !pinned;
   btnPin.textContent = pinned ? "Désépingler" : "Épingler";
 });
@@ -63,16 +62,87 @@ document.addEventListener("keydown", (e)=>{
   if (e.key === "Escape") closeDrawer();
 });
 
-function setHeader(d){
-  document.title = `Type ${d.type} • ${d.name}`;
-  elTitle.textContent = `Type ${d.type} • ${d.name}`;
-  elSubtitle.textContent = d.tagline || "Fiche interactive";
+function safeStr(x){ return (x===null || x===undefined) ? "" : String(x); }
 
-  qType.textContent = d.type;
-  qCenter.textContent = d.quick?.center || "—";
-  qWings.textContent = d.quick?.wings || "—";
-  qIntegr.textContent = d.quick?.integr || "—";
-  qDisint.textContent = d.quick?.disint || "—";
+function normalizeItem(it){
+  if (!it) return null;
+
+  // Support des formats {label,value} et {k,v}
+  const out = { ...it };
+  if (out.k && !out.label) out.label = out.k;
+  if (out.v && out.value === undefined) out.value = out.v;
+
+  if (out.label === undefined) out.label = "—";
+  if (out.value === undefined) out.value = "";
+
+  if (Array.isArray(out.children)){
+    out.children = out.children.map(normalizeItem).filter(Boolean);
+  }
+  return out;
+}
+
+function slug(s){
+  return safeStr(s)
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g,"-")
+    .replace(/(^-|-$)/g,"");
+}
+
+function normalizeSection(sec, idx){
+  const out = { ...sec };
+
+  out.title = out.title || out.name || "Section";
+  out.desc = out.desc || out.hint || "Clique pour ouvrir";
+  out.icon = out.icon || "📌";
+  out.id = out.id || slug(out.title) || `sec-${idx+1}`;
+
+  if (Array.isArray(out.items)){
+    out.items = out.items.map(normalizeItem).filter(Boolean);
+  }else{
+    out.items = [];
+  }
+
+  return out;
+}
+
+function normalizeData(raw){
+  if (!raw) return null;
+
+  const d = { ...raw };
+
+  // Support des formats : {meta:{...}} ou {quick:{...}}
+  const meta = d.quick || d.meta || {};
+  d._type = d.type || d.num || d.id || TYPE;
+  d._name = d.name || d.title || "";
+  d._tagline = d.tagline || d.subtitle || "";
+
+  d._quick = {
+    center: meta.center || meta.centre || d.center || "—",
+    wings: meta.wings || meta.ailes || d.wings || "—",
+    integr: meta.integr || meta.integration || d.integration || "—",
+    disint: meta.disint || meta.desintegration || meta.désintégration || d.desintegration || d.désintégration || "—",
+  };
+
+  if (Array.isArray(d.sections)){
+    d.sections = d.sections.map(normalizeSection);
+  }else{
+    d.sections = [];
+  }
+
+  return d;
+}
+
+function setHeader(d){
+  document.title = `Type ${d._type} • ${d._name || "—"}`;
+  elTitle.textContent = `Type ${d._type} • ${d._name || "—"}`;
+  elSubtitle.textContent = d._tagline || "Fiche interactive";
+
+  qType.textContent = d._type;
+  qCenter.textContent = d._quick.center || "—";
+  qWings.textContent = d._quick.wings || "—";
+  qIntegr.textContent = d._quick.integr || "—";
+  qDisint.textContent = d._quick.disint || "—";
 }
 
 function storeKey(){ return `ennea_sections_order_type_${TYPE}`; }
@@ -136,27 +206,13 @@ function makeSecCard(s){
     showSection(s.id);
   });
 
-  div.addEventListener("dragstart", ()=>{
-    div.classList.add("dragging");
-  });
+  div.addEventListener("dragstart", ()=> div.classList.add("dragging"));
   div.addEventListener("dragend", ()=>{
     div.classList.remove("dragging");
     saveOrderFromDOM();
   });
 
   return div;
-}
-
-function enableDnD(){
-  sectionsGrid.addEventListener("dragover", (e)=>{
-    e.preventDefault();
-    const dragging = sectionsGrid.querySelector(".secCard.dragging");
-    if (!dragging) return;
-
-    const after = getDragAfterElement(sectionsGrid, e.clientY);
-    if (after == null) sectionsGrid.appendChild(dragging);
-    else sectionsGrid.insertBefore(dragging, after);
-  });
 }
 
 function getDragAfterElement(container, y){
@@ -167,6 +223,17 @@ function getDragAfterElement(container, y){
     if (offset < 0 && offset > closest.offset) return { offset, element: child };
     return closest;
   }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
+}
+
+function enableDnD(){
+  sectionsGrid.addEventListener("dragover", (e)=>{
+    e.preventDefault();
+    const dragging = sectionsGrid.querySelector(".secCard.dragging");
+    if (!dragging) return;
+    const after = getDragAfterElement(sectionsGrid, e.clientY);
+    if (after == null) sectionsGrid.appendChild(dragging);
+    else sectionsGrid.insertBefore(dragging, after);
+  });
 }
 
 function renderTOC(sections){
@@ -197,7 +264,7 @@ function renderTOC(sections){
 
 function textMatch(hay, needle){
   if (!needle) return true;
-  return (hay || "").toLowerCase().includes(needle.toLowerCase());
+  return safeStr(hay).toLowerCase().includes(needle.toLowerCase());
 }
 
 function makeNodeCard(node){
@@ -225,7 +292,7 @@ function makeNodeCard(node){
   const childrenWrap = document.createElement("div");
   childrenWrap.className = "nodeChildren";
 
-  if (Array.isArray(node.children)){
+  if (Array.isArray(node.children) && node.children.length){
     node.children.forEach(ch=>{
       childrenWrap.appendChild(makeNodeCard(ch));
     });
@@ -238,11 +305,11 @@ function makeNodeCard(node){
       const b = document.createElement("button");
       b.type = "button";
       b.className = "levelBtn";
-      b.innerHTML = `<div class="levelNum">Niveau ${l.n}</div><div class="levelTxt">${l.text}</div>`;
+      b.innerHTML = `<div class="levelNum">Niveau ${l.n}</div><div class="levelTxt">${safeStr(l.text)}</div>`;
       b.addEventListener("click", ()=>{
         card.classList.add("open");
         value.style.display = "block";
-        value.textContent = `Niveau ${l.n} : ${l.text}`;
+        value.textContent = `Niveau ${l.n} : ${safeStr(l.text)}`;
       });
       grid.appendChild(b);
     });
@@ -255,7 +322,7 @@ function makeNodeCard(node){
     caret.textContent = isOpen ? "Fermer" : "Ouvrir";
   });
 
-  if (!node.value && !node.children && node.kind !== "levels"){
+  if (!node.value && (!node.children || !node.children.length) && node.kind !== "levels"){
     caret.textContent = "";
   }
 
@@ -280,9 +347,8 @@ function collapseAll(){
     if (caret) caret.textContent = "Ouvrir";
   });
 }
-
-btnExpandAll.addEventListener("click", expandAll);
-btnCollapseAll.addEventListener("click", collapseAll);
+btnExpandAll?.addEventListener("click", expandAll);
+btnCollapseAll?.addEventListener("click", collapseAll);
 
 function showSection(id){
   const s = DATA.sections.find(x => x.id === id);
@@ -299,8 +365,10 @@ function showSection(id){
   const needle = (searchBox.value || "").trim();
 
   const items = (s.items || []).filter(it=>{
-    const blob = (it.label || "") + " " + (it.value || "");
-    return textMatch(blob, needle) || (it.children || []).some(ch => textMatch((ch.label||"")+" "+(ch.value||""), needle));
+    const blob = safeStr(it.label) + " " + safeStr(it.value);
+    if (textMatch(blob, needle)) return true;
+    if (Array.isArray(it.children)) return it.children.some(ch => textMatch(safeStr(ch.label) + " " + safeStr(ch.value), needle));
+    return false;
   });
 
   if (!items.length){
@@ -315,14 +383,15 @@ function showSection(id){
   openDrawer();
 }
 
-searchBox.addEventListener("input", ()=>{
+searchBox?.addEventListener("input", ()=>{
   if (!DATA || !currentSectionId) return;
   showSection(currentSectionId);
 });
 
 async function load(){
-  const res = await fetch(DATA_URL);
-  DATA = await res.json();
+  const res = await fetch(DATA_URL, { cache: "no-store" });
+  const raw = await res.json();
+  DATA = normalizeData(raw);
 
   setHeader(DATA);
 
@@ -336,5 +405,5 @@ async function load(){
 
 load().catch(()=>{
   elTitle.textContent = "Fichier manquant";
-  elSubtitle.textContent = "Crée assets/data/type-" + TYPE + ".json";
+  elSubtitle.textContent = `Crée assets/data/type-${TYPE}.json`;
 });
