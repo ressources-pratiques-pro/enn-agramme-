@@ -3,32 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ennéagramme — Fiche</title>
-  <link rel="stylesheet" href="assets/css/app.css" />
+  <title>Fiche complète</title>
+  <link rel="stylesheet" href="assets/css/app.css?v=12" />
+  <link rel="stylesheet" href="assets/css/type.css?v=12" />
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
-      <div>
-        <h1 id="tTitle">Fiche</h1>
-        <p id="tSubtitle" class="muted">Contenu complet du type, structuré par rubriques.</p>
+  <div class="wrap typeWrap">
+    <header class="typeTop">
+      <a class="backBtn" href="index.html">Retour</a>
+
+      <div class="typeHead">
+        <h1 id="typeTitle">Fiche complète</h1>
+        <p id="typeSubtitle">—</p>
       </div>
-      <div class="actions">
-        <a class="btn" href="index.html">Retour au cercle</a>
+
+      <div class="typeTools">
+        <input id="searchBox" type="search" placeholder="Rechercher dans la fiche…" />
+        <button id="btnExpandAll" type="button">Tout ouvrir</button>
+        <button id="btnCollapseAll" type="button">Tout fermer</button>
       </div>
     </header>
 
-    <main class="onecol">
-      <section class="side">
-        <div class="badgeRow">
-          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
-        </div>
+    <section class="quickBar">
+      <div class="qChip"><span class="qK">Type</span><span class="qV" id="qType">—</span></div>
+      <div class="qChip"><span class="qK">Centre</span><span class="qV" id="qCenter">—</span></div>
+      <div class="qChip"><span class="qK">Ailes</span><span class="qV" id="qWings">—</span></div>
+      <div class="qChip"><span class="qK">Intégration</span><span class="qV" id="qIntegr">—</span></div>
+      <div class="qChip"><span class="qK">Désintégration</span><span class="qV" id="qDisint">—</span></div>
+    </section>
 
-        <div id="content"></div>
+    <main class="typeGrid">
+      <section class="sectionsPanel">
+        <h2 class="panelTitle">Catégories</h2>
+        <p class="panelHint">Clique une carte pour entrer dedans. Tu peux réorganiser les cartes en les glissant.</p>
+
+        <div id="sectionsGrid" class="sectionsGrid"></div>
       </section>
+
+      <aside class="navPanel">
+        <h2 class="panelTitle">Sommaire</h2>
+        <div id="toc" class="toc"></div>
+      </aside>
     </main>
   </div>
 
-  <script src="assets/js/type.js"></script>
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawerOverlay" id="drawerOverlay"></div>
+
+    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Contenu de la rubrique">
+      <div class="drawerTop">
+        <div class="drawerTitleRow">
+          <div class="drawerIcon" id="drawerIcon">📌</div>
+          <div class="drawerTitles">
+            <div class="drawerTitle" id="drawerTitle">—</div>
+            <div class="drawerSub" id="drawerSub">—</div>
+          </div>
+        </div>
+        <div class="drawerActions">
+          <button id="btnPin" type="button">Épingler</button>
+          <button id="btnClose" type="button">Fermer</button>
+        </div>
+      </div>
+
+      <div class="drawerBody">
+        <div id="drawerContent" class="drawerContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/type.js?v=12"></script>
 </body>
 </html>
