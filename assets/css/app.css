@@ -146,7 +146,10 @@ svg{ width:100%; height:auto; display:block; }
 .centerLabel{
   font-size: 18px;
   font-weight: 800;
-  filter: url(#softGlow);
+  text-rendering: geometricPrecision;
+  paint-order: stroke fill;
+  stroke: rgba(11,18,32,.55);
+  stroke-width: 0.8px;
 }
 .centerLabel.instinctif{ fill: var(--inst); }
 .centerLabel.emotionnel{ fill: var(--emo); }
@@ -160,9 +163,9 @@ svg{ width:100%; height:auto; display:block; }
   transition: stroke .18s ease, filter .18s ease;
 }
 
-.node.instinctif circle{ stroke: var(--inst); filter: url(#softGlow); }
-.node.emotionnel circle{ stroke: var(--emo); filter: url(#softGlow); }
-.node.mental circle{ stroke: var(--ment); filter: url(#softGlow); }
+.node.instinctif circle{ stroke: var(--inst); }
+.node.emotionnel circle{ stroke: var(--emo); }
+.node.mental circle{ stroke: var(--ment); }
 
 .node text{ fill: var(--text); font-weight: 750; font-size: 22px; dominant-baseline: middle; text-anchor: middle; }
 .node .label{ fill: rgba(234,240,255,.78); font-weight: 600; font-size: 12px; text-anchor: middle; }
