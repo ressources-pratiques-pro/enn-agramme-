@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=4" />
+  <link rel="stylesheet" href="assets/css/app.css?v=5" />
 </head>
 <body>
   <div class="wrap">
@@ -56,29 +56,32 @@
         <div class="card">
           <div class="miniGrid">
             <div class="mini">
-              <h3>Centre</h3>
+              <h3>Centre d’intelligence</h3>
               <p id="center">—</p>
             </div>
             <div class="mini">
-              <h3>Peur</h3>
+              <h3>Peur de base</h3>
               <p id="fear">—</p>
             </div>
             <div class="mini">
-              <h3>Désir</h3>
+              <h3>Désir de base</h3>
               <p id="desire">—</p>
             </div>
             <div class="mini">
-              <h3>Compulsion</h3>
+              <h3>Compulsion (évitement)</h3>
               <p id="compulsion">—</p>
             </div>
           </div>
 
           <div class="route">
-            <div class="chip"><span class="dot good"></span> Intégration <strong id="toIntegr">—</strong></div>
-            <div class="chip"><span class="dot warn"></span> Désintégration <strong id="toDisint">—</strong></div>
+            <div class="chip"><span class="dot good"></span> Intégration <span class="muted">(santé)</span> <strong id="toIntegr">—</strong></div>
+            <div class="chip"><span class="dot warn"></span> Désintégration <span class="muted">(stress)</span> <strong id="toDisint">—</strong></div>
           </div>
 
-          <p id="moveText" class="muted small">—</p>
+          <div class="moveLines">
+            <div id="moveHealth" class="moveLine health"><span class="dot good"></span><strong>Intégration</strong> <span class="muted">(santé)</span> : <span id="moveHealthText">—</span></div>
+            <div id="moveStress" class="moveLine stress"><span class="dot warn"></span><strong>Désintégration</strong> <span class="muted">(stress)</span> : <span id="moveStressText">—</span></div>
+          </div>
 
           <div class="ctaRow">
             <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
@@ -88,6 +91,6 @@
     </main>
   </div>
 
-  <script src="assets/js/app.js?v=4"></script>
+  <script src="assets/js/app.js?v=5"></script>
 </body>
 </html>
