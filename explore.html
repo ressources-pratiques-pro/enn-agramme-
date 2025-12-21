@@ -12,10 +12,27 @@
     .nodeValue{ white-space: pre-line; }
     .nodeCard{ white-space: normal; }
     .heroActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    
+    /* Styles de base pour les boutons */
     .heroBtn{
       display:inline-flex; align-items:center; gap:8px;
       padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
       text-decoration:none;
+      color: rgba(234,246,255,.95);
+      border-color: rgba(125,211,252,.35);
+      background: rgba(56,189,248,.14);
+    }
+
+    /* État au survol */
+    .heroBtn:hover{
+      background: rgba(56,189,248,.22);
+      border-color: rgba(125,211,252,.55);
+    }
+
+    /* Accessibilité clavier */
+    .heroBtn:focus-visible{
+      outline: 2px solid rgba(125,211,252,.75);
+      outline-offset: 2px;
     }
   </style>
 </head>
