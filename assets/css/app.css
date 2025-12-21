@@ -132,12 +132,32 @@ svg{ width:100%; height:auto; display:block; }
 .innerRing{ stroke: rgba(255,255,255,.08); stroke-width: 2; fill: none; }
 
 .staticBg{ pointer-events:none; }
+
 .hex, .tri{ fill:none; stroke-linecap:round; stroke-linejoin:round; }
 .hex{ stroke: rgba(234,240,255,.22); stroke-width: 2.2; }
 .tri{ stroke: rgba(234,240,255,.18); stroke-width: 2.2; opacity:.9; }
 
-.centers .centerLine{ stroke: rgba(253,164,175,.18); stroke-width: 2.4; stroke-linecap:round; }
-.centers .centerLabel{ fill: rgba(169,183,230,.92); font-size: 18px; font-weight: 700; }
+.centers .centerLine{ stroke: rgba(253,164,175,.16); stroke-width: 2.4; stroke-linecap:round; }
+.centers .centerLabel{ fill: rgba(169,183,230,.92); font-size: 18px; font-weight: 750; }
+
+.outerTags .tag rect{
+  fill: rgba(255,255,255,.05);
+  stroke: rgba(255,255,255,.16);
+  stroke-width: 1.2;
+}
+
+.outerTags .tag text{
+  fill: rgba(234,240,255,.90);
+  font-size: 14px;
+  font-weight: 700;
+  dominant-baseline: middle;
+}
+
+.outerTags .tag circle{ opacity:.9; }
+
+.outerTags .tag.instinctif circle{ fill: rgba(245,158,11,.90); }
+.outerTags .tag.mental circle{ fill: rgba(125,211,252,.90); }
+.outerTags .tag.emotionnel circle{ fill: rgba(253,164,175,.90); }
 
 .node{ cursor:pointer; }
 .node circle{ fill: rgba(15,26,51,.85); stroke: rgba(255,255,255,.20); stroke-width: 2.2; }
