@@ -6,6 +6,18 @@ const arrowsFallback = {
   disint: { 1:4, 2:8, 3:9, 4:2, 5:7, 6:3, 7:1, 8:5, 9:6 }
 };
 
+const groups = {
+  instinctif: [8,9,1],
+  emotionnel: [2,3,4],
+  mental: [5,6,7]
+};
+
+function groupOf(t){
+  if (groups.instinctif.includes(t)) return "instinctif";
+  if (groups.emotionnel.includes(t)) return "emotionnel";
+  return "mental";
+}
+
 function polarPoint(index){
   const angle = (-90 + index * (360/9)) * (Math.PI/180);
   return { x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) };
@@ -58,7 +70,7 @@ function showOnlyTypeArrows(t){
 
 function makeNode(t){
   const g = document.createElementNS("http://www.w3.org/2000/svg","g");
-  g.setAttribute("class","node");
+  g.setAttribute("class","node " + groupOf(t));
 
   const p = points[t];
 
