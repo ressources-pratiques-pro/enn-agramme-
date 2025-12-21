@@ -1,0 +1,151 @@
+{
+  "type": 7,
+  "name": "L’Épicurien",
+  "tagline": "L’Enthousiaste",
+  "quick": {
+    "center": "Mental",
+    "wings": "6 et 8",
+    "integr": "→ 5",
+    "disint": "→ 1"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Structure fondamentale et centres",
+      "desc": "Centre, hiérarchie, direction, problématique.",
+      "items": [
+        { "label": "Centre d’intelligence", "value": "Mental (Tête)." },
+        {
+          "label": "Hiérarchie des centres",
+          "children": [
+            { "label": "Centre préféré", "value": "Mental." },
+            { "label": "Centre de support", "value": "Instinctif." },
+            { "label": "Centre réprimé", "value": "Émotionnel (Cœur)." }
+          ]
+        },
+        { "label": "Direction d’utilisation", "value": "Vers l’intérieur : utilise le mental pour construire une structure intérieure plaisante et se protéger du monde extérieur." },
+        { "label": "Problématique centrale", "value": "Anxiété et insécurité liées à un sentiment de manque de guidance et de soutien intérieur." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Dynamiques de l'ego",
+      "desc": "Compulsion, passion, fixation, défense, fierté, peur, désir.",
+      "items": [
+        { "label": "Compulsion (Évitement)", "value": "Éviter à tout prix la souffrance (physique et morale), les limitations et l’ennui." },
+        { "label": "Passion (Vice)", "value": "Gourmandise (gloutonnerie) : désir insatiable d’expériences/plaisirs pour combler un vide." },
+        { "label": "Fixation", "value": "Planification : remplir l’esprit de projets futurs excitants pour ne pas sentir le malaise du présent." },
+        { "label": "Mécanisme de défense", "value": "Rationalisation : justifications positives du négatif pour éviter la douleur." },
+        { "label": "Fierté égotique", "value": "Je suis optimiste, je suis heureux." },
+        { "label": "Peur de base", "value": "Être privé de tout ou enfermé dans la douleur." },
+        { "label": "Désir de base", "value": "Être satisfait, comblé et heureux." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Sous-types et styles sociaux",
+      "desc": "Instincts, style social, gestion des conflits.",
+      "items": [
+        {
+          "label": "Instincts / Sous-types",
+          "children": [
+            { "label": "Auto-conservation", "value": "Clan / Famille (Défenseur) : sécurité via réseaux d’alliances et protection pour assurer le confort." },
+            { "label": "Social", "value": "Sacrifice (contre-type) : sacrifie la gourmandise personnelle au service d’un idéal collectif pour se sentir bon." },
+            { "label": "Tête-à-tête (Sexuel)", "value": "Suggestibilité / fascination : lunettes roses, idéalisation de la réalité." }
+          ]
+        },
+        { "label": "Style social", "value": "Assertif (agressif) : va vers les gens pour obtenir ce dont il a besoin pour son bonheur." },
+        { "label": "Gestion des conflits", "value": "Optimisme (Positive Outlook) : recadre positivement pour éviter le malaise." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Dynamiques de mouvement",
+      "desc": "Ailes, intégration, désintégration.",
+      "items": [
+        { "label": "Ailes", "value": "Aile 6 (plus anxieux et loyal) et aile 8 (plus direct, puissant, ancré)." },
+        { "label": "Intégration (Santé)", "value": "→ 5 : plus profond, focus, silence, assimile les expériences en profondeur." },
+        { "label": "Désintégration (Stress)", "value": "→ 1 : rigidité, critique, impatience, exigences et perfectionnisme." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Identité spirituelle et noyau",
+      "desc": "Idée sacrée, vertu, aspect, noyau, enfant de l’âme.",
+      "items": [
+        { "label": "Idée Sacrée", "value": "Sagesse Sacrée, Travail Sacré, Plan Sacré : la réalité se déploie harmonieusement sans intervention de l’ego." },
+        { "label": "Vertu", "value": "Sobriété (tempérance) : rester avec une seule expérience à la fois sans chercher la distraction." },
+        { "label": "Aspect idéalisé", "value": "Véhicule du plaisir (Markabah) : richesse multidimensionnelle de l’Être." },
+        {
+          "label": "Noyau de la fixation",
+          "children": [
+            { "label": "Difficulté spécifique", "value": "Désorientation / sentiment d’être perdu." },
+            { "label": "Réaction spécifique", "value": "Planification : créer une direction factice." },
+            { "label": "Illusion spécifique", "value": "Déploiement séparé : croire devoir diriger son propre épanouissement." }
+          ]
+        },
+        { "label": "Enfant de l'âme", "value": "Petit 5 intérieur : se sentait vide/démuni, s’est échappé par l’imagination." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Style de parole, malentendu.",
+      "items": [
+        { "label": "Style de parole", "value": "Histoires (sagas, anecdotes, plaisanteries) et planification." },
+        { "label": "Malentendu de communication", "value": "Légèreté-Superficialité : la joie peut être perçue comme manque de sérieux ou d’engagement." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Évolution et relationnel",
+      "desc": "Alertes, pratiques, confusions, interactions.",
+      "items": [
+        { "label": "Signes d'alerte", "value": "Esprit qui s’emballe, multiplication frénétique d’activités, évitement de tout sujet sérieux/douloureux." },
+        { "label": "Pratiques de croissance", "value": "Silence, présence à la douleur sans fuite, réaliser que le bonheur vient de l’intérieur." },
+        { "label": "Confusions fréquentes", "value": "3 (énergie), 2 (charme), 9 (optimisme)." },
+        {
+          "label": "Interactions et ententes",
+          "children": [
+            { "label": "Vue d’ensemble", "value": "Stimulant et drôle, mais peut épuiser l’entourage par le flux d’activités et la difficulté à s’engager." },
+            { "label": "En amour", "value": "Aventureux, craint l’étouffement et l’engagement définitif qui limiterait ses options." },
+            { "label": "Au travail", "value": "Visionnaire, fort en brainstorming, mais suivi parfois faible après l’excitation initiale." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Niveaux et conscience",
+      "desc": "Niveaux 1–9, conscience, spirale, analogie.",
+      "items": [
+        {
+          "label": "Niveaux de développement",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Appréciateur extatique : gratitude, présence joyeuse." },
+            { "n": 2, "text": "Enthousiaste à l’esprit libre : créativité, optimisme lucide." },
+            { "n": 3, "text": "Généraliste accompli : relie expériences, sagesse pratique." },
+            { "n": 4, "text": "Sophistiqué expérimenté : quête d’expériences, raffinement." },
+            { "n": 5, "text": "Extraverti hyperactif : dispersion, fuite du malaise." },
+            { "n": 6, "text": "Hédoniste excessif : surconsommation, impulsions, addictions." },
+            { "n": 7, "text": "Escapiste impulsif : évitement panique, décisions erratiques." },
+            { "n": 8, "text": "Maniaque compulsif : agitation extrême, incapacité à s’arrêter." },
+            { "n": 9, "text": "Hystérique frappé de panique : effondrement, terreur, désorganisation." }
+          ]
+        },
+        { "label": "Conscience", "value": "Passer de la transe de la distraction au souvenir de soi dans le moment présent." },
+        { "label": "Spirale Dynamique", "value": "ORANGE (succès/opportunisme/progrès) et parfois ROUGE (impulsivité/force)." },
+        { "label": "Analogie", "value": "Monkey mind : saute de branche en branche, oubliant qu’il est déjà au sommet de l’arbre de son Essence." }
+      ]
+    }
+  ]
+}
