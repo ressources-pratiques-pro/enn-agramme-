@@ -1,176 +1,101 @@
-:root{
-  --bg:#0b1220;
-  --card:#121f3f;
-  --text:#eaf0ff;
-  --muted:#a9b7e6;
-  --accent:#7dd3fc;
-  --good:#86efac;
-  --warn:#fda4af;
-  --shadow: 0 18px 50px rgba(0,0,0,.35);
-  --radius: 18px;
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Explorer l’Ennéagramme</title>
 
-  --inst: rgba(248,113,113,.55);
-  --emo: rgba(245,158,11,.55);
-  --ment: rgba(125,211,252,.55);
-}
+  <link rel="stylesheet" href="assets/css/app.css?v=12" />
+  <link rel="stylesheet" href="assets/css/type.css?v=12" />
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+  <style>
+    .nodeValue{ white-space: pre-line; }
+    .nodeCard{ white-space: normal; }
+    .heroActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    
+    /* Styles pour heroBtn conservés pour la compatibilité */
+    .heroBtn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      text-decoration:none;
+    }
 
-body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  background:
-    radial-gradient(1200px 700px at 20% 10%, rgba(125,211,252,.18), transparent 55%),
-    radial-gradient(900px 600px at 80% 20%, rgba(134,239,172,.12), transparent 50%),
-    radial-gradient(1000px 700px at 40% 90%, rgba(253,164,175,.10), transparent 55%),
-    var(--bg);
-  color:var(--text);
-}
+    /* Styles pour le pied de page */
+    .siteFooter{margin:18px 0 10px;font-size:12px;opacity:.9}
+    .siteFooterInner{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}
+    .siteFooterLink{color:#fff;text-decoration:none}
+    .siteFooterLink:visited{color:#fff}
+    .siteFooterLink:hover{text-decoration:underline}
+  </style>
+</head>
 
-.wrap{ max-width:1200px; margin:0 auto; padding:22px 18px 30px; }
+<body>
+  <div class="wrap typeWrap">
+    <header class="typeTop">
+      <a class="backBtn" href="index.html">Retour</a>
 
-.top{ display:flex; gap:12px; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; }
-.top h1{ margin:0; font-size:22px; text-align:center; width:100%; }
-.top p{ margin:6px 0 0; }
-.actions{ display:flex; gap:10px; align-items:center; }
+      <div class="typeHead">
+        <h1 id="exploreTitle">Explorer l’Ennéagramme</h1>
+        <p id="exploreSubtitle">Histoire, concepts, niveaux 1–9, pratiques, repères</p>
 
-.grid{ display:grid; grid-template-columns:1.45fr 1fr; gap:16px; margin-top:16px; }
-@media (max-width:980px){ .grid{ grid-template-columns:1fr; } }
+        <div class="heroActions">
+          <a id="btnTest" class="softCta" href="test-enneagramme-sans-indice.html">Faire le test</a>
+          <a id="btnDiagram" class="softCta" href="index.html">Aller au diagramme</a>
+        </div>
+      </div>
 
-.stage, .side{
-  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow:hidden;
-  backdrop-filter: blur(12px);
-}
+      <div class="typeTools">
+        <input id="searchBox" type="search" placeholder="Rechercher dans l’exploration…" />
+        <button id="btnExpandAll" type="button">Tout ouvrir</button>
+        <button id="btnCollapseAll" type="button">Tout fermer</button>
+      </div>
+    </header>
 
-.stage{ padding:14px; }
-.svgWrap{
-  background: radial-gradient(600px 420px at 50% 45%, rgba(147,197,253,.10), transparent 55%);
-  border-radius:16px;
-  border: 1px solid rgba(255,255,255,.08);
-  padding:10px;
-}
+    <main class="typeGrid">
+      <section class="sectionsPanel">
+        <h2 class="panelTitle">Catégories</h2>
+        <p class="panelHint">Clique une carte pour entrer dedans. Tu peux réorganiser les cartes en les glissant.</p>
+        <div id="sectionsGrid" class="sectionsGrid"></div>
+      </section>
 
-svg{ width:100%; height:auto; display:block; }
+      <aside class="navPanel">
+        <h2 class="panelTitle">Sommaire</h2>
+        <div id="toc" class="toc"></div>
+      </aside>
+    </main>
 
-.side{ padding:14px 14px 16px; }
+    <footer class="siteFooter">
+      <div class="siteFooterInner">
+        <span>Brahms — Tous droits réservés</span>
+        <a class="siteFooterLink" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=dialog" target="_blank" rel="noopener">✉️ Écrire à Brahms</a>
+      </div>
+    </footer>
+  </div>
 
-.badgeRow{ display:flex; justify-content:center; margin-bottom:10px; }
-.badge{
-  display:inline-flex; gap:8px; align-items:center;
-  padding:7px 10px; border-radius:999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.05);
-  color: var(--muted);
-  font-size: 13px;
-}
-.badge strong{ color: var(--text); }
-.muted{ color:var(--muted); }
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawerOverlay" id="drawerOverlay"></div>
 
-.card{
-  background: rgba(18,31,63,.55);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 14px;
-  padding: 12px;
-}
+    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Contenu de la rubrique">
+      <div class="drawerTop">
+        <div class="drawerTitleRow">
+          <div class="drawerIcon" id="drawerIcon">📌</div>
+          <div class="drawerTitles">
+            <div class="drawerTitle" id="drawerTitle">—</div>
+            <div class="drawerSub" id="drawerSub">—</div>
+          </div>
+        </div>
+        <div class="drawerActions">
+          <button id="btnPin" type="button">Épingler</button>
+          <button id="btnClose" type="button">Fermer</button>
+        </div>
+      </div>
 
-.miniGrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.mini{
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 12px;
-  padding: 10px;
-}
-.mini h3{
-  margin:0;
-  font-size:12px;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.25px;
-  text-align:center;
-}
-.mini p{ margin:6px 0 0; font-size:13px; line-height:1.35; text-align:center; }
+      <div class="drawerBody">
+        <div id="drawerContent" class="drawerContent"></div>
+      </div>
+    </div>
+  </div>
 
-.dot{ width:10px; height:10px; border-radius:999px; background:var(--accent); display:inline-block; }
-.dot.good{ background: var(--good); }
-.dot.warn{ background: var(--warn); }
-
-.moveLines{ margin-top: 12px; display:flex; flex-direction:column; gap:10px; }
-.moveLine{
-  font-size: 12.8px;
-  line-height: 1.45;
-  color: var(--text);
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 12px;
-  padding: 10px 12px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-.moveHead{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-.moveBody{ margin-left:18px; color: var(--text); text-align:left; }
-
-.btn{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  padding: 9px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
-  color: var(--text);
-  text-decoration:none;
-  font-size: 13px;
-}
-.btn:hover{ border-color: rgba(255,255,255,.28); }
-.btn[aria-disabled="true"]{ opacity:.55; pointer-events:none; }
-
-.ctaRow{ margin-top: 12px; display:flex; justify-content:center; }
-
-.ring{ stroke: rgba(147,197,253,.55); stroke-width: 3.2; fill: none; }
-.innerRing{ stroke: rgba(255,255,255,.08); stroke-width: 2; fill: none; }
-
-.staticBg{ pointer-events:none; }
-
-.hex, .tri{ fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.hex{ stroke: rgba(234,240,255,.22); stroke-width: 2.2; }
-.tri{ stroke: rgba(234,240,255,.18); stroke-width: 2.2; opacity:.9; }
-
-.centers .centerLine{ stroke: rgba(253,164,175,.16); stroke-width: 2.4; stroke-linecap:round; }
-
-.centerLabel{
-  font-size: 18px;
-  font-weight: 800;
-  text-rendering: geometricPrecision;
-  paint-order: stroke fill;
-  stroke: rgba(11,18,32,.55);
-  stroke-width: 0.8px;
-}
-.centerLabel.instinctif{ fill: var(--inst); }
-.centerLabel.emotionnel{ fill: var(--emo); }
-.centerLabel.mental{ fill: var(--ment); }
-
-.node{ cursor:pointer; }
-.node circle{
-  fill: rgba(15,26,51,.85);
-  stroke: rgba(255,255,255,.20);
-  stroke-width: 2.2;
-  transition: stroke .18s ease, filter .18s ease;
-}
-
-.node.instinctif circle{ stroke: var(--inst); }
-.node.emotionnel circle{ stroke: var(--emo); }
-.node.mental circle{ stroke: var(--ment); }
-
-.node text{ fill: var(--text); font-weight: 750; font-size: 22px; dominant-baseline: middle; text-anchor: middle; }
-.node .label{ fill: rgba(234,240,255,.78); font-weight: 600; font-size: 12px; text-anchor: middle; }
-
-.arrow{ fill:none; stroke-width: 3.2; opacity: 0; }
-.arrow.on{ opacity: .95; }
-.arrow.integr{ stroke: rgba(134,239,172,.92); marker-end: url(#arrowHeadGreen); }
-.arrow.disint{ stroke: rgba(253,164,175,.92); marker-end: url(#arrowHeadPink); }
+  <script src="assets/js/explore.js?v=2"></script>
+</body>
+</html>
