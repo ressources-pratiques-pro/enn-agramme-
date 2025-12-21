@@ -26,19 +26,8 @@ body{
 
 .wrap{ max-width:1200px; margin:0 auto; padding:22px 18px 30px; }
 
-.top{
-  display:flex;
-  gap:12px;
-  align-items:flex-end;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-.top h1{
-  margin:0;
-  font-size:22px;
-  text-align:center;
-  width:100%;
-}
+.top{ display:flex; gap:12px; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; }
+.top h1{ margin:0; font-size:22px; text-align:center; width:100%; }
 .top p{ margin:6px 0 0; }
 .actions{ display:flex; gap:10px; align-items:center; }
 
@@ -100,12 +89,7 @@ svg{ width:100%; height:auto; display:block; }
   letter-spacing:.25px;
   text-align:center;
 }
-.mini p{
-  margin:6px 0 0;
-  font-size:13px;
-  line-height:1.35;
-  text-align:center;
-}
+.mini p{ margin:6px 0 0; font-size:13px; line-height:1.35; text-align:center; }
 
 .dot{ width:10px; height:10px; border-radius:999px; background:var(--accent); display:inline-block; }
 .dot.good{ background: var(--good); }
@@ -124,17 +108,8 @@ svg{ width:100%; height:auto; display:block; }
   flex-direction:column;
   gap:8px;
 }
-.moveHead{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-.moveBody{
-  margin-left:18px;
-  color: var(--text);
-  text-align:left;
-}
+.moveHead{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.moveBody{ margin-left:18px; color: var(--text); text-align:left; }
 
 .btn{
   display:inline-flex;
@@ -156,8 +131,13 @@ svg{ width:100%; height:auto; display:block; }
 .ring{ stroke: rgba(147,197,253,.55); stroke-width: 3.2; fill: none; }
 .innerRing{ stroke: rgba(255,255,255,.08); stroke-width: 2; fill: none; }
 
-.centerTitle{ fill: rgba(234,240,255,.85); font-size: 15px; font-weight: 700; }
-.centerSub{ fill: rgba(169,183,230,.95); font-size: 12px; }
+.staticBg{ pointer-events:none; }
+.hex, .tri{ fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.hex{ stroke: rgba(234,240,255,.22); stroke-width: 2.2; }
+.tri{ stroke: rgba(234,240,255,.18); stroke-width: 2.2; opacity:.9; }
+
+.centers .centerLine{ stroke: rgba(253,164,175,.18); stroke-width: 2.4; stroke-linecap:round; }
+.centers .centerLabel{ fill: rgba(169,183,230,.92); font-size: 18px; font-weight: 700; }
 
 .node{ cursor:pointer; }
 .node circle{ fill: rgba(15,26,51,.85); stroke: rgba(255,255,255,.20); stroke-width: 2.2; }
