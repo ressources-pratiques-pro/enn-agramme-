@@ -1,0 +1,136 @@
+{
+  "type": 2,
+  "title": "Ennéatype 2",
+  "subtitle": "L'Altruiste, l'Aidant ou le Giver",
+  "meta": {
+    "center": "Émotionnel",
+    "wings": "1 et 3",
+    "integration": "→ 4",
+    "disintegration": "→ 8"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Structure fondamentale et centres",
+      "items": [
+        { "k": "Centre d’intelligence", "v": "Émotionnel (Cœur)." },
+        {
+          "k": "Hiérarchie des centres",
+          "v": "Centre préféré : Émotionnel. Centre de support : Instinctif ou Mental. Centre réprimé : Mental ou Instinctif."
+        },
+        {
+          "k": "Direction d’utilisation",
+          "v": "Vers l'extérieur (se focalise sur les besoins et sentiments d'autrui pour définir son identité)."
+        },
+        {
+          "k": "Problématique centrale",
+          "v": "L'Identité et l'Image (besoin d'être aimé et apprécié pour se sentir exister)."
+        }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Dynamiques de l'ego",
+      "items": [
+        { "k": "Compulsion (évitement)", "v": "Éviter à tout prix de reconnaître ses propres besoins." },
+        { "k": "Passion (vice)", "v": "L'Orgueil (inflation de l'ego, se croire indispensable et sans besoins)." },
+        { "k": "Fixation", "v": "La Flatterie (donner des compliments et de l'attention pour s'assurer d'être aimé)." },
+        { "k": "Mécanisme de défense", "v": "La Répression (refouler les sentiments ou besoins \"non aimables\" hors de la conscience)." },
+        { "k": "Fierté égotique", "v": "J'aime, j'aide." },
+        { "k": "Peur de base", "v": "Être indigne d'être aimé pour soi-même." },
+        { "k": "Désir de base", "v": "Se sentir aimé." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Sous-types et styles sociaux",
+      "items": [
+        {
+          "k": "Auto-conservation",
+          "v": "Privilège (ou \"Me First\") : se comporte de manière enfantine ou charmante pour attirer la protection et des avantages."
+        },
+        {
+          "k": "Social",
+          "v": "Ambition : cherche à être indispensable ou influent au sein de groupes ou auprès de personnes puissantes."
+        },
+        {
+          "k": "Tête-à-tête (Sexuel)",
+          "v": "Conquête / Séduction agressive : utilise un charme intense pour captiver des individus spécifiques."
+        },
+        {
+          "k": "Style social (Groupe Hornévien)",
+          "v": "Compliant : va vers les gens en suivant les impératifs de son surmoi (il faut aider)."
+        },
+        {
+          "k": "Gestion des conflits (Groupe Harmonique)",
+          "v": "Optimisme (Positive Outlook) : cherche à éviter la douleur en se concentrant sur le positif et l'aide."
+        }
+      ]
+    },
+    {
+      "id": "moves",
+      "icon": "↗️",
+      "title": "Dynamiques de mouvement",
+      "items": [
+        { "k": "Ailes", "v": "Aile 1 (plus moralisatrice et rigoureuse) et aile 3 (plus ambitieuse et soucieuse de son image)." },
+        { "k": "Intégration (santé)", "v": "Vers le Type 4 : devient plus honnête envers ses besoins, plus introspectif et authentique." },
+        { "k": "Désintégration (stress)", "v": "Vers le Type 8 : devient colérique, agressif, dominateur et vindicatif." }
+      ]
+    },
+    {
+      "id": "spirit",
+      "icon": "✨",
+      "title": "Identité spirituelle et noyau",
+      "items": [
+        {
+          "k": "Idée Sacrée",
+          "v": "Volonté Sacrée et Liberté Sacrée (comprendre que l'univers soutient chaque être sans manipulation)."
+        },
+        { "k": "Vertu", "v": "L'Humilité (reconnaître ses limites et sa juste place, sans inflation)." },
+        { "k": "Aspect idéalisé", "v": "L'Amour Fusionnel / Or Fusionnel (connexion divine nourrissante ininterrompue)." },
+        { "k": "Difficulté spécifique", "v": "Castration humiliante (sentiment de ne pas obtenir le soutien nécessaire)." },
+        { "k": "Réaction spécifique", "v": "Action obstinée (vouloir faire les choses à sa manière pour compenser)." },
+        { "k": "Illusion spécifique", "v": "Volonté séparée (croire que l'on possède une volonté propre indépendante de l'univers)." },
+        { "k": "Enfant de l'âme", "v": "Le petit 4 intérieur (abandonné ou spécial ; a appris à plaire pour être aimé)." }
+      ]
+    },
+    {
+      "id": "comms",
+      "icon": "🗣️",
+      "title": "Communication",
+      "items": [
+        { "k": "Style de parole", "v": "Aide-avis / Saga (conseils non sollicités, récits relationnels)." },
+        { "k": "Malentendu de communication", "v": "Amour-Intrusion (perçu comme invasion plutôt que don)." }
+      ]
+    },
+    {
+      "id": "rel",
+      "icon": "🤝",
+      "title": "Évolution et relationnel",
+      "items": [
+        { "k": "Signes d'alerte", "v": "Se sentir indispensable, devenir envahissant, se plaindre de son épuisement (martyre)." },
+        {
+          "k": "Pratiques de croissance",
+          "v": "Apprendre à dire non, pratiquer la solitude, identifier ses besoins avant d'aider, accepter de ne pas être aimé de tout le monde."
+        },
+        { "k": "Confusions fréquentes", "v": "Souvent confondu avec le 4, le 7 ou le 9." },
+        { "k": "En amour", "v": "Très dévoué, peut devenir possessif et jaloux s'il manque de reconnaissance." },
+        { "k": "Au travail", "v": "Excellent pour le réseautage et le soutien moral, peut faire preuve de favoritisme." }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Niveaux et conscience",
+      "items": [
+        { "k": "Niveaux de développement (1–9)", "v": "Sain : altruiste désintéressé, personne attentionnée, aidant nourricier. Moyen : ami effusif, intime possessif, saint plein d'importance. Malsain : manipulateur trompeur, dominateur coercitif, victime psychosomatique." },
+        { "k": "Conscience", "v": "Passer de la transe de l'aidant (conscience subjective) au Souvenir de soi." },
+        { "k": "Spirale Dynamique", "v": "Souvent en adéquation avec le niveau VERT (empathie, consensus, importance des relations humaines)." },
+        { "k": "Analogie", "v": "Station-Service Émotionnelle : remplit les réservoirs des autres en oubliant de ravitailler les siens, jusqu'à la panne sèche." }
+      ]
+    }
+  ]
+}
