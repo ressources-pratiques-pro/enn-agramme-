@@ -1,126 +1,149 @@
 {
   "type": 3,
-  "title": "Ennéatype 3",
-  "subtitle": "Le Battant ou le Réalisateur",
-  "meta": {
+  "name": "Le Battant",
+  "tagline": "Le Réalisateur ou le Performeur",
+  "quick": {
     "center": "Émotionnel",
     "wings": "2 et 4",
-    "integration": "→ 6",
-    "disintegration": "→ 9"
+    "integr": "→ 6",
+    "disint": "→ 9"
   },
   "sections": [
     {
       "id": "structure",
       "icon": "🧩",
       "title": "Structure fondamentale et centres",
+      "desc": "Centre, hiérarchie, direction, problématique.",
       "items": [
-        { "k": "Centre d’intelligence", "v": "Émotionnel (Cœur)." },
+        { "label": "Centre d’intelligence", "value": "Émotionnel (Cœur)." },
         {
-          "k": "Hiérarchie des centres",
-          "v": "Centre préféré : Émotionnel. Centre de support : Mental ou Instinctif. Centre réprimé : paradoxalement le centre Émotionnel ; le 3 est souvent déconnecté de ses sentiments authentiques pour privilégier le fonctionnement."
+          "label": "Hiérarchie des centres",
+          "children": [
+            { "label": "Centre préféré", "value": "Émotionnel." },
+            { "label": "Centre de support", "value": "Mental ou Instinctif." },
+            { "label": "Centre réprimé", "value": "Émotionnel : paradoxe du type 3, souvent déconnecté de ses sentiments authentiques pour privilégier le fonctionnement." }
+          ]
         },
-        {
-          "k": "Direction d’utilisation",
-          "v": "Utilise son centre préféré à la fois vers l'intérieur et vers l'extérieur, cherchant l’équilibre entre image personnelle et impact social."
-        },
-        {
-          "k": "Problématique centrale",
-          "v": "Besoin de valeur et d'identité via la réussite et l'admiration d'autrui."
-        }
+        { "label": "Direction d’utilisation", "value": "Utilisé à la fois vers l'intérieur et vers l'extérieur." },
+        { "label": "Problématique centrale", "value": "Besoin de valeur et d'identité via la réussite et l'admiration d'autrui." }
       ]
     },
     {
       "id": "ego",
       "icon": "⚙️",
-      "title": "Dynamiques de l'Ego",
+      "title": "Dynamiques de l'ego",
+      "desc": "Compulsion, passion, fixation, défense, fierté, peur, désir.",
       "items": [
-        { "k": "Compulsion (évitement)", "v": "Éviter à tout prix l'échec." },
-        { "k": "Passion (vice)", "v": "Mensonge (Tromperie) : se tromper soi-même en s'identifiant à l'image de réussite." },
-        { "k": "Fixation", "v": "Vanité : investir toute l'énergie dans la création et le maintien d'une façade valorisante." },
-        { "k": "Mécanisme de défense", "v": "Identification : devient littéralement le rôle ou la fonction qu'il occupe pour réussir." },
-        { "k": "Fierté égotique", "v": "Je réussis, je suis efficace." },
-        { "k": "Peur de base", "v": "Être sans valeur ou sans valeur intrinsèque en dehors de ses accomplissements." },
-        { "k": "Désir de base", "v": "Se sentir précieux, admiré et accepté." }
+        { "label": "Compulsion (Évitement)", "value": "Éviter à tout prix l'échec." },
+        { "label": "Passion (Vice)", "value": "Mensonge (Tromperie) : auto-tromperie, identification à l'image de réussite pour masquer un vide intérieur." },
+        { "label": "Fixation", "value": "Vanité : investir l'énergie dans la façade valorisante et l'adaptation aux attentes sociales." },
+        { "label": "Mécanisme de défense", "value": "Identification : devenir le rôle, la fonction ou l'image projetée pour réussir." },
+        { "label": "Fierté égotique", "value": "Je réussis, je suis efficace." },
+        { "label": "Peur de base", "value": "Être sans valeur, sans valeur intrinsèque en dehors des accomplissements." },
+        { "label": "Désir de base", "value": "Se sentir précieux, admiré et accepté." }
       ]
     },
     {
       "id": "subtypes",
       "icon": "🧭",
       "title": "Sous-types et styles sociaux",
+      "desc": "Instincts, style social, gestion des conflits.",
       "items": [
         {
-          "k": "Auto-conservation",
-          "v": "Sécurité / Accumulation (bourreau de travail) : cherche la sécurité par biens matériels et autonomie, souvent le plus modeste des 3."
+          "label": "Instincts / Sous-types",
+          "children": [
+            { "label": "Auto-conservation", "value": "Sécurité / Accumulation (bourreau de travail) : sécurité par succès matériel et travail acharné ; souvent le plus modeste des 3." },
+            { "label": "Social", "value": "Prestige : briller et être reconnu comme le meilleur au sein du groupe/de la société." },
+            { "label": "Tête-à-tête (Sexuel)", "value": "Masculinité-Féminité / Attractivité (la perle) : réussite via attrait, partenaire idéal, soutien au succès de l'autre." }
+          ]
         },
-        {
-          "k": "Social",
-          "v": "Prestige : cherche à briller et à être reconnu comme le meilleur au sein de son groupe social ou professionnel."
-        },
-        {
-          "k": "Tête-à-tête (Sexuel)",
-          "v": "Masculinité-Féminité (la Perle) : focalise la réussite sur l’attrait et la capacité à soutenir le succès du partenaire."
-        },
-        { "k": "Style social", "v": "Assertif : va vers les gens en prenant une place centrale et en insistant sur ses besoins." },
-        { "k": "Gestion des conflits", "v": "Compétence : met les sentiments de côté pour rester efficace et orienté solution." }
+        { "label": "Style social", "value": "Assertif (ego-expansif) : va vers les gens en prenant la place centrale et en imposant le rythme de l'action." },
+        { "label": "Gestion des conflits", "value": "Compétence : met les sentiments de côté pour rester efficace et orienté solutions." }
       ]
     },
     {
-      "id": "moves",
+      "id": "movement",
       "icon": "↗️",
       "title": "Dynamiques de mouvement",
+      "desc": "Ailes, intégration, désintégration.",
       "items": [
-        { "k": "Ailes", "v": "Aile 2 (Charmer, sociable et encourageant) et aile 4 (Professionnel, plus sérieux, orienté style)." },
-        { "k": "Intégration (santé)", "v": "Vers 6 : coopératif, loyal, s'engage pour les autres, accepte ses vulnérabilités." },
-        { "k": "Désintégration (stress)", "v": "Vers 9 : apathie, désengagement, tâches secondaires, robotisation sous pression." }
+        { "label": "Ailes", "value": "Aile 2 (plus sociable et encourageante) et aile 4 (plus sérieuse, introspective, orientée style)." },
+        { "label": "Intégration (Santé)", "value": "→ 6 : coopératif, loyal, engagé pour le bien commun, accepte ses vulnérabilités." },
+        { "label": "Désintégration (Stress)", "value": "→ 9 : apathique, désengagé, routines inutiles, devient robotisé sous pression." }
       ]
     },
     {
-      "id": "spirit",
+      "id": "spiritual",
       "icon": "✨",
       "title": "Identité spirituelle et noyau",
+      "desc": "Idée sacrée, vertu, aspect, noyau, enfant de l’âme.",
       "items": [
+        { "label": "Idée Sacrée", "value": "Espérance Sacrée, Loi Sacrée, Harmonie Sacrée : l'univers se déploie selon un ordre harmonieux, on n'est pas seul à faire." },
+        { "label": "Vertu", "value": "Vérité / Authenticité : être soi sans masque, au-delà de la performance." },
+        { "label": "Aspect idéalisé", "value": "Essence personnelle (la perle) : être une personne réelle dont l'action découle de l'Être." },
         {
-          "k": "Idée Sacrée",
-          "v": "Loi Sacrée, Espérance Sacrée, Harmonie Sacrée : tout se déploie selon un ordre universel, on n’est pas seul à faire."
+          "label": "Noyau de la fixation",
+          "children": [
+            { "label": "Difficulté spécifique", "value": "Impuissance (désarroi)." },
+            { "label": "Réaction spécifique", "value": "Lutte / Effort constant (striving)." },
+            { "label": "Illusion spécifique", "value": "Acteur séparé : croire qu'il faut tout faire soi-même pour exister." }
+          ]
         },
-        { "k": "Vertu", "v": "Vérité / Authenticité : être soi-même sans masque, indépendamment des succès." },
-        { "k": "Aspect idéalisé", "v": "Essence Personnelle (la Perle) : être une personne réelle et unique dont l’action découle de l’Être." },
-        { "k": "Difficulté spécifique", "v": "Impuissance (sentiment de désarroi)." },
-        { "k": "Réaction spécifique", "v": "Lutte (effort constant)." },
-        { "k": "Illusion spécifique", "v": "Acteur séparé : croire qu’on doit tout faire soi-même pour exister." },
-        { "k": "Enfant de l'âme", "v": "Petit 6 intérieur : craintif, en recherche de soutien, que la performance tente de rassurer." }
+        { "label": "Enfant de l'âme", "value": "Petit 6 intérieur : craintif, en recherche de soutien, que la performance tente de rassurer." }
       ]
     },
     {
-      "id": "comms",
+      "id": "communication",
       "icon": "🗣️",
       "title": "Communication",
+      "desc": "Style de parole, malentendu.",
       "items": [
-        { "k": "Style de parole", "v": "Propagande / auto-promotion : présente au mieux pour convaincre et motiver." },
-        { "k": "Malentendu de communication", "v": "Motivation-fanfaronnade : enthousiasme perçu comme arrogance ou insincérité." }
+        { "label": "Style de parole", "value": "Propagande / Auto-promotion : présenter les faits et soi sous le meilleur jour pour motiver et convaincre." },
+        { "label": "Malentendu de communication", "value": "Motivation-Fanfaronnade : l'enthousiasme peut être perçu comme insincérité ou arrogance." }
       ]
     },
     {
-      "id": "rel",
+      "id": "evolution",
       "icon": "🤝",
       "title": "Évolution et relationnel",
+      "desc": "Alertes, pratiques, confusions, interactions.",
       "items": [
-        { "k": "Signes d'alerte", "v": "Se réduire à son image, s’épuiser au travail, fuir le vide ou l’inactivité." },
-        { "k": "Pratiques de croissance", "v": "Ralentir, se connecter au cœur, solitude sans objectif, admettre ses échecs." },
-        { "k": "Confusions fréquentes", "v": "Souvent confondu avec 7, 8 ou 1." },
-        { "k": "En amour", "v": "Dévoué et efficace, peut sacrifier l’intimité émotionnelle pour réussite du couple/carrière." },
-        { "k": "Au travail", "v": "Leader et motivateur, orienté résultats, peut devenir impatient avec ceux qui ralentissent." }
+        { "label": "Signes d'alerte", "value": "Indexer sa valeur sur les succès, workaholisme, fuite des moments d'inactivité/vide." },
+        { "label": "Pratiques de croissance", "value": "Ralentir, accueillir les émotions, pratiquer le non-faire, admettre ses échecs." },
+        { "label": "Confusions fréquentes", "value": "7 (énergie) ; 1 (efficience). Différence : 7 fuit la douleur, 3 vise le résultat ; 1 suit des principes, 3 suit des objectifs." },
+        {
+          "label": "Interactions et ententes",
+          "children": [
+            { "label": "En amour", "value": "Dévoué et efficace ; peut sacrifier l'intimité pour statut/carrière ; craint de ne pas être aimé s'il n'est pas parfait." },
+            { "label": "Au travail", "value": "Leader et motivateur, orienté résultats ; peut devenir impatient avec ceux jugés lents." }
+          ]
+        }
       ]
     },
     {
       "id": "levels",
       "icon": "📈",
       "title": "Niveaux et conscience",
+      "desc": "Niveaux 1–9, conscience, spirale, analogie.",
       "items": [
-        { "k": "Niveaux de développement (1–9)", "v": "De l’individu Authentique au psychopathe vindicatif." },
-        { "k": "Conscience", "v": "Passer du mode fonctionnement au mode être, reconnaître que la valeur est intrinsèque." },
-        { "k": "Spirale Dynamique", "v": "Très lié au niveau ORANGE (succès, stratégie, efficacité, matérialisme)." },
-        { "k": "Analogie", "v": "Paon : déploie le plumage pour impressionner, oubliant que la valeur ne dépend pas du regard des autres." }
+        {
+          "label": "Niveaux de développement",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Authentique : rayonne naturellement, agit vrai, inspire sans effort." },
+            { "n": 2, "text": "Modèle : efficace et humble, réussite au service du réel." },
+            { "n": 3, "text": "Sûr de lui : performant sans se trahir, ancré dans ses valeurs." },
+            { "n": 4, "text": "Compétiteur : cherche à gagner, optimise l'image, compare." },
+            { "n": 5, "text": "Pragmatique soucieux de l'image : adapte tout au résultat et au regard des autres." },
+            { "n": 6, "text": "Narcissique publicitaire : sur-vend, se met en scène, dépend de l'approbation." },
+            { "n": 7, "text": "Opportuniste malhonnête : manipule les apparences, contourne l'éthique." },
+            { "n": 8, "text": "Trompeur malveillant : mensonges, instrumentalisation d'autrui, cynisme." },
+            { "n": 9, "text": "Psychopathe vindicatif : froideur, exploitation, destruction pour préserver l'ego." }
+          ]
+        },
+        { "label": "Conscience", "value": "Passer du mode fonctionnement au mode être : la valeur est intrinsèque et ne dépend pas des actes." },
+        { "label": "Spirale Dynamique", "value": "Très aligné avec ORANGE : succès, stratégie, efficacité, matérialisme." },
+        { "label": "Analogie", "value": "Paon : déploie son plumage pour impressionner, oubliant que sa beauté ne dépend pas du regard des autres." }
       ]
     }
   ]
