@@ -94,14 +94,14 @@ const centerEl = document.getElementById("center");
 const fearEl = document.getElementById("fear");
 const desireEl = document.getElementById("desire");
 const compulsionEl = document.getElementById("compulsion");
-
 const toIntegr = document.getElementById("toIntegr");
 const toDisint = document.getElementById("toDisint");
+const openFull = document.getElementById("openFull");
 
+const moveHealth = document.getElementById("moveHealth");
+const moveStress = document.getElementById("moveStress");
 const moveHealthText = document.getElementById("moveHealthText");
 const moveStressText = document.getElementById("moveStressText");
-
-const openFull = document.getElementById("openFull");
 
 let typesData = null;
 
@@ -124,11 +124,16 @@ function selectType(t){
   desireEl.textContent = data?.desire ?? "—";
   compulsionEl.textContent = data?.compulsion ?? "—";
 
-  toIntegr.textContent = `→ ${it}`;
-  toDisint.textContent = `→ ${dt}`;
+  toIntegr.textContent = it;
+  toDisint.textContent = dt;
 
-  moveHealthText.textContent = data?.integr_text ?? "—";
-  moveStressText.textContent = data?.disint_text ?? "—";
+  const itText = data?.integr_text ?? "";
+  const dtText = data?.disint_text ?? "";
+
+  moveHealth.style.display = itText ? "flex" : "none";
+  moveStress.style.display = dtText ? "flex" : "none";
+  moveHealthText.textContent = itText || "—";
+  moveStressText.textContent = dtText || "—";
 
   openFull.setAttribute("href", `type.html?type=${t}`);
   openFull.setAttribute("aria-disabled","false");
@@ -144,6 +149,8 @@ document.getElementById("btnReset").addEventListener("click", ()=>{
   compulsionEl.textContent = "—";
   toIntegr.textContent = "—";
   toDisint.textContent = "—";
+  moveHealth.style.display = "flex";
+  moveStress.style.display = "flex";
   moveHealthText.textContent = "—";
   moveStressText.textContent = "—";
   openFull.setAttribute("aria-disabled","true");
