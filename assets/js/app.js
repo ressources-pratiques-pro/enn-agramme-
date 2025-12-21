@@ -1,7 +1,7 @@
 const cx = 350, cy = 350, R = 270;
 const order = [9,1,2,3,4,5,6,7,8];
 
-const arrows = {
+const arrowsFallback = {
   integr: { 1:7, 2:4, 3:6, 4:1, 5:8, 6:9, 7:5, 8:2, 9:3 },
   disint: { 1:4, 2:8, 3:9, 4:2, 5:7, 6:3, 7:1, 8:5, 9:6 }
 };
@@ -36,14 +36,24 @@ function makeArrow(from, to, cls){
   line.setAttribute("y1", p1.y);
   line.setAttribute("x2", p2.x);
   line.setAttribute("y2", p2.y);
-  line.setAttribute("class", "arrow " + cls + " fade");
+  line.setAttribute("class", "arrow " + cls);
   arrowsLayer.appendChild(line);
   return line;
 }
 
 for(const t of [1,2,3,4,5,6,7,8,9]){
-  arrowEls.integr[t] = makeArrow(t, arrows.integr[t], "integr");
-  arrowEls.disint[t] = makeArrow(t, arrows.disint[t], "disint");
+  arrowEls.integr[t] = makeArrow(t, arrowsFallback.integr[t], "integr");
+  arrowEls.disint[t] = makeArrow(t, arrowsFallback.disint[t], "disint");
+}
+
+function clearAllArrows(){
+  document.querySelectorAll(".arrow").forEach(a => a.classList.remove("on"));
+}
+
+function showOnlyTypeArrows(t){
+  clearAllArrows();
+  arrowEls.integr[t]?.classList.add("on");
+  arrowEls.disint[t]?.classList.add("on");
 }
 
 function makeNode(t){
@@ -99,19 +109,6 @@ async function loadData(){
 }
 loadData().catch(()=>{});
 
-function refreshArrows(){
-  document.querySelectorAll(".arrow").forEach(a=>{
-    a.classList.remove("on");
-    a.classList.add("fade");
-  });
-  if(selected == null) return;
-
-  arrowEls.integr[selected].classList.remove("fade");
-  arrowEls.disint[selected].classList.remove("fade");
-  arrowEls.integr[selected].classList.add("on");
-  arrowEls.disint[selected].classList.add("on");
-}
-
 function selectType(t){
   selected = t;
   badgeNum.textContent = t;
@@ -126,8 +123,8 @@ function selectType(t){
   fear.textContent = data?.fear ?? "—";
   desire.textContent = data?.desire ?? "—";
 
-  const it = data?.integr ?? arrows.integr[t];
-  const dt = data?.disint ?? arrows.disint[t];
+  const it = data?.integr ?? arrowsFallback.integr[t];
+  const dt = data?.disint ?? arrowsFallback.disint[t];
 
   toIntegr.textContent = `→ ${it}`;
   toDisint.textContent = `→ ${dt}`;
@@ -135,7 +132,7 @@ function selectType(t){
   openFull.setAttribute("href", `type.html?type=${t}`);
   openFull.setAttribute("aria-disabled","false");
 
-  refreshArrows();
+  showOnlyTypeArrows(t);
 }
 
 document.getElementById("btnReset").addEventListener("click", ()=>{
@@ -146,7 +143,7 @@ document.getElementById("btnReset").addEventListener("click", ()=>{
   kw.textContent = theme.textContent = fear.textContent = desire.textContent = "—";
   toIntegr.textContent = toDisint.textContent = "—";
   openFull.setAttribute("aria-disabled","true");
-  refreshArrows();
+  clearAllArrows();
 });
 
-refreshArrows();
+clearAllArrows();
