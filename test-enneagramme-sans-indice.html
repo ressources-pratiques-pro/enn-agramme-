@@ -1,539 +1,503 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Test Ennéagramme — Échantillon</title>
-  <style>
-    :root{
-      --bg:#0b1220;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.08);
-      --txt:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.68);
-      --line:rgba(255,255,255,.14);
-      --accent:#8bd3ff;
-      --good:#9ff2b1;
-      --warn:#ffd18b;
-      --bad:#ff8b8b;
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 25% 15%, rgba(139,211,255,.20), transparent 55%),
-                  radial-gradient(1000px 700px at 80% 25%, rgba(159,242,177,.12), transparent 55%),
-                  linear-gradient(180deg, #081022, #070b14);
-      color:var(--txt);
-      min-height:100vh;
-    }
-    .wrap{max-width:1100px;margin:0 auto;padding:22px}
-    header{
-      display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
-      padding:18px 18px 14px;border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border-radius:var(--radius);
-      backdrop-filter: blur(10px);
-    }
-    h1{margin:0;font-size:22px;letter-spacing:.2px}
-    .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    button{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color:var(--txt);
-      padding:10px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:600;
-      font-size:13px;
-      transition: transform .04s ease, background .18s ease, border-color .18s ease;
-    }
-    button:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
-    button:active{transform: translateY(1px)}
-    .grid{
-      display:grid;
-      grid-template-columns: 1.4fr .9fr;
-      gap:16px;
-      margin-top:16px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-      .actions{justify-content:flex-start}
-    }
-    .card{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius:var(--radius);
-      overflow:hidden;
-    }
-    .cardHead{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:14px 16px;
-      border-bottom:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-    }
-    .cardHead h2{margin:0;font-size:15px}
-    .pill{
-      font-size:12px;color:var(--muted);
-      border:1px solid var(--line);
-      padding:6px 10px;border-radius:999px;
-      background: rgba(255,255,255,.04);
-    }
-    .cardBody{padding:14px 16px}
-    .scaleHint{color:var(--muted);font-size:12px;margin:0 0 12px;line-height:1.4}
-    .q{
-      padding:12px 12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.10);
-      border-radius:14px;
-      margin-bottom:10px;
-    }
-    .qTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-    .qText{font-size:14px;line-height:1.35}
-    .qMeta{color:var(--muted);font-size:12px;white-space:nowrap}
-    .row{display:flex;gap:10px;align-items:center;margin-top:10px}
-    input[type="range"]{width:100%}
-    .val{
-      min-width:42px;text-align:center;
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      border-radius:10px;
-      padding:6px 8px;
-      font-size:12px;
-    }
-    .legend{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:6px}
-    .resultBox{
-      padding:14px 16px;
-      border-top:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .resTitle{margin:0;font-size:15px}
-    .resLine{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.35}
-    .top3{margin-top:12px;display:grid;gap:10px}
-    .topItem{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      border-radius:14px;
-      padding:10px 12px;
-      display:flex;justify-content:space-between;align-items:center;gap:12px;
-    }
-    .topLeft{display:flex;flex-direction:column;gap:2px}
-    .topName{font-weight:900}
-    .topDesc{color:var(--muted);font-size:12px;line-height:1.25}
-    .topScore{
-      font-weight:900;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      border-radius:12px;
-      padding:8px 10px;
-      min-width:64px;
-      text-align:center;
-      font-size:12px;
-    }
-    .bars{margin-top:14px;display:grid;gap:8px}
-    .barRow{display:grid;grid-template-columns: 44px 1fr 44px;gap:10px;align-items:center}
-    .barK{color:var(--muted);font-size:12px}
-    .barV{color:var(--muted);font-size:12px;text-align:right}
-    .barTrack{
-      height:10px;border-radius:999px;background: rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      overflow:hidden;
-    }
-    .barFill{height:100%;width:0%}
-    .small{
-      color:var(--muted);font-size:12px;line-height:1.4;margin-top:12px
-    }
-    .twoBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .ghost{background: rgba(255,255,255,.03)}
-    .danger{border-color: rgba(255,139,139,.30)}
-    .ok{border-color: rgba(159,242,177,.30)}
-    .toast{
-      position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
-      background: rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.18);
-      padding:10px 12px; border-radius: 999px; color: var(--txt);
-      font-size: 12px; display:none; z-index: 10; backdrop-filter: blur(8px);
-      max-width: 92vw;
-    }
-    a{color:var(--accent);text-decoration:none}
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Test Ennéagramme — Échantillon</title>
+    <style>
+        :root{
+            --bg:#0b1220;
+            --panel:rgba(255,255,255,.06);
+            --panel2:rgba(255,255,255,.08);
+            --txt:rgba(255,255,255,.92);
+            --muted:rgba(255,255,255,.68);
+            --line:rgba(255,255,255,.14);
+            --accent:#8bd3ff;
+            --good:#9ff2b1;
+            --warn:#ffd18b;
+            --bad:#ff8b8b;
+            --radius:18px;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            background: radial-gradient(1200px 800px at 25% 15%, rgba(139,211,255,.20), transparent 55%),
+                        radial-gradient(1000px 700px at 80% 25%, rgba(159,242,177,.12), transparent 55%),
+                        linear-gradient(180deg, #081022, #070b14);
+            color:var(--txt);
+            min-height:100vh;
+        }
+        .wrap{max-width:1100px;margin:0 auto;padding:22px}
+        header{
+            display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+            padding:18px 18px 14px;border:1px solid var(--line);
+            background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+            border-radius:var(--radius);
+            backdrop-filter: blur(10px);
+        }
+        h1{margin:0;font-size:22px;letter-spacing:.2px}
+        .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
+        .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+        button{
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.06);
+            color:var(--txt);
+            padding:10px 12px;
+            border-radius:999px;
+            cursor:pointer;
+            font-weight:600;
+            font-size:13px;
+            transition: transform .04s ease, background .18s ease, border-color .18s ease;
+        }
+        button:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
+        button:active{transform: translateY(1px)}
+        .grid{
+            display:grid;
+            grid-template-columns: 1.4fr .9fr;
+            gap:16px;
+            margin-top:16px;
+        }
+        @media (max-width: 980px){
+            .grid{grid-template-columns:1fr}
+            .actions{justify-content:flex-start}
+        }
+        .card{
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.05);
+            border-radius:var(--radius);
+            overflow:hidden;
+        }
+        .cardHead{
+            display:flex;align-items:center;justify-content:space-between;gap:12px;
+            padding:14px 16px;
+            border-bottom:1px solid var(--line);
+            background: rgba(255,255,255,.04);
+        }
+        .cardHead h2{margin:0;font-size:15px}
+        .pill{
+            font-size:12px;color:var(--muted);
+            border:1px solid var(--line);
+            padding:6px 10px;border-radius:999px;
+            background: rgba(255,255,255,.04);
+        }
+        .cardBody{padding:14px 16px}
+        .scaleHint{color:var(--muted);font-size:12px;margin:0 0 12px;line-height:1.4}
+        .q{
+            padding:12px 12px;
+            border:1px solid rgba(255,255,255,.10);
+            background: rgba(0,0,0,.10);
+            border-radius:14px;
+            margin-bottom:10px;
+        }
+        .qTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+        .qText{font-size:14px;line-height:1.35}
+        .qMeta{color:var(--muted);font-size:12px;white-space:nowrap}
+        .row{display:flex;gap:10px;align-items:center;margin-top:10px}
+        input[type="range"]{width:100%}
+        .val{
+            min-width:42px;text-align:center;
+            font-weight:800;
+            border:1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.06);
+            border-radius:10px;
+            padding:6px 8px;
+            font-size:12px;
+        }
+        .legend{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:6px}
+        .resultBox{
+            padding:14px 16px;
+            border-top:1px solid var(--line);
+            background: rgba(255,255,255,.03);
+        }
+        .resTitle{margin:0;font-size:15px}
+        .resLine{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.35}
+        .top3{margin-top:12px;display:grid;gap:10px}
+        .topItem{
+            border:1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.05);
+            border-radius:14px;
+            padding:10px 12px;
+            display:flex;justify-content:space-between;align-items:center;gap:12px;
+        }
+        .topLeft{display:flex;flex-direction:column;gap:2px}
+        .topName{font-weight:900}
+        .topDesc{color:var(--muted);font-size:12px;line-height:1.25}
+        .topScore{
+            font-weight:900;
+            border:1px solid rgba(255,255,255,.16);
+            background: rgba(255,255,255,.06);
+            border-radius:12px;
+            padding:8px 10px;
+            min-width:64px;
+            text-align:center;
+            font-size:12px;
+        }
+        .bars{margin-top:14px;display:grid;gap:8px}
+        .barRow{display:grid;grid-template-columns: 44px 1fr 44px;gap:10px;align-items:center}
+        .barK{color:var(--muted);font-size:12px}
+        .barV{color:var(--muted);font-size:12px;text-align:right}
+        .barTrack{
+            height:10px;border-radius:999px;background: rgba(255,255,255,.08);
+            border:1px solid rgba(255,255,255,.12);
+            overflow:hidden;
+        }
+        .barFill{height:100%;width:0%}
+        .small{
+            color:var(--muted);font-size:12px;line-height:1.4;margin-top:12px
+        }
+        .twoBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+        .ghost{background: rgba(255,255,255,.03)}
+        .danger{border-color: rgba(255,139,139,.30)}
+        .ok{border-color: rgba(159,242,177,.30)}
+        .toast{
+            position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+            background: rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.18);
+            padding:10px 12px; border-radius: 999px; color: var(--txt);
+            font-size: 12px; display:none; z-index: 10; backdrop-filter: blur(8px);
+            max-width: 92vw;
+        }
+        a{color:var(--accent);text-decoration:none}
+
+        /* Styles pour le pied de page */
+        .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
+        .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+        .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+        .siteFooter a:hover{opacity:1}
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Test Ennéagramme — Échantillon</h1>
-        <div class="sub">
-          Réponds spontanément. Échelle 0–4 : 0 pas du tout, 1 plutôt non, 2 parfois, 3 souvent, 4 très souvent.<br>
-          Ce test est indicatif, pas un diagnostic. Le résultat sert à explorer, puis à comparer avec les descriptions des types.
-        </div>
-      </div>
-      <div class="actions">
-        <button id="btnCalc" class="ok" type="button">Calculer</button>
-        <button id="btnReset" class="danger" type="button">Réinitialiser</button>
-        <button id="btnExport" class="ghost" type="button">Exporter</button>
-      </div>
-    </header>
+    <div class="wrap">
+        <header>
+            <div>
+                <h1>Test Ennéagramme — Échantillon</h1>
+                <div class="sub">
+                    Réponds spontanément. Échelle 0–4 : 0 pas du tout, 1 plutôt non, 2 parfois, 3 souvent, 4 très souvent.<br>
+                    Ce test est indicatif, pas un diagnostic. Le résultat sert à explorer, puis à comparer avec les descriptions des types.
+                </div>
+            </div>
+            <div class="actions">
+                <button id="btnCalc" class="ok" type="button">Calculer</button>
+                <button id="btnReset" class="danger" type="button">Réinitialiser</button>
+                <button id="btnExport" class="ghost" type="button">Exporter</button>
+            </div>
+        </header>
 
-    <div class="grid">
-      <section class="card" aria-label="Questionnaire">
-        <div class="cardHead">
-          <h2>Questionnaire</h2>
-          <div class="pill"><span id="answered">0</span>/<span id="total">0</span> répondu</div>
-        </div>
-        <div class="cardBody">
-          <p class="scaleHint">Astuce : si tu hésites entre deux valeurs, prends celle qui décrit le plus souvent ton automatisme.</p>
-          <div id="questions"></div>
-          <div class="legend">
-            <span>0 pas du tout</span><span>1</span><span>2</span><span>3</span><span>4 très souvent</span>
-          </div>
-        </div>
-      </section>
+        <div class="grid">
+            <section class="card" aria-label="Questionnaire">
+                <div class="cardHead">
+                    <h2>Questionnaire</h2>
+                    <div class="pill"><span id="answered">0</span>/<span id="total">0</span> répondu</div>
+                </div>
+                <div class="cardBody">
+                    <p class="scaleHint">Astuce : si tu hésites entre deux valeurs, prends celle qui décrit le plus souvent ton automatisme.</p>
+                    <div id="questions"></div>
+                    <div class="legend">
+                        <span>0 pas du tout</span><span>1</span><span>2</span><span>3</span><span>4 très souvent</span>
+                    </div>
+                </div>
+            </section>
 
-      <aside class="card" aria-label="Résultats">
-        <div class="cardHead">
-          <h2>Résultats</h2>
-          <div class="pill">Top 3 + scores</div>
+            <aside class="card" aria-label="Résultats">
+                <div class="cardHead">
+                    <h2>Résultats</h2>
+                    <div class="pill">Top 3 + scores</div>
+                </div>
+                <div class="cardBody" id="resultBody">
+                    <p class="scaleHint">Clique Calculer pour voir ton profil probable. Les réponses restent enregistrées sur ton navigateur.</p>
+                </div>
+                <div class="resultBox" id="resultBox" style="display:none">
+                    <p class="resTitle" id="resTitle">—</p>
+                    <div class="resLine" id="resLine"></div>
+                    <div class="top3" id="top3"></div>
+                    <div class="bars" id="bars"></div>
+                    <div class="small">
+                        Conseil : lis surtout les deux premiers types, puis vérifie la motivation de fond et la peur de base.
+                        Les ailes et sous-types peuvent expliquer un score proche.
+                    </div>
+                    <div class="twoBtns">
+                        <button id="btnGoType" type="button">Ouvrir la fiche complète du #1</button>
+                        <button id="btnCopy" class="ghost" type="button">Copier le résumé</button>
+                    </div>
+                </div>
+            </aside>
         </div>
-        <div class="cardBody" id="resultBody">
-          <p class="scaleHint">Clique Calculer pour voir ton profil probable. Les réponses restent enregistrées sur ton navigateur.</p>
-        </div>
-        <div class="resultBox" id="resultBox" style="display:none">
-          <p class="resTitle" id="resTitle">—</p>
-          <div class="resLine" id="resLine"></div>
 
-          <div class="top3" id="top3"></div>
-
-          <div class="bars" id="bars"></div>
-
-          <div class="small">
-            Conseil : lis surtout les deux premiers types, puis vérifie la motivation de fond et la peur de base.
-            Les ailes et sous-types peuvent expliquer un score proche.
-          </div>
-          <div class="twoBtns">
-            <button id="btnGoType" type="button">Ouvrir la fiche complète du #1</button>
-            <button id="btnCopy" class="ghost" type="button">Copier le résumé</button>
-          </div>
-        </div>
-      </aside>
+        <footer class="siteFooter">
+            <div class="footerInner">
+                <span class="copy">Brahms – Tous droits réservés</span>
+                <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf40aIE11fnKasayyVr117DZL5A3uZZBCwLdkQ/viewform?usp=sf_link" target="_blank">
+                    ✉️ Écrire à Brahms
+                </a>
+            </div>
+        </footer>
     </div>
-  </div>
 
-  <div class="toast" id="toast"></div>
+    <div class="toast" id="toast"></div>
 
 <script>
 (() => {
-  const TYPES = {
-    1:{name:"Le Perfectionniste", desc:"Exigence, principes, amélioration, critique intérieure."},
-    2:{name:"L'Altruiste", desc:"Aide, lien, besoin d’être apprécié, attention à l’autre."},
-    3:{name:"Le Réalisateur", desc:"Efficacité, image, réussite, performance, adaptabilité."},
-    4:{name:"L'Individualiste", desc:"Identité, profondeur, sens, intensité émotionnelle."},
-    5:{name:"L'Observateur", desc:"Comprendre, retrait, économie d’énergie, expertise."},
-    6:{name:"Le Loyaliste", desc:"Sécurité, vigilance, doute, loyauté, anticipation."},
-    7:{name:"L'Épicurien", desc:"Options, enthousiasme, plaisir, éviter la douleur."},
-    8:{name:"Le Protecteur", desc:"Force, autonomie, justice, confrontation, leadership."},
-    9:{name:"Le Médiateur", desc:"Paix, harmonie, évitement du conflit, inertie possible."}
-  };
+    const TYPES = {
+        1:{name:"Le Perfectionniste", desc:"Exigence, principes, amélioration, critique intérieure."},
+        2:{name:"L'Altruiste", desc:"Aide, lien, besoin d’être apprécié, attention à l’autre."},
+        3:{name:"Le Réalisateur", desc:"Efficacité, image, réussite, performance, adaptabilité."},
+        4:{name:"L'Individualiste", desc:"Identité, profondeur, sens, intensité émotionnelle."},
+        5:{name:"L'Observateur", desc:"Comprendre, retrait, économie d’énergie, expertise."},
+        6:{name:"Le Loyaliste", desc:"Sécurité, vigilance, doute, loyauté, anticipation."},
+        7:{name:"L'Épicurien", desc:"Options, enthousiasme, plaisir, éviter la douleur."},
+        8:{name:"Le Protecteur", desc:"Force, autonomie, justice, confrontation, leadership."},
+        9:{name:"Le Médiateur", desc:"Paix, harmonie, évitement du conflit, inertie possible."}
+    };
 
-  const ITEMS = [
-    {t:1, s:"Je remarque spontanément ce qui pourrait être corrigé, amélioré ou optimisé."},
-    {t:1, s:"J’ai du mal à me détendre si tout n’est pas fait correctement."},
-    {t:1, s:"Je me juge (ou je juge les situations) selon des principes et des standards élevés."},
+    const ITEMS = [
+        {t:1, s:"Je remarque spontanément ce qui pourrait être corrigé, amélioré ou optimisé."},
+        {t:1, s:"J’ai du mal à me détendre si tout n’est pas fait correctement."},
+        {t:1, s:"Je me juge (ou je juge les situations) selon des principes et des standards élevés."},
+        {t:2, s:"Je me sens naturellement responsable d’aider, soutenir ou prendre soin des autres."},
+        {t:2, s:"J’ai tendance à deviner les besoins des autres avant les miens."},
+        {t:2, s:"Je peux me sentir blessé si mon aide n’est pas reconnue ou appréciée."},
+        {t:3, s:"Je me sens valorisé quand je suis efficace et que j’obtiens des résultats visibles."},
+        {t:3, s:"Je m’adapte facilement à ce qui est attendu pour réussir."},
+        {t:3, s:"J’évite de montrer l’échec ou la vulnérabilité, je préfère garder une image solide."},
+        {t:4, s:"Je me sens différent et je cherche un sens profond à ce que je vis."},
+        {t:4, s:"Je remarque facilement ce qui me manque ou ce qui rend la vie incomplète."},
+        {t:4, s:"Mes émotions guident souvent mon identité et mes choix."},
+        {t:5, s:"J’ai besoin de beaucoup d’espace mental et de solitude pour me ressourcer."},
+        {t:5, s:"Je préfère observer et comprendre avant d’agir ou de m’engager."},
+        {t:5, s:"Je protège mon énergie et mon temps, je n’aime pas être sollicité en continu."},
+        {t:6, s:"Je scanne les risques et j’anticipe ce qui pourrait mal tourner."},
+        {t:6, s:"Je peux douter longtemps avant de trancher, et chercher des garanties."},
+        {t:6, s:"La loyauté et la fiabilité sont essentielles pour que je me sente en sécurité."},
+        {t:7, s:"Je cherche naturellement des options, des idées et des expériences stimulantes."},
+        {t:7, s:"Je préfère recadrer positivement plutôt que rester dans la douleur ou la tristesse."},
+        {t:7, s:"Je peux me disperser si je me sens limité, ennuyé ou enfermé."},
+        {t:8, s:"Je prends vite la place quand il faut décider, protéger ou agir."},
+        {t:8, s:"Je déteste me sentir contrôlé ; je veux garder mon autonomie."},
+        {t:8, s:"Je préfère la franchise, même si ça confronte ou choque."},
+        {t:9, s:"Je cherche à maintenir la paix et j’évite les conflits directs."},
+        {t:9, s:"Je peux oublier mes priorités en me fondant dans les besoins des autres ou la routine."},
+        {t:9, s:"Quand c’est tendu, j’ai tendance à me mettre en mode “pilotage automatique”."}
+    ];
 
-    {t:2, s:"Je me sens naturellement responsable d’aider, soutenir ou prendre soin des autres."},
-    {t:2, s:"J’ai tendance à deviner les besoins des autres avant les miens."},
-    {t:2, s:"Je peux me sentir blessé si mon aide n’est pas reconnue ou appréciée."},
+    const LS_KEY = "ennea_test_sample_v1";
+    const elQuestions = document.getElementById("questions");
+    const elAnswered = document.getElementById("answered");
+    const elTotal = document.getElementById("total");
+    const btnCalc = document.getElementById("btnCalc");
+    const btnReset = document.getElementById("btnReset");
+    const btnExport = document.getElementById("btnExport");
+    const resultBody = document.getElementById("resultBody");
+    const resultBox = document.getElementById("resultBox");
+    const resTitle = document.getElementById("resTitle");
+    const resLine = document.getElementById("resLine");
+    const top3 = document.getElementById("top3");
+    const bars = document.getElementById("bars");
+    const btnGoType = document.getElementById("btnGoType");
+    const btnCopy = document.getElementById("btnCopy");
+    const toast = document.getElementById("toast");
 
-    {t:3, s:"Je me sens valorisé quand je suis efficace et que j’obtiens des résultats visibles."},
-    {t:3, s:"Je m’adapte facilement à ce qui est attendu pour réussir."},
-    {t:3, s:"J’évite de montrer l’échec ou la vulnérabilité, je préfère garder une image solide."},
-
-    {t:4, s:"Je me sens différent et je cherche un sens profond à ce que je vis."},
-    {t:4, s:"Je remarque facilement ce qui me manque ou ce qui rend la vie incomplète."},
-    {t:4, s:"Mes émotions guident souvent mon identité et mes choix."},
-
-    {t:5, s:"J’ai besoin de beaucoup d’espace mental et de solitude pour me ressourcer."},
-    {t:5, s:"Je préfère observer et comprendre avant d’agir ou de m’engager."},
-    {t:5, s:"Je protège mon énergie et mon temps, je n’aime pas être sollicité en continu."},
-
-    {t:6, s:"Je scanne les risques et j’anticipe ce qui pourrait mal tourner."},
-    {t:6, s:"Je peux douter longtemps avant de trancher, et chercher des garanties."},
-    {t:6, s:"La loyauté et la fiabilité sont essentielles pour que je me sente en sécurité."},
-
-    {t:7, s:"Je cherche naturellement des options, des idées et des expériences stimulantes."},
-    {t:7, s:"Je préfère recadrer positivement plutôt que rester dans la douleur ou la tristesse."},
-    {t:7, s:"Je peux me disperser si je me sens limité, ennuyé ou enfermé."},
-
-    {t:8, s:"Je prends vite la place quand il faut décider, protéger ou agir."},
-    {t:8, s:"Je déteste me sentir contrôlé ; je veux garder mon autonomie."},
-    {t:8, s:"Je préfère la franchise, même si ça confronte ou choque."},
-
-    {t:9, s:"Je cherche à maintenir la paix et j’évite les conflits directs."},
-    {t:9, s:"Je peux oublier mes priorités en me fondant dans les besoins des autres ou la routine."},
-    {t:9, s:"Quand c’est tendu, j’ai tendance à me mettre en mode “pilotage automatique”."}
-  ];
-
-  const LS_KEY = "ennea_test_sample_v1";
-
-  const elQuestions = document.getElementById("questions");
-  const elAnswered = document.getElementById("answered");
-  const elTotal = document.getElementById("total");
-
-  const btnCalc = document.getElementById("btnCalc");
-  const btnReset = document.getElementById("btnReset");
-  const btnExport = document.getElementById("btnExport");
-
-  const resultBody = document.getElementById("resultBody");
-  const resultBox = document.getElementById("resultBox");
-  const resTitle = document.getElementById("resTitle");
-  const resLine = document.getElementById("resLine");
-  const top3 = document.getElementById("top3");
-  const bars = document.getElementById("bars");
-  const btnGoType = document.getElementById("btnGoType");
-  const btnCopy = document.getElementById("btnCopy");
-
-  const toast = document.getElementById("toast");
-
-  function showToast(msg){
-    toast.textContent = msg;
-    toast.style.display = "block";
-    clearTimeout(showToast._t);
-    showToast._t = setTimeout(()=> toast.style.display="none", 2200);
-  }
-
-  function loadState(){
-    try{
-      const raw = localStorage.getItem(LS_KEY);
-      if(!raw) return {};
-      return JSON.parse(raw) || {};
-    }catch{ return {}; }
-  }
-
-  function saveState(st){
-    localStorage.setItem(LS_KEY, JSON.stringify(st));
-  }
-
-  let state = loadState();
-
-  function renderQuestions(){
-    elQuestions.innerHTML = "";
-    elTotal.textContent = String(ITEMS.length);
-
-    ITEMS.forEach((it, idx) => {
-      const q = document.createElement("div");
-      q.className = "q";
-
-      const top = document.createElement("div");
-      top.className = "qTop";
-
-      const text = document.createElement("div");
-      text.className = "qText";
-      text.textContent = it.s;
-
-      const meta = document.createElement("div");
-      meta.className = "qMeta";
-      meta.textContent = ""; meta.style.display = "none";
-
-      top.appendChild(text);
-      top.appendChild(meta);
-
-      const row = document.createElement("div");
-      row.className = "row";
-
-      const range = document.createElement("input");
-      range.type = "range";
-      range.min = "0";
-      range.max = "4";
-      range.step = "1";
-      range.value = (state[idx] ?? 0);
-
-      const val = document.createElement("div");
-      val.className = "val";
-      val.textContent = range.value;
-
-      range.addEventListener("input", () => {
-        val.textContent = range.value;
-        state[idx] = parseInt(range.value, 10);
-        saveState(state);
-        updateAnswered();
-      });
-
-      row.appendChild(range);
-      row.appendChild(val);
-
-      q.appendChild(top);
-      q.appendChild(row);
-      elQuestions.appendChild(q);
-    });
-
-    updateAnswered();
-  }
-
-  function updateAnswered(){
-    let n = 0;
-    for(let i=0;i<ITEMS.length;i++){
-      if (typeof state[i] === "number") n++;
+    function showToast(msg){
+        toast.textContent = msg;
+        toast.style.display = "block";
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(()=> toast.style.display="none", 2200);
     }
-    elAnswered.textContent = String(n);
-  }
 
-  function score(){
-    const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
-    const maxPerType = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+    function loadState(){
+        try{
+            const raw = localStorage.getItem(LS_KEY);
+            if(!raw) return {};
+            return JSON.parse(raw) || {};
+        }catch{ return {}; }
+    }
 
-    ITEMS.forEach((it, idx) => {
-      const v = (typeof state[idx] === "number") ? state[idx] : 0;
-      scores[it.t] += v;
-      maxPerType[it.t] += 4;
+    function saveState(st){
+        localStorage.setItem(LS_KEY, JSON.stringify(st));
+    }
+
+    let state = loadState();
+
+    function renderQuestions(){
+        elQuestions.innerHTML = "";
+        elTotal.textContent = String(ITEMS.length);
+        ITEMS.forEach((it, idx) => {
+            const q = document.createElement("div");
+            q.className = "q";
+            const top = document.createElement("div");
+            top.className = "qTop";
+            const text = document.createElement("div");
+            text.className = "qText";
+            text.textContent = it.s;
+            const meta = document.createElement("div");
+            meta.className = "qMeta";
+            meta.textContent = ""; meta.style.display = "none";
+            top.appendChild(text);
+            top.appendChild(meta);
+            const row = document.createElement("div");
+            row.className = "row";
+            const range = document.createElement("input");
+            range.type = "range";
+            range.min = "0";
+            range.max = "4";
+            range.step = "1";
+            range.value = (state[idx] ?? 0);
+            const val = document.createElement("div");
+            val.className = "val";
+            val.textContent = range.value;
+            range.addEventListener("input", () => {
+                val.textContent = range.value;
+                state[idx] = parseInt(range.value, 10);
+                saveState(state);
+                updateAnswered();
+            });
+            row.appendChild(range);
+            row.appendChild(val);
+            q.appendChild(top);
+            q.appendChild(row);
+            elQuestions.appendChild(q);
+        });
+        updateAnswered();
+    }
+
+    function updateAnswered(){
+        let n = 0;
+        for(let i=0;i<ITEMS.length;i++){
+            if (typeof state[i] === "number") n++;
+        }
+        elAnswered.textContent = String(n);
+    }
+
+    function score(){
+        const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+        const maxPerType = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+        ITEMS.forEach((it, idx) => {
+            const v = (typeof state[idx] === "number") ? state[idx] : 0;
+            scores[it.t] += v;
+            maxPerType[it.t] += 4;
+        });
+        const arr = Object.keys(scores).map(k => {
+            const t = parseInt(k,10);
+            const raw = scores[t];
+            const max = maxPerType[t] || 1;
+            const pct = Math.round((raw / max) * 100);
+            return {t, raw, max, pct};
+        }).sort((a,b)=> b.raw - a.raw);
+        return {arr};
+    }
+
+    function colorForType(t){
+        if ([8,9,1].includes(t)) return "rgba(255,139,139,.85)";
+        if ([2,3,4].includes(t)) return "rgba(255,209,139,.85)";
+        return "rgba(139,211,255,.85)";
+    }
+
+    function renderResults(){
+        const {arr} = score();
+        const first = arr[0];
+        const second = arr[1];
+        const third = arr[2];
+        resTitle.textContent = "Profil probable : Type " + first.t + " • " + TYPES[first.t].name;
+        resLine.textContent = "Score " + first.raw + "/" + first.max + " (" + first.pct + "%). Compare surtout avec Types " + second.t + " et " + third.t + " si les scores sont proches.";
+        top3.innerHTML = "";
+        [first, second, third].forEach((x, i) => {
+            const div = document.createElement("div");
+            div.className = "topItem";
+            const left = document.createElement("div");
+            left.className = "topLeft";
+            const nm = document.createElement("div");
+            nm.className = "topName";
+            nm.textContent = "#" + (i+1) + "  Type " + x.t + " • " + TYPES[x.t].name;
+            const ds = document.createElement("div");
+            ds.className = "topDesc";
+            ds.textContent = TYPES[x.t].desc;
+            left.appendChild(nm);
+            left.appendChild(ds);
+            const sc = document.createElement("div");
+            sc.className = "topScore";
+            sc.textContent = x.raw + "/" + x.max;
+            div.appendChild(left);
+            div.appendChild(sc);
+            top3.appendChild(div);
+        });
+        bars.innerHTML = "";
+        arr.slice().sort((a,b)=> a.t - b.t).forEach(x => {
+            const row = document.createElement("div");
+            row.className = "barRow";
+            const k = document.createElement("div");
+            k.className = "barK";
+            k.textContent = "T" + x.t;
+            const track = document.createElement("div");
+            track.className = "barTrack";
+            const fill = document.createElement("div");
+            fill.className = "barFill";
+            fill.style.width = x.pct + "%";
+            fill.style.background = colorForType(x.t);
+            track.appendChild(fill);
+            const v = document.createElement("div");
+            v.className = "barV";
+            v.textContent = x.pct + "%";
+            row.appendChild(k);
+            row.appendChild(track);
+            row.appendChild(v);
+            bars.appendChild(row);
+        });
+        btnGoType.textContent = "Ouvrir la fiche complète du Type " + first.t;
+        btnGoType.onclick = () => {
+            location.href = "type.html?type=" + first.t;
+        };
+        btnCopy.onclick = async () => {
+            const txt = [
+                "Résultat (échantillon) :",
+                "#1 Type " + first.t + " — " + TYPES[first.t].name + " (" + first.pct + "%)",
+                "#2 Type " + second.t + " — " + TYPES[second.t].name + " (" + second.pct + "%)",
+                "#3 Type " + third.t + " — " + TYPES[third.t].name + " (" + third.pct + "%)"
+            ].join("\n");
+            try{
+                await navigator.clipboard.writeText(txt);
+                showToast("Résumé copié");
+            }catch{
+                showToast("Copie impossible (navigateur)");
+            }
+        };
+        resultBody.style.display = "none";
+        resultBox.style.display = "block";
+    }
+
+    btnCalc.addEventListener("click", () => {
+        renderResults();
+        showToast("Résultats calculés");
     });
 
-    const arr = Object.keys(scores).map(k => {
-      const t = parseInt(k,10);
-      const raw = scores[t];
-      const max = maxPerType[t] || 1;
-      const pct = Math.round((raw / max) * 100);
-      return {t, raw, max, pct};
-    }).sort((a,b)=> b.raw - a.raw);
-
-    return {arr};
-  }
-
-  function colorForType(t){
-    if ([8,9,1].includes(t)) return "rgba(255,139,139,.85)";
-    if ([2,3,4].includes(t)) return "rgba(255,209,139,.85)";
-    return "rgba(139,211,255,.85)";
-  }
-
-  function renderResults(){
-    const {arr} = score();
-
-    const first = arr[0];
-    const second = arr[1];
-    const third = arr[2];
-
-    resTitle.textContent = "Profil probable : Type " + first.t + " • " + TYPES[first.t].name;
-    resLine.textContent = "Score " + first.raw + "/" + first.max + " (" + first.pct + "%). Compare surtout avec Types " + second.t + " et " + third.t + " si les scores sont proches.";
-
-    top3.innerHTML = "";
-    [first, second, third].forEach((x, i) => {
-      const div = document.createElement("div");
-      div.className = "topItem";
-
-      const left = document.createElement("div");
-      left.className = "topLeft";
-
-      const nm = document.createElement("div");
-      nm.className = "topName";
-      nm.textContent = "#" + (i+1) + "  Type " + x.t + " • " + TYPES[x.t].name;
-
-      const ds = document.createElement("div");
-      ds.className = "topDesc";
-      ds.textContent = TYPES[x.t].desc;
-
-      left.appendChild(nm);
-      left.appendChild(ds);
-
-      const sc = document.createElement("div");
-      sc.className = "topScore";
-      sc.textContent = x.raw + "/" + x.max;
-
-      div.appendChild(left);
-      div.appendChild(sc);
-      top3.appendChild(div);
+    btnReset.addEventListener("click", () => {
+        if (!confirm("Réinitialiser toutes tes réponses ?")) return;
+        state = {};
+        saveState(state);
+        renderQuestions();
+        resultBox.style.display = "none";
+        resultBody.style.display = "block";
+        showToast("Réinitialisé");
     });
 
-    bars.innerHTML = "";
-    arr.slice().sort((a,b)=> a.t - b.t).forEach(x => {
-      const row = document.createElement("div");
-      row.className = "barRow";
-
-      const k = document.createElement("div");
-      k.className = "barK";
-      k.textContent = "T" + x.t;
-
-      const track = document.createElement("div");
-      track.className = "barTrack";
-
-      const fill = document.createElement("div");
-      fill.className = "barFill";
-      fill.style.width = x.pct + "%";
-      fill.style.background = colorForType(x.t);
-
-      track.appendChild(fill);
-
-      const v = document.createElement("div");
-      v.className = "barV";
-      v.textContent = x.pct + "%";
-
-      row.appendChild(k);
-      row.appendChild(track);
-      row.appendChild(v);
-
-      bars.appendChild(row);
+    btnExport.addEventListener("click", () => {
+        const {arr} = score();
+        const payload = {
+            version: "sample-v1",
+            date: new Date().toISOString(),
+            answers: ITEMS.map((it, idx)=> ({index: idx+1, type: it.t, value: (state[idx] ?? 0), statement: it.s})),
+            scores: arr.map(x => ({type: x.t, raw: x.raw, max: x.max, pct: x.pct}))
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "enneagramme-test-echantillon.json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(()=> URL.revokeObjectURL(a.href), 1200);
+        showToast("Export JSON créé");
     });
 
-    btnGoType.textContent = "Ouvrir la fiche complète du Type " + first.t;
-    btnGoType.onclick = () => {
-      location.href = "type.html?type=" + first.t;
-    };
-
-    btnCopy.onclick = async () => {
-      const txt = [
-        "Résultat (échantillon) :",
-        "#1 Type " + first.t + " — " + TYPES[first.t].name + " (" + first.pct + "%)",
-        "#2 Type " + second.t + " — " + TYPES[second.t].name + " (" + second.pct + "%)",
-        "#3 Type " + third.t + " — " + TYPES[third.t].name + " (" + third.pct + "%)"
-      ].join("\n");
-      try{
-        await navigator.clipboard.writeText(txt);
-        showToast("Résumé copié");
-      }catch{
-        showToast("Copie impossible (navigateur)");
-      }
-    };
-
-    resultBody.style.display = "none";
-    resultBox.style.display = "block";
-  }
-
-  btnCalc.addEventListener("click", () => {
-    renderResults();
-    showToast("Résultats calculés");
-  });
-
-  btnReset.addEventListener("click", () => {
-    if (!confirm("Réinitialiser toutes tes réponses ?")) return;
-    state = {};
-    saveState(state);
     renderQuestions();
-    resultBox.style.display = "none";
-    resultBody.style.display = "block";
-    showToast("Réinitialisé");
-  });
-
-  btnExport.addEventListener("click", () => {
-    const {arr} = score();
-    const payload = {
-      version: "sample-v1",
-      date: new Date().toISOString(),
-      answers: ITEMS.map((it, idx)=> ({index: idx+1, type: it.t, value: (state[idx] ?? 0), statement: it.s})),
-      scores: arr.map(x => ({type: x.t, raw: x.raw, max: x.max, pct: x.pct}))
-    };
-
-    const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "enneagramme-test-echantillon.json";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(()=> URL.revokeObjectURL(a.href), 1200);
-    showToast("Export JSON créé");
-  });
-
-  renderQuestions();
 })();
 </script>
 </body>
