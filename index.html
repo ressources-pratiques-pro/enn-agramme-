@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=5" />
+  <link rel="stylesheet" href="assets/css/app.css?v=7" />
 </head>
 <body>
   <div class="wrap">
@@ -74,13 +74,27 @@
           </div>
 
           <div class="route">
-            <div class="chip"><span class="dot good"></span> Intégration <span class="muted">(santé)</span> <strong id="toIntegr">—</strong></div>
-            <div class="chip"><span class="dot warn"></span> Désintégration <span class="muted">(stress)</span> <strong id="toDisint">—</strong></div>
-          </div>
+            <div class="chip">
+              <div class="chipHead">
+                <span class="dot good"></span>
+                <strong>Intégration</strong>
+                <span class="muted">(santé)</span>
+                <strong id="toIntegr">—</strong>
+                :
+              </div>
+              <div class="chipBody" id="moveHealthText">—</div>
+            </div>
 
-          <div class="moveLines">
-            <div id="moveHealth" class="moveLine health"><span class="dot good"></span><strong>Intégration</strong> <span class="muted">(santé)</span> : <span id="moveHealthText">—</span></div>
-            <div id="moveStress" class="moveLine stress"><span class="dot warn"></span><strong>Désintégration</strong> <span class="muted">(stress)</span> : <span id="moveStressText">—</span></div>
+            <div class="chip">
+              <div class="chipHead">
+                <span class="dot warn"></span>
+                <strong>Désintégration</strong>
+                <span class="muted">(stress)</span>
+                <strong id="toDisint">—</strong>
+                :
+              </div>
+              <div class="chipBody" id="moveStressText">—</div>
+            </div>
           </div>
 
           <div class="ctaRow">
@@ -91,6 +105,6 @@
     </main>
   </div>
 
-  <script src="assets/js/app.js?v=5"></script>
+  <script src="assets/js/app.js?v=7"></script>
 </body>
 </html>
