@@ -90,14 +90,13 @@ function makeNode(t){
 [1,2,3,4,5,6,7,8,9].forEach(makeNode);
 
 const badgeNum = document.getElementById("badgeNum");
-const typeTitle = document.getElementById("typeTitle");
-const typeSubtitle = document.getElementById("typeSubtitle");
-const kw = document.getElementById("kw");
-const theme = document.getElementById("theme");
-const fear = document.getElementById("fear");
-const desire = document.getElementById("desire");
+const centerEl = document.getElementById("center");
+const fearEl = document.getElementById("fear");
+const desireEl = document.getElementById("desire");
+const compulsionEl = document.getElementById("compulsion");
 const toIntegr = document.getElementById("toIntegr");
 const toDisint = document.getElementById("toDisint");
+const moveText = document.getElementById("moveText");
 const openFull = document.getElementById("openFull");
 
 let typesData = null;
@@ -115,19 +114,20 @@ function selectType(t){
 
   const data = typesData ? typesData[String(t)] : null;
 
-  typeTitle.textContent = data ? `Type ${t} — ${data.name}` : `Type ${t}`;
-  typeSubtitle.textContent = data ? "Résumé du type + lien vers la fiche complète." : "Ajoute le type dans assets/data/types.json";
-
-  kw.textContent = data?.keyword ?? "—";
-  theme.textContent = data?.theme ?? "—";
-  fear.textContent = data?.fear ?? "—";
-  desire.textContent = data?.desire ?? "—";
-
   const it = data?.integr ?? arrowsFallback.integr[t];
   const dt = data?.disint ?? arrowsFallback.disint[t];
 
+  centerEl.textContent = data?.center ?? "—";
+  fearEl.textContent = data?.fear ?? "—";
+  desireEl.textContent = data?.desire ?? "—";
+  compulsionEl.textContent = data?.compulsion ?? "—";
+
   toIntegr.textContent = `→ ${it}`;
   toDisint.textContent = `→ ${dt}`;
+
+  const itText = data?.integr_text ? `Santé : ${data.integr_text}` : "";
+  const dtText = data?.disint_text ? `Stress : ${data.disint_text}` : "";
+  moveText.textContent = (itText || dtText) ? [itText, dtText].filter(Boolean).join(" • ") : "—";
 
   openFull.setAttribute("href", `type.html?type=${t}`);
   openFull.setAttribute("aria-disabled","false");
@@ -138,10 +138,13 @@ function selectType(t){
 document.getElementById("btnReset").addEventListener("click", ()=>{
   selected = null;
   badgeNum.textContent = "—";
-  typeTitle.textContent = "Choisis un type";
-  typeSubtitle.textContent = "Un résumé s’affichera ici + un lien vers la fiche complète.";
-  kw.textContent = theme.textContent = fear.textContent = desire.textContent = "—";
-  toIntegr.textContent = toDisint.textContent = "—";
+  centerEl.textContent = "—";
+  fearEl.textContent = "—";
+  desireEl.textContent = "—";
+  compulsionEl.textContent = "—";
+  toIntegr.textContent = "—";
+  toDisint.textContent = "—";
+  moveText.textContent = "—";
   openFull.setAttribute("aria-disabled","true");
   clearAllArrows();
 });
