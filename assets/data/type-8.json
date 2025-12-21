@@ -1,0 +1,150 @@
+{
+  "type": 8,
+  "name": "Le Chef",
+  "tagline": "Le Protecteur, le Leader ou le Challenger",
+  "quick": {
+    "center": "Instinctif",
+    "wings": "7 et 9",
+    "integr": "→ 2",
+    "disint": "→ 5"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Structure fondamentale et centres",
+      "desc": "Centre, hiérarchie, direction, problématique.",
+      "items": [
+        { "label": "Centre d’intelligence", "value": "Instinctif (corps/gut)." },
+        {
+          "label": "Hiérarchie des centres",
+          "children": [
+            { "label": "Centre préféré", "value": "Instinctif." },
+            { "label": "Centre de support", "value": "Mental ou Émotionnel." },
+            { "label": "Centre réprimé", "value": "Émotionnel ou Mental." }
+          ]
+        },
+        { "label": "Direction d’utilisation", "value": "Vers l'extérieur : énergie pour impacter, transformer ou dominer l’environnement." },
+        { "label": "Problématique centrale", "value": "Gestion de la colère et besoin d’autonomie face à une réalité perçue comme résistante ou injuste." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Dynamiques de l'ego",
+      "desc": "Compulsion, passion, fixation, défense, fierté, peur, désir.",
+      "items": [
+        { "label": "Compulsion (Évitement)", "value": "Éviter à tout prix la faiblesse, la vulnérabilité et la dépendance." },
+        { "label": "Passion (Vice)", "value": "Luxure : besoin d’excès, d’intensité et de stimulation constante." },
+        { "label": "Fixation", "value": "Vengeance / ressentiment punitif : volonté de régler les comptes avec un monde perçu comme dur." },
+        { "label": "Mécanisme de défense", "value": "Déni (de la vulnérabilité/douleur) et dénégation (rejet des limites/autorité)." },
+        { "label": "Fierté égotique", "value": "Je suis fort, je suis juste." },
+        { "label": "Peur de base", "value": "Être blessé, contrôlé, dominé ou violé par les autres." },
+        { "label": "Désir de base", "value": "Se protéger soi-même et déterminer son propre chemin." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Sous-types et styles sociaux",
+      "desc": "Instincts, style social, gestion des conflits.",
+      "items": [
+        {
+          "label": "Instincts / Sous-types",
+          "children": [
+            { "label": "Auto-conservation", "value": "Survie / satisfaction : maîtrise des ressources matérielles et du territoire personnel." },
+            { "label": "Social", "value": "Amitié / complicité : protecteur du clan, alliances avec les loyaux et forts." },
+            { "label": "Tête-à-tête (Sexuel)", "value": "Possession / reddition : intensité fusionnelle tout en gardant le contrôle." }
+          ]
+        },
+        { "label": "Style social", "value": "Assertif (moving against) : insiste sur ses besoins, va contre pour obtenir." },
+        { "label": "Gestion des conflits", "value": "Réactif : réponses immédiates, franchise, expression ouverte de la frustration." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Dynamiques de mouvement",
+      "desc": "Ailes, intégration, désintégration.",
+      "items": [
+        { "label": "Ailes", "value": "Aile 7 (énergique, aventureux) et aile 9 (calme, protecteur, ancré)." },
+        { "label": "Intégration (Santé)", "value": "→ 2 : cœur plus ouvert, générosité, attention, tendresse assumée." },
+        { "label": "Désintégration (Stress)", "value": "→ 5 : retrait, secret, froideur, cynisme, stratégies dans l’ombre." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Identité spirituelle et noyau",
+      "desc": "Idée sacrée, vertu, aspect, noyau, enfant de l’âme.",
+      "items": [
+        { "label": "Idée Sacrée", "value": "Vérité Sacrée : perception de l’unité fondamentale de la réalité (rien n’est séparé)." },
+        { "label": "Vertu", "value": "Innocence : ouverture sans défense, réponse fraîche à l’instant." },
+        { "label": "Aspect idéalisé", "value": "Force véritable (Rouge) : vitalité et capacité d’agir sans peur, ancrées dans l’Être." },
+        {
+          "label": "Noyau de la fixation",
+          "children": [
+            { "label": "Difficulté spécifique", "value": "Culpabilité / méchanceté : se sentir mauvais ou exclu de la grâce." },
+            { "label": "Réaction spécifique", "value": "Blâmer : rejeter la faute sur les autres pour éviter de sentir son propre défaut." },
+            { "label": "Illusion spécifique", "value": "Dualité : monde vécu comme champ de bataille entre forts et faibles." }
+          ]
+        },
+        { "label": "Enfant de l'âme", "value": "Petit 2 intérieur : tendre et affectueux, a appris à cacher ses besoins pour survivre." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Style de parole, malentendu.",
+      "items": [
+        { "label": "Style de parole", "value": "Impératifs : direct, brusque, autoritaire, va à l’essentiel." },
+        { "label": "Malentendu de communication", "value": "Force-Brutalité : franchise/puissance perçues comme agression gratuite." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Évolution et relationnel",
+      "desc": "Alertes, pratiques, confusions, interactions.",
+      "items": [
+        { "label": "Signes d'alerte", "value": "Belligérance croissante, ennemis partout, posture de dictateur arrogant." },
+        { "label": "Pratiques de croissance", "value": "Attendre avant d’agir, reconnaître les limites physiques, accepter que la vraie force inclut la vulnérabilité." },
+        { "label": "Confusions fréquentes", "value": "6 contrephobique, 1 (justice), 3 (compétition), 4 sexuel (intensité)." },
+        {
+          "label": "Interactions et ententes",
+          "children": [
+            { "label": "En amour", "value": "Protecteur et passionné ; peut être étouffant/jaloux s’il craint la trahison." },
+            { "label": "Au travail", "value": "Leader naturel, décideur efficace ; déteste l’indécision/l’hypocrisie ; délégation difficile par besoin de contrôle." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Niveaux et conscience",
+      "desc": "Niveaux 1–9, conscience, spirale, analogie.",
+      "items": [
+        {
+          "label": "Niveaux de développement",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Cœur magnanime : protection noble, puissance au service du vrai." },
+            { "n": 2, "text": "Personne sûre d’elle-même : force calme, présence, courage." },
+            { "n": 3, "text": "Chef constructif : leadership protecteur, justice, action utile." },
+            { "n": 4, "text": "Aventurier entreprenant : intensité, goût du défi, contrôle accru." },
+            { "n": 5, "text": "Pourvoyeur de pouvoir dominateur : impose, teste, durcit les rapports." },
+            { "n": 6, "text": "Adversaire provocateur : confrontation, intimidation, escalade." },
+            { "n": 7, "text": "Hors-la-loi impitoyable : transgression, cruauté défensive." },
+            { "n": 8, "text": "Mégalomane omnipotent : paranoïa de contrôle, toute-puissance." },
+            { "n": 9, "text": "Destructeur violent : déchaînement, rupture totale, dévastation." }
+          ]
+        },
+        { "label": "Conscience", "value": "Passer du combat de l’ego à l’abandon de soi (Self-Surrender) à une force plus grande que sa volonté." },
+        { "label": "Spirale Dynamique", "value": "ROUGE (puissance, force, action immédiate)." },
+        { "label": "Analogie", "value": "Volcan prêt à exploser ou lion qui ne bouge que lorsqu’il a faim : énergie massive, action décisive." }
+      ]
+    }
+  ]
+}
