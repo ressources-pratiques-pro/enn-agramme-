@@ -1,0 +1,153 @@
+{
+  "type": 1,
+  "name": "Le Perfectionniste",
+  "tagline": "Poupées russes : tu entres par rubriques, puis sous-rubriques.",
+  "quick": {
+    "center": "Instinctif",
+    "wings": "9 et 2",
+    "integr": "→ 7",
+    "disint": "→ 4"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Structure fondamentale et centres",
+      "desc": "Centre, hiérarchie, direction, problématique.",
+      "items": [
+        { "label": "Centre d’intelligence", "value": "Instinctif (centre du corps)." },
+        {
+          "label": "Hiérarchie des centres",
+          "children": [
+            { "label": "Centre préféré", "value": "Instinctif." },
+            { "label": "Centre de support", "value": "Émotionnel ou Mental." },
+            { "label": "Centre réprimé", "value": "Mental ou Émotionnel." }
+          ]
+        },
+        { "label": "Direction d’utilisation", "value": "Vers l’intérieur : agir sur soi avant de vouloir transformer le monde." },
+        { "label": "Problématique centrale", "value": "Colère : tendance à réprimer ou contrôler par des principes." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Dynamiques de l’ego",
+      "desc": "Compulsion, passion, fixation, défense, fierté, peur, désir.",
+      "items": [
+        { "label": "Compulsion (évitement)", "value": "Évite la colère (la sienne et celle des autres) et l’imperfection / les erreurs." },
+        { "label": "Passion (vice)", "value": "Colère, souvent vécue comme ressentiment face à ce qui n’est pas comme il faut." },
+        { "label": "Fixation", "value": "Perfectionnisme : conviction qu’il n’y a qu’une seule bonne manière." },
+        { "label": "Mécanisme de défense", "value": "Formation réactionnelle : transforme colère/désir en contraires acceptables (discipline, gentillesse forcée…)." },
+        { "label": "Fierté égotique", "value": "Je suis droit, je suis travailleur." },
+        { "label": "Peur de base", "value": "Être mauvais, corrompu, défectueux ou pervers." },
+        { "label": "Désir de base", "value": "Être bon, intègre et en équilibre." }
+      ]
+    },
+    {
+      "id": "soustypes",
+      "icon": "🧭",
+      "title": "Sous-types et styles sociaux",
+      "desc": "Instincts, style social, gestion des conflits.",
+      "items": [
+        {
+          "label": "Instincts / Sous-types",
+          "children": [
+            { "label": "Auto-conservation", "value": "Anxiété / inquiétude : contrôle de soi, organisation minutieuse pour la survie." },
+            { "label": "Social", "value": "Inadaptabilité / croisé : modèle de droiture, réforme institutions/société." },
+            { "label": "Tête-à-tête (sexuel)", "value": "Jalousie / chaleur : perfection projetée sur le partenaire, intensité relationnelle." }
+          ]
+        },
+        { "label": "Style social", "value": "Compliant (devoir) : va vers les gens via règles et sens du devoir." },
+        { "label": "Gestion des conflits", "value": "Compétence : met les émotions de côté pour solution correcte et objective." }
+      ]
+    },
+    {
+      "id": "mouvements",
+      "icon": "↗️",
+      "title": "Dynamiques de mouvement",
+      "desc": "Ailes, intégration, désintégration.",
+      "items": [
+        { "label": "Ailes", "value": "Aile 9 : plus calme et réservée. Aile 2 : plus chaleureuse et aidante." },
+        { "label": "Intégration (santé)", "value": "Vers 7 : joie, spontanéité, curiosité, permission du plaisir." },
+        { "label": "Désintégration (stress)", "value": "Vers 4 : mélancolie, sentiment d’incompréhension, repli, irrationalité sous pression." }
+      ]
+    },
+    {
+      "id": "spirituel",
+      "icon": "✨",
+      "title": "Identité spirituelle et noyau",
+      "desc": "Idée sacrée, vertu, aspect, noyau, enfant de l’âme.",
+      "items": [
+        { "label": "Idée sacrée", "value": "Perfection sacrée : la réalité est intrinsèquement parfaite telle qu’elle est." },
+        { "label": "Vertu", "value": "Sérénité / patience." },
+        { "label": "Aspect idéalisé", "value": "Brillance : intelligence pure de l’Être, complétude et justesse." },
+        {
+          "label": "Noyau de la fixation",
+          "children": [
+            { "label": "Difficulté spécifique", "value": "Être mauvais / déficience de justesse." },
+            { "label": "Réaction spécifique", "value": "S’améliorer / amélioration de soi." },
+            { "label": "Illusion spécifique", "value": "Jugement comparatif." }
+          ]
+        },
+        { "label": "Enfant de l’âme", "value": "Petit 7 intérieur : jouer, explorer sans être jugé." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Style de parole, malentendu.",
+      "items": [
+        { "label": "Style de parole", "value": "Sermonner et enseigner (preach and teach)." },
+        { "label": "Malentendu de communication", "value": "Perçu comme rigide ou froid alors que le message vise l’intégrité." }
+      ]
+    },
+    {
+      "id": "relationnel",
+      "icon": "🤝",
+      "title": "Évolution et relationnel",
+      "desc": "Alertes, pratiques, confusions, interactions.",
+      "items": [
+        { "label": "Signes d’alerte", "value": "Obligation personnelle intense, tension physique accrue." },
+        { "label": "Pratiques de croissance", "value": "Distinguer bien faire / vouloir faire, tempérance, reconnaître l’erreur comme humaine." },
+        {
+          "label": "Confusion fréquente entre types",
+          "value": "Souvent confondu avec 6, 5 ou 8 selon le contexte."
+        },
+        {
+          "label": "Interactions et ententes",
+          "children": [
+            { "label": "En amour", "value": "Loyal et dévoué, mais critique si l’idéal n’est pas respecté." },
+            { "label": "Au travail", "value": "Fiable et éthique, difficulté à déléguer par peur des erreurs." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "niveaux",
+      "icon": "📈",
+      "title": "Niveaux et conscience",
+      "desc": "Niveaux 1–9, conscience, spirale, analogie.",
+      "items": [
+        {
+          "label": "Niveaux de développement",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Altruiste sage : sérénité, acceptation du réel." },
+            { "n": 2, "text": "Personne raisonnable : objective, modérée." },
+            { "n": 3, "text": "Réformateur responsable : éthique, travailleur." },
+            { "n": 4, "text": "Critique zélé : rigidité, focalisation sur erreurs." },
+            { "n": 5, "text": "Individu ordonné : tension, irritabilité, détails." },
+            { "n": 6, "text": "Perfectionniste critique : jugement, sarcasme." },
+            { "n": 7, "text": "Dogmatique intolérant : inflexibilité." },
+            { "n": 8, "text": "Compulsif obsessionnel : obsession du désordre, dureté." },
+            { "n": 9, "text": "Vengeur punitif : punition, risque dépression." }
+          ]
+        },
+        { "label": "Conscience", "value": "Passer de la conscience subjective (transe du perfectionnisme) au souvenir de soi." },
+        { "label": "Spirale dynamique", "value": "Affinité avec BLEU : ordre, loi, vérité absolue, sacrifice pour cause supérieure." },
+        { "label": "Analogie", "value": "Miroir poli : efface la poussière sans voir que l’essentiel est la lumière reflétée." }
+      ]
+    }
+  ]
+}
