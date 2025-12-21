@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Explorer l’Ennéagramme</title>
 
-  <link rel="stylesheet" href="assets/css/app.css?v=12" />
+  <link rel="stylesheet" href="assets/css/app.css?v=100" />
   <link rel="stylesheet" href="assets/css/type.css?v=12" />
 
   <style>
@@ -13,7 +13,6 @@
     .nodeCard{ white-space: normal; }
     .heroActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
     
-    /* Styles pour heroBtn conservés pour la compatibilité */
     .heroBtn{
       display:inline-flex; align-items:center; gap:8px;
       padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
