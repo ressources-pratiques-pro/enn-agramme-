@@ -2,12 +2,66 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=99" />
-
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Ennéagramme</title>
   <style>
-    .siteFooter{margin:18px 0 10px;font-size:12px;opacity:.9}
+    :root{
+      --bg:#0b1020;
+      --card:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.10);
+      --muted:rgba(255,255,255,.75);
+      --txt:#fff;
+      --accent:#60a5fa;
+    }
+    *{ box-sizing:border-box }
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--txt);
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(96,165,250,.18), transparent 60%),
+                  radial-gradient(900px 600px at 80% 25%, rgba(34,197,94,.12), transparent 60%),
+                  radial-gradient(900px 600px at 50% 90%, rgba(168,85,247,.10), transparent 60%),
+                  var(--bg);
+    }
+    .wrap{ max-width:980px; margin:0 auto; padding:18px 16px 10px; }
+    .top{
+      display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;
+      padding:12px 12px; border:1px solid var(--stroke); border-radius:16px; background:var(--card);
+    }
+    .top h1{ margin:0; font-size:22px; letter-spacing:.2px; }
+    .top p{ margin:6px 0 0; color:var(--muted) }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center }
+    .btn{
+      appearance:none; border:1px solid var(--stroke); background:rgba(255,255,255,.07);
+      color:#fff; padding:10px 12px; border-radius:12px; cursor:pointer; text-decoration:none;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .btn:hover{ background:rgba(255,255,255,.10) }
+    .grid{ display:grid; gap:14px; margin-top:14px; grid-template-columns: 1.1fr .9fr; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr } }
+    .card{
+      border:1px solid var(--stroke); background:var(--card); border-radius:16px; padding:14px;
+    }
+    .card h2{ margin:0 0 10px; font-size:16px }
+    .muted{ color:var(--muted) }
+    .q{ border:1px solid var(--stroke); border-radius:14px; padding:12px; background:rgba(255,255,255,.05); margin:10px 0; }
+    .qTitle{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; }
+    .qTitle strong{ font-size:14px }
+    .qSmall{ font-size:12px; color:var(--muted) }
+    input[type="range"]{ width:100% }
+    .row{ display:flex; gap:10px; align-items:center; justify-content:space-between; margin-top:8px; }
+    .pill{ font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--stroke); background:rgba(0,0,0,.22); }
+    .kpis{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .kpi{ padding:12px; border-radius:14px; border:1px solid var(--stroke); background:rgba(255,255,255,.05); }
+    .kpi .big{ font-size:20px; font-weight:700 }
+    .kpi .small{ color:var(--muted); font-size:12px }
+    .list a{ color:#fff; text-decoration:none }
+    .list a:hover{ text-decoration:underline }
+    .bar{ height:10px; border-radius:999px; background:rgba(255,255,255,.10); overflow:hidden; border:1px solid var(--stroke); }
+    .bar > div{ height:100%; width:0%; background:linear-gradient(90deg, rgba(96,165,250,.9), rgba(34,197,94,.9)); }
+    .sep{ height:1px; background:rgba(255,255,255,.10); margin:12px 0; }
+    .fine{ font-size:12px; color:var(--muted); line-height:1.35 }
+    .siteFooter{margin:18px 0 0;font-size:12px;opacity:.9}
     .siteFooterInner{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}
     .siteFooterLink{color:#fff;text-decoration:none}
     .siteFooterLink:visited{color:#fff}
@@ -18,114 +72,47 @@
   <div class="wrap">
     <header class="top">
       <div>
-        <h1>Ennéagramme</h1>
-        <p>Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
+        <h1>Test Ennéagramme</h1>
+        <p>Échantillon rapide. Glisse les curseurs, puis lis ton classement. Le lien ouvre la fiche complète du type.</p>
       </div>
       <div class="actions">
-        <button id="btnReset" type="button">Réinitialiser</button>
+        <a class="btn" href="index.html">⬅️ Aller au diagramme</a>
+        <button class="btn" id="btnReset" type="button">♻️ Réinitialiser</button>
       </div>
     </header>
 
     <main class="grid">
-      <section class="stage">
-        <div class="svgWrap">
-          <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
-            <defs>
-              <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
-              </marker>
-              <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
-              </marker>
-
-              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="2.2" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-
-            <circle class="ring" cx="350" cy="350" r="270"></circle>
-            <circle class="innerRing" cx="350" cy="350" r="210"></circle>
-
-            <g id="staticBg" class="staticBg">
-              <path class="hex" d="" id="hexPath"></path>
-              <path class="tri" d="" id="triPath"></path>
-
-              <g class="centers">
-                <path class="centerLine" d="M350 350 L350 120"></path>
-                <path class="centerLine" d="M350 350 L585 455"></path>
-                <path class="centerLine" d="M350 350 L115 455"></path>
-
-                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
-                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
-                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
-              </g>
-            </g>
-
-            <g id="arrowsLayer"></g>
-            <g id="nodesLayer"></g>
-          </svg>
-        </div>
+      <section class="card" aria-label="Questions">
+        <h2>Questions</h2>
+        <div id="questions"></div>
+        <div class="sep"></div>
+        <div class="fine">Astuce : ce test n’affiche aucun type pendant que tu réponds. Le classement est calculé uniquement à la fin.</div>
       </section>
 
-      <aside class="side" aria-live="polite">
-        <div class="badgeRow">
-          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
+      <aside class="card" aria-label="Résultats">
+        <h2>Résultats</h2>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="big" id="bestLabel">—</div>
+            <div class="small">Meilleur score</div>
+          </div>
+          <div class="kpi">
+            <div class="big" id="bestScore">—</div>
+            <div class="small">Score</div>
+          </div>
         </div>
 
-        <div class="card">
-          <div class="miniGrid">
-            <div class="mini">
-              <h3>Centre d'intelligence</h3>
-              <p id="center">-</p>
-            </div>
-            <div class="mini">
-              <h3>Peur de base</h3>
-              <p id="fear">-</p>
-            </div>
-            <div class="mini">
-              <h3>Désir de base</h3>
-              <p id="desire">-</p>
-            </div>
-            <div class="mini">
-              <h3>Compulsion (évitement)</h3>
-              <p id="compulsion">-</p>
-            </div>
-          </div>
+        <div style="margin:12px 0 8px" class="bar" aria-hidden="true"><div id="bestBar"></div></div>
 
-          <div class="moveLines">
-            <div id="moveHealth" class="moveLine">
-              <div class="moveHead">
-                <span class="dot good"></span>
-                <strong>Intégration</strong>
-                <span class="muted">(santé)</span>
-                <span class="muted"> > </span>
-                <strong id="toIntegr">-</strong>
-                <span class="muted">:</span>
-              </div>
-              <div class="moveBody" id="moveHealthText">-</div>
-            </div>
+        <div class="sep"></div>
 
-            <div id="moveStress" class="moveLine">
-              <div class="moveHead">
-                <span class="dot warn"></span>
-                <strong>Désintégration</strong>
-                <span class="muted">(stress)</span>
-                <span class="muted"> > </span>
-                <strong id="toDisint">-</strong>
-                <span class="muted">:</span>
-              </div>
-              <div class="moveBody" id="moveStressText">-</div>
-            </div>
-          </div>
+        <div class="list" id="ranking"></div>
 
-          <div class="ctaRow">
-            <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
-            <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
-          </div>
+        <div class="sep"></div>
+
+        <div class="fine">
+          Attention : un test n’est qu’un indicateur. Le mieux est de lire les 2–3 meilleurs types et de voir lequel décrit le mieux la motivation (peur/désir) plutôt que les comportements.
         </div>
       </aside>
     </main>
@@ -138,146 +125,131 @@
     </footer>
   </div>
 
-  <script src="assets/js/app.js?v=99"></script>
-</body>
-</html><!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ennéagramme</title>
-    <link rel="stylesheet" href="assets/css/app.css?v=99" />
-    <style>
-      .siteFooter{margin:18px 0 10px;font-size:12px;opacity:.85}
-      .siteFooterInner{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}
-      .siteFooterLink{text-decoration:none}
-      .siteFooterLink:hover{text-decoration:underline}
-    </style>
-</head>
-<body>
-    <div class="wrap">
-        <header class="top">
-            <div>
-                <h1>Ennéagramme</h1>
-                <p>Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
-            </div>
-            <div class="actions">
-                <button id="btnReset" type="button">Réinitialiser</button>
-            </div>
-        </header>
+  <script>
+    const QUESTIONS = [
+      { id:"q1", text:"J’ai tendance à vouloir bien faire et corriger ce qui n’est pas conforme.", w:{1:3, 3:1, 6:1} },
+      { id:"q2", text:"Je me sens utile quand j’aide, je m’occupe spontanément des besoins des autres.", w:{2:3, 9:1, 6:1} },
+      { id:"q3", text:"Je me motive par la réussite, j’aime atteindre des objectifs et être efficace.", w:{3:3, 8:1, 7:1} },
+      { id:"q4", text:"Je recherche l’authenticité, je me sens différent et très sensible au manque.", w:{4:3, 5:1, 2:1} },
+      { id:"q5", text:"J’observe et j’analyse, je protège mon énergie et mon espace intérieur.", w:{5:3, 6:1, 4:1} },
+      { id:"q6", text:"Je scanne les risques, j’ai besoin de sécurité et de repères fiables.", w:{6:3, 1:1, 9:1} },
+      { id:"q7", text:"Je fuis l’ennui, je cherche des options, des idées, de l’enthousiasme.", w:{7:3, 3:1, 5:1} },
+      { id:"q8", text:"Je prends le contrôle quand il le faut, j’aime la franchise et l’intensité.", w:{8:3, 1:1, 3:1} },
+      { id:"q9", text:"Je cherche la paix, j’évite les conflits et je m’adapte pour garder l’harmonie.", w:{9:3, 2:1, 6:1} }
+    ];
 
-        <main class="grid">
-            <section class="stage">
-                <div class="svgWrap">
-                    <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
-                        <defs>
-                            <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
-                            </marker>
-                            <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
-                            </marker>
+    const TYPE_NAMES = {
+      1:"Type 1", 2:"Type 2", 3:"Type 3", 4:"Type 4", 5:"Type 5", 6:"Type 6", 7:"Type 7", 8:"Type 8", 9:"Type 9"
+    };
 
-                            <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-                                <feGaussianBlur stdDeviation="2.2" result="blur" />
-                                <feMerge>
-                                    <feMergeNode in="blur" />
-                                    <feMergeNode in="SourceGraphic" />
-                                </feMerge>
-                            </filter>
-                        </defs>
+    function qs(sel){ return document.querySelector(sel); }
+    function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
 
-                        <circle class="ring" cx="350" cy="350" r="270"></circle>
-                        <circle class="innerRing" cx="350" cy="350" r="210"></circle>
+    function getState(){
+      try{ return JSON.parse(localStorage.getItem("ennea_test_state")||"{}"); }
+      catch{ return {}; }
+    }
+    function setState(s){
+      localStorage.setItem("ennea_test_state", JSON.stringify(s));
+    }
 
-                        <g id="staticBg" class="staticBg">
-                            <path class="hex" d="" id="hexPath"></path>
-                            <path class="tri" d="" id="triPath"></path>
+    function scoreAll(state){
+      const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+      QUESTIONS.forEach(q=>{
+        const v = clamp(parseInt(state[q.id] ?? 50, 10), 0, 100);
+        const x = (v - 50) / 50;
+        Object.entries(q.w).forEach(([t,w])=>{
+          scores[t] += x * w;
+        });
+      });
+      return scores;
+    }
 
-                            <g class="centers">
-                                <path class="centerLine" d="M350 350 L350 120"></path>
-                                <path class="centerLine" d="M350 350 L585 455"></path>
-                                <path class="centerLine" d="M350 350 L115 455"></path>
+    function normalize(scores){
+      const arr = Object.entries(scores).map(([k,v])=>({t:parseInt(k,10), v}));
+      const min = Math.min(...arr.map(o=>o.v));
+      const max = Math.max(...arr.map(o=>o.v));
+      const span = (max-min) || 1;
+      arr.forEach(o=> o.p = Math.round(((o.v - min)/span)*100));
+      arr.sort((a,b)=> b.v - a.v);
+      return arr;
+    }
 
-                                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
-                                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
-                                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
-                            </g>
-                        </g>
+    function render(){
+      const state = getState();
+      const box = qs("#questions");
+      box.innerHTML = "";
 
-                        <g id="arrowsLayer"></g>
-                        <g id="nodesLayer"></g>
-                    </svg>
-                </div>
-            </section>
+      QUESTIONS.forEach((q, idx)=>{
+        const v = clamp(parseInt(state[q.id] ?? 50, 10), 0, 100);
 
-            <aside class="side" aria-live="polite">
-                <div class="badgeRow">
-                    <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
-                </div>
+        const div = document.createElement("div");
+        div.className = "q";
 
-                <div class="card">
-                    <div class="miniGrid">
-                        <div class="mini">
-                            <h3>Centre d'intelligence</h3>
-                            <p id="center">-</p>
-                        </div>
-                        <div class="mini">
-                            <h3>Peur de base</h3>
-                            <p id="fear">-</p>
-                        </div>
-                        <div class="mini">
-                            <h3>Désir de base</h3>
-                            <p id="desire">-</p>
-                        </div>
-                        <div class="mini">
-                            <h3>Compulsion (évitement)</h3>
-                            <p id="compulsion">-</p>
-                        </div>
-                    </div>
-
-                    <div class="moveLines">
-                        <div id="moveHealth" class="moveLine">
-                            <div class="moveHead">
-                                <span class="dot good"></span>
-                                <strong>Intégration</strong>
-                                <span class="muted">(santé)</span>
-                                <span class="muted"> > </span>
-                                <strong id="toIntegr">-</strong>
-                                <span class="muted">:</span>
-                            </div>
-                            <div class="moveBody" id="moveHealthText">-</div>
-                        </div>
-
-                        <div id="moveStress" class="moveLine">
-                            <div class="moveHead">
-                                <span class="dot warn"></span>
-                                <strong>Désintégration</strong>
-                                <span class="muted">(stress)</span>
-                                <span class="muted"> > </span>
-                                <strong id="toDisint">-</strong>
-                                <span class="muted">:</span>
-                            </div>
-                            <div class="moveBody" id="moveStressText">-</div>
-                        </div>
-                    </div>
-
-                    <div class="ctaRow">
-                        <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
-                        <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
-                    </div>
-                </div>
-            </aside>
-        </main>
-
-        <footer class="siteFooter">
-          <div class="siteFooterInner">
-            <span>Brahms — Tous droits réservés</span>
-            <a class="siteFooterLink" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=dialog" target="_blank" rel="noopener">✉️ Écrire à Brahms</a>
+        div.innerHTML = `
+          <div class="qTitle">
+            <strong>${idx+1}. ${q.text}</strong>
+            <span class="qSmall">0 = pas du tout • 100 = très vrai</span>
           </div>
-        </footer>
-    </div>
+          <div class="row">
+            <span class="pill">0</span>
+            <input type="range" min="0" max="100" value="${v}" aria-label="Réponse ${idx+1}">
+            <span class="pill">100</span>
+          </div>
+        `;
 
-    <script src="assets/js/app.js?v=99"></script>
+        const range = div.querySelector('input[type="range"]');
+        range.addEventListener("input", ()=>{
+          const s = getState();
+          s[q.id] = parseInt(range.value,10);
+          setState(s);
+          renderResults();
+        });
+
+        box.appendChild(div);
+      });
+
+      renderResults();
+    }
+
+    function renderResults(){
+      const state = getState();
+      const scores = scoreAll(state);
+      const ranked = normalize(scores);
+
+      const best = ranked[0];
+      qs("#bestLabel").textContent = TYPE_NAMES[best.t];
+      qs("#bestScore").textContent = best.p + "%";
+      qs("#bestBar").style.width = best.p + "%";
+
+      const r = qs("#ranking");
+      r.innerHTML = "";
+      ranked.forEach(o=>{
+        const row = document.createElement("div");
+        row.style.display = "flex";
+        row.style.justifyContent = "space-between";
+        row.style.alignItems = "center";
+        row.style.gap = "10px";
+        row.style.padding = "8px 0";
+        row.style.borderTop = "1px solid rgba(255,255,255,.10)";
+
+        row.innerHTML = `
+          <div>
+            <div style="font-weight:700">${TYPE_NAMES[o.t]}</div>
+            <div class="muted" style="font-size:12px">${o.p}%</div>
+          </div>
+          <a class="btn" style="padding:8px 10px" href="type.html?type=${o.t}">Voir la fiche</a>
+        `;
+        r.appendChild(row);
+      });
+    }
+
+    qs("#btnReset").addEventListener("click", ()=>{
+      localStorage.removeItem("ennea_test_state");
+      render();
+    });
+
+    render();
+  </script>
 </body>
 </html>
