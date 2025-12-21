@@ -38,9 +38,9 @@
         <h1 id="exploreTitle">Explorer l’Ennéagramme</h1>
         <p id="exploreSubtitle">Histoire, concepts, niveaux 1–9, pratiques, repères</p>
 
-        <div class="heroActions">
-          <a id="btnTest" class="softCta" href="test-enneagramme-sans-indice.html">Faire le test</a>
-          <a id="btnDiagram" class="softCta" href="index.html">Aller au diagramme</a>
+        <div class="heroCtas">
+          <a class="softCta" href="test-enneagramme-sans-indice.html">Faire le test</a>
+          <a class="softCta" href="index.html">Aller au diagramme</a>
         </div>
       </div>
 
