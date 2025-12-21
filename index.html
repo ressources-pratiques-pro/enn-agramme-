@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=10" />
+  <link rel="stylesheet" href="assets/css/app.css?v=11" />
 </head>
 <body>
   <div class="wrap">
@@ -29,6 +29,14 @@
               <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
                 <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
               </marker>
+
+              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="2.2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
 
             <circle class="ring" cx="350" cy="350" r="270"></circle>
@@ -43,29 +51,9 @@
                 <path class="centerLine" d="M350 350 L585 455"></path>
                 <path class="centerLine" d="M350 350 L115 455"></path>
 
-                <text class="centerLabel" x="350" y="255" text-anchor="middle">Instinctif</text>
-                <text class="centerLabel" x="468" y="415" text-anchor="middle">Émotionnel</text>
-                <text class="centerLabel" x="232" y="415" text-anchor="middle">Mental</text>
-              </g>
-
-              <g class="outerTags">
-                <g class="tag instinctif">
-                  <rect x="230" y="26" width="240" height="40" rx="20"></rect>
-                  <circle cx="254" cy="46" r="6"></circle>
-                  <text x="270" y="46">Instinctif (8–9–1)</text>
-                </g>
-
-                <g class="tag mental">
-                  <rect x="30" y="508" width="240" height="40" rx="20"></rect>
-                  <circle cx="54" cy="528" r="6"></circle>
-                  <text x="70" y="528">Mental (5–6–7)</text>
-                </g>
-
-                <g class="tag emotionnel">
-                  <rect x="430" y="508" width="240" height="40" rx="20"></rect>
-                  <circle cx="454" cy="528" r="6"></circle>
-                  <text x="470" y="528">Émotionnel (2–3–4)</text>
-                </g>
+                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
+                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
+                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
               </g>
             </g>
 
@@ -134,6 +122,6 @@
     </main>
   </div>
 
-  <script src="assets/js/app.js?v=8"></script>
+  <script src="assets/js/app.js?v=9"></script>
 </body>
 </html>
