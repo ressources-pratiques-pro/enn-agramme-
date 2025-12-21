@@ -18,5 +18,165 @@
       { "title": "Niveaux de conscience et d’existence", "html": "<p>Ton contenu ici</p>" },
       { "title": "Analogie", "html": "<p>Ton contenu ici</p>" }
     ]
+  },
+  "2": {
+    "name": "Type 2",
+    "keyword": "À remplir",
+    "theme": "À remplir",
+    "fear": "À remplir",
+    "desire": "À remplir",
+    "integr": 4,
+    "disint": 8,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
+      { "title": "Communication", "html": "<p>À coller ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
+      { "title": "Analogie", "html": "<p>À coller ici</p>" }
+    ]
+  },
+  "3": {
+    "name": "Type 3",
+    "keyword": "À remplir",
+    "theme": "À remplir",
+    "fear": "À remplir",
+    "desire": "À remplir",
+    "integr": 6,
+    "disint": 9,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
+      { "title": "Communication", "html": "<p>À coller ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
+      { "title": "Analogie", "html": "<p>À coller ici</p>" }
+    ]
+  },
+  "4": {
+    "name": "Type 4",
+    "keyword": "À remplir",
+    "theme": "À remplir",
+    "fear": "À remplir",
+    "desire": "À remplir",
+    "integr": 1,
+    "disint": 2,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
+      { "title": "Communication", "html": "<p>À coller ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
+      { "title": "Analogie", "html": "<p>À coller ici</p>" }
+    ]
+  },
+  "5": {
+    "name": "Type 5",
+    "keyword": "À remplir",
+    "theme": "À remplir",
+    "fear": "À remplir",
+    "desire": "À remplir",
+    "integr": 8,
+    "disint": 7,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
+      { "title": "Communication", "html": "<p>À coller ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
+      { "title": "Analogie", "html": "<p>À coller ici</p>" }
+    ]
+  },
+  "6": {
+    "name": "Type 6",
+    "keyword": "À remplir",
+    "theme": "À remplir",
+    "fear": "À remplir",
+    "desire": "À remplir",
+    "integr": 9,
+    "disint": 3,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
+      { "title": "Communication", "html": "<p>À coller ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
+      { "title": "Analogie", "html": "<p>À coller ici</p>" }
+    ]
+  },
+  "7": {
+    "name": "Type 7",
+    "keyword": "À remplir",
+    "theme": "À remplir",
+    "fear": "À remplir",
+    "desire": "À remplir",
+    "integr": 5,
+    "disint": 1,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
+      { "title": "Communication", "html": "<p>À coller ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
+      { "title": "Analogie", "html": "<p>À coller ici</p>" }
+    ]
+  },
+  "8": {
+    "name": "Type 8",
+    "keyword": "À remplir",
+    "theme": "À remplir",
+    "fear": "À remplir",
+    "desire": "À remplir",
+    "integr": 2,
+    "disint": 5,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
+      { "title": "Communication", "html": "<p>À coller ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
+      { "title": "Analogie", "html": "<p>À coller ici</p>" }
+    ]
+  },
+  "9": {
+    "name": "Type 9",
+    "keyword": "À remplir",
+    "theme": "À remplir",
+    "fear": "À remplir",
+    "desire": "À remplir",
+    "integr": 3,
+    "disint": 6,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
+      { "title": "Communication", "html": "<p>À coller ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
+      { "title": "Analogie", "html": "<p>À coller ici</p>" }
+    ]
   }
 }
