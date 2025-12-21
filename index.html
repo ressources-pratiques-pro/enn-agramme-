@@ -1,107 +1,128 @@
-<main class="grid">
-  <section class="stage">
-    <div class="svgWrap">
-      <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
-        <defs>
-          <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
-          </marker>
-          <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
-          </marker>
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ennéagramme</title>
+    <link rel="stylesheet" href="assets/css/app.css?v=99" />
+</head>
+<body>
+    <div class="wrap">
+        <header class="top">
+            <div>
+                <h1>Ennéagramme</h1>
+                <p>Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
+            </div>
+            <div class="actions">
+                <button id="btnReset" type="button">Réinitialiser</button>
+            </div>
+        </header>
 
-          <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.2" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
+        <main class="grid">
+            <section class="stage">
+                <div class="svgWrap">
+                    <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
+                        <defs>
+                            <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
+                            </marker>
+                            <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
+                            </marker>
 
-        <circle class="ring" cx="350" cy="350" r="270"></circle>
-        <circle class="innerRing" cx="350" cy="350" r="210"></circle>
+                            <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feGaussianBlur stdDeviation="2.2" result="blur" />
+                                <feMerge>
+                                    <feMergeNode in="blur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
 
-        <g id="staticBg" class="staticBg">
-          <path class="hex" d="" id="hexPath"></path>
-          <path class="tri" d="" id="triPath"></path>
+                        <circle class="ring" cx="350" cy="350" r="270"></circle>
+                        <circle class="innerRing" cx="350" cy="350" r="210"></circle>
 
-          <g class="centers">
-            <path class="centerLine" d="M350 350 L350 120"></path>
-            <path class="centerLine" d="M350 350 L585 455"></path>
-            <path class="centerLine" d="M350 350 L115 455"></path>
+                        <g id="staticBg" class="staticBg">
+                            <path class="hex" d="" id="hexPath"></path>
+                            <path class="tri" d="" id="triPath"></path>
 
-            <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
-            <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
-            <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
-          </g>
-        </g>
+                            <g class="centers">
+                                <path class="centerLine" d="M350 350 L350 120"></path>
+                                <path class="centerLine" d="M350 350 L585 455"></path>
+                                <path class="centerLine" d="M350 350 L115 455"></path>
 
-        <g id="arrowsLayer"></g>
-        <g id="nodesLayer"></g>
-      </svg>
+                                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
+                                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
+                                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
+                            </g>
+                        </g>
+
+                        <g id="arrowsLayer"></g>
+                        <g id="nodesLayer"></g>
+                    </svg>
+                </div>
+            </section>
+
+            <aside class="side" aria-live="polite">
+                <div class="badgerRow">
+                    <div class="badge"><strong>Type</strong> <span id="badgeNum"></span></div>
+                </div>
+
+                <div class="card">
+                    <div class="miniGrid">
+                        <div class="mini">
+                            <h3>Centre d'intelligence</h3>
+                            <p id="center">-</p>
+                        </div>
+                        <div class="mini">
+                            <h3>Peur de base</h3>
+                            <p id="fear">-</p>
+                        </div>
+                        <div class="mini">
+                            <h3>Désir de base</h3>
+                            <p id="desire">-</p>
+                        </div>
+                        <div class="mini">
+                            <h3>Compulsion (évitement)</h3>
+                            <p id="compulsion">-</p>
+                        </div>
+                    </div>
+
+                    <div class="moveLines">
+                        <div id="moveHealth" class="moveLine">
+                            <div class="moveHead">
+                                <span class="dot good"></span>
+                                <strong>Intégration</strong>
+                                <span class="muted">(santé)</span>
+                                <span class="muted"> > </span>
+                                <strong id="toIntegr">-</strong>
+                                <span class="muted">:</span>
+                            </div>
+                            <div class="moveBody" id="moveHealthText">-</div>
+                        </div>
+
+                        <div id="moveStress" class="moveLine">
+                            <div class="moveHead">
+                                <span class="dot warn"></span>
+                                <strong>Désintégration</strong>
+                                <span class="muted">(stress)</span>
+                                <span class="muted"> > </span>
+                                <strong id="toDisint">-</strong>
+                                <span class="muted">:</span>
+                            </div>
+                            <div class="moveBody" id="moveStressText">-</div>
+                        </div>
+                    </div>
+
+                    <div class="ctaRow">
+                        <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
+                        <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
+                    </div>
+                </div>
+            </aside>
+        </main>
     </div>
-  </section>
 
-  <aside class="side" aria-live="polite">
-    <div class="badgeRow">
-      <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
-    </div>
-
-    <div class="card">
-      <div class="miniGrid">
-        <div class="mini">
-          <h3>Centre d’intelligence</h3>
-          <p id="center">—</p>
-        </div>
-        <div class="mini">
-          <h3>Peur de base</h3>
-          <p id="fear">—</p>
-        </div>
-        <div class="mini">
-          <h3>Désir de base</h3>
-          <p id="desire">—</p>
-        </div>
-        <div class="mini">
-          <h3>Compulsion (évitement)</h3>
-          <p id="compulsion">—</p>
-        </div>
-      </div>
-
-      <div class="moveLines">
-        <div id="moveHealth" class="moveLine">
-          <div class="moveHead">
-            <span class="dot good"></span>
-            <strong>Intégration</strong>
-            <span class="muted">(santé)</span>
-            <span class="muted">→</span>
-            <strong id="toIntegr">—</strong>
-            <span class="muted">:</span>
-          </div>
-          <div class="moveBody" id="moveHealthText">—</div>
-        </div>
-
-        <div id="moveStress" class="moveLine">
-          <div class="moveHead">
-            <span class="dot warn"></span>
-            <strong>Désintégration</strong>
-            <span class="muted">(stress)</span>
-            <span class="muted">→</span>
-            <strong id="toDisint">—</strong>
-            <span class="muted">:</span>
-          </div>
-          <div class="moveBody" id="moveStressText">—</div>
-        </div>
-      </div>
-
-      <div class="ctaRow">
-        <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
-        <a class="btn" href="explore.html">Explorer l’Ennéagramme</a>
-      </div>
-    </div>
-  </aside>
-</main>
-  <script src="assets/js/app.js?v=99"></script>
+    <script src="assets/js/app.js?v=99"></script>
 </body>
 </html>
-
