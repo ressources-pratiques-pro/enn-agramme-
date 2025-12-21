@@ -8,6 +8,10 @@
   --warn:#fda4af;
   --shadow: 0 18px 50px rgba(0,0,0,.35);
   --radius: 18px;
+
+  --inst: rgba(248,113,113,.55);
+  --emo: rgba(245,158,11,.55);
+  --ment: rgba(125,211,252,.55);
 }
 
 *{ box-sizing:border-box; }
@@ -138,29 +142,28 @@ svg{ width:100%; height:auto; display:block; }
 .tri{ stroke: rgba(234,240,255,.18); stroke-width: 2.2; opacity:.9; }
 
 .centers .centerLine{ stroke: rgba(253,164,175,.16); stroke-width: 2.4; stroke-linecap:round; }
-.centers .centerLabel{ fill: rgba(169,183,230,.92); font-size: 18px; font-weight: 750; }
 
-.outerTags .tag rect{
-  fill: rgba(255,255,255,.05);
-  stroke: rgba(255,255,255,.16);
-  stroke-width: 1.2;
+.centerLabel{
+  font-size: 18px;
+  font-weight: 800;
+  filter: url(#softGlow);
 }
-
-.outerTags .tag text{
-  fill: rgba(234,240,255,.90);
-  font-size: 14px;
-  font-weight: 700;
-  dominant-baseline: middle;
-}
-
-.outerTags .tag circle{ opacity:.9; }
-
-.outerTags .tag.instinctif circle{ fill: rgba(245,158,11,.90); }
-.outerTags .tag.mental circle{ fill: rgba(125,211,252,.90); }
-.outerTags .tag.emotionnel circle{ fill: rgba(253,164,175,.90); }
+.centerLabel.instinctif{ fill: var(--inst); }
+.centerLabel.emotionnel{ fill: var(--emo); }
+.centerLabel.mental{ fill: var(--ment); }
 
 .node{ cursor:pointer; }
-.node circle{ fill: rgba(15,26,51,.85); stroke: rgba(255,255,255,.20); stroke-width: 2.2; }
+.node circle{
+  fill: rgba(15,26,51,.85);
+  stroke: rgba(255,255,255,.20);
+  stroke-width: 2.2;
+  transition: stroke .18s ease, filter .18s ease;
+}
+
+.node.instinctif circle{ stroke: var(--inst); filter: url(#softGlow); }
+.node.emotionnel circle{ stroke: var(--emo); filter: url(#softGlow); }
+.node.mental circle{ stroke: var(--ment); filter: url(#softGlow); }
+
 .node text{ fill: var(--text); font-weight: 750; font-size: 22px; dominant-baseline: middle; text-anchor: middle; }
 .node .label{ fill: rgba(234,240,255,.78); font-weight: 600; font-size: 12px; text-anchor: middle; }
 
