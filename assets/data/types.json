@@ -1,0 +1,22 @@
+{
+  "1": {
+    "name": "Le Perfectionniste",
+    "keyword": "Intégrité",
+    "theme": "Améliorer / corriger",
+    "fear": "Être mauvais, corrompu, imparfait",
+    "desire": "Être bon, juste, intègre",
+    "integr": 7,
+    "disint": 4,
+    "sections": [
+      { "title": "Structure fondamentale et centres", "html": "<p>Ton contenu ici</p>" },
+      { "title": "Dynamiques de l’Ego", "html": "<p>Ton contenu ici</p>" },
+      { "title": "Sous-types et styles sociaux", "html": "<p>Ton contenu ici</p>" },
+      { "title": "Dynamiques de mouvement", "html": "<p>Ton contenu ici</p>" },
+      { "title": "Identité spirituelle et noyau", "html": "<p>Ton contenu ici</p>" },
+      { "title": "Communication", "html": "<p>Ton contenu ici</p>" },
+      { "title": "Les 9 niveaux de développement", "html": "<p>Ton contenu ici</p>" },
+      { "title": "Niveaux de conscience et d’existence", "html": "<p>Ton contenu ici</p>" },
+      { "title": "Analogie", "html": "<p>Ton contenu ici</p>" }
+    ]
+  }
+}

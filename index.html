@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ennéagramme — Carte interactive</title>
+  <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1>Ennéagramme — Carte interactive</h1>
+        <p>Clique un type pour voir un résumé, puis ouvre la fiche complète.</p>
+      </div>
+      <div class="actions">
+        <button id="btnReset" type="button">Réinitialiser</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="stage">
+        <div class="svgWrap">
+          <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
+            <defs>
+              <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
+              </marker>
+              <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
+              </marker>
+            </defs>
+
+            <circle class="ring" cx="350" cy="350" r="270"></circle>
+            <circle class="innerRing" cx="350" cy="350" r="210"></circle>
+
+            <path class="hex" d="" id="hexPath"></path>
+            <path class="tri" d="" id="triPath"></path>
+
+            <g id="arrowsLayer"></g>
+            <g id="nodesLayer"></g>
+
+            <g opacity=".85">
+              <text x="350" y="344" text-anchor="middle" class="centerTitle">Intégration / Désintégration</text>
+              <text x="350" y="368" text-anchor="middle" class="centerSub">Clique un type</text>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <aside class="side" aria-live="polite">
+        <div class="badgeRow">
+          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
+        </div>
+
+        <h2 id="typeTitle">Choisis un type</h2>
+        <p id="typeSubtitle" class="muted">Un résumé s’affichera ici + un lien vers la fiche complète.</p>
+
+        <div class="card">
+          <div class="miniGrid">
+            <div class="mini">
+              <h3>Mot-clé</h3>
+              <p id="kw">—</p>
+            </div>
+            <div class="mini">
+              <h3>Thème</h3>
+              <p id="theme">—</p>
+            </div>
+            <div class="mini">
+              <h3>Peur</h3>
+              <p id="fear">—</p>
+            </div>
+            <div class="mini">
+              <h3>Désir</h3>
+              <p id="desire">—</p>
+            </div>
+          </div>
+
+          <div class="route">
+            <div class="chip"><span class="dot good"></span> Intégration <strong id="toIntegr">—</strong></div>
+            <div class="chip"><span class="dot warn"></span> Désintégration <strong id="toDisint">—</strong></div>
+          </div>
+
+          <div class="ctaRow">
+            <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
