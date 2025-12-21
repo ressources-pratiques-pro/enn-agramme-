@@ -1,0 +1,139 @@
+{
+  "sections": [
+    {
+      "id": "accueil",
+      "title": "Par où commencer",
+      "icon": "🧭",
+      "desc": "Test, lecture des profils, repères rapides",
+      "items": [
+        {
+          "label": "Ordre conseillé",
+          "value": "1) Faire le test. 2) Lire le type dominant. 3) Vérifier ailes + sous-type. 4) Observer stress/santé. 5) Utiliser les niveaux 1–9 pour situer l’état du moment."
+        },
+        {
+          "label": "Important",
+          "value": "Le test donne une hypothèse. La validation se fait en lisant les motivations profondes (peur/désir) et les mécanismes (passion/fixation/défense)."
+        }
+      ]
+    },
+    {
+      "id": "histoire",
+      "title": "Histoire et origines",
+      "icon": "📜",
+      "desc": "Racines, pionniers modernes, diffusion",
+      "items": [
+        {
+          "label": "Racines anciennes",
+          "value": "Origines discutées ; influences possibles : traditions antiques, Pères du désert, soufisme, kabbale (selon les écoles)."
+        },
+        {
+          "label": "Pionniers modernes",
+          "children": [
+            { "label": "Gurdjieff", "value": "Introduit le symbole en Occident (loi de Trois et de Sept), pas encore les 9 types." },
+            { "label": "Ichazo", "value": "Place les fixations sur le symbole (école Arica)." },
+            { "label": "Naranjo", "value": "Relie aux caractères/psychologie moderne, développe les panels." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "centres",
+      "title": "Les 3 centres",
+      "icon": "🧠",
+      "desc": "Instinctif, Émotionnel, Mental + hiérarchies",
+      "items": [
+        {
+          "label": "Définition",
+          "value": "Centre instinctif (corps/action), centre émotionnel (cœur/image/relations), centre mental (tête/analyse/sécurité)."
+        },
+        {
+          "label": "Types par centre préféré",
+          "children": [
+            { "label": "Instinctif", "value": "8, 9, 1" },
+            { "label": "Émotionnel", "value": "2, 3, 4" },
+            { "label": "Mental", "value": "5, 6, 7" }
+          ]
+        },
+        {
+          "label": "Centre réprimé et posture",
+          "children": [
+            { "label": "Mental réprimé", "value": "1, 2, 6 → posture dépendante (guidance externe)" },
+            { "label": "Émotionnel réprimé", "value": "3, 7, 8 → posture assertive/agressive (priorité à l’objectif)" },
+            { "label": "Instinctif réprimé", "value": "4, 5, 9 → posture de retrait (difficulté à agir/impacter)" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dynamique",
+      "title": "Ailes, sous-types, flèches",
+      "icon": "🧩",
+      "desc": "Nuances du type + mouvements stress/santé",
+      "items": [
+        {
+          "label": "Ailes",
+          "value": "Deux types voisins influencent le type de base (une aile souvent dominante)."
+        },
+        {
+          "label": "Sous-types (instincts)",
+          "children": [
+            { "label": "Auto-conservation", "value": "Confort, sécurité matérielle, santé" },
+            { "label": "Social", "value": "Appartenance, rôle, statut" },
+            { "label": "Tête-à-tête", "value": "Intensité, intimité, fusion/attraction" }
+          ]
+        },
+        {
+          "label": "Flèches",
+          "value": "Sous stress et en santé, on adopte des traits d’autres types ; ça décrit des tendances, pas une identité."
+        }
+      ]
+    },
+    {
+      "id": "niveaux",
+      "title": "Niveaux 1–9",
+      "icon": "📈",
+      "desc": "Du plus libre au plus automatique + repères par type",
+      "items": [
+        {
+          "label": "Lecture rapide",
+          "value": "1–3 : zone saine. 4–6 : zone moyenne. 7–9 : zone malsaine. Le type ne change pas, le degré d’identification oui."
+        },
+        {
+          "label": "Définitions par type (raccourci)",
+          "value": "Type 1 : 1 Réaliste sage / 2 Personne raisonnable / 3 Enseignant de principes / 4 Réformateur idéaliste / 5 Personne ordonnée / 6 Perfectionniste moralisateur / 7 Misanthrope intolérant / 8 Hypocrite obsessif / 9 Vengeur punitif.\nType 2 : 1 Altruiste désintéressé / 2 Personne attentionnée / 3 Aide nourricière / 4 Ami expansif / 5 Intime possessif / 6 Saint auto-important / 7 Manipulateur trompeur / 8 Dominateur coercitif / 9 Victime psychosomatique.\nType 3 : 1 Personne authentique / 2 Personne sûre d’elle / 3 Parangon remarquable / 4 Recherche de statut compétitif / 5 Pragmatiste soucieux d’image / 6 Narcissique s’auto-promouvant / 7 Opportuniste malhonnête / 8 Trompeur malveillant / 9 Psychopathe vindicatif.\nType 4 : 1 Créateur inspiré / 2 Intuitif conscient de soi / 3 Individu se révélant / 4 Esthète imaginatif / 5 Romantique auto-absorbé / 6 Exception auto-indulgente / 7 Dépressif aliéné / 8 Personne émotionnellement tourmentée / 9 Personne autodestructrice.\nType 5 : 1 Visionnaire pionnier / 2 Observateur perceptif / 3 Innovateur focalisé / 4 Expert studieux / 5 Conceptualisateur intense / 6 Cynique provocateur / 7 Nihiliste isolé / 8 Aliéné terrifié / 9 Schizoïde implosé.\nType 6 : 1 Héros vaillant / 2 Personne engageante / 3 Travailleur engagé / 4 Loyaliste obéissant / 5 Pessimiste ambivalent / 6 Rebelle autoritaire / 7 Dépendant sur-réactif / 8 Hystérique paranoïde / 9 Masochiste auto-défectueux.\nType 7 : 1 Appréciateur extatique / 2 Enthousiaste à l’esprit libre / 3 Généraliste accompli / 4 Sophistiqué expérimenté / 5 Extraverti hyperactif / 6 Hédoniste excessif / 7 Escapiste impulsif / 8 Maniaque compulsif / 9 Hystérique frappé de panique.\nType 8 : 1 Cœur magnanime / 2 Personne sûre d’elle / 3 Chef constructif / 4 Aventurier entreprenant / 5 Pourvoyeur de pouvoir dominateur / 6 Adversaire provocateur / 7 Hors-la-loi impitoyable / 8 Mégalomane omnipotent / 9 Destructeur violent.\nType 9 : 1 Guide maître de soi / 2 Personne réceptive / 3 Médiateur de soutien / 4 Joueur de rôle accommodant / 5 Participant désengagé / 6 Fataliste résigné / 7 Paillasson niant / 8 Automate dissocié / 9 Spectre s’abandonnant."
+        }
+      ]
+    },
+    {
+      "id": "pratiques",
+      "title": "Pratiques de transformation",
+      "icon": "🧘",
+      "desc": "Observer, journaling, méditation, inquiry, corps",
+      "items": [
+        {
+          "label": "Observateur intérieur",
+          "value": "Repérer l’automatisme en direct (se surprendre en flagrant délit), sans jugement ni justification."
+        },
+        {
+          "label": "Journaling",
+          "value": "Noter déclencheurs, réactions, peur/désir derrière l’acte ; relire en fin de journée."
+        },
+        {
+          "label": "Méditation",
+          "children": [
+            { "label": "Shamatha", "value": "Stabiliser l’attention (souffle, objet simple)." },
+            { "label": "Vipassana", "value": "Observer sensations/pensées sans s’y accrocher." }
+          ]
+        },
+        {
+          "label": "Inquiry (Approche Diamant)",
+          "value": "Explorer l’expérience présente avec curiosité, sans vouloir la changer, jusqu’au contact d’une qualité essentielle."
+        },
+        {
+          "label": "Travail corporel",
+          "value": "Revenir au corps (respiration, ancrage, mouvement doux) pour sortir de la transe mentale/émotionnelle."
+        }
+      ]
+    }
+  ]
+}
