@@ -1,0 +1,150 @@
+{
+  "type": 5,
+  "name": "L'Observateur",
+  "tagline": "L'Investigateur",
+  "quick": {
+    "center": "Mental",
+    "wings": "4 et 6",
+    "integr": "→ 8",
+    "disint": "→ 7"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Structure fondamentale et centres",
+      "desc": "Centre, hiérarchie, direction, problématique.",
+      "items": [
+        { "label": "Centre d’intelligence", "value": "Mental (Tête)." },
+        {
+          "label": "Hiérarchie des centres",
+          "children": [
+            { "label": "Centre préféré", "value": "Mental." },
+            { "label": "Centre de support", "value": "Émotionnel ou Instinctif." },
+            { "label": "Centre réprimé", "value": "Instinctif ou Émotionnel." }
+          ]
+        },
+        { "label": "Direction d’utilisation", "value": "Vers l'extérieur : utilise le mental pour observer/comprendre le monde afin de se protéger de l'intrusion." },
+        { "label": "Problématique centrale", "value": "Anxiété et sentiment de manque de ressources face aux exigences du monde." }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Dynamiques de l'ego",
+      "desc": "Compulsion, passion, fixation, défense, fierté, peur, désir.",
+      "items": [
+        { "label": "Compulsion (Évitement)", "value": "Éviter à tout prix le vide intérieur." },
+        { "label": "Passion (Vice)", "value": "Avarice : conserver énergie, temps et connaissances." },
+        { "label": "Fixation", "value": "Détachement (Stinginess) : distance émotionnelle, rester spectateur plutôt qu'acteur." },
+        { "label": "Mécanisme de défense", "value": "Isolation / compartimentation : séparer idées et sentiments, isoler les secteurs de vie pour ne pas être envahi." },
+        { "label": "Fierté égotique", "value": "Je sais ; je comprends." },
+        { "label": "Peur de base", "value": "Être impuissant, inutile, incapable ou envahi par le monde." },
+        { "label": "Désir de base", "value": "Être capable et compétent." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Sous-types et styles sociaux",
+      "desc": "Instincts, style social, gestion des conflits.",
+      "items": [
+        {
+          "label": "Instincts / Sous-types",
+          "children": [
+            { "label": "Auto-conservation", "value": "Refuge (Château fort) : se retire dans un espace protégé pour économiser ses ressources." },
+            { "label": "Social", "value": "Totems (Spécialiste) : devenir expert reconnu au sein d'une élite/hiérarchie intellectuelle." },
+            { "label": "Tête-à-tête (Sexuel)", "value": "Confidence (Confiance) : connexion secrète et absolue avec une personne, partage du monde intérieur." }
+          ]
+        },
+        { "label": "Style social", "value": "Retrait (Withdrawn) : se retire pour protéger son intégrité et traiter l'information." },
+        { "label": "Gestion des conflits", "value": "Compétence : reste objectif, s'appuie sur les faits plutôt que sur les sentiments." }
+      ]
+    },
+    {
+      "id": "movement",
+      "icon": "↗️",
+      "title": "Dynamiques de mouvement",
+      "desc": "Ailes, intégration, désintégration.",
+      "items": [
+        { "label": "Ailes", "value": "Aile 4 (plus émotionnelle/créative) et aile 6 (plus analytique/loyale)." },
+        { "label": "Intégration (Santé)", "value": "→ 8 : s'incarne, action directe, affirmation confiante." },
+        { "label": "Désintégration (Stress)", "value": "→ 7 : agitation, dispersion, hyperactivité, distractions pour fuir l'anxiété." }
+      ]
+    },
+    {
+      "id": "spiritual",
+      "icon": "✨",
+      "title": "Identité spirituelle et noyau",
+      "desc": "Idée sacrée, vertu, aspect, noyau, enfant de l’âme.",
+      "items": [
+        { "label": "Idée Sacrée", "value": "Omniscience / Transparence sacrée : perception de l'interconnexion totale de la réalité." },
+        { "label": "Vertu", "value": "Désintéressement (non-attachement) : présence sans s'accrocher par peur." },
+        { "label": "Aspect idéalisé", "value": "Guidance Diamant : intellect essentiel qui discerne la vérité objective de l'expérience." },
+        {
+          "label": "Noyau de la fixation",
+          "children": [
+            { "label": "Difficulté spécifique", "value": "Isolement déficient : se sentir petit, vide et appauvri." },
+            { "label": "Réaction spécifique", "value": "Retrait (se cacher) pour éviter de confronter la réalité." },
+            { "label": "Illusion spécifique", "value": "Séparation : croire être une entité isolée et indépendante." }
+          ]
+        },
+        { "label": "Enfant de l'âme", "value": "Petit 8 intérieur : vigueur/activité réprimées au profit du retrait intellectuel." }
+      ]
+    },
+    {
+      "id": "communication",
+      "icon": "🗣️",
+      "title": "Communication",
+      "desc": "Style de parole, malentendu.",
+      "items": [
+        { "label": "Style de parole", "value": "Traité / dissertations : structuré, factuel, souvent long sur ses domaines d'expertise." },
+        { "label": "Malentendu de communication", "value": "Vérité-Obscurité : précision perçue comme froide, confuse ou distante." }
+      ]
+    },
+    {
+      "id": "evolution",
+      "icon": "🤝",
+      "title": "Évolution et relationnel",
+      "desc": "Alertes, pratiques, confusions, interactions.",
+      "items": [
+        { "label": "Signes d'alerte", "value": "Coupure des besoins physiques, isolement social, théories abstraites sans lien avec le réel." },
+        { "label": "Pratiques de croissance", "value": "Revenir dans le corps, partager ses connaissances, tolérer les émotions en temps réel, oser l'action sans attendre tous les faits." },
+        { "label": "Confusions fréquentes", "value": "4 (profondeur), 9 (calme apparent), 1 (analytique/perfectionniste)." },
+        {
+          "label": "Interactions et ententes",
+          "children": [
+            { "label": "En amour", "value": "Loyal mais besoin d'autonomie ; communique souvent mieux de manière non verbale." },
+            { "label": "Au travail", "value": "Expert précieux, calme en crise ; peut sembler inaccessible ou lent à agir par excès de préparation." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Niveaux et conscience",
+      "desc": "Niveaux 1–9, conscience, spirale, analogie.",
+      "items": [
+        {
+          "label": "Niveaux de développement",
+          "kind": "levels",
+          "levels": [
+            { "n": 1, "text": "Visionnaire : lucidité et créativité au service du réel." },
+            { "n": 2, "text": "Observateur perceptif : finesse d'analyse, curiosité ouverte." },
+            { "n": 3, "text": "Innovateur : connaissances intégrées, partage utile." },
+            { "n": 4, "text": "Expert studieux : accumulation, spécialisation, retrait accru." },
+            { "n": 5, "text": "Conceptualisateur intense : mentalisation, distance émotionnelle, isolement." },
+            { "n": 6, "text": "Cynique provocateur : détachement dur, sarcasme, mépris défensif." },
+            { "n": 7, "text": "Nihiliste isolé : perte de sens, retrait extrême." },
+            { "n": 8, "text": "Alien terrifié : anxiété brute, monde vécu comme intrusif et menaçant." },
+            { "n": 9, "text": "Schizoïde implosé : effondrement, fermeture, rupture avec le lien." }
+          ]
+        },
+        { "label": "Conscience", "value": "Passer de la transe du retrait mental au souvenir de soi et à la présence dans l'instant." },
+        { "label": "Spirale Dynamique", "value": "ORANGE (rationalité/expertise) et JAUNE (pensée systémique/complexité)." },
+        { "label": "Analogie", "value": "Station de remote control / Château fort : observe la bataille de loin depuis sa tour pour ne pas être épuisé par le combat direct." }
+      ]
+    }
+  ]
+}
