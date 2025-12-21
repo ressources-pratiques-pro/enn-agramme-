@@ -27,6 +27,8 @@ document.getElementById("triPath").setAttribute("d", pathFromSeq(triSeq));
 const nodesLayer = document.getElementById("nodesLayer");
 const arrowsLayer = document.getElementById("arrowsLayer");
 
+const arrowEls = { integr:{}, disint:{} };
+
 function makeArrow(from, to, cls){
   const p1 = points[from], p2 = points[to];
   const line = document.createElementNS("http://www.w3.org/2000/svg","line");
@@ -34,13 +36,14 @@ function makeArrow(from, to, cls){
   line.setAttribute("y1", p1.y);
   line.setAttribute("x2", p2.x);
   line.setAttribute("y2", p2.y);
-  line.setAttribute("class", "arrow " + cls);
+  line.setAttribute("class", "arrow " + cls + " fade");
   arrowsLayer.appendChild(line);
+  return line;
 }
 
 for(const t of [1,2,3,4,5,6,7,8,9]){
-  makeArrow(t, arrows.integr[t], "integr");
-  makeArrow(t, arrows.disint[t], "disint");
+  arrowEls.integr[t] = makeArrow(t, arrows.integr[t], "integr");
+  arrowEls.disint[t] = makeArrow(t, arrows.disint[t], "disint");
 }
 
 function makeNode(t){
@@ -71,7 +74,6 @@ function makeNode(t){
   g.appendChild(lb);
 
   g.addEventListener("click", ()=>selectType(t));
-
   nodesLayer.appendChild(g);
 }
 
@@ -89,6 +91,7 @@ const toDisint = document.getElementById("toDisint");
 const openFull = document.getElementById("openFull");
 
 let typesData = null;
+let selected = null;
 
 async function loadData(){
   const res = await fetch("assets/data/types.json");
@@ -96,7 +99,21 @@ async function loadData(){
 }
 loadData().catch(()=>{});
 
+function refreshArrows(){
+  document.querySelectorAll(".arrow").forEach(a=>{
+    a.classList.remove("on");
+    a.classList.add("fade");
+  });
+  if(selected == null) return;
+
+  arrowEls.integr[selected].classList.remove("fade");
+  arrowEls.disint[selected].classList.remove("fade");
+  arrowEls.integr[selected].classList.add("on");
+  arrowEls.disint[selected].classList.add("on");
+}
+
 function selectType(t){
+  selected = t;
   badgeNum.textContent = t;
 
   const data = typesData ? typesData[String(t)] : null;
@@ -117,13 +134,19 @@ function selectType(t){
 
   openFull.setAttribute("href", `type.html?type=${t}`);
   openFull.setAttribute("aria-disabled","false");
+
+  refreshArrows();
 }
 
 document.getElementById("btnReset").addEventListener("click", ()=>{
+  selected = null;
   badgeNum.textContent = "—";
   typeTitle.textContent = "Choisis un type";
   typeSubtitle.textContent = "Un résumé s’affichera ici + un lien vers la fiche complète.";
   kw.textContent = theme.textContent = fear.textContent = desire.textContent = "—";
   toIntegr.textContent = toDisint.textContent = "—";
   openFull.setAttribute("aria-disabled","true");
+  refreshArrows();
 });
+
+refreshArrows();
