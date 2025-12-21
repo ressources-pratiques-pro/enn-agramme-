@@ -1,0 +1,127 @@
+{
+  "type": 3,
+  "title": "Ennéatype 3",
+  "subtitle": "Le Battant ou le Réalisateur",
+  "meta": {
+    "center": "Émotionnel",
+    "wings": "2 et 4",
+    "integration": "→ 6",
+    "disintegration": "→ 9"
+  },
+  "sections": [
+    {
+      "id": "structure",
+      "icon": "🧩",
+      "title": "Structure fondamentale et centres",
+      "items": [
+        { "k": "Centre d’intelligence", "v": "Émotionnel (Cœur)." },
+        {
+          "k": "Hiérarchie des centres",
+          "v": "Centre préféré : Émotionnel. Centre de support : Mental ou Instinctif. Centre réprimé : paradoxalement le centre Émotionnel ; le 3 est souvent déconnecté de ses sentiments authentiques pour privilégier le fonctionnement."
+        },
+        {
+          "k": "Direction d’utilisation",
+          "v": "Utilise son centre préféré à la fois vers l'intérieur et vers l'extérieur, cherchant l’équilibre entre image personnelle et impact social."
+        },
+        {
+          "k": "Problématique centrale",
+          "v": "Besoin de valeur et d'identité via la réussite et l'admiration d'autrui."
+        }
+      ]
+    },
+    {
+      "id": "ego",
+      "icon": "⚙️",
+      "title": "Dynamiques de l'Ego",
+      "items": [
+        { "k": "Compulsion (évitement)", "v": "Éviter à tout prix l'échec." },
+        { "k": "Passion (vice)", "v": "Mensonge (Tromperie) : se tromper soi-même en s'identifiant à l'image de réussite." },
+        { "k": "Fixation", "v": "Vanité : investir toute l'énergie dans la création et le maintien d'une façade valorisante." },
+        { "k": "Mécanisme de défense", "v": "Identification : devient littéralement le rôle ou la fonction qu'il occupe pour réussir." },
+        { "k": "Fierté égotique", "v": "Je réussis, je suis efficace." },
+        { "k": "Peur de base", "v": "Être sans valeur ou sans valeur intrinsèque en dehors de ses accomplissements." },
+        { "k": "Désir de base", "v": "Se sentir précieux, admiré et accepté." }
+      ]
+    },
+    {
+      "id": "subtypes",
+      "icon": "🧭",
+      "title": "Sous-types et styles sociaux",
+      "items": [
+        {
+          "k": "Auto-conservation",
+          "v": "Sécurité / Accumulation (bourreau de travail) : cherche la sécurité par biens matériels et autonomie, souvent le plus modeste des 3."
+        },
+        {
+          "k": "Social",
+          "v": "Prestige : cherche à briller et à être reconnu comme le meilleur au sein de son groupe social ou professionnel."
+        },
+        {
+          "k": "Tête-à-tête (Sexuel)",
+          "v": "Masculinité-Féminité (la Perle) : focalise la réussite sur l’attrait et la capacité à soutenir le succès du partenaire."
+        },
+        { "k": "Style social", "v": "Assertif : va vers les gens en prenant une place centrale et en insistant sur ses besoins." },
+        { "k": "Gestion des conflits", "v": "Compétence : met les sentiments de côté pour rester efficace et orienté solution." }
+      ]
+    },
+    {
+      "id": "moves",
+      "icon": "↗️",
+      "title": "Dynamiques de mouvement",
+      "items": [
+        { "k": "Ailes", "v": "Aile 2 (Charmer, sociable et encourageant) et aile 4 (Professionnel, plus sérieux, orienté style)." },
+        { "k": "Intégration (santé)", "v": "Vers 6 : coopératif, loyal, s'engage pour les autres, accepte ses vulnérabilités." },
+        { "k": "Désintégration (stress)", "v": "Vers 9 : apathie, désengagement, tâches secondaires, robotisation sous pression." }
+      ]
+    },
+    {
+      "id": "spirit",
+      "icon": "✨",
+      "title": "Identité spirituelle et noyau",
+      "items": [
+        {
+          "k": "Idée Sacrée",
+          "v": "Loi Sacrée, Espérance Sacrée, Harmonie Sacrée : tout se déploie selon un ordre universel, on n’est pas seul à faire."
+        },
+        { "k": "Vertu", "v": "Vérité / Authenticité : être soi-même sans masque, indépendamment des succès." },
+        { "k": "Aspect idéalisé", "v": "Essence Personnelle (la Perle) : être une personne réelle et unique dont l’action découle de l’Être." },
+        { "k": "Difficulté spécifique", "v": "Impuissance (sentiment de désarroi)." },
+        { "k": "Réaction spécifique", "v": "Lutte (effort constant)." },
+        { "k": "Illusion spécifique", "v": "Acteur séparé : croire qu’on doit tout faire soi-même pour exister." },
+        { "k": "Enfant de l'âme", "v": "Petit 6 intérieur : craintif, en recherche de soutien, que la performance tente de rassurer." }
+      ]
+    },
+    {
+      "id": "comms",
+      "icon": "🗣️",
+      "title": "Communication",
+      "items": [
+        { "k": "Style de parole", "v": "Propagande / auto-promotion : présente au mieux pour convaincre et motiver." },
+        { "k": "Malentendu de communication", "v": "Motivation-fanfaronnade : enthousiasme perçu comme arrogance ou insincérité." }
+      ]
+    },
+    {
+      "id": "rel",
+      "icon": "🤝",
+      "title": "Évolution et relationnel",
+      "items": [
+        { "k": "Signes d'alerte", "v": "Se réduire à son image, s’épuiser au travail, fuir le vide ou l’inactivité." },
+        { "k": "Pratiques de croissance", "v": "Ralentir, se connecter au cœur, solitude sans objectif, admettre ses échecs." },
+        { "k": "Confusions fréquentes", "v": "Souvent confondu avec 7, 8 ou 1." },
+        { "k": "En amour", "v": "Dévoué et efficace, peut sacrifier l’intimité émotionnelle pour réussite du couple/carrière." },
+        { "k": "Au travail", "v": "Leader et motivateur, orienté résultats, peut devenir impatient avec ceux qui ralentissent." }
+      ]
+    },
+    {
+      "id": "levels",
+      "icon": "📈",
+      "title": "Niveaux et conscience",
+      "items": [
+        { "k": "Niveaux de développement (1–9)", "v": "De l’individu Authentique au psychopathe vindicatif." },
+        { "k": "Conscience", "v": "Passer du mode fonctionnement au mode être, reconnaître que la valeur est intrinsèque." },
+        { "k": "Spirale Dynamique", "v": "Très lié au niveau ORANGE (succès, stratégie, efficacité, matérialisme)." },
+        { "k": "Analogie", "v": "Paon : déploie le plumage pour impressionner, oubliant que la valeur ne dépend pas du regard des autres." }
+      ]
+    }
+  ]
+}
