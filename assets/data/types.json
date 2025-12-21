@@ -1,182 +1,110 @@
 {
   "1": {
     "name": "Le Perfectionniste",
-    "keyword": "Intégrité",
-    "theme": "Améliorer / corriger",
-    "fear": "Être mauvais, corrompu, imparfait",
-    "desire": "Être bon, juste, intègre",
+    "center": "Instinctif",
+    "fear": "Être mauvais, corrompu, défectueux ou imparfait",
+    "desire": "Être bon, intègre et en équilibre",
+    "compulsion": "L'imperfection ou les erreurs",
     "integr": 7,
     "disint": 4,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>Ton contenu ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>Ton contenu ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>Ton contenu ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>Ton contenu ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>Ton contenu ici</p>" },
-      { "title": "Communication", "html": "<p>Ton contenu ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>Ton contenu ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>Ton contenu ici</p>" },
-      { "title": "Analogie", "html": "<p>Ton contenu ici</p>" }
-    ]
+    "integr_text": "Apporte la joie, la spontanéité et la curiosité",
+    "disint_text": "Apporte la mélancolie, le repli et l'autocritique",
+    "sections": []
   },
   "2": {
     "name": "Type 2",
-    "keyword": "À remplir",
-    "theme": "À remplir",
-    "fear": "À remplir",
-    "desire": "À remplir",
+    "center": "Émotionnel",
+    "fear": "Être indigne d'être aimé ou non désiré pour soi-même",
+    "desire": "Se sentir aimé",
+    "compulsion": "Reconnaître ses propres besoins",
     "integr": 4,
     "disint": 8,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
-      { "title": "Communication", "html": "<p>À coller ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
-      { "title": "Analogie", "html": "<p>À coller ici</p>" }
-    ]
+    "integr_text": "Apporte l'honnêteté émotionnelle, la conscience de soi et l'auto-nurture",
+    "disint_text": "Apporte l'agressivité, la domination et l'expression de la colère",
+    "sections": []
   },
   "3": {
     "name": "Type 3",
-    "keyword": "À remplir",
-    "theme": "À remplir",
-    "fear": "À remplir",
-    "desire": "À remplir",
+    "center": "Émotionnel",
+    "fear": "Être sans valeur ou sans valeur intrinsèque",
+    "desire": "Se sentir précieux, admiré et accepté",
+    "compulsion": "L'échec",
     "integr": 6,
     "disint": 9,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
-      { "title": "Communication", "html": "<p>À coller ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
-      { "title": "Analogie", "html": "<p>À coller ici</p>" }
-    ]
+    "integr_text": "Apporte la coopération, la loyauté et l'engagement envers les autres",
+    "disint_text": "Apporte le désengagement, l'apathie et la stagnation",
+    "sections": []
   },
   "4": {
     "name": "Type 4",
-    "keyword": "À remplir",
-    "theme": "À remplir",
-    "fear": "À remplir",
-    "desire": "À remplir",
+    "center": "Émotionnel",
+    "fear": "N'avoir aucune identité propre ou signification personnelle",
+    "desire": "Se trouver et se comprendre soi-même pour être unique",
+    "compulsion": "La banalité ou l'ordinaire",
     "integr": 1,
     "disint": 2,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
-      { "title": "Communication", "html": "<p>À coller ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
-      { "title": "Analogie", "html": "<p>À coller ici</p>" }
-    ]
+    "integr_text": "Apporte l'objectivité, la discipline et le réalisme pratique",
+    "disint_text": "Apporte la dépendance, la possessivité et le besoin de plaire",
+    "sections": []
   },
   "5": {
     "name": "Type 5",
-    "keyword": "À remplir",
-    "theme": "À remplir",
-    "fear": "À remplir",
-    "desire": "À remplir",
+    "center": "Mental",
+    "fear": "Être incapable, inutile, incompétent ou envahi",
+    "desire": "Être compétent, capable et maîtriser son environnement",
+    "compulsion": "Le vide intérieur",
     "integr": 8,
     "disint": 7,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
-      { "title": "Communication", "html": "<p>À coller ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
-      { "title": "Analogie", "html": "<p>À coller ici</p>" }
-    ]
+    "integr_text": "Apporte la confiance en soi, l'autorité et la capacité d'agir",
+    "disint_text": "Apporte l'hyperactivité, la dispersion et l'impulsivité",
+    "sections": []
   },
   "6": {
     "name": "Type 6",
-    "keyword": "À remplir",
-    "theme": "À remplir",
-    "fear": "À remplir",
-    "desire": "À remplir",
+    "center": "Mental",
+    "fear": "Être sans soutien ou guidance, incapable de survivre seul",
+    "desire": "Avoir de la sécurité et du soutien",
+    "compulsion": "La déviance ou la transgression des règles",
     "integr": 9,
     "disint": 3,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
-      { "title": "Communication", "html": "<p>À coller ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
-      { "title": "Analogie", "html": "<p>À coller ici</p>" }
-    ]
+    "integr_text": "Apporte la paix intérieure, la stabilité et l'acceptation de soi",
+    "disint_text": "Apporte l'agitation compétitive, l'arrogance et le mensonge",
+    "sections": []
   },
   "7": {
     "name": "Type 7",
-    "keyword": "À remplir",
-    "theme": "À remplir",
-    "fear": "À remplir",
-    "desire": "À remplir",
+    "center": "Mental",
+    "fear": "Être privé, souffrir ou être piégé dans la douleur",
+    "desire": "Être heureux, satisfait et comblé",
+    "compulsion": "La souffrance morale et physique",
     "integr": 5,
     "disint": 1,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
-      { "title": "Communication", "html": "<p>À coller ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
-      { "title": "Analogie", "html": "<p>À coller ici</p>" }
-    ]
+    "integr_text": "Apporte le focus, la profondeur, le calme et la concentration",
+    "disint_text": "Apporte la rigidité, la critique et l'intolérance",
+    "sections": []
   },
   "8": {
     "name": "Type 8",
-    "keyword": "À remplir",
-    "theme": "À remplir",
-    "fear": "À remplir",
-    "desire": "À remplir",
+    "center": "Instinctif",
+    "fear": "Être blessé, dominé, contrôlé ou violé par les autres",
+    "desire": "Se protéger et rester autonome",
+    "compulsion": "La faiblesse",
     "integr": 2,
     "disint": 5,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
-      { "title": "Communication", "html": "<p>À coller ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
-      { "title": "Analogie", "html": "<p>À coller ici</p>" }
-    ]
+    "integr_text": "Apporte l'empathie, la tendresse, la générosité et l'innocence",
+    "disint_text": "Apporte le repli, l'isolement, le secret et la froideur",
+    "sections": []
   },
   "9": {
     "name": "Type 9",
-    "keyword": "À remplir",
-    "theme": "À remplir",
-    "fear": "À remplir",
-    "desire": "À remplir",
+    "center": "Instinctif",
+    "fear": "La perte, la séparation, la fragmentation ou le conflit",
+    "desire": "La paix intérieure, l'harmonie et la stabilité",
+    "compulsion": "Les conflits",
     "integr": 3,
     "disint": 6,
-    "sections": [
-      { "title": "Structure fondamentale et centres", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de l’Ego", "html": "<p>À coller ici</p>" },
-      { "title": "Sous-types et styles sociaux", "html": "<p>À coller ici</p>" },
-      { "title": "Dynamiques de mouvement", "html": "<p>À coller ici</p>" },
-      { "title": "Identité spirituelle et noyau", "html": "<p>À coller ici</p>" },
-      { "title": "Communication", "html": "<p>À coller ici</p>" },
-      { "title": "Les 9 niveaux de développement", "html": "<p>À coller ici</p>" },
-      { "title": "Niveaux de conscience et d’existence", "html": "<p>À coller ici</p>" },
-      { "title": "Analogie", "html": "<p>À coller ici</p>" }
-    ]
+    "integr_text": "Apporte l'energy, l'initiative et le développement de ses talents",
+    "disint_text": "Apporte l'anxiété, la méfiance et la passivité craintive",
+    "sections": []
   }
 }
