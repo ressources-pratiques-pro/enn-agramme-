@@ -510,7 +510,8 @@
       });
 
       btnGoType.textContent = "Ouvrir la fiche complète du Type " + first.t;
-      btnGoType.onclick = () => { location.href = "type.html?type=" + first.t; };
+      // --- MODIFICATION ICI : Vers profil.html au lieu de type.html ---
+      btnGoType.onclick = () => { location.href = "profil.html?type=" + first.t; };
 
       btnCopy.onclick = async () => {
         const txt = [
