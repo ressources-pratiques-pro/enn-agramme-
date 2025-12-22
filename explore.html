@@ -1,124 +1,124 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Explorer l’Ennéagramme</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Explorer l’Ennéagramme</title>
 
-  <link rel="stylesheet" href="assets/css/app.css?v=12" />
-  <link rel="stylesheet" href="assets/css/type.css?v=12" />
+  <link rel="stylesheet" href="assets/css/app.css?v=12" />
+  <link rel="stylesheet" href="assets/css/type.css?v=12" />
 
-  <style>
-    .nodeValue{ white-space: pre-line; }
-    .nodeCard{ white-space: normal; }
-    .heroActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+  <style>
+    .nodeValue{ white-space: pre-line; }
+    .nodeCard{ white-space: normal; }
+    .heroActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
 
-    .heroBtn{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:600;
+    .heroBtn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
 
-      color: var(--text);
-      background: rgba(125, 211, 252, .16);
-      border: 1px solid rgba(125, 211, 252, .45);
-    }
+      color: var(--text);
+      background: rgba(125, 211, 252, .16);
+      border: 1px solid rgba(125, 211, 252, .45);
+    }
 
-    .heroBtn:visited{ color: var(--text); }
+    .heroBtn:visited{ color: var(--text); }
 
-    .heroBtn:hover{
-      background: rgba(125, 211, 252, .24);
-      border-color: rgba(125, 211, 252, .65);
-      transform: translateY(-1px);
-    }
+    .heroBtn:hover{
+      background: rgba(125, 211, 252, .24);
+      border-color: rgba(125, 211, 252, .65);
+      transform: translateY(-1px);
+    }
 
-    .heroBtn:focus-visible{
-      outline: 2px solid rgba(125, 211, 252, .9);
-      outline-offset: 2px;
-    }
+    .heroBtn:focus-visible{
+      outline: 2px solid rgba(125, 211, 252, .9);
+      outline-offset: 2px;
+    }
 
-    /* Masquer le Sommaire (navPanel) et laisser Catégories prendre toute la place */
-    .navPanel{ display:none !important; }
-    .typeGrid{ grid-template-columns: 1fr !important; }
+    /* Masquer le Sommaire (navPanel) et laisser Catégories prendre toute la place */
+    .navPanel{ display:none !important; }
+    .typeGrid{ grid-template-columns: 1fr !important; }
 
-    /* Styles pour le pied de page (identiques à l'index) */
-    .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
-    .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
-    .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
-    .siteFooter a:hover{opacity:1}
-  </style>
+    /* Styles pour le pied de page (identiques à l'index) */
+    .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
+    .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+    .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+    .siteFooter a:hover{opacity:1}
+  </style>
 </head>
 
 <body>
-  <div class="wrap typeWrap">
-    <header class="typeTop">
-      <a class="backBtn" href="index.html">Retour</a>
+  <div class="wrap typeWrap">
+    <header class="typeTop">
+      <a class="backBtn" href="index.html">Retour</a>
 
-      <div class="typeHead">
-        <h1 id="exploreTitle">Explorer l’Ennéagramme</h1>
-        <p id="exploreSubtitle">Histoire, concepts, niveaux 1–9, pratiques, repères</p>
+      <div class="typeHead">
+        <h1 id="exploreTitle">Explorer l’Ennéagramme</h1>
+        <p id="exploreSubtitle">Histoire, concepts, niveaux 1–9, pratiques, repères</p>
 
-        <div class="heroActions">
-          <a class="heroBtn" href="test-enneagramme-sans-indice.html">Faire le test</a>
-          <a class="heroBtn" href="index.html">Aller au diagramme</a>
-        </div>
-      </div>
+        <div class="heroActions">
+          <a class="heroBtn" href="test-enneagramme-sans-indice.html">Faire le test</a>
+          <a class="heroBtn" href="index.html">Aller au diagramme</a>
+        </div>
+      </div>
 
-      <div class="typeTools">
-        <input id="searchBox" type="search" placeholder="Rechercher dans l’exploration…" />
-        <button id="btnExpandAll" type="button">Tout ouvrir</button>
-        <button id="btnCollapseAll" type="button">Tout fermer</button>
-      </div>
-    </header>
+      <div class="typeTools">
+        <input id="searchBox" type="search" placeholder="Rechercher dans l’exploration…" />
+        <button id="btnExpandAll" type="button">Tout ouvrir</button>
+        <button id="btnCollapseAll" type="button">Tout fermer</button>
+      </div>
+    </header>
 
-    <main class="typeGrid">
-      <section class="sectionsPanel">
-        <h2 class="panelTitle">Catégories</h2>
-        <p class="panelHint">Clique une carte pour entrer dedans. Tu peux réorganiser les cartes en les glissant.</p>
-        <div id="sectionsGrid" class="sectionsGrid"></div>
-      </section>
+    <main class="typeGrid">
+      <section class="sectionsPanel">
+        <h2 class="panelTitle">Catégories</h2>
+        <p class="panelHint">Clique une carte pour entrer dedans. Tu peux réorganiser les cartes en les glissant.</p>
+        <div id="sectionsGrid" class="sectionsGrid"></div>
+      </section>
 
-      <aside class="navPanel">
-        <h2 class="panelTitle">Sommaire</h2>
-        <div id="toc" class="toc"></div>
-      </aside>
-    </main>
+      <aside class="navPanel">
+        <h2 class="panelTitle">Sommaire</h2>
+        <div id="toc" class="toc"></div>
+      </aside>
+    </main>
 
-    <footer class="siteFooter">
-      <div class="footerInner">
-        <span class="copy">Brahms – Tous droits réservés</span>
-        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf40aIE11fnKasayyVr117DZL5A3uZZBCwLdkQ/viewform?usp=sf_link" target="_blank">
-          ✉️ Écrire à Brahms
-        </a>
-      </div>
-    </footer>
-  </div>
+    <footer class="siteFooter">
+      <div class="footerInner">
+        <span class="copy">Brahms – Tous droits réservés</span>
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank">
+          ✉️ Écrire à Brahms
+        </a>
+      </div>
+    </footer>
+  </div>
 
-  <div id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawerOverlay" id="drawerOverlay"></div>
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawerOverlay" id="drawerOverlay"></div>
 
-    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Contenu de la rubrique">
-      <div class="drawerTop">
-        <div class="drawerTitleRow">
-          <div class="drawerIcon" id="drawerIcon">📌</div>
-          <div class="drawerTitles">
-            <div class="drawerTitle" id="drawerTitle">—</div>
-            <div class="drawerSub" id="drawerSub">—</div>
-          </div>
-        </div>
-        <div class="drawerActions">
-          <button id="btnPin" type="button">Épingler</button>
-          <button id="btnClose" type="button">Fermer</button>
-        </div>
-      </div>
+    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Contenu de la rubrique">
+      <div class="drawerTop">
+        <div class="drawerTitleRow">
+          <div class="drawerIcon" id="drawerIcon">📌</div>
+          <div class="drawerTitles">
+            <div class="drawerTitle" id="drawerTitle">—</div>
+            <div class="drawerSub" id="drawerSub">—</div>
+          </div>
+        </div>
+        <div class="drawerActions">
+          <button id="btnPin" type="button">Épingler</button>
+          <button id="btnClose" type="button">Fermer</button>
+        </div>
+      </div>
 
-      <div class="drawerBody">
-        <div id="drawerContent" class="drawerContent"></div>
-      </div>
-    </div>
-  </div>
+      <div class="drawerBody">
+        <div id="drawerContent" class="drawerContent"></div>
+      </div>
+    </div>
+  </div>
 
-  <script src="assets/js/explore.js?v=2"></script>
+  <script src="assets/js/explore.js?v=2"></script>
 </body>
 </html>
