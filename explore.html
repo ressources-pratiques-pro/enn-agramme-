@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="fr">
+<html lang=fr>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset=utf-8 />
+  <meta name=viewport content=width=device-width,initial-scale=1 />
   <title>Explorer l’Ennéagramme</title>
 
-  <link rel="stylesheet" href="assets/css/app.css?v=12" />
-  <link rel="stylesheet" href="assets/css/type.css?v=12" />
+  <link rel=stylesheet href=assets/css/app.css?v=12 />
+  <link rel=stylesheet href=assets/css/type.css?v=12 />
 
   <style>
     .nodeValue{ white-space: pre-line; }
@@ -51,74 +51,74 @@
 </head>
 
 <body>
-  <div class="wrap typeWrap">
-    <header class="typeTop">
-      <a class="backBtn" href="index.html">Retour</a>
+  <div class=wrap typeWrap>
+    <header class=typeTop>
+      <a class=backBtn href=index.html>Retour</a>
 
-      <div class="typeHead">
-        <h1 id="exploreTitle">Explorer l’Ennéagramme</h1>
-        <p id="exploreSubtitle">Histoire, concepts, niveaux 1–9, pratiques, repères</p>
+      <div class=typeHead>
+        <h1 id=exploreTitle>Explorer l’Ennéagramme</h1>
+        <p id=exploreSubtitle>Histoire, concepts, niveaux 1–9, pratiques, repères</p>
 
-        <div class="heroActions">
-          <a class="heroBtn" href="test-enneagramme-sans-indice.html">Faire le test</a>
-          <a class="heroBtn" href="index.html">Aller au diagramme</a>
+        <div class=heroActions>
+          <a class=heroBtn href=test-enneagramme-sans-indice.html>Faire le test</a>
+          <a class=heroBtn href=index.html>Aller au diagramme</a>
         </div>
       </div>
 
-      <div class="typeTools">
-        <input id="searchBox" type="search" placeholder="Rechercher dans l’exploration…" />
-        <button id="btnExpandAll" type="button">Tout ouvrir</button>
-        <button id="btnCollapseAll" type="button">Tout fermer</button>
+      <div class=typeTools>
+        <input id=searchBox type=search placeholder=Rechercher dans l’exploration… />
+        <button id=btnExpandAll type=button>Tout ouvrir</button>
+        <button id=btnCollapseAll type=button>Tout fermer</button>
       </div>
     </header>
 
-    <main class="typeGrid">
-      <section class="sectionsPanel">
-        <h2 class="panelTitle">Catégories</h2>
-        <p class="panelHint">Clique une carte pour entrer dedans. Tu peux réorganiser les cartes en les glissant.</p>
-        <div id="sectionsGrid" class="sectionsGrid"></div>
+    <main class=typeGrid>
+      <section class=sectionsPanel>
+        <h2 class=panelTitle>Catégories</h2>
+        <p class=panelHint>Clique une carte pour entrer dedans. Tu peux réorganiser les cartes en les glissant.</p>
+        <div id=sectionsGrid class=sectionsGrid></div>
       </section>
 
-      <aside class="navPanel">
-        <h2 class="panelTitle">Sommaire</h2>
-        <div id="toc" class="toc"></div>
+      <aside class=navPanel>
+        <h2 class=panelTitle>Sommaire</h2>
+        <div id=toc class=toc></div>
       </aside>
     </main>
 
-    <footer class="siteFooter">
-      <div class="footerInner">
-        <span class="copy">Brahms – Tous droits réservés</span>
-        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf40aIE11fnKasayyVr117DZL5A3uZZBCwLdkQ/viewform?usp=sf_link" target="_blank">
+    <footer class=siteFooter>
+      <div class=footerInner>
+        <span class=copy>Brahms – Tous droits réservés</span>
+        <a class=contact href=https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header target=_blank rel=noopener>
           ✉️ Écrire à Brahms
         </a>
       </div>
     </footer>
   </div>
 
-  <div id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawerOverlay" id="drawerOverlay"></div>
+  <div id=drawer class=drawer aria-hidden=true>
+    <div class=drawerOverlay id=drawerOverlay></div>
 
-    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Contenu de la rubrique">
-      <div class="drawerTop">
-        <div class="drawerTitleRow">
-          <div class="drawerIcon" id="drawerIcon">📌</div>
-          <div class="drawerTitles">
-            <div class="drawerTitle" id="drawerTitle">—</div>
-            <div class="drawerSub" id="drawerSub">—</div>
+    <div class=drawerPanel role=dialog aria-modal=true aria-label=Contenu de la rubrique>
+      <div class=drawerTop>
+        <div class=drawerTitleRow>
+          <div class=drawerIcon id=drawerIcon>📌</div>
+          <div class=drawerTitles>
+            <div class=drawerTitle id=drawerTitle>—</div>
+            <div class=drawerSub id=drawerSub>—</div>
           </div>
         </div>
-        <div class="drawerActions">
-          <button id="btnPin" type="button">Épingler</button>
-          <button id="btnClose" type="button">Fermer</button>
+        <div class=drawerActions>
+          <button id=btnPin type=button>Épingler</button>
+          <button id=btnClose type=button>Fermer</button>
         </div>
       </div>
 
-      <div class="drawerBody">
-        <div id="drawerContent" class="drawerContent"></div>
+      <div class=drawerBody>
+        <div id=drawerContent class=drawerContent></div>
       </div>
     </div>
   </div>
 
-  <script src="assets/js/explore.js?v=2"></script>
+  <script src=assets/js/explore.js?v=2></script>
 </body>
 </html>
