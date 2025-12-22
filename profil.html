@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Profil Ennéagramme</title>
   <style>
-    /* --- CSS AMÉLIORÉ (Mise en forme, Couleurs, Puces) --- */
+    /* --- CSS DESIGN (Bleu, Moderne, Lisible) --- */
     :root{
       --bg:#0b1020;
       --bg-grad: radial-gradient(1200px 800px at 25% 15%, rgba(139,211,255,.12), transparent 55%),
@@ -25,7 +25,7 @@
       background: var(--bg-grad); color:var(--text); line-height:1.6;
     }
     a{color:inherit; text-decoration:none;}
-    .wrap{max-width:1200px; margin:0 auto; padding:22px; padding-bottom:80px;}
+    .wrapX{max-width:1200px; margin:0 auto; padding:22px; padding-bottom:80px;}
 
     /* --- En-tête --- */
     .hero{
@@ -38,14 +38,16 @@
     .hero .sub{ color:var(--muted); margin:4px 0 0; font-size:14px; }
     .heroBtns{ display:flex; gap:10px; flex-wrap:wrap; }
     
-    .btn{
+    /* Boutons de navigation (Retour Test etc.) */
+    .btnX{
       display:inline-flex; align-items:center; gap:8px;
-      padding:8px 14px; border-radius:999px; font-size:13px; font-weight:600;
+      padding:10px 14px; border-radius:999px; font-size:13px; font-weight:700;
       border:1px solid var(--border); background: rgba(255,255,255,.06); color:var(--text);
       transition: all .2s ease; cursor:pointer;
     }
-    .btn:hover{ background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
-    .btn-accent{ border-color: var(--accent); color: var(--accent); }
+    .btnX:hover{ background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+    /* Style spécifique pour le bouton retour test */
+    .btn-test{ border-color: var(--accent); color: var(--accent); }
 
     /* --- Grille Principale (Fiche à gauche, Outil à droite) --- */
     .grid{
@@ -55,7 +57,7 @@
 
     /* --- Panneaux --- */
     .panel{
-      background: var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+      background: var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; height: fit-content;
     }
     .panelHead{
       padding:14px 16px; border-bottom:1px solid var(--border); background: rgba(255,255,255,.03);
@@ -76,41 +78,56 @@
     }
     summary::-webkit-details-marker{display:none}
     
-    .secTitle{ color: var(--accent); }
+    .secTitle{ color: var(--accent); font-size: 15px; }
     .secNum{ 
       background: rgba(255,255,255,.1); color: var(--muted); font-size:11px; 
-      width:20px; height:20px; display:flex; align-items:center; justify-content:center; border-radius:50%; 
+      width:24px; height:24px; display:flex; align-items:center; justify-content:center; border-radius:50%; font-weight:700; 
     }
 
-    .contentBox{ padding:16px; font-size:14.5px; color:rgba(255,255,255,.9); border-top:1px solid var(--border); }
+    .secBody{ padding:16px; font-size:14.5px; color:rgba(255,255,255,.92); border-top:1px solid var(--border); line-height: 1.6; }
     
     /* Formatage automatique du texte brut */
-    .contentBox p { margin:0 0 10px; }
-    .contentBox ul { margin:5px 0 10px 18px; padding:0; }
-    .contentBox li { margin-bottom:6px; list-style-type:none; position:relative; padding-left:14px; }
-    .contentBox li::before { content:"•"; color:var(--accent); position:absolute; left:0; font-weight:bold; }
-    .contentBox strong, .contentBox b { color: var(--accent); font-weight:700; }
+    .secBody p { margin:0 0 10px; }
+    .secBody ul { margin:5px 0 10px 18px; padding:0; }
+    .secBody li { margin-bottom:6px; list-style-type:none; position:relative; padding-left:14px; }
+    .secBody li::before { content:"•"; color:var(--accent); position:absolute; left:0; font-weight:bold; }
+    .secBody strong, .secBody b { color: var(--accent); font-weight:700; }
 
     /* --- Outil Niveaux --- */
     .lvlTitle{ font-size:20px; margin:0 0 5px; color:var(--text); }
     .lvlBadge{ 
       display:inline-flex; align-items:center; gap:6px; font-size:13px; 
-      padding:6px 10px; background:rgba(255,255,255,.08); border-radius:99px; margin-bottom:15px; 
+      padding:6px 10px; background:rgba(255,255,255,.08); border-radius:99px; margin-bottom:15px; border:1px solid var(--border);
     }
+    .lvlBadge b { color: var(--text); }
     .dot{ width:8px; height:8px; border-radius:50%; background:var(--good); }
     
     .rangeBox{ background:rgba(0,0,0,.2); border-radius:12px; padding:12px; border:1px solid var(--border); }
-    input[type=range]{ width:100%; margin:10px 0; accent-color: var(--accent); }
+    .rangeTop{ display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:13px; }
+    .nBox{
+       display:inline-flex; align-items:center; justify-content:center;
+       min-width:40px; font-weight:900; background: rgba(255,255,255,.06);
+       border-radius:8px; padding:6px; font-size:13px; color: var(--text); border:1px solid var(--border);
+    }
+
+    input[type=range]{ width:100%; margin:14px 0; accent-color: var(--accent); }
+    .rangeTrackHint{
+      height:6px; border-radius:999px;
+      background: linear-gradient(90deg, var(--good) 33%, var(--mid) 33% 66%, var(--bad) 66%);
+      opacity:.5; margin-bottom: 8px;
+    }
     .legend{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:10px; }
+    .legend .k{ display:flex; align-items:center; gap:6px; }
+    .tag{ width:8px; height:8px; border-radius:50%; }
+    .tag.good{background: var(--good)} .tag.mid{background: var(--mid)} .tag.bad{background: var(--bad)}
     
     .lvlDesc{ 
-      font-size:14px; line-height:1.5; min-height:80px; 
-      padding-top:10px; border-top:1px solid var(--border); margin-top:10px; 
+      font-size:14px; line-height:1.5; min-height:60px; 
+      padding:14px; border:1px solid var(--border); margin-top:10px; background: rgba(255,255,255,.04); border-radius:12px;
     }
     
-    .navBtns{ display:flex; gap:8px; margin-top:10px; }
-    .navBtns button{ flex:1; padding:8px; border-radius:8px; border:1px solid var(--border); background:rgba(255,255,255,.05); color:var(--text); cursor:pointer; }
-    .navBtns button:hover{ background:rgba(255,255,255,.1); }
+    .navBtns{ display:flex; gap:10px; margin-top:12px; }
+    .navBtns button{ flex:1; }
 
     /* --- Footer --- */
     .bottomBar{
@@ -123,21 +140,24 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="hero">
-      <div>
-        <h1 id="pageTitle">Profil</h1>
-        <p id="pageSub" class="sub">Chargement...</p>
+  <div class="wrapX">
+    <section class="hero">
+      <div class="heroTop">
+        <div>
+          <h1 id="pageTitle">Profil</h1>
+          <p id="pageSub" class="sub">—</p>
+          <p id="pageHint" class="sub" style="font-size:13px; opacity:0.8">—</p>
+        </div>
+        <div class="heroBtns">
+          <a class="btnX btn-test" href="test-enneagramme-sans-indice.html">Retour au Test</a>
+          <a class="btnX" href="explore.html">Retour Explorer</a>
+          <a class="btnX" href="index.html">Diagramme</a>
+        </div>
       </div>
-      <div class="heroBtns">
-        <a class="btn btn-accent" href="test-enneagramme-sans-indice.html">Retour au Test</a>
-        <a class="btn" href="explore.html">Retour Explorer</a>
-        <a class="btn" href="index.html">Diagramme</a>
-      </div>
-    </div>
+    </section>
 
-    <div class="grid">
-      <div class="panel">
+    <main class="grid">
+      <aside class="panel">
         <div class="panelHead">
           <h2>Fiche de lecture</h2>
         </div>
@@ -145,60 +165,62 @@
           <div class="detailsList" id="sections">
             </div>
         </div>
-      </div>
+      </aside>
 
-      <div class="panel" style="height:fit-content">
+      <section class="panel">
         <div class="panelHead">
           <h2>Niveaux de conscience</h2>
           <div class="pill">État actuel</div>
         </div>
         <div class="panelBody">
-          <p class="sub" style="margin-bottom:10px">Utilisez le curseur pour explorer l'évolution.</p>
+          <p class="sub" id="levelsIntro" style="margin-bottom:10px; font-size:13px;">—</p>
           
           <h3 id="lvlTitle" class="lvlTitle">Niveau 1</h3>
-          <div class="lvlBadge"><span id="lvlDot" class="dot"></span><span id="lvlLabel">Sain</span></div>
+          <div class="lvlBadge"><span id="lvlDot" class="dot"></span><b id="lvlLabel">Sain</b></div>
 
-          <div class="rangeBox">
-            <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--muted)">
-              <span>Mon niveau</span><span id="lvlNum" style="color:var(--text); font-weight:bold">1</span>
-            </div>
-            <input id="lvlRange" type="range" min="1" max="9" step="1" value="1">
-            <div class="legend">
-              <span style="color:var(--good)">1-3 Sain</span>
-              <span style="color:var(--mid)">4-6 Moyen</span>
-              <span style="color:var(--bad)">7-9 Malsain</span>
+          <div class="rangeWrap">
+            <div class="rangeTop">
+              <span>Ajuster</span><div class="nBox" id="lvlNumBox">1</div>
             </div>
             
-            <div id="lvlText" class="lvlDesc">...</div>
+            <div style="margin-top:10px">
+                <input id="lvlRange" type="range" min="1" max="9" step="1" value="1">
+                <div class="rangeTrackHint"></div>
+                <div class="legend">
+                  <span class="k"><span class="tag good"></span>1-3 Sain</span>
+                  <span class="k"><span class="tag mid"></span>4-6 Moyen</span>
+                  <span class="k"><span class="tag bad"></span>7-9 Malsain</span>
+                </div>
+            </div>
+            
+            <div id="lvlDesc" class="lvlDesc">...</div>
             
             <div class="navBtns">
-              <button id="btnPrev">Précédent</button>
-              <button id="btnNext">Suivant</button>
+              <button id="btnPrev" class="btnX">Précédent</button>
+              <button id="btnNext" class="btnX">Suivant</button>
             </div>
           </div>
           
-          <div style="margin-top:15px; font-size:12px; color:var(--muted); line-height:1.4">
-            <strong>Info :</strong> Le niveau mesure le degré d'identification à l'ego. Plus on est bas (9), plus on est en mode "survie/automatique". Plus on est haut (1), plus on est libre.
+          <div style="margin-top:15px; padding:12px; border-radius:12px; background:rgba(255,255,255,.04); border:1px solid var(--border); font-size:12px; color:var(--muted); line-height:1.4">
+            <strong>Définition :</strong> Le niveau mesure le degré d'identification à l'ego. Plus on est bas (9), plus on est en mode "survie". Plus on est haut (1), plus on est libre.
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </div>
 
   <div class="bottomBar">
     <div class="barInner">
       <div class="heroBtns">
-        <a class="btn" href="test-enneagramme-sans-indice.html">Test</a>
-        <a class="btn" href="index.html">Accueil</a>
+        <a class="btnX" href="test-enneagramme-sans-indice.html">Retour au Test</a>
+        <a class="btnX" href="index.html">Accueil</a>
       </div>
-      <span style="font-size:12px; color:var(--muted)">Ennéagramme &copy; Brahms</span>
+      <span style="font-size:12px; color:var(--muted)" id="barInfo">Ennéagramme</span>
     </div>
   </div>
 
   <script>
-    // --- VOS DONNÉES D'ORIGINE COMPLÈTES (Non modifiées sur le fond) ---
-    // J'ai juste copié votre objet PROFILES en entier ici.
-    
+    // --- VOS DONNÉES D'ORIGINE COMPLÈTES (Texte Intégral 1 à 9) ---
     const PROFILES = {
       1: {
         title: `Type 1 - Le Réformateur / Le Perfectionniste`,
@@ -318,8 +340,12 @@ L'analogie de l'or : Un anneau d'or peut être bien ou mal façonné (perfection
           `Niveau 7 : L'auto-justification et l'inflexibilité. Le 1 craint que ses idéaux soient faux, ce qui le rend amer et misanthrope. Pour sauver son image de soi, il devient extrêmement fermé d'esprit, refuse tout compromis et devient hautement moralisateur.`,
           `Niveau 8 : L'obsession et la contradiction. Désespéré de contrôler ses désirs irrationnels, il devient obsédé par les parties de lui-même qu'il voulait dompter. Paradoxalement, il commence à agir selon ses désirs réprimés tout en continuant de les condamner publiquement.`,
           `Niveau 9 : La condamnation et la punition. Réalisant qu'il a perdu le contrôle et qu'il commet les actes qu'il ne peut tolérer chez les autres, le 1 devient punitif. Il tente de supprimer la « cause » de ses obsessions en lui-même ou chez les autres, ce qui peut mener à l'auto-mutilation, au meurtre ou au suicide.`
-        ]
+        ],
+        levelsIntro: `Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
+
+Les niveaux de développement du Type 1 (le Réformateur) décrivent un continuum allant de la libération spirituelle et de la sagesse éthique à une rigidité obsessionnelle et potentiellement destructrice. Selon les sources, ces niveaux mesurent le degré d'identification d'une personne avec sa structure de personnalité : plus on descend dans les niveaux, plus l'ego prend le contrôle et plus la liberté de choix diminue.`
       },
+
       2: {
         title: `Type 2 - Le Pourvoyeur / L'Altruiste`,
         aliases: [`Le Pourvoyeur`,`L’Altruiste`,`Celui qui aide`],
@@ -433,6 +459,9 @@ Le Type 2 peut être comparé à un hôte dévoué d'une grande réception : il 
 L'Essence du 2 : Comme un flux de chaleur naturelle qui n'a pas besoin d'être dirigé pour être ressenti.
 Le Type 2 est comme un voyageur dans un train qui garde sa lourde valise sur ses genoux, craignant que si il la pose, le train ne pourra pas la porter ; il doit apprendre que le train (la réalité) porte déjà tout le poids sans qu'il ait besoin de faire d'effort.`}
         ],
+        levelsIntro: `Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
+
+Les niveaux de développement du Type 2 (l'Altruiste) décrivent un continuum qui mesure le degré d'identification d'une personne avec sa structure de personnalité. Ce continuum va de la liberté et de l'amour inconditionnel (niveaux sains) à la dépendance et au sentiment de victimisation (niveaux malsains).`,
         levels: [
           `Niveau 1 : Prendre soin de soi et amour inconditionnel. Le 2 abandonne la croyance qu'il n'a pas le droit de s'occuper de ses propres besoins. Il accède à son désir de base (être aimé) et ressent un amour inconditionnel pour lui-même et pour les autres. Il devient joyeux, gracieux et humble.`,
           `Niveau 2 : Empathie et attention. Il se concentre sur les sentiments des autres avec une sollicitude aimante pour se protéger de sa peur de ne pas être aimé. Son image de soi est : « Je suis aimant, attentionné et désintéressé ».`,
@@ -559,6 +588,9 @@ Le Type 3 est souvent comparé à un caméléon. Comme cet animal change de coul
 L'ego du 3 : Comme un acteur si convaincu par son rôle qu'il a oublié son nom véritable ; l'Essence est le retour à la simplicité d'être soi-même.
 Le Type 3 est comme les pixels sur un écran de télévision : On croit voir une personne courir (l'acteur séparé), mais en réalité, c'est tout l'écran qui change de configuration en même temps de façon harmonieuse (la Loi Sacrée).`}
         ],
+        levelsIntro: `Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
+
+Les niveaux de développement du Type 3 (le Battant) mesurent le degré d'identification d'une personne avec sa structure de personnalité et son image de soi. Ce continuum représente une échelle de liberté psychologique : plus on monte, plus on est authentique et libre ; plus on descend, plus on devient un "automate" de sa propre image de succès.`,
         levels: [
           `Niveau 1 : Dirigé de l'intérieur et authentique. Le 3 abandonne la croyance que sa valeur dépend de l'admiration des autres. Il découvre son identité réelle et ses désirs profonds, devenant authentique, modeste et bienveillant.`,
           `Niveau 2 : Adaptable et admirable. Il se concentre sur les qualités valorisées par son entourage pour se sentir "valable". Son image de soi est : « Je suis exceptionnel, compétent et j'ai un potentiel illimité ».`,
@@ -571,6 +603,7 @@ Le Type 3 est comme les pixels sur un écran de télévision : On croit voir une
           `Niveau 9 : Monomaniaque et implacable. Il sent qu'il ne peut plus regagner l'admiration de ses proches. Il peut perdre le contrôle de sa rage réprimée et chercher à se venger de ceux qui, selon lui, l'ont rejeté ou "humilié".`
         ]
       },
+
       4: {
         title: `Type 4 - Le Romantique / L’Individualiste / L’Artiste`,
         aliases: [`Le Romantique`,`L’Individualiste`,`L’Artiste`],
@@ -678,6 +711,7 @@ Reconnaître que la réalité tend naturellement vers l'harmonie et la vérité 
 Le 4 est comme un diamant brut caché dans une mine ordinaire : il croit que sa valeur dépend de sa rareté et craint d'être confondu avec un simple caillou.
 L'âme est comme une vague : unique en forme, mais faite de l'océan et inséparable de lui.`}
         ],
+        levelsIntro: `Le niveau de développement mesure le degré d'identification d'une personne avec sa structure de personnalité. Plus on descend, plus la liberté diminue et plus les comportements deviennent automatiques.`,
         levels: [
           `Niveau 1 : Acceptation de la vie et renforcement. Le 4 abandonne la croyance qu'il est défectueux. Il devient capable de se renouveler et de transformer son expérience de manière rédemptrice.`,
           `Niveau 2 : Introspectif et sensible. Il se concentre sur ses sentiments et ses préférences pour établir un sentiment d'identité personnelle.`,
@@ -790,6 +824,7 @@ Omniscience dissout la séparation, abandon de la manipulation intérieure, repo
 Archiviste dans une immense bibliothèque : accumule des volumes pour ne pas affronter le monde, porte verrouillée.
 Le 5 est comme une fenêtre à travers laquelle l'univers se voit lui-même.`}
         ],
+        levelsIntro: `Le niveau de développement mesure le degré d'identification avec la structure de personnalité. Plus on descend, plus la liberté diminue et plus le retrait devient défensif.`,
         levels: [
           `Niveau 1 : Participant, Visionnaire. Le 5 s'engage pleinement dans la vie avec confiance, clairvoyance et profondeur.`,
           `Niveau 2 : Observateur, Perceptif. Il acquiert des compétences, curieux et indépendant.`,
@@ -902,6 +937,7 @@ Radar de sécurité, éclaireur vigilant.
 Pont suspendu : sain avance, moyen s'agrippe, malsain saute dans le vide.
 Marin scrutant l'horizon, oubliant que l'océan porte le navire.`}
         ],
+        levelsIntro: `Le niveau de développement mesure le degré d'identification avec la structure de personnalité. Plus on descend, plus l'anxiété et la réactivité dominent.`,
         levels: [
           `Niveau 1 : Autonome et courageux. Guidance intérieure, solidité, sérénité.`,
           `Niveau 2 : Engagé et fiable. Construit des liens de confiance, attentif et stable.`,
@@ -1011,6 +1047,7 @@ Papillon butineur : s'arrête brièvement, fuit l'ombre d'un nuage.
 Voyageur gardant sa valise sur les genoux : apprend à faire confiance au train.
 Jeune plant : n'a pas besoin de diriger sa croissance.`}
         ],
+        levelsIntro: `Le niveau de développement mesure le degré de liberté psychologique. Plus on descend, plus l'évitement de la douleur devient compulsif.`,
         levels: [
           `Niveau 1 : Joyeux et satisfait. Gratitude, extase du présent.`,
           `Niveau 2 : Enthousiaste et anticipateur. Monde des possibilités.`,
@@ -1120,6 +1157,7 @@ Rocher dans une mer déchaînée : protège mais peut blesser.
 Capitaine contrôlant la tempête : oublie que le navire est fait de la même eau que l'océan.
 Innocence du lion et de l'enfant.`}
         ],
+        levelsIntro: `Le niveau de développement mesure le durcissement défensif de l'ego. Plus on descend, plus la domination remplace la protection réelle.`,
         levels: [
           `Niveau 1 : Renoncement à soi et héroïsme. Magnanimité, courage, pardon.`,
           `Niveau 2 : Autonomie et force. Affirmatif, direct, plein de ressources.`,
@@ -1232,6 +1270,7 @@ Montagne paisible : accepte tout, mais inertie inébranlable si on veut la dépl
 Miroir à polir pour refléter la lumière.
 Voyageur gardant sa valise sur les genoux : apprend que la réalité le porte déjà.`}
         ],
+        levelsIntro: `Le niveau de développement mesure le degré de présence et d'oubli de soi. Plus on descend, plus la narcotisation et l'inertie dominent.`,
         levels: [
           `Niveau 1 : Possédé de soi. Indomptable, autonome, pleinement présent.`,
           `Niveau 2 : Paisible. Serein, acceptant, stable.`,
@@ -1280,30 +1319,22 @@ Voyageur gardant sa valise sur les genoux : apprend que la réalité le porte d�
       if(!txt) return "";
       let html = txt;
 
-      // 1. Convertir les retours à la ligne simples en balises HTML
-      // (Mais on fait attention à ne pas casser les listes)
-      
-      // 2. Transformer les lignes commençant par * en liste à puces
-      // On cherche les blocs de lignes avec *
-      // Remplacement simple ligne par ligne
+      // 1. Transformer les lignes commençant par * en liste à puces
       html = html.replace(/^\*\s+(.+)$/gm, "<li>$1</li>");
       
       // Si on a des <li>, on les enveloppe dans un <ul> (très basique)
       if(html.includes("<li>")){
-        // On entoure tout bloc de <li> contigus par <ul>
-        // Pour simplifier ici (car ton texte est propre), on va juste wrapper les zones de liste
-        // Mais ton texte a déjà des sauts de ligne.
-        // On va faire plus simple : on laisse les <li> flotter, le CSS s'en charge via .secBody ul
         html = "<ul>" + html + "</ul>"; 
         // Nettoyage des balises <ul> imbriquées inutilement ou mal placées
         html = html.replace(/<\/ul>\s*<ul>/g, ""); 
         html = html.replace(/<\/li>\n<li>/g, "</li><li>");
       }
 
-      // 3. Mettre en gras ce qui est avant les deux points (ex: "Passion :")
+      // 2. Mettre en gras ce qui est avant les deux points (ex: "Passion :")
+      // On cherche les mots-clés avant ":" pour les mettre en couleur
       html = html.replace(/(^|\n|<br>|<li>)([^:.<>]+)\s:/g, "$1<strong>$2</strong> :");
       
-      // 4. Gérer les sauts de ligne restants (ceux qui ne sont pas des listes)
+      // 3. Gérer les sauts de ligne restants (ceux qui ne sont pas des listes)
       // On remplace les \n par <br> sauf autour des balises de liste
       html = html.replace(/([^>])\n/g, "$1<br>");
 
@@ -1317,14 +1348,9 @@ Voyageur gardant sa valise sur les genoux : apprend que la réalité le porte d�
       qs('#pageTitle').textContent = p.title;
       qs('#pageSub').textContent = p.sub || '';
       
-      // Chips (Inutiles si on a enlevé le bandeau, mais gardés si besoin)
-      if(qs('#chips')) qs('#chips').innerHTML = '';
-
       // Sections
       const sec = qs('#sections');
       sec.innerHTML = '';
-
-      // Intro niveaux dans le panneau de droite, pas ici
 
       (p.sections||[]).forEach((s, idx)=>{
         const det = document.createElement('details');
@@ -1336,7 +1362,7 @@ Voyageur gardant sa valise sur les genoux : apprend que la réalité le porte d�
         const body = document.createElement("div");
         body.className = "secBody";
         
-        // C'EST ICI QUE LA MAGIE OPÈRE : On formate le texte brut
+        // C'EST ICI QUE LA MAGIE OPÈRE : On formate le texte brut pour qu'il soit beau
         body.innerHTML = formatText(s.t);
 
         det.appendChild(sum);
@@ -1346,7 +1372,6 @@ Voyageur gardant sa valise sur les genoux : apprend que la réalité le porte d�
 
       // Slider Niveaux
       const hasLevels = Array.isArray(p.levels) && p.levels.length === 9;
-      // Note: Dans ton fichier d'origine, levels est un tableau de strings.
       
       const slider = qs('#lvlRange');
       if(p.levels && p.levels.length > 0){
