@@ -5,490 +5,1423 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Profil Ennéagramme</title>
   <style>
+    /* --- CSS AMÉLIORÉ (Mise en forme, Couleurs, Puces) --- */
     :root{
-      --bg1: rgba(139,211,255,.16);
-      --bg2: rgba(159,242,177,.10);
-      --line: rgba(255,255,255,.12);
-      --line2: rgba(255,255,255,.18);
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.08);
-      --txt: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.60);
-      --radius: 18px;
-      --good: rgba(159,242,177,.95);
-      --mid: rgba(255,209,139,.95);
-      --bad: rgba(255,139,139,.95);
-      --accent: #8bd3ff;
+      --bg:#0b1020;
+      --bg-grad: radial-gradient(1200px 800px at 25% 15%, rgba(139,211,255,.12), transparent 55%),
+                 radial-gradient(1000px 700px at 80% 25%, rgba(159,242,177,.08), transparent 55%),
+                 linear-gradient(180deg, #081022, #070b14);
+      --card: rgba(255,255,255,.05);
+      --border: rgba(255,255,255,.12);
+      --text:#eef2ff;
+      --muted: rgba(255,255,255,.65);
+      --accent: #8bd3ff; /* Bleu clair pour la mise en valeur */
+      --radius:18px;
+      --good: #86efac; --mid: #fcd34d; --bad: #fca5a5;
     }
-
+    *{box-sizing:border-box}
     body{
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-      background:
-        radial-gradient(1200px 800px at 25% 15%, rgba(139,211,255,.20), transparent 55%),
-        radial-gradient(1000px 700px at 80% 25%, rgba(159,242,177,.12), transparent 55%),
-        linear-gradient(180deg, #081022, #070b14);
-      color: var(--txt);
-      min-height: 100vh;
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      background: var(--bg-grad); color:var(--text); line-height:1.6;
     }
+    a{color:inherit; text-decoration:none;}
+    .wrap{max-width:1200px; margin:0 auto; padding:22px; padding-bottom:80px;}
 
-    .wrapX{max-width:1200px;margin:0 auto;padding:22px; padding-bottom: 80px;}
-
+    /* --- En-tête --- */
     .hero{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border-radius: var(--radius);
-      padding:18px;
-      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid var(--border); border-radius:var(--radius);
+      padding:20px; backdrop-filter: blur(10px);
+      display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;
     }
-
-    .heroTop{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    .hero h1{ margin:0; font-size:24px; letter-spacing:.3px; }
+    .hero .sub{ color:var(--muted); margin:4px 0 0; font-size:14px; }
+    .heroBtns{ display:flex; gap:10px; flex-wrap:wrap; }
+    
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 14px; border-radius:999px; font-size:13px; font-weight:600;
+      border:1px solid var(--border); background: rgba(255,255,255,.06); color:var(--text);
+      transition: all .2s ease; cursor:pointer;
     }
+    .btn:hover{ background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+    .btn-accent{ border-color: var(--accent); color: var(--accent); }
 
-    .hero h1{margin:0;font-size:26px;letter-spacing:.2px}
-    .hero p{margin:6px 0 0;color:var(--muted);line-height:1.35}
-
-    .heroBtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-
-    .btnX{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color: var(--txt);
-      text-decoration:none;
-      font-weight:700;
-      font-size:13px;
-      transition: transform .04s ease, background .18s ease, border-color .18s ease;
-      cursor: pointer;
-    }
-    .btnX:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
-    .btnX:active{transform: translateY(1px)}
-
-    /* Grid layout : Fiche à gauche, Niveaux à droite */
+    /* --- Grille Principale (Fiche à gauche, Outil à droite) --- */
     .grid{
-      display:grid; 
-      grid-template-columns: 1.4fr 0.6fr; 
-      gap:16px; margin-top:16px;
+      display:grid; grid-template-columns: 1.4fr 0.6fr; gap:16px; margin-top:20px;
     }
-    @media (max-width: 980px){
-      .grid{ grid-template-columns:1fr; }
-      .heroBtns{justify-content:flex-start}
-    }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
 
+    /* --- Panneaux --- */
     .panel{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--radius);
-      overflow:hidden;
-      height: fit-content;
+      background: var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
     }
     .panelHead{
-      padding:14px 16px;
-      border-bottom:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:14px 16px; border-bottom:1px solid var(--border); background: rgba(255,255,255,.03);
+      display:flex; justify-content:space-between; align-items:center;
     }
-    .panelHead h2{margin:0;font-size:16px}
-    .pill{
-      font-size:12px;color:var(--muted);
-      border:1px solid var(--line);
-      padding:6px 10px;border-radius:999px;
-      background: rgba(255,255,255,.04);
-      white-space:nowrap;
-    }
-    .panelBody{padding:14px 16px}
+    .panelHead h2{ margin:0; font-size:16px; font-weight:700; }
+    .pill{ font-size:11px; color:var(--muted); border:1px solid var(--border); padding:4px 8px; border-radius:99px; }
+    .panelBody{ padding:16px; }
 
-    /* Styles de la Fiche Détaillée */
-    .detailsList{display:grid;gap:10px}
+    /* --- Contenu de la Fiche (Mise en forme améliorée) --- */
+    .detailsList{ display:grid; gap:10px; }
     details{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.15);
-      border-radius:14px; overflow:hidden;
+      border:1px solid var(--border); background: rgba(0,0,0,.15); border-radius:12px; overflow:hidden;
     }
     summary{
-      list-style:none; cursor:pointer; padding:14px 14px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      font-weight:700;
-      background: rgba(255,255,255,.02);
+      cursor:pointer; padding:12px 14px; display:flex; justify-content:space-between; align-items:center;
+      font-weight:700; background: rgba(255,255,255,.03); list-style:none;
     }
     summary::-webkit-details-marker{display:none}
     
-    .secNum{
-      display:inline-flex;align-items:center;justify-content:center;
-      min-width:24px;height:24px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: var(--muted); font-weight:700; font-size:11px;
+    .secTitle{ color: var(--accent); }
+    .secNum{ 
+      background: rgba(255,255,255,.1); color: var(--muted); font-size:11px; 
+      width:20px; height:20px; display:flex; align-items:center; justify-content:center; border-radius:50%; 
     }
-    .secBody{
-      border-top:1px solid rgba(255,255,255,.10);
-      padding:16px;
-      line-height:1.6; 
-      color: var(--txt);
-      font-size: 14.5px;
+
+    .contentBox{ padding:16px; font-size:14.5px; color:rgba(255,255,255,.9); border-top:1px solid var(--border); }
+    
+    /* Formatage automatique du texte brut */
+    .contentBox p { margin:0 0 10px; }
+    .contentBox ul { margin:5px 0 10px 18px; padding:0; }
+    .contentBox li { margin-bottom:6px; list-style-type:none; position:relative; padding-left:14px; }
+    .contentBox li::before { content:"•"; color:var(--accent); position:absolute; left:0; font-weight:bold; }
+    .contentBox strong, .contentBox b { color: var(--accent); font-weight:700; }
+
+    /* --- Outil Niveaux --- */
+    .lvlTitle{ font-size:20px; margin:0 0 5px; color:var(--text); }
+    .lvlBadge{ 
+      display:inline-flex; align-items:center; gap:6px; font-size:13px; 
+      padding:6px 10px; background:rgba(255,255,255,.08); border-radius:99px; margin-bottom:15px; 
+    }
+    .dot{ width:8px; height:8px; border-radius:50%; background:var(--good); }
+    
+    .rangeBox{ background:rgba(0,0,0,.2); border-radius:12px; padding:12px; border:1px solid var(--border); }
+    input[type=range]{ width:100%; margin:10px 0; accent-color: var(--accent); }
+    .legend{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:10px; }
+    
+    .lvlDesc{ 
+      font-size:14px; line-height:1.5; min-height:80px; 
+      padding-top:10px; border-top:1px solid var(--border); margin-top:10px; 
     }
     
-    /* MISE EN FORME DU CONTENU */
-    .secBody p { margin:0 0 12px; }
-    .secBody ul { margin: 8px 0 12px 20px; padding-left:0; }
-    .secBody li { 
-      margin-bottom:8px; 
-      list-style-type: none; 
-      position: relative; 
-      padding-left: 15px; 
-    }
-    .secBody li::before {
-      content: "•"; 
-      color: var(--accent); 
-      font-weight: bold;
-      position: absolute; left: 0;
-    }
-    /* Mots clés en gras et bleu */
-    .secBody b, .secBody strong {
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .titleTint{ color: var(--accent); font-size: 15px; }
+    .navBtns{ display:flex; gap:8px; margin-top:10px; }
+    .navBtns button{ flex:1; padding:8px; border-radius:8px; border:1px solid var(--border); background:rgba(255,255,255,.05); color:var(--text); cursor:pointer; }
+    .navBtns button:hover{ background:rgba(255,255,255,.1); }
 
-    /* Styles Niveaux */
-    .lvlTitle{ margin:0; font-size:18px; letter-spacing:.2px; }
-    .lvlBadge{
-      display:inline-flex;align-items:center;gap:8px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      padding:7px 10px;border-radius:999px;
-      color: var(--muted);
-      font-size:13px;
-      margin-top:10px;
-    }
-    .lvlBadge .dot2{width:10px;height:10px;border-radius:999px;background: var(--good)}
-    .lvlBadge b{color: var(--txt)}
-
-    .rangeWrap{
-      margin-top:14px; padding:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.10);
-      border-radius:14px;
-    }
-    .rangeTop{ display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap; }
-    .rangeTop .n{
-      display:inline-flex;align-items:center;justify-content:center;
-      min-width:44px; font-weight:900;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      border-radius:12px; padding:8px 10px; font-size:13px;
-    }
-    input[type="range"]{width:100%; margin-top:10px;}
-    .rangeTrackHint{
-      margin-top:10px; height:6px; border-radius:999px;
-      background: linear-gradient(90deg, var(--good) 33%, var(--mid) 33% 66%, var(--bad) 66%);
-      opacity:.5;
-    }
-    .legend{
-      margin-top:10px; display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-      color: var(--muted); font-size:12px;
-    }
-    .legend .k{display:flex;align-items:center;gap:8px}
-    .tag{width:10px;height:10px;border-radius:999px}
-    .tag.good{background: var(--good)}
-    .tag.mid{background: var(--mid)}
-    .tag.bad{background: var(--bad)}
-
-    .lvlDesc{
-      margin-top:12px; padding:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      border-radius:14px; line-height:1.5;
-    }
-    .lvlNav{ margin-top:12px; display:flex;gap:10px;flex-wrap:wrap; }
-
-    .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
-    .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
-
+    /* --- Footer --- */
     .bottomBar{
-      position:fixed; left:0;right:0;bottom:0;
-      background:rgba(8,12,24,.85);
-      border-top:1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(10px);
-      padding:10px 12px; z-index:999;
+      position:fixed; bottom:0; left:0; right:0; padding:10px;
+      background: rgba(11,16,32,.9); backdrop-filter:blur(10px); border-top:1px solid var(--border);
+      z-index:100;
     }
-    .barInner{
-      max-width:1100px; margin:0 auto;
-      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
-    }
-    .barBtns{display:flex;gap:10px;flex-wrap:wrap}
+    .barInner{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
   </style>
 </head>
 
 <body>
-  <div class="wrapX">
-    <section class="hero">
-      <div class="heroTop">
-        <div>
-          <h1 id="pageTitle">Profil</h1>
-          <p id="pageSub" class="muted">—</p>
-        </div>
-
-        <div class="heroBtns">
-          <a class="btnX" href="test-enneagramme-sans-indice.html" style="border-color:var(--accent); color:var(--accent);">Retour au Test</a>
-          <a class="btnX" href="explore.html">Retour Explorer</a>
-          <a class="btnX" href="index.html">Diagramme</a>
-        </div>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <h1 id="pageTitle">Profil</h1>
+        <p id="pageSub" class="sub">Chargement...</p>
       </div>
-    </section>
+      <div class="heroBtns">
+        <a class="btn btn-accent" href="test-enneagramme-sans-indice.html">Retour au Test</a>
+        <a class="btn" href="explore.html">Retour Explorer</a>
+        <a class="btn" href="index.html">Diagramme</a>
+      </div>
+    </div>
 
-    <main class="grid">
-      
-      <aside class="panel">
+    <div class="grid">
+      <div class="panel">
         <div class="panelHead">
           <h2>Fiche de lecture</h2>
         </div>
         <div class="panelBody">
-          <div class="detailsList" id="sections"></div>
+          <div class="detailsList" id="sections">
+            </div>
         </div>
-      </aside>
+      </div>
 
-      <section class="panel">
+      <div class="panel" style="height:fit-content">
         <div class="panelHead">
           <h2>Niveaux de conscience</h2>
           <div class="pill">État actuel</div>
         </div>
-
         <div class="panelBody">
-          <p class="muted" id="levelsIntro" style="margin:0 0 10px; font-size:13px;"></p>
+          <p class="sub" style="margin-bottom:10px">Utilisez le curseur pour explorer l'évolution.</p>
+          
+          <h3 id="lvlTitle" class="lvlTitle">Niveau 1</h3>
+          <div class="lvlBadge"><span id="lvlDot" class="dot"></span><span id="lvlLabel">Sain</span></div>
 
-          <h3 class="lvlTitle" id="lvlTitle">Niveau 1</h3>
-
-          <div class="lvlBadge">
-            <span class="dot2" id="lvlDot"></span>
-            <b id="lvlBadge">Sain</b>
-          </div>
-
-          <div class="rangeWrap">
-            <div class="rangeTop">
-              <div class="n" id="lvlNumBox">1</div>
+          <div class="rangeBox">
+            <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--muted)">
+              <span>Mon niveau</span><span id="lvlNum" style="color:var(--text); font-weight:bold">1</span>
             </div>
-
-            <div style="margin-top:10px">
-              <input id="lvlRange" type="range" min="1" max="9" step="1" value="1" />
-              <div class="rangeTrackHint" aria-hidden="true"></div>
-              <div class="legend">
-                <span class="k"><span class="tag good"></span>1–3 Sain</span>
-                <span class="k"><span class="tag mid"></span>4–6 Moyen</span>
-                <span class="k"><span class="tag bad"></span>7–9 Malsain</span>
-              </div>
+            <input id="lvlRange" type="range" min="1" max="9" step="1" value="1">
+            <div class="legend">
+              <span style="color:var(--good)">1-3 Sain</span>
+              <span style="color:var(--mid)">4-6 Moyen</span>
+              <span style="color:var(--bad)">7-9 Malsain</span>
             </div>
-
-            <div class="lvlDesc" id="lvlDesc">...</div>
-
-            <div class="lvlNav">
-              <button class="btnX" id="btnPrev" type="button">Précédent</button>
-              <button class="btnX" id="btnNext" type="button">Suivant</button>
+            
+            <div id="lvlText" class="lvlDesc">...</div>
+            
+            <div class="navBtns">
+              <button id="btnPrev">Précédent</button>
+              <button id="btnNext">Suivant</button>
             </div>
           </div>
+          
+          <div style="margin-top:15px; font-size:12px; color:var(--muted); line-height:1.4">
+            <strong>Info :</strong> Le niveau mesure le degré d'identification à l'ego. Plus on est bas (9), plus on est en mode "survie/automatique". Plus on est haut (1), plus on est libre.
+          </div>
         </div>
-      </section>
-
-    </main>
-
-    <div class="bottomBar">
-      <div class="barInner">
-        <div class="barBtns">
-           <a class="btnX" href="test-enneagramme-sans-indice.html">Retour au Test</a>
-           <a class="btnX" href="index.html">Accueil</a>
-        </div>
-        <div style="font-size:12px; color:var(--muted)" id="barInfo">Ennéagramme</div>
       </div>
     </div>
   </div>
 
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="heroBtns">
+        <a class="btn" href="test-enneagramme-sans-indice.html">Test</a>
+        <a class="btn" href="index.html">Accueil</a>
+      </div>
+      <span style="font-size:12px; color:var(--muted)">Ennéagramme &copy; Brahms</span>
+    </div>
+  </div>
+
   <script>
-    // --- DONNÉES COMPLÈTES POUR LES 9 TYPES (Mise en forme : Gras et Listes) ---
-    const TYPES = {
+    // --- VOS DONNÉES D'ORIGINE COMPLÈTES (Non modifiées sur le fond) ---
+    // J'ai juste copié votre objet PROFILES en entier ici.
+    
+    const PROFILES = {
       1: {
-        title: "Type 1 – Le Perfectionniste",
-        sub: "Le Réformateur, l'Idéaliste",
-        levels: { 1: "Sagesse et acceptation : Abandonne le jugement, accepte la réalité telle qu'elle est avec sérénité.", 2: "Raison et évaluation : Guidé par la conscience, raisonnable et modéré.", 3: "Responsabilité : Hautement éthique, discipliné, enseigne par l'exemple.", 4: "Obligation : Devient critique, craint l'erreur, travaille dur par devoir.", 5: "Ordre et contrôle : Tendu, organisé à l'extrême, peur d'être pris en défaut.", 6: "Jugement : Critique envers les autres, moralisateur, jamais satisfait.", 7: "Intolérance : Dogmatique, inflexible, ne supporte aucune déviation.", 8: "Obsession : Pensées compulsives sur l'imperfection, actions contradictoires.", 9: "Punition : Condamnation sévère de soi et des autres, risques destructeurs." },
+        title: `Type 1 - Le Réformateur / Le Perfectionniste`,
+        aliases: [`Le Réformateur`,`L’Idéaliste`,`L’Organisateur`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 1 est une personnalité <b>idéaliste et rationnelle</b>, animée par des principes solides. Il a le sentiment d'avoir une mission : améliorer le monde et corriger les erreurs.</p><ul><li><b>Désir fondamental :</b> Être intègre, bon et équilibré.</li><li><b>Peur fondamentale :</b> Être mauvais, défectueux, corrompu ou imparfait.</li><li><b>Message du Surmoi :</b> Tu es bien si tu fais ce qui est juste.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Instinctif (le corps). L'énergie est dirigée vers l'intérieur pour se contrôler soi-même.</li><li><b>Compulsion :</b> Éviter la colère à tout prix.</li><li><b>Passion :</b> La Colère (souvent ressentie comme du ressentiment ou de l'irritation).</li><li><b>Fixation :</b> Perfectionnisme (croire qu'il n'y a qu'une seule bonne façon de faire).</li><li><b>Mécanisme de défense :</b> Formation réactionnelle (transformer une pulsion inacceptable en son contraire, ex: colère → politesse).</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Anxiété) :</b> Contrôle de soi, organisation minutieuse, peur que l'erreur menace la survie.</li><li><b>Social (Inadaptabilité) :</b> Le croisé ou le modèle. Veut réformer les institutions, rigide sur les règles du groupe.</li><li><b>Tête-à-tête (Jalousie) :</b> Intense, projette son idéal de perfection sur le partenaire, désire une relation sans faille.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 4) :</b> Devient mélancolique, se sent incompris, s'autorise des écarts émotionnels, se replie sur lui-même.</li><li><b>En Croissance (→ 7) :</b> Devient plus spontané, joyeux, accepte l'imprévu, s'autorise le plaisir sans culpabilité.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 1 est d'accepter que <b>l'imperfection fait partie de la vie</b>.</p><ul><li>Apprendre à distinguer le \"je veux\" du \"je dois\".</li><li>Pratiquer la relaxation pour relâcher la tension physique.</li><li>Reconnaître que son jugement n'est pas la seule vérité.</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 1 - Le Réformateur / Le Perfectionniste
+
+1. Présentation et Identification
+Titre et Identité : Le Type 1 est appelé le Réformateur ou le Perfectionniste. C'est un type de personnalité rationnel et idéaliste, caractérisé par des principes solides, une grande maîtrise de soi et une recherche constante de perfection. Ils sont perçus comme des personnes sérieuses, intègres et dotées d'un sens aigu du bien et du mal.
+Définition globale : Le Type 1 est caractérisé par un désir profond d'être quelqu'un de bien sur le plan moral. Son énergie est dirigée vers le maintien d'idéaux élevés et la pratique d'une grande rigueur personnelle. Persuadé qu'il y a toujours moyen de s'améliorer, il évalue constamment ses actions et celles des autres par rapport à des standards d'excellence. Le 1 est animé par un désir d'amélioration, cherchant à corriger le désordre de son environnement par une action pratique et éthique. Il possède un talent naturel pour l'organisation, l'enseignement et la défense de causes nobles, se sentant investi d'une mission de vie.
+Rôle Social : L'Éducateur ou l'Enseignant.`},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Le Type 1 appartient au centre instinctif, qu'il utilise principalement vers l'intérieur pour agir sur lui-même.
+Hiérarchie des centres :
+* Centre Préféré : Instinctif (Utilisation intérieure)
+* Centre de Support : Émotionnel
+* Centre Réprimé : Mental
+Orientation
+La rigueur personnelle et les idéaux élevés.
+Compulsion
+Éviter à tout prix la colère (la sienne et celle des autres).
+Passion et Fixation
+* Passion (Cœur) : La Colère, qui naît du constat permanent d'imperfection dans le monde et en soi. Elle est souvent vécue comme un ressentiment permanent face à l'imperfection.
+* Fixation (Tête) : Le Perfectionnisme, qui pousse à travailler toujours plus pour atteindre un absolu souvent inaccessible. Vérification et correction incessante des détails.
+Mécanisme de défense
+La formation réactionnelle. Ce mécanisme consiste à transformer une émotion inacceptable (comme la colère ou le désir de plaisir) en son opposé (des conseils, de l'aide ou une tension accrue) pour rester "parfait". Cela consiste à prendre une émotion inacceptable (comme la colère) et à l'exprimer par son opposé (comme des conseils bienveillants ou un soutien constant), tout en réprimant l'impulsion originelle.
+Peurs et Désirs fondamentaux
+* Peur de base : Être mauvais, corrompu, pervers ou défectueux.
+* Désir de base : Être bon, vertueux, en équilibre et posséder de l'intégrité.
+* Message du Surmoi : « Tu es bien ou correct si tu fais ce qui est juste ».`},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Le Schéma de l'enfance
+Le 1 a souvent ressenti le besoin de justifier son existence en étant un « bon enfant » et en assumant des responsabilités précoces. Il a vécu une déconnexion de la figure protectrice (souvent le père), ce qui l'a poussé à devenir son propre guide moral et à s'auto-discipliner rigoureusement pour gagner son indépendance.
+Les Sous-types d'Ailes
+* 1w9 (L'Idéaliste) : Plus détaché, calme, érudit et souvent réservé. Il cherche à améliorer les choses avec une touche plus douce et philosophique.
+* 1w2 (L'Avocat) : Plus chaleureux, tourné vers les autres, persuasif et actif dans les réformes sociales.
+Les trois sous-types instinctifs
+* Conservation (Anxiété) : Focalisé sur l'auto-contrôle, la santé, le budget et l'ordre domestique. La personne croit que la moindre erreur peut compromettre sa sécurité. Elle cherche de manière obsessionnelle à tout bien faire pour éviter tout danger. Souvent anxieux face aux erreurs.
+* Social (Inadaptabilité) : Le « Croisé » qui représente des valeurs objectives et cherche à réformer la société ou son groupe. Ce sous-type a une vision rigide de la manière dont les interactions sociales devraient se dérouler. Il cherche à corriger et réformer le groupe pour qu'il suive les règles.
+* Sexuel (Jalousie) : Recherche une relation parfaite avec un partenaire idéalisé et peut devenir très critique si les standards ne sont pas partagés. Le 1 sexuel craint que son partenaire ne le rejette pour quelqu'un de plus "irréprochable". Il est extrêmement attentif aux détails de la relation et peut se montrer très critique envers l'autre pour qu'il soit idéal.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 1 en Entreprise
+Profil professionnel
+Le Type 1 privilégie la qualité et l'éthique. Il respecte scrupuleusement les procédures et la discipline, considérant son travail comme un contrat moral. Il prend du temps pour décider afin d'éviter toute erreur, privilégiant le concret aux abstractions.
+Style de management
+Il bâtit des projets rationnels et précis. Une fois le plan validé, il donne des instructions rigoureuses et accepte mal les remises en cause. Sa difficulté à déléguer provient souvent de sa crainte des erreurs d'autrui.
+Style de communication
+Sa communication est souvent calme, précise et informative, privilégiant les conseils à la confrontation directe. Toutefois, une colère sous-jacente peut être perçue par ses interlocuteurs à travers une tension physique ou un ton sec.
+Points de vigilance
+Le Type 1 peut se perdre dans les détails, ce qui risque de ralentir les projets. Sa rigidité et ses critiques excessives peuvent frustrer ses collaborateurs.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Réaction au Stress (Désintégration)
+Vers le Type 4. Le 1 devient alors mélancolique, irrationnel, se sent seul et incompris, et peut se perdre dans des fantasmes romantiques pour échapper à ses fardeaux.
+Chemin d'Intégration (Croissance)
+Vers le Type 7. Le 1 apprend à se détendre, devient plus spontané, joyeux, curieux et accepte une plus grande variété de possibilités sans juger.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Points d'amélioration à travailler
+* Apprendre à être moins perfectionniste en acceptant que l'erreur est humaine.
+* Porter son attention sur les aspects positifs d'une situation avant de critiquer.
+* Pratiquer la relaxation pour évacuer les tensions physiques.
+* Être moins exigeant envers les autres et valoriser leurs compétences.
+* Développer le sens de l'humour.
+* Complimenter les autres et apprendre à écouter ses propres besoins émotionnels.
+Pratiques suggérées et Attitudes de Guérison
+Se dire : « Peut-être que les autres ont raison. Peut-être que j'ai fait tout ce qui pouvait être fait ».
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 1 s'intègre vers le Type 7 (ou le Type 4).
+* Essence : C'est la "vraie personnalité" libérée des automatismes de l'ego, permettant de se connecter à ses pleines potentialités.
+* Idée supérieure : La Perfection. Il réalise que la perfection est le meilleur compromis entre l'idéal et la réalité ici et maintenant.
+* Vertu : La Patience, acceptant le rythme des choses et l'imperfection du monde avec indulgence.`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+L'Idée sacrée
+La Perfection Sacrée. C'est la perception que la réalité est un processus complet et juste en chaque instant. Comprendre que la réalité est déjà parfaite telle qu'elle est.
+L'Illusion Spécifique
+Le Jugement Comparatif. Croire que le bien et le mal sont des absolus et que certaines choses sont intrinsèquement meilleures que d'autres au niveau de l'être.
+La Difficulté Spécifique
+Le sentiment d'être "mauvais", une conviction profonde d'avoir un défaut de fabrication intrinsèque.
+La Réaction Spécifique
+S'améliorer. Une activité mentale et pratique incessante pour corriger ce qui ne va pas.
+Le Noyau de la Fixation
+La constellation entre le sentiment de défaut intrinsèque (difficulté) et l'activité obsessive d'amélioration (réaction).`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+La Confiance Fondamentale
+Une certitude innée et préverbale que l'univers est bienveillant et que tout finira par être bénéfique.
+La Lumière du jour Vivante
+La qualité de l'Être qui ressemble à une conscience aimante et universelle, perçue comme la substance même de tout ce qui existe.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. La Perspective et la Solution
+L'Idée Sacrée comme Psycho-catalyseur
+Elle agit comme un miroir qui révèle et dissout les distorsions cognitives de l'ego.
+Rétablir la Confiance Fondamentale
+Cela passe par l'acceptation de son impuissance existentielle et la découverte que la réalité nous soutient sans effort de notre part.
+L'Abandon
+Cesser de manipuler son expérience intérieure et laisser l'Être se déployer sans interférence.
+La Poussée Optimisante
+Reconnaître que le dynamisme de la réalité tend naturellement vers l'harmonie si l'on arrête d'essayer de la "fixer".`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Le Type 1 peut être comparé à un sculpteur rigoureux qui, au lieu de contempler l'œuvre finie, ne voit que les minuscules aspérités de la pierre qu'il doit polir sans relâche. Son "petit juge" intérieur est une voix constante qui lui rappelle que le travail n'est jamais vraiment terminé tant qu'une seule imperfection subsiste.
+L'analogie de l'or : Un anneau d'or peut être bien ou mal façonné (perfection relative), mais sa nature profonde reste de l'or pur (perfection absolue/sacrée).`}
+        ],
+        levels: [
+          `Niveau 1 : L'acceptation et la sagesse. À ce stade, le 1 abandonne la conviction qu'il est en position de juger la réalité. Il devient profondément sage, discernant et capable d'accepter la vie telle qu'elle est sans réaction émotionnelle, atteignant ainsi son désir de base : avoir une intégrité totale.`,
+          `Niveau 2 : L'évaluation et la raison. La personne se concentre sur les directives de son surmoi pour se guider et se protéger des parties « désordonnées » d'elle-même. Son image de soi est celle d'une personne sensée, modérée et objective.`,
+          `Niveau 3 : L'intégrité et la responsabilité. Le 1 renforce son image de soi en vivant selon sa conscience et sa raison. Il est hautement éthique, discipliné et enseigne par l'exemple en mettant de côté ses désirs personnels pour le bien de tous.`,
+          `Niveau 4 : L'obligation et l'effort. Le 1 commence à craindre que les autres soient indifférents à ses principes. Il devient sérieux, se sent obligé de corriger tout ce qu'il voit et commence à débattre avec les autres pour les convaincre de la justesse de ses vues.`,
+          `Niveau 5 : La maîtrise de soi et l'ordre. La peur d'être condamné pour toute déviation par rapport à ses idéaux grandit. Le 1 s'oblige à vivre selon ses propres standards en permanence, s'organisant de manière rigoureuse. Il devient ponctuel et méthodique, mais aussi tendu et irritable.`,
+          `Niveau 6 : Le jugement et la critique. Il craint que les autres ne gâchent l'ordre qu'il a établi et s'en met en colère. Il réagit en reprochant aux autres de ne pas être à la hauteur de ses standards. Il devient perfectionniste, opinionné et souvent sarcastique.`,
+          `Niveau 7 : L'auto-justification et l'inflexibilité. Le 1 craint que ses idéaux soient faux, ce qui le rend amer et misanthrope. Pour sauver son image de soi, il devient extrêmement fermé d'esprit, refuse tout compromis et devient hautement moralisateur.`,
+          `Niveau 8 : L'obsession et la contradiction. Désespéré de contrôler ses désirs irrationnels, il devient obsédé par les parties de lui-même qu'il voulait dompter. Paradoxalement, il commence à agir selon ses désirs réprimés tout en continuant de les condamner publiquement.`,
+          `Niveau 9 : La condamnation et la punition. Réalisant qu'il a perdu le contrôle et qu'il commet les actes qu'il ne peut tolérer chez les autres, le 1 devient punitif. Il tente de supprimer la « cause » de ses obsessions en lui-même ou chez les autres, ce qui peut mener à l'auto-mutilation, au meurtre ou au suicide.`
         ]
       },
       2: {
-        title: "Type 2 – L'Altruiste",
-        sub: "L'Aidant, le Donneur",
-        levels: { 1: "Amour inconditionnel : Prend soin de soi et des autres sans attente, humble.", 2: "Empathie : Attentionné, effusif, cherche à être proche.", 3: "Générosité : Donne concrètement, encourage, mais veut être apprécié.", 4: "Volonté de plaire : Devient indispensable pour s'assurer de l'amour, flatteur.", 5: "Possessivité : Intrusif, envahissant, fait tout pour l'autre 'pour son bien'.", 6: "Orgueil : Se plaint de tout ce qu'il fait, culpabilise les autres.", 7: "Manipulation : Utilise la pitié ou la maladie pour retenir l'attention.", 8: "Coercition : Exige l'amour, sentiment de droit, colères hystériques.", 9: "Victimisation : S'effondre pour obliger les autres à le prendre en charge." },
+        title: `Type 2 - Le Pourvoyeur / L'Altruiste`,
+        aliases: [`Le Pourvoyeur`,`L’Altruiste`,`Celui qui aide`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 2 est tourné vers les autres. Chaleureux et démonstratif, il cherche à être aimé en se rendant indispensable.</p><ul><li><b>Désir fondamental :</b> Se sentir aimé et nécessaire.</li><li><b>Peur fondamentale :</b> Être indigne d'amour ou ne pas être désiré pour soi-même.</li><li><b>Message du Surmoi :</b> Tu es bien si tu es aimé et proche des autres.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Émotionnel (le cœur). L'énergie est dirigée vers l'extérieur (vers les autres).</li><li><b>Compulsion :</b> Éviter de reconnaître ses propres besoins.</li><li><b>Passion :</b> L'Orgueil (fierté d'aider sans avoir besoin d'aide).</li><li><b>Fixation :</b> Flatterie (complimenter pour séduire).</li><li><b>Mécanisme de défense :</b> Répression (refouler ses propres besoins).</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Privilège) :</b> Charme \"enfantin\" pour être protégé. \"Moi d'abord\" caché.</li><li><b>Social (Ambition) :</b> Veut être influent, l'éminence grise des gens importants.</li><li><b>Tête-à-tête (Conquête) :</b> Séduction intense, veut être la personne la plus importante pour l'autre.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 8) :</b> Devient colérique, direct, blâme les autres de leur ingratitude, vindicatif.</li><li><b>En Croissance (→ 4) :</b> Se connecte à ses propres émotions, devient plus authentique et créatif, accepte de ne pas plaire.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 2 est d'apprendre à <b>s'aimer soi-même</b> sans attendre la validation des autres.</p><ul><li>Oser dire non et poser des limites.</li><li>Identifier ses propres besoins avant d'aider.</li><li>Accepter la solitude comme un moment de ressourcement.</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 2 - Le Pourvoyeur / L'Altruiste
+1. Présentation et Identification
+Titre et Identité : Le Type 2 est appelé le Pourvoyeur, l'Altruiste, ou encore Celui qui aide. Il est défini comme le type attentionné, généreux, démonstratif et possessif. C'est une personne centrée sur les relations, cherchant à être aimée et appréciée pour sa bonté.
+Définition globale : Le Type 2, souvent nommé l'Altruiste ou le Donneur, place l'amour et l'aide au centre de son existence. C'est une personne chaleureuse qui possède une capacité naturelle à percevoir les besoins et les qualités d'autrui pour les encourager à se réaliser. Il cherche à être aimé en se rendant indispensable par une aide concrète, agissant souvent comme une éminence grise. Le 2 est animé par l'orientation de l'amour et de l'aide. Il possède un talent naturel pour percevoir les besoins des autres, les encourager et agir comme un confident chaleureux. Il cherche à créer une image de personne indispensable et désintéressée.
+Rôle Social : L'"Ami Spécial" ou le Confident.`},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Le Type 2 appartient au centre émotionnel, qu'il utilise principalement vers l'extérieur.
+Hiérarchie des centres :
+* Centre Préféré : Émotionnel (Utilisation extérieure)
+* Centre de Support : Instinctif
+* Centre Réprimé : Mental
+Orientation
+L'amour et l'aide.
+Compulsion
+Éviter de reconnaître ses propres besoins.
+Passion et Fixation
+* Passion (Cœur) : L'Orgueil, qui se manifeste par la fierté d'aider sans avoir soi-même besoin d'aide. Se voir comme la source de l'aide sans avoir soi-même besoin de rien.
+* Fixation (Tête) : La Flatterie (pour séduire) et le Dédain (envers ceux qui ne semblent pas avoir besoin de lui ou qui sont "égoïstes").
+Mécanisme de défense
+La répression (ou refoulement). Il supprime ses propres besoins et les sentiments qui ne lui vaudraient pas l'approbation des autres pour projeter une image de générosité absolue. Il supprime inconsciemment ses propres besoins et les sentiments (comme l'agressivité) qui pourraient nuire à son image de personne aimante afin d'obtenir l'approbation d'autrui.
+Peurs et Désirs fondamentaux
+* Peur de base : Être indigne d'être aimé ou ne pas être voulu pour lui-même.
+* Désir de base : Se sentir aimé.
+* Le Message du Surmoi : « Tu es bien ou correct si tu es aimé par les autres et si tu es proche d'eux ». `},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Le Schéma de l'enfance
+L'enfant 2 a souvent ressenti que l'amour n'était pas gratuit et qu'il devait le gagner en étant serviable et en mettant les besoins des autres avant les siens. Il a appris à devenir un "petit parent" ou un médiateur pour obtenir l'attention de la figure nourricière.
+Les Sous-types d'Ailes
+* 2w1 (Le Serviteur) : Plus sérieux, moralisateur et tourné vers les tâches ingrates ou le service public.
+* 2w3 (L'Hôte/Hôtesse) : Plus extraverti, charmant, ambitieux et soucieux de son image sociale.
+Les trois sous-types instinctifs
+* Conservation (Privilège) : Se sent privilégié. Ce sous-type sacrifie excessivement ses besoins mais estime en retour avoir le droit à un traitement spécial et se sentir privilégié. Il attend un traitement spécial en retour de ses sacrifices extrêmes.
+* Social (Ambition) : L'ambitieux. Il possède un flair pour repérer les personnes puissantes ou de haut statut. Il cherche à les assister pour obtenir une influence indirecte et une protection. Il cherche l'influence et le prestige en se liant à des personnes puissantes.
+* Sexuel (Séduction agressive) : C'est un séducteur qui utilise son charme de manière active pour établir une relation intime forte, souvent avec des personnes de pouvoir. Il utilise son charme de façon intense pour fusionner avec une personne cible.`},
+
+          {k:`Signaux et Défis`, d:``, t:`Signaux d'Alerte
+* Signal d'Éveil : Le "people-pleasing" (tendance compulsive à vouloir plaire à tout le monde).
+* Signal d'Alarme : La peur que ses efforts pour se rapprocher des gens ne fassent en réalité que les chasser.
+Les Défis de croissance
+Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sans culpabilité.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 2 en Entreprise
+Profil professionnel
+En entreprise, le 2 privilégie les relations humaines. Il est positif, amical et dispose d'un vaste réseau relationnel interne. Il a cependant du mal à travailler seul et nécessite l'approbation de sa hiérarchie pour être efficace.
+Style de management
+Il est un manager formateur qui cherche à développer le potentiel de ses collaborateurs. Il privilégie l'improvisation à la planification et peut parfois "étouffer" son équipe par un excès d'aide.
+Style de communication
+Sa communication est chaleureuse et modulée. Il utilise le style « Aide / Avis », se tenant souvent proche de son interlocuteur pour renforcer le lien.
+Points de vigilance
+Il peut négliger ses propres priorités de travail pour aider les autres, se retrouver en surpoids de tâches ou manipuler indirectement pour obtenir de la reconnaissance.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Réaction au Stress (Désintégration)
+Vers le Type 8. Le 2 devient alors brusque, agressif, colérique et exigeant, reprochant ouvertement aux autres leur manque de gratitude.
+Chemin d'Intégration (Croissance)
+Vers le Type 4. Le 2 apprend à se connecter à ses propres émotions profondes, devient plus authentique et se permet d'être créatif pour lui-même.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Points d'amélioration à travailler
+* Apprendre à définir ses frontières et à dire « Non ».
+* N'aider que si on le lui demande expressément.
+* Séparer les facteurs rationnels des facteurs humains lors des prises de décision.
+* Accepter les critiques objectives sans y voir un rejet personnel.
+* Noter ses propres besoins quotidiens et ne pas aider quelqu'un qui n'a pas explicitement demandé de l'aide.
+Pratiques suggérées et Attitudes de Guérison
+Pratiquer la relaxation. Se dire : « Peut-être que je pourrais laisser quelqu'un d'autre faire cela. Peut-être que je pourrais faire quelque chose de bon pour moi aussi ».
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 2 s'intègre vers le Type 4 (ou le Type 8).
+* Essence : C'est l'état de la personnalité libérée des automatismes de l'ego, accédant à ses pleines potentialités.
+* Idée supérieure : La Liberté. Il réalise que sa valeur ne dépend pas de son utilité pour les autres. Être libéré du besoin d'approbation.
+* Vertu : L'Humilité, qui consiste à reconnaître ses limites et à prendre soin des autres dans le respect de leur autonomie. Reconnaître que l'amour ne se gagne pas par l'effort.`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+L'Idée sacrée
+Volonté Sacrée / Liberté Sacrée. C'est la perception que tout ce qui se produit est le fonctionnement de la réalité une, et que la vraie liberté consiste à s'abandonner à ce flux.
+L'Illusion Spécifique
+La Volonté Séparée. La conviction qu'il existe un "moi" séparé capable de faire des choix indépendants et de manipuler la réalité à sa guise.
+La Difficulté Spécifique
+La Castration humiliante. Le sentiment d'être amenuisé et impuissant lorsque le soutien de l'environnement manque, vécu comme une blessure à l'orgueil.
+La Réaction Spécifique
+Action obstinée. Une tentative têtue et orgueilleuse de "faire à sa manière" pour compenser le sentiment d'impuissance.
+Le Noyau de la Fixation
+La constellation entre le sentiment de castration (difficulté) et l'activité d'obstination/manipulation (réaction).`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+La Confiance Fondamentale
+Une certitude innée que l'univers est bienveillant et que tout finit par être bénéfique sans manipulation personnelle.
+La Lumière du jour Vivante
+La qualité de l'Être perçue comme un Amour Universel omniprésent qui soutient l'âme en permanence.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. La Perspective et la Solution
+L'Idée Sacrée comme Psycho-catalyseur
+La compréhension de la Volonté Sacrée dissout l'erreur cognitive de l'ego (le sentiment de séparation).
+Rétablir la Confiance Fondamentale
+Cela passe par la reconnaissance que nous n'avons pas à "gagner" notre place ou l'amour, car nous sommes déjà portés par la réalité.
+L'Abandon
+Cesser de manipuler ses propres états ou ceux des autres, et se laisser porter par le déploiement naturel de la vie.
+La Poussée Optimisante
+Reconnaître que la réalité tend spontanément vers l'harmonie si l'ego s'arrête d'interférer.`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Le Type 2 peut être comparé à un hôte dévoué d'une grande réception : il s'assure que chaque convive a tout ce dont il a besoin, anticipe les désirs de chacun et semble omniprésent pour garantir le confort de tous. Cependant, dans son zèle à servir, il en oublie souvent de s'asseoir lui-même à table, attendant secrètement que quelqu'un remarque son assiette vide sans qu'il ait à le demander.
+L'Essence du 2 : Comme un flux de chaleur naturelle qui n'a pas besoin d'être dirigé pour être ressenti.
+Le Type 2 est comme un voyageur dans un train qui garde sa lourde valise sur ses genoux, craignant que si il la pose, le train ne pourra pas la porter ; il doit apprendre que le train (la réalité) porte déjà tout le poids sans qu'il ait besoin de faire d'effort.`}
+        ],
+        levels: [
+          `Niveau 1 : Prendre soin de soi et amour inconditionnel. Le 2 abandonne la croyance qu'il n'a pas le droit de s'occuper de ses propres besoins. Il accède à son désir de base (être aimé) et ressent un amour inconditionnel pour lui-même et pour les autres. Il devient joyeux, gracieux et humble.`,
+          `Niveau 2 : Empathie et attention. Il se concentre sur les sentiments des autres avec une sollicitude aimante pour se protéger de sa peur de ne pas être aimé. Son image de soi est : « Je suis aimant, attentionné et désintéressé ».`,
+          `Niveau 3 : Générosité et soutien. Il renforce son image de soi en faisant concrètement de bonnes choses pour les autres. Il est encourageant, exprime ouvertement ses sentiments et partage ses talents avec enthousiasme.`,
+          `Niveau 4 : Volonté de plaire. Le 2 commence à craindre que ses efforts ne suffisent pas et que les autres ne veuillent pas de lui. Il tente de conquérir les gens par la flatterie, le soutien excessif et en essayant d'être indispensable.`,
+          `Niveau 5 : Possessivité et intrusion. Il s'inquiète que ses proches aiment quelqu'un d'autre plus que lui. Pour être nécessaire, il fait passer les besoins des autres avant les siens afin d'avoir une « créance » sur eux. Il devient fier mais exigeant, ne quittant pas les autres du regard.`,
+          `Niveau 6 : Importance de soi et domination. Il est en colère d'être considéré comme acquis mais ne peut exprimer sa douleur directement. Il se plaint de sa santé, souligne ses bonnes actions et rappelle aux autres tout ce qu'ils lui doivent. Les sentiments refoulés causent des problèmes physiques.`,
+          `Niveau 7 : Auto-justification et manipulation. Il craint de chasser les gens, ce qui est souvent le cas. Pour sauver son image de soi, il voit les autres comme des « ingrats égoïstes ». Il utilise la pitié pour créer une dépendance et empêcher les autres de partir.`,
+          `Niveau 8 : Sentiment de droit et coercition. Désespéré, il poursuit l'affection de manière obsessive. Il se sent en droit d'obtenir tout ce qu'il veut parce qu'il a « tellement souffert » et peut agir de façon imprévisible ou inappropriée.`,
+          `Niveau 9 : Victimisation et fardeau. Il réalise qu'il a pu être égoïste ou même nuire aux autres. Il s'effondre physiquement et émotionnellement, jouant le rôle de martyr pour obliger les autres à prendre soin de lui.`
         ]
       },
+
       3: {
-        title: "Type 3 – Le Battant",
-        sub: "Le Réalisateur, l'Exécutant",
-        levels: { 1: "Authenticité : Se valorise pour ce qu'il est, pas ce qu'il fait. Vrai.", 2: "Confiance : Compétent, adaptable, modèle de réussite.", 3: "Performance : Efficace, orienté objectifs, 'Star' du groupe.", 4: "Course au succès : Peur de l'échec, se vend, travaille trop.", 5: "Image : Souci des apparences, devient un 'caméléon', distance froide.", 6: "Narcissisme : Arrogance, compétition féroce, peur d'être démasqué.", 7: "Tromperie : Mensonge pour sauver la face, vide intérieur.", 8: "Opportunisme : Exploite les autres, trahit pour survivre.", 9: "Monomanie : Vindicatif, acharnement destructeur pour éliminer les témoins de l'échec." },
+        title: `Type 3 - Le Battant / L'Exécutant`,
+        aliases: [`Le Battant`,`L’Exécutant`,`Celui qui réussit`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 3 est une personne orientée vers le succès, l'efficacité et l'adaptation. Il veut briller et être admiré pour ses réalisations.</p><ul><li><b>Désir fondamental :</b> Se sentir précieux, admiré et compétent.</li><li><b>Peur fondamentale :</b> L'échec et être sans valeur.</li><li><b>Message du Surmoi :</b> Tu es bien si tu réussis.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Émotionnel (mais refoulé pour être efficace).</li><li><b>Compulsion :</b> Éviter les échecs.</li><li><b>Passion :</b> Le Mensonge (ou Vanité) : croire qu'on est l'image qu'on projette.</li><li><b>Fixation :</b> Vanité / Efficacité.</li><li><b>Mécanisme de défense :</b> Identification (devenir son rôle ou son métier).</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Sécurité) :</b> Le bosseur. Accumule des avoirs (argent, biens) pour se sentir en sécurité.</li><li><b>Social (Prestige) :</b> Cherche les titres, les diplômes, la reconnaissance publique. Très compétitif.</li><li><b>Tête-à-tête (Charisme) :</b> Soutient les autres pour briller à travers eux. Image de masculinité/féminité idéale.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 9) :</b> Devient apathique, procrastine, se désengage, perd son énergie (burn-out).</li><li><b>En Croissance (→ 6) :</b> Devient plus loyal, coopératif, s'engage pour le groupe et non plus pour sa gloire personnelle.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 3 est de découvrir qui il est <b>derrière le masque</b>.</p><ul><li>Faire des pauses sans rien produire.</li><li>Partager ses échecs et ses doutes avec des proches.</li><li>Privilégier la coopération sur la compétition.</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 3 - Le Battant / L'Exécutant
+1. Présentation et Identification
+Titre et Identité : Le Type 3 est appelé le Battant ou l'Exécutant. C'est le type adaptable et orienté vers le succès, caractérisé par son pragmatisme, son ambition et son souci de l'image. On les appelle souvent les « stars » de la nature humaine car ils incarnent les qualités valorisées par leur culture.
+Définition globale : Le Type 3, souvent appelé le Battant ou Celui qui réussit, est une personnalité centrée sur la capacité à réaliser et à réussir. C'est un individu dynamique, très relationnel et particulièrement attentif à son image sociale. Il cherche à être admiré pour ses compétences et ses succès concrets, s'identifiant souvent totalement à son travail. Le 3 est animé par le besoin de se sentir efficace et remarquable. Il possède un talent naturel pour l'organisation, la communication et la motivation des autres. Il tend à confondre son identité avec son travail et ses accomplissements.
+Rôle Social : « Le Meilleur ». `},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Le Type 3 appartient au centre émotionnel, qu'il utilise à la fois vers l'intérieur et l'extérieur pour chercher un équilibre. Paradoxalement, il réprime ce même centre, ce qui l'amène à mal connaître ses propres émotions. Il privilégie le centre Émotionnel (utilisé pour maintenir l'équilibre entre l'intérieur et l'extérieur), mais paradoxalement, il le réprime pour ne pas freiner sa productivité.
+Hiérarchie des centres :
+* Centre Préféré : Émotionnel (Utilisation intérieure/extérieure)
+* Centre de Support : Instinctif
+* Centre Réprimé : Mental (Note : Le centre émotionnel est également considéré comme réprimé chez le 3 car il cherche à l'équilibrer)
+Orientation
+Capacité à réaliser et à réussir.
+Compulsion
+Éviter les échecs.
+Passion et Fixation
+* Passion (Cœur) : Le Mensonge (ou Tromperie). Il s'agit d'un mensonge "sincère" envers lui-même, où il finit par croire au rôle social qu'il joue au détriment de son être réel. C'est avant tout un mensonge envers soi-même, en se faisant croire que l'on est l'image de succès que l'on projette.
+* Fixation (Tête) : La Vanité et le Succès. Il court après l'admiration et les marques extérieures de réussite. La Vanité et la poursuite du succès comme preuve de sa valeur.
+Mécanisme de défense
+L'identification. Le 3 s'identifie aux normes sociales et à son rôle professionnel pour masquer ses doutes ou ses sentiments pénibles. Le 3 s'identifie si complètement à son rôle social et à ses succès qu'il en oublie son être véritable pour ne pas ressentir de sentiments pénibles comme la peur ou l'incertitude.
+Peurs et Désirs fondamentaux
+* Peur de base : Être sans valeur ou sans intérêt intrinsèque en dehors de ses réalisations.
+* Désir de base : Se sentir estimé, accepté et désirable.
+* Message du Surmoi : « Tu es bien ou correct si tu réussis et que les autres ont une bonne opinion de toi ». `},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Le Schéma de l'enfance
+L'enfant 3 a souvent ressenti qu'il n'était pas valorisé pour lui-même mais pour ce qu'il faisait. Il a développé un lien profond avec la figure nourricière (souvent la mère) en cherchant à répondre à ses attentes pour être aimé. Il a appris à jouer le rôle du « héros de la famille ».
+Les Sous-types d'Ailes
+* 3w2 (Le Charmeur) : Plus extraverti, amical, encourageant et soucieux d'être aimé.
+* 3w4 (Le Professionnel) : Plus sérieux, axé sur le travail, la compétence et l'intégrité professionnelle.
+Les trois sous-types instinctifs
+* Conservation (Accumulation) : Le « Bourreau de travail ». Il cherche à assurer sa sécurité par l'accumulation d'argent et d'objets coûteux ou luxueux qui symbolisent sa réussite. Cherche la sécurité par l'accumulation financière et matérielle.
+* Social (Prestige) : Le « Chercheur de statut ». Il accorde une importance capitale au prestige et au fait d'appartenir à des groupes ou entreprises valorisants pour provoquer l'admiration. Veut être reconnu comme le meilleur dans son groupe ou sa profession.
+* Sexuel (Masculinité / Féminité) : La « Star » ou la perle rare. Il cherche à incarner l'idéal masculin ou féminin selon les critères sociaux en vigueur pour être considéré comme un partenaire idéal. Cherche à incarner l'idéal de désirabilité pour attirer un partenaire.`},
+
+          {k:`Signaux et Défis`, d:``, t:`Signaux d'Alerte
+* Signal d'Éveil : Commencer à croire que sa valeur dépend exclusivement de son succès.
+* Signal d'Alarme : La peur que ses succès soient vides ou que ses prétentions soient démasquées comme frauduleuses.
+Les Défis de croissance
+Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et identifier ses vrais buts personnels.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 3 en Entreprise
+Profil professionnel
+Le 3 est un travailleur acharné, efficace et pragmatique. Il supporte très bien la pression et sait mener plusieurs tâches de front. Il privilégie souvent la quantité et le résultat visible au détriment des détails ou des procédures.
+Style de management
+C'est un dirigeant naturel qui entraîne son équipe par son enthousiasme. Il fixe des buts clairs et délègue facilement, mais peut instaurer une compétition interne pour stimuler la productivité.
+Style de communication
+Son style est qualifié de « Propagande ». Il est persuasif, chaleureux et s'adapte comme un caméléon à son interlocuteur pour "vendre" ses projets ou son image.
+Points de vigilance
+Il risque l'épuisement (burn-out) par hyperactivité et peut négliger sa santé ou sa vie privée. Sa compétitivité excessive peut également créer des rivalités au sein de son équipe.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Réaction au Stress (Désintégration)
+Vers le Type 9. Le 3 devient alors apathique, désengagé, procrastinateur et se perd dans des routines inutiles.
+Chemin d'Intégration (Croissance)
+Vers le Type 6. Le 3 apprend à s'engager envers les autres, devient plus loyal, coopératif et trouve une sécurité intérieure au lieu de chercher l'admiration.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Points d'amélioration à travailler
+* Apprendre à ralentir et à respecter le rythme des autres.
+* S'intéresser au long terme plutôt qu'aux profits immédiats.
+* Reconnaître la part des autres dans ses succès et être plus attentif à leurs besoins.
+* Identifier ses vrais buts personnels au-delà de la reconnaissance sociale.
+* Développer sa créativité sans public et partager ses vulnérabilités avec des amis de confiance.
+Pratiques suggérées et Attitudes de Guérison
+Pratiquer la méditation pour « simplement être ». Se dire : « Peut-être que je n'ai pas besoin d'être le meilleur. Peut-être que les gens m'accepteront tel que je suis ».
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 3 s'intègre vers le Type 6 (ou le Type 9).
+* Essence : L'état où la personnalité exprime ses potentialités réelles, libérée de la recherche d'image.
+* Idée supérieure : L'Espérance (ou l'Harmonie Sacrée, la Loi Sacrée). Il réalise qu'il n'a pas besoin de tout forcer par lui-même et que le succès peut advenir naturellement. C'est la conscience que tout l'univers fonctionne comme une unité dynamique et interconnectée. Confiance que l'univers se déploie harmonieusement.
+* Vertu : La Vérité. Il devient capable d'être authentique et de montrer qui il est réellement, acceptant ses échecs comme des éléments ordinaires de la vie. Authenticité totale.`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+L'Idée sacrée
+L'Harmonie Sacrée, la Loi Sacrée ou l'Espérance Sacrée. C'est la conscience que tout l'univers fonctionne comme une unité dynamique et interconnectée.
+L'Illusion Spécifique
+L'Acteur séparé. La conviction que l'on peut agir de façon indépendante et isolée du reste de l'univers.
+La Difficulté Spécifique
+L'Impuissance. Un sentiment profond d'inadéquation et d'incapacité résultant d'un manque de soutien environnemental filtré par l'illusion d'autonomie.
+La Réaction Spécifique
+La Lutte. Une activité agitée, compulsive et réactive pour prouver sa capacité et cacher son impuissance.
+Le Noyau de la Fixation
+Le complexe formé par le sentiment d'impuissance et la réaction de lutte incessante pour réussir.`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+La Confiance Fondamentale
+La certitude que le flux de la réalité est intrinsèquement optimal et qu'on n'a pas besoin de « forcer » les choses.
+La Lumière du jour Vivante
+La perception de la réalité comme un temps réel fluide, où chaque moment est une création nouvelle et harmonieuse.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. La Perspective et la Solution
+L'Idée Sacrée comme Psycho-catalyseur
+Elle dissout la vanité en montrant que l'action est un processus universel dont l'individu n'est qu'une partie.
+Rétablir la Confiance Fondamentale
+Cela passe par l'acceptation de son impuissance existentielle, qui est en fait une forme d'humilité ouvrant la porte à l'action de l'Être.
+L'Abandon
+Cesser de manipuler son expérience pour « paraître » et se laisser porter par le mouvement naturel de la vie.
+La Poussée Optimisante
+Reconnaître que la réalité possède une intelligence intrinsèque qui guide naturellement l'âme vers l'harmonie si l'on arrête d'essayer de lutter.`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Le Type 3 est souvent comparé à un caméléon. Comme cet animal change de couleur selon son environnement, le 3 modifie son apparence, son discours et ses attitudes en fonction des attentes de son public pour toujours paraître sous son meilleur jour et garantir sa réussite.
+L'ego du 3 : Comme un acteur si convaincu par son rôle qu'il a oublié son nom véritable ; l'Essence est le retour à la simplicité d'être soi-même.
+Le Type 3 est comme les pixels sur un écran de télévision : On croit voir une personne courir (l'acteur séparé), mais en réalité, c'est tout l'écran qui change de configuration en même temps de façon harmonieuse (la Loi Sacrée).`}
+        ],
+        levels: [
+          `Niveau 1 : Dirigé de l'intérieur et authentique. Le 3 abandonne la croyance que sa valeur dépend de l'admiration des autres. Il découvre son identité réelle et ses désirs profonds, devenant authentique, modeste et bienveillant.`,
+          `Niveau 2 : Adaptable et admirable. Il se concentre sur les qualités valorisées par son entourage pour se sentir "valable". Son image de soi est : « Je suis exceptionnel, compétent et j'ai un potentiel illimité ».`,
+          `Niveau 3 : Orienté vers les objectifs et s'améliorant. Il renforce son image en développant réellement ses talents. Il devient un modèle inspirant, efficace et discipliné, capable de motiver les autres par son exemple.`,
+          `Niveau 4 : Orienté vers le succès et performant. Il craint d'être éclipsé par les autres. Il commence à se pousser sans relâche pour se distinguer et obtenir de l'attention par le surpassement constant.`,
+          `Niveau 5 : Soucieux de son image et expédient. Il a peur de perdre l'estime des autres. Il travaille frénétiquement à cultiver l'image la plus séduisante possible, cachant ses doutes derrière un masque de "professionnel cool".`,
+          `Niveau 6 : Auto-promotion et grandiose. Il craint de passer inaperçu s'il n'est pas "énorme". Il commence à se vanter, devient compétitif et arrogant pour protéger une estime de soi devenue fragile et narcissique.`,
+          `Niveau 7 : Sans principes et trompeur. Il craint que ses succès ne soient vides ou frauduleux. Pour sauver les apparences, il commence à mentir effrontément à lui-même et aux autres, se sentant vide et déprimé intérieurement.`,
+          `Niveau 8 : Duplicité et opportunisme. Désespéré d'obtenir de l'attention, il invente des histoires ou des stratagèmes pour cacher sa détérioration psychologique. Il est prêt à tout pour que personne ne voie ses erreurs.`,
+          `Niveau 9 : Monomaniaque et implacable. Il sent qu'il ne peut plus regagner l'admiration de ses proches. Il peut perdre le contrôle de sa rage réprimée et chercher à se venger de ceux qui, selon lui, l'ont rejeté ou "humilié".`
         ]
       },
       4: {
-        title: "Type 4 – L'Individualiste",
-        sub: "Le Romantique, l'Artiste",
-        levels: { 1: "Inspiration : Crée à partir de l'universel, transforme la douleur en beauté.", 2: "Sensibilité : Introspectif, écoute ses émotions, raffiné.", 3: "Créativité : Exprime ses sentiments personnels, authentique.", 4: "Romantisme : Dramatise, s'attache à la mélancolie, se sent différent.", 5: "Repli : Timide, s'isole pour protéger ses sentiments, envieux.", 6: "Exception : Se sent exempté des règles, 'incompris', humeurs changeantes.", 7: "Aliénation : Déprimé, haine de soi, rejette ceux qui l'aiment.", 8: "Tourment : Angoisse émotionnelle, sabotage affectif.", 9: "Désespoir : Autodestruction pour échapper à la souffrance." },
+        title: `Type 4 - Le Romantique / L’Individualiste / L’Artiste`,
+        aliases: [`Le Romantique`,`L’Individualiste`,`L’Artiste`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 4 est sensible, introspectif et créatif. Il se sent différent et cherche à comprendre son identité profonde.</p><ul><li><b>Désir fondamental :</b> Être soi-même, unique et authentique.</li><li><b>Peur fondamentale :</b> N'avoir aucune identité ou être banal.</li><li><b>Message du Surmoi :</b> Tu es bien si tu es fidèle à tes sentiments.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Émotionnel (tourné vers l'intérieur).</li><li><b>Compulsion :</b> Éviter la banalité.</li><li><b>Passion :</b> L'Envie (sentiment qu'il manque quelque chose que les autres ont).</li><li><b>Fixation :</b> Mélancolie (s'attacher à ce qui manque).</li><li><b>Mécanisme de défense :</b> Introjection (intérioriser les sentiments) et Sublimation.</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Ténacité) :</b> Endure la souffrance en silence, \"le Sensualiste\". Ne montre pas sa douleur.</li><li><b>Social (Honte) :</b> Se sent inadéquat, l'Outsider. Exprime sa tristesse pour être accepté.</li><li><b>Tête-à-tête (Compétition) :</b> Plus agressif, refuse la honte, veut être le seul et l'unique pour l'autre.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 2) :</b> Devient dépendant, manipulateur affectif, teste l'attachement des autres.</li><li><b>En Croissance (→ 1) :</b> Devient plus discipliné, objectif, sort de ses humeurs pour agir concrètement.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 4 est de comprendre qu'il n'est pas <b>défini par ses émotions</b>.</p><ul><li>Établir des routines positives (discipline).</li><li>Se concentrer sur ce qui est présent plutôt que sur ce qui manque.</li><li>Transformer la douleur en action créative.</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 4 - Le Romantique / L'Individualiste / L'Artiste
+1. Présentation et Identification
+Titre et Identité : Le Type 4 est appelé le Romantique, l'Artiste ou l'Individualiste. C'est une personnalité centrée sur la sensibilité, la créativité et la recherche d'authenticité, souvent qualifiée de type introspectif, expressif et dramatique.
+Définition globale : Le 4 possède un sens aigu du beau et cherche à vivre des émotions profondes. Sa motivation principale est de se sentir unique et différent des autres pour éviter de sombrer dans ce qu'il perçoit comme la banalité du quotidien. Il cherche à créer une identité stable à partir de son expérience intérieure, tout en ayant souvent le sentiment qu'il lui manque quelque chose d'essentiel que les autres possèdent.
+Rôle Social : L'Individu Spécial ou L'Outsider Mystérieux.`},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Le Type 4 appartient au centre émotionnel, qu'il utilise de manière intérieure pour se focaliser sur ses propres réactions et son monde intérieur plutôt que sur le monde extérieur.
+Hiérarchie des centres :
+* Centre Préféré : Émotionnel (Utilisation intérieure)
+* Centre de Support : Mental
+* Centre Réprimé : Instinctif
+Orientation
+Le sens du beau.
+Compulsion
+Éviter la banalité et tout ce qui est ordinaire.
+Passion et Fixation
+* Passion (Cœur) : L'Envie. Il discerne ce que les autres ont et qu'il n'a pas, ce qui le pousse à désirer ce qui pourrait le rendre plus spécial ou combler son manque.
+* Fixation (Tête) : La Mélancolie. C'est une toile de fond émotionnelle permanente à laquelle il finit par s'identifier.
+Mécanisme de défense
+L'introjection. Il intériorise les critiques ou le malaise des autres, se sentant responsable des sentiments négatifs d'autrui. Il utilise aussi la sublimation, notamment par la création artistique.
+Peurs et Désirs fondamentaux
+* Peur de base : N'avoir aucune identité ou importance personnelle.
+* Désir de base : Se trouver lui-même et trouver sa propre signification.
+* Message du Surmoi : Tu es bien ou correct si tu es fidèle à toi-même.`},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Le Schéma de l'enfance
+L'enfant 4 a souvent ressenti une déconnexion vis-à-vis de ses parents, ayant l'impression de ne pas être vu ou compris. Ce sentiment lance le 4 dans une quête perpétuelle d'identité.
+Les Sous-types d'Ailes
+* 4w3 (L'Aristocrate) : Plus social, ambitieux, soucieux de son image.
+* 4w5 (Le Bohémien) : Plus introverti, intellectuel, original.
+Les trois sous-types instinctifs
+* Conservation (Intrépidité / Le Sensualiste)
+* Social (Honte / L'Outsider)
+* Sexuel (Compétition / L'Infatuation)`},
+
+          {k:`Signaux et Défis`, d:``, t:`Signaux d'Alerte
+* Signal d'Éveil : Utiliser son imagination pour intensifier ses sentiments au lieu de vivre l'instant présent.
+* Signal d'Alarme : La peur de ruiner sa vie et de gaspiller ses opportunités par excès de retrait.
+Les Défis de croissance
+Apprendre à s'accepter tel qu'il est, modérer l'effet de ses émotions et mener ses projets jusqu'au terme même s'ils deviennent routiniers.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 4 en Entreprise
+Profil professionnel
+Le 4 recherche un travail original qui lui permet d'exercer sa créativité. Il privilégie la qualité à la quantité et possède un esprit critique très développé.
+Style de management
+Il est intuitif et sait faire travailler les gens ensemble en tenant compte de leurs sentiments. Il garde une frontière nette entre son rôle professionnel et sa personnalité réelle.
+Style de communication
+Drame. Voix modulée selon l'humeur, silences chargés de sens, langage symbolique.
+Points de vigilance
+Susceptibilité face aux critiques, changements d'humeur, procrastination face aux tâches jugées banales.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Réaction au Stress (Désintégration)
+Vers le Type 2. Le 4 devient collant, cherche l'affection de façon forcée et manipule pour obtenir de la rassurance.
+Chemin d'Intégration (Croissance)
+Vers le Type 1. Le 4 devient plus discipliné, objectif et actif, sortant de ses humeurs pour s'engager dans des projets concrets.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Points d'amélioration à travailler
+* S'accepter tel qu'il est, unique et semblable aux autres.
+* Comprendre qu'il n'est pas ses émotions.
+* Porter l'attention sur le positif et fêter ses réussites.
+* Terminer ses projets même si la routine apparaît.
+Pratiques suggérées et Attitudes de Guérison
+Établir des routines constructives, réaliser que les sentiments ne sont pas des faits et s'engager activement dans le monde.
+Intégration (Idée supérieure et Vertu)
+* Idée supérieure : L'Originalité / L'Origine Sacrée.
+* Vertu : Harmonie et Contentement (Équanimité).`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+L'Idée sacrée
+L'Origine Sacrée. Toute apparence est une manifestation de l'Être et reste connectée à sa Source.
+L'Illusion Spécifique
+L'Identité Séparée.
+La Difficulté Spécifique
+La Déconnexion.
+La Réaction Spécifique
+Le Contrôle.
+Le Noyau de la Fixation
+Déconnexion + contrôle défensif.`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+La Confiance Fondamentale
+Certitude préverbale que la réalité est bienveillante.
+La Lumière du jour Vivante
+Amour universel sans limites qui enveloppe et soutient l'âme.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. La Perspective et la Solution
+Rétablir la Confiance Fondamentale
+Cesser de contrôler, ressentir le trou du soutien jusqu'à ce que la Lumière Vivante le remplisse.
+L'Abandon
+Laisser l'Être se déployer.
+La Poussée Optimisante
+Reconnaître que la réalité tend naturellement vers l'harmonie et la vérité quand l'ego cesse d'interférer.`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Le 4 est comme un diamant brut caché dans une mine ordinaire : il croit que sa valeur dépend de sa rareté et craint d'être confondu avec un simple caillou.
+L'âme est comme une vague : unique en forme, mais faite de l'océan et inséparable de lui.`}
+        ],
+        levels: [
+          `Niveau 1 : Acceptation de la vie et renforcement. Le 4 abandonne la croyance qu'il est défectueux. Il devient capable de se renouveler et de transformer son expérience de manière rédemptrice.`,
+          `Niveau 2 : Introspectif et sensible. Il se concentre sur ses sentiments et ses préférences pour établir un sentiment d'identité personnelle.`,
+          `Niveau 3 : Révélation de soi et créativité. Il exprime son individualité de manière subtile et éloquente, rendant son expérience universellement touchante.`,
+          `Niveau 4 : Romantisation et individualisme. Il utilise son imagination pour intensifier ses humeurs et commence à rêver d'un sauveur.`,
+          `Niveau 5 : Auto-absorbé et tempérament. Il devient distant, mélancolique et utilise sa fragilité pour tester l'intérêt des autres.`,
+          `Niveau 6 : Auto-indulgent et décadent. Il s'exempte des règles communes, devient sensuel, prétentieux et improductif.`,
+          `Niveau 7 : Haineux et aliéné. Il rejette tout ce qui ne soutient pas ses exigences émotionnelles et sombre dans une dépression marquée.`,
+          `Niveau 8 : Rejet de soi et dépression clinique. Il finit par détester tout ce qu'il est réellement et peut saboter le peu de bien qui reste.`,
+          `Niveau 9 : Désespoir et déni de la vie. Accablé, il peut tenter de provoquer un sauvetage par des actes autodestructeurs ou chercher à s'évader définitivement.`
         ]
       },
+
       5: {
-        title: "Type 5 – L’Observateur",
-        sub: "L’Investigateur, le Penseur",
-        levels: { 1: "Visionnaire : Perçoit la réalité avec une clarté exceptionnelle, participe au monde avec sagesse.", 2: "Perception : Observateur attentif, curieux, indépendant, absorbe l'information.", 3: "Expertise : Maîtrise des sujets complexes, innovant, partage ses découvertes.", 4: "Conceptualisation : Se prépare sans agir, vit dans sa tête, commence à se détacher.", 5: "Détachement : S'isole pour protéger son énergie, minimise ses besoins, devient secret.", 6: "Cynisme : Provocateur, vision noire de l'humanité, peur de l'envahissement.", 7: "Nihilisme : Coupe les ponts, excentrique, rejet de la réalité sociale.", 8: "Terreur : Paranoïa, hallucinations, fuite totale, peur d'être détruit.", 9: "Autodestruction : Annihilation du moi pour échapper à la douleur de l'existence." },
+        title: `Type 5 - L’Observateur / L’Investigateur / Le Penseur`,
+        aliases: [`L’Observateur`,`L’Investigateur`,`Le Penseur`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 5 a besoin de comprendre le monde pour s'y sentir en sécurité. Il observe depuis la périphérie pour protéger son autonomie.</p><ul><li><b>Désir fondamental :</b> Être compétent et capable.</li><li><b>Peur fondamentale :</b> Être inutile, incapable ou envahi.</li><li><b>Message du Surmoi :</b> Tu es bien si tu as maîtrisé quelque chose.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Mental (Tête). Utilise l'analyse pour mettre de la distance.</li><li><b>Compulsion :</b> Éviter le vide intérieur.</li><li><b>Passion :</b> L'Avarice (retenue de son temps, de son énergie et de soi-même).</li><li><b>Fixation :</b> Détachement.</li><li><b>Mécanisme de défense :</b> Isolation (séparer les émotions des pensées).</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Refuge) :</b> Le Château fort. S'isole physiquement, réduit ses besoins au minimum.</li><li><b>Social (Totem) :</b> L'Expert. Veut partager des connaissances élevées avec une élite.</li><li><b>Tête-à-tête (Confidence) :</b> Recherche une connexion intense et secrète avec une seule personne.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 7) :</b> Devient agité, dispersé, cherche des distractions compulsives pour fuir son anxiété.</li><li><b>En Croissance (→ 8) :</b> Prend confiance, passe à l'action, s'incarne dans le corps et assume son autorité.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 5 est de <b>revenir dans son corps</b> et d'oser le lien.</p><ul><li>Partager ses connaissances au lieu de les accumuler.</li><li>Accepter que les émotions ne vont pas l'engloutir.</li><li>Pratiquer une activité physique pour s'ancrer.</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 5 - L'Observateur / L'Investigateur / Le Penseur
+1. Présentation et Identification
+Titre et Identité : Type intense, cérébral, perceptif, innovant, secret et isolé.
+Définition globale : Le 5 cherche à comprendre le monde par l'analyse et la réflexion, souhaitant devenir expert. Très introverti, il a besoin d'autonomie et de retrait pour préserver son énergie.
+Rôle Social : L'Expert.`},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Centre mental (utilisation extérieure).
+Hiérarchie des centres :
+* Centre Préféré : Mental (Utilisation extérieure)
+* Centre de Support : Émotionnel
+* Centre Réprimé : Instinctif
+Orientation
+Connaissance et précision.
+Compulsion
+Éviter le vide intérieur.
+Passion et Fixation
+* Passion : Avarice (temps, énergie, informations, soi-même).
+* Fixation : Détachement (ou suspicion).
+Mécanisme de défense
+Isolation, compartimentage.
+Peurs et Désirs fondamentaux
+* Peur : être inutile, incapable, incompétent, submergé.
+* Désir : être capable et compétent.
+* Message du Surmoi : Tu es bien ou correct si tu as maîtrisé quelque chose.`},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Schéma de l'enfance
+Insécurité, peur d'être envahi, retrait dans un espace privé, répression des besoins.
+Ailes
+* 5w4 (Iconoclaste)
+* 5w6 (Résolveur de problèmes)
+Sous-types
+* Conservation (Château fort)
+* Social (Jargon / Spécialiste)
+* Sexuel (Confidence)`},
+
+          {k:`Signaux et Défis`, d:``, t:`Signaux d'Alerte
+* Signal d'Éveil : Se retirer de la réalité dans des concepts.
+* Signal d'Alarme : Peur de ne jamais trouver sa place.
+Défis
+Réintégrer le corps, sortir de la préparation, risquer le contact émotionnel.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 5 en Entreprise
+Profil professionnel
+Expert méthodique. Décisions rationnelles après réflexion. Préfère l'autonomie.
+Management
+Gère souvent à distance, écrit, synthèse puissante, parfois peu chaleureux.
+Communication
+Traité : structuré, détaillé sur sujets sérieux, laconique sur le reste.
+Vigilance
+Retrait perçu comme froideur, rétention d'information.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Stress
+Vers le 7 : agitation, dispersion, distractions impulsives.
+Croissance
+Vers le 8 : ancrage corporel, confiance, décision, direction.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Améliorations
+Temps relationnel planifié, partager l'information, agir, se connecter au ressenti.
+Pratiques
+Corps, marche, sport, demander, exprimer les besoins.
+Intégration
+Idée supérieure : Omniscience
+Vertu : Désintéressement (Non-attachement).`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+Idée sacrée
+Omniscience Sacrée / Transparence Sacrée.
+Illusion
+Identité séparée / Existence séparée.
+Difficulté
+Isolement déficient.
+Réaction
+Retrait.
+Noyau
+Appauvrissement + retrait schizoïde.`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+Confiance Fondamentale
+Univers soutenant, l'esprit peut s'arrêter sans peur de perdre.
+Lumière du jour Vivante
+Conscience aimante universelle.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. Perspective et Solution
+Omniscience dissout la séparation, abandon de la manipulation intérieure, repos de l'ego, intelligence de l'Être.`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Archiviste dans une immense bibliothèque : accumule des volumes pour ne pas affronter le monde, porte verrouillée.
+Le 5 est comme une fenêtre à travers laquelle l'univers se voit lui-même.`}
+        ],
+        levels: [
+          `Niveau 1 : Participant, Visionnaire. Le 5 s'engage pleinement dans la vie avec confiance, clairvoyance et profondeur.`,
+          `Niveau 2 : Observateur, Perceptif. Il acquiert des compétences, curieux et indépendant.`,
+          `Niveau 3 : Concentré, Innovateur. Il maîtrise un domaine et produit des idées originales.`,
+          `Niveau 4 : Conceptualisant, Préparateur. Il se réfugie dans l'étude et l'accumulation de connaissances.`,
+          `Niveau 5 : Détaché, Préoccupé. Secret, minimise ses besoins, intensifie l'activité mentale.`,
+          `Niveau 6 : Extrême, Provocateur. Méprisant, opinions choquantes pour protéger sa niche.`,
+          `Niveau 7 : Nihiliste, Excentrique. Coupe les liens, monde intérieur sombre et vide.`,
+          `Niveau 8 : Horrifié, Délirant. Tout devient menace, perceptions déformées.`,
+          `Niveau 9 : Cherchant l'oubli, S'auto-annihilant. Ruptures psychotiques, fuite totale de la réalité, tendances suicidaires.`
         ]
       },
+
       6: {
-        title: "Type 6 – Le Loyaliste",
-        sub: "Le Gardien, le Sceptique",
-        levels: { 1: "Courage : Guidé par sa propre autorité intérieure, confiant, serein.", 2: "Engagement : Fiable, crée des liens solides, protecteur.", 3: "Loyauté : Dévoué au groupe, responsable, travailleur.", 4: "Doute : Vigilant, anticipe les problèmes, besoin de règles.", 5: "Ambivalence : Méfiant, teste les autres, pessimiste, défensif.", 6: "Réactivité : Autoritaire ou soumis, blâme les autres, divise.", 7: "Panique : Cherche un sauveur, dépendance, insécurité totale.", 8: "Paranoïa : Se sent persécuté, attaque pour se défendre.", 9: "Autodestruction : S'abandonne ou se punit pour apaiser l'angoisse." },
+        title: `Type 6 - Le Loyaliste / Le Gardien / Le Sceptique`,
+        aliases: [`Le Loyaliste`,`Le Gardien`,`Le Sceptique`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 6 est vigilant et engagé. Il cherche la sécurité et le soutien, anticipant souvent les dangers potentiels.</p><ul><li><b>Désir fondamental :</b> Avoir de la sécurité et du soutien.</li><li><b>Peur fondamentale :</b> Être sans soutien, seul ou sans guidance.</li><li><b>Message du Surmoi :</b> Tu es bien si tu fais ce qu'on attend de toi.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Mental. Analyse constante des risques.</li><li><b>Compulsion :</b> Éviter la déviance ou la transgression.</li><li><b>Passion :</b> La Peur (souvent ressentie comme de l'anxiété).</li><li><b>Fixation :</b> Doute et Suspicion.</li><li><b>Mécanisme de défense :</b> Projection (attribuer ses peurs aux autres).</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Chaleur) :</b> Désarme l'hostilité par la gentillesse. Cherche des alliances protectrices.</li><li><b>Social (Devoir) :</b> Respecte les règles et l'autorité. Très loyal au groupe ou à l'idéologie.</li><li><b>Tête-à-tête (Force/Beauté) :</b> Contre-phobique. Intimide pour ne pas avoir peur. Prend des risques.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 3) :</b> Devient hyperactif, anxieux de son image, compétitif pour masquer sa peur.</li><li><b>En Croissance (→ 9) :</b> Devient plus détendu, confiant, accepte le flux de la vie, lâche prise.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 6 est de trouver sa <b>propre autorité intérieure</b>.</p><ul><li>Arrêter de chercher la validation extérieure.</li><li>Observer ses peurs sans s'y identifier.</li><li>Prendre des risques calculés pour renforcer la confiance.</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 6 - Le Loyaliste / Le Gardien / Le Sceptique
+1. Présentation et Identification
+Personnalité engagée, fiable, orientée vers la sécurité, responsabilités, anxiété sous-jacente.
+Définition globale : Le 6 recherche la sécurité via structures, justifications, soutien d'autrui. Anticipe les dangers, manque de confiance en soi, s'attache à des alliés ou systèmes.
+Rôle Social : Le Vaillant ou Le Pilier.`},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Centre mental, usage intérieur et extérieur, mais répression paradoxale (triangle central).
+Hiérarchie
+* Centre Préféré : Mental
+* Centre de Support : Émotionnel (ou Instinctif selon l'aile)
+* Centre Réprimé : Mental (répression de son propre centre)
+Orientation
+Loyauté, recherche de sécurité.
+Compulsion
+Éviter la déviance.
+Passion et Fixation
+* Passion : Peur (phobique / contre-phobique).
+* Fixation : Doute et suspicion.
+Mécanisme de défense
+Projection.
+Peurs et Désirs
+* Peur : être sans soutien, incapable de survivre seul.
+* Désir : sécurité et soutien.
+* Message du Surmoi : Tu es bien ou correct si tu fais ce qui est attendu de toi.`},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Schéma de l'enfance
+Déconnexion figure protectrice, ambivalence à l'autorité.
+Ailes
+* 6w5 (Défenseur)
+* 6w7 (Compagnon)
+Sous-types
+* Conservation (Cordialité)
+* Social (Devoir)
+* Sexuel (Force / Beauté)`},
+
+          {k:`Signaux et Défis`, d:``, t:`Signaux d'Alerte
+* Signal d'Éveil : Recherche d'une chose sûre, garantie absolue.
+* Signal d'Alarme : Peur que ses défenses aient détruit sa sécurité.
+Défis
+Écouter sa guidance intérieure, oser exprimer son opinion.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 6 en Entreprise
+Collaborateur fiable, procédures, analyse des risques.
+Management
+Procédures, coopération, délègue s'il a confiance.
+Communication
+Limites : cordial en interne, prudent avec l'extérieur, parle des risques.
+Vigilance
+Indécision, vérifications excessives, rapport complexe à l'autorité.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Stress
+Vers le 3 : compétitif, image, hyperactivité.
+Croissance
+Vers le 9 : détente, ouverture, sérénité.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Améliorations
+Positif, confiance, relaxation, jugement personnel.
+Pratiques
+Méditation, tester ses peurs par actions concrètes.
+Intégration
+Idée supérieure : Confiance / Foi
+Vertu : Courage.`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+Idée sacrée
+Foi Sacrée et Force Sacrée.
+Illusion
+Cynisme.
+Difficulté
+Insécurité peureuse.
+Réaction
+Suspicion défensive.
+Noyau
+Cynisme + insécurité + suspicion.`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+Confiance Fondamentale
+Réalité bienveillante et soutenante.
+Lumière du jour Vivante
+Conscience aimante universelle.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. Perspective et Solution
+Foi Sacrée dissout le cynisme, abandon des manipulations défensives, intelligence de la réalité, apaisement.`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Radar de sécurité, éclaireur vigilant.
+Pont suspendu : sain avance, moyen s'agrippe, malsain saute dans le vide.
+Marin scrutant l'horizon, oubliant que l'océan porte le navire.`}
+        ],
+        levels: [
+          `Niveau 1 : Autonome et courageux. Guidance intérieure, solidité, sérénité.`,
+          `Niveau 2 : Engagé et fiable. Construit des liens de confiance, attentif et stable.`,
+          `Niveau 3 : Dévoué et coopératif. Responsable, pratique, anticipe les problèmes.`,
+          `Niveau 4 : Respectueux des devoirs et loyal. Investit des organisations, inquiet.`,
+          `Niveau 5 : Ambivalent et défensif. Pessimisme, suspicion, indécision.`,
+          `Niveau 6 : Autoritaire et accusateur. Cynique, réactif, luttes de pouvoir.`,
+          `Niveau 7 : Paniqué et peu fiable. Impuissance, déprime, quête d'un sauveur.`,
+          `Niveau 8 : Paranoïaque et agressif. Délires paranoïaques, attaques ennemis imaginaires.`,
+          `Niveau 9 : Auto-punition et autodestruction. Culpabilité écrasante, déchéance ou suicide pour susciter un secours.`
         ]
       },
+
       7: {
-        title: "Type 7 – L'Épicurien",
-        sub: "L'Enthousiaste, le Généraliste",
-        levels: { 1: "Gratitude : S'émerveille de l'instant présent, joyeux, complet.", 2: "Enthousiasme : Spontané, vif, productif, animant.", 3: "Accomplissement : Polyvalent, lance des projets, pragmatique.", 4: "Consommation : Veut plus, peur de manquer, hyperactif.", 5: "Distraction : Fuit l'ennui, superficiel, parle beaucoup.", 6: "Excès : Égoïste, exigeant, insatisfait, impulsif.", 7: "Fuite : Irresponsable, infantilisme, dépendances.", 8: "Manie : Frénésie, panique, ne contrôle plus ses impulsions.", 9: "Paralysie : Bloqué par la peur, effondrement." },
+        title: `Type 7 - L’Enthousiaste / L’Épicurien / Le Généraliste`,
+        aliases: [`L’Enthousiaste`,`L’Épicurien`,`Le Généraliste`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 7 est spontané, optimiste et polyvalent. Il cherche le bonheur et la variété pour éviter la souffrance.</p><ul><li><b>Désir fondamental :</b> Être heureux et satisfait.</li><li><b>Peur fondamentale :</b> Être privé, enfermé ou souffrir.</li><li><b>Message du Surmoi :</b> Tu es bien si tu es heureux.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Mental (Intérieur). Planifie le futur pour créer de l'excitation.</li><li><b>Compulsion :</b> Éviter la souffrance et le vide.</li><li><b>Passion :</b> La Gourmandise (soif d'expériences, d'idées, de tout).</li><li><b>Fixation :</b> Planification.</li><li><b>Mécanisme de défense :</b> Rationalisation (recadrer le négatif en positif).</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Le Clan) :</b> Pragmatique, bon réseau, opportuniste pour assurer son confort.</li><li><b>Social (Sacrifice) :</b> Le contre-type. Sacrifie sa gourmandise pour un idéal ou le groupe.</li><li><b>Tête-à-tête (Fascination) :</b> Idéaliste, embellit la réalité, cherche l'intensité extraordinaire.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 1) :</b> Devient critique, rigide, impatient, frustré par la réalité.</li><li><b>En Croissance (→ 5) :</b> Devient plus profond, concentré, capable de silence et de sobriété.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 7 est de <b>rester dans le présent</b>, même quand il est désagréable.</p><ul><li>Finir ce qu'il commence.</li><li>Accepter la tristesse et l'ennui comme des parties de la vie.</li><li>Pratiquer la sobriété (moins, c'est mieux).</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 7 - L'Enthousiaste / L'Épicurien / Le Généraliste
+1. Présentation et Identification
+Polyvalent, spontané, optimiste, orienté vers la joie.
+Définition globale : Idéaliste curieux, créativité intellectuelle, attiré par la nouveauté et les possibilités positives. Maintient l'esprit occupé pour éviter l'anxiété.
+Rôle Social : L'Énergiseur ou Le Catalyseur.`},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre
+Mental (utilisation intérieure).
+Hiérarchie
+* Préféré : Mental (intérieur)
+* Support : Instinctif
+* Réprimé : Émotionnel
+Orientation
+Joie et optimisme.
+Compulsion
+Éviter la souffrance et le vide.
+Passion et Fixation
+* Passion : Intempérance / Gloutonnerie (expériences, idées).
+* Fixation : Planification.
+Mécanisme
+Rationalisation.
+Peurs et Désirs
+* Peur : être privé, piégé, douleur.
+* Désir : être heureux, satisfait, accompli.
+* Message du Surmoi : Tu es bien ou correct si tu obtiens ce dont tu as besoin.`},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Schéma de l'enfance
+Déconnexion figure nourricière, frustration, recherche de distractions.
+Sous-types
+* Conservation (Clan)
+* Social (Sacrifice)
+* Sexuel (Imagination)`},
+
+          {k:`Signaux et Défis`, d:``, t:`Signaux d'Alerte
+* Signal d'Éveil : Herbe plus verte ailleurs.
+* Signal d'Alarme : Peur que l'agitation n'apporte que de la douleur.
+Défis
+Réalisme, terminer ses projets, tenir compte des émotions, accepter conflits nécessaires.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 7 en Entreprise
+Innovation, synthèse rapide, enthousiasme, mais projets irréalistes possibles.
+Management
+Vision positive, autonomie, flexibilité, cap changeant.
+Communication
+Histoires : humour, anecdotes, métaphores, évite le triste.
+Vigilance
+Superficialité, abandon au premier obstacle, manque de suivi.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Stress
+Vers le 1 : critique, rigidité, impatience.
+Croissance
+Vers le 5 : profondeur, observation calme, assimilation.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Améliorations
+Lister difficultés, discipline, émotion des autres, reconnaître erreurs.
+Pratiques
+Méditation, présence aux sentiments négatifs, sobriété.
+Intégration
+Idée supérieure : Travail / Plan Sacré
+Vertu : Tempérance.`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+Idée sacrée
+Plan Sacré / Sagesse Sacrée / Travail Sacré.
+Illusion
+Développement séparé.
+Difficulté
+Désorientation.
+Réaction
+Planification.
+Noyau
+Désorientation + planification.`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+Confiance Fondamentale
+Univers bienveillant, tout finit bénéfique sans manipulation.
+Lumière du jour Vivante
+Amour universel.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. Perspective et Solution
+Plan Sacré rend la planification défensive inutile, présence au présent, abandon, confiance en l'intelligence du réel.`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Papillon butineur : s'arrête brièvement, fuit l'ombre d'un nuage.
+Voyageur gardant sa valise sur les genoux : apprend à faire confiance au train.
+Jeune plant : n'a pas besoin de diriger sa croissance.`}
+        ],
+        levels: [
+          `Niveau 1 : Joyeux et satisfait. Gratitude, extase du présent.`,
+          `Niveau 2 : Enthousiaste et anticipateur. Monde des possibilités.`,
+          `Niveau 3 : Réaliste et productif. Polyvalent, audacieux, pragmatique.`,
+          `Niveau 4 : Acquisitif et consommateur. Multiplie options, agitation.`,
+          `Niveau 5 : Distrait et éparpillé. Parle beaucoup, aventure, peu de suivi.`,
+          `Niveau 6 : Égocentrique et excessif. Exige gratification, gaspillage.`,
+          `Niveau 7 : Insatiable et fuyant. Impulsif, irresponsable, soulagement temporaire.`,
+          `Niveau 8 : Maniaque et imprudent. Instabilité, alternance hystérie et dépression.`,
+          `Niveau 9 : Accablé et paralysé. Terreur, problèmes graves, incapacité à éprouver du plaisir.`
         ]
       },
+
       8: {
-        title: "Type 8 – Le Leader",
-        sub: "Le Challenger, le Protecteur",
-        levels: { 1: "Magnanimité : Utilise sa force pour le bien, héroïque, indulgent.", 2: "Assurance : Confiant, direct, prend les choses en main.", 3: "Leadership : Constructif, protège son équipe, action.", 4: "Pragmatisme : Négociateur, aime le risque, cache ses sentiments.", 5: "Domination : Veut contrôler, fanfaron, impose sa volonté.", 6: "Intimidation : Menace, belligérant, crée le conflit.", 7: "Dictature : Impitoyable, immoral, écrase les autres.", 8: "Mégalomanie : Illusion de toute-puissance, terreur.", 9: "Destruction : Détruit tout avant d'être vaincu, sociopathie." },
+        title: `Type 8 - Le Leader / Le Challenger / Le Chef`,
+        aliases: [`Le Leader`,`Le Challenger`,`Le Chef`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 8 est puissant et dominant. Il veut contrôler sa vie et son destin, et protéger ceux qui sont sous sa responsabilité.</p><ul><li><b>Désir fondamental :</b> Se protéger et décider pour soi-même.</li><li><b>Peur fondamentale :</b> Être blessé, contrôlé ou manipulé.</li><li><b>Message du Surmoi :</b> Tu es bien si tu es fort et en contrôle.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Instinctif (Extérieur).</li><li><b>Compulsion :</b> Éviter la faiblesse.</li><li><b>Passion :</b> L'Excès (ou Luxure) : besoin d'intensité et d'expansion.</li><li><b>Fixation :</b> Vengeance (rétablir la justice à sa manière).</li><li><b>Mécanisme de défense :</b> Déni (de sa propre vulnérabilité).</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Satisfaction) :</b> Le Survivant. Accumule des ressources, territorial, ne compte que sur soi.</li><li><b>Social (Solidarité) :</b> Le Protecteur. Loyal à son groupe, contre l'injustice sociale.</li><li><b>Tête-à-tête (Possession) :</b> Rebelle, intense, veut posséder totalement l'attention de l'autre.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 5) :</b> Se retire, devient froid, cynique, observe de loin pour stratégiser.</li><li><b>En Croissance (→ 2) :</b> Ouvre son cœur, devient tendre, protecteur bienveillant, admet ses besoins.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 8 est d'accepter sa <b>vulnérabilité</b> comme une force.</p><ul><li>Apprendre à attendre avant de réagir.</li><li>Reconnaître l'impact de sa force sur les autres.</li><li>Laisser les autres prendre les commandes parfois.</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 8 - Le Leader / Le Challenger / Le Chef
+1. Présentation et Identification
+Énergie centrée sur la puissance et le courage.
+Définition globale : Impact fort, monde perçu comme dangereux et injuste, rétablir la justice, indépendance, protection des siens, évite le contrôle extérieur.
+Rôle Social : Le Roc.`},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre
+Instinctif (utilisation extérieure).
+Hiérarchie
+* Préféré : Instinctif (extérieur)
+* Support : Mental (ou Émotionnel)
+* Réprimé : Émotionnel (ou Mental)
+Orientation
+Puissance et courage.
+Compulsion
+Éviter toute marque de faiblesse.
+Passion et Fixation
+* Passion : Excès / Luxure (intensité).
+* Fixation : Vengeance.
+Mécanisme
+Dénégation / déni.
+Peurs et Désirs
+* Peur : être blessé, contrôlé, violé.
+* Désir : se protéger, maîtriser sa vie.
+* Message du Surmoi : Tu es bien ou correct si tu es fort et que tu maîtrises ta situation.`},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Schéma de l'enfance
+Maturité précoce, dureté, trahison, décision de ne plus être vulnérable.
+Sous-types
+* Conservation (Survie / Survivant)
+* Social (Protection mutuelle / Camaraderie)
+* Sexuel (Possessivité / Prendre charge)`},
+
+          {k:`Signaux et Défis`, d:``, t:`Signaux d'Alerte
+* Signal d'Éveil : Lutte constante pour l'autosuffisance.
+* Signal d'Alarme : Peur des représailles, coalition contre lui.
+Défis
+Reconnaître vulnérabilité, admettre émotions, traiter blessures plutôt que nier.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 8 en Entreprise
+Décisions rapides, aime défis, va au bout, respecte hiérarchie si leader vrai.
+Management
+Manager de combat, lance projets, peu de délégation, contrôle, exigence de transparence.
+Communication
+Impératifs : direct, fort, autoritaire.
+Vigilance
+Intimidation, colères, mépris de la fragilité.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Stress
+Vers le 5 : secret, retiré, cynique, stratégies.
+Croissance
+Vers le 2 : cœur ouvert, générosité, tendresse.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Améliorations
+Admettre émotions, ralentir, patience, compromis, écouter experts.
+Pratiques
+Relaxation, écoute, demander aide, baisser la garde.
+Intégration
+Idée supérieure : Altérité / Vérité Sacrée
+Vertu : Simplicité / Innocence.`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+Idée sacrée
+Vérité Sacrée (unité vivante).
+Illusion
+Dualité.
+Difficulté
+Culpabilité ou mauvaiseté (péché originel).
+Réaction
+Auto-blâme / vengeance.
+Noyau
+Culpabilité intrinsèque + vengeance.`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+Confiance Fondamentale
+Réalité bienveillante, pas besoin de manipuler.
+Lumière du jour Vivante
+Présence aimante universelle.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. Perspective et Solution
+Vérité Sacrée dissout séparation, abandon de la lutte, vulnérabilité, confiance en l'harmonie.`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Rocher dans une mer déchaînée : protège mais peut blesser.
+Capitaine contrôlant la tempête : oublie que le navire est fait de la même eau que l'océan.
+Innocence du lion et de l'enfant.`}
+        ],
+        levels: [
+          `Niveau 1 : Renoncement à soi et héroïsme. Magnanimité, courage, pardon.`,
+          `Niveau 2 : Autonomie et force. Affirmatif, direct, plein de ressources.`,
+          `Niveau 3 : Confiance et leadership. Protège, aide, stratégie.`,
+          `Niveau 4 : Pragmatisme et esprit d'entreprise. Compétitif, cache ses sentiments.`,
+          `Niveau 5 : Glorification de soi et domination. Se vante, exige le respect.`,
+          `Niveau 6 : Confrontation et intimidation. Menaces, provocations, colère.`,
+          `Niveau 7 : Impitoyabilité et dictature. Vindicatif, violent pour protéger ses intérêts.`,
+          `Niveau 8 : Mégalomanie et terreur. Attaque préventive, illusion d'invulnérabilité.`,
+          `Niveau 9 : Sociopathie et destruction. Détruit tout plutôt que d'être vaincu.`
         ]
       },
+
       9: {
-        title: "Type 9 – Le Médiateur",
-        sub: "Le Pacificateur, le Conciliateur",
-        levels: { 1: "Présence : Indomptable, serein, connecté à soi et aux autres.", 2: "Réceptivité : Calme, écoute, accepte, stable.", 3: "Soutien : Médiateur naturel, réconfortant, unifie.", 4: "Effacement : Dit oui pour ne pas faire de vagues, routine.", 5: "Désengagement : Passif, repousse les problèmes, têtu.", 6: "Résignation : Fataliste, minimise tout, 'ça va aller'.", 7: "Négligence : Refoule, inefficace, dépendant.", 8: "Dissociation : Se coupe de la réalité, vit dans un brouillard.", 9: "Disparition : Catatonie, inexistence, fragmentation." },
+        title: `Type 9 - Le Médiateur / Le Pacificateur / Le Conciliateur`,
+        aliases: [`Le Médiateur`,`Le Pacificateur`,`Le Conciliateur`],
+        sub: `Profil complet + curseur des 9 niveaux de développement`,
         sections: [
-          { t: "Présentation", b: "<p>Le Type 9 cherche la paix et l'harmonie. Il est acceptant, rassurant et évite le conflit pour maintenir sa tranquillité.</p><ul><li><b>Désir fondamental :</b> La paix intérieure et la stabilité.</li><li><b>Peur fondamentale :</b> Le conflit, la fragmentation, la séparation.</li><li><b>Message du Surmoi :</b> Tu es bien si tout le monde est bien.</li></ul>" },
-          { t: "Structure et dynamique", b: "<ul><li><b>Centre :</b> Instinctif. Mais énergie bloquée pour ne pas perturber l'équilibre.</li><li><b>Compulsion :</b> Éviter les conflits.</li><li><b>Passion :</b> La Paresse (de soi) : négliger ses propres désirs et besoins.</li><li><b>Fixation :</b> Indolence / Oubli de soi.</li><li><b>Mécanisme de défense :</b> Narcotisation (s'étourdir dans des routines ou distractions).</li></ul>" },
-          { t: "Sous-types instinctifs", b: "<ul><li><b>Auto-conservation (Appétit) :</b> Cherche le confort physique, la nourriture, les habitudes rassurantes.</li><li><b>Social (Participation) :</b> Travaille dur pour le groupe, se sacrifie pour appartenir.</li><li><b>Tête-à-tête (Fusion) :</b> Fusionne avec l'autre, vit la vie de son partenaire par procuration.</li></ul>" },
-          { t: "Dynamique des flèches", b: "<ul><li><b>Sous Stress (→ 6) :</b> Devient anxieux, méfiant, réactif, doute de tout.</li><li><b>En Croissance (→ 3) :</b> Devient actif, productif, se fixe des objectifs et se valorise.</li></ul>" },
-          { t: "Pistes d'évolution", b: "<p>Le défi du 9 est de <b>se réveiller à soi-même</b> et de prendre sa place.</p><ul><li>Exprimer ses opinions même si elles divergent.</li><li>Agir sur les problèmes au lieu de les ignorer.</li><li>Se rappeler que sa présence est importante.</li></ul>" }
+          {k:`Présentation et Identification`, d:``, t:`Type 9 - Le Médiateur / Le Pacificateur / Le Conciliateur
+1. Présentation et Identification
+Énergie centrée sur l'acceptation et le soutien. Facile à vivre, modeste, rassurant.
+Définition globale : Recherche paix et harmonie, réconcilie les points de vue, évite ce qui perturbe la tranquillité. Couronne car semble posséder des qualités des autres types.
+Rôle Social : Personne de Spécial.`},
+
+          {k:`Structure et Dynamique Psychologique`, d:``, t:`2. Structure et Dynamique Psychologique
+Centre
+Instinctif, mais réprimé paradoxalement (triangle central).
+Hiérarchie
+* Préféré : Instinctif
+* Support : Mental et Émotionnel
+* Réprimé : Instinctif
+Orientation
+Acceptation et soutien.
+Compulsion
+Éviter les conflits.
+Passion et Fixation
+* Passion : Paresse (psycho-spirituelle), oubli de ses désirs.
+* Fixation : Oubli de soi.
+Mécanisme
+Narcotisation.
+Peurs et Désirs
+* Peur : perte, séparation, annihilation.
+* Désir : stabilité intérieure, paix de l'esprit.
+* Message du Surmoi : Tu es bien ou correct si tu es aimé par les autres et si tu es proche d'eux.`},
+
+          {k:`Origines et Variantes`, d:``, t:`3. Origines et Variantes
+Schéma de l'enfance
+Disparaître pour ne pas causer de problèmes, enfant perdu.
+Ailes
+* 9w8 (Référent)
+* 9w1 (Rêveur)
+Sous-types
+* Conservation (Appétit)
+* Social (Participation)
+* Sexuel (Union / Fusion)`},
+
+          {k:`Signaux et Défis`, d:``, t:`Signaux d'Alerte
+* Signal d'Éveil : S'adapter excessivement.
+* Signal d'Alarme : Peur d'être forcé brutalement à s'occuper de ses problèmes.
+Défis
+S'éveiller à soi, sortir de l'inertie, prendre sa place.`},
+
+          {k:`Entreprise`, d:``, t:`4. Le Type 9 en Entreprise
+Cohésion, ambiance, efficace avec cadre défini. Peut se perdre dans secondaire, difficulté priorités. Opposition par inertie.
+Management
+Calme, consensus, consultation longue, ralentit décisions.
+Communication
+Saga : calme, long, détails, dérive pour éviter conflit.
+Vigilance
+Minimisation des problèmes, procrastination, indécision.`},
+
+          {k:`Dynamique des Flèches`, d:``, t:`5. Dynamique des Flèches
+Stress
+Vers le 6 : anxieux, méfiant, pessimiste, réactif.
+Croissance
+Vers le 3 : actif, productif, investi, reconnaît sa valeur.`},
+
+          {k:`Évolution et Développement`, d:``, t:`6. Évolution et Développement
+Améliorations
+Se connaître, dire non, priorités, délais, sortir de la routine.
+Pratiques
+Souvenir de soi, activité physique, réveil corporel.
+Intégration
+Idée supérieure : Amour Sacré
+Vertu : Activité.`},
+
+          {k:`Approche Spirituelle`, d:``, t:`7. Approche des Idées Sacrées (Perspective spirituelle)
+Idée sacrée
+Amour Sacré.
+Illusion
+Amour localisé.
+Difficulté
+Infériorité.
+Réaction
+S'endormir vis-à-vis de la réalité.
+Noyau
+Infériorité + sommeil psychologique.`},
+
+          {k:`Fondement Énergétique`, d:``, t:`8. Fondement Énergétique
+Confiance Fondamentale
+Univers bienveillant, soutient l'âme.
+Lumière du jour Vivante
+Présence aimante universelle.`},
+
+          {k:`Perspective et Solution`, d:``, t:`9. Perspective et Solution
+Amour Sacré dissout l'illusion, détente profonde, acceptation, abandon, flux harmonieux.`},
+
+          {k:`Analogie`, d:``, t:`10. Analogie
+Montagne paisible : accepte tout, mais inertie inébranlable si on veut la déplacer.
+Miroir à polir pour refléter la lumière.
+Voyageur gardant sa valise sur les genoux : apprend que la réalité le porte déjà.`}
+        ],
+        levels: [
+          `Niveau 1 : Possédé de soi. Indomptable, autonome, pleinement présent.`,
+          `Niveau 2 : Paisible. Serein, acceptant, stable.`,
+          `Niveau 3 : Généreux et réconfortant. Médiateur efficace et bienveillant.`,
+          `Niveau 4 : Effacé et accommodant. S'adapte trop pour éviter les vagues.`,
+          `Niveau 5 : Désengagé. Retrait actif, narcotisation.`,
+          `Niveau 6 : Résigné. Passivité, minimisation.`,
+          `Niveau 7 : Réprimé et négligent. Néglige responsabilités et santé.`,
+          `Niveau 8 : Dissocié. Brouillard, perte de contact.`,
+          `Niveau 9 : S'abandonnant. Inertie totale ou catatonie.`
         ]
       }
     };
 
-    function getTypeFromQuery(){
-      const p = new URLSearchParams(location.search);
-      const n = parseInt(p.get("type") || "1", 10);
-      return (n>=1 && n<=9) ? n : 1;
+    // --- SCRIPT DE FONCTIONNEMENT ---
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
     }
 
-    function rangeLabel(n){
-      if (n <= 3) return "Sain";
-      if (n <= 6) return "Moyen";
-      return "Malsain";
-    }
-    function rangeColor(n){
-      if (n <= 3) return getComputedStyle(document.documentElement).getPropertyValue("--good").trim() || "#86efac";
-      if (n <= 6) return getComputedStyle(document.documentElement).getPropertyValue("--mid").trim() || "#fcd34d";
+    function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+
+    function levelColor(n){
+      if(n<=3) return getComputedStyle(document.documentElement).getPropertyValue("--good").trim() || "#86efac";
+      if(n<=6) return getComputedStyle(document.documentElement).getPropertyValue("--mid").trim() || "#fcd34d";
       return getComputedStyle(document.documentElement).getPropertyValue("--bad").trim() || "#fca5a5";
     }
 
-    function init(){
-      const t = getTypeFromQuery();
-      const data = TYPES[t] || TYPES[1];
-
-      document.title = data.title;
-      document.getElementById("pageTitle").textContent = data.title;
-      document.getElementById("pageSub").textContent = data.sub;
-      document.getElementById("levelsIntro").textContent = data.levelsIntro || "Utilisez le curseur.";
-      document.getElementById("barInfo").textContent = data.title;
-
-      const secContainer = document.getElementById("sections");
-      secContainer.innerHTML = "";
-      
-      if(!data.sections || data.sections.length === 0) {
-         secContainer.innerHTML = "<div class='smallCard'>Contenu à venir...</div>";
-      } else {
-        data.sections.forEach((s, idx) => {
-          const d = document.createElement("details");
-          if(idx === 0) d.open = true;
-          
-          const sum = document.createElement("summary");
-          sum.innerHTML = `<span class="titleTint">${s.t}</span>`;
-          
-          const body = document.createElement("div");
-          body.className = "secBody";
-          body.innerHTML = s.b; 
-
-          d.appendChild(sum);
-          d.appendChild(body);
-          secContainer.appendChild(d);
-        });
-      }
-
-      const slider = document.getElementById("lvlRange");
-      const updateLevel = () => {
-        const lvl = parseInt(slider.value, 10);
-        const txt = (data.levels && data.levels[lvl]) ? data.levels[lvl] : "Information non disponible";
-        const label = rangeLabel(lvl);
-        const col = rangeColor(lvl);
-
-        document.getElementById("lvlTitle").textContent = "Niveau " + lvl;
-        document.getElementById("lvlBadge").textContent = label;
-        document.getElementById("lvlDot").style.background = col;
-        document.getElementById("lvlNumBox").textContent = lvl;
-        document.getElementById("lvlDesc").textContent = txt;
-      };
-
-      slider.addEventListener("input", updateLevel);
-      document.getElementById("btnPrev").onclick = () => { slider.value = Math.max(1, parseInt(slider.value)-1); updateLevel(); };
-      document.getElementById("btnNext").onclick = () => { slider.value = Math.min(9, parseInt(slider.value)+1); updateLevel(); };
-
-      updateLevel();
+    function rangeLabel(n){
+      if(n<=3) return "Sain";
+      if(n<=6) return "Moyen";
+      return "Malsain";
     }
 
-    init();
+    // FONCTION DE FORMATAGE AUTOMATIQUE DU TEXTE
+    // Transforme les listes à puces * et met en valeur les mots-clés
+    function formatText(txt){
+      if(!txt) return "";
+      let html = txt;
+
+      // 1. Convertir les retours à la ligne simples en balises HTML
+      // (Mais on fait attention à ne pas casser les listes)
+      
+      // 2. Transformer les lignes commençant par * en liste à puces
+      // On cherche les blocs de lignes avec *
+      // Remplacement simple ligne par ligne
+      html = html.replace(/^\*\s+(.+)$/gm, "<li>$1</li>");
+      
+      // Si on a des <li>, on les enveloppe dans un <ul> (très basique)
+      if(html.includes("<li>")){
+        // On entoure tout bloc de <li> contigus par <ul>
+        // Pour simplifier ici (car ton texte est propre), on va juste wrapper les zones de liste
+        // Mais ton texte a déjà des sauts de ligne.
+        // On va faire plus simple : on laisse les <li> flotter, le CSS s'en charge via .secBody ul
+        html = "<ul>" + html + "</ul>"; 
+        // Nettoyage des balises <ul> imbriquées inutilement ou mal placées
+        html = html.replace(/<\/ul>\s*<ul>/g, ""); 
+        html = html.replace(/<\/li>\n<li>/g, "</li><li>");
+      }
+
+      // 3. Mettre en gras ce qui est avant les deux points (ex: "Passion :")
+      html = html.replace(/(^|\n|<br>|<li>)([^:.<>]+)\s:/g, "$1<strong>$2</strong> :");
+      
+      // 4. Gérer les sauts de ligne restants (ceux qui ne sont pas des listes)
+      // On remplace les \n par <br> sauf autour des balises de liste
+      html = html.replace(/([^>])\n/g, "$1<br>");
+
+      return html;
+    }
+
+    function renderProfile(typeId){
+      const p = PROFILES[typeId];
+      if(!p) return;
+
+      qs('#pageTitle').textContent = p.title;
+      qs('#pageSub').textContent = p.sub || '';
+      
+      // Chips (Inutiles si on a enlevé le bandeau, mais gardés si besoin)
+      if(qs('#chips')) qs('#chips').innerHTML = '';
+
+      // Sections
+      const sec = qs('#sections');
+      sec.innerHTML = '';
+
+      // Intro niveaux dans le panneau de droite, pas ici
+
+      (p.sections||[]).forEach((s, idx)=>{
+        const det = document.createElement('details');
+        if (idx === 0) det.open = true; // Ouvre le premier
+
+        const sum = document.createElement("summary");
+        sum.innerHTML = `<span class="titleTint">${s.k}</span> <span class="secNum">${idx+1}</span>`;
+
+        const body = document.createElement("div");
+        body.className = "secBody";
+        
+        // C'EST ICI QUE LA MAGIE OPÈRE : On formate le texte brut
+        body.innerHTML = formatText(s.t);
+
+        det.appendChild(sum);
+        det.appendChild(body);
+        sec.appendChild(det);
+      });
+
+      // Slider Niveaux
+      const hasLevels = Array.isArray(p.levels) && p.levels.length === 9;
+      // Note: Dans ton fichier d'origine, levels est un tableau de strings.
+      
+      const slider = qs('#lvlRange');
+      if(p.levels && p.levels.length > 0){
+        
+        const updateLevel = () => {
+          const val = parseInt(slider.value, 10);
+          const txt = p.levels[val-1] || "—"; // Tableau index 0
+          const label = rangeLabel(val);
+          const col = levelColor(val);
+
+          // Titre et Badge
+          qs('#lvlTitle').textContent = "Niveau " + val;
+          qs('#lvlBadge').textContent = label;
+          qs('#lvlDot').style.background = col;
+          
+          // Compteur et Slider
+          qs('#lvlNumBox').textContent = val;
+          slider.style.accentColor = col;
+
+          // Description
+          qs('#lvlDesc').textContent = txt;
+          
+          // Introduction (petit texte au dessus)
+          if(qs('#levelsIntro')) qs('#levelsIntro').textContent = p.levelsIntro || "Utilisez le curseur.";
+        };
+
+        slider.addEventListener("input", updateLevel);
+        
+        qs('#btnPrev').addEventListener("click", () => {
+          slider.value = Math.max(1, parseInt(slider.value) - 1);
+          updateLevel();
+        });
+        
+        qs('#btnNext').addEventListener("click", () => {
+          slider.value = Math.min(9, parseInt(slider.value) + 1);
+          updateLevel();
+        });
+        
+        // Init
+        const savedKey = `ennea_level_${typeId}`;
+        const saved = +localStorage.getItem(savedKey);
+        const start = clamp(saved || +getParam('lvl') || 1, 1, 9);
+        slider.value = String(start);
+        updateLevel();
+
+      } else {
+        // Pas de niveaux dispos
+        qs('#lvlDesc').textContent = "Information non disponible pour ce type.";
+      }
+
+      qs('#barInfo').textContent = `Type ${typeId} • ${p.title}`;
+      setParam('type', String(typeId));
+    }
+
+
+    // Init
+    const initial = getParam('type') || Object.keys(PROFILES).sort((a,b)=>+a-+b)[0];
+    renderProfile(initial);
+
+    // Navigation Clavier
+    window.addEventListener('keydown', (e)=>{
+      if(!e.altKey) return;
+      const keys = Object.keys(PROFILES).sort((a,b)=>+a-+b).map(Number);
+      const cur = +getParam('type');
+      const i = keys.indexOf(cur);
+      
+      if(e.key === 'ArrowLeft') {
+         const prev = keys[Math.max(0, i - 1)];
+         renderProfile(prev);
+      }
+      if(e.key === 'ArrowRight') {
+         const next = keys[Math.min(keys.length-1, i + 1)];
+         renderProfile(next);
+      }
+    });
   </script>
 </body>
 </html>
