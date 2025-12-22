@@ -1,585 +1,618 @@
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Test Ennéagramme — Échantillon</title>
+  <title>Profil</title>
+
+  <link rel="stylesheet" href="assets/css/app.css?v=12" />
+  <link rel="stylesheet" href="assets/css/type.css?v=12" />
+
   <style>
     :root{
-      --bg:#0b1220;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.08);
-      --txt:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.68);
-      --line:rgba(255,255,255,.14);
-      --accent:#8bd3ff;
-      --good:#9ff2b1;
-      --warn:#ffd18b;
-      --bad:#ff8b8b;
-      --radius:18px;
+      --bg1: rgba(139,211,255,.16);
+      --bg2: rgba(159,242,177,.10);
+      --line: rgba(255,255,255,.12);
+      --line2: rgba(255,255,255,.18);
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --txt: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --radius: 18px;
+      --good: rgba(159,242,177,.95);
+      --mid: rgba(255,209,139,.95);
+      --bad: rgba(255,139,139,.95);
     }
-    *{box-sizing:border-box}
+
     body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 25% 15%, rgba(139,211,255,.20), transparent 55%),
-                  radial-gradient(1000px 700px at 80% 25%, rgba(159,242,177,.12), transparent 55%),
-                  linear-gradient(180deg, #081022, #070b14);
-      color:var(--txt);
-      min-height:100vh;
+      background:
+        radial-gradient(1200px 800px at 25% 15%, rgba(139,211,255,.20), transparent 55%),
+        radial-gradient(1000px 700px at 80% 25%, rgba(159,242,177,.12), transparent 55%),
+        linear-gradient(180deg, #081022, #070b14);
+      color: var(--txt);
     }
-    .wrap{max-width:1100px;margin:0 auto;padding:22px;padding-bottom:110px}
-    header{
-      display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
-      padding:18px 18px 14px;border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border-radius:var(--radius);
+
+    .wrapX{max-width:1200px;margin:0 auto;padding:22px}
+
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      padding:18px;
       backdrop-filter: blur(10px);
     }
-    h1{margin:0;font-size:22px;letter-spacing:.2px}
-    .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    button{
+
+    .heroTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .hero h1{margin:0;font-size:26px;letter-spacing:.2px}
+    .hero p{margin:6px 0 0;color:var(--muted);line-height:1.35}
+
+    .heroBtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+
+    .btnX{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.06);
-      color:var(--txt);
-      padding:10px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:600;
+      color: var(--txt);
+      text-decoration:none;
+      font-weight:700;
       font-size:13px;
       transition: transform .04s ease, background .18s ease, border-color .18s ease;
     }
-    button:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
-    button:active{transform: translateY(1px)}
+    .btnX:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
+    .btnX:active{transform: translateY(1px)}
+
+    .chips{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .chip{
+      display:flex;align-items:center;gap:8px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      padding:8px 10px;border-radius:999px;
+      font-size:13px;
+      color: var(--muted);
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background: rgba(125,211,252,.9)}
+    .chip b{color: var(--txt)}
+    .chip .v{color: var(--txt);font-weight:800}
+
     .grid{
       display:grid;
-      grid-template-columns: 1.4fr .9fr;
+      grid-template-columns: 1.05fr .95fr;
       gap:16px;
       margin-top:16px;
     }
+
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
-      .actions{justify-content:flex-start}
+      .heroBtns{justify-content:flex-start}
     }
-    .card{
+
+    .panel{
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
-      border-radius:var(--radius);
+      border-radius: var(--radius);
       overflow:hidden;
     }
-    .cardHead{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+
+    .panelHead{
       padding:14px 16px;
       border-bottom:1px solid var(--line);
       background: rgba(255,255,255,.04);
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
     }
-    .cardHead h2{margin:0;font-size:15px}
+
+    .panelHead h2{margin:0;font-size:16px}
     .pill{
       font-size:12px;color:var(--muted);
       border:1px solid var(--line);
       padding:6px 10px;border-radius:999px;
       background: rgba(255,255,255,.04);
+      white-space:nowrap;
     }
-    .cardBody{padding:14px 16px}
-    .scaleHint{color:var(--muted);font-size:12px;margin:0 0 12px;line-height:1.4}
-    .q{
-      padding:12px 12px;
+
+    .panelBody{padding:14px 16px}
+
+    .lvlTitle{
+      margin:0;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+
+    .lvlBadge{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      padding:7px 10px;border-radius:999px;
+      color: var(--muted);
+      font-size:13px;
+      margin-top:10px;
+    }
+    .lvlBadge .dot2{width:10px;height:10px;border-radius:999px;background: var(--good)}
+    .lvlBadge b{color: var(--txt)}
+
+    .rangeWrap{
+      margin-top:14px;
+      padding:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.10);
       border-radius:14px;
-      margin-bottom:10px;
     }
-    .qTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-    .qText{font-size:14px;line-height:1.35}
-    .qMeta{color:var(--muted);font-size:12px;white-space:nowrap}
-    .row{display:flex;gap:10px;align-items:center;margin-top:10px}
-    input[type="range"]{width:100%}
-    .val{
-      min-width:42px;text-align:center;
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      border-radius:10px;
-      padding:6px 8px;
-      font-size:12px;
+
+    .rangeTop{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
     }
-    .legend{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:6px}
-    .resultBox{
-      padding:14px 16px;
-      border-top:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .resTitle{margin:0;font-size:15px}
-    .resLine{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.35}
-    .top3{margin-top:12px;display:grid;gap:10px}
-    .topItem{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      border-radius:14px;
-      padding:10px 12px;
-      display:flex;justify-content:space-between;align-items:center;gap:12px;
-    }
-    .topLeft{display:flex;flex-direction:column;gap:2px}
-    .topName{font-weight:900}
-    .topDesc{color:var(--muted);font-size:12px;line-height:1.25}
-    .topScore{
+
+    .rangeTop .n{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:44px;
       font-weight:900;
-      border:1px solid rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       border-radius:12px;
       padding:8px 10px;
-      min-width:64px;
-      text-align:center;
+      font-size:13px;
+    }
+
+    input[type="range"]{width:100%}
+
+    .legend{
+      margin-top:10px;
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      color: var(--muted);
       font-size:12px;
     }
-    .bars{margin-top:14px;display:grid;gap:8px}
-    .barRow{display:grid;grid-template-columns: 44px 1fr 44px;gap:10px;align-items:center}
-    .barK{color:var(--muted);font-size:12px}
-    .barV{color:var(--muted);font-size:12px;text-align:right}
-    .barTrack{
-      height:10px;border-radius:999px;background: rgba(255,255,255,.08);
+
+    .legend .k{display:flex;align-items:center;gap:8px}
+    .tag{width:10px;height:10px;border-radius:999px}
+    .tag.good{background: var(--good)}
+    .tag.mid{background: var(--mid)}
+    .tag.bad{background: var(--bad)}
+
+    .lvlDesc{
+      margin-top:12px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius:14px;
+      line-height:1.5;
+    }
+
+    .lvlNav{
+      margin-top:12px;
+      display:flex;gap:10px;flex-wrap:wrap;
+    }
+
+    .smallCard{
+      margin-top:14px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius:14px;
+      color: var(--muted);
+      line-height:1.45;
+    }
+    .smallCard b{color: var(--txt)}
+
+    .detailsList{display:grid;gap:10px}
+
+    details{
       border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.10);
+      border-radius:14px;
       overflow:hidden;
     }
-    .barFill{height:100%;width:0%}
-    .small{color:var(--muted);font-size:12px;line-height:1.4;margin-top:12px}
-    .twoBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .ghost{background: rgba(255,255,255,.03)}
-    .danger{border-color: rgba(255,139,139,.30)}
-    .ok{border-color: rgba(159,242,177,.30)}
-    .toast{
-      position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
-      background: rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.18);
-      padding:10px 12px; border-radius: 999px; color: var(--txt);
-      font-size: 12px; display:none; z-index: 20; backdrop-filter: blur(8px);
-      max-width: 92vw;
-    }
-    a{color:var(--accent);text-decoration:none}
-.siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
-.siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
-.siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
-.siteFooter a:hover{opacity:1}
 
-.bottomBar{
-  position: fixed;
-  left: 0; right: 0;
-  bottom: 0;
-  z-index: 15;
-  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(7,11,20,.10), rgba(7,11,20,.78));
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255,255,255,.10);
-}
-.bottomInner{
-  max-width: 1100px;
-  margin: 0 auto;
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-.bottomInner .linkBtn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:10px 12px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.06);
-  color:var(--txt);
-  font-weight:600;
-  font-size:13px;
-  cursor:pointer;
-  transition: transform .04s ease, background .18s ease, border-color .18s ease;
-  text-decoration:none;
-}
-.bottomInner .linkBtn:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
-.bottomInner .linkBtn:active{transform: translateY(1px)}
-.bottomInner .mutedBtn{opacity:.92}
-        </style>
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      font-weight:900;
+    }
+    summary::-webkit-details-marker{display:none}
+
+    .secNum{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:30px;height:30px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+
+    .secBody{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding:14px 14px 16px;
+      line-height:1.55;
+      color: var(--txt);
+    }
+
+    .secBody p{margin:0 0 10px}
+    .secBody ul{margin:8px 0 10px 18px}
+    .secBody li{margin:6px 0}
+    .muted{color: var(--muted)}
+
+    .titleTint{
+      color: rgba(125,211,252,.92);
+    }
+
+    .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
+    .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+    .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+    .siteFooter a:hover{opacity:1}
+
+    .rangeTrackHint{
+      margin-top:10px;
+      height:10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(90deg, rgba(159,242,177,.9), rgba(255,209,139,.9), rgba(255,139,139,.9));
+      opacity:.85;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Test Ennéagramme — Échantillon</h1>
-        <div class="sub">
-          Réponds spontanément. Échelle 0–4 : 0 pas du tout, 1 plutôt non, 2 parfois, 3 souvent, 4 très souvent.<br>
-          Ce test est indicatif, pas un diagnostic. Le résultat sert à explorer, puis à comparer avec les descriptions des types.
+  <div class="wrapX">
+    <section class="hero">
+      <div class="heroTop">
+        <div>
+          <h1 id="pageTitle">Profil</h1>
+          <p id="pageSub" class="muted">—</p>
+          <p id="pageHint" class="muted">—</p>
+        </div>
+
+        <div class="heroBtns">
+          <a class="btnX" href="test-enneagramme-sans-indice.html">Retour au Test</a>
+          
+          <a class="btnX" href="explore.html">Retour Explorer</a>
+          <a class="btnX" href="index.html">Retour Diagramme</a>
         </div>
       </div>
-      <div class="actions">
-        <button id="btnCalc" class="ok" type="button">Calculer</button>
-        <button id="btnReset" class="danger" type="button">Réinitialiser</button>
-        <button id="btnExport" class="ghost" type="button">Exporter</button>
-      </div>
-    </header>
-<div class="grid">
-  <section class="card" aria-label="Questionnaire">
-    <div class="cardHead">
-      <h2>Questionnaire</h2>
-      <div class="pill"><span id="answered">0</span>/<span id="total">0</span> répondu</div>
-    </div>
-    <div class="cardBody">
-      <p class="scaleHint">Astuce : si tu hésites entre deux valeurs, prends celle qui décrit le plus souvent ton automatisme.</p>
-      <div id="questions"></div>
-      <div class="legend">
-        <span>0 pas du tout</span><span>1</span><span>2</span><span>3</span><span>4 très souvent</span>
-      </div>
-    </div>
-  </section>
 
-  <aside class="card" aria-label="Résultats">
-    <div class="cardHead">
-      <h2>Résultats</h2>
-      <div class="pill">Top 3 + scores</div>
-    </div>
-    <div class="cardBody" id="resultBody">
-      <p class="scaleHint">Clique Calculer pour voir ton profil probable. Les réponses restent enregistrées sur ton navigateur.</p>
-    </div>
-    <div class="resultBox" id="resultBox" style="display:none">
-      <p class="resTitle" id="resTitle">—</p>
-      <div class="resLine" id="resLine"></div>
-      <div class="top3" id="top3"></div>
-      <div class="bars" id="bars"></div>
-      <div class="small">
-        Conseil : lis surtout les deux premiers types, puis vérifie la motivation de fond et la peur de base.
-        Les ailes et sous-types peuvent expliquer un score proche.
+      <div class="chips">
+        <div class="chip"><span class="dot"></span><b>Plage</b> <span class="v" id="chipRange">—</span></div>
+        <div class="chip"><span class="dot"></span><b>Niveau</b> <span class="v" id="chipLevel">—</span></div>
+        <div class="chip"><span class="dot"></span><b>Tendance</b> <span class="v" id="chipTrend">—</span></div>
       </div>
-      <div class="twoBtns">
-        <button id="btnGoType" type="button">Ouvrir la fiche complète du #1</button>
-        <button id="btnCopy" class="ghost" type="button">Copier le résumé</button>
-      </div>
-    </div>
-  </aside>
-</div>
+    </section>
 
-<footer class="siteFooter">
-  <div class="footerInner">
-    <span class="copy">Brahms – Tous droits réservés</span>
-    <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank" rel="noopener">
-      ✉️ Écrire à Brahms
-    </a>
+    <main class="grid">
+      <section class="panel">
+        <div class="panelHead">
+          <h2>Niveaux de développement</h2>
+          <div class="pill">Curseur 1 → 9</div>
+        </div>
+
+        <div class="panelBody">
+          <p class="muted" id="levelsIntro">—</p>
+
+          <h3 class="lvlTitle" id="lvlTitle">—</h3>
+
+          <div class="lvlBadge">
+            <span class="dot2" id="lvlDot"></span>
+            <b id="lvlBadge">—</b>
+          </div>
+
+          <div class="rangeWrap">
+            <div class="rangeTop">
+              <div class="muted">Choisis ton niveau</div>
+              <div class="n" id="lvlNumBox">1</div>
+            </div>
+
+            <div style="margin-top:10px">
+              <input id="lvlRange" type="range" min="1" max="9" step="1" value="1" />
+              <div class="rangeTrackHint" aria-hidden="true"></div>
+              <div class="legend">
+                <span class="k"><span class="tag good"></span>1–3 Sain</span>
+                <span class="k"><span class="tag mid"></span>4–6 Moyen</span>
+                <span class="k"><span class="tag bad"></span>7–9 Malsain</span>
+              </div>
+            </div>
+
+            <div class="lvlDesc" id="lvlDesc">—</div>
+
+            <div class="lvlNav">
+              <button class="btnX" id="btnPrev" type="button">Niveau précédent</button>
+              <button class="btnX" id="btnNext" type="button">Niveau suivant</button>
+            </div>
+          </div>
+
+          <div class="smallCard" id="levelsDef">
+            <b>Définition du niveau de développement</b><br><br>
+            Le niveau de développement est défini comme une mesure du degré d’identification d’une personne avec sa structure de personnalité, servant ainsi d’indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d’évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <div class="panelHead">
+          <h2>Fiche détaillée</h2>
+          <div class="pill">Lecture progressive</div>
+        </div>
+
+        <div class="panelBody">
+          <div class="detailsList" id="sections">
+            </div>
+
+          <div class="smallCard">
+            <b>Astuce de lecture</b><br><br>
+            Lis d’abord la section Identité, puis explore les niveaux au curseur en te demandant à quel niveau tu te reconnais le plus sur les derniers mois, pas seulement aujourd’hui.
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="siteFooter">
+      <div class="footerInner">
+        <span class="copy">Brahms – Tous droits réservés</span>
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVr117DZL5A3uZZBCwLdkQ/viewform?usp=sf_link" target="_blank" rel="noopener">
+          ✉️ Écrire à Brahms
+        </a>
+      </div>
+    </footer>
   </div>
-</footer>
-  </div>
-  <div class="bottomBar" role="navigation" aria-label="Actions rapides">
-    <div class="bottomInner">
-      <button id="btnCalc2" class="ok" type="button">Calculer</button>
-      <button id="btnReset2" class="danger" type="button">Réinitialiser</button>
-      <a id="btnBack" class="linkBtn mutedBtn" href="explore.html">Retour</a>
-    </div>
-  </div>
-  <div class="toast" id="toast"></div>
+
   <script>
-  (() => {
     const TYPES = {
-      1:{name:"Le Perfectionniste", desc:"Exigence, principes, amélioration, critique intérieure."},
-      2:{name:"L'Altruiste", desc:"Aide, lien, besoin d’être apprécié, attention à l’autre."},
-      3:{name:"Le Réalisateur", desc:"Efficacité, image, réussite, performance, adaptabilité."},
-      4:{name:"L'Individualiste", desc:"Identité, profondeur, sens, intensité émotionnelle."},
-      5:{name:"L'Observateur", desc:"Comprendre, retrait, économie d’énergie, expertise."},
-      6:{name:"Le Loyaliste", desc:"Sécurité, vigilance, doute, loyauté, anticipation."},
-      7:{name:"L'Épicurien", desc:"Options, enthousiasme, plaisir, éviter la douleur."},
-      8:{name:"Le Protecteur", desc:"Force, autonomie, justice, confrontation, leadership."},
-      9:{name:"Le Médiateur", desc:"Paix, harmonie, évitement du conflit, inertie possible."}
+      1: {
+        pageTitle: "Type 1 – Profil complet",
+        pageSub: "Le Réformateur, l’Idéaliste, l’Organisateur",
+        pageHint: "Cette page est une fiche profil : lecture structurée + curseur pour explorer les 9 niveaux de développement.",
+        levelsIntro: "Les niveaux de développement du Type 1 décrivent un continuum allant de la libération et de la sagesse éthique à une rigidité obsessionnelle et destructrice. Plus on descend, plus l’ego prend le contrôle et plus la liberté de choix diminue.",
+        levels: {
+          1: { title: "Niveau 1 — Acceptation et sagesse", badge: "Niveau 1 — Sain", range: "Sain", trend: "Plus de liberté, de discernement, d’acceptation", desc: "À ce stade, le 1 abandonne la conviction qu’il est en position de juger la réalité. Il devient profondément sage, discernant et capable d’accepter la vie telle qu’elle est sans réaction émotionnelle excessive, atteignant ainsi son désir de base : avoir une intégrité totale." },
+          2: { title: "Niveau 2 — Évaluation et raison", badge: "Niveau 2 — Sain", range: "Sain", trend: "Objectivité, modération, cohérence", desc: "La personne se concentre sur les directives de son surmoi pour se guider et se protéger des parties désordonnées d’elle-même. Son image de soi est celle d’une personne sensée, modérée et objective." },
+          3: { title: "Niveau 3 — Intégrité et responsabilité", badge: "Niveau 3 — Sain", range: "Sain", trend: "Éthique vivante, exemplarité, responsabilité", desc: "Le 1 renforce son image de soi en vivant selon sa conscience et sa raison. Il est hautement éthique, discipliné et enseigne par l’exemple en mettant de côté ses désirs personnels pour le bien de tous." },
+          4: { title: "Niveau 4 — Obligation et effort", badge: "Niveau 4 — Moyen", range: "Moyen", trend: "Contrôle, sérieux, devoir", desc: "Le 1 commence à craindre que les autres soient indifférents à ses principes. Il devient sérieux, se sent obligé de corriger tout ce qu’il voit et commence à débattre avec les autres pour les convaincre de la justesse de ses vues." },
+          5: { title: "Niveau 5 — Maîtrise de soi et ordre", badge: "Niveau 5 — Moyen", range: "Moyen", trend: "Rigidification, tension, irritabilité", desc: "La peur d’être condamné pour toute déviation par rapport à ses idéaux grandit. Le 1 s’oblige à vivre selon ses propres standards en permanence, s’organisant de manière rigoureuse. Il devient ponctuel et méthodique, mais aussi tendu et irritable." },
+          6: { title: "Niveau 6 — Jugement et critique", badge: "Niveau 6 — Moyen", range: "Moyen", trend: "Perfectionnisme, reproche, colère", desc: "Il craint que les autres ne gâchent l’ordre qu’il a établi et s’en met en colère. Il réagit en reprochant aux autres de ne pas être à la hauteur de ses standards. Il devient perfectionniste, opinionné et souvent sarcastique." },
+          7: { title: "Niveau 7 — Auto-justification et inflexibilité", badge: "Niveau 7 — Malsain", range: "Malsain", trend: "Fermeture, moralisme, amertume", desc: "Le 1 craint que ses idéaux soient faux, ce qui le rend amer et misanthrope. Pour sauver son image de soi, il devient extrêmement fermé d’esprit, refuse tout compromis et devient hautement moralisateur." },
+          8: { title: "Niveau 8 — Obsession et contradiction", badge: "Niveau 8 — Malsain", range: "Malsain", trend: "Compulsion, contradiction, agitation", desc: "Désespéré de contrôler ses désirs irrationnels, il devient obsédé par les parties de lui-même qu’il voulait dompter. Paradoxalement, il commence à agir selon ses désirs réprimés tout en continuant de les condamner publiquement." },
+          9: { title: "Niveau 9 — Condamnation et punition", badge: "Niveau 9 — Malsain", range: "Malsain", trend: "Rupture, destructivité", desc: "Réalisant qu’il a perdu le contrôle et qu’il commet les actes qu’il ne peut tolérer chez les autres, le 1 devient punitif. Il tente de supprimer la cause de ses obsessions en lui-même ou chez les autres, ce qui peut mener à l’auto-mutilation, au meurtre ou au suicide." }
+        },
+        sections: [
+          {
+            t: "Identité et moteur principal",
+            b: `
+              <p>Vous êtes une personnalité idéaliste et rationnelle, animée par des principes solides et un sens moral élevé. Votre rôle social est souvent celui de l’Éducateur ou de l’Enseignant.</p>
+              <ul>
+                <li><b>Votre vision</b> : sentiment d’une mission, améliorer le monde, lutter contre le désordre et l’imperfection, corriger ce qui est erroné.</li>
+                <li><b>Désir de base</b> : être bon, vertueux, intègre et en équilibre.</li>
+                <li><b>Peur de base</b> : être mauvais, défectueux, corrompu ou malfaisant.</li>
+                <li><b>Message du Surmoi</b> : tu es quelqu’un de bien si tu fais ce qui est juste.</li>
+              </ul>
+            `
+          },
+          {
+            t: "La mécanique de l’ego",
+            b: `
+              <p>Il existe un paradoxe au cœur de votre fonctionnement.</p>
+              <ul>
+                <li><b>Centre</b> : centre instinctif, énergie dirigée vers l’intérieur pour l’auto-contrôle.</li>
+                <li><b>Compulsion</b> : éviter à tout prix la colère.</li>
+                <li><b>Passion</b> : la colère, souvent ressentie comme ressentiment ou irritation face à l’imperfection.</li>
+                <li><b>Fixation</b> : perfectionnisme, repérage et correction des erreurs, mental binaire bien/mal.</li>
+                <li><b>Mécanisme de défense</b> : formation réactionnelle, transformer les impulsions jugées inacceptables en leur opposé.</li>
+              </ul>
+            `
+          },
+          {
+            t: "Origines, niveaux et variantes",
+            b: `
+              <ul>
+                <li><b>Schéma de l’enfance</b> : déconnexion précoce avec la figure protectrice, nécessité de se guider soi-même, sérieux, hyper-responsabilité.</li>
+                <li><b>Ailes</b> : 1w9 plus réservé et calme, 1w2 plus chaleureux mais plus militant.</li>
+                <li><b>Plages</b> : sain (sage, éthique), moyen (jugement, obligation), malsain (obsession, condamnation).</li>
+              </ul>
+            `
+          },
+          {
+            t: "Vécu quotidien et signaux",
+            b: `
+              <p>Vous cohabitez avec un petit juge intérieur qui critique en permanence, pouvant créer des tensions physiques.</p>
+              <ul>
+                <li><b>Signal d’éveil</b> : sentiment d’obligation personnelle intense, croire que tout repose sur vos épaules.</li>
+                <li><b>Signal d’alarme</b> : peur que vos idéaux soient faux ou contre-productifs.</li>
+                <li><b>Au travail</b> : qualité, procédures, difficulté à déléguer par peur de l’erreur.</li>
+                <li><b>Relation aux autres</b> : repérer ce qui ne va pas, risque de ton moralisateur.</li>
+              </ul>
+            `
+          },
+          {
+            t: "Sous-types instinctifs",
+            b: `
+              <ul>
+                <li><b>Autoconservation</b> : anxiété, auto-contrôle, hygiène, sécurité.</li>
+                <li><b>Social</b> : devoir de réforme du groupe, rigidité si les règles ne sont pas suivies.</li>
+                <li><b>Sexuel</b> : standards partagés, jalousie liée à l’imperfection de la relation.</li>
+              </ul>
+            `
+          },
+          {
+            t: "Dynamique d’évolution",
+            b: `
+              <ul>
+                <li><b>Sous stress</b> : désintégration vers le 4, maussade, irrationnel, sentiment d’incompréhension, indulgences secrètes.</li>
+                <li><b>En croissance</b> : intégration vers le 7, spontanéité, joie, curiosité, acceptation.</li>
+              </ul>
+            `
+          },
+          {
+            t: "Pratiques de guérison",
+            b: `
+              <ul>
+                <li><b>Actions</b> : identifier la voix du juge, relaxation, moments de jeu sans but.</li>
+                <li><b>Attitudes</b> : peut-être que les autres ont raison, j’ai fait tout ce qui pouvait être fait.</li>
+                <li><b>Défi</b> : accepter l’imperfection, relâcher le fardeau de la responsabilité universelle.</li>
+              </ul>
+            `
+          },
+          {
+            t: "Approche spirituelle",
+            b: `
+              <ul>
+                <li><b>Idée sacrée</b> : perception que la réalité est intrinsèquement complète et à sa place.</li>
+                <li><b>Illusion</b> : jugement comparatif, croire au bien/mal absolus.</li>
+                <li><b>Difficulté</b> : sentiment de wrongness, défaut intrinsèque.</li>
+                <li><b>Réaction</b> : auto-amélioration compulsive.</li>
+                <li><b>Vertu</b> : patience, laisser la réalité se déployer.</li>
+              </ul>
+            `
+          }
+        ]
+      },
+
+      2: { pageTitle: "Type 2 – Profil complet", pageSub: "À compléter", pageHint: "Colle ici le Type 2", levelsIntro: "—", levels: {}, sections: [] },
+      3: { pageTitle: "Type 3 – Profil complet", pageSub: "À compléter", pageHint: "Colle ici le Type 3", levelsIntro: "—", levels: {}, sections: [] },
+      4: { pageTitle: "Type 4 – Profil complet", pageSub: "À compléter", pageHint: "Colle ici le Type 4", levelsIntro: "—", levels: {}, sections: [] },
+      5: { pageTitle: "Type 5 – Profil complet", pageSub: "À compléter", pageHint: "Colle ici le Type 5", levelsIntro: "—", levels: {}, sections: [] },
+      6: { pageTitle: "Type 6 – Profil complet", pageSub: "À compléter", pageHint: "Colle ici le Type 6", levelsIntro: "—", levels: {}, sections: [] },
+      7: { pageTitle: "Type 7 – Profil complet", pageSub: "À compléter", pageHint: "Colle ici le Type 7", levelsIntro: "—", levels: {}, sections: [] },
+      8: { pageTitle: "Type 8 – Profil complet", pageSub: "À compléter", pageHint: "Colle ici le Type 8", levelsIntro: "—", levels: {}, sections: [] },
+      9: { pageTitle: "Type 9 – Profil complet", pageSub: "À compléter", pageHint: "Colle ici le Type 9", levelsIntro: "—", levels: {}, sections: [] }
     };
 
-    const ITEMS = [
-      {t:1, s:"Je remarque spontanément ce qui pourrait être corrigé, amélioré ou optimisé."},
-      {t:1, s:"J’ai du mal à me détendre si tout n’est pas fait correctement."},
-      {t:1, s:"Je me juge (ou je juge les situations) selon des principes et des standards élevés."},
-      {t:2, s:"Je me sens naturellement responsable d’aider, soutenir ou prendre soin des autres."},
-      {t:2, s:"J’ai tendance à deviner les besoins des autres avant les miens."},
-      {t:2, s:"Je peux me sentir blessé si mon aide n’est pas reconnue ou appréciée."},
-      {t:3, s:"Je me sens valorisé quand je suis efficace et que j’obtiens des résultats visibles."},
-      {t:3, s:"Je m’adapte facilement à ce qui est attendu pour réussir."},
-      {t:3, s:"J’évite de montrer l’échec ou la vulnérabilité, je préfère garder une image solide."},
-      {t:4, s:"Je me sens différent et je cherche un sens profond à ce que je vis."},
-      {t:4, s:"Je remarque facilement ce qui me manque ou ce qui rend la vie incomplète."},
-      {t:4, s:"Mes émotions guident souvent mon identité et mes choix."},
-      {t:5, s:"J’ai besoin de beaucoup d’espace mental et de solitude pour me ressourcer."},
-      {t:5, s:"Je préfère observer et comprendre avant d’agir ou de m’engager."},
-      {t:5, s:"Je protège mon énergie et mon temps, je n’aime pas être sollicité en continu."},
-      {t:6, s:"Je scanne les risques et j’anticipe ce qui pourrait mal tourner."},
-      {t:6, s:"Je peux douter longtemps avant de trancher, et chercher des garanties."},
-      {t:6, s:"La loyauté et la fiabilité sont essentielles pour que je me sente en sécurité."},
-      {t:7, s:"Je cherche naturellement des options, des idées et des expériences stimulantes."},
-      {t:7, s:"Je préfère recadrer positivement plutôt que rester dans la douleur ou la tristesse."},
-      {t:7, s:"Je peux me disperser si je me sens limité, ennuyé ou enfermé."},
-      {t:8, s:"Je prends vite la place quand il faut décider, protéger ou agir."},
-      {t:8, s:"Je déteste me sentir contrôlé ; je veux garder mon autonomie."},
-      {t:8, s:"Je préfère la franchise, même si ça confronte ou choque."},
-      {t:9, s:"Je cherche à maintenir la paix et j’évite les conflits directs."},
-      {t:9, s:"Je peux oublier mes priorités en me fondant dans les besoins des autres ou la routine."},
-      {t:9, s:"Quand c’est tendu, j’ai tendance à me mettre en mode “pilotage automatique”."}
-    ];
-
-    const LS_KEY = "ennea_test_sample_v1";
-    const elQuestions = document.getElementById("questions");
-    const elAnswered = document.getElementById("answered");
-    const elTotal = document.getElementById("total");
-    const btnCalc = document.getElementById("btnCalc");
-    const btnReset = document.getElementById("btnReset");
-    const btnExport = document.getElementById("btnExport");
-    const resultBody = document.getElementById("resultBody");
-    const resultBox = document.getElementById("resultBox");
-    const resTitle = document.getElementById("resTitle");
-    const resLine = document.getElementById("resLine");
-    const top3 = document.getElementById("top3");
-    const bars = document.getElementById("bars");
-    const btnGoType = document.getElementById("btnGoType");
-    const btnCopy = document.getElementById("btnCopy");
-    const toast = document.getElementById("toast");
-
-    const btnCalc2 = document.getElementById("btnCalc2");
-    const btnReset2 = document.getElementById("btnReset2");
-    const btnBack = document.getElementById("btnBack");
-
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.style.display = "block";
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(()=> toast.style.display="none", 2200);
+    function getTypeFromQuery(){
+      const p = new URLSearchParams(location.search);
+      const n = parseInt(p.get("type") || "1", 10);
+      return (n>=1 && n<=9) ? n : 1;
     }
 
-    function loadState(){
-      try{
-        const raw = localStorage.getItem(LS_KEY);
-        if(!raw) return {};
-        return JSON.parse(raw) || {};
-      }catch{ return {}; }
+    function rangeLabel(n){
+      if (n <= 3) return "Sain";
+      if (n <= 6) return "Moyen";
+      return "Malsain";
     }
 
-    function saveState(st){
-      localStorage.setItem(LS_KEY, JSON.stringify(st));
+    function rangeColor(n){
+      if (n <= 3) return getComputedStyle(document.documentElement).getPropertyValue("--good").trim() || "rgba(159,242,177,.95)";
+      if (n <= 6) return getComputedStyle(document.documentElement).getPropertyValue("--mid").trim() || "rgba(255,209,139,.95)";
+      return getComputedStyle(document.documentElement).getPropertyValue("--bad").trim() || "rgba(255,139,139,.95)";
     }
 
-    let state = loadState();
-
-    function renderQuestions(){
-      elQuestions.innerHTML = "";
-      elTotal.textContent = String(ITEMS.length);
-      ITEMS.forEach((it, idx) => {
-        const q = document.createElement("div");
-        q.className = "q";
-
-        const top = document.createElement("div");
-        top.className = "qTop";
-
-        const text = document.createElement("div");
-        text.className = "qText";
-        text.textContent = it.s;
-
-        const meta = document.createElement("div");
-        meta.className = "qMeta";
-        meta.textContent = "";
-        meta.style.display = "none";
-
-        top.appendChild(text);
-        top.appendChild(meta);
-
-        const row = document.createElement("div");
-        row.className = "row";
-
-        const range = document.createElement("input");
-        range.type = "range";
-        range.min = "0";
-        range.max = "4";
-        range.step = "1";
-        range.value = (state[idx] ?? 0);
-
-        const val = document.createElement("div");
-        val.className = "val";
-        val.textContent = range.value;
-
-        range.addEventListener("input", () => {
-          val.textContent = range.value;
-          state[idx] = parseInt(range.value, 10);
-          saveState(state);
-          updateAnswered();
-        });
-
-        row.appendChild(range);
-        row.appendChild(val);
-        q.appendChild(top);
-        q.appendChild(row);
-        elQuestions.appendChild(q);
-      });
-      updateAnswered();
-    }
-
-    function updateAnswered(){
-      let n = 0;
-      for(let i=0;i<ITEMS.length;i++){
-        if (typeof state[i] === "number") n++;
+    function renderSections(secs){
+      const root = document.getElementById("sections");
+      root.innerHTML = "";
+      if (!secs || !secs.length){
+        root.innerHTML = `<div class="smallCard"><b>Contenu en cours</b><br><br>Le texte de ce type n’est pas encore intégré.</div>`;
+        return;
       }
-      elAnswered.textContent = String(n);
+
+      secs.forEach((s, i) => {
+        const d = document.createElement("details");
+        if (i === 0) d.open = true;
+
+        const sum = document.createElement("summary");
+        const left = document.createElement("span");
+        left.className = "titleTint";
+        left.textContent = s.t;
+
+        const num = document.createElement("span");
+        num.className = "secNum";
+        num.textContent = String(i + 1);
+
+        sum.appendChild(left);
+        sum.appendChild(num);
+
+        const body = document.createElement("div");
+        body.className = "secBody";
+        body.innerHTML = s.b;
+
+        d.appendChild(sum);
+        d.appendChild(body);
+        root.appendChild(d);
+      });
     }
 
-    function score(){
-      const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
-      const maxPerType = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
-      ITEMS.forEach((it, idx) => {
-        const v = (typeof state[idx] === "number") ? state[idx] : 0;
-        scores[it.t] += v;
-        maxPerType[it.t] += 4;
-      });
-      const arr = Object.keys(scores).map(k => {
-        const t = parseInt(k,10);
-        const raw = scores[t];
-        const max = maxPerType[t] || 1;
-        const pct = Math.round((raw / max) * 100);
-        return {t, raw, max, pct};
-      }).sort((a,b)=> b.raw - a.raw);
-      return {arr};
+    function setLevelUI(cfg, lvl){
+      const lvls = cfg.levels || {};
+      const L = lvls[lvl];
+
+      const chipRange = document.getElementById("chipRange");
+      const chipLevel = document.getElementById("chipLevel");
+      const chipTrend = document.getElementById("chipTrend");
+
+      const lvlTitle = document.getElementById("lvlTitle");
+      const lvlBadge = document.getElementById("lvlBadge");
+      const lvlDesc = document.getElementById("lvlDesc");
+      const lvlNumBox = document.getElementById("lvlNumBox");
+      const lvlDot = document.getElementById("lvlDot");
+
+      const range = rangeLabel(lvl);
+      const color = rangeColor(lvl);
+
+      chipRange.textContent = range;
+      chipLevel.textContent = "Niveau " + lvl + "/9";
+      chipTrend.textContent = (L && L.trend) ? L.trend : (range === "Sain" ? "Plus de liberté et d’ouverture" : range === "Moyen" ? "Plus de contrôle et de tension" : "Plus de rigidité et de fermeture");
+
+      lvlNumBox.textContent = String(lvl);
+      lvlDot.style.background = color;
+
+      if (L){
+        lvlTitle.textContent = L.title;
+        lvlBadge.textContent = L.badge || ("Niveau " + lvl + " — " + range);
+        document.getElementById("lvlDot").style.background = color;
+        document.getElementById("lvlBadge").textContent = L.badge || ("Niveau " + lvl + " — " + range);
+        lvlDesc.textContent = L.desc;
+      }else{
+        lvlTitle.textContent = "Niveau " + lvl;
+        lvlBadge.textContent = "Niveau " + lvl + " — " + range;
+        lvlDesc.textContent = "Contenu du niveau à intégrer.";
+      }
     }
 
-    function colorForType(t){
-      if ([8,9,1].includes(t)) return "rgba(255,139,139,.85)";
-      if ([2,3,4].includes(t)) return "rgba(255,209,139,.85)";
-      return "rgba(139,211,255,.85)";
-    }
+    function init(){
+      const t = getTypeFromQuery();
+      const cfg = TYPES[t] || TYPES[1];
 
-    function renderResults(){
-      const {arr} = score();
-      const first = arr[0];
-      const second = arr[1];
-      const third = arr[2];
+      document.title = cfg.pageTitle || "Profil";
+      document.getElementById("pageTitle").textContent = cfg.pageTitle || "Profil";
+      document.getElementById("pageSub").textContent = cfg.pageSub || "—";
+      document.getElementById("pageHint").textContent = cfg.pageHint || "—";
+      document.getElementById("levelsIntro").textContent = cfg.levelsIntro || "—";
 
-      resTitle.textContent = "Profil probable : Type " + first.t + " • " + TYPES[first.t].name;
-      resLine.textContent = "Score " + first.raw + "/" + first.max + " (" + first.pct + "%). Compare surtout avec Types " + second.t + " et " + third.t + " si les scores sont proches.";
+      renderSections(cfg.sections);
 
-      top3.innerHTML = "";
-      [first, second, third].forEach((x, i) => {
-        const div = document.createElement("div");
-        div.className = "topItem";
+      const lvlRange = document.getElementById("lvlRange");
+      lvlRange.value = "1";
 
-        const left = document.createElement("div");
-        left.className = "topLeft";
-
-        const nm = document.createElement("div");
-        nm.className = "topName";
-        nm.textContent = "#" + (i+1) + "  Type " + x.t + " • " + TYPES[x.t].name;
-
-        const ds = document.createElement("div");
-        ds.className = "topDesc";
-        ds.textContent = TYPES[x.t].desc;
-
-        left.appendChild(nm);
-        left.appendChild(ds);
-
-        const sc = document.createElement("div");
-        sc.className = "topScore";
-        sc.textContent = x.raw + "/" + x.max;
-
-        div.appendChild(left);
-        div.appendChild(sc);
-        top3.appendChild(div);
-      });
-
-      bars.innerHTML = "";
-      arr.slice().sort((a,b)=> a.t - b.t).forEach(x => {
-        const row = document.createElement("div");
-        row.className = "barRow";
-
-        const k = document.createElement("div");
-        k.className = "barK";
-        k.textContent = "T" + x.t;
-
-        const track = document.createElement("div");
-        track.className = "barTrack";
-
-        const fill = document.createElement("div");
-        fill.className = "barFill";
-        fill.style.width = x.pct + "%";
-        fill.style.background = colorForType(x.t);
-
-        track.appendChild(fill);
-
-        const v = document.createElement("div");
-        v.className = "barV";
-        v.textContent = x.pct + "%";
-
-        row.appendChild(k);
-        row.appendChild(track);
-        row.appendChild(v);
-
-        bars.appendChild(row);
-      });
-
-      btnGoType.textContent = "Ouvrir la fiche complète du Type " + first.t;
-      // --- MODIFICATION ICI : Vers profil.html au lieu de type.html ---
-      btnGoType.onclick = () => { location.href = "profil.html?type=" + first.t; };
-
-      btnCopy.onclick = async () => {
-        const txt = [
-          "Résultat (échantillon) :",
-          "#1 Type " + first.t + " — " + TYPES[first.t].name + " (" + first.pct + "%)",
-          "#2 Type " + second.t + " — " + TYPES[second.t].name + " (" + second.pct + "%)",
-          "#3 Type " + third.t + " — " + TYPES[third.t].name + " (" + third.pct + "%)"
-        ].join("\n");
-        try{
-          await navigator.clipboard.writeText(txt);
-          showToast("Résumé copié");
-        }catch{
-          showToast("Copie impossible (navigateur)");
-        }
+      const apply = () => {
+        const lvl = parseInt(lvlRange.value, 10);
+        setLevelUI(cfg, lvl);
       };
 
-      resultBody.style.display = "none";
-      resultBox.style.display = "block";
+      document.getElementById("btnPrev").addEventListener("click", () => {
+        const v = Math.max(1, parseInt(lvlRange.value, 10) - 1);
+        lvlRange.value = String(v);
+        apply();
+      });
+
+      document.getElementById("btnNext").addEventListener("click", () => {
+        const v = Math.min(9, parseInt(lvlRange.value, 10) + 1);
+        lvlRange.value = String(v);
+        apply();
+      });
+
+      lvlRange.addEventListener("input", apply);
+
+      apply();
     }
 
-    btnCalc.addEventListener("click", () => {
-      renderResults();
-      showToast("Résultats calculés");
-    });
-
-    btnReset.addEventListener("click", () => {
-      if (!confirm("Réinitialiser toutes tes réponses ?")) return;
-      state = {};
-      saveState(state);
-      renderQuestions();
-      resultBox.style.display = "none";
-      resultBody.style.display = "block";
-      showToast("Réinitialisé");
-    });
-
-    btnExport.addEventListener("click", () => {
-      const {arr} = score();
-      const payload = {
-        version: "sample-v1",
-        date: new Date().toISOString(),
-        answers: ITEMS.map((it, idx)=> ({index: idx+1, type: it.t, value: (state[idx] ?? 0), statement: it.s})),
-        scores: arr.map(x => ({type: x.t, raw: x.raw, max: x.max, pct: x.pct}))
-      };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "enneagramme-test-echantillon.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(()=> URL.revokeObjectURL(a.href), 1200);
-      showToast("Export JSON créé");
-    });
-
-    btnCalc2.addEventListener("click", () => btnCalc.click());
-    btnReset2.addEventListener("click", () => btnReset.click());
-
-    btnBack.addEventListener("click", (e) => {
-      const ref = (document.referrer || "").toLowerCase();
-      const cameFromSite = ref.includes("explore.html") || ref.includes("index.html");
-      if (cameFromSite && history.length > 1){
-        e.preventDefault();
-        history.back();
-      }
-    });
-
-    renderQuestions();
-  })();
+    init();
   </script>
 </body>
 </html>
