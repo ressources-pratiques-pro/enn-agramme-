@@ -105,6 +105,7 @@
 
           <div class="ctaRow">
             <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
+            <a id="openProfil" class="btn" href="profil.html?type=1" style="border-color: #8bd3ff; color: #8bd3ff;">Niveaux & Profil</a>
             <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
           </div>
         </div>
@@ -129,5 +130,21 @@
   </style>
 
   <script src="assets/js/app.js?v=99"></script>
+  
+  <script>
+    (function(){
+      // On sauvegarde la fonction originale selectType
+      const originalSelect = window.selectType;
+      const btnP = document.getElementById('openProfil');
+      
+      // On remplace la fonction pour qu'elle mette aussi à jour notre nouveau bouton
+      if(typeof originalSelect === 'function' && btnP){
+        window.selectType = function(t){
+          originalSelect(t); // Fait le travail habituel (textes, flèches...)
+          btnP.href = 'profil.html?type=' + t; // Met à jour le lien vers le bon profil
+        };
+      }
+    })();
+  </script>
 </body>
 </html>
