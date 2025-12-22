@@ -143,10 +143,9 @@
     }
     .bars{margin-top:20px; display:grid; gap:8px}
     
-    /* Correction pour l'affichage des noms (éviter 10-1) */
     .barRow{
       display:grid; 
-      /* On donne plus de place (120px) à la colonne du nom */
+      /* Largeur fixe pour le nom afin d'éviter le chevauchement */
       grid-template-columns: 120px 1fr 40px; 
       gap:10px; 
       align-items:center;
@@ -499,7 +498,8 @@
 
         const nm = document.createElement("div");
         nm.className = "topName";
-        nm.textContent = "#" + (i+1) + "  Type " + x.t + " • " + TYPES[x.t].name;
+        // MODIFICATION : PLUS DE #1, JUSTE LE NOM
+        nm.textContent = "Type " + x.t + " • " + TYPES[x.t].name;
 
         const ds = document.createElement("div");
         ds.className = "topDesc";
@@ -624,7 +624,6 @@
     
     // -- CORRECTION "SCORE PERDU" --
     // Si toutes les questions ont une réponse (ou si l'utilisateur a déjà cliqué sur calculer), on réaffiche les résultats.
-    // Pour simplifier, on regarde s'il y a assez de réponses stockées (ici on a 27 questions).
     const answeredCount = Object.keys(state).length;
     if(answeredCount >= ITEMS.length){
         // On affiche directement les résultats sans attendre le clic
