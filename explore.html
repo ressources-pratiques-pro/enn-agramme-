@@ -38,6 +38,10 @@
       outline-offset: 2px;
     }
 
+    /* Masquer le Sommaire (navPanel) et laisser Catégories prendre toute la place */
+    .navPanel{ display:none !important; }
+    .typeGrid{ grid-template-columns: 1fr !important; }
+
     /* Styles pour le pied de page (identiques à l'index) */
     .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
     .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
@@ -82,12 +86,12 @@
     </main>
 
     <footer class="siteFooter">
-        <div class="footerInner">
-            <span class="copy">Brahms – Tous droits réservés</span>
-            <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf40aIE11fnKasayyVr117DZL5A3uZZBCwLdkQ/viewform?usp=sf_link" target="_blank">
-                ✉️ Écrire à Brahms
-            </a>
-        </div>
+      <div class="footerInner">
+        <span class="copy">Brahms – Tous droits réservés</span>
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf40aIE11fnKasayyVr117DZL5A3uZZBCwLdkQ/viewform?usp=sf_link" target="_blank">
+          ✉️ Écrire à Brahms
+        </a>
+      </div>
     </footer>
   </div>
 
