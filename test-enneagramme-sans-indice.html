@@ -141,13 +141,13 @@
       text-align:center;
       font-size:12px;
     }
-    
-    /* Modification pour la liste complète */
     .bars{margin-top:20px; display:grid; gap:8px}
+    
+    /* Correction pour l'affichage des noms (éviter 10-1) */
     .barRow{
       display:grid; 
-      /* On donne plus de place au nom du type */
-      grid-template-columns: 1.5fr 2fr 40px; 
+      /* On donne plus de place (120px) à la colonne du nom */
+      grid-template-columns: 120px 1fr 40px; 
       gap:10px; 
       align-items:center;
       cursor: pointer;
@@ -518,7 +518,6 @@
       });
 
       // -- 2. GÉNÉRATION DE LA LISTE COMPLÈTE CLIQUABLE --
-      // On trie arr par score (déjà fait par la fonction score()) pour avoir l'ordre
       bars.innerHTML = "";
       
       arr.forEach(x => {
@@ -620,8 +619,18 @@
       }
     });
 
-    // INIT
+    // INIT : Au chargement de la page, on vérifie si tout est répondu
     renderQuestions();
+    
+    // -- CORRECTION "SCORE PERDU" --
+    // Si toutes les questions ont une réponse (ou si l'utilisateur a déjà cliqué sur calculer), on réaffiche les résultats.
+    // Pour simplifier, on regarde s'il y a assez de réponses stockées (ici on a 27 questions).
+    const answeredCount = Object.keys(state).length;
+    if(answeredCount >= ITEMS.length){
+        // On affiche directement les résultats sans attendre le clic
+        renderResults();
+    }
+
   })();
   </script>
 </body>
