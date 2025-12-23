@@ -272,26 +272,20 @@ a[aria-disabled=true]{
   background: rgba(255,255,255,.06) !important;
 }
 
-/* Halo “Choisir un profil” : plus fin + plus visible (animation) */
-@keyframes haloBreathe{
-  0%,100%{
-    opacity: 1;
-    filter:
-      drop-shadow(0 0 10px rgba(255,255,255,.40))
-      drop-shadow(0 0 22px rgba(255,255,255,.26))
-      drop-shadow(0 0 44px rgba(255,255,255,.16));
-  }
-  50%{
-    opacity: 1;
-    filter:
-      drop-shadow(0 0 18px rgba(255,255,255,.55))
-      drop-shadow(0 0 34px rgba(255,255,255,.34))
-      drop-shadow(0 0 60px rgba(255,255,255,.22));
-  }
+/* Halo pointillé fin + rotation (Choisir un profil) */
+.node.hint circle{
+  stroke-width: 3.2;
+  stroke-dasharray: 10 10;
+  stroke-linecap: round;
+  filter:
+    drop-shadow(0 0 10px rgba(255,255,255,.20))
+    drop-shadow(0 0 18px rgba(255,255,255,.12));
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  animation: dashSpin 1.4s linear infinite;
 }
 
-.node.hint circle{
-  stroke: rgba(255,255,255,.92) !important;
-  stroke-width: 5.6 !important;
-  animation: haloBreathe 1.2s ease-in-out infinite !important;
+@keyframes dashSpin{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
 }
