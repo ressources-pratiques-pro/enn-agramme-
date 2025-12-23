@@ -278,6 +278,6 @@ a[aria-disabled=true]{
   100% { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
 }
 .node.hint circle{
-  animation: pulseRing .95s ease-in-out infinite;
+  animation: pulseRing 3s ease-in-out infinite;
   stroke-width: 3.2;
 }
