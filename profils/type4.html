@@ -30,9 +30,7 @@
       line-height:1.45;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
-
-    /* --- MENU DE NAVIGATION (LE PONT) --- */
+    /* --- DEBUT MODIFICATIONS DU MENU (CALQUÉ SUR TYPE 1) --- */
     .type-nav {
       background: rgba(15, 23, 42, 0.95);
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -44,20 +42,66 @@
     .nav-container {
       max-width: 1100px; margin: 0 auto; padding: 0 16px;
       display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
     }
-    .type-links { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(238,242,255,.92);
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 13px;
+      opacity: .95;
+      transition: .18s ease;
+      white-space: nowrap;
+    }
+    .nav-pill:hover {
+      border-color: rgba(96,165,250,.45);
+      background: rgba(96,165,250,.10);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .type-center {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .type-label {
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(168,182,221,.95);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .type-links { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
     .t-link {
       width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
-      color: #94a3b8; font-weight: bold; text-decoration: none; transition: 0.2s;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.12);
+      color: #94a3b8; font-weight: 900; text-decoration: none; transition: 0.2s;
       font-size: 13px; background: rgba(255,255,255,0.03);
     }
     .t-link:hover { border-color: var(--blue); color: #fff; background: rgba(96,165,250,0.1); }
     .t-link.active { 
-      background: var(--blue); color: #000; border-color: var(--blue); box-shadow: 0 0 10px rgba(96,165,250,0.3);
+      background: rgba(96,165,250,.95);
+      color: #061022;
+      border-color: rgba(96,165,250,.95);
+      box-shadow: 0 0 12px rgba(96,165,250,0.35);
     }
-    .nav-home, .nav-test { font-size: 13px; color: #eef2ff; text-decoration: none; font-weight: 600; opacity: 0.8; display:flex; align-items:center; gap:6px;}
-    .nav-home:hover, .nav-test:hover { opacity: 1; color: var(--blue); }
+    /* --- FIN MODIFICATIONS DU MENU --- */
+
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
 
     .top{
       display:flex;
@@ -425,21 +469,24 @@
 
   <nav class="type-nav">
     <div class="nav-container">
-      <a href="../index.html" class="nav-home"><span>⌂</span> Accueil</a>
-      
-      <div class="type-links">
-        <a href="type1.html" class="t-link">1</a>
-        <a href="type2.html" class="t-link">2</a>
-        <a href="type3.html" class="t-link">3</a>
-        <a href="type4.html" class="t-link active">4</a>
-        <a href="type5.html" class="t-link">5</a>
-        <a href="type6.html" class="t-link">6</a>
-        <a href="type7.html" class="t-link">7</a>
-        <a href="type8.html" class="t-link">8</a>
-        <a href="type9.html" class="t-link">9</a>
+      <a href="../index.html" class="nav-pill"><span>⌂</span> Accueil</a>
+
+      <div class="type-center" aria-label="Choisir un type">
+        <span class="type-label">Choisir un type</span>
+        <div class="type-links">
+          <a href="type1.html" class="t-link">1</a>
+          <a href="type2.html" class="t-link">2</a>
+          <a href="type3.html" class="t-link">3</a>
+          <a href="type4.html" class="t-link active" aria-current="page">4</a>
+          <a href="type5.html" class="t-link">5</a>
+          <a href="type6.html" class="t-link">6</a>
+          <a href="type7.html" class="t-link">7</a>
+          <a href="type8.html" class="t-link">8</a>
+          <a href="type9.html" class="t-link">9</a>
+        </div>
       </div>
 
-      <a href="../test-enneagramme-sans-indice.html" class="nav-test">Faire le Test →</a>
+      <a href="../test-enneagramme-sans-indice.html" class="nav-pill">Faire le test →</a>
     </div>
   </nav>
 
@@ -789,7 +836,8 @@ Analogie : Le Type 4 est comme un artiste qui cherche sa propre lumière : le Qu
           <div class="content">
             <div class="block rich">
               <pre class="raw">Les 9 niveaux de Développement
-Le niveau de développement est une mesure du degré d'identification d'une personne avec sa structure de personnalité. Plus on descend dans les niveaux, plus la liberté diminue et plus les comportements deviennent automatiques.</pre>
+Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
+Les niveaux de développement du Type 4 (le Romantique) décrivent un continuum allant de la créativité et de la révélation de soi à l'autodestruction et au désespoir. Ce continuum mesure à quel point le 4 est prisonnier de son image de soi tragique.</pre>
               <div class="rt"></div>
             </div>
 
@@ -877,9 +925,9 @@ Apprendre à s'accepter tel qu'il est (unique et semblable aux autres), modérer
   <div class="bottomBar">
     <div class="barInner">
       <div class="barBtns">
-        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
-        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
-        <a href="type5.html" class="btn" id="nextBtn">Suivant</a>
+        <a class="btn primary" id="backToTest" href="../test-enneagramme-sans-indice.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="../index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
       </div>
       <div class="barInfo" id="barInfo">Type 4</div>
     </div>
@@ -1174,6 +1222,11 @@ Analogie : Le Type 4 est comme un artiste qui cherche sa propre lumière : le Qu
           }
 
           if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi$/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Le Message du Surmoi$/i.test(key)){
             pushLI('arrow', `${key} :`, val, false);
             continue;
           }
