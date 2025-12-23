@@ -24,15 +24,13 @@
       background:
         radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.26), transparent 55%),
         radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
-        radial-gradient(1100px 600px at 50% 115%, rgba(45,212,191,.15), transparent 60%), /* Teal pour le 5 */
+        radial-gradient(1100px 600px at 50% 115%, rgba(45,212,191,.15), transparent 60%), /* Teal spécifique au 5 */
         var(--bg);
       color:var(--text);
       line-height:1.45;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
-
-    /* --- MENU DE NAVIGATION (LE PONT) --- */
+    /* --- DEBUT MODIFICATIONS DU MENU (CALQUÉ SUR TYPE 1) --- */
     .type-nav {
       background: rgba(15, 23, 42, 0.95);
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -44,20 +42,66 @@
     .nav-container {
       max-width: 1100px; margin: 0 auto; padding: 0 16px;
       display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
     }
-    .type-links { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(238,242,255,.92);
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 13px;
+      opacity: .95;
+      transition: .18s ease;
+      white-space: nowrap;
+    }
+    .nav-pill:hover {
+      border-color: rgba(96,165,250,.45);
+      background: rgba(96,165,250,.10);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .type-center {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .type-label {
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(168,182,221,.95);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .type-links { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
     .t-link {
       width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
-      color: #94a3b8; font-weight: bold; text-decoration: none; transition: 0.2s;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.12);
+      color: #94a3b8; font-weight: 900; text-decoration: none; transition: 0.2s;
       font-size: 13px; background: rgba(255,255,255,0.03);
     }
     .t-link:hover { border-color: var(--blue); color: #fff; background: rgba(96,165,250,0.1); }
     .t-link.active { 
-      background: var(--blue); color: #000; border-color: var(--blue); box-shadow: 0 0 10px rgba(96,165,250,0.3);
+      background: rgba(96,165,250,.95);
+      color: #061022;
+      border-color: rgba(96,165,250,.95);
+      box-shadow: 0 0 12px rgba(96,165,250,0.35);
     }
-    .nav-home, .nav-test { font-size: 13px; color: #eef2ff; text-decoration: none; font-weight: 600; opacity: 0.8; display:flex; align-items:center; gap:6px;}
-    .nav-home:hover, .nav-test:hover { opacity: 1; color: var(--blue); }
+    /* --- FIN MODIFICATIONS DU MENU --- */
+
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
 
     .top{
       display:flex;
@@ -425,21 +469,24 @@
 
   <nav class="type-nav">
     <div class="nav-container">
-      <a href="../index.html" class="nav-home"><span>⌂</span> Accueil</a>
-      
-      <div class="type-links">
-        <a href="type1.html" class="t-link">1</a>
-        <a href="type2.html" class="t-link">2</a>
-        <a href="type3.html" class="t-link">3</a>
-        <a href="type4.html" class="t-link">4</a>
-        <a href="type5.html" class="t-link active">5</a>
-        <a href="type6.html" class="t-link">6</a>
-        <a href="type7.html" class="t-link">7</a>
-        <a href="type8.html" class="t-link">8</a>
-        <a href="type9.html" class="t-link">9</a>
+      <a href="../index.html" class="nav-pill"><span>⌂</span> Accueil</a>
+
+      <div class="type-center" aria-label="Choisir un type">
+        <span class="type-label">Choisir un type</span>
+        <div class="type-links">
+          <a href="type1.html" class="t-link">1</a>
+          <a href="type2.html" class="t-link">2</a>
+          <a href="type3.html" class="t-link">3</a>
+          <a href="type4.html" class="t-link">4</a>
+          <a href="type5.html" class="t-link active" aria-current="page">5</a>
+          <a href="type6.html" class="t-link">6</a>
+          <a href="type7.html" class="t-link">7</a>
+          <a href="type8.html" class="t-link">8</a>
+          <a href="type9.html" class="t-link">9</a>
+        </div>
       </div>
 
-      <a href="../test-enneagramme-sans-indice.html" class="nav-test">Faire le Test →</a>
+      <a href="../test-enneagramme-sans-indice.html" class="nav-pill">Faire le test →</a>
     </div>
   </nav>
 
@@ -641,7 +688,7 @@ Le Type 5, souvent nommé l'« Observateur », le « Penseur » ou l'« Investig
             <div class="block rich">
               <pre class="raw">9. La Perspective et la Solution
 * L'Idée Sacrée comme Psycho-catalyseur : La compréhension de l'Omniscience dissout l'erreur cognitive de l'ego (le sentiment de séparation) et libère l'âme de ses limitations.
-* Rétablir la Confiance Fondamentale : Cela passe par l'acceptation de son impuissance existentielle, ce qui permet à l'intelligence de l'Être de se révéler spontanément.
+* Rétablir la Confiance Fondamentale : Cela passe par l'acceptation de son impuissance existentielle, qui est en fait une forme d'humilité ouvrant la porte à l'action de l'Être.
 * L'Abandon (Surrender) : Cesser de manipuler son expérience intérieure et devenir une "fenêtre claire" pour l'univers.
 * La Poussée Optimisante : Reconnaître que le dynamisme de la réalité guide naturellement l'âme vers l'harmonie si l'ego s'arrête d'interférer.</pre>
               <div class="rt"></div>
@@ -867,8 +914,8 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
   <div class="bottomBar">
     <div class="barInner">
       <div class="barBtns">
-        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
-        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <a class="btn primary" id="backToTest" href="../test-enneagramme-sans-indice.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="../index.html">Retour accueil</a>
         <button class="btn" id="nextBtn" type="button">Suivant</button>
       </div>
       <div class="barInfo" id="barInfo">Type 5</div>
@@ -1069,7 +1116,11 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
         "La Plage Moyenne (Niveaux 4 à 6) : Le Retrait et la Spécialisation",
         "La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation",
         "Sain", "Moyen", "Malsain",
-        "L'Idée supérieure", "La Vertu", "Analogie"
+        "L'Idée supérieure", "La Vertu", "Analogie",
+        "Transformation", "Signaux et alertes", "Structure et dynamique psychologique",
+        "Noyau de la personnalité", "Origines et variantes", "Le Type 5 en entreprise",
+        "Dynamique des flèches", "Évolution et développement", "Approche des idées sacrées (Perspective Almaas)",
+        "Fondement énergétique", "La perspective et la solution"
       ]);
       if(noColonHeadings.has(t)) return true;
 
