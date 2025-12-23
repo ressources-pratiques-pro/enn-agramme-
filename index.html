@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=201" />
+  <link rel="stylesheet" href="assets/css/app.css?v=1430" />
 </head>
 
 <body>
@@ -12,107 +12,154 @@
     <header class="top">
       <div>
         <h1>Ennéagramme</h1>
-        <p id="subtitle">Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
+        <p>Choisis un type pour afficher sa fiche. Tu peux lancer l’aide visuelle si besoin.</p>
       </div>
+
       <div class="actions">
-        <button id="btnReset" type="button">Réinitialiser</button>
+        <a class="btn" href="explore.html">Explorer l’Ennéagramme</a>
+        <a class="btn" href="test.html">Passer le test</a>
+        <button id="openProfil" type="button">Choisir un profil</button>
       </div>
     </header>
 
     <main class="grid">
-      <section class="stage" id="stage">
+      <section class="stage" id="diagramStage" aria-label="Diagramme Ennéagramme">
         <div class="svgWrap">
-          <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
+          <svg viewBox="0 0 760 540" role="img" aria-label="Diagramme Ennéagramme">
             <defs>
-              <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
-              </marker>
-              <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
-              </marker>
-
-              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="2.2" result="blur" />
+              <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="1.4" result="blur"></feGaussianBlur>
                 <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
+                  <feMergeNode in="blur"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
                 </feMerge>
               </filter>
             </defs>
 
-            <circle class="ring" cx="350" cy="350" r="270"></circle>
-            <circle class="innerRing" cx="350" cy="350" r="210"></circle>
+            <g class="staticBg">
+              <circle class="ring" cx="380" cy="250" r="210"></circle>
+              <circle class="innerRing" cx="380" cy="250" r="160"></circle>
 
-            <text x="350" y="352" text-anchor="middle" dominant-baseline="middle"
-                  style="font-family: ui-serif, Georgia, 'Times New Roman', serif; font-weight: 800; letter-spacing: 1.5px; font-size: 26px; fill: rgba(255,255,255,.22); text-transform: uppercase;">
-              Ennéagramme
-            </text>
+              <path class="hex" d="M380 40 L545 145 L545 355 L380 460 L215 355 L215 145 Z"></path>
+              <path class="tri" d="M380 40 L545 355 L215 355 Z"></path>
+              <path class="tri" d="M545 145 L215 145 L380 460 Z"></path>
 
-            <g id="staticBg" class="staticBg">
-              <path class="hex" d="" id="hexPath"></path>
-              <path class="tri" d="" id="triPath"></path>
+              <line class="centerLine" x1="380" y1="70" x2="380" y2="430"></line>
+              <line class="centerLine" x1="170" y1="250" x2="590" y2="250"></line>
 
-              <g class="centers">
-                <path class="centerLine" d="M350 350 L350 120"></path>
-                <path class="centerLine" d="M350 350 L585 455"></path>
-                <path class="centerLine" d="M350 350 L115 455"></path>
+              <text class="centerLabel instinctif" x="380" y="170">INSTINCTIF</text>
+              <text class="centerLabel mental" x="300" y="320">MENTAL</text>
+              <text class="centerLabel emotionnel" x="460" y="320">ÉMOTIONNEL</text>
 
-                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
-                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
-                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
-              </g>
+              <text x="380" y="260" text-anchor="middle" style="fill:rgba(255,255,255,.22);font-weight:900;letter-spacing:2px;font-size:34px;">ENNÉAGRAMME</text>
             </g>
 
-            <g id="arrowsLayer"></g>
-            <g id="nodesLayer"></g>
+            <!-- NODES (data-type obligatoire) -->
+            <g class="node instinctif" data-type="9" transform="translate(380 40)">
+              <circle r="34"></circle>
+              <text y="2">9</text>
+            </g>
+
+            <g class="node instinctif" data-type="1" transform="translate(520 95)">
+              <circle r="34"></circle>
+              <text y="2">1</text>
+            </g>
+
+            <g class="node emotionnel" data-type="2" transform="translate(560 250)">
+              <circle r="34"></circle>
+              <text y="2">2</text>
+            </g>
+
+            <g class="node emotionnel" data-type="3" transform="translate(500 380)">
+              <circle r="34"></circle>
+              <text y="2">3</text>
+            </g>
+
+            <g class="node emotionnel" data-type="4" transform="translate(380 440)">
+              <circle r="34"></circle>
+              <text y="2">4</text>
+            </g>
+
+            <g class="node mental" data-type="5" transform="translate(260 400)">
+              <circle r="34"></circle>
+              <text y="2">5</text>
+            </g>
+
+            <g class="node mental" data-type="6" transform="translate(200 300)">
+              <circle r="34"></circle>
+              <text y="2">6</text>
+            </g>
+
+            <g class="node mental" data-type="7" transform="translate(200 210)">
+              <circle r="34"></circle>
+              <text y="2">7</text>
+            </g>
+
+            <g class="node instinctif" data-type="8" transform="translate(260 95)">
+              <circle r="34"></circle>
+              <text y="2">8</text>
+            </g>
           </svg>
         </div>
       </section>
 
-      <aside class="side" id="sidePanel" aria-live="polite">
+      <aside class="side" aria-label="Fiche du type">
         <div class="badgeRow">
-          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
+          <div class="badge">
+            <span>Type</span>
+            <strong id="badgeNum">—</strong>
+          </div>
         </div>
 
         <div class="card">
           <div class="miniGrid">
-            <div class="mini"><h3>Centre d'intelligence</h3><p id="center">—</p></div>
-            <div class="mini"><h3>Peur de base</h3><p id="fear">—</p></div>
-            <div class="mini"><h3>Désir de base</h3><p id="desire">—</p></div>
-            <div class="mini"><h3>Compulsion (évitement)</h3><p id="compulsion">—</p></div>
+            <div class="mini">
+              <h3>Centre d'intelligence</h3>
+              <p id="fCentre">—</p>
+            </div>
+            <div class="mini">
+              <h3>Peur de base</h3>
+              <p id="fPeur">—</p>
+            </div>
+            <div class="mini">
+              <h3>Désir de base</h3>
+              <p id="fDesir">—</p>
+            </div>
+            <div class="mini">
+              <h3>Compulsion (évitement)</h3>
+              <p id="fComp">—</p>
+            </div>
           </div>
 
           <div class="moveLines">
-            <div id="moveHealth" class="moveLine">
+            <div class="moveLine">
               <div class="moveHead">
                 <span class="dot good"></span>
                 <strong>Intégration</strong>
                 <span class="muted">(santé)</span>
-                <span class="muted"> > </span>
-                <strong id="toIntegr">—</strong>
-                <span class="muted">:</span>
+                <span class="muted" id="fInt">—</span>
               </div>
-              <div class="moveBody" id="moveHealthText">—</div>
+              <div class="moveBody" id="fIntTxt">—</div>
             </div>
 
-            <div id="moveStress" class="moveLine">
+            <div class="moveLine">
               <div class="moveHead">
                 <span class="dot warn"></span>
                 <strong>Désintégration</strong>
                 <span class="muted">(stress)</span>
-                <span class="muted"> > </span>
-                <strong id="toDisint">—</strong>
-                <span class="muted">:</span>
+                <span class="muted" id="fDis">—</span>
               </div>
-              <div class="moveBody" id="moveStressText">—</div>
+              <div class="moveBody" id="fDisTxt">—</div>
             </div>
           </div>
 
           <div class="ctaRow">
-            <a id="openFull" class="btn" href="profils/type1.html" aria-disabled="true">Voir la fiche complète</a>
-            <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
-            <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
-            <button id="btnChooseProfiles" class="btn" type="button">Choisir un profil</button>
+            <a id="btnFiche" class="btn" href="#" aria-disabled="true">Voir la fiche complète</a>
+            <a class="btn" href="test.html">Passer le test</a>
+          </div>
+
+          <div style="margin-top:12px;color:rgba(255,255,255,.60);font-size:12px;line-height:1.35">
+            Astuce : clique sur un numéro. Si tu as besoin d’aide, clique sur Choisir un profil (les numéros clignotent au hasard).
           </div>
         </div>
       </aside>
@@ -128,80 +175,107 @@
     </footer>
   </div>
 
-  <script src="assets/js/app.js?v=200"></script>
-
   <script>
   (function(){
-    const btn = document.getElementById('btnChooseProfiles');
-    const stage = document.getElementById('stage');
-    const svg = document.getElementById('enneaSvg');
-    const subtitle = document.getElementById('subtitle');
+    const DATA = {
+      1:{centre:"Instinctif", peur:"Être mauvais / imparfait", desir:"Être intègre", comp:"Critique / rigidité", integ:"7", integTxt:"Souplesse, joie, lâcher-prise", dis:"4", disTxt:"Ressentiment, plainte, mélancolie"},
+      2:{centre:"Émotionnel", peur:"Ne pas être aimé", desir:"Être désiré / apprécié", comp:"Donner pour recevoir", integ:"4", integTxt:"Authenticité, profondeur", dis:"8", disTxt:"Contrôle, colère"},
+      3:{centre:"Émotionnel", peur:"Être sans valeur", desir:"Réussir / être reconnu", comp:"Image / performance", integ:"6", integTxt:"Loyauté, coopération", dis:"9", disTxt:"Inertie, évitement"},
+      4:{centre:"Émotionnel", peur:"Être banal", desir:"Être unique", comp:"Manque / comparaison", integ:"1", integTxt:"Rigueur, structure", dis:"2", disTxt:"Dépendance affective"},
+      5:{centre:"Mental", peur:"Être envahi", desir:"Comprendre", comp:"Retrait / économie", integ:"8", integTxt:"Ancrage, affirmation", dis:"7", disTxt:"Dispersion"},
+      6:{centre:"Mental", peur:"Être sans soutien", desir:"Sécurité", comp:"Doute / anticipation", integ:"9", integTxt:"Confiance, détente", dis:"3", disTxt:"Sur-adaptation"},
+      7:{centre:"Mental", peur:"Être privé / souffrir", desir:"Être satisfait", comp:"Fuite de la douleur", integ:"5", integTxt:"Profondeur, focus", dis:"1", disTxt:"Irritabilité, jugement"},
+      8:{centre:"Instinctif", peur:"Être contrôlé", desir:"Autonomie", comp:"Domination", integ:"2", integTxt:"Protection, cœur", dis:"5", disTxt:"Retrait, méfiance"},
+      9:{centre:"Instinctif", peur:"Perdre le lien / conflit", desir:"Paix", comp:"Inertie", integ:"3", integTxt:"Élan, action", dis:"6", disTxt:"Anxiété, rumination"}
+    };
 
-    let chooseMode = false;
-    let subtitleBackup = subtitle ? subtitle.textContent : '';
+    const nodes = Array.from(document.querySelectorAll(".node"));
+    const badgeNum = document.getElementById("badgeNum");
+    const btnFiche = document.getElementById("btnFiche");
 
-    function getNodes(){
-      return Array.from(document.querySelectorAll('#nodesLayer .node'));
+    const fCentre = document.getElementById("fCentre");
+    const fPeur = document.getElementById("fPeur");
+    const fDesir = document.getElementById("fDesir");
+    const fComp = document.getElementById("fComp");
+    const fInt = document.getElementById("fInt");
+    const fIntTxt = document.getElementById("fIntTxt");
+    const fDis = document.getElementById("fDis");
+    const fDisTxt = document.getElementById("fDisTxt");
+
+    function centerClassForType(n){
+      if([8,9,1].includes(n)) return "instinctif";
+      if([2,3,4].includes(n)) return "emotionnel";
+      return "mental";
     }
 
-    function setHint(on){
-      const nodes = getNodes();
-      nodes.forEach(n => n.classList.toggle('hint', on));
-    }
-
-    function enterChooseMode(){
-      chooseMode = true;
-      setHint(true);
-      if (subtitle){
-        subtitleBackup = subtitle.textContent || subtitleBackup;
-        subtitle.textContent = "Choisis un type sur le diagramme pour ouvrir directement la fiche.";
-      }
-      stage.scrollIntoView({ behavior:'smooth', block:'start' });
-      setTimeout(()=>setHint(true), 250);
-    }
-
-    function exitChooseMode(){
-      chooseMode = false;
-      setHint(false);
-      if (subtitle) subtitle.textContent = subtitleBackup;
-    }
-
-    btn && btn.addEventListener('click', function(){
-      if (!chooseMode) enterChooseMode();
-      else exitChooseMode();
+    // Sécurise les couleurs
+    nodes.forEach(node=>{
+      const n = parseInt(node.getAttribute("data-type")||"0",10);
+      if(!n) return;
+      node.classList.remove("instinctif","emotionnel","mental");
+      node.classList.add(centerClassForType(n));
     });
 
-    svg && svg.addEventListener('click', function(e){
-      if (!chooseMode) return;
-
-      const node = e.target && e.target.closest ? e.target.closest('.node') : null;
-      if (!node) return;
-
-      e.preventDefault();
-      e.stopPropagation();
-      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-
-      let num = node.getAttribute('data-num') || node.getAttribute('data-type') || '';
-      if (!num){
-        const t = node.querySelector('text');
-        num = t ? (t.textContent || '').trim() : '';
-      }
-      if (!/^[1-9]$/.test(num)) return;
-
-      window.location.href = 'profils/type' + num + '.html';
-    }, true);
-
-    function waitNodes(){
-      const nodes = getNodes();
-      if (nodes.length){
-        nodes.forEach(n=>{
-          if (!n.hasAttribute('tabindex')) n.setAttribute('tabindex','0');
-        });
-        return;
-      }
-      requestAnimationFrame(waitNodes);
+    let timer = null;
+    function startBlink(){
+      if(timer) return;
+      timer = setInterval(()=>{
+        const node = nodes[Math.floor(Math.random()*nodes.length)];
+        node.classList.add("blink");
+        setTimeout(()=>node.classList.remove("blink"), 520);
+      }, 420);
     }
-    waitNodes();
+    function stopBlink(){
+      if(timer) clearInterval(timer);
+      timer = null;
+      nodes.forEach(n=>n.classList.remove("blink"));
+    }
+
+    function selectType(n){
+      const d = DATA[n];
+      badgeNum.textContent = String(n);
+
+      if(d){
+        fCentre.textContent = d.centre;
+        fPeur.textContent = d.peur;
+        fDesir.textContent = d.desir;
+        fComp.textContent = d.comp;
+        fInt.textContent = " > " + d.integ + " :";
+        fIntTxt.textContent = d.integTxt;
+        fDis.textContent = " > " + d.dis + " :";
+        fDisTxt.textContent = d.disTxt;
+      }else{
+        fCentre.textContent = "—";
+        fPeur.textContent = "—";
+        fDesir.textContent = "—";
+        fComp.textContent = "—";
+        fInt.textContent = "—";
+        fIntTxt.textContent = "—";
+        fDis.textContent = "—";
+        fDisTxt.textContent = "—";
+      }
+
+      btnFiche.setAttribute("href", "profils/type" + n + ".html");
+      btnFiche.removeAttribute("aria-disabled");
+    }
+
+    nodes.forEach(node=>{
+      node.addEventListener("click", ()=>{
+        const n = parseInt(node.getAttribute("data-type")||"0",10);
+        if(!n) return;
+        stopBlink();
+        selectType(n);
+      });
+    });
+
+    const openProfil = document.getElementById("openProfil");
+    const stage = document.getElementById("diagramStage");
+    openProfil.addEventListener("click", ()=>{
+      stage.scrollIntoView({behavior:"smooth", block:"start"});
+      startBlink();
+    });
+
+    window.addEventListener("pagehide", stopBlink);
   })();
   </script>
 </body>
