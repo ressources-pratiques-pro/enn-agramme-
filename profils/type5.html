@@ -22,15 +22,43 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
       background:
-        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.22), transparent 55%),
-        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.16), transparent 55%),
-        radial-gradient(1100px 600px at 50% 115%, rgba(168,85,247,.12), transparent 60%),
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.26), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(45,212,191,.15), transparent 60%), /* Teal pour le 5 */
         var(--bg);
       color:var(--text);
       line-height:1.45;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
+
+    /* --- MENU DE NAVIGATION (LE PONT) --- */
+    .type-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .nav-container {
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .type-links { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    .t-link {
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; font-weight: bold; text-decoration: none; transition: 0.2s;
+      font-size: 13px; background: rgba(255,255,255,0.03);
+    }
+    .t-link:hover { border-color: var(--blue); color: #fff; background: rgba(96,165,250,0.1); }
+    .t-link.active { 
+      background: var(--blue); color: #000; border-color: var(--blue); box-shadow: 0 0 10px rgba(96,165,250,0.3);
+    }
+    .nav-home, .nav-test { font-size: 13px; color: #eef2ff; text-decoration: none; font-weight: 600; opacity: 0.8; display:flex; align-items:center; gap:6px;}
+    .nav-home:hover, .nav-test:hover { opacity: 1; color: var(--blue); }
+
     .top{
       display:flex;
       gap:14px;
@@ -394,10 +422,31 @@
 </head>
 
 <body>
+
+  <nav class="type-nav">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-home"><span>⌂</span> Accueil</a>
+      
+      <div class="type-links">
+        <a href="type1.html" class="t-link">1</a>
+        <a href="type2.html" class="t-link">2</a>
+        <a href="type3.html" class="t-link">3</a>
+        <a href="type4.html" class="t-link">4</a>
+        <a href="type5.html" class="t-link active">5</a>
+        <a href="type6.html" class="t-link">6</a>
+        <a href="type7.html" class="t-link">7</a>
+        <a href="type8.html" class="t-link">8</a>
+        <a href="type9.html" class="t-link">9</a>
+      </div>
+
+      <a href="../test-enneagramme-sans-indice.html" class="nav-test">Faire le Test →</a>
+    </div>
+  </nav>
+
   <div class="wrap" id="top">
     <div class="top">
       <div class="hero">
-        <h1 id="pageTitle">Type 5 — L'Observateur / Le Penseur / L'Investigateur</h1>
+        <h1 id="pageTitle">Type 5 — L'Observateur / L'Investigateur</h1>
 
         <div class="chips" id="chips">
           <span class="chip"><span class="dot" style="background:var(--blue)"></span>Centre mental</span>
@@ -415,7 +464,7 @@
       <div class="side">
         <div class="card">
           <h2>Recherche</h2>
-          <input id="search" type="search" placeholder="Tape un mot, ex : avarice, isolation, détachement, omniscience..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+          <input id="search" type="search" placeholder="Tape un mot, ex : avarice, isolation, détachement..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
         </div>
       </div>
     </div>
@@ -424,7 +473,7 @@
       <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
         <details open data-search>
           <summary>
-            <div class="sumTitle"><b>Présentation et définition</b></div>
+            <div class="sumTitle"><b>Présentation</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
@@ -453,16 +502,6 @@ Le Type 5, souvent nommé l'« Observateur », le « Penseur » ou l'« Investig
 * Mécanisme de défense : L'isolation. Il met de côté toute émotion ou pensée qui pourrait perturber son fonctionnement mental, pour les réexaminer plus tard, seul et à froid.</pre>
               <div class="rt"></div>
             </div>
-
-            <div class="block rich" style="margin-top:12px">
-              <pre class="raw">Hiérarchie des centres (Structure brute)
-Titre : Hiérarchie des centres Sommet (relie les deux figures) :
-* Orientation : Connaissance / Précision
-* Centre Préféré : Mental (Utilisation extérieure)
-* Centre de Support : Émotionnel (
-* Centre Réprimé : Instinctif</pre>
-              <div class="rt"></div>
-            </div>
           </div>
         </details>
 
@@ -478,7 +517,7 @@ Titre : Hiérarchie des centres Sommet (relie les deux figures) :
 * Désir de base : Être capable et compétent. Il souhaite maîtriser un domaine d'expertise pour se sentir en sécurité.
 * Message du Surmoi (Superego) : « Tu es bien ou correct si tu as maîtrisé quelque chose ».
 * Compulsion (évitement) : Éviter à tout prix le vide intérieur.
-* Ordre des centres : Il privilégie le centre Mental, utilisé vers l'extérieur pour puiser des informations sur le monde. Sa hiérarchie dépend de sa variante :
+* Ordre des centres : Il privilégie le centre Mental, utilisé vers l'extérieur pour puiser des informations sur le monde.
 * Mécanisme de défense : L'isolation. Il met de côté les émotions ou pensées qui pourraient perturber son fonctionnement intellectuel. Il compartimente sa vie en dressant des frontières strictes entre ses activités et ses relations.</pre>
               <div class="rt"></div>
             </div>
@@ -508,7 +547,7 @@ Titre : Hiérarchie des centres Sommet (relie les deux figures) :
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Type 5 en entreprise</b></div>
+            <div class="sumTitle"><b>Le Type 5 en entreprise</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
@@ -518,42 +557,6 @@ Titre : Hiérarchie des centres Sommet (relie les deux figures) :
 * Style de management : Il gère souvent "depuis son bureau", privilégiant les communications écrites (emails) aux contacts physiques. Il délègue facilement et sait synthétiser des masses d'informations complexes, mais peut manquer de chaleur humaine envers ses collaborateurs.
 * Style de communication : Qualifié de « Traité », il s'exprime de façon structurée et détaillée sur des sujets sérieux, mais reste très laconique sur le reste. Il évite les émotions et maintient une distance physique avec ses interlocuteurs.
 * Points de vigilance : Sa tendance au retrait peut être perçue comme de la froideur ou du désintérêt. Il risque également de faire de la rétention d'information.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Évolution, intégration, vertu</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">5. Évolution et Développement
-* Points d'amélioration à travailler :
-    * Développer ses capacités relationnelles en planifiant du temps pour les autres.
-    * Apprendre à diffuser largement ses informations au lieu de les garder pour soi.
-    * S'impliquer davantage dans l'action concrète et la mise en œuvre de ses idées.
-    * Se connecter à son ressenti physique et à ses émotions.
-* Intégration (idée supérieure et vertu) : En se libérant de sa compulsion, le Type 5 s'intègre vers le Type 8(variante α) ou le Type 7 (variante μ).
-    * Essence : L'état où il accède à ses pleines potentialités, libéré du besoin de s'isoler pour comprendre.
-    * Idée supérieure : L'Omniscience. Il réalise que la connaissance n'a pas besoin d'être accumulée de manière défensive.
-    * Vertu : Le Désintéressement. Il devient capable de partager ses compétences et d'agir avec ce qu'il sait, sans peur de manquer.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Analogie</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">6. Analogie
-Le Type 5 peut être comparé à un archiviste dans une immense bibliothèque : il passe ses journées à classer des volumes de savoir, persuadé que s'il possède assez de livres, il pourra enfin comprendre le monde extérieur sans avoir à y mettre les pieds. Il garde la porte de sa bibliothèque soigneusement verrouillée, craignant que les visiteurs ne viennent lui voler ses précieuses pages ou ne le distraient de sa quête infinie de compréhension.</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -576,16 +579,21 @@ Le Type 5 peut être comparé à un archiviste dans une immense bibliothèque : 
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Signaux et pratiques</b></div>
+            <div class="sumTitle"><b>Évolution et développement</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
             <div class="block rich">
-              <pre class="raw">5. Signaux et Pratiques
-* Le Signal d'Éveil (Wake-up Call) : Se retirer de la réalité pour se réfugier dans des concepts et des mondes mentaux.
-* Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le monde ou avec les gens.
-* Pratiques suggérées : Utiliser son corps (sport, marche), ne pas rester seul avec ses angoisses, et diffuser les informations possédées plutôt que de les garder pour soi.
-* Attitudes de Guérison : « Peut-être que je peux faire confiance aux gens et leur dire ce dont j'ai besoin. Peut-être que je peux vivre happily dans le monde ».</pre>
+              <pre class="raw">5. Évolution et Développement
+* Points d'amélioration à travailler :
+    * Développer ses capacités relationnelles en planifiant du temps pour les autres.
+    * Apprendre à diffuser largement ses informations au lieu de les garder pour soi.
+    * S'impliquer davantage dans l'action concrète et la mise en œuvre de ses idées.
+    * Se connecter à son ressenti physique et à ses émotions.
+* Intégration (idée supérieure et vertu) : En se libérant de sa compulsion, le Type 5 s'intègre vers le Type 8(variante α) ou le Type 7 (variante μ).
+    * Essence : L'état où il accède à ses pleines potentialités, libéré du besoin de s'isoler pour comprendre.
+    * Idée supérieure : L'Omniscience. Il réalise que la connaissance n'a pas besoin d'être accumulée de manière défensive.
+    * Vertu : Le Désintéressement. Il devient capable de partager ses compétences et d'agir avec ce qu'il sait, sans peur de manquer.</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -593,23 +601,7 @@ Le Type 5 peut être comparé à un archiviste dans une immense bibliothèque : 
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Transformation vers l’essence</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">6. La Transformation vers l'Essence
-* L'Idée supérieure : L'Omniscience. C'est la compréhension que la connaissance n'est pas absolue et qu'on peut agir avec ce que l'on sait.
-* La Vertu : Le Désintéressement (Non-attachement). Ce n'est pas un retrait émotionnel, mais une absence d'identification à un point de vue fixe.
-* Analogie : Le 5 est comme une fenêtre à travers laquelle l'univers se voit lui-même.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Approche des idées sacrées (Almaas)</b></div>
+            <div class="sumTitle"><b>Approche des idées sacrées (Perspective Almaas)</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
@@ -642,7 +634,7 @@ Le Type 5 peut être comparé à un archiviste dans une immense bibliothèque : 
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Perspective et solution</b></div>
+            <div class="sumTitle"><b>La perspective et la solution</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
@@ -652,6 +644,20 @@ Le Type 5 peut être comparé à un archiviste dans une immense bibliothèque : 
 * Rétablir la Confiance Fondamentale : Cela passe par l'acceptation de son impuissance existentielle, ce qui permet à l'intelligence de l'Être de se révéler spontanément.
 * L'Abandon (Surrender) : Cesser de manipuler son expérience intérieure et devenir une "fenêtre claire" pour l'univers.
 * La Poussée Optimisante : Reconnaître que le dynamisme de la réalité guide naturellement l'âme vers l'harmonie si l'ego s'arrête d'interférer.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">6. Analogie
+Le Type 5 peut être comparé à un archiviste dans une immense bibliothèque : il passe ses journées à classer des volumes de savoir, persuadé que s'il possède assez de livres, il pourra enfin comprendre le monde extérieur sans avoir à y mettre les pieds. Il garde la porte de sa bibliothèque soigneusement verrouillée, craignant que les visiteurs ne viennent lui voler ses précieuses pages ou ne le distraient de sa quête infinie de compréhension.</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -768,7 +774,7 @@ Items de présentation spécifique pour chaque sous-type</pre>
       <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
         <details open data-search>
           <summary>
-            <div class="sumTitle"><b>Niveaux de développement</b></div>
+            <div class="sumTitle"><b>Définition + continuum</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
@@ -802,7 +808,7 @@ Les niveaux de développement pour le Type 5 (L'Enquêteur) décrivent un contin
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Liste des 9 niveaux</b></div>
+            <div class="sumTitle"><b>Niveaux 1 à 9</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
@@ -818,15 +824,38 @@ La Plage Moyenne (Niveaux 4 à 6) : Le Retrait et la Spécialisation
 La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
 • Niveau 7 : Nihiliste, Excentrique. Il craint de ne jamais trouver sa place parmi les hommes. Pour sauver un semblant de sécurité, il coupe tout lien social et se retire dans un monde intérieur de plus en plus vide et sombre.
 • Niveau 8 : Horrifié, Délirant. Se sentant petit et sans défense, le 5 perçoit tout ce qui l'entoure comme une menace. Il est assailli par des fantasmes noirs et des perceptions déformées, son esprit "surchauffé" ne pouvant plus s'arrêter.
-• Niveau 9 : Cherchant l'oubli, S'auto-annihilant. Réalisant qu'il ne peut plus se défendre contre sa douleur et sa terreur, il cherche à s'échapper de la réalité. Cela peut mener à des ruptures psychotiques ou à des tendances suicidaires.
+• Niveau 9 : Cherchant l'oubli, S'auto-annihilant. Réalisant qu'il ne peut plus se défendre contre sa douleur et sa terreur, il cherche à s'échapper de la réalité. Cela peut mener à des ruptures psychotiques ou à des tendances suicidaires.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
 
-Sain : 1. Participant visionnaire, 2. Observateur perceptif, 3. Innovateur concentré.
-Moyen : 4. Préparateur conceptuel, 5. Détaché préoccupé, 6. Extrémiste provocateur.
-Malsain : 7. Nihiliste excentrique, 8. Délirant horrifié, 9. Auto-annihilateur.
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Signaux et alertes</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Signaux et Pratiques
+* Le Signal d'Éveil (Wake-up Call) : Se retirer de la réalité pour se réfugier dans des concepts et des mondes mentaux.
+* Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le monde ou avec les gens.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
 
-Les Défis de croissance : Apprendre à réintégrer le corps, sortir de la "préparation" pour passer à l'action, et risquer le contact émotionnel.
-Le Signal d'Éveil (Wake-up Call) : Se retirer de la réalité pour se réfugier dans des concepts et des mondes mentaux.
-Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le monde ou avec les gens.</pre>
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Transformation</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Transformation vers l'Essence
+* L'Idée supérieure : L'Omniscience. C'est la compréhension que la connaissance n'est pas absolue et qu'on peut agir avec ce que l'on sait.
+* La Vertu : Le Désintéressement (Non-attachement). Ce n'est pas un retrait émotionnel, mais une absence d'identification à un point de vue fixe.
+* Analogie : Le 5 est comme une fenêtre à travers laquelle l'univers se voit lui-même.</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -990,24 +1019,64 @@ Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le mo
       return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
 
+    function looksLikeDuplicateSectionTitle(line){
+      return /^\s*(GPT\s*\d+|Type\s*\d+)\b/i.test(line.trim()) || /^\s*\d+\.\s+/.test(line.trim());
+    }
+
+    function isPlainHeading(line){
+      const t = line.trim();
+      if(!t) return false;
+      if(looksLikeDuplicateSectionTitle(t)) return true;
+      if(/^LE\s+type\s+et\s+sous\s+types/i.test(t)) return false;
+      return false;
+    }
+
     function isSubhead(line){
       const t = line.trim();
       if(!t) return false;
-      const noColon = new Set([
-        "Centre d'intelligence","Ordre Centre d'intelligence","Orientation","Compulsion","Passion et Fixation",
-        "Mécanisme de défense","Peurs et Désirs fondamentaux","Le Schéma de l'enfance","Les Sous-types d'Ailes (Wings)",
-        "Les Variantes Instinctives","Profil professionnel","Style de management","Style de communication","Points de vigilance",
-        "Réaction au Stress (Désintégration)","Chemin d'Intégration (Croissance)","Points d'amélioration à travailler",
-        "Intégration (idée supérieure et vertu)","L'Idée supérieure","La Vertu","Approche des Idées Sacrées (Almaas)",
-        "Le Fondement Énergétique","La Perspective et la Solution","Signaux et Pratiques","Transformation vers l'Essence",
-        "Hiérarchie des centres (Structure brute)","Titre : Hiérarchie des centres Sommet (relie les deux figures)",
+
+      const noColonHeadings = new Set([
+        "Les Sous-types d'Ailes (Wings)",
+        "Les Variantes Instinctives",
+        "Profil professionnel",
+        "Style de management",
+        "Style de communication",
+        "Points de vigilance",
+        "Réaction au Stress (Désintégration)",
+        "Chemin d'Intégration (Croissance)",
+        "Points d'amélioration à travailler",
+        "Pratiques suggérées",
+        "Attitudes de Guérison",
+        "Intégration (idée supérieure et vertu)",
+        "L'Idée sacrée",
+        "L'Illusion Spécifique",
+        "La Difficulté Spécifique",
+        "La Réaction Spécifique",
+        "Le Noyau de la Fixation",
+        "La Confiance Fondamentale (Basic Trust)",
+        "La Lumière du jour Vivante (Living Daylight)",
+        "L'Idée Sacrée comme Psycho-catalyseur",
+        "Rétablir la Confiance Fondamentale",
+        "L'Abandon (Surrender)",
+        "La Poussée Optimisante",
+        "Signaux d'Alerte",
+        "Le Signal d'Éveil (Wake-up Call)",
+        "Le Signal d'Alarme (Red Flag)",
+        "Les Défis de croissance",
+        "Hiérarchie des centres (Structure brute)",
+        "Titre : Hiérarchie des centres Sommet (relie les deux figures)",
         "La Plage Saine (Niveaux 1 à 3) : L'Intégration et l'Innovation",
         "La Plage Moyenne (Niveaux 4 à 6) : Le Retrait et la Spécialisation",
         "La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation",
-        "Sain","Moyen","Malsain"
+        "Sain", "Moyen", "Malsain",
+        "L'Idée supérieure", "La Vertu", "Analogie"
       ]);
-      if(noColon.has(t)) return true;
+      if(noColonHeadings.has(t)) return true;
+
       if(/:\s*$/.test(t)) return true;
+
+      if(t === "Hiérarchie des centres :" || t === "Passion et Fixation :") return true;
+
       return false;
     }
 
@@ -1016,22 +1085,58 @@ Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le mo
       let html = '';
       let listMode = null;
 
-      const closeList = ()=>{ if(listMode){ html += `</ul>`; listMode = null; } };
-      const openList = (mode)=>{ if(listMode === mode) return; closeList(); listMode = mode; html += `<ul class="${mode}">`; };
+      const closeList = ()=>{
+        if(listMode){ html += `</ul>`; listMode = null; }
+      };
 
-      const pushP = (line)=>{ closeList(); html += `<p>${escapeHTML(line)}</p>`; };
-      const pushGap = ()=>{ closeList(); html += `<div class="gap"></div>`; };
-      const pushSubhead = (title)=>{ closeList(); html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`; };
-      const pushLabelRow = (k, v)=>{ closeList(); html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`; };
+      const openList = (mode)=>{
+        if(listMode === mode) return;
+        closeList();
+        listMode = mode;
+        html += `<ul class="${mode}">`;
+      };
+
+      const pushP = (line)=>{
+        closeList();
+        html += `<p>${escapeHTML(line)}</p>`;
+      };
+
+      const pushGap = ()=>{
+        closeList();
+        html += `<div class="gap"></div>`;
+      };
+
+      const pushSubhead = (title)=>{
+        closeList();
+        html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`;
+      };
+
+      const pushLabelRow = (k, v)=>{
+        closeList();
+        html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`;
+      };
+
       const pushLI = (mode, k, v, keepColon=true)=>{
         openList(mode);
-        if(v === null){ html += `<li>${escapeHTML(k)}</li>`; return; }
+        if(v === null){
+          html += `<li>${escapeHTML(k)}</li>`;
+          return;
+        }
         const label = keepColon ? `${k}` : k;
         html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
       };
 
-      for(const line of lines){
-        if(line.trim()===''){ pushGap(); continue; }
+      for(let i=0;i<lines.length;i++){
+        const line = lines[i];
+
+        if(line.trim()===''){
+          pushGap();
+          continue;
+        }
+
+        if(looksLikeDuplicateSectionTitle(line)){
+          continue;
+        }
 
         if(isSubhead(line)){
           const cleaned = line.trim().replace(/:\s*$/,'');
@@ -1044,7 +1149,7 @@ Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le mo
           const key = kv[1].trim();
           const val = kv[2].trim();
 
-          if(/^Titre et Identité$/i.test(key) || /^Définition globale$/i.test(key) || /^Rôle Social$/i.test(key)){
+          if(/^Ordre Centre d'intelligence$/i.test(key) || /^Orientation$/i.test(key) || /^Compulsion$/i.test(key) || /^Compulsion \(évitement\)$/i.test(key)){
             pushLabelRow(key, val);
             continue;
           }
@@ -1054,12 +1159,12 @@ Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le mo
             continue;
           }
 
-          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+          if(/^Passion$/i.test(key) || /^Fixation$/i.test(key)){
             pushLI('dash', `${key} :`, val, false);
             continue;
           }
 
-          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi/i.test(key)){
+          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi \(Superego\)$/i.test(key) || /^Ordre des centres$/i.test(key) || /^Mécanisme de défense$/i.test(key)){
             pushLI('arrow', `${key} :`, val, false);
             continue;
           }
