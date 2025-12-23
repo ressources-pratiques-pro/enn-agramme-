@@ -30,7 +30,35 @@
       line-height:1.45;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    /* --- NOUVEAU MENU DE NAVIGATION (LE PONT) --- */
+    .type-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .nav-container {
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .type-links { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    .t-link {
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; font-weight: bold; text-decoration: none; transition: 0.2s;
+      font-size: 13px; background: rgba(255,255,255,0.03);
+    }
+    .t-link:hover { border-color: var(--blue); color: #fff; background: rgba(96,165,250,0.1); }
+    .t-link.active { 
+      background: var(--blue); color: #000; border-color: var(--blue); box-shadow: 0 0 10px rgba(96,165,250,0.3);
+    }
+    .nav-home, .nav-test { font-size: 13px; color: #eef2ff; text-decoration: none; font-weight: 600; opacity: 0.8; display:flex; align-items:center; gap:6px;}
+    .nav-home:hover, .nav-test:hover { opacity: 1; color: var(--blue); }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
+    
     .top{
       display:flex;
       gap:14px;
@@ -394,6 +422,27 @@
 </head>
 
 <body>
+
+  <nav class="type-nav">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-home"><span>⌂</span> Accueil</a>
+      
+      <div class="type-links">
+        <a href="type1.html" class="t-link active">1</a>
+        <a href="type2.html" class="t-link">2</a>
+        <a href="type3.html" class="t-link">3</a>
+        <a href="type4.html" class="t-link">4</a>
+        <a href="type5.html" class="t-link">5</a>
+        <a href="type6.html" class="t-link">6</a>
+        <a href="type7.html" class="t-link">7</a>
+        <a href="type8.html" class="t-link">8</a>
+        <a href="type9.html" class="t-link">9</a>
+      </div>
+
+      <a href="../test-enneagramme-sans-indice.html" class="nav-test">Faire le Test →</a>
+    </div>
+  </nav>
+
   <div class="wrap" id="top">
     <div class="top">
       <div class="hero">
@@ -429,7 +478,9 @@
           </summary>
           <div class="content">
             <div class="block rich">
-              <pre class="raw">Le Type 1, appelé le Réformateur ou le Perfectionniste, correspond à une personnalité rationnelle et idéaliste, guidée par des principes solides, une grande maîtrise de soi et une exigence élevée envers elle-même et son environnement. Il est généralement perçu comme sérieux, intègre et profondément attaché aux notions de bien et de mal. Son moteur principal est le désir d’être moralement juste et irréprochable. Toute son énergie est orientée vers le maintien d’idéaux élevés et l’application d’une rigueur personnelle constante. Convaincu qu’il est toujours possible de s’améliorer, il évalue en permanence ses actes et ceux des autres à l’aune de standards exigeants, ce qui s’accompagne d’un fort sens des responsabilités et d’une autocritique soutenue. Animé par un désir profond d’amélioration et de rectification, le Type 1 cherche à corriger ce qu’il perçoit comme désordre, injustice ou imperfection dans son environnement, par une action concrète, structurée et éthique. Il dispose d’un talent naturel pour l’organisation, l’enseignement et la transmission de valeurs, et s’investit volontiers dans la défense de causes qu’il juge nobles et justes, se vivant souvent comme porteur d’une mission de vie au service d’un idéal supérieur.</pre>
+              <pre class="raw">Le Type 1, appelé le Réformateur ou le Perfectionniste, correspond à une personnalité rationnelle et idéaliste, guidée par des principes solides, une grande maîtrise de soi et une exigence élevée envers elle-même et son environnement. Il est généralement perçu comme sérieux, intègre et profondément attaché aux notions de bien et de mal. Son moteur principal est le désir d’être moralement juste et irréprochable. Toute son énergie est orientée vers le maintien d’idéaux élevés et l’application d’une rigueur personnelle constante. Convaincu qu’il est toujours possible de s’améliorer, il évalue en permanence ses actes et ceux des autres à l’aune de standards exigeants, ce qui s’accompagne d’un fort sens des responsabilités et d’une autocritique soutenue. Animé par un désir profond d’amélioration et de rectification, le Type 1 cherche à corriger ce qu’il perçoit comme désordre, injustice ou imperfection dans son environnement, par une action concrète, structurée et éthique. Il dispose d’un talent naturel pour l’organisation, l’enseignement et la transmission de valeurs, et s’investit volontiers dans la défense de causes qu’il juge nobles et justes, se vivant souvent comme porteur d’une mission de vie au service d’un idéal supérieur.
+
+Rôle Social : L'Éducateur ou l'Enseignant.</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -840,8 +891,8 @@ Apprendre que la perfection est un processus et non un état final, et accepter 
   <div class="bottomBar">
     <div class="barInner">
       <div class="barBtns">
-        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
-        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <a class="btn primary" id="backToTest" href="../test-enneagramme-sans-indice.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="../index.html">Retour accueil</a>
         <button class="btn" id="nextBtn" type="button">Suivant</button>
       </div>
       <div class="barInfo" id="barInfo">Type 1</div>
@@ -921,6 +972,7 @@ Apprendre que la perfection est un processus et non un état final, et accepter 
       else u.searchParams.set(name, value);
       history.replaceState(null, '', u.toString());
     }
+
     function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
 
     function levelColor(n){
@@ -1274,33 +1326,55 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
       qs('#top3Chip').style.display = '';
     }
 
+    function initLinks(){
+      const from = getParam('from');
+      if(from){
+        const test = qs('#backToTest');
+        const u = new URL(test.getAttribute('href'), location.href);
+        u.searchParams.set('from', from);
+        test.setAttribute('href', u.pathname + u.search);
+      }
+    }
+
+    // Tabs events
     qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+
+    // Buttons
+    // qs('#startBtn').addEventListener('click', ()=>{
+    //   const panel = qs('#panel-profil');
+    //   setActiveTab('profil');
+    //   window.scrollTo({top: panel.getBoundingClientRect().top + window.scrollY - 12, behavior:'smooth'});
+    // });
+    // qs('#toTopBtn').addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
     qs('#nextBtn').addEventListener('click', nextAction);
 
+    // Search
     qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+
+    // Levels
     qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
 
+    // Subtypes buttons
     qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
     qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
     qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
     qs('#closeModal').addEventListener('click', closeSubtype);
-    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
-
-    qs('#compareBtn').addEventListener('click', openCompare);
-    qs('#closeCompare').addEventListener('click', closeCompare);
-    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
-
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape'){
-        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
-        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
-      }
+    qs('#subtypeModal').addEventListener('click', (e)=>{
+      if(e.target === qs('#subtypeModal')) closeSubtype();
     });
 
-    renderAllRichBlocks();
+    // Compare
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{
+      if(e.target === qs('#compareModal')) closeCompare();
+    });
+
+    // Init
     initTop3Chip();
+    initLinks();
 
     const initTab = getParam('tab') || (()=>{
       try{ return localStorage.getItem('type1_tab') || 'profil'; }catch(e){ return 'profil'; }
@@ -1319,6 +1393,16 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
       setActiveTab('soustypes');
       setTimeout(()=>openSubtype(initSt), 120);
     }
+
+    // Escape closes modals
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+    
+    renderAllRichBlocks();
   </script>
 </body>
 </html>
