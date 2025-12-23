@@ -22,16 +22,51 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
       background:
-        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.18), transparent 55%),
-        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.22), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.16), transparent 55%),
         radial-gradient(1100px 600px at 50% 115%, rgba(245,158,11,.10), transparent 60%),
         var(--bg);
       color:var(--text);
       line-height:1.45;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
-    .top{display:flex;gap:14px;align-items:stretch;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
+
+    /* --- MENU DE NAVIGATION (LE PONT) --- */
+    .type-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .nav-container {
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .type-links { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    .t-link {
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; font-weight: bold; text-decoration: none; transition: 0.2s;
+      font-size: 13px; background: rgba(255,255,255,0.03);
+    }
+    .t-link:hover { border-color: var(--blue); color: #fff; background: rgba(96,165,250,0.1); }
+    .t-link.active { 
+      background: var(--blue); color: #000; border-color: var(--blue); box-shadow: 0 0 10px rgba(96,165,250,0.3);
+    }
+    .nav-home, .nav-test { font-size: 13px; color: #eef2ff; text-decoration: none; font-weight: 600; opacity: 0.8; display:flex; align-items:center; gap:6px;}
+    .nav-home:hover, .nav-test:hover { opacity: 1; color: var(--blue); }
+
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
 
     .hero{
       flex:1 1 700px;
@@ -42,20 +77,33 @@
       padding:18px 18px 16px;
       backdrop-filter: blur(10px);
     }
-    .hero h1{margin:0 0 10px;font-size:clamp(22px, 3vw, 30px);letter-spacing:.2px}
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
 
     .chips{display:flex;gap:8px;flex-wrap:wrap}
     .chip{
-      display:inline-flex;align-items:center;gap:8px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       background:rgba(255,255,255,.07);
       border:1px solid var(--line);
-      padding:7px 10px;border-radius:999px;
-      font-size:12px;color:rgba(255,255,255,.92);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
       white-space:nowrap;
     }
     .dot{width:9px;height:9px;border-radius:50%}
 
-    .side{flex:0 1 360px;display:grid;gap:12px;align-content:start}
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
     .card{
       background:rgba(255,255,255,.04);
       border:1px solid var(--line);
@@ -64,20 +112,42 @@
       padding:14px 14px 12px;
       backdrop-filter: blur(10px);
     }
-    .card h2{margin:0 0 10px;font-size:14px;letter-spacing:.2px;color:rgba(255,255,255,.92)}
+    .card h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
 
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
     .tab{
-      padding:10px 12px;border-radius:999px;
+      padding:10px 12px;
+      border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.05);
       color:rgba(255,255,255,.92);
-      font-weight:900;font-size:13px;
-      cursor:pointer;user-select:none;-webkit-tap-highlight-color: transparent;
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .tab[aria-selected="true"]{background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.35)}
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
 
-    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
 
     details{
       background:rgba(255,255,255,.04);
@@ -90,86 +160,172 @@
       list-style:none;
       cursor:pointer;
       padding:14px 14px 12px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      user-select:none;-webkit-tap-highlight-color: transparent;
-      background:linear-gradient(90deg, rgba(245,158,11,.14), rgba(255,255,255,0));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(96,165,250,.14), rgba(255,255,255,0));
     }
     summary::-webkit-details-marker{display:none}
+
     .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
     .sumTitle b{
-      font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.98);
-      display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+      font-size:15px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.98);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
     }
     .chev{
-      width:10px;height:10px;border-right:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);
-      transform:rotate(45deg);transition:.18s ease;margin-right:4px;flex:0 0 auto;
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
     }
     details[open] .chev{transform:rotate(225deg);margin-top:4px}
-    .content{padding:12px 14px 14px;border-top:1px solid var(--line)}
 
-    .block{background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:12px}
+    .content{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    .block{
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+
     .raw{display:none}
     .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
     .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
     .rt .gap{height:10px}
 
     .rt .labelRow{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;
-      margin:0 0 10px;padding:10px 10px;border-radius:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin:0 0 10px;
+      padding:10px 10px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.04);
     }
-    .rt .label{color:var(--blue);font-weight:950;letter-spacing:.15px;font-size:13px}
-    .rt .value{color:rgba(255,255,255,.92);font-size:15px;flex:1 1 auto;min-width:220px}
+    .rt .label{
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:.15px;
+      font-size:13px;
+      text-transform:none;
+    }
+    .rt .value{
+      color:rgba(255,255,255,.92);
+      font-size:15px;
+      flex:1 1 auto;
+      min-width:220px;
+    }
 
     .rt .subhead{
-      margin:2px 0 10px;padding:8px 10px;border-radius:12px;
-      border:1px solid rgba(245,158,11,.28);
-      background:linear-gradient(180deg, rgba(245,158,11,.12), rgba(0,0,0,.10));
+      margin:2px 0 10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(96,165,250,.20);
+      background:linear-gradient(180deg, rgba(96,165,250,.10), rgba(0,0,0,.10));
       color:rgba(255,255,255,.96);
-      font-weight:950;letter-spacing:.2px;
+      font-weight:950;
+      letter-spacing:.2px;
     }
-    .rt .subhead .t{color:#fbbf24;font-weight:950}
+    .rt .subhead .t{
+      color:var(--blue);
+      font-weight:950;
+    }
 
     .rt ul{margin:0 0 10px 18px;padding:0}
     .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dash{list-style-type:"-  "}
+    .rt ul.arrow{list-style-type:"→  "}
     .rt ul.dot{list-style-type:"•  "}
-    .rt li .k{color:var(--blue);font-weight:950}
+    .rt li .k{
+      color:var(--blue);
+      font-weight:950;
+    }
 
-    .sectionHeader{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+    .sectionHeader{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 10px;
+    }
     .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:12px;padding:6px 10px;border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.06);
       color:rgba(255,255,255,.92);
-      width:fit-content;font-weight:900;
+      width:fit-content;
+      font-weight:900;
     }
 
     .btn, button, a.btn{
-      cursor:pointer;border:1px solid rgba(255,255,255,.14);
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
       color:rgba(255,255,255,.94);
-      padding:10px 12px;border-radius:14px;
-      font-weight:900;letter-spacing:.15px;
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      letter-spacing:.15px;
       text-decoration:none;
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
       transition:transform .08s ease, background .12s ease, border-color .12s ease;
-      user-select:none;-webkit-tap-highlight-color: transparent;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover, button:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+    .btn:hover, button:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
     .btn:active, button:active{transform:translateY(0)}
-    .btn.primary{background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.35)}
-    .btn.primary:hover{background:rgba(96,165,250,.20);border-color:rgba(96,165,250,.45)}
+    .btn.primary{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+    .btn.primary:hover{
+      background:rgba(96,165,250,.20);
+      border-color:rgba(96,165,250,.45);
+    }
 
-    .subtypeBtns{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:10px}
+    .subtypeBtns{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
     .subtypeBtns .btn{padding:12px}
     .subtypeBtns .btn.active{
       background:rgba(96,165,250,.16);
       border-color:rgba(96,165,250,.35);
       box-shadow: 0 0 0 4px rgba(96,165,250,.14);
     }
-    @media (max-width: 860px){.subtypeBtns{grid-template-columns:1fr}}
+    @media (max-width: 860px){
+      .subtypeBtns{grid-template-columns:1fr}
+    }
 
     .rangeWrap{display:grid;gap:10px}
     .rangeLine{
@@ -180,54 +336,81 @@
       border-radius:16px;
     }
     input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
-    .trackLabel{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);font-weight:900}
+    .trackLabel{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:900;
+    }
     .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
-      padding:6px 10px;border-radius:999px;
+      padding:6px 10px;
+      border-radius:999px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.05);
-      font-size:12px;color:rgba(255,255,255,.92);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
       font-weight:900;
     }
 
     .bottomBar{
-      position:fixed;left:0;right:0;bottom:0;
+      position:fixed;
+      left:0;right:0;bottom:0;
       background:rgba(8,12,24,.86);
       border-top:1px solid rgba(255,255,255,.10);
       backdrop-filter: blur(12px);
-      padding:10px 12px;z-index:999;
+      padding:10px 12px;
+      z-index:999;
     }
     .barInner{
-      max-width:1100px;margin:0 auto;
-      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
     }
     .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     .barInfo{color:var(--muted);font-size:12px;font-weight:900}
 
     .modal{
-      position:fixed;inset:0;
-      display:none;align-items:flex-end;justify-content:center;
-      z-index:2000;padding:18px;
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
       background:rgba(0,0,0,.55);
       backdrop-filter: blur(10px);
     }
     .modal[aria-hidden="false"]{display:flex}
     .sheet{
       width:min(980px, 100%);
-      max-height:86vh;overflow:auto;
+      max-height:86vh;
+      overflow:auto;
       border-radius:22px;
       border:1px solid rgba(255,255,255,.12);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
       box-shadow:0 25px 90px rgba(0,0,0,.65);
     }
     .sheetHeader{
-      position:sticky;top:0;z-index:1;
+      position:sticky;
+      top:0;
+      z-index:1;
       background:rgba(10,14,28,.78);
       backdrop-filter: blur(12px);
       border-bottom:1px solid rgba(255,255,255,.10);
       padding:12px 14px;
-      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
     }
     .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
     .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
@@ -239,6 +422,27 @@
 </head>
 
 <body>
+
+  <nav class="type-nav">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-home"><span>⌂</span> Accueil</a>
+      
+      <div class="type-links">
+        <a href="type1.html" class="t-link">1</a>
+        <a href="type2.html" class="t-link">2</a>
+        <a href="type3.html" class="t-link">3</a>
+        <a href="type4.html" class="t-link">4</a>
+        <a href="type5.html" class="t-link">5</a>
+        <a href="type6.html" class="t-link">6</a>
+        <a href="type7.html" class="t-link active">7</a>
+        <a href="type8.html" class="t-link">8</a>
+        <a href="type9.html" class="t-link">9</a>
+      </div>
+
+      <a href="../test-enneagramme-sans-indice.html" class="nav-test">Faire le Test →</a>
+    </div>
+  </nav>
+
   <div class="wrap" id="top">
     <div class="top">
       <div class="hero">
@@ -246,7 +450,7 @@
 
         <div class="chips" id="chips">
           <span class="chip"><span class="dot" style="background:var(--blue)"></span>Centre mental</span>
-          <span class="chip"><span class="dot" style="background:#fbbf24"></span>Rôle social : L’Énergiseur / Le Catalyseur</span>
+          <span class="chip"><span class="dot" style="background:var(--green)"></span>Rôle social : L’Énergiseur / Le Catalyseur</span>
           <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
         </div>
 
@@ -260,7 +464,7 @@
       <div class="side">
         <div class="card">
           <h2>Recherche</h2>
-          <input id="search" type="search" placeholder="Tape un mot, ex : gloutonnerie, planification, rationalisation, clan..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+          <input id="search" type="search" placeholder="Tape un mot, ex : gloutonnerie, planification, rationalisation..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
         </div>
       </div>
     </div>
@@ -339,53 +543,6 @@ Les trois sous-types instinctifs
 * Conservation (Clan) : Il est loyal envers un groupe restreint (famille ou amis proches) qui partage ses idées. Il se focalise sur ses propres besoins et ceux de son cercle pour se sentir en sécurité.
 * Social (Sacrifice) : Cet idéaliste peut accepter de limiter ses propres choix ou aventures par esprit de sacrifice pour les autres ou pour une cause, souvent avec la conviction que ce frein sera de courte durée.
 * Sexuel (Imagination) : Il recherche des expériences nouvelles, intenses et fascinantes. Il privilégie souvent des relations peu impliquantes où son imaginaire et ses fantasmes comptent plus que la relation réelle.</pre>
-              <div class="rt"></div>
-            </div>
-
-            <div class="sectionHeader" style="margin-top:12px">
-              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
-              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
-            </div>
-
-            <div class="subtypeBtns">
-              <button class="btn" id="btn-survie" type="button">SURVIE</button>
-              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
-              <button class="btn" id="btn-social" type="button">SOCIAL</button>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Niveaux de développement (aperçu)</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">Les 9 niveaux de Développement
-Le niveau de développement mesure le degré de liberté psychologique. Plus le niveau est élevé, plus l'individu est libre et conscient ; plus il descend, plus il devient esclave de ses pulsions.
-
-La Plage Saine : La Joie et la Gratitude (Niveaux 1 à 3)
-* Niveau 1 : Joyeux et satisfait. Il abandonne la croyance que son bonheur dépend d'objets spécifiques. Il devient profondément reconnaissant, vivant une forme d'extase dans la simplicité du moment présent.
-* Niveau 2 : Enthousiaste et anticipateur. Il se concentre sur le monde des possibilités. Son image de soi est : « Je suis joyeux, spontané et extraverti ».
-* Niveau 3 : Réaliste et productif. Il s'engage pleinement dans la vie et accomplit des choses concrètes. Il devient polyvalent, audacieux et capable d'une production prolifique tout en restant pragmatique.
-
-La Plage Moyenne : L'Acquisition et la Distraction (Niveaux 4 à 6)
-* Niveau 4 : Acquisitif et consommateur. Craignant de manquer des expériences, il devient agité, veut multiplier ses options et tente de suivre toutes les tendances.
-* Niveau 5 : Distrait et éparpillé. Il craint de s'ennuyer ou de ressentir la douleur. Il s'efforce de rester excité, parle beaucoup et cherche de nouvelles aventures, mais manque souvent de suivi.
-* Niveau 6 : Égocentrique et excessif. Il a peur de manquer de ce dont il a besoin. Il devient impatient, exige une gratification instantanée et peut devenir gaspilleur, rejetant toute culpabilité.
-
-La Plage Malsaine : L'Insatiabilité et la Panique (Niveaux 7 à 9)
-* Niveau 7 : Insatiable et fuyant. Il panique à l'idée que ses actions ne lui apportent que de la douleur. Il devient impulsif, irresponsable et cherche n'importe quel soulagement temporaire.
-* Niveau 8 : Maniaque et imprudent. Désespéré d'échapper à l'anxiété, il alterne entre hystérie et dépression profonde, devenant instable.
-* Niveau 9 : Accablé et paralysé. Il réalise qu'il a ruiné sa vie et sa capacité à éprouver du plaisir. Souvent en proie à des problèmes graves, il est frappé par la terreur.
-
-Signaux d'Alerte
-* Signal d'Éveil : Le sentiment que « l'herbe est toujours plus verte ailleurs » (insatisfaction chronique du présent).
-* Signal d'Alarme : La peur que ses propres activités et son agitation ne lui apportent en fait que de la douleur.
-
-Les Défis de croissance
-Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans chercher d'échappatoires, et prendre davantage en compte les émotions des autres.</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -556,22 +713,25 @@ L'âme est comme un jeune plant qui n'a pas besoin de diriger sa propre croissan
           </summary>
           <div class="content">
             <div class="block rich">
-              <pre class="raw">Présentation générale du Type 7 : La structure de base
+              <pre class="raw">LE type et sous types
+Présentation générale du Type 7 : La structure de base
 * Blessure : Un jour, l’enfant a souffert d’être stoppé dans son élan, comme si on lui avait coupé les ailes. Il a été contraint de se plier aux instructions de l’autorité, ce qui fait qu'aujourd'hui, toute forme d'enfermement est vécue comme une douleur.
 * Passion : La gourmandise (gloutonnerie). Il s'agit d'un désir de multiplier les expériences variées et amusantes pour fuir la souffrance et l'ennui. Le Sept cherche à « croquer la vie » en restant toujours en mouvement vers un projet futur plus excitant.
-* Mécanisme de défense privilégié : La rationalisation. Le Sept reformule ses vécus douloureux en leur trouvant un côté positif ou une explication intellectuelle. Cela lui permet de se détacher de l'émotion pour ne pas se laisser toucher au niveau du cœur, ce qu'il juge dévastateur.</pre>
+* Mécanisme de défense privilégié : La rationalisation. Le Sept reformule ses vécus douloureux en leur trouvant un côté positif ou une explication intellectuelle. Cela lui permet de se détacher de l'émotion pour ne pas se laisser toucher au niveau du cœur, ce qu'il juge dévastateur.
+
+Items de présentation spécifique pour chaque sous-type</pre>
               <div class="rt"></div>
             </div>
 
             <div class="sectionHeader" style="margin-top:12px">
               <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
-              <button class="btn" id="compareBtn2" type="button">Comparer les 3 sous-types</button>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
             </div>
 
             <div class="subtypeBtns">
-              <button class="btn" id="btn-survie2" type="button">SURVIE</button>
-              <button class="btn" id="btn-tete2" type="button">TÊTE-À-TÊTE</button>
-              <button class="btn" id="btn-social2" type="button">SOCIAL</button>
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
             </div>
           </div>
         </details>
@@ -657,12 +817,13 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
       <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
         <details open data-search>
           <summary>
-            <div class="sumTitle"><b>Niveaux de développement</b></div>
+            <div class="sumTitle"><b>Définition + continuum</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
             <div class="block rich">
-              <pre class="raw">Le niveau de développement mesure le degré de liberté psychologique. Plus le niveau est élevé, plus l'individu est libre et conscient ; plus il descend, plus il devient esclave de ses pulsions. Le Type 7 apprend à trouver le bonheur à l’intérieur plutôt qu’à l’extérieur.</pre>
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement mesure le degré de liberté psychologique. Plus le niveau est élevé, plus l'individu est libre et conscient ; plus il descend, plus il devient esclave de ses pulsions. Le Type 7 apprend à trouver le bonheur à l’intérieur plutôt qu’à l’extérieur.</pre>
               <div class="rt"></div>
             </div>
 
@@ -690,8 +851,8 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Liste des 9 niveaux</b></div>
-          <span class="chev"></span>
+            <div class="sumTitle"><b>Niveaux 1 à 9</b></div>
+            <span class="chev"></span>
           </summary>
           <div class="content">
             <div class="block rich">
@@ -708,13 +869,35 @@ La Plage Moyenne : L'Acquisition et la Distraction (Niveaux 4 à 6)
 La Plage Malsaine : L'Insatiabilité et la Panique (Niveaux 7 à 9)
 * Niveau 7 : Insatiable et fuyant. Il panique à l'idée que ses actions ne lui apportent que de la douleur. Il devient impulsif, irresponsable et cherche n'importe quel soulagement temporaire.
 * Niveau 8 : Maniaque et imprudent. Désespéré d'échapper à l'anxiété, il alterne entre hystérie et dépression profonde, devenant instable.
-* Niveau 9 : Accablé et paralysé. Il réalise qu'il a ruiné sa vie et sa capacité à éprouver du plaisir. Souvent en proie à des problèmes graves, il est frappé par la terreur.
+* Niveau 9 : Accablé et paralysé. Il réalise qu'il a ruiné sa vie et sa capacité à éprouver du plaisir. Souvent en proie à des problèmes graves, il est frappé par la terreur.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
 
-Signaux d'Alerte
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Signaux d’alerte</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Signaux d'Alerte
 * Signal d'Éveil : Le sentiment que « l'herbe est toujours plus verte ailleurs » (insatisfaction chronique du présent).
-* Signal d'Alarme : La peur que ses propres activités et son agitation ne lui apportent en fait que de la douleur.
+* Signal d'Alarme : La peur que ses propres activités et son agitation ne lui apportent en fait que de la douleur.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
 
-Les Défis de croissance
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Défis de croissance</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les Défis de croissance
 Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans chercher d'échappatoires, et prendre davantage en compte les émotions des autres.</pre>
               <div class="rt"></div>
             </div>
@@ -727,9 +910,9 @@ Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans 
   <div class="bottomBar">
     <div class="barInner">
       <div class="barBtns">
-        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
-        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
-        <button class="btn" id="nextBtn" type="button">Suivant</button>
+        <a class="btn primary" id="backToTest" href="../test-enneagramme-sans-indice.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="../index.html">Retour accueil</a>
+        <a href="type8.html" class="btn" id="nextBtn">Suivant</a>
       </div>
       <div class="barInfo" id="barInfo">Type 7</div>
     </div>
@@ -742,7 +925,9 @@ Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans 
           <b id="modalTitle">Sous-type</b>
           <span id="modalSub">Type 7</span>
         </div>
-        <div><button class="btn" id="closeModal" type="button">Fermer</button></div>
+        <div>
+          <button class="btn" id="closeModal" type="button">Fermer</button>
+        </div>
       </div>
       <div class="sheetBody">
         <div class="block rich">
@@ -760,7 +945,9 @@ Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans 
           <b>Comparer les 3 sous-types</b>
           <span>Type 7</span>
         </div>
-        <div><button class="btn" id="closeCompare" type="button">Fermer</button></div>
+        <div>
+          <button class="btn" id="closeCompare" type="button">Fermer</button>
+        </div>
       </div>
       <div class="sheetBody">
         <div class="cols">
@@ -862,7 +1049,7 @@ Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans 
 * Comportement / Description du fonctionnement : Il vit une tension entre son désir de plaisir et ses responsabilités envers le groupe. Il sacrifie sa liberté personnelle au profit d'idéaux sociaux, se sentant investi d'un devoir envers les autres, tout en essayant de rendre le monde plus joyeux.
 * Le paradoxe : Rechercher à faire partie d'un groupe tout en sachant que celui-ci bridera inévitablement son enthousiasme.
 * Métaphore : Le Visionnaire idéaliste. Il cherche à rendre le monde meilleur et plus doux, tout en luttant contre la peur d'un idéalisme qui deviendrait utopique.
-* Signaux d'alerte du type : Trop de projets, trop de mouvement, trop de mental, trop d'optimisme.
+* Signaux d'alerte du type : (Identiques).
 * Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
 * Témoignage (Philippe) :
     * Type : Apprécie sa capacité de synthèse rapide, son côté créatif et son aptitude à relativiser les obstacles par l'humour.
@@ -877,22 +1064,31 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
       return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
 
+    function looksLikeDuplicateSectionTitle(line){
+      return /^\s*(GPT\s*\d+|Type\s*\d+)\b/i.test(line.trim()) || /^\s*\d+\.\s+/.test(line.trim());
+    }
+
+    function isPlainHeading(line){
+      const t = line.trim();
+      if(!t) return false;
+      if(looksLikeDuplicateSectionTitle(t)) return true;
+      if(/^LE\s+type\s+et\s+sous\s+types/i.test(t)) return false;
+      return false;
+    }
+
     function isSubhead(line){
       const t = line.trim();
       if(!t) return false;
-      const noColon = new Set([
-        "Centre d'intelligence","Hiérarchie des centres","Orientation","Compulsion","Passion et Fixation",
-        "Mécanisme de défense","Peurs et Désirs fondamentaux","Le Schéma de l'enfance","Les Sous-types d'Ailes",
-        "Les trois sous-types instinctifs","Profil professionnel","Style de management","Style de communication","Points de vigilance",
-        "Réaction au Stress (Désintégration)","Chemin d'Intégration (Croissance)","Points d'amélioration à travailler",
-        "Pratiques suggérées et Attitudes de Guérison","Intégration (Idée supérieure et Vertu)",
-        "L'Idée sacrée","L'Illusion Spécifique","La Difficulté Spécifique","La Réaction Spécifique","Le Noyau de la Fixation",
-        "La Confiance Fondamentale","La Lumière du jour Vivante",
-        "L'Idée Sacrée comme Psycho-catalyseur","Rétablir la Confiance Fondamentale","L'Abandon","La Poussée Optimisante",
-        "Analogie"
+
+      const noColonHeadings = new Set([
+        "Centre d'intelligence", "Orientation", "Compulsion", "Passion et Fixation", "Mécanisme de défense", "Peurs et Désirs fondamentaux", "Le Schéma de l'enfance", "Les Sous-types d'Ailes", "Les trois sous-types instinctifs", "Profil professionnel", "Style de management", "Style de communication", "Points de vigilance", "Réaction au Stress (Désintégration)", "Chemin d'Intégration (Croissance)", "Points d'amélioration à travailler", "Pratiques suggérées et Attitudes de Guérison", "Intégration (Idée supérieure et Vertu)", "L'Idée sacrée", "L'Illusion Spécifique", "La Difficulté Spécifique", "La Réaction Spécifique", "Le Noyau de la Fixation", "La Confiance Fondamentale", "La Lumière du jour Vivante", "L'Idée Sacrée comme Psycho-catalyseur", "Rétablir la Confiance Fondamentale", "L'Abandon", "La Poussée Optimisante", "Signaux d'Alerte", "Les Défis de croissance", "Hiérarchie des centres"
       ]);
-      if(noColon.has(t)) return true;
+      if(noColonHeadings.has(t)) return true;
+
       if(/:\s*$/.test(t)) return true;
+
+      if(t === "Hiérarchie des centres :" || t === "Passion et Fixation :") return true;
+
       return false;
     }
 
@@ -902,12 +1098,18 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
       let listMode = null;
 
       const closeList = ()=>{ if(listMode){ html += `</ul>`; listMode = null; } };
-      const openList = ()=>{ if(listMode) return; listMode = 'dot'; html += `<ul class="dot">`; };
+      const openList = (mode)=>{ if(listMode === mode) return; closeList(); listMode = mode; html += `<ul class="${mode}">`; };
 
       const pushP = (line)=>{ closeList(); html += `<p>${escapeHTML(line)}</p>`; };
       const pushGap = ()=>{ closeList(); html += `<div class="gap"></div>`; };
       const pushSubhead = (title)=>{ closeList(); html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`; };
       const pushLabelRow = (k, v)=>{ closeList(); html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`; };
+      const pushLI = (mode, k, v, keepColon=true)=>{
+        openList(mode);
+        if(v === null){ html += `<li>${escapeHTML(k)}</li>`; return; }
+        const label = keepColon ? `${k}` : k;
+        html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
+      };
 
       for(const line of lines){
         if(line.trim()===''){ pushGap(); continue; }
@@ -920,13 +1122,36 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
 
         const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
         if(kv){
-          pushLabelRow(kv[1].trim(), kv[2].trim());
+          const key = kv[1].trim();
+          const val = kv[2].trim();
+
+          if(/^Titre et Identité$/i.test(key) || /^Définition globale$/i.test(key) || /^Rôle Social$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          if(/^Centre Préféré$/i.test(key) || /^Centre de Support$/i.test(key) || /^Centre Réprimé$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          pushLabelRow(key, val);
           continue;
         }
 
         const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
         if(bullet){
-          openList();
+          openList('dot');
           html += `<li>${escapeHTML(bullet[1])}</li>`;
           continue;
         }
@@ -989,13 +1214,9 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
     }
 
     function openSubtype(key){
-      const mapBtn = {
-        survie: [qs('#btn-survie'), qs('#btn-survie2')],
-        tete: [qs('#btn-tete'), qs('#btn-tete2')],
-        social: [qs('#btn-social'), qs('#btn-social2')]
-      };
-      qsa('.subtypeBtns .btn').forEach(b=>b.classList.remove('active'));
-      (mapBtn[key]||[]).forEach(b=>b && b.classList.add('active'));
+      const mapBtn = {survie: qs('#btn-survie'), tete: qs('#btn-tete'), social: qs('#btn-social')};
+      Object.values(mapBtn).forEach(b=>b.classList.remove('active'));
+      if(mapBtn[key]) mapBtn[key].classList.add('active');
 
       qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
       qs('#modalSub').textContent = 'Type 7';
@@ -1051,15 +1272,10 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
     qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
     qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
     qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
-    qs('#btn-survie2').addEventListener('click', ()=>openSubtype('survie'));
-    qs('#btn-tete2').addEventListener('click', ()=>openSubtype('tete'));
-    qs('#btn-social2').addEventListener('click', ()=>openSubtype('social'));
-
     qs('#closeModal').addEventListener('click', closeSubtype);
     qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
 
     qs('#compareBtn').addEventListener('click', openCompare);
-    qs('#compareBtn2').addEventListener('click', openCompare);
     qs('#closeCompare').addEventListener('click', closeCompare);
     qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
 
