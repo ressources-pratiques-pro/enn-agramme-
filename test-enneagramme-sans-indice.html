@@ -113,7 +113,7 @@
     .resTitle{margin:0;font-size:15px}
     .resLine{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.35}
     .top3{margin-top:12px;display:grid;gap:10px}
-    
+
     .topItem{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.05);
@@ -142,12 +142,11 @@
       font-size:12px;
     }
     .bars{margin-top:20px; display:grid; gap:8px}
-    
+
     .barRow{
-      display:grid; 
-      /* Largeur fixe pour le nom afin d'éviter le chevauchement */
-      grid-template-columns: 120px 1fr 40px; 
-      gap:10px; 
+      display:grid;
+      grid-template-columns: 120px 1fr 40px;
+      gap:10px;
       align-items:center;
       cursor: pointer;
       padding: 6px 8px;
@@ -165,9 +164,9 @@
     }
     .barFill{height:100%;width:0%}
     .small{color:var(--muted);font-size:12px;line-height:1.4;margin-top:12px}
-    
+
     .twoBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    
+
     .ghost{background: rgba(255,255,255,.03)}
     .danger{border-color: rgba(255,139,139,.30)}
     .ok{border-color: rgba(159,242,177,.30)}
@@ -179,7 +178,7 @@
       max-width: 92vw;
     }
     a{color:var(--accent);text-decoration:none}
-    
+
     .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
     .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
     .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
@@ -240,58 +239,60 @@
         <button id="btnExport" class="ghost" type="button">Exporter</button>
       </div>
     </header>
-<div class="grid">
-  <section class="card" aria-label="Questionnaire">
-    <div class="cardHead">
-      <h2>Questionnaire</h2>
-      <div class="pill"><span id="answered">0</span>/<span id="total">0</span> répondu</div>
-    </div>
-    <div class="cardBody">
-      <p class="scaleHint">Astuce : si tu hésites entre deux valeurs, prends celle qui décrit le plus souvent ton automatisme.</p>
-      <div id="questions"></div>
-      <div class="legend">
-        <span>0 pas du tout</span><span>1</span><span>2</span><span>3</span><span>4 très souvent</span>
-      </div>
-    </div>
-  </section>
 
-  <aside class="card" aria-label="Résultats">
-    <div class="cardHead">
-      <h2>Résultats</h2>
-      <div class="pill">Classement</div>
-    </div>
-    <div class="cardBody" id="resultBody">
-      <p class="scaleHint">Clique Calculer pour voir ton profil probable. Les réponses restent enregistrées sur ton navigateur.</p>
-    </div>
-    <div class="resultBox" id="resultBox" style="display:none">
-      <p class="resTitle" id="resTitle">—</p>
-      <div class="resLine" id="resLine"></div>
-      
-      <div class="top3" id="top3"></div>
-      
-      <div class="bars" id="bars"></div>
-      
-      <div class="small">
-        Clique sur n'importe quelle barre ci-dessus pour ouvrir le profil correspondant.
-        Les scores proches (ex: 1 ou 2 points d'écart) indiquent souvent une hésitation ou une aile forte.
-      </div>
-      
-      <div class="twoBtns" id="actionButtons">
-        <button id="btnCopy" class="ghost" type="button">Copier le résumé</button>
-      </div>
-    </div>
-  </aside>
-</div>
+    <div class="grid">
+      <section class="card" aria-label="Questionnaire">
+        <div class="cardHead">
+          <h2>Questionnaire</h2>
+          <div class="pill"><span id="answered">0</span>/<span id="total">0</span> répondu</div>
+        </div>
+        <div class="cardBody">
+          <p class="scaleHint">Astuce : si tu hésites entre deux valeurs, prends celle qui décrit le plus souvent ton automatisme.</p>
+          <div id="questions"></div>
+          <div class="legend">
+            <span>0 pas du tout</span><span>1</span><span>2</span><span>3</span><span>4 très souvent</span>
+          </div>
+        </div>
+      </section>
 
-<footer class="siteFooter">
-  <div class="footerInner">
-    <span class="copy">Brahms – Tous droits réservés</span>
-    <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank" rel="noopener">
-      ✉️ Écrire à Brahms
-    </a>
+      <aside class="card" aria-label="Résultats">
+        <div class="cardHead">
+          <h2>Résultats</h2>
+          <div class="pill">Classement</div>
+        </div>
+        <div class="cardBody" id="resultBody">
+          <p class="scaleHint">Clique Calculer pour voir ton profil probable. Les réponses restent enregistrées sur ton navigateur.</p>
+        </div>
+        <div class="resultBox" id="resultBox" style="display:none">
+          <p class="resTitle" id="resTitle">—</p>
+          <div class="resLine" id="resLine"></div>
+
+          <div class="top3" id="top3"></div>
+
+          <div class="bars" id="bars"></div>
+
+          <div class="small">
+            Clique sur n'importe quelle barre ci-dessus pour ouvrir le profil correspondant.
+            Les scores proches (ex: 1 ou 2 points d'écart) indiquent souvent une hésitation ou une aile forte.
+          </div>
+
+          <div class="twoBtns" id="actionButtons">
+            <button id="btnCopy" class="ghost" type="button">Copier le résumé</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="siteFooter">
+      <div class="footerInner">
+        <span class="copy">Brahms – Tous droits réservés</span>
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank" rel="noopener">
+          ✉️ Écrire à Brahms
+        </a>
+      </div>
+    </footer>
   </div>
-</footer>
-  </div>
+
   <div class="bottomBar" role="navigation" aria-label="Actions rapides">
     <div class="bottomInner">
       <button id="btnCalc2" class="ok" type="button">Calculer</button>
@@ -299,7 +300,9 @@
       <a id="btnBack" class="linkBtn mutedBtn" href="explore.html">Retour</a>
     </div>
   </div>
+
   <div class="toast" id="toast"></div>
+
   <script>
   (function() {
     const TYPES = {
@@ -345,8 +348,7 @@
     ];
 
     const LS_KEY = "ennea_test_sample_v1";
-    
-    // Eléments DOM
+
     const elQuestions = document.getElementById("questions");
     const elAnswered = document.getElementById("answered");
     const elTotal = document.getElementById("total");
@@ -390,7 +392,7 @@
     function renderQuestions(){
       elQuestions.innerHTML = "";
       elTotal.textContent = String(ITEMS.length);
-      
+
       ITEMS.forEach((it, idx) => {
         const q = document.createElement("div");
         q.className = "q";
@@ -450,13 +452,13 @@
     function score(){
       const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
       const maxPerType = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
-      
+
       ITEMS.forEach((it, idx) => {
         const v = (typeof state[idx] === "number") ? state[idx] : 0;
         scores[it.t] += v;
         maxPerType[it.t] += 4;
       });
-      
+
       const arr = Object.keys(scores).map(k => {
         const t = parseInt(k,10);
         const raw = scores[t];
@@ -464,7 +466,7 @@
         const pct = Math.round((raw / max) * 100);
         return {t, raw, max, pct};
       }).sort((a,b)=> b.raw - a.raw);
-      
+
       return {arr};
     }
 
@@ -483,22 +485,19 @@
       resTitle.textContent = "Vos résultats";
       resLine.textContent = `Score max: ${first.pct}% (Type ${first.t}).`;
 
-      // -- 1. GÉNÉRATION DU TOP 3 (DOMINANTS) --
       top3.innerHTML = "";
-      [first, second, third].forEach((x, i) => {
+      [first, second, third].forEach((x) => {
         const div = document.createElement("div");
         div.className = "topItem";
-        // Ajout d'une bordure colorée légère selon le centre
         div.style.borderLeft = `4px solid ${colorForType(x.t)}`;
         div.title = "Cliquez pour voir le Type " + x.t;
-        div.onclick = () => location.href = "type" + x.t + ".html";
+        div.onclick = () => location.href = "profils/type" + x.t + ".html";
 
         const left = document.createElement("div");
         left.className = "topLeft";
 
         const nm = document.createElement("div");
         nm.className = "topName";
-        // MODIFICATION : PLUS DE #1, JUSTE LE NOM
         nm.textContent = "Type " + x.t + " • " + TYPES[x.t].name;
 
         const ds = document.createElement("div");
@@ -517,16 +516,14 @@
         top3.appendChild(div);
       });
 
-      // -- 2. GÉNÉRATION DE LA LISTE COMPLÈTE CLIQUABLE --
       bars.innerHTML = "";
-      
+
       arr.forEach(x => {
         const row = document.createElement("div");
         row.className = "barRow";
         row.title = "Ouvrir la fiche du Type " + x.t;
-        row.onclick = () => location.href = "type" + x.t + ".html";
+        row.onclick = () => location.href = "profils/type" + x.t + ".html";
 
-        // Label : Type + Nom
         const k = document.createElement("div");
         k.className = "barK";
         k.textContent = "Type " + x.t + " • " + TYPES[x.t].name;
@@ -552,7 +549,6 @@
         bars.appendChild(row);
       });
 
-      // Gestion du bouton copier
       btnCopy.onclick = async () => {
         const txt = [
           "Résultat (échantillon) :",
@@ -572,7 +568,6 @@
       resultBox.style.display = "block";
     }
 
-    // -- EVENTS --
     if(btnCalc) btnCalc.addEventListener("click", () => {
       renderResults();
       showToast("Résultats calculés");
@@ -619,15 +614,11 @@
       }
     });
 
-    // INIT : Au chargement de la page, on vérifie si tout est répondu
     renderQuestions();
-    
-    // -- CORRECTION "SCORE PERDU" --
-    // Si toutes les questions ont une réponse (ou si l'utilisateur a déjà cliqué sur calculer), on réaffiche les résultats.
+
     const answeredCount = Object.keys(state).length;
     if(answeredCount >= ITEMS.length){
-        // On affiche directement les résultats sans attendre le clic
-        renderResults();
+      renderResults();
     }
 
   })();
