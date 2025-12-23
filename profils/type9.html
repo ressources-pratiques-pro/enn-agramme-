@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Type 9 — Le Médiateur</title>
+  <title>Type 9 — Profil complet</title>
   <style>
     :root{
-      --bg:#08121a;
-      --card:#0b1b27;
+      --bg:#0b1020;
+      --card:#0f1731;
       --line:rgba(255,255,255,.10);
-      --text:#ecfeff;
-      --muted:#a6c7d3;
+      --text:#eef2ff;
+      --muted:#a8b6dd;
       --blue:#60a5fa;
       --green:#34d399;
       --shadow: 0 18px 60px rgba(0,0,0,.45);
@@ -22,16 +22,51 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
       background:
-        radial-gradient(900px 450px at 16% 10%, rgba(52,211,153,.16), transparent 55%),
+        radial-gradient(900px 450px at 16% 10%, rgba(52,211,153,.16), transparent 55%), /* Vert apaisant pour le 9 */
         radial-gradient(900px 450px at 84% 10%, rgba(96,165,250,.14), transparent 55%),
-        radial-gradient(1100px 600px at 50% 118%, rgba(245,158,11,.08), transparent 60%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(56,189,248,.10), transparent 60%),
         var(--bg);
       color:var(--text);
       line-height:1.45;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
-    .top{display:flex;gap:14px;align-items:stretch;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
+
+    /* --- MENU DE NAVIGATION (LE PONT) --- */
+    .type-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .nav-container {
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .type-links { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    .t-link {
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; font-weight: bold; text-decoration: none; transition: 0.2s;
+      font-size: 13px; background: rgba(255,255,255,0.03);
+    }
+    .t-link:hover { border-color: var(--blue); color: #fff; background: rgba(96,165,250,0.1); }
+    .t-link.active { 
+      background: var(--blue); color: #000; border-color: var(--blue); box-shadow: 0 0 10px rgba(96,165,250,0.3);
+    }
+    .nav-home, .nav-test { font-size: 13px; color: #eef2ff; text-decoration: none; font-weight: 600; opacity: 0.8; display:flex; align-items:center; gap:6px;}
+    .nav-home:hover, .nav-test:hover { opacity: 1; color: var(--blue); }
+
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
 
     .hero{
       flex:1 1 700px;
@@ -42,20 +77,33 @@
       padding:18px 18px 16px;
       backdrop-filter: blur(10px);
     }
-    .hero h1{margin:0 0 10px;font-size:clamp(22px, 3vw, 30px);letter-spacing:.2px}
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
 
     .chips{display:flex;gap:8px;flex-wrap:wrap}
     .chip{
-      display:inline-flex;align-items:center;gap:8px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       background:rgba(255,255,255,.07);
       border:1px solid var(--line);
-      padding:7px 10px;border-radius:999px;
-      font-size:12px;color:rgba(255,255,255,.92);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
       white-space:nowrap;
     }
     .dot{width:9px;height:9px;border-radius:50%}
 
-    .side{flex:0 1 360px;display:grid;gap:12px;align-content:start}
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
     .card{
       background:rgba(255,255,255,.04);
       border:1px solid var(--line);
@@ -64,20 +112,42 @@
       padding:14px 14px 12px;
       backdrop-filter: blur(10px);
     }
-    .card h2{margin:0 0 10px;font-size:14px;letter-spacing:.2px;color:rgba(255,255,255,.92)}
+    .card h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
 
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
     .tab{
-      padding:10px 12px;border-radius:999px;
+      padding:10px 12px;
+      border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.05);
       color:rgba(255,255,255,.92);
-      font-weight:900;font-size:13px;
-      cursor:pointer;user-select:none;-webkit-tap-highlight-color: transparent;
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .tab[aria-selected="true"]{background:rgba(52,211,153,.14);border-color:rgba(52,211,153,.35)}
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
 
-    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
 
     details{
       background:rgba(255,255,255,.04);
@@ -90,85 +160,172 @@
       list-style:none;
       cursor:pointer;
       padding:14px 14px 12px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      user-select:none;-webkit-tap-highlight-color: transparent;
-      background:linear-gradient(90deg, rgba(52,211,153,.14), rgba(255,255,255,0));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(52,211,153,.14), rgba(255,255,255,0)); /* Vert */
     }
     summary::-webkit-details-marker{display:none}
+
     .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
     .sumTitle b{
-      font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.98);
-      display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+      font-size:15px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.98);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
     }
     .chev{
-      width:10px;height:10px;border-right:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);
-      transform:rotate(45deg);transition:.18s ease;margin-right:4px;flex:0 0 auto;
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
     }
     details[open] .chev{transform:rotate(225deg);margin-top:4px}
-    .content{padding:12px 14px 14px;border-top:1px solid var(--line)}
 
-    .block{background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:12px}
+    .content{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    .block{
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+
     .raw{display:none}
     .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
     .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
     .rt .gap{height:10px}
 
     .rt .labelRow{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;
-      margin:0 0 10px;padding:10px 10px;border-radius:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin:0 0 10px;
+      padding:10px 10px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.04);
     }
-    .rt .label{color:var(--blue);font-weight:950;letter-spacing:.15px;font-size:13px}
-    .rt .value{color:rgba(255,255,255,.92);font-size:15px;flex:1 1 auto;min-width:220px}
+    .rt .label{
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:.15px;
+      font-size:13px;
+      text-transform:none;
+    }
+    .rt .value{
+      color:rgba(255,255,255,.92);
+      font-size:15px;
+      flex:1 1 auto;
+      min-width:220px;
+    }
 
     .rt .subhead{
-      margin:2px 0 10px;padding:8px 10px;border-radius:12px;
-      border:1px solid rgba(52,211,153,.30);
+      margin:2px 0 10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(52,211,153,.28);
       background:linear-gradient(180deg, rgba(52,211,153,.12), rgba(0,0,0,.10));
       color:rgba(255,255,255,.96);
-      font-weight:950;letter-spacing:.2px;
+      font-weight:950;
+      letter-spacing:.2px;
     }
-    .rt .subhead .t{color:#34d399;font-weight:950}
+    .rt .subhead .t{
+      color:#6ee7b7;
+      font-weight:950;
+    }
 
     .rt ul{margin:0 0 10px 18px;padding:0}
     .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dash{list-style-type:"-  "}
+    .rt ul.arrow{list-style-type:"→  "}
     .rt ul.dot{list-style-type:"•  "}
+    .rt li .k{
+      color:var(--blue);
+      font-weight:950;
+    }
 
-    .sectionHeader{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+    .sectionHeader{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 10px;
+    }
     .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:12px;padding:6px 10px;border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.06);
       color:rgba(255,255,255,.92);
-      width:fit-content;font-weight:900;
+      width:fit-content;
+      font-weight:900;
     }
 
     .btn, button, a.btn{
-      cursor:pointer;border:1px solid rgba(255,255,255,.14);
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
       color:rgba(255,255,255,.94);
-      padding:10px 12px;border-radius:14px;
-      font-weight:900;letter-spacing:.15px;
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      letter-spacing:.15px;
       text-decoration:none;
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
       transition:transform .08s ease, background .12s ease, border-color .12s ease;
-      user-select:none;-webkit-tap-highlight-color: transparent;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover, button:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+    .btn:hover, button:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
     .btn:active, button:active{transform:translateY(0)}
-    .btn.primary{background:rgba(52,211,153,.14);border-color:rgba(52,211,153,.35)}
-    .btn.primary:hover{background:rgba(52,211,153,.18);border-color:rgba(52,211,153,.45)}
+    .btn.primary{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+    .btn.primary:hover{
+      background:rgba(96,165,250,.20);
+      border-color:rgba(96,165,250,.45);
+    }
 
-    .subtypeBtns{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:10px}
+    .subtypeBtns{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
     .subtypeBtns .btn{padding:12px}
     .subtypeBtns .btn.active{
       background:rgba(96,165,250,.16);
       border-color:rgba(96,165,250,.35);
       box-shadow: 0 0 0 4px rgba(96,165,250,.14);
     }
-    @media (max-width: 860px){.subtypeBtns{grid-template-columns:1fr}}
+    @media (max-width: 860px){
+      .subtypeBtns{grid-template-columns:1fr}
+    }
 
     .rangeWrap{display:grid;gap:10px}
     .rangeLine{
@@ -179,54 +336,81 @@
       border-radius:16px;
     }
     input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
-    .trackLabel{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);font-weight:900}
+    .trackLabel{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:900;
+    }
     .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
-      padding:6px 10px;border-radius:999px;
+      padding:6px 10px;
+      border-radius:999px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.05);
-      font-size:12px;color:rgba(255,255,255,.92);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
       font-weight:900;
     }
 
     .bottomBar{
-      position:fixed;left:0;right:0;bottom:0;
-      background:rgba(6,12,18,.86);
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
       border-top:1px solid rgba(255,255,255,.10);
       backdrop-filter: blur(12px);
-      padding:10px 12px;z-index:999;
+      padding:10px 12px;
+      z-index:999;
     }
     .barInner{
-      max-width:1100px;margin:0 auto;
-      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
     }
     .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     .barInfo{color:var(--muted);font-size:12px;font-weight:900}
 
     .modal{
-      position:fixed;inset:0;
-      display:none;align-items:flex-end;justify-content:center;
-      z-index:2000;padding:18px;
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
       background:rgba(0,0,0,.55);
       backdrop-filter: blur(10px);
     }
     .modal[aria-hidden="false"]{display:flex}
     .sheet{
       width:min(980px, 100%);
-      max-height:86vh;overflow:auto;
+      max-height:86vh;
+      overflow:auto;
       border-radius:22px;
       border:1px solid rgba(255,255,255,.12);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
       box-shadow:0 25px 90px rgba(0,0,0,.65);
     }
     .sheetHeader{
-      position:sticky;top:0;z-index:1;
-      background:rgba(6,12,18,.78);
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(10,14,28,.78);
       backdrop-filter: blur(12px);
       border-bottom:1px solid rgba(255,255,255,.10);
       padding:12px 14px;
-      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
     }
     .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
     .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
@@ -238,14 +422,35 @@
 </head>
 
 <body>
+
+  <nav class="type-nav">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-home"><span>⌂</span> Accueil</a>
+      
+      <div class="type-links">
+        <a href="type1.html" class="t-link">1</a>
+        <a href="type2.html" class="t-link">2</a>
+        <a href="type3.html" class="t-link">3</a>
+        <a href="type4.html" class="t-link">4</a>
+        <a href="type5.html" class="t-link">5</a>
+        <a href="type6.html" class="t-link">6</a>
+        <a href="type7.html" class="t-link">7</a>
+        <a href="type8.html" class="t-link">8</a>
+        <a href="type9.html" class="t-link active">9</a>
+      </div>
+
+      <a href="../test-enneagramme-sans-indice.html" class="nav-test">Faire le Test →</a>
+    </div>
+  </nav>
+
   <div class="wrap" id="top">
     <div class="top">
       <div class="hero">
-        <h1 id="pageTitle">Type 9 — Le Médiateur / Le Pacificateur / Le Conciliateur</h1>
+        <h1 id="pageTitle">Type 9 — Le Médiateur / Le Pacificateur</h1>
 
         <div class="chips" id="chips">
-          <span class="chip"><span class="dot" style="background:#34d399"></span>Centre instinctif</span>
-          <span class="chip"><span class="dot" style="background:#60a5fa"></span>Rôle social : Personne de Spécial</span>
+          <span class="chip"><span class="dot" style="background:var(--green)"></span>Centre instinctif</span>
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Rôle social : Personne n'est spécial</span>
           <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
         </div>
 
@@ -259,7 +464,7 @@
       <div class="side">
         <div class="card">
           <h2>Recherche</h2>
-          <input id="search" type="search" placeholder="Tape un mot, ex : paresse, narcotisation, oubli de soi, union, inertie..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+          <input id="search" type="search" placeholder="Tape un mot, ex : paresse, harmonie, narcotisation..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
         </div>
       </div>
     </div>
@@ -274,9 +479,9 @@
           <div class="content">
             <div class="block rich">
               <pre class="raw">1. Présentation et Identification
-Titre et Identité : Le Type 9 est appelé le « Médiateur », le « Pacificateur » ou le « Conciliateur ». C'est une personnalité dont l'énergie est centrée sur l'acceptation et le soutien. On le qualifie souvent de type facile à vivre, modeste, rassurant et complaisant.
-Définition globale : Le Type 9 recherche par-dessus tout la paix et l'harmonie, se montrant capable de percevoir et de réconcilier des points de vue divergents. Il est animé par une quête de paix intérieure et extérieure. Il cherche à créer une atmosphère harmonieuse et à éviter tout ce qui pourrait perturber sa tranquillité. Il est souvent considéré comme la « couronne » de l'Ennéagramme car il semble posséder les qualités des huit autres types.
-Rôle Social : « Personne de Spécial ».</pre>
+Titre et Identité : Le Type 9 est appelé le « Médiateur », le « Pacificateur » ou le « Facilitateur ». C'est une personnalité accommodante, humble et recherchant l'harmonie.
+Définition globale : Le Type 9 est une personne qui cherche avant tout la paix intérieure et extérieure. Il a un don naturel pour comprendre les différents points de vue et créer du consensus. Il évite les conflits et les tensions en s'adaptant à son environnement, parfois au point de s'oublier lui-même ou de "fusionner" avec les désirs d'autrui pour ne pas causer de vagues.
+Rôle Social : « Personne n'est spécial » (dans le sens où chacun a une valeur égale) ou le « Sanctuaire de Paix ».</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -291,30 +496,30 @@ Rôle Social : « Personne de Spécial ».</pre>
             <div class="block rich">
               <pre class="raw">2. Structure et Dynamique Psychologique
 Centre d'intelligence
-Le Type 9 appartient au centre instinctif. C'est le type le plus complexe de ce centre car il est situé sur le triangle central, ce qui signifie qu'il vit un paradoxe : il préfère le centre instinctif mais le réprime également pour éviter les perturbations. Cela le conduit à une recherche infructueuse d'équilibre, menant souvent à une forme de paralysie ou d'inertie.
+Le Type 9 appartient au centre instinctif (ou moteur). Cependant, contrairement aux 8 et 1, il est le centre du centre : il utilise son énergie instinctive pour bloquer son propre instinct et ses pulsions, afin de rester en paix. Il est souvent "endormi" à sa propre énergie vitale.
 
 Hiérarchie des centres :
-* Centre Préféré : Instinctif
-* Centre de Support : Mental et Émotionnel (utilise les deux pour s'éloigner de l'instinctif)
-* Centre Réprimé : Instinctif (répression de son propre centre préféré)
+* Centre Préféré : Instinctif (Utilisé pour se neutraliser)
+* Centre de Support : Émotionnel (ou Mental selon l'aile)
+* Centre Réprimé : Instinctif (répression de sa propre vitalité)
 
 Orientation
-L'acceptation et le soutien.
+L'harmonie et la paix.
 
 Compulsion
 Éviter les conflits.
 
 Passion et Fixation
-* Passion (Cœur) : La Paresse. Il ne s'agit pas seulement de paresse physique, mais d'une paresse psycho-spirituelle : le 9 oublie ses propres désirs, néglige son être profond et s'adapte excessivement pour éviter les désaccords.
-* Fixation (Tête) : L'Oubli de soi. Il se considère comme un « aquoiboniste », estimant que rien n'est vraiment important, ce qui lui permet de ne pas s'impliquer et de rester dans une zone de confort.
+* Passion (Cœur) : La Paresse (ou Acedia). Il ne s'agit pas de paresse physique (le 9 peut être très actif), mais d'une paresse spirituelle ou psychologique : une réticence à se confronter à soi-même, à ses vrais problèmes et à sa propre vie intérieure pour ne pas perturber sa tranquillité.
+* Fixation (Tête) : L'Oubli de soi (ou Indolence). Il a tendance à "oublier" ses propres priorités, désirs et opinions pour se fondre dans l'agenda des autres.
 
 Mécanisme de défense
-La narcotisation. Elle consiste à s'engourdir psychologiquement et à utiliser des substituts (nourriture, télévision, lecture, hobbies ou même travail routinier) pour s'anesthésier, ignorer ses propres désirs et se couper du monde ou de ses sentiments désagréables.
+La narcotisation. Il s'engourdit pour ne pas ressentir l'inconfort, la colère ou l'anxiété. Cela peut passer par la nourriture, la télévision, les routines, ou simplement le fait de "partir dans la lune".
 
 Peurs et Désirs fondamentaux
-* Peur de base : La perte, la séparation et l'annihilation.
-* Désir de base : Maintenir sa stabilité intérieure et sa paix de l'esprit.
-* Message du Surmoi : « Tu es bien ou correct si ceux qui t'entourent sont bien ».</pre>
+* Peur de base : Être séparé, fragmenté, perdu ou en conflit avec les autres.
+* Désir de base : Avoir la stabilité intérieure et la paix de l'esprit (Wholeness).
+* Message du Surmoi : « Tu es bien ou correct si ceux qui t'entourent sont bien et calmes ».</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -329,22 +534,191 @@ Peurs et Désirs fondamentaux
             <div class="block rich">
               <pre class="raw">3. Origines et Variantes
 Le Schéma de l'enfance
-L'enfant 9 a souvent appris à « disparaître » pour ne pas causer de problèmes dans sa famille. Il a senti que ses besoins, sa colère ou sa simple présence n'étaient pas autorisés ou n'avaient pas d'importance. Il s'identifie souvent au rôle de l'« enfant perdu ».</pre>
+L'enfant 9 a souvent eu le sentiment que s'il s'affirmait ou exprimait ses besoins, cela créerait des problèmes ou des séparations. Il a appris à se faire tout petit, à ne pas déranger et à s'adapter aux attentes de la famille pour maintenir le lien et la paix. Il a "disparu" pour être aimé.
+
+Les Sous-types d'Ailes
+* 9w8 (L'Arbitre) : Plus sociable, ancré, direct et capable de colère explosive passagère. Il est plus "présent" physiquement.
+* 9w1 (Le Rêveur) : Plus idéaliste, ordonné, cérébral et détaché. Il peut être plus critique et perfectionniste de manière passive.
+
+Les trois sous-types instinctifs
+* Conservation (Appétit / Le Collectionneur) : Il cherche le confort physique par la nourriture, le sommeil ou la collection d'objets. Il est très ancré dans ses routines et ses petits plaisirs solitaires pour se rassurer.
+* Social (Participation) : Il s'oublie en participant activement à la vie d'un groupe ou d'une communauté. Il travaille dur pour les autres afin de se sentir inclus, mais peut manquer de direction personnelle.
+* Sexuel (Fusion) : Il cherche à fusionner avec un partenaire fort. Il vit sa vie à travers l'autre, adoptant ses passions, ses amis et ses opinions pour se sentir complet et vivant.</pre>
               <div class="rt"></div>
             </div>
+          </div>
+        </details>
 
-            <div class="block rich" style="margin-top:12px">
-              <pre class="raw">Les Sous-types d'Ailes
-* 9w8 (Le Référent) : Plus puissant, terre-à-terre et capable d'une certaine force pour maintenir la paix.
-* 9w1 (Le Rêveur) : Plus idéaliste, imaginatif, réservé et souvent porté sur l'ordre extérieur.</pre>
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Type 9 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">4. Le Type 9 en Entreprise
+Profil professionnel
+Le 9 est un collègue agréable, soutenant et facile à vivre. Il excelle dans la médiation et sait écouter tous les points de vue sans juger. Il crée une ambiance de travail apaisée. Cependant, il peut avoir du mal à établir des priorités et à dire non.
+
+Style de management
+C'est un manager consensuel qui cherche l'accord de toute l'équipe. Il est patient et encourageant. Son défi est de trancher, de prendre des décisions impopulaires et de gérer les conflits ouverts au lieu de les mettre sous le tapis.
+
+Style de communication
+Son style est qualifié de « Saga ». Il raconte des histoires longues et détaillées, ayant parfois du mal à aller droit au but ou à synthétiser, de peur d'omettre un élément important ou de brusquer.
+
+Points de vigilance
+La procrastination (remettre au lendemain les tâches désagréables) et l'entêtement passif (dire oui mais ne pas faire) sont ses principaux écueils. Il peut accumuler de la rancœur non exprimée qui finit par exploser ou se manifester par du sabotage inconscient.</pre>
               <div class="rt"></div>
             </div>
+          </div>
+        </details>
 
-            <div class="block rich" style="margin-top:12px">
-              <pre class="raw">Les trois sous-types instinctifs
-* Conservation (Appétit / Le chercheur de confort) : Ce sous-type consomme de manière excessive (nourriture, alcool, activités) pour éviter de reconnaître ses besoins réels ou sa colère. Il se perd dans les plaisirs simples et la routine pour éviter l'anxiété.
-* Social (Participation / Une famille heureuse) : Il aime rejoindre des groupes pour se sentir porté par leur énergie, mais il ne s'y implique pas vraiment (désengagement émotionnel), restant dans une position de non-implication pour éviter les tensions.
-* Sexuel (Union / Fusion) : Il recherche une union complète avec l'autre, fusionnant ses besoins avec ceux de son partenaire au point de ne plus savoir les distinguer, vivant à travers l'autre.</pre>
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">5. Dynamique des Flèches
+Réaction au Stress (Désintégration)
+Vers le Type 6. Le 9 devient alors anxieux, méfiant, réactif et paranoïaque. Il doute de tout et cherche frénétiquement une sécurité extérieure.
+
+Chemin d'Intégration (Croissance)
+Vers le Type 3. Le 9 apprend à se valoriser, devient plus productif, énergique et orienté vers des objectifs concrets. Il ose se mettre en avant et agir pour lui-même.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution, pratiques, intégration</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">6. Évolution et Développement
+Points d'amélioration à travailler
+* Apprendre à dire « Non » et à exprimer ses propres désirs.
+* Reconnaître et exprimer sa colère au lieu de la nier.
+* Se fixer des priorités claires et s'y tenir.
+* Prendre le risque de créer un conflit pour résoudre un problème réel.
+
+Pratiques suggérées et Attitudes de Guérison
+Pratiquer la pleine conscience du corps pour repérer l'engourdissement. Se forcer à agir. Se dire : « Ma présence compte. Mes opinions sont importantes. Je n'ai pas besoin de disparaître pour être aimé ».
+
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 9 s'intègre vers le Type 3 (ou le Type 6).
+* Essence : L'état de présence dynamique et d'amour englobant.
+* Idée supérieure : L'Amour Sacré. Il perçoit que l'unité ne vient pas de la fusion ou de l'effacement, mais de la reconnaissance que tout est relié par l'amour.
+* Vertu : L'Action Juste (Right Action). Il devient capable d'agir de manière décisive et appropriée, en étant pleinement engagé dans sa propre vie.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">7. Approche des Idées Sacrées (Perspective Almaas)
+L'Idée sacrée
+L'Amour Sacré. C'est la perception que l'univers est une substance bienveillante et aimante qui nous inclut naturellement, sans que nous ayons besoin de nous adapter ou de disparaître pour en faire partie.
+
+L'Illusion Spécifique
+L'Insignifiance. La conviction profonde que "je ne compte pas", que ma présence ne fait aucune différence et que je suis séparé de l'amour.
+
+La Difficulté Spécifique
+La Fragmentation. Le sentiment d'être morcelé, dispersé, de ne pas avoir de centre ou de direction unifiée.
+
+La Réaction Spécifique
+L'Engourdissement / La Narcotisation. Une tentative de ne pas ressentir la douleur de la fragmentation et de l'insignifiance en s'anesthésiant.
+
+Le Noyau de la Fixation
+La constellation entre le sentiment d'insignifiance (difficulté) et la réaction d'engourdissement (réaction).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">8. Fondement Énergétique
+La Confiance Fondamentale
+La certitude que nous avons notre place dans l'univers et que nous sommes aimés inconditionnellement.
+
+La Lumière du jour Vivante
+Qualité de l'Être perçue comme une présence aimante qui nous remplit et nous unifie.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Perspective et solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">9. La Perspective et la Solution
+L'Idée Sacrée comme Psycho-catalyseur
+La compréhension de l'Amour Sacré montre que notre présence est essentielle et que nous sommes déjà connectés, rendant l'adaptation excessive inutile.
+
+Rétablir la Confiance Fondamentale
+Cela passe par la réappropriation de sa propre valeur et l'acceptation de prendre sa place.
+
+L'Abandon
+Cesser de résister à la vie par l'inertie et s'engager pleinement dans le flux de l'existence.
+
+La Poussée Optimisante
+Reconnaître que la réalité nous soutient lorsque nous nous affirmons et que le conflit ne mène pas nécessairement à la séparation.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">10. Analogie
+Le Type 9 est comme une baleine nageant paisiblement dans les profondeurs de l'océan. Elle est immense et puissante, mais elle se laisse porter par les courants, filtrant le plancton sans effort. Si elle est blessée ou attaquée, elle a tendance à plonger encore plus profond dans le silence des abysses plutôt que de contre-attaquer.
+
+Le 9 est comme un caméléon qui prend la couleur de la branche sur laquelle il est posé pour ne pas être vu, oubliant parfois quelle est sa vraie couleur.
+
+L'âme est comme un sanctuaire de paix qui découvre qu'il peut rester calme même au milieu de la tempête, sans avoir besoin de fermer ses portes.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure de base</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">LE type et sous types
+Présentation générale du Type 9 : La structure de base
+* Blessure : Un jour, l’enfant a eu le sentiment que son opinion ou ses désirs n’avaient pas d’importance, ou que s'affirmer créait des conflits insupportables. Il a décidé de se faire oublier pour maintenir la paix et le lien.
+* Passion : La paresse (au sens spirituel). Ce n'est pas de l'inaction, mais une résistance à s'occuper de soi-même et de son développement. Le Neuf s'anesthésie pour ne pas être affecté par la vie.
+* Mécanisme de défense privilégié : La narcotisation. Le Neuf utilise des substituts (nourriture, TV, routine, lecture, collections) pour s'engourdir et oublier ses frustrations ou sa colère.</pre>
               <div class="rt"></div>
             </div>
 
@@ -363,225 +737,6 @@ L'enfant 9 a souvent appris à « disparaître » pour ne pas causer de problèm
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Niveaux de développement (aperçu)</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">Les 9 niveaux de Développement
-La Plage Saine : Indomptable et Paisible (Niveaux 1 à 3)
-* Niveau 1 : Possédé de soi. Il devient indomptable, autonome et pleinement présent.
-* Niveau 2 : Paisible. Il est profondément serein, acceptant et stable.
-* Niveau 3 : Généreux et réconfortant. Il agit comme un médiateur efficace et bienveillant.
-
-La Plage Moyenne : Accommodant et Résigné (Niveaux 4 à 6)
-* Niveau 4 : Effacé et accommodant. Il commence à trop s'adapter aux autres pour éviter les vagues.
-* Niveau 5 : Désengagé. Il se retire activement des conflits et commence à "narcotiser".
-* Niveau 6 : Résigné. Il accepte les situations passivement, minimisant tout pour ne pas souffrir.
-
-La Plage Malsaine : Dissocié et Négligent (Niveaux 7 à 9)
-* Niveau 7 : Réprimé et négligent. Il néglige gravement ses responsabilités et sa santé.
-* Niveau 8 : Dissocié. Il perd le contact avec la réalité, vivant dans un état de brouillard.
-* Niveau 9 : S'abandonnant. Il peut sombrer dans une inertie totale ou une catatonie.
-
-Signaux d'Alerte
-* Signal d'Éveil : S'adapter de façon excessive aux autres (l'accommodement).
-* Signal d'Alarme : La peur que la réalité ne le force brutalement à s'occuper de ses problèmes.
-
-Les Défis de croissance
-Apprendre à s'éveiller à soi-même, sortir de l'inertie et prendre sa place dans le monde.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Type 9 en entreprise</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">4. Le Type 9 en Entreprise
-Profil professionnel
-Le 9 privilégie la cohésion et l'ambiance familiale au sein de l'entreprise. Il est efficace lorsqu'il travaille dans un cadre bien défini avec des procédures précises. Cependant, il peut se perdre dans des tâches secondaires au détriment de l'essentiel par difficulté à fixer des priorités. Face à une pression qu'il refuse, il manifeste son opposition par une inertie massive.
-
-Style de management
-C'est un manager calme et conciliant qui cherche à bâtir une structure stable et harmonieuse. Il consulte longuement tous les acteurs avant de décider pour obtenir un consensus, ce qui peut ralentir considérablement les processus décisionnels.
-
-Style de communication
-Son style est qualifié de « Saga ». Il s'exprime de manière calme, souvent longue et détaillée sur des points mineurs ou chronologiques, passant parfois d'un sujet à l'autre sans raison apparente pour éviter les sujets conflictuels ou aller droit au but.
-
-Points de vigilance
-Sa tendance à minimiser les problèmes par peur du conflit peut laisser des situations s'aggraver. Son indécision et sa procrastination sous pression sont également des points de vigilance majeurs.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Dynamique des flèches</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">5. Dynamique des Flèches
-Réaction au Stress (Désintégration)
-Vers le Type 6. Le 9 devient alors anxieux, méfiant, pessimiste et réactif face à l'autorité ou aux menaces perçues.
-
-Chemin d'Intégration (Croissance)
-Vers le Type 3. Le 9 apprend à reconnaître sa valeur, devient actif, énergique, productif et investi dans son propre développement.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Évolution, pratiques, intégration</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">6. Évolution et Développement
-Points d'amélioration à travailler
-* Apprendre à se connaître et à identifier ses propres positions et désirs.
-* Oser exprimer franchement son mécontentement et savoir dire « Non ! ».
-* Fixer des priorités claires et des délais pour passer à l'action.
-* Sortir de la routine pour appliquer des idées nouvelles.
-
-Pratiques suggérées et Attitudes de Guérison
-Pratiquer le « souvenir de soi », s'engager dans une activité physique régulière pour se réveiller corporellement. Se dire : « Peut-être que je peux faire une différence. Peut-être que je dois m'impliquer ».
-
-Intégration (Idée supérieure et Vertu)
-En se libérant de sa compulsion, le Type 9 s'intègre vers le Type 3.
-* Essence : L'état de la personnalité libérée de l'oubli de soi, accédant à ses potentialités réelles.
-* Idée supérieure : L'Amour (Amour Sacré). Il réalise qu'il peut aimer et être aimé tout en étant autonome, et que tout est intrinsèquement bon.
-* Vertu : L'Activité. Il découvre la force intérieure nécessaire pour agir de manière ciblée, présente et efficace pour la paix.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Approche des idées sacrées (Almaas)</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">7. Approche des Idées Sacrées (Perspective Almaas)
-L'Idée sacrée
-L'Amour Sacré. C'est la perception que la nature intrinsèque de toute chose est foncièrement bonne, merveilleuse et digne d'être aimée.
-
-L'Illusion Spécifique
-L'Amour localisé. La croyance que l'amour et la bonté ne sont présents qu'à certains endroits, à certains moments ou chez certaines personnes.
-
-La Difficulté Spécifique
-Le sentiment d'Infériorité. La conviction d'être une âme déficiente, sans importance et indigne d'être aimée.
-
-La Réaction Spécifique
-S'endormir vis-à-vis de la réalité. Une réaction de méfiance où l'âme devient inconsciente de sa propre nature véritable pour ne pas ressentir la douleur de la déconnexion.
-
-Le Noyau de la Fixation
-Le complexe d'infériorité (interaction entre le sentiment d'être indigne d'amour et le sommeil psychologique).</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Fondement énergétique</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">8. Fondement Énergétique
-La Confiance Fondamentale
-Une certitude non-conceptuelle que l'univers est bienveillant et soutient le développement de l'âme.
-
-La Lumière du jour Vivante
-La qualité de l'Être perçue comme une présence aimante universelle qui imprègne tout ce qui existe.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Perspective et solution</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">9. La Perspective et la Solution
-L'Idée Sacrée comme Psycho-catalyseur
-L'Amour Sacré agit comme un catalyseur pour dissoudre l'illusion de l'ego en montrant que tout est déjà parfait et connecté.
-
-Rétablir la Confiance Fondamentale
-Cela passe par l'acceptation de la réalité telle qu'elle est, ce qui permet à l'âme de se détendre profondément et de cesser de se défendre.
-
-L'Abandon
-Cesser de lutter contre soi-même et contre sa propre expérience pour laisser l'Être se déployer.
-
-La Poussée Optimisante
-Reconnaître que le dynamisme de la réalité (le flux harmonieux) guide naturellement l'âme vers la vérité et l'harmonie.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Analogie</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">10. Analogie
-Le Type 9 peut être comparé à une montagne imposante. D'apparence paisible et accueillante, elle semble accepter tous ceux qui la parcourent. Cependant, si l'on tente de la forcer à changer de place, elle révèle une force d'inertie inébranlable.
-
-L'âme du 9 est comme un miroir : qui doit être poli pour refléter la lumière sans la déformer par l'indifférence ou le sommeil.
-
-Le Type 9 est comme un voyageur dans un train : qui garde sa lourde valise sur ses genoux par crainte que le train ne puisse pas la porter ; il doit apprendre à poser son fardeau pour réaliser que la réalité le porte déjà tout entier.</pre>
-              <div class="rt"></div>
-            </div>
-          </div>
-        </details>
-      </section>
-
-      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
-        <details open data-search>
-          <summary>
-            <div class="sumTitle"><b>Structure de base</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">Présentation générale du Type 9 : La structure de base
-* Blessure : Un jour, l’enfant s’est senti délaissé ou pas pris en compte. Il a eu l’impression d’un manque total d’amour et d’attention envers lui, ce qui l’a poussé à s’oublier pour calmer sa douleur.
-* Passion : La paresse. Il s'agit d'un oubli de soi-même, d'un manque de regard intérieur et d'une difficulté à s'aimer ou à définir ses propres objectifs. Le Neuf se laisse porter par le courant, se désensibilisant émotionnellement pour éviter de faire tanguer le bateau.
-* Mécanisme de défense privilégié : La narcotisation. Le Neuf s'engourdit en dispersant son énergie dans le confort, les habitudes, les routines (télé, jardin, lecture) ou dans une activité secondaire intense qui lui permet d'éluder ses véritables priorités.</pre>
-              <div class="rt"></div>
-            </div>
-
-            <div class="sectionHeader" style="margin-top:12px">
-              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
-              <button class="btn" id="compareBtn2" type="button">Comparer les 3 sous-types</button>
-            </div>
-
-            <div class="subtypeBtns">
-              <button class="btn" id="btn-survie2" type="button">SURVIE</button>
-              <button class="btn" id="btn-tete2" type="button">TÊTE-À-TÊTE</button>
-              <button class="btn" id="btn-social2" type="button">SOCIAL</button>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
             <div class="sumTitle"><b>Sous-type SURVIE</b></div>
             <span class="chev"></span>
           </summary>
@@ -589,17 +744,17 @@ Le Type 9 est comme un voyageur dans un train : qui garde sa lourde valise sur s
             <div class="block rich">
               <pre class="raw">1. Le sous-type SURVIE
 * Titre du sous-type : Le Profil Neuf Survie.
-* Équation des préoccupations : Préoccupations Neuf (fuir les conflits, s'effacer) + Préoccupations Survie (maison, sécurité, matérialité) = APPÉTIT.
-* Comportement / Description du fonctionnement : Il remplace ses besoins affectifs par des préoccupations matérielles. Il peut amasser des biens (nourriture, outils, objets) pour se rassurer. Il utilise des tâches concrètes (ménage, bricolage) pour défouler une colère rentrée et éviter de définir ce qu'il veut vraiment.
-* Le paradoxe : Augmenter le niveau de confort matériel ne lui rendra jamais son identité propre.
-* Métaphore : Le Chercheur de confort.
-* Signaux d'alerte du type : Trop de routine, trop de gentillesse, trop d'effacement, trop d'indolence.
-* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps au travail, préoccupations matérielles envahissantes, répétition de soirées routinières.
-* Témoignage (Olivier) :
-    * Type : Apprécie son côté tranquille et sa capacité à écouter son horloge intérieure ainsi que le rythme de la nature.
-    * Sous-type : Apprécie l'ambiance chaleureuse de son foyer et son goût pour le travail concret (commerçant en vins).
-    * Combinaison : Allit l'écoute du Neuf et l'intelligence concrète de la matière (trouver le bon visuel publicitaire, réparer un moteur à son rythme).
-* Référence cinématographique : The Constant Gardener (Justin Quayle incarne le Neuf qui s'occupe de son jardin avant de se transformer radicalement en trouvant un but et un sens à sa vie).</pre>
+* Équation des préoccupations : Préoccupations Neuf (paix, harmonie, oubli de soi) + Préoccupations Survie (matériel, faim, confort) = APPÉTIT / COLLECTIONNEUR.
+* Comportement / Description du fonctionnement : Il cherche le confort concret et immédiat. Il gère son anxiété ou sa colère par la satisfaction de ses appétits physiques (manger, boire, dormir) ou par des activités répétitives et apaisantes (mots croisés, collections, bricolage). Il est très ancré dans le présent et le tangible.
+* Le paradoxe : Chercher le réconfort dans la matière l'empêche de trouver la paix spirituelle qu'il désire.
+* Métaphore : L'Ours dans sa tanière. Il est bourru mais sympathique, aime ses habitudes et n'aime pas être dérangé.
+* Signaux d'alerte du type : Trop d'oubli de soi, trop de narcotisation, entêtement passif, procrastination.
+* Signaux d'alerte du sous-type : Grignotage compulsif, temps excessif devant les écrans, accumulation d'objets, difficulté à se lever le matin.
+* Témoignage (Jean-Pierre) :
+    * Type : Apprécie sa capacité à calmer le jeu et à voir les deux côtés d'une situation.
+    * Sous-type : Apprécie ses collections de timbres et ses moments de solitude gourmande qui le ressourcent.
+    * Combinaison : Trouve son équilibre dans une vie simple et routinière, mais doit veiller à ne pas s'endormir dans le confort.
+* Référence cinématographique : Le Grand Bleu (Enzo Molinari, bien que 8 ou 3 en apparence, a un côté 9 survie dans son rapport fusionnel avec la nourriture, sa mère et son besoin de confort simple : « Des pâtes ! »).</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -614,17 +769,17 @@ Le Type 9 est comme un voyageur dans un train : qui garde sa lourde valise sur s
             <div class="block rich">
               <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
 * Titre du sous-type : Le Profil Neuf Tête-à-tête.
-* Équation des préoccupations : Préoccupations Neuf + Préoccupation Tête-à-tête (focalisation sur le partenaire) = UNION / FUSION.
-* Comportement / Description du fonctionnement : Il cherche la fusion totale avec l'autre, au point d'adopter ses goûts et ses désirs comme les siens (s'oubliant par exemple pendant des années dans un sport qu'il n'aime pas). Il crée un cocon doux pour éviter tout conflit ou questionnement personnel.
-* Le paradoxe : Fusionner avec les désirs de l'autre ne facilite en rien l'expression de ses propres désirs.
-* Métaphore : Le Fusionnel.
-* Signaux d'alerte du type : (Identiques : routine, gentillesse excessive, effacement, indolence).
-* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention traquante sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du conjoint.
-* Témoignage (Claire) :
-    * Type : Apprécie sa capacité à diffuser la paix, à créer l'harmonie et son écoute subtile des besoins des autres.
-    * Sous-type : Apprécie la qualité de la rencontre en tête-à-tête (notamment avec les bébés en ostéopathie) et la fusion brève mais totale.
-    * Combinaison : Utilise la réceptivité du Neuf et l'élan du tête-à-tête pour aider les patients à retrouver un équilibre et une unité.
-* Référence cinématographique : Le Patient Anglais (Hana, l'infirmière, incarne la présence douce, l'écoute de la souffrance sans jugement et la difficulté à dire non).</pre>
+* Équation des préoccupations : Préoccupations Neuf + Préoccupation Tête-à-tête (focalisation sur le partenaire) = FUSION.
+* Comportement / Description du fonctionnement : Il cherche à fusionner totalement avec une autre personne. Il vit sa vie par procuration à travers son partenaire, adoptant ses goûts, ses amis et ses projets. Il s'oublie pour ne faire qu'un avec l'autre, trouvant son identité dans le "nous".
+* Le paradoxe : En disparaissant dans l'autre, il perd la véritable connexion qu'il recherche, car il n'y a plus "personne" en face.
+* Métaphore : L'Ombre. Il suit son partenaire comme une ombre bienveillante et soutenante.
+* Signaux d'alerte du type : (Identiques au sous-type survie).
+* Signaux d'alerte du sous-type : Perte totale d'autonomie, incapacité à prendre une décision sans l'autre, jalousie si la fusion est menacée.
+* Témoignage (Sophie) :
+    * Type : Apprécie son empathie naturelle et sa douceur.
+    * Sous-type : Apprécie de se sentir portée par l'énergie de son mari et de partager toutes ses passions.
+    * Combinaison : Se sent en sécurité dans la symbiose, mais doit apprendre à exister par elle-même si l'autre s'éloigne.
+* Référence cinématographique : Forrest Gump (Forrest s'adapte à tout, suit Jenny ou son lieutenant avec une loyauté fusionnelle, sans jamais imposer son ego, se laissant porter par le vent comme une plume).</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -639,19 +794,19 @@ Le Type 9 est comme un voyageur dans un train : qui garde sa lourde valise sur s
             <div class="block rich">
               <pre class="raw">3. Le sous-type SOCIAL
 * Titre du sous-type : Le Profil Neuf Social.
-* Équation des préoccupations : Préoccupations Neuf + Préoccupations Sociales (amis, groupes) = PARTICIPATION SOCIALE.
-* Comportement / Description du fonctionnement : Il s'oublie dans le groupe en se dévouant à ses besoins. Il se retrouve souvent avec des responsabilités (président d'association) simplement parce qu'il n'a pas su dire non, trouvant ainsi un sentiment d'appartenance sécurisant.
-* Le paradoxe : Se fondre dans un groupe n'est pas le moyen le plus simple pour apprendre à affirmer son propre point de vue.
-* Métaphore : Le Rassembleur.
-* Signaux d'alerte du type : (Identiques : routine, gentillesse, effacement, indolence).
-* Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
-* Témoignage (Florence) :
-    * Type : Apprécie sa gestion des émotions (pare-chocs), sa tolérance et sa capacité à ne pas juger les autres.
-    * Sous-type : Se sent dans son élément en groupe, organise des réunions participatives et gère efficacement la cohésion d'équipe.
-    * Combinaison : Incarnation de la « force tranquille » qui sait fédérer et s'exprimer au nom du groupe après s'être identifiée à lui.
-* Référence cinématographique : Le Facteur (Philippe Noiret incarne Pablo Neruda : sa bonhomie, sa lenteur de débit verbal pour ressentir de l'intérieur, et son implication sociale par la poésie et la politique).
+* Équation des préoccupations : Préoccupations Neuf + Préoccupations Sociales (groupe) = PARTICIPATION.
+* Comportement / Description du fonctionnement : C'est le plus actif et le plus extraverti des Neuf. Il s'oublie en se dévouant au groupe. Il travaille dur pour la communauté, le club ou l'entreprise, devenant le ciment qui tient tout le monde ensemble. Il a du mal à dire non aux demandes du groupe par peur d'être exclu.
+* Le paradoxe : Être hyperactif pour les autres est une forme de paresse envers ses propres besoins essentiels.
+* Métaphore : Le Bénévole infatigable. Il est partout, aide tout le monde, sourit toujours, mais personne ne sait vraiment ce qu'il ressent au fond.
+* Signaux d'alerte du type : (Identiques).
+* Signaux d'alerte du sous-type : Surcharge de travail bénévole, épuisement souriant, négligence de sa propre famille au profit du groupe.
+* Témoignage (Marc) :
+    * Type : Apprécie son talent de médiateur dans les conflits d'équipe.
+    * Sous-type : Apprécie le sentiment d'appartenance qu'il ressent en organisant la fête des voisins ou le club de foot.
+    * Combinaison : Est le pilier invisible de sa communauté, mais risque le burn-out s'il ne pose pas de limites.
+* Référence cinématographique : Bagdad Café (Jasmin, l'héroïne, transforme un motel délabré et agressif en un lieu de joie et de communauté par sa présence apaisante, serviable et magique, en s'oubliant elle-même au service du groupe).
 
-Analogie : Le Type 9 est comme un lac paisible dont la surface amortit tout : le Neuf Survie se concentre sur les berges et le confort du bord de l'eau, le Neuf Tête-à-tête cherche à refléter parfaitement un autre lac pour ne faire qu'un avec lui, et le Neuf Social s'efforce d'accueillir tous les baigneurs sans jamais faire de vagues.</pre>
+Analogie : Le Type 9 est comme une eau calme : le Neuf Survie est une mare confortable et tiède, le Neuf Tête-à-tête est une rivière qui se jette dans un fleuve plus grand pour ne faire qu'un avec lui, et le Neuf Social est un canal qui relie plusieurs villes entre elles pour faciliter les échanges.</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -661,12 +816,13 @@ Analogie : Le Type 9 est comme un lac paisible dont la surface amortit tout : le
       <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
         <details open data-search>
           <summary>
-            <div class="sumTitle"><b>Niveaux de développement</b></div>
+            <div class="sumTitle"><b>Définition + continuum</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
             <div class="block rich">
-              <pre class="raw">Le niveau de développement mesure le degré d'identification d'une personne avec sa structure de personnalité et son niveau de présence. Le Type 9 apprend à se réveiller, habiter sa place et agir au service d'une paix vivante.</pre>
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement mesure le degré d'identification d'une personne avec sa structure de personnalité. Plus on descend dans les niveaux, plus l'ego prend le contrôle et plus les comportements deviennent automatiques et destructeurs.</pre>
               <div class="rt"></div>
             </div>
 
@@ -694,32 +850,54 @@ Analogie : Le Type 9 est comme un lac paisible dont la surface amortit tout : le
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Liste des 9 niveaux</b></div>
+            <div class="sumTitle"><b>Niveaux 1 à 9</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
             <div class="block rich">
-              <pre class="raw">La Plage Saine : Indomptable et Paisible (Niveaux 1 à 3)
-* Niveau 1 : Possédé de soi. Il devient indomptable, autonome et pleinement présent.
-* Niveau 2 : Paisible. Il est profondément serein, acceptant et stable.
-* Niveau 3 : Généreux et réconfortant. Il agit comme un médiateur efficace et bienveillant.
+              <pre class="raw">La Plage Saine : La Paix et l'Unité (Niveaux 1 à 3)
+* Niveau 1 : Paisible et présent. Il abandonne la croyance que sa participation ne compte pas. Il devient autonome, serein, et rayonne d'une paix contagieuse. Il est pleinement connecté à lui-même et aux autres.
+* Niveau 2 : Pacificateur et unificateur. Il se concentre sur l'environnement pour y créer l'harmonie. Son image de soi est : « Je suis stable, facile à vivre et bienveillant ».
+* Niveau 3 : Apaisant et soutenant. Il renforce son image en désamorçant les conflits et en soutenant les autres. Il est un excellent médiateur, capable de voir tous les aspects d'une question.
 
-La Plage Moyenne : Accommodant et Résigné (Niveaux 4 à 6)
-* Niveau 4 : Effacé et accommodant. Il commence à trop s'adapter aux autres pour éviter les vagues.
-* Niveau 5 : Désengagé. Il se retire activement des conflits et commence à "narcotiser".
-* Niveau 6 : Résigné. Il accepte les situations passivement, minimisant tout pour ne pas souffrir.
+La Plage Moyenne : L'Effacement et la Résistance (Niveaux 4 à 6)
+* Niveau 4 : Accommodant et modeste. Il craint de créer des conflits en s'imposant. Il commence à dire "oui" à tout pour acheter la paix, tout en minimisant ses propres besoins.
+* Niveau 5 : Désengagé et complaisant. Il s'inquiète que la réalité ne vienne perturber sa tranquillité. Il devient passif, procrastine, évite les problèmes et utilise des routines pour s'engourdir.
+* Niveau 6 : Résigné et têtu. Il craint d'être forcé à faire des choses qu'il ne veut pas. Il développe une résistance passive (l'entêtement), acceptant en apparence mais ne faisant rien en réalité. Il minimise les problèmes graves.
 
-La Plage Malsaine : Dissocié et Négligent (Niveaux 7 à 9)
-* Niveau 7 : Réprimé et négligent. Il néglige gravement ses responsabilités et sa santé.
-* Niveau 8 : Dissocié. Il perd le contact avec la réalité, vivant dans un état de brouillard.
-* Niveau 9 : S'abandonnant. Il peut sombrer dans une inertie totale ou une catatonie.
+La Plage Malsaine : La Dissociation et l'Abandon (Niveaux 7 à 9)
+* Niveau 7 : Refoulé et inefficace. Il craint d'affronter la réalité. Il se dissocie de ses sentiments, devenant apathique et négligent, incapable de faire face aux problèmes qui s'accumulent.
+* Niveau 8 : Dissocié et désorienté. Désespéré de bloquer la douleur, il se coupe totalement de la réalité, vivant dans un état de brouillard mental. Il peut devenir catatonique ou dépendant des autres.
+* Niveau 9 : Abandonné et fantomatique. Il se sent inexistant, une coquille vide. Il peut sombrer dans une négligence totale de soi, une dépression sévère ou une fragmentation psychique.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
 
-Signaux d'Alerte
-* Signal d'Éveil : S'adapter de façon excessive aux autres (l'accommodement).
-* Signal d'Alarme : La peur que la réalité ne le force brutalement à s'occuper de ses problèmes.
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Signaux d’alerte</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Signaux d'Alerte
+* Signal d'Éveil : Céder aux autres pour éviter les conflits et dire "oui" quand on veut dire "non".
+* Signal d'Alarme : La peur d'être forcé à affronter la réalité et de voir sa paix illusoire brisée.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
 
-Les Défis de croissance
-Apprendre à s'éveiller à soi-même, sortir de l'inertie et prendre sa place dans le monde.</pre>
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Défis de croissance</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les Défis de croissance
+Apprendre à s'affirmer, à exprimer sa colère comme une force vitale, à définir ses propres objectifs et à rester présent même dans l'inconfort.</pre>
               <div class="rt"></div>
             </div>
           </div>
@@ -731,9 +909,9 @@ Apprendre à s'éveiller à soi-même, sortir de l'inertie et prendre sa place d
   <div class="bottomBar">
     <div class="barInner">
       <div class="barBtns">
-        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
-        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
-        <button class="btn" id="nextBtn" type="button">Suivant</button>
+        <a class="btn primary" id="backToTest" href="../test-enneagramme-sans-indice.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="../index.html">Retour accueil</a>
+        <a href="type1.html" class="btn" id="nextBtn">Suivant (Retour Type 1)</a>
       </div>
       <div class="barInfo" id="barInfo">Type 9</div>
     </div>
@@ -746,7 +924,9 @@ Apprendre à s'éveiller à soi-même, sortir de l'inertie et prendre sa place d
           <b id="modalTitle">Sous-type</b>
           <span id="modalSub">Type 9</span>
         </div>
-        <div><button class="btn" id="closeModal" type="button">Fermer</button></div>
+        <div>
+          <button class="btn" id="closeModal" type="button">Fermer</button>
+        </div>
       </div>
       <div class="sheetBody">
         <div class="block rich">
@@ -764,7 +944,9 @@ Apprendre à s'éveiller à soi-même, sortir de l'inertie et prendre sa place d
           <b>Comparer les 3 sous-types</b>
           <span>Type 9</span>
         </div>
-        <div><button class="btn" id="closeCompare" type="button">Fermer</button></div>
+        <div>
+          <button class="btn" id="closeCompare" type="button">Fermer</button>
+        </div>
       </div>
       <div class="sheetBody">
         <div class="cols">
@@ -822,81 +1004,90 @@ Apprendre à s'éveiller à soi-même, sortir de l'inertie et prendre sa place d
     }
 
     const LEVELS = [
-      "Niveau 1 : Possédé de soi. Il devient indomptable, autonome et pleinement présent.",
-      "Niveau 2 : Paisible. Il est profondément serein, acceptant et stable.",
-      "Niveau 3 : Généreux et réconfortant. Il agit comme un médiateur efficace et bienveillant.",
-      "Niveau 4 : Effacé et accommodant. Il commence à trop s'adapter aux autres pour éviter les vagues.",
-      "Niveau 5 : Désengagé. Il se retire activement des conflits et commence à narcotiser.",
-      "Niveau 6 : Résigné. Il accepte les situations passivement, minimisant tout pour ne pas souffrir.",
-      "Niveau 7 : Réprimé et négligent. Il néglige gravement ses responsabilités et sa santé.",
-      "Niveau 8 : Dissocié. Il perd le contact avec la réalité, vivant dans un état de brouillard.",
-      "Niveau 9 : S'abandonnant. Il peut sombrer dans une inertie totale ou une catatonie."
+      "Niveau 1 : Paisible et présent. Il abandonne la croyance que sa participation ne compte pas. Il devient autonome, serein, et rayonne d'une paix contagieuse. Il est pleinement connecté à lui-même et aux autres.",
+      "Niveau 2 : Pacificateur et unificateur. Il se concentre sur l'environnement pour y créer l'harmonie. Son image de soi est : « Je suis stable, facile à vivre et bienveillant ».",
+      "Niveau 3 : Apaisant et soutenant. Il renforce son image en désamorçant les conflits et en soutenant les autres. Il est un excellent médiateur, capable de voir tous les aspects d'une question.",
+      "Niveau 4 : Accommodant et modeste. Il craint de créer des conflits en s'imposant. Il commence à dire \"oui\" à tout pour acheter la paix, tout en minimisant ses propres besoins.",
+      "Niveau 5 : Désengagé et complaisant. Il s'inquiète que la réalité ne vienne perturber sa tranquillité. Il devient passif, procrastine, évite les problèmes et utilise des routines pour s'engourdir.",
+      "Niveau 6 : Résigné et têtu. Il craint d'être forcé à faire des choses qu'il ne veut pas. Il développe une résistance passive (l'entêtement), acceptant en apparence mais ne faisant rien en réalité. Il minimise les problèmes graves.",
+      "Niveau 7 : Refoulé et inefficace. Il craint d'affronter la réalité. Il se dissocie de ses sentiments, devenant apathique et négligent, incapable de faire face aux problèmes qui s'accumulent.",
+      "Niveau 8 : Dissocié et désorienté. Désespéré de bloquer la douleur, il se coupe totalement de la réalité, vivant dans un état de brouillard mental. Il peut devenir catatonique ou dépendant des autres.",
+      "Niveau 9 : Abandonné et fantomatique. Il se sent inexistant, une coquille vide. Il peut sombrer dans une négligence totale de soi, une dépression sévère ou une fragmentation psychique."
     ];
 
     const SUBTYPES = {
       survie: `1. Le sous-type SURVIE
 * Titre du sous-type : Le Profil Neuf Survie.
-* Équation des préoccupations : Préoccupations Neuf (fuir les conflits, s'effacer) + Préoccupations Survie (maison, sécurité, matérialité) = APPÉTIT.
-* Comportement / Description du fonctionnement : Il remplace ses besoins affectifs par des préoccupations matérielles. Il peut amasser des biens (nourriture, outils, objets) pour se rassurer. Il utilise des tâches concrètes (ménage, bricolage) pour défouler une colère rentrée et éviter de définir ce qu'il veut vraiment.
-* Le paradoxe : Augmenter le niveau de confort matériel ne lui rendra jamais son identité propre.
-* Métaphore : Le Chercheur de confort.
-* Signaux d'alerte du type : Trop de routine, trop de gentillesse, trop d'effacement, trop d'indolence.
-* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps au travail, préoccupations matérielles envahissantes, répétition de soirées routinières.
-* Témoignage (Olivier) :
-    * Type : Apprécie son côté tranquille et sa capacité à écouter son horloge intérieure ainsi que le rythme de la nature.
-    * Sous-type : Apprécie l'ambiance chaleureuse de son foyer et son goût pour le travail concret (commerçant en vins).
-    * Combinaison : Allit l'écoute du Neuf et l'intelligence concrète de la matière (trouver le bon visuel publicitaire, réparer un moteur à son rythme).
-* Référence cinématographique : The Constant Gardener (Justin Quayle incarne le Neuf qui s'occupe de son jardin avant de se transformer radicalement en trouvant un but et un sens à sa vie).`,
+* Équation des préoccupations : Préoccupations Neuf (paix, harmonie, oubli de soi) + Préoccupations Survie (matériel, faim, confort) = APPÉTIT / COLLECTIONNEUR.
+* Comportement / Description du fonctionnement : Il cherche le confort concret et immédiat. Il gère son anxiété ou sa colère par la satisfaction de ses appétits physiques (manger, boire, dormir) ou par des activités répétitives et apaisantes (mots croisés, collections, bricolage). Il est très ancré dans le présent et le tangible.
+* Le paradoxe : Chercher le réconfort dans la matière l'empêche de trouver la paix spirituelle qu'il désire.
+* Métaphore : L'Ours dans sa tanière. Il est bourru mais sympathique, aime ses habitudes et n'aime pas être dérangé.
+* Signaux d'alerte du type : Trop d'oubli de soi, trop de narcotisation, entêtement passif, procrastination.
+* Signaux d'alerte du sous-type : Grignotage compulsif, temps excessif devant les écrans, accumulation d'objets, difficulté à se lever le matin.
+* Témoignage (Jean-Pierre) :
+    * Type : Apprécie sa capacité à calmer le jeu et à voir les deux côtés d'une situation.
+    * Sous-type : Apprécie ses collections de timbres et ses moments de solitude gourmande qui le ressourcent.
+    * Combinaison : Trouve son équilibre dans une vie simple et routinière, mais doit veiller à ne pas s'endormir dans le confort.
+* Référence cinématographique : Le Grand Bleu (Enzo Molinari, bien que 8 ou 3 en apparence, a un côté 9 survie dans son rapport fusionnel avec la nourriture, sa mère et son besoin de confort simple : « Des pâtes ! »).`,
       tete: `2. Le sous-type TÊTE-À-TÊTE
 * Titre du sous-type : Le Profil Neuf Tête-à-tête.
-* Équation des préoccupations : Préoccupations Neuf + Préoccupation Tête-à-tête (focalisation sur le partenaire) = UNION / FUSION.
-* Comportement / Description du fonctionnement : Il cherche la fusion totale avec l'autre, au point d'adopter ses goûts et ses désirs comme les siens (s'oubliant par exemple pendant des années dans un sport qu'il n'aime pas). Il crée un cocon doux pour éviter tout conflit ou questionnement personnel.
-* Le paradoxe : Fusionner avec les désirs de l'autre ne facilite en rien l'expression de ses propres désirs.
-* Métaphore : Le Fusionnel.
-* Signaux d'alerte du type : (Identiques : routine, gentillesse excessive, effacement, indolence).
-* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention traquante sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du conjoint.
-* Témoignage (Claire) :
-    * Type : Apprécie sa capacité à diffuser la paix, à créer l'harmonie et son écoute subtile des besoins des autres.
-    * Sous-type : Apprécie la qualité de la rencontre en tête-à-tête (notamment avec les bébés en ostéopathie) et la fusion brève mais totale.
-    * Combinaison : Utilise la réceptivité du Neuf et l'élan du tête-à-tête pour aider les patients à retrouver un équilibre et une unité.
-* Référence cinématographique : Le Patient Anglais (Hana, l'infirmière, incarne la présence douce, l'écoute de la souffrance sans jugement et la difficulté à dire non).`,
+* Équation des préoccupations : Préoccupations Neuf + Préoccupation Tête-à-tête (focalisation sur le partenaire) = FUSION.
+* Comportement / Description du fonctionnement : Il cherche à fusionner totalement avec une autre personne. Il vit sa vie par procuration à travers son partenaire, adoptant ses goûts, ses amis et ses projets. Il s'oublie pour ne faire qu'un avec l'autre, trouvant son identité dans le "nous".
+* Le paradoxe : En disparaissant dans l'autre, il perd la véritable connexion qu'il recherche, car il n'y a plus "personne" en face.
+* Métaphore : L'Ombre. Il suit son partenaire comme une ombre bienveillante et soutenante.
+* Signaux d'alerte du type : (Identiques au sous-type survie).
+* Signaux d'alerte du sous-type : Perte totale d'autonomie, incapacité à prendre une décision sans l'autre, jalousie si la fusion est menacée.
+* Témoignage (Sophie) :
+    * Type : Apprécie son empathie naturelle et sa douceur.
+    * Sous-type : Apprécie de se sentir portée par l'énergie de son mari et de partager toutes ses passions.
+    * Combinaison : Se sent en sécurité dans la symbiose, mais doit apprendre à exister par elle-même si l'autre s'éloigne.
+* Référence cinématographique : Forrest Gump (Forrest s'adapte à tout, suit Jenny ou son lieutenant avec une loyauté fusionnelle, sans jamais imposer son ego, se laissant porter par le vent comme une plume).`,
       social: `3. Le sous-type SOCIAL
 * Titre du sous-type : Le Profil Neuf Social.
-* Équation des préoccupations : Préoccupations Neuf + Préoccupations Sociales (amis, groupes) = PARTICIPATION SOCIALE.
-* Comportement / Description du fonctionnement : Il s'oublie dans le groupe en se dévouant à ses besoins. Il se retrouve souvent avec des responsabilités (président d'association) simplement parce qu'il n'a pas su dire non, trouvant ainsi un sentiment d'appartenance sécurisant.
-* Le paradoxe : Se fondre dans un groupe n'est pas le moyen le plus simple pour apprendre à affirmer son propre point de vue.
-* Métaphore : Le Rassembleur.
-* Signaux d'alerte du type : (Identiques : routine, gentillesse, effacement, indolence).
-* Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
-* Témoignage (Florence) :
-    * Type : Apprécie sa gestion des émotions (pare-chocs), sa tolérance et sa capacité à ne pas juger les autres.
-    * Sous-type : Se sent dans son élément en groupe, organise des réunions participatives et gère efficacement la cohésion d'équipe.
-    * Combinaison : Incarnation de la force tranquille qui sait fédérer et s'exprimer au nom du groupe après s'être identifiée à lui.
-* Référence cinématographique : Le Facteur (Philippe Noiret incarne Pablo Neruda : sa bonhomie, sa lenteur de débit verbal pour ressentir de l'intérieur, et son implication sociale par la poésie et la politique).
+* Équation des préoccupations : Préoccupations Neuf + Préoccupations Sociales (groupe) = PARTICIPATION.
+* Comportement / Description du fonctionnement : C'est le plus actif et le plus extraverti des Neuf. Il s'oublie en se dévouant au groupe. Il travaille dur pour la communauté, le club ou l'entreprise, devenant le ciment qui tient tout le monde ensemble. Il a du mal à dire non aux demandes du groupe par peur d'être exclu.
+* Le paradoxe : Être hyperactif pour les autres est une forme de paresse envers ses propres besoins essentiels.
+* Métaphore : Le Bénévole infatigable. Il est partout, aide tout le monde, sourit toujours, mais personne ne sait vraiment ce qu'il ressent au fond.
+* Signaux d'alerte du type : (Identiques).
+* Signaux d'alerte du sous-type : Surcharge de travail bénévole, épuisement souriant, négligence de sa propre famille au profit du groupe.
+* Témoignage (Marc) :
+    * Type : Apprécie son talent de médiateur dans les conflits d'équipe.
+    * Sous-type : Apprécie le sentiment d'appartenance qu'il ressent en organisant la fête des voisins ou le club de foot.
+    * Combinaison : Est le pilier invisible de sa communauté, mais risque le burn-out s'il ne pose pas de limites.
+* Référence cinématographique : Bagdad Café (Jasmin, l'héroïne, transforme un motel délabré et agressif en un lieu de joie et de communauté par sa présence apaisante, serviable et magique, en s'oubliant elle-même au service du groupe).
 
-Analogie : Le Type 9 est comme un lac paisible dont la surface amortit tout : le Neuf Survie se concentre sur les berges et le confort du bord de l'eau, le Neuf Tête-à-tête cherche à refléter parfaitement un autre lac pour ne faire qu'un avec lui, et le Neuf Social s'efforce d'accueillir tous les baigneurs sans jamais faire de vagues.`
+Analogie : Le Type 9 est comme une eau calme : le Neuf Survie est une mare confortable et tiède, le Neuf Tête-à-tête est une rivière qui se jette dans un fleuve plus grand pour ne faire qu'un avec lui, et le Neuf Social est un canal qui relie plusieurs villes entre elles pour faciliter les échanges.`
     };
 
     function escapeHTML(s){
       return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
 
+    function looksLikeDuplicateSectionTitle(line){
+      return /^\s*(GPT\s*\d+|Type\s*\d+)\b/i.test(line.trim()) || /^\s*\d+\.\s+/.test(line.trim());
+    }
+
+    function isPlainHeading(line){
+      const t = line.trim();
+      if(!t) return false;
+      if(looksLikeDuplicateSectionTitle(t)) return true;
+      if(/^LE\s+type\s+et\s+sous\s+types/i.test(t)) return false;
+      return false;
+    }
+
     function isSubhead(line){
       const t = line.trim();
       if(!t) return false;
-      const noColon = new Set([
-        "Centre d'intelligence","Hiérarchie des centres","Orientation","Compulsion","Passion et Fixation",
-        "Mécanisme de défense","Peurs et Désirs fondamentaux","Le Schéma de l'enfance","Les trois sous-types instinctifs",
-        "Profil professionnel","Style de management","Style de communication","Points de vigilance",
-        "Réaction au Stress (Désintégration)","Chemin d'Intégration (Croissance)","Points d'amélioration à travailler",
-        "Pratiques suggérées et Attitudes de Guérison","Intégration (Idée supérieure et Vertu)",
-        "L'Idée sacrée","L'Illusion Spécifique","La Difficulté Spécifique","La Réaction Spécifique","Le Noyau de la Fixation",
-        "La Confiance Fondamentale","La Lumière du jour Vivante",
-        "L'Idée Sacrée comme Psycho-catalyseur","Rétablir la Confiance Fondamentale","L'Abandon","La Poussée Optimisante",
-        "Analogie","Signaux d'Alerte","Les Défis de croissance","Les Sous-types d'Ailes"
+
+      const noColonHeadings = new Set([
+        "Centre d'intelligence", "Orientation", "Compulsion", "Passion et Fixation", "Mécanisme de défense", "Peurs et Désirs fondamentaux", "Le Schéma de l'enfance", "Les Sous-types d'Ailes", "Les trois sous-types instinctifs", "Profil professionnel", "Style de management", "Style de communication", "Points de vigilance", "Réaction au Stress (Désintégration)", "Chemin d'Intégration (Croissance)", "Points d'amélioration à travailler", "Pratiques suggérées et Attitudes de Guérison", "Intégration (Idée supérieure et Vertu)", "L'Idée sacrée", "L'Illusion Spécifique", "La Difficulté Spécifique", "La Réaction Spécifique", "Le Noyau de la Fixation", "La Confiance Fondamentale", "La Lumière du jour Vivante", "L'Idée Sacrée comme Psycho-catalyseur", "Rétablir la Confiance Fondamentale", "L'Abandon", "La Poussée Optimisante", "Signaux d'Alerte", "Les Défis de croissance", "Hiérarchie des centres"
       ]);
-      if(noColon.has(t)) return true;
+      if(noColonHeadings.has(t)) return true;
+
       if(/:\s*$/.test(t)) return true;
+
+      if(t === "Hiérarchie des centres :" || t === "Passion et Fixation :") return true;
+
       return false;
     }
 
@@ -906,12 +1097,18 @@ Analogie : Le Type 9 est comme un lac paisible dont la surface amortit tout : le
       let listMode = null;
 
       const closeList = ()=>{ if(listMode){ html += `</ul>`; listMode = null; } };
-      const openList = ()=>{ if(listMode) return; listMode = 'dot'; html += `<ul class="dot">`; };
+      const openList = (mode)=>{ if(listMode === mode) return; closeList(); listMode = mode; html += `<ul class="${mode}">`; };
 
       const pushP = (line)=>{ closeList(); html += `<p>${escapeHTML(line)}</p>`; };
       const pushGap = ()=>{ closeList(); html += `<div class="gap"></div>`; };
       const pushSubhead = (title)=>{ closeList(); html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`; };
       const pushLabelRow = (k, v)=>{ closeList(); html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`; };
+      const pushLI = (mode, k, v, keepColon=true)=>{
+        openList(mode);
+        if(v === null){ html += `<li>${escapeHTML(k)}</li>`; return; }
+        const label = keepColon ? `${k}` : k;
+        html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
+      };
 
       for(const line of lines){
         if(line.trim()===''){ pushGap(); continue; }
@@ -924,13 +1121,36 @@ Analogie : Le Type 9 est comme un lac paisible dont la surface amortit tout : le
 
         const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
         if(kv){
-          pushLabelRow(kv[1].trim(), kv[2].trim());
+          const key = kv[1].trim();
+          const val = kv[2].trim();
+
+          if(/^Titre et Identité$/i.test(key) || /^Définition globale$/i.test(key) || /^Rôle Social$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          if(/^Centre Préféré$/i.test(key) || /^Centre de Support$/i.test(key) || /^Centre Réprimé$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          pushLabelRow(key, val);
           continue;
         }
 
         const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
         if(bullet){
-          openList();
+          openList('dot');
           html += `<li>${escapeHTML(bullet[1])}</li>`;
           continue;
         }
@@ -993,13 +1213,9 @@ Analogie : Le Type 9 est comme un lac paisible dont la surface amortit tout : le
     }
 
     function openSubtype(key){
-      const mapBtn = {
-        survie: [qs('#btn-survie'), qs('#btn-survie2')],
-        tete: [qs('#btn-tete'), qs('#btn-tete2')],
-        social: [qs('#btn-social'), qs('#btn-social2')]
-      };
-      qsa('.subtypeBtns .btn').forEach(b=>b.classList.remove('active'));
-      (mapBtn[key]||[]).forEach(b=>b && b.classList.add('active'));
+      const mapBtn = {survie: qs('#btn-survie'), tete: qs('#btn-tete'), social: qs('#btn-social')};
+      Object.values(mapBtn).forEach(b=>b.classList.remove('active'));
+      if(mapBtn[key]) mapBtn[key].classList.add('active');
 
       qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
       qs('#modalSub').textContent = 'Type 9';
@@ -1055,15 +1271,10 @@ Analogie : Le Type 9 est comme un lac paisible dont la surface amortit tout : le
     qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
     qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
     qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
-    qs('#btn-survie2').addEventListener('click', ()=>openSubtype('survie'));
-    qs('#btn-tete2').addEventListener('click', ()=>openSubtype('tete'));
-    qs('#btn-social2').addEventListener('click', ()=>openSubtype('social'));
-
     qs('#closeModal').addEventListener('click', closeSubtype);
     qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
 
     qs('#compareBtn').addEventListener('click', openCompare);
-    qs('#compareBtn2').addEventListener('click', openCompare);
     qs('#closeCompare').addEventListener('click', closeCompare);
     qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
 
