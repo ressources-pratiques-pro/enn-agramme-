@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=100" />
+  <link rel="stylesheet" href="assets/css/app.css?v=101" />
 </head>
 
 <body>
@@ -43,10 +43,7 @@
             <circle class="ring" cx="350" cy="350" r="270"></circle>
             <circle class="innerRing" cx="350" cy="350" r="210"></circle>
 
-            <text x="350" y="352" text-anchor="middle" dominant-baseline="middle"
-                  style="font-family: ui-serif, Georgia, 'Times New Roman', serif; font-weight: 800; letter-spacing: 1.5px; font-size: 26px; fill: rgba(255,255,255,.22); text-transform: uppercase;">
-              Ennéagramme
-            </text>
+            <text class="enneaWord" x="350" y="352" text-anchor="middle" dominant-baseline="middle">Ennéagramme</text>
 
             <g id="staticBg" class="staticBg">
               <path class="hex" d="" id="hexPath"></path>
@@ -112,6 +109,25 @@
             <a id="openFull" class="btn" href="profils/type1.html" aria-disabled="true">Voir la fiche complète</a>
             <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
             <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
+
+            <div class="pickWrap">
+              <button id="btnPickProfile" class="btn" type="button">Choisir un profil</button>
+
+              <div id="pickPanel" class="pickPanel" aria-hidden="true">
+                <div class="pickTitle">Choisir un type</div>
+                <div class="pickGrid">
+                  <a class="pickN" href="profils/type1.html">1</a>
+                  <a class="pickN" href="profils/type2.html">2</a>
+                  <a class="pickN" href="profils/type3.html">3</a>
+                  <a class="pickN" href="profils/type4.html">4</a>
+                  <a class="pickN" href="profils/type5.html">5</a>
+                  <a class="pickN" href="profils/type6.html">6</a>
+                  <a class="pickN" href="profils/type7.html">7</a>
+                  <a class="pickN" href="profils/type8.html">8</a>
+                  <a class="pickN" href="profils/type9.html">9</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </aside>
@@ -128,5 +144,40 @@
   </div>
 
   <script src="assets/js/app.js?v=100"></script>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('btnPickProfile');
+      const panel = document.getElementById('pickPanel');
+      if(!btn || !panel) return;
+
+      function close(){
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden','true');
+      }
+      function toggle(){
+        const isOpen = panel.classList.contains('open');
+        if(isOpen) close();
+        else{
+          panel.classList.add('open');
+          panel.setAttribute('aria-hidden','false');
+        }
+      }
+
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      });
+
+      document.addEventListener('click', function(e){
+        if(!panel.contains(e.target) && e.target !== btn) close();
+      });
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') close();
+      });
+    })();
+  </script>
 </body>
 </html>
