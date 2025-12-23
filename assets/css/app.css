@@ -272,12 +272,28 @@ a[aria-disabled=true]{
   background: rgba(255,255,255,.06) !important;
 }
 
-@keyframes pulseRing{
-  0%   { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
-  10%  { transform: scale(1.06); filter: drop-shadow(0 0 10px rgba(255,255,255,.18)); }
-  20% { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+@keyframes halo-pulse {
+  0% {
+    transform: scale(1); /* Taille normale */
+    filter: drop-shadow(0 0 14px rgba(255,255,255,.35));
+  }
+  50% {
+    transform: scale(1.1); /* Grossit de 10% */
+    filter: drop-shadow(0 0 25px rgba(255,255,255,.6));
+  }
+  100% {
+    transform: scale(1); /* Revient à la taille normale */
+    filter: drop-shadow(0 0 14px rgba(255,255,255,.35));
+  }
 }
-.node.hint circle{
-  animation: pulseRing 20s ease-in-out infinite;
-  stroke-width: 3.2;
+
+.node.hint circle {
+  stroke-width: 14.30;
+  
+  /* LE FIX : Pour rester sur place */
+  transform-box: fill-box;
+  transform-origin: center;
+
+  /* Lancement de l'animation */
+  animation: halo-pulse 2s infinite ease-in-out;
 }
