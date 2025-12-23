@@ -491,7 +491,7 @@
         // Ajout d'une bordure colorée légère selon le centre
         div.style.borderLeft = `4px solid ${colorForType(x.t)}`;
         div.title = "Cliquez pour voir le Type " + x.t;
-        div.onclick = () => location.href = "profil.html?type=" + x.t;
+        div.onclick = () => location.href = "type" + x.t + ".html";
 
         const left = document.createElement("div");
         left.className = "topLeft";
@@ -524,7 +524,7 @@
         const row = document.createElement("div");
         row.className = "barRow";
         row.title = "Ouvrir la fiche du Type " + x.t;
-        row.onclick = () => location.href = "profil.html?type=" + x.t;
+        row.onclick = () => location.href = "type" + x.t + ".html";
 
         // Label : Type + Nom
         const k = document.createElement("div");
