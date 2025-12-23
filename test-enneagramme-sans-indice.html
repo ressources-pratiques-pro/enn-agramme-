@@ -112,6 +112,25 @@
     }
     .resTitle{margin:0;font-size:15px}
     .resLine{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.35}
+
+    @keyframes breatheHint{
+      0%,100%{ opacity:.72; transform: translateY(0); }
+      50%{ opacity:1; transform: translateY(-1px); }
+    }
+    .clickHint{
+      margin-top:10px;
+      font-size:13px;
+      line-height:1.35;
+      color:var(--muted);
+      animation: breatheHint 3.8s ease-in-out infinite;
+      user-select:none;
+    }
+    .clickHint .verb{
+      color:var(--accent);
+      font-weight:850;
+      letter-spacing:.2px;
+    }
+
     .top3{margin-top:12px;display:grid;gap:10px}
 
     .topItem{
@@ -266,6 +285,10 @@
         <div class="resultBox" id="resultBox" style="display:none">
           <p class="resTitle" id="resTitle">—</p>
           <div class="resLine" id="resLine"></div>
+
+          <div class="clickHint" id="clickHint">
+            <span class="verb">Cliquez</span> sur un type pour ouvrir le profil détaillé
+          </div>
 
           <div class="top3" id="top3"></div>
 
