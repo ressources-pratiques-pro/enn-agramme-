@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=200" />
+  <link rel="stylesheet" href="assets/css/app.css?v=201" />
 </head>
 
 <body>
@@ -129,5 +129,80 @@
   </div>
 
   <script src="assets/js/app.js?v=200"></script>
+
+  <script>
+  (function(){
+    const btn = document.getElementById('btnChooseProfiles');
+    const stage = document.getElementById('stage');
+    const svg = document.getElementById('enneaSvg');
+    const subtitle = document.getElementById('subtitle');
+
+    let chooseMode = false;
+    let subtitleBackup = subtitle ? subtitle.textContent : '';
+
+    function getNodes(){
+      return Array.from(document.querySelectorAll('#nodesLayer .node'));
+    }
+
+    function setHint(on){
+      const nodes = getNodes();
+      nodes.forEach(n => n.classList.toggle('hint', on));
+    }
+
+    function enterChooseMode(){
+      chooseMode = true;
+      setHint(true);
+      if (subtitle){
+        subtitleBackup = subtitle.textContent || subtitleBackup;
+        subtitle.textContent = "Choisis un type sur le diagramme pour ouvrir directement la fiche.";
+      }
+      stage.scrollIntoView({ behavior:'smooth', block:'start' });
+      setTimeout(()=>setHint(true), 250);
+    }
+
+    function exitChooseMode(){
+      chooseMode = false;
+      setHint(false);
+      if (subtitle) subtitle.textContent = subtitleBackup;
+    }
+
+    btn && btn.addEventListener('click', function(){
+      if (!chooseMode) enterChooseMode();
+      else exitChooseMode();
+    });
+
+    svg && svg.addEventListener('click', function(e){
+      if (!chooseMode) return;
+
+      const node = e.target && e.target.closest ? e.target.closest('.node') : null;
+      if (!node) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+      let num = node.getAttribute('data-num') || node.getAttribute('data-type') || '';
+      if (!num){
+        const t = node.querySelector('text');
+        num = t ? (t.textContent || '').trim() : '';
+      }
+      if (!/^[1-9]$/.test(num)) return;
+
+      window.location.href = 'profils/type' + num + '.html';
+    }, true);
+
+    function waitNodes(){
+      const nodes = getNodes();
+      if (nodes.length){
+        nodes.forEach(n=>{
+          if (!n.hasAttribute('tabindex')) n.setAttribute('tabindex','0');
+        });
+        return;
+      }
+      requestAnimationFrame(waitNodes);
+    }
+    waitNodes();
+  })();
+  </script>
 </body>
 </html>
