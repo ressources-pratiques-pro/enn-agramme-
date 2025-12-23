@@ -348,6 +348,7 @@
     ];
 
     const LS_KEY = "ennea_test_sample_v1";
+    const PROFILE_PREFIX = "profils/type";
 
     const elQuestions = document.getElementById("questions");
     const elAnswered = document.getElementById("answered");
@@ -361,12 +362,15 @@
     const resLine = document.getElementById("resLine");
     const top3 = document.getElementById("top3");
     const bars = document.getElementById("bars");
-    const actionButtons = document.getElementById("actionButtons");
     const btnCopy = document.getElementById("btnCopy");
     const toast = document.getElementById("toast");
     const btnCalc2 = document.getElementById("btnCalc2");
     const btnReset2 = document.getElementById("btnReset2");
     const btnBack = document.getElementById("btnBack");
+
+    function goProfile(t){
+      location.href = PROFILE_PREFIX + t + ".html";
+    }
 
     function showToast(msg){
       toast.textContent = msg;
@@ -490,8 +494,8 @@
         const div = document.createElement("div");
         div.className = "topItem";
         div.style.borderLeft = `4px solid ${colorForType(x.t)}`;
-        div.title = "Cliquez pour voir le Type " + x.t;
-        div.onclick = () => location.href = "profils/type" + x.t + ".html";
+        div.title = "Cliquer pour ouvrir le Type " + x.t;
+        div.onclick = () => goProfile(x.t);
 
         const left = document.createElement("div");
         left.className = "topLeft";
@@ -517,12 +521,11 @@
       });
 
       bars.innerHTML = "";
-
       arr.forEach(x => {
         const row = document.createElement("div");
         row.className = "barRow";
         row.title = "Ouvrir la fiche du Type " + x.t;
-        row.onclick = () => location.href = "profils/type" + x.t + ".html";
+        row.onclick = () => goProfile(x.t);
 
         const k = document.createElement("div");
         k.className = "barK";
@@ -620,7 +623,6 @@
     if(answeredCount >= ITEMS.length){
       renderResults();
     }
-
   })();
   </script>
 </body>
