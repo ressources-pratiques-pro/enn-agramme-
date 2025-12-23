@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=99" />
+  <link rel="stylesheet" href="assets/css/app.css?v=100" />
 </head>
 
 <body>
@@ -104,8 +104,8 @@
           </div>
 
           <div class="ctaRow">
-            <a id="openFull" class="btn" href="type1.html" aria-disabled="true">Voir la fiche complète</a>
-            <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html" style="border-color: #8bd3ff; color: #8bd3ff;">Passer le test</a>
+            <a id="openFull" class="btn" href="profils/type1.html" aria-disabled="true">Voir la fiche complète</a>
+            <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html" style="border-color:#8bd3ff;color:#8bd3ff;">Passer le test</a>
             <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
           </div>
         </div>
@@ -115,36 +115,13 @@
     <footer class="siteFooter">
       <div class="footerInner">
         <span class="copy">Brahms – Tous droits réservés</span>
-        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank">
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank" rel="noopener">
           ✉️ Écrire à Brahms
         </a>
       </div>
     </footer>
   </div>
 
-  <style>
-    .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
-    .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
-    .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
-    .siteFooter a:hover{opacity:1}
-  </style>
-
-  <script src="assets/js/app.js?v=99"></script>
-  
-  <script>
-    (function(){
-      // On sauvegarde la fonction originale selectType
-      const originalSelect = window.selectType;
-      const btnP = document.getElementById('openProfil');
-      
-      // On remplace la fonction pour qu'elle mette aussi à jour notre nouveau bouton
-      if(typeof originalSelect === 'function' && btnP){
-        window.selectType = function(t){
-          originalSelect(t); // Fait le travail habituel (textes, flèches...)
-          btnP.href = 'test-enneagramme-sans-indice.html';
-        };
-      }
-    })();
-  </script>
+  <script src="assets/js/app.js?v=100"></script>
 </body>
 </html>
