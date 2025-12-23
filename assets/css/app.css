@@ -272,36 +272,25 @@ a[aria-disabled=true]{
   background: rgba(255,255,255,.06) !important;
 }
 
-/* Halo fin + vivant “Choisir les profils” */
-@keyframes haloPulse{
-  0%{
-    stroke-width: 6.2;
+/* Halo fin + respiration douce (reste tant que .hint est présent) */
+@keyframes haloBreathe{
+  0%,100%{
     filter:
-      drop-shadow(0 0 6px rgba(255,255,255,.28))
-      drop-shadow(0 0 14px rgba(255,255,255,.18))
-      drop-shadow(0 0 24px rgba(255,255,255,.10));
+      drop-shadow(0 0 10px rgba(255,255,255,.26))
+      drop-shadow(0 0 18px rgba(255,255,255,.16))
+      drop-shadow(0 0 26px rgba(255,255,255,.10));
+    opacity: .98;
   }
   50%{
-    stroke-width: 7.8;
     filter:
-      drop-shadow(0 0 10px rgba(255,255,255,.40))
-      drop-shadow(0 0 22px rgba(255,255,255,.26))
+      drop-shadow(0 0 16px rgba(255,255,255,.34))
+      drop-shadow(0 0 28px rgba(255,255,255,.22))
       drop-shadow(0 0 40px rgba(255,255,255,.14));
-  }
-  100%{
-    stroke-width: 6.2;
-    filter:
-      drop-shadow(0 0 6px rgba(255,255,255,.28))
-      drop-shadow(0 0 14px rgba(255,255,255,.18))
-      drop-shadow(0 0 24px rgba(255,255,255,.10));
+    opacity: 1;
   }
 }
 
 .node.hint circle{
-  stroke-width: 6.2;
-  animation: haloPulse 1.05s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce){
-  .node.hint circle{ animation: none; }
+  stroke-width: 6.4;
+  animation: haloBreathe 1.6s ease-in-out infinite;
 }
