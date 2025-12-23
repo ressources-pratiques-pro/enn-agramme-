@@ -1,216 +1,286 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const cx = 350, cy = 350, R = 270;
-  const order = [9,1,2,3,4,5,6,7,8];
+:root{
+  --bg:#070b14;
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.68);
+  --line:rgba(255,255,255,.14);
+  --glass:rgba(255,255,255,.06);
+  --glass2:rgba(255,255,255,.08);
 
-  const arrowsFallback = {
-    integr: { 1:7, 2:4, 3:6, 4:1, 5:8, 6:9, 7:5, 8:2, 9:3 },
-    disint: { 1:4, 2:8, 3:9, 4:2, 5:7, 6:3, 7:1, 8:5, 9:6 }
-  };
+  --inst:#fbbf24;
+  --emo:#f472b6;
+  --ment:#60a5fa;
 
-  const groups = {
-    instinctif: [8,9,1],
-    emotionnel: [2,3,4],
-    mental: [5,6,7]
-  };
+  --good:#86efac;
+  --warn:#ffd18b;
+  --bad:#fda4af;
 
-  function groupOf(t){
-    if (groups.instinctif.includes(t)) return "instinctif";
-    if (groups.emotionnel.includes(t)) return "emotionnel";
-    return "mental";
-  }
+  --radius:22px;
+  --shadow:0 25px 60px rgba(0,0,0,.45);
 
-  function polarPoint(index){
-    const angle = (-90 + index * (360/9)) * (Math.PI/180);
-    return { x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) };
-  }
+  --accent: rgba(255,255,255,.55);
+}
 
-  const points = {};
-  order.forEach((t,i)=>{ points[t] = polarPoint(i); });
+*{box-sizing:border-box}
+html,body{height:100%}
+html{background:var(--bg);}
 
-  const hexSeq = [1,4,2,8,5,7,1];
-  const triSeq = [3,6,9,3];
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+  color:var(--text);
+  background:var(--bg);
+}
 
-  function pathFromSeq(seq){
-    return seq.map((t, idx) => (idx===0 ? "M" : "L") + points[t].x.toFixed(2) + " " + points[t].y.toFixed(2)).join(" ");
-  }
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
 
-  document.getElementById("hexPath").setAttribute("d", pathFromSeq(hexSeq));
-  document.getElementById("triPath").setAttribute("d", pathFromSeq(triSeq));
+.wrap{max-width:1180px;margin:34px auto 44px;padding:0 14px}
 
-  const nodesLayer = document.getElementById("nodesLayer");
-  const arrowsLayer = document.getElementById("arrowsLayer");
+/* Header centré + bouton à droite */
+.top{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:16px;
+}
+.top > div:first-child{ text-align:center; max-width: 820px; }
+.actions{
+  position:absolute;
+  right:0;
+  top:0;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
 
-  // On garde les flèches calculées, mais on ne les affiche jamais (comme tu veux : pas de flèches)
-  const arrowEls = { integr:{}, disint:{} };
+.top h1{margin:0;font-size:44px;letter-spacing:.2px}
+.top p{margin:10px 0 0;color:var(--muted);font-size:15px}
 
-  function makeArrow(from, to, cls){
-    const p1 = points[from], p2 = points[to];
-    const line = document.createElementNS("http://www.w3.org/2000/svg","line");
-    line.setAttribute("x1", p1.x);
-    line.setAttribute("y1", p1.y);
-    line.setAttribute("x2", p2.x);
-    line.setAttribute("y2", p2.y);
-    line.setAttribute("class", "arrow " + cls);
+button{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:650;
+  font-size:13px;
+  transition:background .18s ease,border-color .18s ease,transform .06s ease;
+}
+button:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22)}
+button:active{transform:translateY(1px)}
 
-    if(cls === "integr") line.setAttribute("marker-end", "url(#arrowHeadGreen)");
-    if(cls === "disint") line.setAttribute("marker-end", "url(#arrowHeadPink)");
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 520px;
+  gap:18px;
+  align-items:start;
+}
 
-    arrowsLayer.appendChild(line);
-    return line;
-  }
+@media (max-width: 1060px){
+  .grid{grid-template-columns:1fr}
+  .top{justify-content:flex-start}
+  .top > div:first-child{ text-align:left; }
+  .actions{position:static}
+}
 
-  for(const t of [1,2,3,4,5,6,7,8,9]){
-    arrowEls.integr[t] = makeArrow(t, arrowsFallback.integr[t], "integr");
-    arrowEls.disint[t] = makeArrow(t, arrowsFallback.disint[t], "disint");
-  }
+.stage{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+  overflow:hidden;
+  min-height: 640px;
+}
 
-  function clearAllArrows(){
-    document.querySelectorAll(".arrow").forEach(a => a.classList.remove("on"));
-  }
+.svgWrap{display:flex;justify-content:center;align-items:center}
+.svgWrap svg{width:min(720px, 92vw);height:auto;display:block}
 
-  function clearHints(){
-    nodesLayer.querySelectorAll(".node").forEach(n => n.classList.remove("hint"));
-  }
+.side{border-radius:var(--radius)}
 
-  function hintAll(ms = 2500){
-    clearHints();
-    nodesLayer.querySelectorAll(".node").forEach(n => n.classList.add("hint"));
-    window.clearTimeout(hintAll._t);
-    hintAll._t = window.setTimeout(() => clearHints(), ms);
-  }
+/* Type centré */
+.badgeRow{margin-bottom:10px;text-align:center}
+.badge{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.20);
+  backdrop-filter: blur(10px);
+}
+#badgeNum{ color: var(--accent); }
 
-  function hintOne(t, ms = 1800){
-    clearHints();
-    const n = nodesLayer.querySelector(`.node[data-type="${t}"]`);
-    if(n) n.classList.add("hint");
-    window.clearTimeout(hintOne._t);
-    hintOne._t = window.setTimeout(() => clearHints(), ms);
-  }
+.card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:16px;
+}
 
-  function scrollToStage(){
-    const stage = document.getElementById("stage");
-    if(stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+.miniGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
 
-  function scrollToSummaryIfMobile(){
-    if (window.matchMedia("(max-width: 1060px)").matches){
-      const side = document.getElementById("sidePanel");
-      if(side) side.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
+@media (max-width: 1060px){
+  .miniGrid{grid-template-columns:1fr}
+}
 
-  function makeNode(t){
-    const g = document.createElementNS("http://www.w3.org/2000/svg","g");
-    g.setAttribute("class","node " + groupOf(t));
-    g.setAttribute("data-type", String(t));
+.mini{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.10);
+  border-radius:16px;
+  padding:12px;
+}
 
-    const p = points[t];
+.mini h3{
+  margin:0 0 6px;
+  font-size:12px;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  color: var(--accent);
+}
 
-    const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
-    c.setAttribute("cx", p.x);
-    c.setAttribute("cy", p.y);
-    c.setAttribute("r", 28);
+.mini p{margin:0;font-size:15px;font-weight:700;color:rgba(255,255,255,.88)}
 
-    const tx = document.createElementNS("http://www.w3.org/2000/svg","text");
-    tx.setAttribute("x", p.x);
-    tx.setAttribute("y", p.y + 1);
-    tx.textContent = t;
+.moveLines{margin-top:12px;display:grid;gap:10px}
 
-    g.appendChild(c);
-    g.appendChild(tx);
+.moveLine{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.10);
+  border-radius:16px;
+  padding:12px;
+}
 
-    g.addEventListener("click", ()=>selectType(t));
-    nodesLayer.appendChild(g);
-  }
+.moveHead{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.moveBody{margin-top:8px;color:rgba(255,255,255,.78);line-height:1.35}
 
-  [1,2,3,4,5,6,7,8,9].forEach(makeNode);
+.muted{color:rgba(255,255,255,.55)}
 
-  const badgeNum = document.getElementById("badgeNum");
-  const centerEl = document.getElementById("center");
-  const fearEl = document.getElementById("fear");
-  const desireEl = document.getElementById("desire");
-  const compulsionEl = document.getElementById("compulsion");
-  const toIntegr = document.getElementById("toIntegr");
-  const toDisint = document.getElementById("toDisint");
-  const moveHealthText = document.getElementById("moveHealthText");
-  const moveStressText = document.getElementById("moveStressText");
-  const openFull = document.getElementById("openFull");
-  const subtitle = document.getElementById("subtitle");
-  const btnChooseProfiles = document.getElementById("btnChooseProfiles");
+.dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+}
+.dot.good{background:rgba(134,239,172,.95)}
+.dot.warn{background:rgba(255,209,139,.95)}
 
-  let typesData = null;
+.ctaRow{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-  async function loadData(){
-    const res = await fetch("assets/data/types.json", { cache: "no-store" });
-    typesData = await res.json();
-  }
-  loadData().catch(()=>{});
+.btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+  font-weight:650;
+  text-decoration:none;
+  transition:background .18s ease,border-color .18s ease,transform .06s ease;
+}
 
-  window.selectType = function selectType(t){
-    // Pas de flèches
-    clearAllArrows();
+.btn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);text-decoration:none}
+.btn:active{transform:translateY(1px)}
 
-    badgeNum.textContent = t;
+a[aria-disabled=true]{
+  opacity:.55;
+  pointer-events:none;
+}
 
-    const data = typesData ? typesData[String(t)] : null;
+.ring{ stroke: rgba(147,197,253,.55); stroke-width: 3.2; fill: none; }
+.innerRing{ stroke: rgba(255,255,255,.08); stroke-width: 2; fill: none; }
 
-    const it = data?.integr ?? arrowsFallback.integr[t];
-    const dt = data?.disint ?? arrowsFallback.disint[t];
+.staticBg{ pointer-events:none; }
 
-    centerEl.textContent = data?.center ?? "—";
-    fearEl.textContent = data?.fear ?? "—";
-    desireEl.textContent = data?.desire ?? "—";
-    compulsionEl.textContent = data?.compulsion ?? "—";
+.hex, .tri{ fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.hex{ stroke: rgba(255,255,255,.08); stroke-width: 2.2; }
+.tri{ stroke: rgba(255,255,255,.06); stroke-width: 2; opacity: .65; }
 
-    toIntegr.textContent = it;
-    toDisint.textContent = dt;
+.centerLine{fill:none;stroke:rgba(255,255,255,.06);stroke-width:2}
 
-    moveHealthText.textContent = data?.integr_text ?? "—";
-    moveStressText.textContent = data?.disint_text ?? "—";
+.centerLabel{
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-size:11px;
+  fill:rgba(255,255,255,.55);
+}
+.centerLabel.instinctif{fill:var(--inst)}
+.centerLabel.emotionnel{fill:var(--emo)}
+.centerLabel.mental{fill:var(--ment)}
 
-    openFull.setAttribute("href", `profils/type${t}.html`);
-    openFull.setAttribute("aria-disabled","false");
+.node{cursor:pointer}
+.node circle{
+  fill: rgba(15,26,51,.85);
+  stroke: rgba(255,255,255,.20);
+  stroke-width: 2.2;
+  transition: stroke .18s ease, filter .18s ease, transform .18s ease;
+  filter:url(#softGlow);
+}
+.node.instinctif circle{stroke:var(--inst)}
+.node.emotionnel circle{stroke:var(--emo)}
+.node.mental circle{stroke:var(--ment)}
 
-    // Si on vient de “Choisir les profils” sur mobile, on descend automatiquement au résumé
-    scrollToSummaryIfMobile();
+.node text{
+  fill: var(--text);
+  font-weight: 850;
+  font-size: 22px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
 
-    // Petit rappel visuel sur le numéro cliqué
-    hintOne(t);
+.arrow{ fill:none; stroke-width: 3.2; opacity: 0; }
+.arrow.on{ opacity: .95; }
+.arrow.integr{ stroke: rgba(134,239,172,.92); }
+.arrow.disint{ stroke: rgba(253,164,175,.92); }
 
-    if(subtitle){
-      subtitle.textContent = "Clique sur un type pour voir le résumé, puis ouvre la fiche complète.";
-    }
-  };
+.siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
+.siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+.siteFooter a:hover{opacity:1}
 
-  document.getElementById("btnReset").addEventListener("click", ()=>{
-    badgeNum.textContent = "—";
-    centerEl.textContent = "—";
-    fearEl.textContent = "—";
-    desireEl.textContent = "—";
-    compulsionEl.textContent = "—";
-    toIntegr.textContent = "—";
-    toDisint.textContent = "—";
-    moveHealthText.textContent = "—";
-    moveStressText.textContent = "—";
-    openFull.setAttribute("aria-disabled","true");
-    clearAllArrows();
-    clearHints();
-    if(subtitle){
-      subtitle.textContent = "Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.";
-    }
-  });
+@media (max-width: 640px){
+  .wrap{margin:18px auto 28px}
+  .top{flex-direction:column;align-items:flex-start}
+  .top h1{font-size:36px}
+  .top p{font-size:14px}
+  .actions{position:static}
 
-  // Bouton demandé : on remonte au diagramme + on invite à choisir un type + on met un effet autour des numéros
-  if(btnChooseProfiles){
-    btnChooseProfiles.addEventListener("click", ()=>{
-      scrollToStage();
-      hintAll(2600);
-      if(subtitle){
-        subtitle.textContent = "Choisis un type sur le cercle.";
-      }
-    });
-  }
+  .stage{min-height: unset;padding:14px}
+  .svgWrap{align-items:flex-start}
+  .svgWrap svg{width:min(620px, 96vw)}
 
-  clearAllArrows();
-  clearHints();
-});
+  .ctaRow{gap:8px}
+  .btn{padding:10px 12px}
+}
+
+#openProfil{
+  border-color: rgba(255,255,255,.14) !important;
+  color: var(--text) !important;
+  background: rgba(255,255,255,.06) !important;
+}
+
+/* Animation “Choisir les profils” */
+@keyframes pulseRing{
+  0%   { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+  50%  { transform: scale(1.06); filter: drop-shadow(0 0 10px rgba(255,255,255,.18)); }
+  100% { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+}
+.node.hint circle{
+  animation: pulseRing .95s ease-in-out infinite;
+  stroke-width: 3.2;
+}
