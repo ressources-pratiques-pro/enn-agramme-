@@ -4,15 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=101" />
+  <link rel="stylesheet" href="assets/css/app.css?v=100" />
+
+  <style>
+    /* Effet “choisir un type” : pulsation douce autour des cercles */
+    @keyframes pulseRing {
+      0%   { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+      50%  { transform: scale(1.06); filter: drop-shadow(0 0 10px rgba(255,255,255,.18)); }
+      100% { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+    }
+    .node.hint circle{
+      animation: pulseRing .95s ease-in-out infinite;
+      stroke-width: 3.2;
+    }
+  </style>
 </head>
 
 <body>
   <div class="wrap">
     <header class="top">
       <div>
-        <h1 class="brandTitle">Ennéagramme</h1>
-        <p>Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
+        <h1>Ennéagramme</h1>
+        <p id="subtitle">Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
       </div>
       <div class="actions">
         <button id="btnReset" type="button">Réinitialiser</button>
@@ -44,7 +57,7 @@
             <circle class="innerRing" cx="350" cy="350" r="210"></circle>
 
             <text x="350" y="352" text-anchor="middle" dominant-baseline="middle"
-                  class="svgCenterTitle">
+                  style="font-family: ui-serif, Georgia, 'Times New Roman', serif; font-weight: 800; letter-spacing: 1.5px; font-size: 26px; fill: rgba(255,255,255,.22); text-transform: uppercase;">
               Ennéagramme
             </text>
 
@@ -69,7 +82,7 @@
         </div>
       </section>
 
-      <aside class="side" aria-live="polite">
+      <aside class="side" id="sidePanel" aria-live="polite">
         <div class="badgeRow">
           <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
         </div>
@@ -112,27 +125,7 @@
             <a id="openFull" class="btn" href="profils/type1.html" aria-disabled="true">Voir la fiche complète</a>
             <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
             <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
-          </div>
-
-          <div class="chooser">
-            <div class="chooserTitle">Choisir un profil</div>
-            <div class="chooserRow">
-              <select id="profilePick" class="chooserSelect" aria-label="Choisir un profil">
-                <option value="">Sélectionne un type…</option>
-                <option value="1">Type 1</option>
-                <option value="2">Type 2</option>
-                <option value="3">Type 3</option>
-                <option value="4">Type 4</option>
-                <option value="5">Type 5</option>
-                <option value="6">Type 6</option>
-                <option value="7">Type 7</option>
-                <option value="8">Type 8</option>
-                <option value="9">Type 9</option>
-              </select>
-
-              <button id="goProfile" type="button" class="chooserBtn" disabled>Ouvrir</button>
-            </div>
-            <div class="chooserHint">Astuce : la sélection te remonte au diagramme et met en évidence le type.</div>
+            <button id="btnChooseProfiles" class="btn" type="button">Choisir les profils</button>
           </div>
         </div>
       </aside>
@@ -149,50 +142,5 @@
   </div>
 
   <script src="assets/js/app.js?v=100"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const pick = document.getElementById("profilePick");
-      const go = document.getElementById("goProfile");
-      const stage = document.getElementById("stage");
-      const nodesLayer = document.getElementById("nodesLayer");
-
-      function clearHints(){
-        if(!nodesLayer) return;
-        nodesLayer.querySelectorAll(".node").forEach(n => n.classList.remove("hint"));
-      }
-
-      function hintType(t){
-        if(!nodesLayer) return;
-        clearHints();
-        const node = nodesLayer.querySelector(`.node[data-type="${t}"]`);
-        if(node) node.classList.add("hint");
-        setTimeout(clearHints, 2200);
-      }
-
-      function scrollToStage(){
-        if(!stage) return;
-        stage.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-
-      pick.addEventListener("change", () => {
-        const t = parseInt(pick.value, 10);
-        const ok = Number.isFinite(t) && t >= 1 && t <= 9;
-        go.disabled = !ok;
-
-        if(!ok) return;
-
-        scrollToStage();
-        if(typeof window.selectType === "function") window.selectType(t);
-        hintType(t);
-      });
-
-      go.addEventListener("click", () => {
-        const t = parseInt(pick.value, 10);
-        if(!(Number.isFinite(t) && t >= 1 && t <= 9)) return;
-        window.location.href = `profils/type${t}.html`;
-      });
-    });
-  </script>
 </body>
 </html>
