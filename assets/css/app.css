@@ -272,12 +272,11 @@ a[aria-disabled=true]{
   background: rgba(255,255,255,.06) !important;
 }
 
-@keyframes pulseRing{
-  0%   { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
-  50%  { transform: scale(1.06); filter: drop-shadow(0 0 10px rgba(255,255,255,.18)); }
-  100% { transform: scale(1);   filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
-}
+/* Halo fixe “Choisir les profils” (plus visible) */
 .node.hint circle{
-  animation: pulseRing .95s ease-in-out infinite;
-  stroke-width: 3.2;
+  stroke-width: 14.30;
+  filter:
+    drop-shadow(0 0 14px rgba(255,255,255,.35))
+    drop-shadow(0 0 28px rgba(255,255,255,.22))
+    drop-shadow(0 0 46px rgba(255,255,255,.14));
 }
