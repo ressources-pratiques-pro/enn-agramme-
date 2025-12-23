@@ -4,7 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=99" />
+  <link rel=\"stylesheet\" href=\"assets/css/app.css?v=99\" />
+  <style>
+    /* AJOUT SPÉCIFIQUE POUR L'ALIGNEMENT GAUCHE (DÉCENTRÉ) */
+    .card {
+      text-align: left !important; /* Force le texte à gauche */
+      align-items: flex-start !important; /* Force les éléments flexibles à gauche */
+    }
+    .card .actions {
+      justify-content: flex-start !important; /* Force les boutons à s'aligner à gauche */
+      gap: 12px; /* Espacement entre les boutons */
+      width: 100%;
+    }
+    /* Style des boutons pour qu'ils soient cohérents */
+    .card .btn {
+      margin: 0 !important; /* Enlève les marges auto qui centrent */
+    }
+  </style>
 </head>
 
 <body>
@@ -12,7 +28,7 @@
     <header class="top">
       <div>
         <h1>Ennéagramme</h1>
-        <p>Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
+        <p>Clique sur un type pour voir un résumé.</p>
       </div>
       <div class="actions">
         <button id="btnReset" type="button">Réinitialiser</button>
@@ -28,86 +44,46 @@
                 <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
               </marker>
               <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(244,114,182,.95)"></path>
               </marker>
-
-              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="2.2" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
             </defs>
-
-            <circle class="ring" cx="350" cy="350" r="270"></circle>
-            <circle class="innerRing" cx="350" cy="350" r="210"></circle>
-
-            <g id="staticBg" class="staticBg">
-              <path class="hex" d="" id="hexPath"></path>
-              <path class="tri" d="" id="triPath"></path>
-
-              <g class="centers">
-                <path class="centerLine" d="M350 350 L350 120"></path>
-                <path class="centerLine" d="M350 350 L585 455"></path>
-                <path class="centerLine" d="M350 350 L115 455"></path>
-
-                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
-                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
-                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
-              </g>
+            <circle cx="350" cy="350" r="300" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"></circle>
+            <g class="arrows" stroke-width="1.5" fill="none" opacity="0.6">
+              <path d="M 350 50 L 180 580" stroke="rgba(244,114,182,.95)" marker-end="url(#arrowHeadPink)"></path> <path d="M 180 580 L 520 580" stroke="rgba(244,114,182,.95)" marker-end="url(#arrowHeadPink)"></path> <path d="M 520 580 L 350 50" stroke="rgba(244,114,182,.95)" marker-end="url(#arrowHeadPink)"></path>  <path d="M 465 85 L 200 520" stroke="rgba(134,239,172,.95)" marker-end="url(#arrowHeadGreen)"></path> <path d="M 200 520 L 590 250" stroke="rgba(134,239,172,.95)" marker-end="url(#arrowHeadGreen)"></path> <path d="M 590 250 L 260 100" stroke="rgba(134,239,172,.95)" marker-end="url(#arrowHeadGreen)"></path> <path d="M 260 100 L 110 250" stroke="rgba(134,239,172,.95)" marker-end="url(#arrowHeadGreen)"></path> <path d="M 110 250 L 500 520" stroke="rgba(134,239,172,.95)" marker-end="url(#arrowHeadGreen)"></path> <path d="M 500 520 L 465 85" stroke="rgba(134,239,172,.95)" marker-end="url(#arrowHeadGreen)"></path>  </g>
+            <g class="points">
+              <circle cx="350" cy="50" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="9"></circle>
+              <text x="350" y="56" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">9</text>
+              <circle cx="465" cy="85" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="1"></circle>
+              <text x="465" y="91" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">1</text>
+              <circle cx="590" cy="250" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="2"></circle>
+              <text x="590" y="256" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">2</text>
+              <circle cx="520" cy="580" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="3"></circle>
+              <text x="520" y="586" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">3</text>
+              <circle cx="200" cy="520" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="4"></circle>
+              <text x="200" y="526" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">4</text>
+              <circle cx="110" cy="250" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="5"></circle>
+              <text x="110" y="256" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">5</text>
+              <circle cx="180" cy="580" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="6"></circle>
+              <text x="180" y="586" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">6</text>
+              <circle cx="500" cy="520" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="7"></circle>
+              <text x="500" y="526" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">7</text>
+              <circle cx="260" cy="100" r="28" fill="#0b1020" stroke="#fff" stroke-width="2" class="point" data-id="8"></circle>
+              <text x="260" y="106" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" pointer-events="none">8</text>
             </g>
-
-            <g id="arrowsLayer"></g>
-            <g id="nodesLayer"></g>
           </svg>
         </div>
       </section>
 
-      <aside class="side" aria-live="polite">
-        <div class="badgeRow">
-          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
-        </div>
-
-        <div class="card">
-          <div class="miniGrid">
-            <div class="mini"><h3>Centre d'intelligence</h3><p id="center">-</p></div>
-            <div class="mini"><h3>Peur de base</h3><p id="fear">-</p></div>
-            <div class="mini"><h3>Désir de base</h3><p id="desire">-</p></div>
-            <div class="mini"><h3>Compulsion (évitement)</h3><p id="compulsion">-</p></div>
-          </div>
-
-          <div class="moveLines">
-            <div id="moveHealth" class="moveLine">
-              <div class="moveHead">
-                <span class="dot good"></span>
-                <strong>Intégration</strong>
-                <span class="muted">(santé)</span>
-                <span class="muted"> > </span>
-                <strong id="toIntegr">-</strong>
-                <span class="muted">:</span>
-              </div>
-              <div class="moveBody" id="moveHealthText">-</div>
-            </div>
-
-            <div id="moveStress" class="moveLine">
-              <div class="moveHead">
-                <span class="dot warn"></span>
-                <strong>Désintégration</strong>
-                <span class="muted">(stress)</span>
-                <span class="muted"> > </span>
-                <strong id="toDisint">-</strong>
-                <span class="muted">:</span>
-              </div>
-              <div class="moveBody" id="moveStressText">-</div>
-            </div>
-          </div>
-
-          <div class="ctaRow">
-            <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
-            <a id="openProfil" class="btn" href="profil.html?type=1" style="border-color: #8bd3ff; color: #8bd3ff;">Niveaux & Profil</a>
-            <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
-          </div>
+      <aside class="card" id="summaryCard" hidden>
+        <h2 id="cardTitle">Type ...</h2>
+        <div id="cardContent">...</div>
+        
+        <div class="actions">
+          <a class="btn primary" id="openProfil" href="#">Voir la fiche complète</a>
+          
+          <a class="btn" href="test-enneagramme.html">Test Ennéagramme</a>
+          
+          <button class="btn" id="btnExplore" onclick="document.getElementById('btnReset').click()">Explorer l'Ennéagramme</button>
         </div>
       </aside>
     </main>
@@ -133,17 +109,49 @@
   
   <script>
     (function(){
-      // On sauvegarde la fonction originale selectType
-      const originalSelect = window.selectType;
+      // Ce script met à jour le lien "Voir la fiche complète" quand on clique sur un numéro
+      const points = document.querySelectorAll('.point');
       const btnP = document.getElementById('openProfil');
-      
-      // On remplace la fonction pour qu'elle mette aussi à jour notre nouveau bouton
-      if(typeof originalSelect === 'function' && btnP){
-        window.selectType = function(t){
-          originalSelect(t); // Fait le travail habituel (textes, flèches...)
-          btnP.href = 'profil.html?type=' + t; // Met à jour le lien vers le bon profil
-        };
-      }
+      const cardTitle = document.getElementById('cardTitle');
+      const cardContent = document.getElementById('cardContent');
+      const summaryCard = document.getElementById('summaryCard');
+      const btnReset = document.getElementById('btnReset');
+
+      // Données résumées pour l'affichage rapide (avant d'aller sur la fiche complète)
+      const SUMMARIES = {
+        1: "Le Réformateur : Rationnel, idéaliste, principes solides.",
+        2: "Le Pourvoyeur : Attentionné, généreux, orienté vers les autres.",
+        3: "Le Battant : Adaptable, orienté succès, soucieux de son image.",
+        4: "Le Romantique : Expressif, dramatique, introspectif.",
+        5: "L'Observateur : Intense, cérébral, perceptif, isolé.",
+        6: "Le Loyaliste : Engagé, orienté sécurité, anxieux, suspicieux.",
+        7: "L'Épicurien : Spontané, polyvalent, excessif.",
+        8: "Le Challenger : Puissant, dominateur, sûr de lui.",
+        9: "Le Médiateur : Facile à vivre, effacé, rassurant."
+      };
+
+      // Fonction pour gérer le clic sur un point du diagramme
+      points.forEach(p => {
+        p.addEventListener('click', function() {
+          const id = this.getAttribute('data-id');
+          
+          // 1. Mettre à jour le titre et le texte
+          cardTitle.innerText = "Type " + id;
+          cardContent.innerText = SUMMARIES[id] || "Description...";
+          
+          // 2. Mettre à jour le lien vers la fiche complète (Dossier profils/)
+          btnP.href = 'profils/type' + id + '.html';
+          
+          // 3. Afficher la carte
+          summaryCard.hidden = false;
+        });
+      });
+
+      // Reset
+      btnReset.addEventListener('click', function(){
+        summaryCard.hidden = true;
+      });
+
     })();
   </script>
 </body>
