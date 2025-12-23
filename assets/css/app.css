@@ -27,12 +27,7 @@ body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
   color:var(--text);
-  background:
-    radial-gradient(1200px 700px at 15% 10%, rgba(147,197,253,.25), transparent 55%),
-    radial-gradient(900px 600px at 80% 15%, rgba(244,114,182,.18), transparent 50%),
-    radial-gradient(900px 650px at 55% 75%, rgba(251,191,36,.12), transparent 60%),
-    linear-gradient(180deg, #081022, #070b14);
-  background-attachment: fixed;
+  background:#070b14;
 }
 
 a{color:inherit;text-decoration:none}
@@ -258,11 +253,6 @@ a[aria-disabled=true]{
 
   .ctaRow{gap:8px}
   .btn{padding:10px 12px}
-
-  body{
-    background: linear-gradient(180deg, #081022, #070b14);
-    background-attachment: fixed;
-  }
 }
 
 #openProfil{
