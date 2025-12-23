@@ -56,7 +56,6 @@ a:hover{text-decoration:underline}
   align-items:center;
 }
 
-/* Titre centré (mobile aussi) */
 .top h1{margin:0;font-size:44px;letter-spacing:.2px}
 .top p{margin:10px 0 0;color:var(--muted);font-size:15px}
 
@@ -229,8 +228,6 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none;}
   transition: stroke .18s ease, filter .18s ease, transform .18s ease;
   filter:url(#softGlow);
 }
-
-/* Forcer les couleurs même si une règle écrase ailleurs */
 .node.instinctif circle{stroke:var(--inst) !important;}
 .node.emotionnel circle{stroke:var(--emo) !important;}
 .node.mental circle{stroke:var(--ment) !important;}
@@ -242,11 +239,6 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none;}
   dominant-baseline: middle;
   text-anchor: middle;
 }
-
-.arrow{ fill:none; stroke-width: 3.2; opacity: 0; }
-.arrow.on{ opacity: .95; }
-.arrow.integr{ stroke: rgba(134,239,172,.92); }
-.arrow.disint{ stroke: rgba(253,164,175,.92); }
 
 .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
 .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
@@ -274,7 +266,6 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none;}
   background: rgba(255,255,255,.06) !important;
 }
 
-/* Clignotement au hasard : pulse fin sans changer la couleur */
 @keyframes ringPulse{
   0%   { stroke-width: 2.2; filter:url(#softGlow); }
   50%  { stroke-width: 4.1; filter: drop-shadow(0 0 10px rgba(255,255,255,.22)); }
