@@ -12,7 +12,7 @@
       --text:#eef2ff;
       --muted:#a8b6dd;
       --blue:#60a5fa;
-      --green:#34d399;
+      --green:#34d399; /* Pour le Type 3, on pourrait mettre du jaune/or, mais je garde la charte unifiée */
       --shadow: 0 18px 60px rgba(0,0,0,.45);
       --radius:18px;
     }
@@ -30,7 +30,35 @@
       line-height:1.45;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
+
+    /* --- MENU DE NAVIGATION (LE PONT) --- */
+    .type-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .nav-container {
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .type-links { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    .t-link {
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; font-weight: bold; text-decoration: none; transition: 0.2s;
+      font-size: 13px; background: rgba(255,255,255,0.03);
+    }
+    .t-link:hover { border-color: var(--blue); color: #fff; background: rgba(96,165,250,0.1); }
+    .t-link.active { 
+      background: var(--blue); color: #000; border-color: var(--blue); box-shadow: 0 0 10px rgba(96,165,250,0.3);
+    }
+    .nav-home, .nav-test { font-size: 13px; color: #eef2ff; text-decoration: none; font-weight: 600; opacity: 0.8; display:flex; align-items:center; gap:6px;}
+    .nav-home:hover, .nav-test:hover { opacity: 1; color: var(--blue); }
+
     .top{
       display:flex;
       gap:14px;
@@ -394,6 +422,27 @@
 </head>
 
 <body>
+
+  <nav class="type-nav">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-home"><span>⌂</span> Accueil</a>
+      
+      <div class="type-links">
+        <a href="type1.html" class="t-link">1</a>
+        <a href="type2.html" class="t-link">2</a>
+        <a href="type3.html" class="t-link active">3</a>
+        <a href="type4.html" class="t-link">4</a>
+        <a href="type5.html" class="t-link">5</a>
+        <a href="type6.html" class="t-link">6</a>
+        <a href="type7.html" class="t-link">7</a>
+        <a href="type8.html" class="t-link">8</a>
+        <a href="type9.html" class="t-link">9</a>
+      </div>
+
+      <a href="../test-enneagramme-sans-indice.html" class="nav-test">Faire le Test →</a>
+    </div>
+  </nav>
+
   <div class="wrap" id="top">
     <div class="top">
       <div class="hero">
@@ -684,7 +733,7 @@ Items de présentation spécifique pour chaque sous-type</pre>
         <details data-search>
           <summary>
             <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
-          <span class="chev"></span>
+            <span class="chev"></span>
           </summary>
           <div class="content">
             <div class="block rich">
@@ -830,9 +879,9 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
   <div class="bottomBar">
     <div class="barInner">
       <div class="barBtns">
-        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
-        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
-        <button class="btn" id="nextBtn" type="button">Suivant</button>
+        <a class="btn primary" id="backToTest" href="../test-enneagramme-sans-indice.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="../index.html">Retour accueil</a>
+        <a href="type4.html" class="btn" id="nextBtn">Suivant</a>
       </div>
       <div class="barInfo" id="barInfo">Type 3</div>
     </div>
