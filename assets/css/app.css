@@ -36,7 +36,7 @@ a:hover{text-decoration:underline}
 
 .wrap{max-width:1180px;margin:34px auto 44px;padding:0 14px}
 
-/* Header centré (desktop + mobile) */
+/* Header centré partout */
 .top{
   position:relative;
   display:flex;
@@ -45,7 +45,7 @@ a:hover{text-decoration:underline}
   gap:14px;
   margin-bottom:16px;
 }
-.topText{ text-align:center; max-width: 820px; }
+.headText{ text-align:center; max-width: 820px; }
 .actions{
   position:absolute;
   right:0;
@@ -84,7 +84,6 @@ button:active{transform:translateY(1px)}
 }
 
 .stage{
-  position:relative;
   border:1px solid var(--line);
   background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
   border-radius:var(--radius);
@@ -126,7 +125,6 @@ button:active{transform:translateY(1px)}
   grid-template-columns:1fr 1fr;
   gap:12px;
 }
-
 @media (max-width: 1060px){
   .miniGrid{grid-template-columns:1fr}
 }
@@ -137,7 +135,6 @@ button:active{transform:translateY(1px)}
   border-radius:16px;
   padding:12px;
 }
-
 .mini h3{
   margin:0 0 6px;
   font-size:12px;
@@ -145,18 +142,15 @@ button:active{transform:translateY(1px)}
   text-transform:uppercase;
   color: var(--accent);
 }
-
 .mini p{margin:0;font-size:15px;font-weight:700;color:rgba(255,255,255,.88)}
 
 .moveLines{margin-top:12px;display:grid;gap:10px}
-
 .moveLine{
   border:1px solid rgba(255,255,255,.10);
   background:rgba(0,0,0,.10);
   border-radius:16px;
   padding:12px;
 }
-
 .moveHead{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .moveBody{margin-top:8px;color:rgba(255,255,255,.78);line-height:1.35}
 .muted{color:rgba(255,255,255,.55)}
@@ -191,12 +185,15 @@ button:active{transform:translateY(1px)}
 }
 .btn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);text-decoration:none}
 .btn:active{transform:translateY(1px)}
-.btnGhost{ background:rgba(255,255,255,.04); }
 
-a[aria-disabled=true]{opacity:.55;pointer-events:none;}
+a[aria-disabled=true]{
+  opacity:.55;
+  pointer-events:none;
+}
 
 .ring{ stroke: rgba(147,197,253,.55); stroke-width: 3.2; fill: none; }
 .innerRing{ stroke: rgba(255,255,255,.08); stroke-width: 2; fill: none; }
+
 .staticBg{ pointer-events:none; }
 
 .hex, .tri{ fill:none; stroke-linecap:round; stroke-linejoin:round; }
@@ -216,27 +213,53 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none;}
 .centerLabel.emotionnel{fill:var(--emo)}
 .centerLabel.mental{fill:var(--ment)}
 
-.enn eaCenterWord{}
-.enneaCenterWord{
+/* Titre au centre du diagramme */
+.centerTitle{
   font-family: ui-serif, Georgia, "Times New Roman", serif;
   font-weight: 800;
   letter-spacing: 2px;
-  font-size: 28px;
-  fill: rgba(255,255,255,.18);
+  font-size: 26px;
+  fill: rgba(255,255,255,.20);
   text-transform: uppercase;
+  filter: url(#softGlow);
 }
 
+/* NODES */
 .node{cursor:pointer}
 .node circle{
   fill: rgba(15,26,51,.85);
   stroke: rgba(255,255,255,.20);
   stroke-width: 2.2;
-  transition: stroke .18s ease, filter .18s ease, transform .18s ease;
+  transition: stroke .18s ease, filter .18s ease;
   filter:url(#softGlow);
 }
-.node.instinctif circle{stroke:var(--inst)}
-.node.emotionnel circle{stroke:var(--emo)}
-.node.mental circle{stroke:var(--ment)}
+
+/* Halo qui “respire” (Option 1) */
+.node.instinctif circle{
+  stroke:var(--inst);
+  animation: haloInst 3.2s ease-in-out infinite;
+}
+.node.emotionnel circle{
+  stroke:var(--emo);
+  animation: haloEmo 3.2s ease-in-out infinite;
+}
+.node.mental circle{
+  stroke:var(--ment);
+  animation: haloMent 3.2s ease-in-out infinite;
+}
+
+@keyframes haloInst{
+  0%,100%{ filter:url(#softGlow) drop-shadow(0 0 6px rgba(251,191,36,.18)); }
+  50%{    filter:url(#softGlow) drop-shadow(0 0 14px rgba(251,191,36,.34)); }
+}
+@keyframes haloEmo{
+  0%,100%{ filter:url(#softGlow) drop-shadow(0 0 6px rgba(244,114,182,.18)); }
+  50%{    filter:url(#softGlow) drop-shadow(0 0 14px rgba(244,114,182,.34)); }
+}
+@keyframes haloMent{
+  0%,100%{ filter:url(#softGlow) drop-shadow(0 0 6px rgba(96,165,250,.18)); }
+  50%{    filter:url(#softGlow) drop-shadow(0 0 14px rgba(96,165,250,.34)); }
+}
 
 .node text{
   fill: var(--text);
@@ -256,74 +279,14 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none;}
 .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
 .siteFooter a:hover{opacity:1}
 
-/* Pick mode */
-.stageOverlay{
-  position:absolute;
-  inset:0;
-  background: radial-gradient(900px 600px at 50% 40%, rgba(255,255,255,.06), rgba(0,0,0,.20));
-  pointer-events:none;
-}
-
-.pickBanner{
-  position:absolute;
-  left:50%;
-  top:14px;
-  transform:translateX(-50%);
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:10px 12px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(0,0,0,.32);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 16px 45px rgba(0,0,0,.45);
-  z-index:5;
-}
-.pickTitle{
-  font-family: ui-serif, Georgia, "Times New Roman", serif;
-  font-weight:800;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: rgba(255,255,255,.82);
-}
-.pickSub{
-  font-size: 12px;
-  color: rgba(255,255,255,.62);
-  white-space: nowrap;
-}
-.pickClose{
-  padding:8px 10px;
-  font-size:12px;
-}
-
-@keyframes pickPulse{
-  0%{ filter:url(#softGlow) brightness(1); transform:translateZ(0) scale(1); }
-  50%{ filter:url(#softGlow) brightness(1.25); transform:translateZ(0) scale(1.03); }
-  100%{ filter:url(#softGlow) brightness(1); transform:translateZ(0) scale(1); }
-}
-
-body.pickModeOn #nodesLayer .node circle{
-  animation: pickPulse 1.25s ease-in-out infinite;
-}
-body.pickModeOn .enneaCenterWord{
-  fill: rgba(255,255,255,.26);
-}
-
+/* Mobile */
 @media (max-width: 640px){
   .wrap{margin:18px auto 28px}
-
-  .top{
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-  }
-  .topText{ text-align:center; }
+  .top{flex-direction:column;align-items:center}
+  .headText{text-align:center}
   .top h1{font-size:36px}
   .top p{font-size:14px}
-  .actions{position:static}
+  .actions{position:static;margin-top:10px}
 
   .stage{min-height: unset;padding:14px}
   .svgWrap{align-items:flex-start}
@@ -331,13 +294,15 @@ body.pickModeOn .enneaCenterWord{
 
   .ctaRow{gap:8px}
   .btn{padding:10px 12px}
+}
 
-  .pickBanner{
-    top:10px;
-    width: calc(100% - 18px);
-    justify-content:space-between;
+/* Accessibilité : pas d’animation si l’utilisateur le demande */
+@media (prefers-reduced-motion: reduce){
+  .node.instinctif circle,
+  .node.emotionnel circle,
+  .node.mental circle{
+    animation:none !important;
   }
-  .pickSub{display:none;}
 }
 
 #openProfil{
