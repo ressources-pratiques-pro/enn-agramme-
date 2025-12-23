@@ -1,0 +1,1324 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Type 1 — Profil complet</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --line:rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a8b6dd;
+      --blue:#60a5fa;
+      --green:#34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.26), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(244,63,94,.15), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .hero{
+      flex:1 1 700px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+    .dot{width:9px;height:9px;border-radius:50%}
+
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
+    .tab{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(96,165,250,.14), rgba(255,255,255,0));
+    }
+    summary::-webkit-details-marker{display:none}
+
+    .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
+    .sumTitle b{
+      font-size:15px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.98);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+
+    .content{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    .block{
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .raw{display:none}
+    .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
+    .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
+    .rt .gap{height:10px}
+
+    .rt .labelRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin:0 0 10px;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .rt .label{
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:.15px;
+      font-size:13px;
+      text-transform:none;
+    }
+    .rt .value{
+      color:rgba(255,255,255,.92);
+      font-size:15px;
+      flex:1 1 auto;
+      min-width:220px;
+    }
+
+    .rt .subhead{
+      margin:2px 0 10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(96,165,250,.20);
+      background:linear-gradient(180deg, rgba(96,165,250,.10), rgba(0,0,0,.10));
+      color:rgba(255,255,255,.96);
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .rt .subhead .t{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .rt ul{margin:0 0 10px 18px;padding:0}
+    .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dash{list-style-type:"-  "}
+    .rt ul.arrow{list-style-type:"→  "}
+    .rt ul.dot{list-style-type:"•  "}
+    .rt li .k{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .sectionHeader{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;
+      font-weight:900;
+    }
+
+    .btn, button, a.btn{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover, button:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
+    .btn:active, button:active{transform:translateY(0)}
+    .btn.primary{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+    .btn.primary:hover{
+      background:rgba(96,165,250,.20);
+      border-color:rgba(96,165,250,.45);
+    }
+
+    .subtypeBtns{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    .subtypeBtns .btn{padding:12px}
+    .subtypeBtns .btn.active{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.14);
+    }
+    @media (max-width: 860px){
+      .subtypeBtns{grid-template-columns:1fr}
+    }
+
+    .rangeWrap{display:grid;gap:10px}
+    .rangeLine{
+      width:100%;
+      padding:12px 12px 10px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:16px;
+    }
+    input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
+    .trackLabel{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+    }
+
+    .bottomBar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      padding:10px 12px;
+      z-index:999;
+    }
+    .barInner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .barInfo{color:var(--muted);font-size:12px;font-weight:900}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .sheet{
+      width:min(980px, 100%);
+      max-height:86vh;
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 25px 90px rgba(0,0,0,.65);
+    }
+    .sheetHeader{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(10,14,28,.78);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
+    .sheetHeader .title span{color:var(--muted);font-size:12px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sheetBody{padding:14px}
+    .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
+    @media (max-width: 980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Type 1 — Le Réformateur / Le Perfectionniste</h1>
+
+        <div class="chips" id="chips">
+          <span class="chip"><span class="dot" style="background:var(--green)"></span>Centre instinctif</span>
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Rôle social : L’Éducateur / L’Enseignant</span>
+          <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Onglets">
+          <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
+          <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
+          <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Recherche</h2>
+          <input id="search" type="search" placeholder="Tape un mot, ex : colère, perfection, jalousie..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Présentation</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Type 1, appelé le Réformateur ou le Perfectionniste, correspond à une personnalité rationnelle et idéaliste, guidée par des principes solides, une grande maîtrise de soi et une exigence élevée envers elle-même et son environnement. Il est généralement perçu comme sérieux, intègre et profondément attaché aux notions de bien et de mal. Son moteur principal est le désir d’être moralement juste et irréprochable. Toute son énergie est orientée vers le maintien d’idéaux élevés et l’application d’une rigueur personnelle constante. Convaincu qu’il est toujours possible de s’améliorer, il évalue en permanence ses actes et ceux des autres à l’aune de standards exigeants, ce qui s’accompagne d’un fort sens des responsabilités et d’une autocritique soutenue. Animé par un désir profond d’amélioration et de rectification, le Type 1 cherche à corriger ce qu’il perçoit comme désordre, injustice ou imperfection dans son environnement, par une action concrète, structurée et éthique. Il dispose d’un talent naturel pour l’organisation, l’enseignement et la transmission de valeurs, et s’investit volontiers dans la défense de causes qu’il juge nobles et justes, se vivant souvent comme porteur d’une mission de vie au service d’un idéal supérieur.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure et dynamique psychologique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Centre d'intelligence : Le Type 1 appartient au centre instinctif, qu'il utilise principalement vers l'intérieur pour agir sur lui-même.
+Hiérarchie des centres :
+
+Centre Préféré : Instinctif (Utilisation intérieure)
+Centre de Support : Émotionnel
+Centre Réprimé : Mental
+Orientation: La rigueur personnelle et les idéaux élevés.
+Compulsion : Éviter à tout prix la colère (la sienne et celle des autres).
+Passion et Fixation :
+
+Passion (Cœur) : La Colère, qui naît du constat permanent d'imperfection dans le monde et en soi. Elle est souvent vécue comme un ressentiment permanent face à l'imperfection.
+Fixation (Tête) : Le Perfectionnisme, qui pousse à travailler toujours plus pour atteindre un absolu souvent inaccessible. Vérification et correction incessante des détails.
+Mécanisme de défense :
+La formation réactionnelle. Ce mécanisme consiste à transformer une émotion inacceptable (comme la colère ou le désir de plaisir) en son opposé (des conseils, de l'aide ou une tension accrue) pour rester "parfait". Cela consiste à prendre une émotion inacceptable (comme la colère) et à l'exprimer par son opposé (comme des conseils bienveillants ou un soutien constant), tout en réprimant l'impulsion originelle.
+Peurs et Désirs fondamentaux :
+➣ Peur de base : Être mauvais, corrompu, pervers ou défectueux.
+➣Désir de base : Être bon, vertueux, en équilibre et posséder de l'intégrité.
+➣Message du Surmoi : « Tu es bien ou correct si tu fais ce qui est juste ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Origines et variantes</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Schéma de l'enfance :
+Le 1 a souvent ressenti le besoin de justifier son existence en étant un « bon enfant » et en assumant des responsabilités précoces. Il a vécu une déconnexion de la figure protectrice (souvent le père), ce qui l'a poussé à devenir son propre guide moral et à s'auto-discipliner rigoureusement pour gagner son indépendance.
+
+Les Sous-types d'Ailes
+
+1w9 (L'Idéaliste) : Plus détaché, calme, érudit et souvent réservé. Il cherche à améliorer les choses avec une touche plus douce et philosophique.
+1w2 (L'Avocat) : Plus chaleureux, tourné vers les autres, persuasif et actif dans les réformes sociales.
+Les trois sous-types instinctifs
+
+Conservation (Anxiété) : Focalisé sur l'auto-contrôle, la santé, le budget et l'ordre domestique. La personne croit que la moindre erreur peut compromettre sa sécurité. Elle cherche de manière obsessionnelle à tout bien faire pour éviter tout danger. Souvent anxieux face aux erreurs.
+Social (Inadaptabilité) : Le « Croisé » qui représente des valeurs objectives et cherche à réformer la société ou son groupe. Ce sous-type a une vision rigide de la manière dont les interactions sociales devraient se dérouler. Il cherche à corriger et réformer le groupe pour qu'il suive les règles.
+Sexuel (Jalousie) : Recherche une relation parfaite avec un partenaire idéalisé et peut devenir très critique si les standards ne sont pas partagés. Le 1 sexuel craint que son partenaire ne le rejette pour quelqu'un de plus "irréprochable". Il est extrêmement attentif aux détails de la relation et peut se montrer très critique envers l'autre pour qu'il soit idéal.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Le Type 1 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Profil professionnel
+Le Type 1 privilégie la qualité et l'éthique. Il respecte scrupuleusement les procédures et la discipline, considérant son travail comme un contrat moral. Il prend du temps pour décider afin d'éviter toute erreur, privilégiant le concret aux abstractions.
+Style de management
+Il bâtit des projets rationnels et précis. Une fois le plan validé, il donne des instructions rigoureuses et accepte mal les remises en cause. Sa difficulté à déléguer provient souvent de sa crainte des erreurs d'autrui.
+Style de communication
+Sa communication est souvent calme, précise et informative, privilégiant les conseils à la confrontation directe. Toutefois, une colère sous-jacente peut être perçue par ses interlocuteurs à travers une tension physique ou un ton sec.
+Points de vigilance
+Le Type 1 peut se perdre dans les détails, ce qui risque de ralentir les projets. Sa rigidité et ses critiques excessives peuvent frustrer ses collaborateurs.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Réaction au Stress (Désintégration)
+Vers le Type 4. Le 1 devient alors mélancolique, irrationnel, se sent seul et incompris, et peut se perdre dans des fantasmes romantiques pour échapper à ses fardeaux.
+Chemin d'Intégration (Croissance)
+Vers le Type 7. Le 1 apprend à se détendre, devient plus spontané, joyeux, curieux et accepte une plus grande variété de possibilités sans juger.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution et développement</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Points d'amélioration à travailler
+
+Apprendre à être moins perfectionniste en acceptant que l'erreur est humaine.
+Porter son attention sur les aspects positifs d'une situation avant de critiquer.
+Pratiquer la relaxation pour évacuer les tensions physiques.
+Être moins exigeant envers les autres et valoriser leurs compétences.
+Développer le sens de l'humour.
+Complimenter les autres et apprendre à écouter ses propres besoins émotionnels.
+Pratiques suggérées et Attitudes de Guérison
+Se dire : « Peut-être que les autres ont raison. Peut-être que j'ai fait tout ce qui pouvait être fait ».
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 1 s'intègre vers le Type 7 (ou le Type 4).
+
+Essence : C'est la "vraie personnalité" libérée des automatismes de l'ego, permettant de se connecter à ses pleines potentialités.
+Idée supérieure : La Perfection. Il réalise que la perfection est le meilleur compromis entre l'idéal et la réalité ici et maintenant.
+Vertu : La Patience, acceptant le rythme des choses et l'imperfection du monde avec indulgence.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Perspective Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">L'Idée sacrée :
+La Perfection Sacrée. C'est la perception que la réalité est un processus complet et juste en chaque instant. Comprendre que la réalité est déjà parfaite telle qu'elle est.
+L'Illusion Spécifique:
+Le Jugement Comparatif. Croire que le bien et le mal sont des absolus et que certaines choses sont intrinsèquement meilleures que d'autres au niveau de l'être.
+La Difficulté Spécifique
+Le sentiment d'être "mauvais", une conviction profonde d'avoir un défaut de fabrication intrinsèque.
+La Réaction Spécifique
+S'améliorer. Une activité mentale et pratique incessante pour corriger ce qui ne va pas.
+Le Noyau de la Fixation:
+La constellation entre le sentiment de défaut intrinsèque (difficulté) et l'activité obsessive d'amélioration (réaction).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Confiance Fondamentale
+Une certitude innée et préverbale que l'univers est bienveillant et que tout finira par être bénéfique.
+La Lumière du jour Vivante
+La qualité de l'Être qui ressemble à une conscience aimante et universelle, perçue comme la substance même de tout ce qui existe.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>La perspective et la solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">L'Idée Sacrée comme Psycho-catalyseur
+Elle agit comme un miroir qui révèle et dissout les distorsions cognitives de l'ego.
+Rétablir la Confiance Fondamentale
+Cela passe par l'acceptation de son impuissance existentielle et la découverte que la réalité nous soutient sans effort de notre part.
+L'Abandon
+Cesser de manipuler son expérience intérieure et laisser l'Être se déployer sans interférence.
+La Poussée Optimisante
+Reconnaitre que le dynamisme de la réalité tend naturellement vers l'harmonie si l'on arrête d'essayer de la "fixer".</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Type 1 peut être comparé à un sculpteur rigoureux qui, au lieu de contempler l'œuvre finie, ne voit que les minuscules aspérités de la pierre qu'il doit polir sans relâche. Son "petit juge" intérieur est une voix constante qui lui rappelle que le travail n'est jamais vraiment terminé tant qu'une seule imperfection subsiste.
+L'analogie de l'or : Un anneau d'or peut être bien ou mal façonné (perfection relative), mais sa nature profonde reste de l'or pur (perfection absolue/sacrée).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure de base</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">LE type et sous types
+
+le type 1 "Présentation générale du Type 1 : La structure de base
+
+Blessure : Un jour, alors qu’il prenait spontanément du plaisir, l’enfant a été réprimandé et en a souffert. Il renonce alors à son « vrai moi » pour adopter une attitude correcte, polie et disciplinée, espérant être aimé en retour.
+Passion : La colère. Il s'agit d'une colère intériorisée et d'un ressentiment lié à une « prise de position contre la réalité ». Les Un ne l'expriment souvent pas directement mais vivent avec une irritation constante envers un monde qui devrait être plus vertueux.
+Mécanisme de défense privilégié : La formation réactionnelle. Le Un bloque ses impulsions naturelles ou ses désirs jugés « mauvais » et redirige cette énergie vers des efforts pour « mieux faire » ou prendre soin des autres (par exemple, transformer une impulsion de colère en une application excessive à dresser la table).
+
+Items de présentation spécifique pour chaque sous-type</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SURVIE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Le sous-type SURVIE
+
+Titre du sous-type : Le Profil Un Survie.
+Équation des préoccupations : Préoccupation Un (essayer de bien faire) + Préoccupations Survie (la maison, la sécurité et la matérialité) = ANXIÉTÉ.
+Comportement / Description du fonctionnement : La satisfaction des besoins matériels (entretien, éducation, repas) devient si importante qu'elle génère de l'anxiété. Le Un survie multiplie les contrôles, vérifie les détails et s'attèle à la tâche avec discipline pour éviter l'insécurité. Il a souvent l'impression qu'il n'aura pas le temps de tout bien faire.
+Le paradoxe : Être de plus en plus concentré sur le détail, et donc de plus en plus anxieux, ne parvient jamais à le rassurer réellement.
+Métaphore : Le Pionnier. L'image du pionnier des westerns, assis droit sur son cheval, irréprochable malgré la poussière, cherchant à créer un monde de justice et de nature domestiquée.
+Signaux d'alerte du type : Trop d'anxiété, trop de tension corporelle (mâchoires, dos), manque de plaisir/rigolade, trop de sacrifice de soi.
+Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps passé au travail, trop de préoccupations sur le bien-être matériel, répétition de soirées routinières à la maison.
+Témoignage (Hervé) :
+Type : Apprécie son ressenti clair immédiat des situations et son endurance de « coureur de fond ».
+Sous-type : Apprécie sa sensibilité aux ambiances (chaleur et lumière) et le ressourcement vital au contact de la nature.
+Combinaison : La conscience de son anxiété focalisée sur la survie a été l'élément clé pour l'aider à lâcher prise.
+Référence cinématographique : Ben Hur (pour la discipline, l'effort inimaginable les dents serrées et la volonté de sauver sa tribu).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
+
+Titre du sous-type : Le Profil Un Tête-à-tête.
+Équation des préoccupations : Préoccupation Un (essayer de bien faire) + Préoccupation Tête-à-tête (focalisation sur le partenaire) = ZÈLE OU JALOUSIE.
+Comportement / Description du fonctionnement : Il tente de contrôler la relation à l'autre avec un zèle anxieux. La colère s'exprime souvent par un esprit critique voilé (« tu devrais ») visant à faire changer le partenaire. Il peut être jaloux du temps que l'autre s'accorde ou de rivaux potentiellement « plus parfaits ».
+Le paradoxe : Faire tous les efforts possibles pour être le conjoint parfait risque de stresser l'autre et de lui donner envie de partir.
+Métaphore : Le Prédicateur. Celui qui prêche haut les principes moraux et se montre exemplaire, tout en éprouvant de la colère envers ceux qui vivent plus librement.
+Signaux d'alerte du type : (Identiques au sous-type survie) Trop d'anxiété, tension physique, manque de défoulement, sacrifice de soi excessif.
+Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention excessive focalisée sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du partenaire.
+Témoignage (Aurore) :
+Type : Apprécie sa constance, son honnêteté (incapacité de mentir) et son énergie inépuisable.
+Sous-type : Apprécie l'intensité des rencontres et ces « moments de grâce » où un lien fort se crée, même brièvement.
+Combinaison : Reconnait que son désir de moments forts la rend jalouse de l'emploi du temps de son mari, mais apprécie sa fidélité.
+Référence cinématographique : Nelly et Monsieur Arnaud (pour la complicité dans une « bulle », la jalousie inquisitrice et les remarques sur la conduite à tenir).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SOCIAL</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Le sous-type SOCIAL
+
+Titre du sous-type : Le Profil Un Social.
+Équation des préoccupations : Préoccupation Un (essayer de bien faire) + Préoccupations Sociales (focalisation sur les amis, les groupes) = INADAPTABILITÉ SOCIALE.
+Comportement / Description du fonctionnement : Il cherche à réformer le monde, la politique ou la religion selon ses principes éthiques. Il a un concept de soi « aristocratique » et supérieur, se montrant civilisé et policé. Il impose ses normes avec enthousiasme, devenant rigide envers ceux qui ne respectent pas les règles sociales ou les idéaux.
+Le paradoxe : Trop de ferveur pour une cause peut finalement nuire à cette même cause.
+Métaphore : Le Réformateur. Celui qui connaît parfaitement les règles du jeu, veut les améliorer et ressent du ressentiment envers ceux qui les prennent à la légère.
+Signaux d'alerte du type : (Identiques) Trop d'anxiété, tensions physiques marquées, manque de plaisir, sacrifice de soi.
+Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps passé dans les relations sociales ou les clubs, dévouement excessif à une cause.
+Témoignage (Charles) :
+Type : Apprécie sa force intérieure disponible pour les autres, sa détermination de chef d'entreprise et sa capacité à structurer le chaos.
+Sous-type : Apprécie son sens du groupe et son respect pour la hiérarchie et les compétences des anciens.
+Combinaison : Dirige avec droiture et intégrité en essayant d'être irréprochable pour inciter les autres à ne pas tricher.
+Référence cinématographique : Les Vestiges du Jour (le majordome Stevens incarne la raideur conventionnelle, le respect absolu des règles de bienséance et le sacrifice des émotions au profit du travail)." </pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Définition + continuum</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
+Les niveaux de développement du Type 1 (le Réformateur) décrivent un continuum allant de la libération spirituelle et de la sagesse éthique à une rigidité obsessionnelle et potentiellement destructrice. Selon les sources, ces niveaux mesurent le degré d'identification d'une personne avec sa structure de personnalité : plus on descend dans les niveaux, plus l'ego prend le contrôle et plus la liberté de choix diminue.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" id="levelDot" style="background:var(--green)"></span><span id="levelBadge">Niveau 1 • Sain</span></span>
+            </div>
+
+            <div class="rangeWrap">
+              <div class="rangeLine">
+                <div class="trackLabel"><span>1</span><span>9</span></div>
+                <input id="levelRange" type="range" min="1" max="9" step="1" value="1" />
+                <div class="bandPills">
+                  <span class="pill"><span class="dot" style="background:#22c55e"></span>Plage saine (1 à 3)</span>
+                  <span class="pill"><span class="dot" style="background:#f59e0b"></span>Plage moyenne (4 à 6)</span>
+                  <span class="pill"><span class="dot" style="background:#ef4444"></span>Plage malsaine (7 à 9)</span>
+                </div>
+              </div>
+
+              <div class="block" style="background:rgba(255,255,255,.03)">
+                <div class="rt" id="levelTextRT"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux 1 à 9</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Plage Saine (Niveaux 1 à 3) : L'Intégrité et l'Acceptation
+Dans cette plage, le Type 1 est équilibré et utilise ses idéaux pour le bien commun sans être écrasé par son propre juge intérieur.
+
+Niveau 1 : L'acceptation et la sagesse. À ce stade, le 1 abandonne la conviction qu'il est en position de juger la réalité. Il devient profondément sage, discernant et capable d'accepter la vie telle qu'elle est sans réaction émotionnelle, atteignant ainsi son désir de base : avoir une intégrité totale.
+Niveau 2 : L'évaluation et la raison. La personne se concentre sur les directives de son surmoi pour se guider et se protéger des parties « désordonnées » d'elle-même. Son image de soi est celle d'une personne sensée, modérée et objective.
+Niveau 3 : L'intégrité et la responsabilité. Le 1 renforce son image de soi en vivant selon sa conscience et sa raison. Il est hautement éthique, discipliné et enseigne par l'exemple en mettant de côté ses désirs personnels pour le bien de tous.
+La Plage Moyenne (Niveaux 4 à 6) : La Fixation et le Contrôle
+C'est ici que la plupart des gens opèrent. L'identification à l'ego augmente et les conflits interpersonnels commencent à apparaître.
+
+Niveau 4 : L'obligation et l'effort. Le 1 commence à craindre que les autres soient indifférents à ses principes. Il devient sérieux, se sent obligé de corriger tout ce qu'il voit et commence à débattre avec les autres pour les convaincre de la justesse de ses vues.
+Niveau 5 : La maîtrise de soi et l'ordre. La peur d'être condamné pour toute déviation par rapport à ses idéaux grandit. Le 1 s'oblige à vivre selon ses propres standards en permanence, s'organisant de manière rigoureuse. Il devient ponctuel et méthodique, mais aussi tendu et irritable.
+Niveau 6 : Le jugement et la critique. Il craint que les autres ne gâchent l'ordre qu'il a établi et s'en met en colère. Il réagit en reprochant aux autres de ne pas être à la hauteur de ses standards. Il devient perfectionniste, opinionné et souvent sarcastique.
+La Plage Malsaine (Niveaux 7 à 9) : La Rigidité et la Désintégration
+Ces niveaux représentent une déconnexion profonde avec la réalité et une perte totale de contrôle sur les compulsions de l'ego.
+
+Niveau 7 : L'auto-justification et l'inflexibilité. Le 1 craint que ses idéaux soient faux, ce qui le rend amer et misanthrope. Pour sauver son image de soi, il devient extrêmement fermé d'esprit, refuse tout compromis et devient hautement moralisateur.
+Niveau 8 : L'obsession et la contradiction. Désespéré de contrôler ses désirs irrationnels, il devient obsédé par les parties de lui-même qu'il voulait dompter. Paradoxalement, il commence à agir selon ses désirs réprimés tout en continuant de les condamner publiquement.
+Niveau 9 : La condamnation et la punition. Réalisant qu'il a perdu le contrôle et qu'il commet les actes qu'il ne peut tolérer chez les autres, le 1 devient punitif. Il tente de supprimer la « cause » de ses obsessions en lui-même ou chez les autres, ce qui peut mener à l'auto-mutilation, au meurtre ou au suicide.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Signaux d’alerte</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Signaux d'Alerte
+
+Signal d'Éveil : Un sentiment d'obligation personnelle intense (croire que tout repose sur ses épaules et que personne d'autre ne fera le travail correctement).
+Signal d'Alarme : La peur que ses propres idéaux soient en réalité faux ou contre-productifs.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Défis de croissance</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les Défis de croissance
+Apprendre que la perfection est un processus et non un état final, et accepter que la réalité puisse être différente de ses idéaux.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
+      </div>
+      <div class="barInfo" id="barInfo">Type 1</div>
+    </div>
+  </div>
+
+  <div class="modal" id="subtypeModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
+      <div class="sheetHeader">
+        <div class="title">
+          <b id="modalTitle">Sous-type</b>
+          <span id="modalSub">Type 1</span>
+        </div>
+        <div>
+          <button class="btn" id="closeModal" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="block rich">
+          <pre class="raw" id="modalRaw"></pre>
+          <div class="rt" id="modalRT"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Comparer les sous-types">
+      <div class="sheetHeader">
+        <div class="title">
+          <b>Comparer les 3 sous-types</b>
+          <span>Type 1</span>
+        </div>
+        <div>
+          <button class="btn" id="closeCompare" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="cols">
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SURVIE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSurvieRaw"></pre>
+              <div class="rt" id="cmpSurvieRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">TÊTE-À-TÊTE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpTeteRaw"></pre>
+              <div class="rt" id="cmpTeteRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SOCIAL</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSocialRaw"></pre>
+              <div class="rt" id="cmpSocialRT"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      if(value === null || value === undefined || value === '') u.searchParams.delete(name);
+      else u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
+    }
+    function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
+
+    function levelColor(n){
+      if(n<=3) return '#22c55e';
+      if(n<=6) return '#f59e0b';
+      return '#ef4444';
+    }
+    function levelBand(n){
+      if(n<=3) return 'Sain';
+      if(n<=6) return 'Moyen';
+      return 'Malsain';
+    }
+
+    const LEVELS = [
+      "Niveau 1 : L'acceptation et la sagesse. À ce stade, le 1 abandonne la conviction qu'il est en position de juger la réalité. Il devient profondément sage, discernant et capable d'accepter la vie telle qu'elle est sans réaction émotionnelle, atteignant ainsi son désir de base : avoir une intégrité totale.",
+      "Niveau 2 : L'évaluation et la raison. La personne se concentre sur les directives de son surmoi pour se guider et se protéger des parties « désordonnées » d'elle-même. Son image de soi est celle d'une personne sensée, modérée et objective.",
+      "Niveau 3 : L'intégrité et la responsabilité. Le 1 renforce son image de soi en vivant selon sa conscience et sa raison. Il est hautement éthique, discipliné et enseigne par l'exemple en mettant de côté ses désirs personnels pour le bien de tous.",
+      "Niveau 4 : L'obligation et l'effort. Le 1 commence à craindre que les autres soient indifférents à ses principes. Il devient sérieux, se sent obligé de corriger tout ce qu'il voit et commence à débattre avec les autres pour les convaincre de la justesse de ses vues.",
+      "Niveau 5 : La maîtrise de soi et l'ordre. La peur d'être condamné pour toute déviation par rapport à ses idéaux grandit. Le 1 s'oblige à vivre selon ses propres standards en permanence, s'organisant de manière rigoureuse. Il devient ponctuel et méthodique, mais aussi tendu et irritable.",
+      "Niveau 6 : Le jugement et la critique. Il craint que les autres ne gâchent l'ordre qu'il a établi et s'en met en colère. Il réagit en reprochant aux autres de ne pas être à la hauteur de ses standards. Il devient perfectionniste, opinionné et souvent sarcastique.",
+      "Niveau 7 : L'auto-justification et l'inflexibilité. Le 1 craint que ses idéaux soient faux, ce qui le rend amer et misanthrope. Pour sauver son image de soi, il devient extrêmement fermé d'esprit, refuse tout compromis et devient hautement moralisateur.",
+      "Niveau 8 : L'obsession et la contradiction. Désespéré de contrôler ses désirs irrationnels, il devient obsédé par les parties de lui-même qu'il voulait dompter. Paradoxalement, il commence à agir selon ses désirs réprimés tout en continuant de les condamner publiquement.",
+      "Niveau 9 : La condamnation et la punition. Réalisant qu'il a perdu le contrôle et qu'il commet les actes qu'il ne peut tolérer chez les autres, le 1 devient punitif. Il tente de supprimer la « cause » de ses obsessions en lui-même ou chez les autres, ce qui peut mener à l'auto-mutilation, au meurtre ou au suicide."
+    ];
+
+    const SUBTYPES = {
+      survie: `1. Le sous-type SURVIE
+
+Titre du sous-type : Le Profil Un Survie.
+Équation des préoccupations : Préoccupation Un (essayer de bien faire) + Préoccupations Survie (la maison, la sécurité et la matérialité) = ANXIÉTÉ.
+Comportement / Description du fonctionnement : La satisfaction des besoins matériels (entretien, éducation, repas) devient si importante qu'elle génère de l'anxiété. Le Un survie multiplie les contrôles, vérifie les détails et s'attèle à la tâche avec discipline pour éviter l'insécurité. Il a souvent l'impression qu'il n'aura pas le temps de tout bien faire.
+Le paradoxe : Être de plus en plus concentré sur le détail, et donc de plus en plus anxieux, ne parvient jamais à le rassurer réellement.
+Métaphore : Le Pionnier. L'image du pionnier des westerns, assis droit sur son cheval, irréprochable malgré la poussière, cherchant à créer un monde de justice et de nature domestiquée.
+Signaux d'alerte du type : Trop d'anxiété, trop de tension corporelle (mâchoires, dos), manque de plaisir/rigolade, trop de sacrifice de soi.
+Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps passé au travail, trop de préoccupations sur le bien-être matériel, répétition de soirées routinières à la maison.
+Témoignage (Hervé) :
+Type : Apprécie son ressenti clair immédiat des situations et son endurance de « coureur de fond ».
+Sous-type : Apprécie sa sensibilité aux ambiances (chaleur et lumière) et le ressourcement vital au contact de la nature.
+Combinaison : La conscience de son anxiété focalisée sur la survie a été l'élément clé pour l'aider à lâcher prise.
+Référence cinématographique : Ben Hur (pour la discipline, l'effort inimaginable les dents serrées et la volonté de sauver sa tribu).`,
+      tete: `2. Le sous-type TÊTE-À-TÊTE
+
+Titre du sous-type : Le Profil Un Tête-à-tête.
+Équation des préoccupations : Préoccupation Un (essayer de bien faire) + Préoccupation Tête-à-tête (focalisation sur le partenaire) = ZÈLE OU JALOUSIE.
+Comportement / Description du fonctionnement : Il tente de contrôler la relation à l'autre avec un zèle anxieux. La colère s'exprime souvent par un esprit critique voilé (« tu devrais ») visant à faire changer le partenaire. Il peut être jaloux du temps que l'autre s'accorde ou de rivaux potentiellement « plus parfaits ».
+Le paradoxe : Faire tous les efforts possibles pour être le conjoint parfait risque de stresser l'autre et de lui donner envie de partir.
+Métaphore : Le Prédicateur. Celui qui prêche haut les principes moraux et se montre exemplaire, tout en éprouvant de la colère envers ceux qui vivent plus librement.
+Signaux d'alerte du type : (Identiques au sous-type survie) Trop d'anxiété, tension physique, manque de défoulement, sacrifice de soi excessif.
+Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention excessive focalisée sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du partenaire.
+Témoignage (Aurore) :
+Type : Apprécie sa constance, son honnêteté (incapacité de mentir) et son énergie inépuisable.
+Sous-type : Apprécie l'intensité des rencontres et ces « moments de grâce » où un lien fort se crée, même brièvement.
+Combinaison : Reconnait que son désir de moments forts la rend jalouse de l'emploi du temps de son mari, mais apprécie sa fidélité.
+Référence cinématographique : Nelly et Monsieur Arnaud (pour la complicité dans une « bulle », la jalousie inquisitrice et les remarques sur la conduite à tenir).`,
+      social: `3. Le sous-type SOCIAL
+
+Titre du sous-type : Le Profil Un Social.
+Équation des préoccupations : Préoccupation Un (essayer de bien faire) + Préoccupations Sociales (focalisation sur les amis, les groupes) = INADAPTABILITÉ SOCIALE.
+Comportement / Description du fonctionnement : Il cherche à réformer le monde, la politique ou la religion selon ses principes éthiques. Il a un concept de soi « aristocratique » et supérieur, se montrant civilisé et policé. Il impose ses normes avec enthousiasme, devenant rigide envers ceux qui ne respectent pas les règles sociales ou les idéaux.
+Le paradoxe : Trop de ferveur pour une cause peut finalement nuire à cette même cause.
+Métaphore : Le Réformateur. Celui qui connaît parfaitement les règles du jeu, veut les améliorer et ressent du ressentiment envers ceux qui les prennent à la légère.
+Signaux d'alerte du type : (Identiques) Trop d'anxiété, tensions physiques marquées, manque de plaisir, sacrifice de soi.
+Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps passé dans les relations sociales ou les clubs, dévouement excessif à une cause.
+Témoignage (Charles) :
+Type : Apprécie sa force intérieure disponible pour les autres, sa détermination de chef d'entreprise et sa capacité à structurer le chaos.
+Sous-type : Apprécie son sens du groupe et son respect pour la hiérarchie et les compétences des anciens.
+Combinaison : Dirige avec droiture et intégrité en essayant d'être irréprochable pour inciter les autres à ne pas tricher.
+Référence cinématographique : Les Vestiges du Jour (le majordome Stevens incarne la raideur conventionnelle, le respect absolu des règles de bienséance et le sacrifice des émotions au profit du travail).`
+    };
+
+    function escapeHTML(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function looksLikeDuplicateSectionTitle(line){
+      return /^\s*\d+\.\s+/.test(line.trim());
+    }
+
+    function isPlainHeading(line){
+      const t = line.trim();
+      if(!t) return false;
+      if(looksLikeDuplicateSectionTitle(t)) return true;
+      if(/^LE\s+type\s+et\s+sous\s+types/i.test(t)) return false;
+      return false;
+    }
+
+    function isSubhead(line, nextLine){
+      const t = line.trim();
+      if(!t) return false;
+
+      const noColonHeadings = new Set([
+        "Les Sous-types d'Ailes",
+        "Les trois sous-types instinctifs",
+        "Profil professionnel",
+        "Style de management",
+        "Style de communication",
+        "Points de vigilance",
+        "Réaction au Stress (Désintégration)",
+        "Chemin d'Intégration (Croissance)",
+        "Points d'amélioration à travailler",
+        "Pratiques suggérées et Attitudes de Guérison",
+        "Intégration (Idée supérieure et Vertu)",
+        "La Confiance Fondamentale",
+        "La Lumière du jour Vivante",
+        "L'Idée Sacrée comme Psycho-catalyseur",
+        "Rétablir la Confiance Fondamentale",
+        "L'Abandon",
+        "La Poussée Optimisante",
+        "Signaux d'Alerte",
+        "Les Défis de croissance"
+      ]);
+      if(noColonHeadings.has(t)) return true;
+
+      if(/:\s*$/.test(t)) return true;
+
+      if(t === "Hiérarchie des centres :" || t === "Passion et Fixation :" || t === "Mécanisme de défense :" || t === "Peurs et Désirs fondamentaux :" || t === "Le Schéma de l'enfance :" || t === "L'Idée sacrée :" || t === "L'Illusion Spécifique:" || t === "Le Noyau de la Fixation:" ) return true;
+
+      return false;
+    }
+
+    function renderTextToRT(text, rtEl){
+      const lines = (text || '').replace(/\r\n/g,'\n').split('\n');
+      let html = '';
+      let listMode = null;
+
+      const closeList = ()=>{
+        if(listMode){ html += `</ul>`; listMode = null; }
+      };
+
+      const openList = (mode)=>{
+        if(listMode === mode) return;
+        closeList();
+        listMode = mode;
+        html += `<ul class="${mode}">`;
+      };
+
+      const pushP = (line)=>{
+        closeList();
+        html += `<p>${escapeHTML(line)}</p>`;
+      };
+
+      const pushGap = ()=>{
+        closeList();
+        html += `<div class="gap"></div>`;
+      };
+
+      const pushSubhead = (title)=>{
+        closeList();
+        html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`;
+      };
+
+      const pushLabelRow = (k, v)=>{
+        closeList();
+        html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`;
+      };
+
+      const pushLI = (mode, k, v, keepColon=true)=>{
+        openList(mode);
+        if(v === null){
+          html += `<li>${escapeHTML(k)}</li>`;
+          return;
+        }
+        const label = keepColon ? `${k}` : k;
+        html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
+      };
+
+      for(let i=0;i<lines.length;i++){
+        const rawLine = lines[i];
+        const line = rawLine;
+
+        if(line.trim()===''){
+          pushGap();
+          continue;
+        }
+
+        if(looksLikeDuplicateSectionTitle(line)){
+          continue;
+        }
+
+        const nextLine = (i+1<lines.length) ? lines[i+1] : '';
+
+        if(isSubhead(line, nextLine)){
+          const t = line.trim();
+          const cleaned = t.replace(/:\s*$/,'');
+          pushSubhead(cleaned);
+          continue;
+        }
+
+        const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
+        if(kv){
+          const key = kv[1].trim();
+          const val = kv[2].trim();
+
+          if(/^Centre d'intelligence$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+          if(/^Orientation$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+          if(/^Compulsion$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          if(/^Centre Préféré$/i.test(key) || /^Centre de Support$/i.test(key) || /^Centre Réprimé$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^1w\d+/i.test(key) || /^Conservation\s*\(/i.test(key) || /^Social\s*\(/i.test(key) || /^Sexuel\s*\(/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Titre du sous-type$/i.test(key) || /^Équation des préoccupations$/i.test(key) || /^Comportement\s*\/\s*Description du fonctionnement$/i.test(key) || /^Le paradoxe$/i.test(key) || /^Métaphore$/i.test(key) || /^Signaux d'alerte du type$/i.test(key) || /^Signaux d'alerte du sous-type$/i.test(key) || /^Témoignage\s*\(.+\)$/i.test(key) || /^Type$/i.test(key) || /^Sous-type$/i.test(key) || /^Combinaison$/i.test(key) || /^Référence cinématographique$/i.test(key) ){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          pushLabelRow(key, val);
+          continue;
+        }
+
+        const arrow = line.match(/^\s*(➣)\s*(.+)$/);
+        if(arrow){
+          openList('arrow');
+          html += `<li>${escapeHTML(arrow[2])}</li>`;
+          continue;
+        }
+
+        const bullet2 = line.match(/^\s*[-•]\s+(.+)$/);
+        if(bullet2){
+          openList('dot');
+          html += `<li>${escapeHTML(bullet2[1])}</li>`;
+          continue;
+        }
+
+        if(isPlainHeading(line)){
+          continue;
+        }
+
+        pushP(line);
+      }
+
+      closeList();
+      rtEl.innerHTML = html;
+    }
+
+    function renderAllRichBlocks(){
+      qsa('.block.rich').forEach(block=>{
+        const raw = qs('.raw', block);
+        const rt = qs('.rt', block);
+        if(!raw || !rt) return;
+        renderTextToRT(raw.textContent, rt);
+      });
+    }
+
+    function setActiveTab(id){
+      const tabs = [
+        {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
+        {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
+        {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+      ];
+      tabs.forEach(t=>{
+        const on = (t.key === id);
+        t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.panel.hidden = !on;
+      });
+      setParam('tab', id);
+      try{ localStorage.setItem('type1_tab', id); }catch(e){}
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 1 • Profil complet' : (id === 'soustypes' ? 'Type 1 • Sous-types' : 'Type 1 • Niveaux de développement');
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('[data-search]');
+      if(!t){ blocks.forEach(b=>b.style.display=''); return; }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function updateLevel(n){
+      n = clamp(+n || 1, 1, 9);
+      const c = levelColor(n);
+      qs('#levelDot').style.background = c;
+      qs('#levelBadge').textContent = `Niveau ${n} • ${levelBand(n)}`;
+      qs('#levelRange').style.accentColor = c;
+
+      const rt = qs('#levelTextRT');
+      rt.innerHTML = '';
+      renderTextToRT(LEVELS[n-1] || '', rt);
+
+      setParam('lvl', String(n));
+      try{ localStorage.setItem('type1_lvl', String(n)); }catch(e){}
+    }
+
+    function openSubtype(key){
+      const mapBtn = {survie: qs('#btn-survie'), tete: qs('#btn-tete'), social: qs('#btn-social')};
+      Object.values(mapBtn).forEach(b=>b.classList.remove('active'));
+      if(mapBtn[key]) mapBtn[key].classList.add('active');
+
+      qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
+      qs('#modalSub').textContent = 'Type 1';
+
+      qs('#modalRaw').textContent = SUBTYPES[key] || '';
+      renderTextToRT(qs('#modalRaw').textContent, qs('#modalRT'));
+
+      qs('#subtypeModal').setAttribute('aria-hidden','false');
+
+      setParam('st', key);
+      try{ localStorage.setItem('type1_st', key); }catch(e){}
+    }
+    function closeSubtype(){ qs('#subtypeModal').setAttribute('aria-hidden','true'); }
+
+    function openCompare(){
+      qs('#cmpSurvieRaw').textContent = SUBTYPES.survie;
+      qs('#cmpTeteRaw').textContent = SUBTYPES.tete;
+      qs('#cmpSocialRaw').textContent = SUBTYPES.social;
+
+      renderTextToRT(qs('#cmpSurvieRaw').textContent, qs('#cmpSurvieRT'));
+      renderTextToRT(qs('#cmpTeteRaw').textContent, qs('#cmpTeteRT'));
+      renderTextToRT(qs('#cmpSocialRaw').textContent, qs('#cmpSocialRT'));
+
+      qs('#compareModal').setAttribute('aria-hidden','false');
+    }
+    function closeCompare(){ qs('#compareModal').setAttribute('aria-hidden','true'); }
+
+    function nextAction(){
+      const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+      if(tab === 'profil'){ setActiveTab('soustypes'); return; }
+      if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function initTop3Chip(){
+      const top = getParam('top');
+      if(!top) return;
+      const cleaned = top.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+      if(!cleaned.length) return;
+      qs('#top3Text').textContent = `Tes 3 résultats : ${cleaned.join(', ')}`;
+      qs('#top3Chip').style.display = '';
+    }
+
+    qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
+    qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
+    qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#nextBtn').addEventListener('click', nextAction);
+
+    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+    qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
+
+    qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
+    qs('#closeModal').addEventListener('click', closeSubtype);
+    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
+
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+
+    renderAllRichBlocks();
+    initTop3Chip();
+
+    const initTab = getParam('tab') || (()=>{
+      try{ return localStorage.getItem('type1_tab') || 'profil'; }catch(e){ return 'profil'; }
+    })();
+    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+
+    const initLvl = getParam('lvl') || (()=>{
+      try{ return localStorage.getItem('type1_lvl') || '1'; }catch(e){ return '1'; }
+    })();
+    updateLevel(initLvl);
+
+    const initSt = getParam('st') || (()=>{
+      try{ return localStorage.getItem('type1_st') || ''; }catch(e){ return ''; }
+    })();
+    if(initSt && SUBTYPES[initSt]){
+      setActiveTab('soustypes');
+      setTimeout(()=>openSubtype(initSt), 120);
+    }
+  </script>
+</body>
+</html>

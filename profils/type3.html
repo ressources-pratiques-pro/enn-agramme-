@@ -1,0 +1,1301 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Type 3 — Profil complet</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --line:rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a8b6dd;
+      --blue:#60a5fa;
+      --green:#34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.26), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(244,63,94,.15), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .hero{
+      flex:1 1 700px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+    .dot{width:9px;height:9px;border-radius:50%}
+
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
+    .tab{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(96,165,250,.14), rgba(255,255,255,0));
+    }
+    summary::-webkit-details-marker{display:none}
+
+    .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
+    .sumTitle b{
+      font-size:15px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.98);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+
+    .content{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    .block{
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .raw{display:none}
+    .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
+    .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
+    .rt .gap{height:10px}
+
+    .rt .labelRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin:0 0 10px;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .rt .label{
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:.15px;
+      font-size:13px;
+      text-transform:none;
+    }
+    .rt .value{
+      color:rgba(255,255,255,.92);
+      font-size:15px;
+      flex:1 1 auto;
+      min-width:220px;
+    }
+
+    .rt .subhead{
+      margin:2px 0 10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(96,165,250,.20);
+      background:linear-gradient(180deg, rgba(96,165,250,.10), rgba(0,0,0,.10));
+      color:rgba(255,255,255,.96);
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .rt .subhead .t{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .rt ul{margin:0 0 10px 18px;padding:0}
+    .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dash{list-style-type:"-  "}
+    .rt ul.arrow{list-style-type:"→  "}
+    .rt ul.dot{list-style-type:"•  "}
+    .rt li .k{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .sectionHeader{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;
+      font-weight:900;
+    }
+
+    .btn, button, a.btn{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover, button:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
+    .btn:active, button:active{transform:translateY(0)}
+    .btn.primary{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+    .btn.primary:hover{
+      background:rgba(96,165,250,.20);
+      border-color:rgba(96,165,250,.45);
+    }
+
+    .subtypeBtns{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    .subtypeBtns .btn{padding:12px}
+    .subtypeBtns .btn.active{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.14);
+    }
+    @media (max-width: 860px){
+      .subtypeBtns{grid-template-columns:1fr}
+    }
+
+    .rangeWrap{display:grid;gap:10px}
+    .rangeLine{
+      width:100%;
+      padding:12px 12px 10px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:16px;
+    }
+    input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
+    .trackLabel{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+    }
+
+    .bottomBar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      padding:10px 12px;
+      z-index:999;
+    }
+    .barInner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .barInfo{color:var(--muted);font-size:12px;font-weight:900}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .sheet{
+      width:min(980px, 100%);
+      max-height:86vh;
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 25px 90px rgba(0,0,0,.65);
+    }
+    .sheetHeader{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(10,14,28,.78);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
+    .sheetHeader .title span{color:var(--muted);font-size:12px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sheetBody{padding:14px}
+    .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
+    @media (max-width: 980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Type 3 — Le Battant / L'Exécutant</h1>
+
+        <div class="chips" id="chips">
+          <span class="chip"><span class="dot" style="background:var(--green)"></span>Centre émotionnel</span>
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Rôle social : Le Meilleur</span>
+          <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Onglets">
+          <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
+          <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
+          <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Recherche</h2>
+          <input id="search" type="search" placeholder="Tape un mot, ex : succès, image, mensonge..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Présentation</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Titre et Identité : Le Type 3 est appelé le Battant ou l'Exécutant. C'est le type adaptable et orienté vers le succès, caractérisé par son pragmatisme, son ambition et son souci de l'image. On les appelle souvent les « stars » de la nature humaine car ils incarnent les qualités valorisées par leur culture.
+Définition globale : Le Type 3, souvent appelé le Battant ou Celui qui réussit, est une personnalité centrée sur la capacité à réaliser et à réussir. C'est un individu dynamique, très relationnel et particulièrement attentif à son image sociale. Il cherche à être admiré pour ses compétences et ses succès concrets, s'identifiant souvent totalement à son travail. Le 3 est animé par le besoin de se sentir efficace et remarquable. Il possède un talent naturel pour l'organisation, la communication et la motivation des autres. Il tend à confondre son identité avec son travail et ses accomplissements.
+Rôle Social : « Le Meilleur ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure et dynamique psychologique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Centre d'intelligence
+Le Type 3 appartient au centre émotionnel, qu'il utilise à la fois vers l'intérieur et l'extérieur pour chercher un équilibre. Paradoxalement, il réprime ce même centre, ce qui l'amène à mal connaître ses propres émotions. Il privilégie le centre Émotionnel (utilisé pour maintenir l'équilibre entre l'intérieur et l'extérieur), mais paradoxalement, il le réprime pour ne pas freiner sa productivité.
+Hiérarchie des centres :
+* Centre Préféré : Émotionnel (Utilisation intérieure/extérieure)
+* Centre de Support : Instinctif
+* Centre Réprimé : Mental (Note : Le centre émotionnel est également considéré comme réprimé chez le 3 car il cherche à l'équilibrer)
+Orientation
+Capacité à réaliser et à réussir.
+Compulsion
+Éviter les échecs.
+Passion et Fixation
+* Passion (Cœur) : Le Mensonge (ou Tromperie). Il s'agit d'un mensonge "sincère" envers lui-même, où il finit par croire au rôle social qu'il joue au détriment de son être réel. C'est avant tout un mensonge envers soi-même, en se faisant croire que l'on est l'image de succès que l'on projette.
+* Fixation (Tête) : La Vanité et le Succès. Il court après l'admiration et les marques extérieures de réussite. La Vanité et la poursuite du succès comme preuve de sa valeur.
+Mécanisme de défense
+L'identification. Le 3 s'identifie aux normes sociales et à son rôle professionnel pour masquer ses doutes ou ses sentiments pénibles. Le 3 s'identifie si complètement à son rôle social et à ses succès qu'il en oublie son être véritable pour ne pas ressentir de sentiments pénibles comme la peur ou l'incertitude.
+Peurs et Désirs fondamentaux
+* Peur de base : Être sans valeur ou sans intérêt intrinsèque en dehors de ses réalisations.
+* Désir de base : Se sentir estimé, accepté et désirable.
+* Message du Surmoi : « Tu es bien ou correct si tu réussis et que les autres ont une bonne opinion de toi ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Origines et variantes</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Schéma de l'enfance
+L'enfant 3 a souvent ressenti qu'il n'était pas valorisé pour lui-même mais pour ce qu'il faisait. Il a développé un lien profond avec la figure nourricière (souvent la mère) en cherchant à répondre à ses attentes pour être aimé. Il a appris à jouer le rôle du « héros de la famille ».
+Les Sous-types d'Ailes
+* 3w2 (Le Charmeur) : Plus extraverti, amical, encourageant et soucieux d'être aimé.
+* 3w4 (Le Professionnel) : Plus sérieux, axé sur le travail, la compétence et l'intégrité professionnelle.
+Les trois sous-types instinctifs
+* Conservation (Accumulation) : Le « Bourreau de travail ». Il cherche à assurer sa sécurité par l'accumulation d'argent et d'objets coûteux ou luxueux qui symbolisent sa réussite. Cherche la sécurité par l'accumulation financière et matérielle.
+* Social (Prestige) : Le « Chercheur de statut ». Il accorde une importance capitale au prestige et au fait d'appartenir à des groupes ou entreprises valorisants pour provoquer l'admiration. Veut être reconnu comme le meilleur dans son groupe ou sa profession.
+* Sexuel (Masculinité / Féminité) : La « Star » ou la perle rare. Il cherche à incarner l'idéal masculin ou féminin selon les critères sociaux en vigueur pour être considéré comme un partenaire idéal. Cherche à incarner l'idéal de désirabilité pour attirer un partenaire.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Le Type 3 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Profil professionnel
+Le 3 est un travailleur acharné, efficace et pragmatique. Il supporte très bien la pression et sait mener plusieurs tâches de front. Il privilégie souvent la quantité et le résultat visible au détriment des détails ou des procédures.
+Style de management
+C'est un dirigeant naturel qui entraîne son équipe par son enthousiasme. Il fixe des buts clairs et délègue facilement, mais peut instaurer une compétition interne pour stimuler la productivité.
+Style de communication
+Son style est qualifié de « Propagande ». Il est persuasif, chaleureux et s'adapte comme un caméléon à son interlocuteur pour "vendre" ses projets ou son image.
+Points de vigilance
+Il risque l'épuisement (burn-out) par hyperactivité et peut négliger sa santé ou sa vie privée. Sa compétitivité excessive peut également créer des rivalités au sein de son équipe.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Réaction au Stress (Désintégration)
+Vers le Type 9. Le 3 devient alors apathique, désengagé, procrastinateur et se perd dans des routines inutiles.
+Chemin d'Intégration (Croissance)
+Vers le Type 6. Le 3 apprend à s'engager envers les autres, devient plus loyal, coopératif et trouve une sécurité intérieure au lieu de chercher l'admiration.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution et développement</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Points d'amélioration à travailler
+* Apprendre à ralentir et à respecter le rythme des autres.
+* S'intéresser au long terme plutôt qu'aux profits immédiats.
+* Reconnaître la part des autres dans ses succès et être plus attentif à leurs besoins.
+* Identifier ses vrais buts personnels au-delà de la reconnaissance sociale.
+* Développer sa créativité sans public et partager ses vulnérabilités avec des amis de confiance.
+Pratiques suggérées et Attitudes de Guérison
+Pratiquer la méditation pour « simplement être ». Se dire : « Peut-être que je n'ai pas besoin d'être le meilleur. Peut-être que les gens m'accepteront tel que je suis ».
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 3 s'intègre vers le Type 6 (ou le Type 9).
+* Essence : L'état où la personnalité exprime ses potentialités réelles, libérée de la recherche d'image.
+* Idée supérieure : L'Espérance (ou l'Harmonie Sacrée, la Loi Sacrée). Il réalise qu'il n'a pas besoin de tout forcer par lui-même et que le succès peut advenir naturellement. C'est la conscience que tout l'univers fonctionne comme une unité dynamique et interconnectée. Confiance que l'univers se déploie harmonieusement.
+* Vertu : La Vérité. Il devient capable d'être authentique et de montrer qui il est réellement, acceptant ses échecs comme des éléments ordinaires de la vie. Authenticité totale.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Perspective Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">L'Idée sacrée
+L'Harmonie Sacrée, la Loi Sacrée ou l'Espérance Sacrée. C'est la conscience que tout l'univers fonctionne comme une unité dynamique et interconnectée.
+L'Illusion Spécifique
+L'Acteur séparé. La conviction que l'on peut agir de façon indépendante et isolée du reste de l'univers.
+La Difficulté Spécifique
+L'Impuissance. Un sentiment profond d'inadéquation et d'incapacité résultant d'un manque de soutien environnemental filtré par l'illusion d'autonomie.
+La Réaction Spécifique
+La Lutte. Une activité agitée, compulsive et réactive pour prouver sa capacité et cacher son impuissance.
+Le Noyau de la Fixation
+Le complexe formé par le sentiment d'impuissance et la réaction de lutte incessante pour réussir.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Confiance Fondamentale
+La certitude que le flux de la réalité est intrinsèquement optimal et qu'on n'a pas besoin de « forcer » les choses.
+La Lumière du jour Vivante
+La perception de la réalité comme un temps réel fluide, où chaque moment est une création nouvelle et harmonieuse.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>La perspective et la solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">L'Idée Sacrée comme Psycho-catalyseur
+Elle dissout la vanité en montrant que l'action est un processus universel dont l'individu n'est qu'une partie.
+Rétablir la Confiance Fondamentale
+Cela passe par l'acceptation de son impuissance existentielle, qui est en fait une forme d'humilité ouvrant la porte à l'action de l'Être.
+L'Abandon
+Cesser de manipuler son expérience pour « paraître » et se laisser porter par le mouvement naturel de la vie.
+La Poussée Optimisante
+Reconnaître que la réalité possède une intelligence intrinsèque qui guide naturellement l'âme vers l'harmonie si l'on arrête de lutter.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Type 3 est souvent comparé à un caméléon. Comme cet animal change de couleur selon son environnement, le 3 modifie son apparence, son discours et ses attitudes en fonction des attentes de son public pour toujours paraître sous son meilleur jour et garantir sa réussite.
+L'ego du 3 : Comme un acteur si convaincu par son rôle qu'il a oublié son nom véritable ; l'Essence est le retour à la simplicité d'être soi-même.
+Le Type 3 est comme les pixels sur un écran de télévision : On croit voir une personne courir (l'acteur séparé), mais en réalité, c'est tout l'écran qui change de configuration en même temps de façon harmonieuse (la Loi Sacrée).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure de base</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">LE type et sous types
+
+Présentation générale du Type 3 : La structure de base
+* Blessure : Un jour, alors qu'il exprimait une émotion, l'enfant a estimé qu'il n'était pas entendu et ne serait jamais aimé pour son « vrai moi ». Il renonce alors à son essence pour espérer être aimé pour ses résultats et ses accomplissements.
+* Passion : La tromperie (duperie) et la vanité. La tromperie consiste à arranger la vérité pour donner la meilleure image possible de succès. La vanité est le fait de se passionner pour cette image de soi, en substituant le « moi » au profit d'une apparence extérieure dynamique et efficace.
+* Mécanisme de défense privilégié : L'identification. Le Trois évite l'échec en incarnant le rôle synonyme de succès aux yeux des autres. Il peut passer du rôle de père parfait à celui d'homme d'affaires performant dans la même journée, au point de ne plus savoir qui il est sous ces étiquettes.
+
+Items de présentation spécifique pour chaque sous-type</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SURVIE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Trois Survie.
+* Équation des préoccupations : Préoccupation Trois (l'action, la réussite, l'image) + Préoccupations Survie (la maison, la sécurité et la matérialité) = SÉCURITÉ.
+* Comportement / Description du fonctionnement : Il met son dynamisme au service de l'acquisition de biens matériels et d'argent, car cela le rassure sur l'avenir. Il est prêt à de grands sacrifices pour obtenir un emploi stable. Il a tendance à confondre l'aisance financière avec le plaisir émotionnel.
+* Le paradoxe : Aucune réussite matérielle ne suffit jamais à rassurer son insécurité foncière.
+* Métaphore : L'Entrepreneur.
+* Signaux d'alerte du type : Trop de préoccupations sur le travail, trop de stress/pression, besoin excessif de reconnaissance, course permanente après le temps.
+* Signaux d'alerte du sous-type : Attention excessive à la sécurité, trop de temps au travail, préoccupations matérielles envahissantes, répétition de soirées routinières.
+* Témoignage (Martin) :
+    * Type : Apprécie son sens de l'efficacité et son talent pour convaincre.
+    * Sous-type : Apprécie sa capacité de travail et son besoin d'entretenir son corps.
+    * Combinaison : Se sent fier d'apporter confort et sécurité financière à sa famille, même s'il est souvent en déplacement.
+* Référence cinématographique : Sommersby (le héros change d'identité pour incarner une version de lui-même plus valorisante et authentique dans une ferme).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
+          <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Trois Tête-à-tête.
+* Équation des préoccupations : Préoccupation Trois (l'action, la réussite, l'image) + Préoccupation Tête-à-tête (focalisation sur le partenaire) = MASCULIN/FÉMININ.
+* Comportement / Description du fonctionnement : Il utilise la séduction pour créer un lien et gagner l'approbation. Il tend à exagérer sa masculinité ou sa féminité pour devenir le « compagnon idéal ». Il possède un fort esprit de compétition, vivant la relation ou le travail comme un défi en face-à-face où il doit gagner.
+* Le paradoxe : Incarner l'image désirée par l'autre n'est pas le meilleur garant d'une relation durable et authentique.
+* Métaphore : L'Acteur de cinéma.
+* Signaux d'alerte du type : (Identiques) Stress, pression, besoin de reconnaissance, course contre le temps.
+* Signaux d'alerte du sous-type : Zèle à prouver sa passion, attention traquante sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du conjoint.
+* Témoignage (Charlotte) :
+    * Type : Apprécie sa grande capacité d'adaptation et son optimisme.
+    * Sous-type : Apprécie la jouissance des rencontres intenses et le jeu de conquête.
+    * Combinaison : Utilise sa féminité pour mettre en confiance ses clients en thérapie, appréciant d'être vue comme une professionnelle séduisante.
+* Référence cinématographique : Autant en emporte le Vent (Scarlett O’Hara utilise tous ses atours et son regard pour convaincre et séduire son entourage).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SOCIAL</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Trois Social.
+* Équation des préoccupations : Préoccupation Trois (l'action, la réussite, l'image) + Préoccupations Sociales (focalisation sur les amis, les groupes) = PRESTIGE.
+* Comportement / Description du fonctionnement : Son estime de soi dépend de sa réputation et de son statut au sein du groupe. Il veut être admiré et devenir le moteur de l'organisation. Il est très sensible aux titres, aux diplômes et aux relations influentes (le carnet d'adresses).
+* Le paradoxe : Gagner en prestige social ne le rapproche pas de son « vrai moi » et peut mener à l'échec intérieur.
+* Métaphore : Le Politique.
+* Signaux d'alerte du type : (Identiques) Préoccupations de travail, stress, besoin de reconnaissance, course contre le temps.
+* Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Pierre) :
+    * Type : Apprécie de mener plusieurs carrières de front (dirigeant, artiste, thérapeute) sans s'ennuyer.
+    * Sous-type : Aime s'intéresser à « qui fait quoi » pour s'introduire dans de nouveaux secteurs.
+    * Combinaison : Apprécie de briller en public et d'utiliser son leadership pour convaincre le groupe du meilleur chemin à suivre.
+* Référence cinématographique : Ridicule (illustre Versailles et le ridicule des codes sociaux où il faut briller par l'esprit pour ne pas être exclu).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Définition + continuum</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
+Les niveaux de développement du Type 3 (l'Altruiste ou le Battant) mesurent le degré d'identification d'une personne avec sa structure de personnalité et son image de soi. Ce continuum représente une échelle de liberté psychologique : plus on monte, plus on est authentique et libre ; plus on descend, plus on devient un "automate" de sa propre image de succès.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" id="levelDot" style="background:var(--green)"></span><span id="levelBadge">Niveau 1 • Sain</span></span>
+            </div>
+
+            <div class="rangeWrap">
+              <div class="rangeLine">
+                <div class="trackLabel"><span>1</span><span>9</span></div>
+                <input id="levelRange" type="range" min="1" max="9" step="1" value="1" />
+                <div class="bandPills">
+                  <span class="pill"><span class="dot" style="background:#22c55e"></span>Plage saine (1 à 3)</span>
+                  <span class="pill"><span class="dot" style="background:#f59e0b"></span>Plage moyenne (4 à 6)</span>
+                  <span class="pill"><span class="dot" style="background:#ef4444"></span>Plage malsaine (7 à 9)</span>
+                </div>
+              </div>
+
+              <div class="block" style="background:rgba(255,255,255,.03)">
+                <div class="rt" id="levelTextRT"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux 1 à 9</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Plage Saine : L'Authenticité et l'Excellence (Niveaux 1 à 3)
+À ces niveaux, le Type 3 est capable de se valoriser pour ce qu'il est, et non plus seulement pour ce qu'il fait.
+* Niveau 1 : Dirigé de l'intérieur et authentique. Le 3 abandonne la croyance que sa valeur dépend de l'admiration des autres. Il découvre son identité réelle et ses désirs profonds, devenant authentique, modeste et bienveillant.
+* Niveau 2 : Adaptable et admirable. Il se concentre sur les qualités valorisées par son entourage pour se sentir "valable". Son image de soi est : « Je suis exceptionnel, compétent et j'ai un potentiel illimité ».
+* Niveau 3 : Orienté vers les objectifs et s'améliorant. Il renforce son image en développant réellement ses talents. Il devient un modèle inspirant, efficace et discipliné, capable de motiver les autres par son exemple.
+La Plage Moyenne : La Performance et l'Image (Niveaux 4 à 6)
+C'est ici que le Type 3 commence à s'aliéner de lui-même pour satisfaire les attentes extérieures.
+* Niveau 4 : Orienté vers le succès et performant. Il craint d'être éclipsé par les autres. Il commence à se pousser sans relâche pour se distinguer et obtenir de l'attention par le surpassement constant.
+* Niveau 5 : Soucieux de son image et expédient. Il a peur de perdre l'estime des autres. Il travaille frénétiquement à cultiver l'image la plus séduisante possible, cachant ses doutes derrière un masque de "professionnel cool".
+* Niveau 6 : Auto-promotion et grandiose. Il craint de passer inaperçu s'il n'est pas "énorme". Il commence à se vanter, devient compétitif et arrogant pour protéger une estime de soi devenue fragile et narcissique.
+La Plage Malsaine : La Tromperie et le Désespoir (Niveaux 7 à 9)
+À ce stade, le Type 3 perd le contrôle et sa personnalité se fragmente face au sentiment d'échec.
+* Niveau 7 : Sans principes et trompeur. Il craint que ses succès ne soient vides ou frauduleux. Pour sauver les apparences, il commence à mentir effrontément à lui-même et aux autres, se sentant vide et déprimé intérieurement.
+* Niveau 8 : Duplicité et opportunisme. Désespéré d'obtenir de l'attention, il invente des histoires ou des stratagèmes pour cacher sa détérioration psychologique. Il est prêt à tout pour que personne ne voie ses erreurs.
+* Niveau 9 : Monomaniaque et implacable. Il sent qu'il ne peut plus regagner l'admiration de ses proches. Il peut perdre le contrôle de sa rage réprimée et chercher à se venger de ceux qui, selon lui, l'ont rejeté ou "humilié".</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Signaux d’alerte</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Signaux d'Alerte
+* Signal d'Éveil : Commencer à croire que sa valeur dépend exclusivement de son succès.
+* Signal d'Alarme : La peur que ses succès soient vides ou que ses prétentions soient démasquées comme frauduleuses.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Défis de croissance</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les Défis de croissance
+Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et identifier ses vrais buts personnels.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
+      </div>
+      <div class="barInfo" id="barInfo">Type 3</div>
+    </div>
+  </div>
+
+  <div class="modal" id="subtypeModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
+      <div class="sheetHeader">
+        <div class="title">
+          <b id="modalTitle">Sous-type</b>
+          <span id="modalSub">Type 3</span>
+        </div>
+        <div>
+          <button class="btn" id="closeModal" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="block rich">
+          <pre class="raw" id="modalRaw"></pre>
+          <div class="rt" id="modalRT"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Comparer les sous-types">
+      <div class="sheetHeader">
+        <div class="title">
+          <b>Comparer les 3 sous-types</b>
+          <span>Type 3</span>
+        </div>
+        <div>
+          <button class="btn" id="closeCompare" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="cols">
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SURVIE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSurvieRaw"></pre>
+              <div class="rt" id="cmpSurvieRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">TÊTE-À-TÊTE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpTeteRaw"></pre>
+              <div class="rt" id="cmpTeteRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SOCIAL</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSocialRaw"></pre>
+              <div class="rt" id="cmpSocialRT"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      if(value === null || value === undefined || value === '') u.searchParams.delete(name);
+      else u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
+    }
+    function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
+
+    function levelColor(n){
+      if(n<=3) return '#22c55e';
+      if(n<=6) return '#f59e0b';
+      return '#ef4444';
+    }
+    function levelBand(n){
+      if(n<=3) return 'Sain';
+      if(n<=6) return 'Moyen';
+      return 'Malsain';
+    }
+
+    const LEVELS = [
+      "Niveau 1 : Dirigé de l'intérieur et authentique. Le 3 abandonne la croyance que sa valeur dépend de l'admiration des autres. Il découvre son identité réelle et ses désirs profonds, devenant authentique, modeste et bienveillant.",
+      "Niveau 2 : Adaptable et admirable. Il se concentre sur les qualités valorisées par son entourage pour se sentir \"valable\". Son image de soi est : « Je suis exceptionnel, compétent et j'ai un potentiel illimité ».",
+      "Niveau 3 : Orienté vers les objectifs et s'améliorant. Il renforce son image en développant réellement ses talents. Il devient un modèle inspirant, efficace et discipliné, capable de motiver les autres par son exemple.",
+      "Niveau 4 : Orienté vers le succès et performant. Il craint d'être éclipsé par les autres. Il commence à se pousser sans relâche pour se distinguer et obtenir de l'attention par le surpassement constant.",
+      "Niveau 5 : Soucieux de son image et expédient. Il a peur de perdre l'estime des autres. Il travaille frénétiquement à cultiver l'image la plus séduisante possible, cachant ses doutes derrière un masque de \"professionnel cool\".",
+      "Niveau 6 : Auto-promotion et grandiose. Il craint de passer inaperçu s'il n'est pas \"énorme\". Il commence à se vanter, devient compétitif et arrogant pour protéger une estime de soi devenue fragile et narcissique.",
+      "Niveau 7 : Sans principes et trompeur. Il craint que ses succès ne soient vides ou frauduleux. Pour sauver les apparences, il commence à mentir effrontément à lui-même et aux autres, se sentant vide et déprimé intérieurement.",
+      "Niveau 8 : Duplicité et opportunisme. Désespéré d'obtenir de l'attention, il invente des histoires ou des stratagèmes pour cacher sa détérioration psychologique. Il est prêt à tout pour que personne ne voie ses erreurs.",
+      "Niveau 9 : Monomaniaque et implacable. Il sent qu'il ne peut plus regagner l'admiration de ses proches. Il peut perdre le contrôle de sa rage réprimée et chercher à se venger de ceux qui, selon lui, l'ont rejeté ou \"humilié\"."
+    ];
+
+    const SUBTYPES = {
+      survie: `1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Trois Survie.
+* Équation des préoccupations : Préoccupation Trois (l'action, la réussite, l'image) + Préoccupations Survie (la maison, la sécurité et la matérialité) = SÉCURITÉ.
+* Comportement / Description du fonctionnement : Il met son dynamisme au service de l'acquisition de biens matériels et d'argent, car cela le rassure sur l'avenir. Il est prêt à de grands sacrifices pour obtenir un emploi stable. Il a tendance à confondre l'aisance financière avec le plaisir émotionnel.
+* Le paradoxe : Aucune réussite matérielle ne suffit jamais à rassurer son insécurité foncière.
+* Métaphore : L'Entrepreneur.
+* Signaux d'alerte du type : Trop de préoccupations sur le travail, trop de stress/pression, besoin excessif de reconnaissance, course permanente après le temps.
+* Signaux d'alerte du sous-type : Attention excessive à la sécurité, trop de temps au travail, préoccupations matérielles envahissantes, répétition de soirées routinières.
+* Témoignage (Martin) :
+    * Type : Apprécie son sens de l'efficacité et son talent pour convaincre.
+    * Sous-type : Apprécie sa capacité de travail et son besoin d'entretenir son corps.
+    * Combinaison : Se sent fier d'apporter confort et sécurité financière à sa famille, même s'il est souvent en déplacement.
+* Référence cinématographique : Sommersby (le héros change d'identité pour incarner une version de lui-même plus valorisante et authentique dans une ferme).`,
+      tete: `2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Trois Tête-à-tête.
+* Équation des préoccupations : Préoccupation Trois (l'action, la réussite, l'image) + Préoccupation Tête-à-tête (focalisation sur le partenaire) = MASCULIN/FÉMININ.
+* Comportement / Description du fonctionnement : Il utilise la séduction pour créer un lien et gagner l'approbation. Il tend à exagérer sa masculinité ou sa féminité pour devenir le « compagnon idéal ». Il possède un fort esprit de compétition, vivant la relation ou le travail comme un défi en face-à-face où il doit gagner.
+* Le paradoxe : Incarner l'image désirée par l'autre n'est pas le meilleur garant d'une relation durable et authentique.
+* Métaphore : L'Acteur de cinéma.
+* Signaux d'alerte du type : (Identiques) Stress, pression, besoin de reconnaissance, course contre le temps.
+* Signaux d'alerte du sous-type : Zèle à prouver sa passion, attention traquante sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du conjoint.
+* Témoignage (Charlotte) :
+    * Type : Apprécie sa grande capacité d'adaptation et son optimisme.
+    * Sous-type : Apprécie la jouissance des rencontres intenses et le jeu de conquête.
+    * Combinaison : Utilise sa féminité pour mettre en confiance ses clients en thérapie, appréciant d'être vue comme une professionnelle séduisante.
+* Référence cinématographique : Autant en emporte le Vent (Scarlett O’Hara utilise tous ses atours et son regard pour convaincre et séduire son entourage).`,
+      social: `3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Trois Social.
+* Équation des préoccupations : Préoccupation Trois (l'action, la réussite, l'image) + Préoccupations Sociales (focalisation sur les amis, les groupes) = PRESTIGE.
+* Comportement / Description du fonctionnement : Son estime de soi dépend de sa réputation et de son statut au sein du groupe. Il veut être admiré et devenir le moteur de l'organisation. Il est très sensible aux titres, aux diplômes et aux relations influentes (le carnet d'adresses).
+* Le paradoxe : Gagner en prestige social ne le rapproche pas de son « vrai moi » et peut mener à l'échec intérieur.
+* Métaphore : Le Politique.
+* Signaux d'alerte du type : (Identiques) Préoccupations de travail, stress, besoin de reconnaissance, course contre le temps.
+* Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Pierre) :
+    * Type : Apprécie de mener plusieurs carrières de front (dirigeant, artiste, thérapeute) sans s'ennuyer.
+    * Sous-type : Aime s'intéresser à « qui fait quoi » pour s'introduire dans de nouveaux secteurs.
+    * Combinaison : Apprécie de briller en public et d'utiliser son leadership pour convaincre le groupe du meilleur chemin à suivre.
+* Référence cinématographique : Ridicule (illustre Versailles et le ridicule des codes sociaux où il faut briller par l'esprit pour ne pas être exclu).`
+    };
+
+    function escapeHTML(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function looksLikeDuplicateSectionTitle(line){
+      return /^\s*(GPT\s*\d+|Type\s*\d+)\b/i.test(line.trim()) || /^\s*\d+\.\s+/.test(line.trim());
+    }
+
+    function isPlainHeading(line){
+      const t = line.trim();
+      if(!t) return false;
+      if(looksLikeDuplicateSectionTitle(t)) return true;
+      if(/^LE\s+type\s+et\s+sous\s+types/i.test(t)) return false;
+      return false;
+    }
+
+    function isSubhead(line){
+      const t = line.trim();
+      if(!t) return false;
+
+      const noColonHeadings = new Set([
+        "Centre d'intelligence",
+        "Orientation",
+        "Compulsion",
+        "Passion et Fixation",
+        "Mécanisme de défense",
+        "Peurs et Désirs fondamentaux",
+        "Le Schéma de l'enfance",
+        "Les Sous-types d'Ailes",
+        "Les trois sous-types instinctifs",
+        "Profil professionnel",
+        "Style de management",
+        "Style de communication",
+        "Points de vigilance",
+        "Réaction au Stress (Désintégration)",
+        "Chemin d'Intégration (Croissance)",
+        "Points d'amélioration à travailler",
+        "Pratiques suggérées et Attitudes de Guérison",
+        "Intégration (Idée supérieure et Vertu)",
+        "L'Idée sacrée",
+        "L'Illusion Spécifique",
+        "La Difficulté Spécifique",
+        "La Réaction Spécifique",
+        "Le Noyau de la Fixation",
+        "La Confiance Fondamentale",
+        "La Lumière du jour Vivante",
+        "L'Idée Sacrée comme Psycho-catalyseur",
+        "Rétablir la Confiance Fondamentale",
+        "L'Abandon",
+        "La Poussée Optimisante",
+        "Signaux d'Alerte",
+        "Les Défis de croissance",
+        "Hiérarchie des centres"
+      ]);
+      if(noColonHeadings.has(t)) return true;
+
+      if(/:\s*$/.test(t)) return true;
+
+      if(t === "Hiérarchie des centres :") return true;
+
+      return false;
+    }
+
+    function renderTextToRT(text, rtEl){
+      const lines = (text || '').replace(/\r\n/g,'\n').split('\n');
+      let html = '';
+      let listMode = null;
+
+      const closeList = ()=>{
+        if(listMode){ html += `</ul>`; listMode = null; }
+      };
+
+      const openList = (mode)=>{
+        if(listMode === mode) return;
+        closeList();
+        listMode = mode;
+        html += `<ul class="${mode}">`;
+      };
+
+      const pushP = (line)=>{
+        closeList();
+        html += `<p>${escapeHTML(line)}</p>`;
+      };
+
+      const pushGap = ()=>{
+        closeList();
+        html += `<div class="gap"></div>`;
+      };
+
+      const pushSubhead = (title)=>{
+        closeList();
+        html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`;
+      };
+
+      const pushLabelRow = (k, v)=>{
+        closeList();
+        html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`;
+      };
+
+      const pushLI = (mode, k, v, keepColon=true)=>{
+        openList(mode);
+        if(v === null){
+          html += `<li>${escapeHTML(k)}</li>`;
+          return;
+        }
+        const label = keepColon ? `${k}` : k;
+        html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
+      };
+
+      for(let i=0;i<lines.length;i++){
+        const line = lines[i];
+
+        if(line.trim()===''){
+          pushGap();
+          continue;
+        }
+
+        if(isPlainHeading(line)){
+          continue;
+        }
+
+        if(isSubhead(line)){
+          const cleaned = line.trim().replace(/:\s*$/,'');
+          pushSubhead(cleaned);
+          continue;
+        }
+
+        const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
+        if(kv){
+          const key = kv[1].trim();
+          const val = kv[2].trim();
+
+          if(/^Titre et Identité$/i.test(key) || /^Définition globale$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          if(/^Centre Préféré$/i.test(key) || /^Centre de Support$/i.test(key) || /^Centre Réprimé$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi$/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Le Message du Surmoi$/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          pushLabelRow(key, val);
+          continue;
+        }
+
+        const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
+        if(bullet){
+          openList('dot');
+          html += `<li>${escapeHTML(bullet[1])}</li>`;
+          continue;
+        }
+
+        pushP(line);
+      }
+
+      closeList();
+      rtEl.innerHTML = html;
+    }
+
+    function renderAllRichBlocks(){
+      qsa('.block.rich').forEach(block=>{
+        const raw = qs('.raw', block);
+        const rt = qs('.rt', block);
+        if(!raw || !rt) return;
+        renderTextToRT(raw.textContent, rt);
+      });
+    }
+
+    function setActiveTab(id){
+      const tabs = [
+        {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
+        {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
+        {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+      ];
+      tabs.forEach(t=>{
+        const on = (t.key === id);
+        t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.panel.hidden = !on;
+      });
+      setParam('tab', id);
+      try{ localStorage.setItem('type3_tab', id); }catch(e){}
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 3 • Profil complet' : (id === 'soustypes' ? 'Type 3 • Sous-types' : 'Type 3 • Niveaux de développement');
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('[data-search]');
+      if(!t){ blocks.forEach(b=>b.style.display=''); return; }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function updateLevel(n){
+      n = clamp(+n || 1, 1, 9);
+      const c = levelColor(n);
+      qs('#levelDot').style.background = c;
+      qs('#levelBadge').textContent = `Niveau ${n} • ${levelBand(n)}`;
+      qs('#levelRange').style.accentColor = c;
+
+      const rt = qs('#levelTextRT');
+      rt.innerHTML = '';
+      renderTextToRT(LEVELS[n-1] || '', rt);
+
+      setParam('lvl', String(n));
+      try{ localStorage.setItem('type3_lvl', String(n)); }catch(e){}
+    }
+
+    function openSubtype(key){
+      const mapBtn = {survie: qs('#btn-survie'), tete: qs('#btn-tete'), social: qs('#btn-social')};
+      Object.values(mapBtn).forEach(b=>b.classList.remove('active'));
+      if(mapBtn[key]) mapBtn[key].classList.add('active');
+
+      qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
+      qs('#modalSub').textContent = 'Type 3';
+
+      qs('#modalRaw').textContent = SUBTYPES[key] || '';
+      renderTextToRT(qs('#modalRaw').textContent, qs('#modalRT'));
+
+      qs('#subtypeModal').setAttribute('aria-hidden','false');
+
+      setParam('st', key);
+      try{ localStorage.setItem('type3_st', key); }catch(e){}
+    }
+    function closeSubtype(){ qs('#subtypeModal').setAttribute('aria-hidden','true'); }
+
+    function openCompare(){
+      qs('#cmpSurvieRaw').textContent = SUBTYPES.survie;
+      qs('#cmpTeteRaw').textContent = SUBTYPES.tete;
+      qs('#cmpSocialRaw').textContent = SUBTYPES.social;
+
+      renderTextToRT(qs('#cmpSurvieRaw').textContent, qs('#cmpSurvieRT'));
+      renderTextToRT(qs('#cmpTeteRaw').textContent, qs('#cmpTeteRT'));
+      renderTextToRT(qs('#cmpSocialRaw').textContent, qs('#cmpSocialRT'));
+
+      qs('#compareModal').setAttribute('aria-hidden','false');
+    }
+    function closeCompare(){ qs('#compareModal').setAttribute('aria-hidden','true'); }
+
+    function nextAction(){
+      const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+      if(tab === 'profil'){ setActiveTab('soustypes'); return; }
+      if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function initTop3Chip(){
+      const top = getParam('top');
+      if(!top) return;
+      const cleaned = top.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+      if(!cleaned.length) return;
+      qs('#top3Text').textContent = `Tes 3 résultats : ${cleaned.join(', ')}`;
+      qs('#top3Chip').style.display = '';
+    }
+
+    qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
+    qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
+    qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#nextBtn').addEventListener('click', nextAction);
+
+    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+    qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
+
+    qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
+    qs('#closeModal').addEventListener('click', closeSubtype);
+    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
+
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+
+    renderAllRichBlocks();
+    initTop3Chip();
+
+    const initTab = getParam('tab') || (()=>{
+      try{ return localStorage.getItem('type3_tab') || 'profil'; }catch(e){ return 'profil'; }
+    })();
+    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+
+    const initLvl = getParam('lvl') || (()=>{
+      try{ return localStorage.getItem('type3_lvl') || '1'; }catch(e){ return '1'; }
+    })();
+    updateLevel(initLvl);
+
+    const initSt = getParam('st') || (()=>{
+      try{ return localStorage.getItem('type3_st') || ''; }catch(e){ return ''; }
+    })();
+    if(initSt && SUBTYPES[initSt]){
+      setActiveTab('soustypes');
+      setTimeout(()=>openSubtype(initSt), 120);
+    }
+  </script>
+</body>
+</html>

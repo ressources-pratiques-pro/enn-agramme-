@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Type 8 — Profil complet</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --line:rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a8b6dd;
+      --blue:#60a5fa;
+      --green:#34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.18), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(239,68,68,.16), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(245,158,11,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .top{display:flex;gap:14px;align-items:stretch;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+
+    .hero{
+      flex:1 1 700px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{margin:0 0 10px;font-size:clamp(22px, 3vw, 30px);letter-spacing:.2px}
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:7px 10px;border-radius:999px;
+      font-size:12px;color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+    .dot{width:9px;height:9px;border-radius:50%}
+
+    .side{flex:0 1 360px;display:grid;gap:12px;align-content:start}
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{margin:0 0 10px;font-size:14px;letter-spacing:.2px;color:rgba(255,255,255,.92)}
+
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+    .tab{
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.92);
+      font-weight:900;font-size:13px;
+      cursor:pointer;user-select:none;-webkit-tap-highlight-color: transparent;
+    }
+    .tab[aria-selected="true"]{background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.35)}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      user-select:none;-webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(239,68,68,.14), rgba(255,255,255,0));
+    }
+    summary::-webkit-details-marker{display:none}
+    .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
+    .sumTitle b{
+      font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.98);
+      display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    }
+    .chev{
+      width:10px;height:10px;border-right:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);transition:.18s ease;margin-right:4px;flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+    .content{padding:12px 14px 14px;border-top:1px solid var(--line)}
+
+    .block{background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:12px}
+    .raw{display:none}
+    .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
+    .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
+    .rt .gap{height:10px}
+
+    .rt .labelRow{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;
+      margin:0 0 10px;padding:10px 10px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .rt .label{color:var(--blue);font-weight:950;letter-spacing:.15px;font-size:13px}
+    .rt .value{color:rgba(255,255,255,.92);font-size:15px;flex:1 1 auto;min-width:220px}
+
+    .rt .subhead{
+      margin:2px 0 10px;padding:8px 10px;border-radius:12px;
+      border:1px solid rgba(239,68,68,.28);
+      background:linear-gradient(180deg, rgba(239,68,68,.12), rgba(0,0,0,.10));
+      color:rgba(255,255,255,.96);
+      font-weight:950;letter-spacing:.2px;
+    }
+    .rt .subhead .t{color:#fb7185;font-weight:950}
+
+    .rt ul{margin:0 0 10px 18px;padding:0}
+    .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dot{list-style-type:"•  "}
+
+    .sectionHeader{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;font-weight:900;
+    }
+
+    .btn, button, a.btn{
+      cursor:pointer;border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;border-radius:14px;
+      font-weight:900;letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;-webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover, button:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+    .btn:active, button:active{transform:translateY(0)}
+    .btn.primary{background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.35)}
+    .btn.primary:hover{background:rgba(96,165,250,.20);border-color:rgba(96,165,250,.45)}
+
+    .subtypeBtns{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:10px}
+    .subtypeBtns .btn{padding:12px}
+    .subtypeBtns .btn.active{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.14);
+    }
+    @media (max-width: 860px){.subtypeBtns{grid-template-columns:1fr}}
+
+    .rangeWrap{display:grid;gap:10px}
+    .rangeLine{
+      width:100%;
+      padding:12px 12px 10px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:16px;
+    }
+    input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
+    .trackLabel{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);font-weight:900}
+    .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;color:rgba(255,255,255,.92);
+      font-weight:900;
+    }
+
+    .bottomBar{
+      position:fixed;left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      padding:10px 12px;z-index:999;
+    }
+    .barInner{
+      max-width:1100px;margin:0 auto;
+      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .barInfo{color:var(--muted);font-size:12px;font-weight:900}
+
+    .modal{
+      position:fixed;inset:0;
+      display:none;align-items:flex-end;justify-content:center;
+      z-index:2000;padding:18px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .sheet{
+      width:min(980px, 100%);
+      max-height:86vh;overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 25px 90px rgba(0,0,0,.65);
+    }
+    .sheetHeader{
+      position:sticky;top:0;z-index:1;
+      background:rgba(10,14,28,.78);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+    }
+    .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
+    .sheetHeader .title span{color:var(--muted);font-size:12px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sheetBody{padding:14px}
+    .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
+    @media (max-width: 980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Type 8 — Le Leader / Le Challenger / Le Chef</h1>
+
+        <div class="chips" id="chips">
+          <span class="chip"><span class="dot" style="background:#fb7185"></span>Centre instinctif</span>
+          <span class="chip"><span class="dot" style="background:#fbbf24"></span>Rôle social : Le Roc</span>
+          <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Onglets">
+          <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
+          <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
+          <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Recherche</h2>
+          <input id="search" type="search" placeholder="Tape un mot, ex : luxure, vengeance, déni, justice, contrôle..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Présentation et identification</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Présentation et Identification
+Titre et Identité : Le Type 8 est appelé le « Leader », le « Chef », le « Challenger » ou « Celui qui fait face ». C'est une personnalité dont l'énergie est centrée sur la puissance et le courage.
+Définition globale : Le Type 8 est l'individu qui possède la plus grande énergie physique de l'Ennéagramme. Il cherche à avoir un impact fort sur le monde, qu'il perçoit comme un lieu potentiellement dangereux et injuste. Il voit la vie comme un combat, ce qui légitime son action pour rétablir la justice. Animé par le besoin d'être indépendant et de prouver sa force, il cherche à protéger les siens tout en évitant toute forme de contrôle extérieur.
+Rôle Social : « Le Roc ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure et dynamique psychologique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Le Type 8 appartient au centre instinctif, qu'il utilise vers l'extérieur pour agir sur son environnement.
+
+Hiérarchie des centres :
+* Centre Préféré : Instinctif (Utilisation extérieure)
+* Centre de Support : Mental (ou Émotionnel selon la variante)
+* Centre Réprimé : Émotionnel (ou Mental)
+
+Orientation
+La puissance et le courage.
+
+Compulsion
+Éviter à tout prix toute marque de faiblesse.
+
+Passion et Fixation
+* Passion (Cœur) : L'Excès (ou Luxure). Il est immodéré dans tous les domaines, cherchant l'intensité, à pousser les limites et le pouvoir à tout prix.
+* Fixation (Tête) : La Vengeance. Il cherche à « équilibrer les comptes » et à se venger s'il estime avoir été trahi, avoir perdu le pouvoir ou subi une injustice.
+
+Mécanisme de défense
+La dénégation (ou déni). Cela consiste à nier la souffrance (la sienne ou celle infligée aux autres), ainsi que les sentiments perçus comme des faiblesses (peur, tendresse, fatigue, maladie) pour paraître toujours fort.
+
+Peurs et Désirs fondamentaux
+* Peur de base : Être blessé, contrôlé par les autres, ou être victime d'une violation.
+* Désir de base : Se protéger, être maître de sa vie et déterminer son propre cours.
+* Message du Surmoi : « Tu es bien ou correct si tu es fort et que tu maîtrises ta situation ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Origines et variantes</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Origines et Variantes
+Le Schéma de l'enfance
+Le 8 a souvent ressenti le besoin de devenir adulte précocement pour assurer sa survie dans un environnement perçu comme dur ou injuste. Il a souvent vécu une sensation de trahison ou de rejet, décidant alors de ne plus jamais être vulnérable ni dépendant.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="block rich" style="margin-top:12px">
+              <pre class="raw">Les trois sous-types instinctifs
+* Conservation (Survie / Le Survivant) : Il est extrêmement pointilleux sur le contrôle de son environnement immédiat et la sécurité matérielle. Il accumule des ressources et craint que tout s'effondre au moindre grain de sable.
+* Social (Protection mutuelle / Camaraderie) : Il cherche à nouer des relations amicales fortes et bâtit des alliances solides. Il protège farouchement son « cercle intérieur » et attend une protection en retour, percevant ceux qui sont à l'extérieur comme des ennemis.
+* Sexuel (Possessivité / Prendre charge) : Passionné et charismatique, il veut le contrôle total de la relation et teste longuement la loyauté de son partenaire. Une fois en confiance, il baisse la garde mais devient terriblement possessif.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux de développement (aperçu)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement est une mesure du degré d'identification d'une personne avec sa structure de personnalité. Plus on descend dans les niveaux, plus l'ego se durcit pour protéger la vulnérabilité.
+
+La Plage Saine : Magnanimité et Force (Niveaux 1 à 3)
+* Niveau 1 : Le renoncement à soi et l'héroïsme. Il abandonne la croyance qu'il doit contrôler son environnement, ce qui lui permet de baisser sa garde. Il devient magnanime, courageux et capable de pardonner.
+* Niveau 2 : L'autonomie et la force. Il utilise sa volonté pour être indépendant. Son image de soi est : « Je suis affirmatif, direct et plein de ressources ».
+* Niveau 3 : La confiance en soi et le leadership. Il renforce son image en relevant des défis constructifs. Il protège les autres, les aide à devenir forts et se montre stratégique.
+
+La Plage Moyenne : Domination et Contrôle (Niveaux 4 à 6)
+* Niveau 4 : Le pragmatisme et l'esprit d'entreprise. Il commence à craindre de manquer de ressources. Il devient plus rusé, compétitif et cache ses sentiments.
+* Niveau 5 : La glorification de soi et la domination. Il s'inquiète du respect qu'on lui porte. Il veut que les autres sachent qu'il commande, se vante et devient fier.
+* Niveau 6 : La confrontation et l'intimidation. Craignant de perdre le contrôle, il fait pression sur les autres par des menaces. Il devient provocateur et colérique.
+
+La Plage Malsaine : Impitoyabilité et Destruction (Niveaux 7 à 9)
+* Niveau 7 : L'impitoyabilité et la dictature. Il craint que les autres ne se liguent contre lui. Se voyant comme un hors-la-loi, il devient vindicatif et violent pour protéger ses intérêts.
+* Niveau 8 : La mégalomanie et la terreur. Désespéré, il attaque ses rivaux potentiels avant qu'ils ne puissent le menacer. Il a des illusions d'invulnérabilité.
+* Niveau 9 : La sociopathie et la destruction. Réalisant qu'il s'est créé des ennemis puissants, il préfère tout détruire (y compris lui-même) plutôt que de se laisser vaincre.
+
+Signaux d'Alerte
+* Signal d'Éveil : La lutte constante pour l'autosuffisance (croire qu'il faut se battre contre tout).
+* Signal d'Alarme : La peur que les autres se retournent contre lui et exercent des représailles.
+
+Les Défis de croissance
+Apprendre à admettre ses émotions, reconnaître sa propre vulnérabilité et traiter ses blessures émotionnelles plutôt que de les nier.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Type 8 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">4. Le Type 8 en Entreprise
+Profil professionnel
+Le 8 est un travailleur acharné et enthousiaste qui prend des décisions rapides. Il supporte très bien le stress, aime les défis et va au bout de ses projets. Il respecte la hiérarchie uniquement si le leader est "vrai" et fort, sinon il entre en opposition.
+
+Style de management
+C'est un manager de combat, excellent pour lancer des projets ou balayer des obstacles, mais vite ennuyé par la gestion quotidienne. Il délègue peu, veut tout contrôler et exige une transparence totale de ses collaborateurs.
+
+Style de communication
+Son style est qualifié d'« Impératifs ». Il parle fort, avec autorité et franchise, n'hésitant pas à être direct ou même brusque.
+
+Points de vigilance
+Sa tendance à l'intimidation et ses colères violentes peuvent créer un climat de crainte. Il peut nier son impact sur les autres et mépriser ce qu'il perçoit comme de la fragilité.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">5. Dynamique des Flèches
+Réaction au Stress (Désintégration)
+Vers le Type 5. Le 8 devient alors secret, retiré, cynique et passe son temps à observer et à élaborer des stratégies dans l'isolement.
+
+Chemin d'Intégration (Croissance)
+Vers le Type 2. Le 8 apprend à ouvrir son cœur, devient plus attentionné, généreux et exprime sa tendresse.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution, pratiques, intégration</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">6. Évolution et Développement
+Points d'amélioration à travailler
+* Apprendre à admettre ses émotions et sa propre vulnérabilité.
+* Prendre le temps de la réflexion avant de foncer dans l'action.
+* Développer la patience envers ceux qui n'ont pas le même rythme ou la même énergie.
+* Accepter de faire des compromis et d'écouter les experts.
+
+Pratiques suggérées et Attitudes de Guérison
+Pratiquer la relaxation (yoga, méditation), apprendre à écouter sans interrompre et s'autoriser à demander de l'aide. Se dire : « Peut-être que cette personne ne cherche pas à m'exploiter. Peut-être que je peux baisser ma garde ».
+
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 8 s'intègre vers le Type 2 (ou le Type 5).
+* Essence : L'état où la personnalité accède à sa force réelle mise au service des autres, sans besoin de protection égotique.
+* Idée supérieure : L'Altérité (ou Vérité Sacrée). Il apprend à accepter et à écouter réellement les autres, reconnaissant leur valeur propre.
+* Vertu : La Simplicité (ou Innocence). Il découvre la compassion, la confiance et n'a plus besoin d'utiliser la force pour se protéger.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">7. Approche des Idées Sacrées (Perspective Almaas)
+L'Idée sacrée
+La Vérité Sacrée. C'est la perception que la réalité est une unité vivante dont rien n'est séparé.
+
+L'Illusion Spécifique
+La Dualité. Croire que les divisions entre les choses sont définitives et que le monde est un lieu de conflit entre des entités séparées.
+
+La Difficulté Spécifique
+Le sentiment de culpabilité ou de « mauvaiseté » (Péché Originel). Une conviction profonde d'être mauvais ou coupable suite à la perte de l'état de grâce.
+
+La Réaction Spécifique
+S'auto-blâmer / Se venger. Une tentative de corriger la souffrance par la punition de soi ou des autres.
+
+Le Noyau de la Fixation
+La constellation entre le sentiment de culpabilité intrinsèque et la dynamique de vengeance pour rétablir l'unité perdue.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">8. Fondement Énergétique
+La Confiance Fondamentale
+Une certitude innée que la réalité est bienveillante et que l'on n'a pas besoin de manipuler l'univers pour être soutenu.
+
+La Lumière du jour Vivante
+La qualité de l'Être perçue comme une présence aimante universelle qui constitue la substance même de tout ce qui existe.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Perspective et solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">9. La Perspective et la Solution
+L'Idée Sacrée comme Psycho-catalyseur
+La compréhension de la Vérité Sacrée agit comme un miroir qui dissout l'illusion de la séparation et de la dualité.
+
+Rétablir la Confiance Fondamentale
+Cela passe par la reconnaissance que nous sommes des « enfants de l'univers », portés par la réalité sans effort de volonté personnelle.
+
+L'Abandon
+Cesser de lutter contre l'expérience du moment présent et s'autoriser à être vulnérable.
+
+La Poussée Optimisante
+Reconnaître que le dynamisme de la réalité tend naturellement vers l'harmonie si l'ego arrête d'interférer.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">10. Analogie
+Le Type 8 peut être comparé à un rocher inébranlable dans une mer déchaînée. Il se dresse fièrement contre les tempêtes, offrant un rempart solide pour protéger ceux qu'il juge dignes de sa loyauté, mais sa dureté peut aussi blesser ceux qui s'y heurtent de front.
+
+L'innocence naturelle : Comme celle d'un lion qui agit selon sa nature sans intention de mal faire, ou celle d'un enfant qui n'a pas encore besoin d'armure pour exister.
+
+Le Type 8 est comme un capitaine de navire dans une tempête : qui essaie de tout contrôler par la force, oubliant que son navire est fait de la même eau que l'océan qu'il combat.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure de base</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Présentation générale du Type 8 : La structure de base
+* Blessure : Un jour, l’enfant s’est senti humilié ou impuissant dans une situation qu’il considérait comme injuste. Il en est ressorti avec une colère contre ce monde et une volonté de ne plus jamais se laisser dominer.
+* Passion : La luxure. Il s'agit d'un besoin d'excès et d'une intensité puissante dans tous les domaines (nourriture, sensations, action). Le Huit veut « croquer la vie à pleines dents », souvent avec une certaine agressivité pour obtenir ce qu'il désire immédiatement.
+* Mécanisme de défense privilégié : Le déni. Le Huit ne voit pas le danger et ne ressent pas sa propre peur ou sa vulnérabilité. Il minimise l'impact de la souffrance en créant un véritable « blindage du cœur » pour rester fort et éviter l'implosion émotionnelle.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn2" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie2" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete2" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social2" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SURVIE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Huit Survie.
+* Équation des préoccupations : Préoccupations Huit (vivre intensément) + Préoccupations Survie (maison, sécurité, matérialité) = SATISFACTION.
+* Comportement / Description du fonctionnement : Il a développé une urgence à satisfaire ses besoins primaires (manger, boire, argent, toit). Il contrôle son environnement et se montre très protecteur envers sa tribu, agissant parfois comme un « flic inquisiteur » sur les allées et venues de ses proches pour assurer leur sécurité. Il est souvent casanier, apprécie un mode de vie spartiate et délègue très efficacement au travail.
+* Le paradoxe : Empoigner toutes les situations avec énergie risque de raréfier les occasions de faire preuve de tendresse et de subtilité.
+* Métaphor : Le Justicier.
+* Signaux d'alerte du type : Trop de puissance, trop de réactivité, trop d'agressivité, trop de présence.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de préoccupations sur le bien-être matériel.
+* Témoignage (Claire) :
+    * Type : Apprécie son exigence de vérité, sa fiabilité et son armure de guerrière qui lui permet de défendre les plus fragiles.
+    * Sous-type : Aime son côté solitaire, bricoler sa maison pour la rendre solide (« comme le troisième petit cochon ») et jouir du bien-être matériel simple.
+    * Combinaison : Sa vie affective est un « champ de bataille » où elle attend un partenaire solide ; elle a horreur de demander un service.
+* Référence cinématographique : Million Dollar Baby (pour la combativité physique, l'endurance à la douleur et le clan restreint).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Huit Tête-à-tête.
+* Équation des préoccupations : Préoccupations Huit + Préoccupation Tête-à-tête (partenaire) = POSSESSION / REDDITION.
+* Comportement / Description du fonctionnement : Il fonctionne sur un mode « tout ou rien » dans la relation. Soit il possède et contrôle l'autre totalement, soit il s'abandonne (reddition) entièrement à lui. Il recherche des confrontations pour que la relation reste vivante et peut se montrer très exclusif, voulant tout savoir des secrets de l'autre.
+* Le paradoxe : S'abandonner complètement ou vouloir tout contrôler sont deux extrêmes d'un même excès.
+* Métaphore : Le Partenaire « tout ou rien ».
+* Signaux d'alerte du type : (Identiques : puissance, réactivité, agressivité, présence).
+* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention focalisée sur le partenaire (traque), rivalité avec les autres centres d'intérêt du conjoint.
+* Témoignage (Élisabeth) :
+    * Type : Apprécie sa franchise et son côté direct ; elle ne sait pas élaborer de stratégie et dit ce qu'elle ressent.
+    * Sous-type : Apprécie les moments de douceur et de profondeur dans la relation tête-à-tête.
+    * Combinaison : Sa force permet à l'autre de s'appuyer sur elle ; son désir d'un lien beau et intense adoucit son impulsivité naturelle.
+* Référence cinématographique : Casablanca (Rick incarne le patron au verbe sobre dont le cœur bascule d'un coup vers la protection absolue de l'être aimé).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SOCIAL</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Huit Social.
+* Équation des préoccupations : Préoccupations Huit + Préoccupations Sociales (amis, groupes) = AMITIÉ.
+* Comportement / Description du fonctionnement : C'est le « patriarche » protecteur du groupe. Il utilise son énergie pour réparer les injustices et s'investit massivement dans des réseaux d'amis (« un pour tous, tous pour un »). Au sein du groupe, son agressivité diminue au profit d'une grande générosité collective, même s'il peut créer des sous-groupes s'il est mal équilibré.
+* Le paradoxe : Augmenter le nombre d'amis n'est pas le meilleur moyen de faire face à son insécurité.
+* Métaphore : Le Patriarche.
+* Signaux d'alerte du type : (Identiques : puissance, réactivité, agressivité, présence).
+* Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps passé dans les relations sociales ou les clubs.
+* Témoignage (Arthur) :
+    * Type : Apprécie son énergie capable de soulever des montagnes et sa capacité à trancher immédiatement.
+    * Sous-type : Aime les contacts francs sans précontact inutile et sent immédiatement les rapports de force dans les clans.
+    * Combinaison : Allit puissance et amitié ; il connaît tout le monde dans son quartier et valorise la convivialité (le verre après le rugby).
+* Référence cinématographique : Le Parrain (Don Corleone incarne le chef dont le pouvoir repose sur les rapports de force et la loyauté absolue au clan familial).
+
+Analogie : Le Type 8 est comme un lion qui protège son territoire : le Huit Survie se concentre sur la solidité de son antre et la satisfaction de ses besoins physiques, le Huit Tête-à-tête cherche une fusion passionnée ou un contrôle total sur sa lionne, et le Huit Social est le chef de la meute qui assure la cohésion et la protection de tous les siens contre les menaces extérieures.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux de développement</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le niveau de développement est une mesure du degré d'identification d'une personne avec sa structure de personnalité. Plus on descend dans les niveaux, plus l'ego se durcit pour protéger la vulnérabilité. Le Type 8 apprend à utiliser sa force pour construire et protéger, et à laisser exister l'émotion sans l'écraser.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" id="levelDot" style="background:var(--green)"></span><span id="levelBadge">Niveau 1 • Sain</span></span>
+            </div>
+
+            <div class="rangeWrap">
+              <div class="rangeLine">
+                <div class="trackLabel"><span>1</span><span>9</span></div>
+                <input id="levelRange" type="range" min="1" max="9" step="1" value="1" />
+                <div class="bandPills">
+                  <span class="pill"><span class="dot" style="background:#22c55e"></span>Plage saine (1 à 3)</span>
+                  <span class="pill"><span class="dot" style="background:#f59e0b"></span>Plage moyenne (4 à 6)</span>
+                  <span class="pill"><span class="dot" style="background:#ef4444"></span>Plage malsaine (7 à 9)</span>
+                </div>
+              </div>
+
+              <div class="block" style="background:rgba(255,255,255,.03)">
+                <div class="rt" id="levelTextRT"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Liste des 9 niveaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Plage Saine : Magnanimité et Force (Niveaux 1 à 3)
+* Niveau 1 : Le renoncement à soi et l'héroïsme. Il abandonne la croyance qu'il doit contrôler son environnement, ce qui lui permet de baisser sa garde. Il devient magnanime, courageux et capable de pardonner.
+* Niveau 2 : L'autonomie et la force. Il utilise sa volonté pour être indépendant. Son image de soi est : « Je suis affirmatif, direct et plein de ressources ».
+* Niveau 3 : La confiance en soi et le leadership. Il renforce son image en relevant des défis constructifs. Il protège les autres, les aide à devenir forts et se montre stratégique.
+
+La Plage Moyenne : Domination et Contrôle (Niveaux 4 à 6)
+* Niveau 4 : Le pragmatisme et l'esprit d'entreprise. Il commence à craindre de manquer de ressources. Il devient plus rusé, compétitif et cache ses sentiments.
+* Niveau 5 : La glorification de soi et la domination. Il s'inquiète du respect qu'on lui porte. Il veut que les autres sachent qu'il commande, se vante et devient fier.
+* Niveau 6 : La confrontation et l'intimidation. Craignant de perdre le contrôle, il fait pression sur les autres par des menaces. Il devient provocateur et colérique.
+
+La Plage Malsaine : Impitoyabilité et Destruction (Niveaux 7 à 9)
+* Niveau 7 : L'impitoyabilité et la dictature. Il craint que les autres ne se liguent contre lui. Se voyant comme un hors-la-loi, il devient vindicatif et violent pour protéger ses intérêts.
+* Niveau 8 : La mégalomanie et la terreur. Désespéré, il attaque ses rivaux potentiels avant qu'ils ne puissent le menacer. Il a des illusions d'invulnérabilité.
+* Niveau 9 : La sociopathie et la destruction. Réalisant qu'il s'est créé des ennemis puissants, il préfère tout détruire (y compris lui-même) plutôt que de se laisser vaincre.
+
+Signaux d'Alerte
+* Signal d'Éveil : La lutte constante pour l'autosuffisance (croire qu'il faut se battre contre tout).
+* Signal d'Alarme : La peur que les autres se retournent contre lui et exercent des représailles.
+
+Les Défis de croissance
+Apprendre à admettre ses émotions, reconnaître sa propre vulnérabilité et traiter ses blessures émotionnelles plutôt que de les nier.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
+      </div>
+      <div class="barInfo" id="barInfo">Type 8</div>
+    </div>
+  </div>
+
+  <div class="modal" id="subtypeModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
+      <div class="sheetHeader">
+        <div class="title">
+          <b id="modalTitle">Sous-type</b>
+          <span id="modalSub">Type 8</span>
+        </div>
+        <div><button class="btn" id="closeModal" type="button">Fermer</button></div>
+      </div>
+      <div class="sheetBody">
+        <div class="block rich">
+          <pre class="raw" id="modalRaw"></pre>
+          <div class="rt" id="modalRT"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Comparer les sous-types">
+      <div class="sheetHeader">
+        <div class="title">
+          <b>Comparer les 3 sous-types</b>
+          <span>Type 8</span>
+        </div>
+        <div><button class="btn" id="closeCompare" type="button">Fermer</button></div>
+      </div>
+      <div class="sheetBody">
+        <div class="cols">
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SURVIE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSurvieRaw"></pre>
+              <div class="rt" id="cmpSurvieRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">TÊTE-À-TÊTE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpTeteRaw"></pre>
+              <div class="rt" id="cmpTeteRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SOCIAL</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSocialRaw"></pre>
+              <div class="rt" id="cmpSocialRT"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      if(value === null || value === undefined || value === '') u.searchParams.delete(name);
+      else u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
+    }
+    function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
+
+    function levelColor(n){
+      if(n<=3) return '#22c55e';
+      if(n<=6) return '#f59e0b';
+      return '#ef4444';
+    }
+    function levelBand(n){
+      if(n<=3) return 'Sain';
+      if(n<=6) return 'Moyen';
+      return 'Malsain';
+    }
+
+    const LEVELS = [
+      "Niveau 1 : Le renoncement à soi et l'héroïsme. Il abandonne la croyance qu'il doit contrôler son environnement, ce qui lui permet de baisser sa garde. Il devient magnanime, courageux et capable de pardonner.",
+      "Niveau 2 : L'autonomie et la force. Il utilise sa volonté pour être indépendant. Son image de soi est : « Je suis affirmatif, direct et plein de ressources ».",
+      "Niveau 3 : La confiance en soi et le leadership. Il renforce son image en relevant des défis constructifs. Il protège les autres, les aide à devenir forts et se montre stratégique.",
+      "Niveau 4 : Le pragmatisme et l'esprit d'entreprise. Il commence à craindre de manquer de ressources. Il devient plus rusé, compétitif et cache ses sentiments.",
+      "Niveau 5 : La glorification de soi et la domination. Il s'inquiète du respect qu'on lui porte. Il veut que les autres sachent qu'il commande, se vante et devient fier.",
+      "Niveau 6 : La confrontation et l'intimidation. Craignant de perdre le contrôle, il fait pression sur les autres par des menaces. Il devient provocateur et colérique.",
+      "Niveau 7 : L'impitoyabilité et la dictature. Il craint que les autres ne se liguent contre lui. Se voyant comme un hors-la-loi, il devient vindicatif et violent pour protéger ses intérêts.",
+      "Niveau 8 : La mégalomanie et la terreur. Désespéré, il attaque ses rivaux potentiels avant qu'ils ne puissent le menacer. Il a des illusions d'invulnérabilité.",
+      "Niveau 9 : La sociopathie et la destruction. Réalisant qu'il s'est créé des ennemis puissants, il préfère tout détruire (y compris lui-même) plutôt que de se laisser vaincre."
+    ];
+
+    const SUBTYPES = {
+      survie: `1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Huit Survie.
+* Équation des préoccupations : Préoccupations Huit (vivre intensément) + Préoccupations Survie (maison, sécurité, matérialité) = SATISFACTION.
+* Comportement / Description du fonctionnement : Il a développé une urgence à satisfaire ses besoins primaires (manger, boire, argent, toit). Il contrôle son environnement et se montre très protecteur envers sa tribu, agissant parfois comme un « flic inquisiteur » sur les allées et venues de ses proches pour assurer leur sécurité. Il est souvent casanier, apprécie un mode de vie spartiate et délègue très efficacement au travail.
+* Le paradoxe : Empoigner toutes les situations avec énergie risque de raréfier les occasions de faire preuve de tendresse et de subtilité.
+* Métaphor : Le Justicier.
+* Signaux d'alerte du type : Trop de puissance, trop de réactivité, trop d'agressivité, trop de présence.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de préoccupations sur le bien-être matériel.
+* Témoignage (Claire) :
+    * Type : Apprécie son exigence de vérité, sa fiabilité et son armure de guerrière qui lui permet de défendre les plus fragiles.
+    * Sous-type : Aime son côté solitaire, bricoler sa maison pour la rendre solide (« comme le troisième petit cochon ») et jouir du bien-être matériel simple.
+    * Combinaison : Sa vie affective est un « champ de bataille » où elle attend un partenaire solide ; elle a horreur de demander un service.
+* Référence cinématographique : Million Dollar Baby (pour la combativité physique, l'endurance à la douleur et le clan restreint).`,
+      tete: `2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Huit Tête-à-tête.
+* Équation des préoccupations : Préoccupations Huit + Préoccupation Tête-à-tête (partenaire) = POSSESSION / REDDITION.
+* Comportement / Description du fonctionnement : Il fonctionne sur un mode « tout ou rien » dans la relation. Soit il possède et contrôle l'autre totalement, soit il s'abandonne (reddition) entièrement à lui. Il recherche des confrontations pour que la relation reste vivante et peut se montrer très exclusif, voulant tout savoir des secrets de l'autre.
+* Le paradoxe : S'abandonner complètement ou vouloir tout contrôler sont deux extrêmes d'un même excès.
+* Métaphore : Le Partenaire « tout ou rien ».
+* Signaux d'alerte du type : (Identiques : puissance, réactivité, agressivité, présence).
+* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention focalisée sur le partenaire (traque), rivalité avec les autres centres d'intérêt du conjoint.
+* Témoignage (Élisabeth) :
+    * Type : Apprécie sa franchise et son côté direct ; elle ne sait pas élaborer de stratégie et dit ce qu'elle ressent.
+    * Sous-type : Apprécie les moments de douceur et de profondeur dans la relation tête-à-tête.
+    * Combinaison : Sa force permet à l'autre de s'appuyer sur elle ; son désir d'un lien beau et intense adoucit son impulsivité naturelle.
+* Référence cinématographique : Casablanca (Rick incarne le patron au verbe sobre dont le cœur bascule d'un coup vers la protection absolue de l'être aimé).`,
+      social: `3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Huit Social.
+* Équation des préoccupations : Préoccupations Huit + Préoccupations Sociales (amis, groupes) = AMITIÉ.
+* Comportement / Description du fonctionnement : C'est le « patriarche » protecteur du groupe. Il utilise son énergie pour réparer les injustices et s'investit massivement dans des réseaux d'amis (« un pour tous, tous pour un »). Au sein du groupe, son agressivité diminue au profit d'une grande générosité collective, même s'il peut créer des sous-groupes s'il est mal équilibré.
+* Le paradoxe : Augmenter le nombre d'amis n'est pas le meilleur moyen de faire face à son insécurité.
+* Métaphore : Le Patriarche.
+* Signaux d'alerte du type : (Identiques : puissance, réactivité, agressivité, présence).
+* Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps passé dans les relations sociales ou les clubs.
+* Témoignage (Arthur) :
+    * Type : Apprécie son énergie capable de soulever des montagnes et sa capacité à trancher immédiatement.
+    * Sous-type : Aime les contacts francs sans précontact inutile et sent immédiatement les rapports de force dans les clans.
+    * Combinaison : Allit puissance et amitié ; il connaît tout le monde dans son quartier et valorise la convivialité (le verre après le rugby).
+* Référence cinématographique : Le Parrain (Don Corleone incarne le chef dont le pouvoir repose sur les rapports de force et la loyauté absolue au clan familial).
+
+Analogie : Le Type 8 est comme un lion qui protège son territoire : le Huit Survie se concentre sur la solidité de son antre et la satisfaction de ses besoins physiques, le Huit Tête-à-tête cherche une fusion passionnée ou un contrôle total sur sa lionne, et le Huit Social est le chef de la meute qui assure la cohésion et la protection de tous les siens contre les menaces extérieures.`
+    };
+
+    function escapeHTML(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function isSubhead(line){
+      const t = line.trim();
+      if(!t) return false;
+      const noColon = new Set([
+        "Centre d'intelligence","Hiérarchie des centres","Orientation","Compulsion","Passion et Fixation",
+        "Mécanisme de défense","Peurs et Désirs fondamentaux","Le Schéma de l'enfance","Les trois sous-types instinctifs",
+        "Profil professionnel","Style de management","Style de communication","Points de vigilance",
+        "Réaction au Stress (Désintégration)","Chemin d'Intégration (Croissance)","Points d'amélioration à travailler",
+        "Pratiques suggérées et Attitudes de Guérison","Intégration (Idée supérieure et Vertu)",
+        "L'Idée sacrée","L'Illusion Spécifique","La Difficulté Spécifique","La Réaction Spécifique","Le Noyau de la Fixation",
+        "La Confiance Fondamentale","La Lumière du jour Vivante",
+        "L'Idée Sacrée comme Psycho-catalyseur","Rétablir la Confiance Fondamentale","L'Abandon","La Poussée Optimisante",
+        "Analogie","Signaux d'Alerte","Les Défis de croissance"
+      ]);
+      if(noColon.has(t)) return true;
+      if(/:\s*$/.test(t)) return true;
+      return false;
+    }
+
+    function renderTextToRT(text, rtEl){
+      const lines = (text || '').replace(/\r\n/g,'\n').split('\n');
+      let html = '';
+      let listMode = null;
+
+      const closeList = ()=>{ if(listMode){ html += `</ul>`; listMode = null; } };
+      const openList = ()=>{ if(listMode) return; listMode = 'dot'; html += `<ul class="dot">`; };
+
+      const pushP = (line)=>{ closeList(); html += `<p>${escapeHTML(line)}</p>`; };
+      const pushGap = ()=>{ closeList(); html += `<div class="gap"></div>`; };
+      const pushSubhead = (title)=>{ closeList(); html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`; };
+      const pushLabelRow = (k, v)=>{ closeList(); html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`; };
+
+      for(const line of lines){
+        if(line.trim()===''){ pushGap(); continue; }
+
+        if(isSubhead(line)){
+          const cleaned = line.trim().replace(/:\s*$/,'');
+          pushSubhead(cleaned);
+          continue;
+        }
+
+        const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
+        if(kv){
+          pushLabelRow(kv[1].trim(), kv[2].trim());
+          continue;
+        }
+
+        const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
+        if(bullet){
+          openList();
+          html += `<li>${escapeHTML(bullet[1])}</li>`;
+          continue;
+        }
+
+        pushP(line);
+      }
+
+      closeList();
+      rtEl.innerHTML = html;
+    }
+
+    function renderAllRichBlocks(){
+      qsa('.block.rich').forEach(block=>{
+        const raw = qs('.raw', block);
+        const rt = qs('.rt', block);
+        if(!raw || !rt) return;
+        renderTextToRT(raw.textContent, rt);
+      });
+    }
+
+    function setActiveTab(id){
+      const tabs = [
+        {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
+        {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
+        {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+      ];
+      tabs.forEach(t=>{
+        const on = (t.key === id);
+        t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.panel.hidden = !on;
+      });
+      setParam('tab', id);
+      try{ localStorage.setItem('type8_tab', id); }catch(e){}
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 8 • Profil complet' : (id === 'soustypes' ? 'Type 8 • Sous-types' : 'Type 8 • Niveaux de développement');
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('[data-search]');
+      if(!t){ blocks.forEach(b=>b.style.display=''); return; }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function updateLevel(n){
+      n = clamp(+n || 1, 1, 9);
+      const c = levelColor(n);
+      qs('#levelDot').style.background = c;
+      qs('#levelBadge').textContent = `Niveau ${n} • ${levelBand(n)}`;
+      qs('#levelRange').style.accentColor = c;
+
+      const rt = qs('#levelTextRT');
+      rt.innerHTML = '';
+      renderTextToRT(LEVELS[n-1] || '', rt);
+
+      setParam('lvl', String(n));
+      try{ localStorage.setItem('type8_lvl', String(n)); }catch(e){}
+    }
+
+    function openSubtype(key){
+      const mapBtn = {
+        survie: [qs('#btn-survie'), qs('#btn-survie2')],
+        tete: [qs('#btn-tete'), qs('#btn-tete2')],
+        social: [qs('#btn-social'), qs('#btn-social2')]
+      };
+      qsa('.subtypeBtns .btn').forEach(b=>b.classList.remove('active'));
+      (mapBtn[key]||[]).forEach(b=>b && b.classList.add('active'));
+
+      qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
+      qs('#modalSub').textContent = 'Type 8';
+
+      qs('#modalRaw').textContent = SUBTYPES[key] || '';
+      renderTextToRT(qs('#modalRaw').textContent, qs('#modalRT'));
+
+      qs('#subtypeModal').setAttribute('aria-hidden','false');
+
+      setParam('st', key);
+      try{ localStorage.setItem('type8_st', key); }catch(e){}
+    }
+    function closeSubtype(){ qs('#subtypeModal').setAttribute('aria-hidden','true'); }
+
+    function openCompare(){
+      qs('#cmpSurvieRaw').textContent = SUBTYPES.survie;
+      qs('#cmpTeteRaw').textContent = SUBTYPES.tete;
+      qs('#cmpSocialRaw').textContent = SUBTYPES.social;
+
+      renderTextToRT(qs('#cmpSurvieRaw').textContent, qs('#cmpSurvieRT'));
+      renderTextToRT(qs('#cmpTeteRaw').textContent, qs('#cmpTeteRT'));
+      renderTextToRT(qs('#cmpSocialRaw').textContent, qs('#cmpSocialRT'));
+
+      qs('#compareModal').setAttribute('aria-hidden','false');
+    }
+    function closeCompare(){ qs('#compareModal').setAttribute('aria-hidden','true'); }
+
+    function nextAction(){
+      const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+      if(tab === 'profil'){ setActiveTab('soustypes'); return; }
+      if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function initTop3Chip(){
+      const top = getParam('top');
+      if(!top) return;
+      const cleaned = top.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+      if(!cleaned.length) return;
+      qs('#top3Text').textContent = `Tes 3 résultats : ${cleaned.join(', ')}`;
+      qs('#top3Chip').style.display = '';
+    }
+
+    qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
+    qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
+    qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#nextBtn').addEventListener('click', nextAction);
+
+    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+    qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
+
+    qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
+    qs('#btn-survie2').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete2').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social2').addEventListener('click', ()=>openSubtype('social'));
+
+    qs('#closeModal').addEventListener('click', closeSubtype);
+    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
+
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#compareBtn2').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+
+    renderAllRichBlocks();
+    initTop3Chip();
+
+    const initTab = getParam('tab') || (()=>{
+      try{ return localStorage.getItem('type8_tab') || 'profil'; }catch(e){ return 'profil'; }
+    })();
+    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+
+    const initLvl = getParam('lvl') || (()=>{
+      try{ return localStorage.getItem('type8_lvl') || '1'; }catch(e){ return '1'; }
+    })();
+    updateLevel(initLvl);
+
+    const initSt = getParam('st') || (()=>{
+      try{ return localStorage.getItem('type8_st') || ''; }catch(e){ return ''; }
+    })();
+    if(initSt && SUBTYPES[initSt]){
+      setActiveTab('soustypes');
+      setTimeout(()=>openSubtype(initSt), 120);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Type 5 — Profil complet</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --line:rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a8b6dd;
+      --blue:#60a5fa;
+      --green:#34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.22), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.16), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(168,85,247,.12), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .hero{
+      flex:1 1 700px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+    .dot{width:9px;height:9px;border-radius:50%}
+
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
+    .tab{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(96,165,250,.14), rgba(255,255,255,0));
+    }
+    summary::-webkit-details-marker{display:none}
+
+    .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
+    .sumTitle b{
+      font-size:15px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.98);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+
+    .content{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    .block{
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .raw{display:none}
+    .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
+    .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
+    .rt .gap{height:10px}
+
+    .rt .labelRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin:0 0 10px;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .rt .label{
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:.15px;
+      font-size:13px;
+      text-transform:none;
+    }
+    .rt .value{
+      color:rgba(255,255,255,.92);
+      font-size:15px;
+      flex:1 1 auto;
+      min-width:220px;
+    }
+
+    .rt .subhead{
+      margin:2px 0 10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(96,165,250,.20);
+      background:linear-gradient(180deg, rgba(96,165,250,.10), rgba(0,0,0,.10));
+      color:rgba(255,255,255,.96);
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .rt .subhead .t{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .rt ul{margin:0 0 10px 18px;padding:0}
+    .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dash{list-style-type:"-  "}
+    .rt ul.arrow{list-style-type:"→  "}
+    .rt ul.dot{list-style-type:"•  "}
+    .rt li .k{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .sectionHeader{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;
+      font-weight:900;
+    }
+
+    .btn, button, a.btn{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover, button:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
+    .btn:active, button:active{transform:translateY(0)}
+    .btn.primary{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+    .btn.primary:hover{
+      background:rgba(96,165,250,.20);
+      border-color:rgba(96,165,250,.45);
+    }
+
+    .subtypeBtns{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    .subtypeBtns .btn{padding:12px}
+    .subtypeBtns .btn.active{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.14);
+    }
+    @media (max-width: 860px){
+      .subtypeBtns{grid-template-columns:1fr}
+    }
+
+    .rangeWrap{display:grid;gap:10px}
+    .rangeLine{
+      width:100%;
+      padding:12px 12px 10px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:16px;
+    }
+    input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
+    .trackLabel{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+    }
+
+    .bottomBar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      padding:10px 12px;
+      z-index:999;
+    }
+    .barInner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .barInfo{color:var(--muted);font-size:12px;font-weight:900}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .sheet{
+      width:min(980px, 100%);
+      max-height:86vh;
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 25px 90px rgba(0,0,0,.65);
+    }
+    .sheetHeader{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(10,14,28,.78);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
+    .sheetHeader .title span{color:var(--muted);font-size:12px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sheetBody{padding:14px}
+    .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
+    @media (max-width: 980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Type 5 — L'Observateur / Le Penseur / L'Investigateur</h1>
+
+        <div class="chips" id="chips">
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Centre mental</span>
+          <span class="chip"><span class="dot" style="background:var(--green)"></span>Rôle social : L’Expert</span>
+          <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Onglets">
+          <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
+          <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
+          <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Recherche</h2>
+          <input id="search" type="search" placeholder="Tape un mot, ex : avarice, isolation, détachement, omniscience..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Présentation et définition</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Présentation et définition du type
+Le Type 5, souvent nommé l'« Observateur », le « Penseur » ou l'« Investigateur », est une personnalité centrée sur la connaissance et la précision. C'est un individu qui cherche à comprendre le monde qui l'entoure par l'analyse et la réflexion, souhaitant devenir un expert dans ses domaines de prédilection. Très introverti, il a besoin d'autonomie intellectuelle et de moments de retrait pour préserver son énergie.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure et dynamique psychologique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Structure et Dynamique Psychologique
+* Ordre Centre d'intelligence : Le Type 5 appartient au centre mental, qu'il utilise vers l'extérieur pour comprendre le monde.
+* Orientation : La connaissance et la précision.
+* Compulsion : Éviter le vide intérieur.
+* Passion et Fixation :
+    * Passion : L'Avarice. Il ne s'agit pas forcément d'argent, mais d'une avarice de son temps, de ses informations et de soi-même pour éviter d'être envahi par les autres.
+    * Fixation : Le Détachement. Il se retire du monde réel pour se réfugier dans celui des idées.
+* Mécanisme de défense : L'isolation. Il met de côté toute émotion ou pensée qui pourrait perturber son fonctionnement mental, pour les réexaminer plus tard, seul et à froid.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="block rich" style="margin-top:12px">
+              <pre class="raw">Hiérarchie des centres (Structure brute)
+Titre : Hiérarchie des centres Sommet (relie les deux figures) :
+* Orientation : Connaissance / Précision
+* Centre Préféré : Mental (Utilisation extérieure)
+* Centre de Support : Émotionnel (
+* Centre Réprimé : Instinctif</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Noyau de la personnalité</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le Noyau de la Personnalité
+* Peur de base : Être inutile, incapable ou incompétent. Il craint d'être submergé par le monde ou de ne pas détenir suffisamment de savoir pour y faire face.
+* Désir de base : Être capable et compétent. Il souhaite maîtriser un domaine d'expertise pour se sentir en sécurité.
+* Message du Surmoi (Superego) : « Tu es bien ou correct si tu as maîtrisé quelque chose ».
+* Compulsion (évitement) : Éviter à tout prix le vide intérieur.
+* Ordre des centres : Il privilégie le centre Mental, utilisé vers l'extérieur pour puiser des informations sur le monde. Sa hiérarchie dépend de sa variante :
+* Mécanisme de défense : L'isolation. Il met de côté les émotions ou pensées qui pourraient perturber son fonctionnement intellectuel. Il compartimente sa vie en dressant des frontières strictes entre ses activités et ses relations.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Origines et variantes</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Origines et Variantes
+* Le Schéma de l'enfance : L'enfant 5 ne s'est souvent pas senti en sécurité dans sa famille, craignant d'être envahi ou submergé par ses parents. Il a appris à se retirer dans un espace privé (mental ou physique) et à réprimer ses besoins de nourriture et de contact émotionnel pour devenir indépendant.
+* Les Sous-types d'Ailes (Wings) :
+    * 5w4 (L'Iconoclaste) : Plus émotionnel, introspectif et créatif ; il cherche une niche inexplorée.
+    * 5w6 (Le Résolveur de problèmes) : Plus technique, organisé et porté sur les détails ; il analyse les faits pour en tirer des conclusions logiques.
+* Les Variantes Instinctives :
+    * Conservation (Le Château fort) : Focalisé sur l'isolement, la thésaurisation de ses ressources et la protection de son espace personnel.
+    * Social (Le Spécialiste) : Cherche une place sociale à travers son expertise ou son jargon.
+    * Sexuel (La Confidence) : Partage ses idées secrètes avec un partenaire privilégié ; cherche une union intense mais peut se retirer brusquement.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Type 5 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">4. Le Type 5 en Entreprise
+* Profil professionnel : Le 5 est l'expert méthodique et structuré. Il prend ses décisions de manière rationnelle après une longue phase de réflexion. Il préfère travailler de manière autonome et peut avoir du mal à se concentrer en présence des autres.
+* Style de management : Il gère souvent "depuis son bureau", privilégiant les communications écrites (emails) aux contacts physiques. Il délègue facilement et sait synthétiser des masses d'informations complexes, mais peut manquer de chaleur humaine envers ses collaborateurs.
+* Style de communication : Qualifié de « Traité », il s'exprime de façon structurée et détaillée sur des sujets sérieux, mais reste très laconique sur le reste. Il évite les émotions et maintient une distance physique avec ses interlocuteurs.
+* Points de vigilance : Sa tendance au retrait peut être perçue comme de la froideur ou du désintérêt. Il risque également de faire de la rétention d'information.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution, intégration, vertu</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">5. Évolution et Développement
+* Points d'amélioration à travailler :
+    * Développer ses capacités relationnelles en planifiant du temps pour les autres.
+    * Apprendre à diffuser largement ses informations au lieu de les garder pour soi.
+    * S'impliquer davantage dans l'action concrète et la mise en œuvre de ses idées.
+    * Se connecter à son ressenti physique et à ses émotions.
+* Intégration (idée supérieure et vertu) : En se libérant de sa compulsion, le Type 5 s'intègre vers le Type 8(variante α) ou le Type 7 (variante μ).
+    * Essence : L'état où il accède à ses pleines potentialités, libéré du besoin de s'isoler pour comprendre.
+    * Idée supérieure : L'Omniscience. Il réalise que la connaissance n'a pas besoin d'être accumulée de manière défensive.
+    * Vertu : Le Désintéressement. Il devient capable de partager ses compétences et d'agir avec ce qu'il sait, sans peur de manquer.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">6. Analogie
+Le Type 5 peut être comparé à un archiviste dans une immense bibliothèque : il passe ses journées à classer des volumes de savoir, persuadé que s'il possède assez de livres, il pourra enfin comprendre le monde extérieur sans avoir à y mettre les pieds. Il garde la porte de sa bibliothèque soigneusement verrouillée, craignant que les visiteurs ne viennent lui voler ses précieuses pages ou ne le distraient de sa quête infinie de compréhension.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">4. Dynamique des Flèches
+* Réaction au Stress (Désintégration) : Vers le Type 7. Le 5 devient alors agité, hyperactif, éparpillé et cherche des distractions impulsives (nourriture, escapades) pour fuir son anxiété.
+* Chemin d'Intégration (Croissance) : Vers le Type 8. Le 5 apprend à s'ancrer dans son corps, devient plus confiant, décisif et capable de diriger ses projets avec force.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Signaux et pratiques</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">5. Signaux et Pratiques
+* Le Signal d'Éveil (Wake-up Call) : Se retirer de la réalité pour se réfugier dans des concepts et des mondes mentaux.
+* Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le monde ou avec les gens.
+* Pratiques suggérées : Utiliser son corps (sport, marche), ne pas rester seul avec ses angoisses, et diffuser les informations possédées plutôt que de les garder pour soi.
+* Attitudes de Guérison : « Peut-être que je peux faire confiance aux gens et leur dire ce dont j'ai besoin. Peut-être que je peux vivre happily dans le monde ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Transformation vers l’essence</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">6. La Transformation vers l'Essence
+* L'Idée supérieure : L'Omniscience. C'est la compréhension que la connaissance n'est pas absolue et qu'on peut agir avec ce que l'on sait.
+* La Vertu : Le Désintéressement (Non-attachement). Ce n'est pas un retrait émotionnel, mais une absence d'identification à un point de vue fixe.
+* Analogie : Le 5 est comme une fenêtre à travers laquelle l'univers se voit lui-même.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">7. Approche des Idées Sacrées (Almaas)
+* L'Idée sacrée : Omniscience Sacrée (ou Transparence Sacrée). C'est la perception que tout est interconnecté, que nous sommes une cellule du corps cosmique et que la séparation est une "hallucination mentale".
+* L'Illusion Spécifique : L'Identité Séparée (ou Existence Séparée). La conviction d'être une entité isolée, dont les frontières du corps définissent les limites de la conscience.
+* La Difficulté Spécifique : L'Isolement Déficient. Le sentiment d'être petit, vide, appauvri et abandonné par la réalité suite à la perte du sentiment de soutien.
+* La Réaction Spécifique : Le Retrait. Une tentative d'échapper à la réalité, de se cacher ou de couper les contacts pour ne pas ressentir la douleur de la déficience.
+* Le Noyau de la Fixation : C'est le complexe formé par l'état d'appauvrissement (difficulté) et la défense schizoïde de retrait/évitement (réaction).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">8. Le Fondement Énergétique
+* La Confiance Fondamentale (Basic Trust) : Une certitude innée que l'univers nous soutient, permettant de laisser l'esprit s'arrêter sans peur de perdre l'information ou la capacité d'agir.
+* La Lumière du jour Vivante (Living Daylight) : Qualité de l'Être perçue comme une conscience aimante et universelle qui imprègne tout, y compris la réalité physique.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Perspective et solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">9. La Perspective et la Solution
+* L'Idée Sacrée comme Psycho-catalyseur : La compréhension de l'Omniscience dissout l'erreur cognitive de l'ego (le sentiment de séparation) et libère l'âme de ses limitations.
+* Rétablir la Confiance Fondamentale : Cela passe par l'acceptation de son impuissance existentielle, ce qui permet à l'intelligence de l'Être de se révéler spontanément.
+* L'Abandon (Surrender) : Cesser de manipuler son expérience intérieure et devenir une "fenêtre claire" pour l'univers.
+* La Poussée Optimisante : Reconnaître que le dynamisme de la réalité guide naturellement l'âme vers l'harmonie si l'ego s'arrête d'interférer.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure de base</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">LE type et sous types
+Présentation générale du Type 5 : La structure de base
+* Blessure : Un jour, l’enfant a eu un sentiment d’intrusion ou d’envahissement, comme si quelqu’un avait pu pénétrer par effraction dans son intimité.
+* Passion : L’avarice. Elle est entendue au sens large : avare de son temps, de son énergie et de l'expression de ses émotions. Le Cinq se rétracte pour se protéger de la peur d'être « englouti » par les autres, cherchant une autosuffisance maximale pour ne pas dépendre du monde extérieur.
+* Mécanisme de défense privilégié : L’isolation. Cela consiste à se détacher pour observer, en se coupant des sensations et de la sensibilité émotionnelle. Le Cinq peut aussi pratiquer la « compartimentalisation », séparant ses vécus (amis, travail, vie privée) par des cloisons étanches pour ne pas être totalement submergé.
+
+Items de présentation spécifique pour chaque sous-type</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SURVIE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Cinq Survie.
+* Équation des préoccupations : Préoccupations Cinq (se protéger, limiter les besoins, apprendre) + Préoccupation Survie (maison, sécurité, matérialité) = CHÂTEAU FORT.
+* Comportement / Description du fonctionnement : C'est le « minimaliste » de l'Ennéagramme. Sa survie dépend d'un espace privé (un donjon) où il peut se retirer seul pour se ressourcer. Il préfère se contenter de peu pour limiter sa dépendance au monde extérieur.
+* Le paradoxe : Limiter ses besoins matériels au minimum n’empêchera pas, un jour, la nécessité de dépendre du monde extérieur.
+* Métaphore : Le Distant. Il met des murs entre lui et la cacophonie du monde.
+* Signaux d'alerte du type : Vouloir se contenter des approvisionnements existants, trop de distance avec le monde, trop de refuge intellectuel, manque d'expression émotionnelle.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps au travail, préoccupations sur le bien-être matériel, répétition de soirées routinières.
+* Témoignage (Daniel) :
+    * Type : Apprécie d'être reconnu comme fiable, calme et capable de synthétiser des masses d'informations.
+    * Sous-type : Apprécie son rapport minimaliste à la matière et sa capacité à comprendre comment fonctionnent les objets.
+    * Combinaison : Sa capacité de retrait lui offre une grande autonomie et une écoute de qualité pour guider les autres.
+* Référence cinématographique : Le Grand Bleu (Jacques Mayol est isolé, coupé de ses émotions et possède un périmètre de sécurité très marqué entre lui et les autres).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Cinq Tête-à-tête.
+* Équation des préoccupations : Préoccupations Cinq + Préoccupation Tête-à-tête (focalisation sur le partenaire) = CONFIDENCE / SECRET.
+* Comportement / Description du fonctionnement : Il vit une tension entre le besoin de rétraction et l'envie d'un lien intense. Il s'autorise des rencontres « hors du temps » sous le sceau du secret, où il peut tout dire à son confident, tout en gardant une grande autonomie le reste du temps.
+* Le paradoxe : Trop compartimenter les moments émotionnels du reste de sa vie finit par produire de l'inconfort.
+* Métaphore : L'Agent secret. Il sélectionne soigneusement ses relations et partage des confidences dans un cercle très réduit.
+* Signaux d'alerte du type : (Identiques au type Cinq).
+* Signaux d'alerte du sous-type : Zèle à vouloir prouver son intensité, attention focalisée (traque) sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du partenaire.
+* Témoignage (Éric) :
+    * Type : Apprécie sa délicatesse, son désir d'aller au fond des choses et sa fiabilité.
+    * Sous-type : La relation tête-à-tête est génératrice d'énergie et de plaisir, lui permettant d'être important aux yeux de l'autre.
+    * Combinaison : L'intensité d'une relation de confiance est l'antidote à sa rétraction naturelle, le rendant plus généreux et communicatif.
+* Référence cinématographique : Un Cœur en Hiver (Stéphane incarne l'introverti énigmatique, sobre de mots, partagé entre le désir de séduction du tête-à-tête et le réflexe de rétraction du Cinq).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SOCIAL</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Cinq Social.
+* Équation des préoccupations : Préoccupations Cinq + Préoccupations Sociales (amis, groupes) = TOTEMS SOCIAUX.
+* Comportement / Description du fonctionnement : Il se passionne pour les idées, les experts et les événements qui marquent la culture ou l'histoire (les « totems »). Il cherche à devenir une source de savoir ou un conseiller pour les dirigeants, aimant les titres, les diplômes et les cercles d'initiés.
+* Le paradoxe : Trop d'emphase sur l'analyse peut rendre son langage abscons et incompréhensible pour les autres.
+* Métaphore : L'Académicien. Il a une faim de savoir et le souci de transmettre son expertise par l'enseignement ou l'écriture.
+* Signaux d'alerte du type : (Identiques au type Cinq).
+* Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Heather) :
+    * Type : Apprécie sa capacité à synthétiser des masses de données et son absence de besoin de possessions.
+    * Sous-type : Ressent une compulsion à enseigner et se sent « puissant » lorsqu'il est en position de transmettre son savoir.
+    * Combinaison : Gère la tension entre l'envie de se cacher et le besoin de jouer un rôle social, trouvant son équilibre dans l'animation de groupes de travail.
+* Référence cinématographique : Au revoir, M. Chips (M. Chipping est un professeur timide et formel qui finit par s'ouvrir émotionnellement à travers sa dimension sociale et son dévouement à ses élèves).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux de développement</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les 9 niveaux de Développement : indicateur du degré de liberté, de conscience et de santé psychologique.
+Les niveaux de développement pour le Type 5 (L'Enquêteur) décrivent un continuum : plus on descend, plus la personne est "endormie" dans les automatismes ; plus on monte, plus elle est "éveillée" et présente.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" id="levelDot" style="background:var(--green)"></span><span id="levelBadge">Niveau 1 • Sain</span></span>
+            </div>
+
+            <div class="rangeWrap">
+              <div class="rangeLine">
+                <div class="trackLabel"><span>1</span><span>9</span></div>
+                <input id="levelRange" type="range" min="1" max="9" step="1" value="1" />
+                <div class="bandPills">
+                  <span class="pill"><span class="dot" style="background:#22c55e"></span>Plage saine (1 à 3)</span>
+                  <span class="pill"><span class="dot" style="background:#f59e0b"></span>Plage moyenne (4 à 6)</span>
+                  <span class="pill"><span class="dot" style="background:#ef4444"></span>Plage malsaine (7 à 9)</span>
+                </div>
+              </div>
+
+              <div class="block" style="background:rgba(255,255,255,.03)">
+                <div class="rt" id="levelTextRT"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Liste des 9 niveaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Plage Saine (Niveaux 1 à 3) : L'Intégration et l'Innovation
+• Niveau 1 : Participant, Visionnaire. Le 5 abandonne la croyance qu'il est un observateur extérieur et s'engage pleinement dans la vie avec confiance. Il devient clairvoyant, profond, et capable de voir le monde d'une manière totalement nouvelle.
+• Niveau 2 : Observateur, Perceptif. Il se concentre sur l'environnement pour acquérir les compétences nécessaires à son fonctionnement et se défendre contre sa peur de l'impuissance. Son image de soi est : « Je suis intelligent, curieux et indépendant ».
+• Niveau 3 : Concentré, Innovateur. Il renforce son image de soi en maîtrisant un domaine de connaissances ou une compétence. Sa capacité à explorer de nouvelles formes et idées peut mener à des inventions ou des œuvres d'art originales et marquantes.
+La Plage Moyenne (Niveaux 4 à 6) : Le Retrait et la Spécialisation
+• Niveau 4 : Conceptualisant, Préparateur. Le 5 craint que ses compétences soient insuffisantes pour prendre sa place dans le monde. Il se réfugie dans la sécurité de son esprit pour étudier, pratiquer et accumuler davantage de connaissances.
+• Niveau 5 : Détaché, Préoccupé. Il s'inquiète que les besoins des autres ne le distraient de ses projets, alors il intensifie son activité mentale pour s'isoler. Il devient cérébral, secret, et commence à minimiser ses propres besoins physiques et émotionnels.
+• Niveau 6 : Extrême, Provocateur. Il craint que d'autres ne menacent la "niche" intellectuelle qu'il s'est construite et cherche à les fendre ou à les choquer avec des opinions extrêmes. Il devient méprisant envers ceux qui ne comprennent pas sa vision.
+La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
+• Niveau 7 : Nihiliste, Excentrique. Il craint de ne jamais trouver sa place parmi les hommes. Pour sauver un semblant de sécurité, il coupe tout lien social et se retire dans un monde intérieur de plus en plus vide et sombre.
+• Niveau 8 : Horrifié, Délirant. Se sentant petit et sans défense, le 5 perçoit tout ce qui l'entoure comme une menace. Il est assailli par des fantasmes noirs et des perceptions déformées, son esprit "surchauffé" ne pouvant plus s'arrêter.
+• Niveau 9 : Cherchant l'oubli, S'auto-annihilant. Réalisant qu'il ne peut plus se défendre contre sa douleur et sa terreur, il cherche à s'échapper de la réalité. Cela peut mener à des ruptures psychotiques ou à des tendances suicidaires.
+
+Sain : 1. Participant visionnaire, 2. Observateur perceptif, 3. Innovateur concentré.
+Moyen : 4. Préparateur conceptuel, 5. Détaché préoccupé, 6. Extrémiste provocateur.
+Malsain : 7. Nihiliste excentrique, 8. Délirant horrifié, 9. Auto-annihilateur.
+
+Les Défis de croissance : Apprendre à réintégrer le corps, sortir de la "préparation" pour passer à l'action, et risquer le contact émotionnel.
+Le Signal d'Éveil (Wake-up Call) : Se retirer de la réalité pour se réfugier dans des concepts et des mondes mentaux.
+Le Signal d'Alarme (Red Flag) : La peur de ne jamais trouver sa place dans le monde ou avec les gens.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
+      </div>
+      <div class="barInfo" id="barInfo">Type 5</div>
+    </div>
+  </div>
+
+  <div class="modal" id="subtypeModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
+      <div class="sheetHeader">
+        <div class="title">
+          <b id="modalTitle">Sous-type</b>
+          <span id="modalSub">Type 5</span>
+        </div>
+        <div>
+          <button class="btn" id="closeModal" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="block rich">
+          <pre class="raw" id="modalRaw"></pre>
+          <div class="rt" id="modalRT"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Comparer les sous-types">
+      <div class="sheetHeader">
+        <div class="title">
+          <b>Comparer les 3 sous-types</b>
+          <span>Type 5</span>
+        </div>
+        <div>
+          <button class="btn" id="closeCompare" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="cols">
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SURVIE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSurvieRaw"></pre>
+              <div class="rt" id="cmpSurvieRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">TÊTE-À-TÊTE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpTeteRaw"></pre>
+              <div class="rt" id="cmpTeteRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SOCIAL</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSocialRaw"></pre>
+              <div class="rt" id="cmpSocialRT"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      if(value === null || value === undefined || value === '') u.searchParams.delete(name);
+      else u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
+    }
+    function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
+
+    function levelColor(n){
+      if(n<=3) return '#22c55e';
+      if(n<=6) return '#f59e0b';
+      return '#ef4444';
+    }
+    function levelBand(n){
+      if(n<=3) return 'Sain';
+      if(n<=6) return 'Moyen';
+      return 'Malsain';
+    }
+
+    const LEVELS = [
+      "Niveau 1 : Participant, Visionnaire. Le 5 abandonne la croyance qu'il est un observateur extérieur et s'engage pleinement dans la vie avec confiance. Il devient clairvoyant, profond, et capable de voir le monde d'une manière totalement nouvelle.",
+      "Niveau 2 : Observateur, Perceptif. Il se concentre sur l'environnement pour acquérir les compétences nécessaires à son fonctionnement et se défendre contre sa peur de l'impuissance. Son image de soi est : « Je suis intelligent, curieux et indépendant ».",
+      "Niveau 3 : Concentré, Innovateur. Il renforce son image de soi en maîtrisant un domaine de connaissances ou une compétence. Sa capacité à explorer de nouvelles formes et idées peut mener à des inventions ou des œuvres d'art originales et marquantes.",
+      "Niveau 4 : Conceptualisant, Préparateur. Le 5 craint que ses compétences soient insuffisantes pour prendre sa place dans le monde. Il se réfugie dans la sécurité de son esprit pour étudier, pratiquer et accumuler davantage de connaissances.",
+      "Niveau 5 : Détaché, Préoccupé. Il s'inquiète que les besoins des autres ne le distraient de ses projets, alors il intensifie son activité mentale pour s'isoler. Il devient cérébral, secret, et commence à minimiser ses propres besoins physiques et émotionnels.",
+      "Niveau 6 : Extrême, Provocateur. Il craint que d'autres ne menacent la \"niche\" intellectuelle qu'il s'est construite et cherche à les fendre ou à les choquer avec des opinions extrêmes. Il devient méprisant envers ceux qui ne comprennent pas sa vision.",
+      "Niveau 7 : Nihiliste, Excentrique. Il craint de ne jamais trouver sa place parmi les hommes. Pour sauver un semblant de sécurité, il coupe tout lien social et se retire dans un monde intérieur de plus en plus vide et sombre.",
+      "Niveau 8 : Horrifié, Délirant. Se sentant petit et sans défense, le 5 perçoit tout ce qui l'entoure comme une menace. Il est assailli par des fantasmes noirs et des perceptions déformées, son esprit \"surchauffé\" ne pouvant plus s'arrêter.",
+      "Niveau 9 : Cherchant l'oubli, S'auto-annihilant. Réalisant qu'il ne peut plus se défendre contre sa douleur et sa terreur, il cherche à s'échapper de la réalité. Cela peut mener à des ruptures psychotiques ou à des tendances suicidaires."
+    ];
+
+    const SUBTYPES = {
+      survie: `1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Cinq Survie.
+* Équation des préoccupations : Préoccupations Cinq (se protéger, limiter les besoins, apprendre) + Préoccupation Survie (maison, sécurité, matérialité) = CHÂTEAU FORT.
+* Comportement / Description du fonctionnement : C'est le « minimaliste » de l'Ennéagramme. Sa survie dépend d'un espace privé (un donjon) où il peut se retirer seul pour se ressourcer. Il préfère se contenter de peu pour limiter sa dépendance au monde extérieur.
+* Le paradoxe : Limiter ses besoins matériels au minimum n’empêchera pas, un jour, la nécessité de dépendre du monde extérieur.
+* Métaphore : Le Distant. Il met des murs entre lui et la cacophonie du monde.
+* Signaux d'alerte du type : Vouloir se contenter des approvisionnements existants, trop de distance avec le monde, trop de refuge intellectuel, manque d'expression émotionnelle.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps au travail, préoccupations sur le bien-être matériel, répétition de soirées routinières.
+* Témoignage (Daniel) :
+    * Type : Apprécie d'être reconnu comme fiable, calme et capable de synthétiser des masses d'informations.
+    * Sous-type : Apprécie son rapport minimaliste à la matière et sa capacité à comprendre comment fonctionnent les objets.
+    * Combinaison : Sa capacité de retrait lui offre une grande autonomie et une écoute de qualité pour guider les autres.
+* Référence cinématographique : Le Grand Bleu (Jacques Mayol est isolé, coupé de ses émotions et possède un périmètre de sécurité très marqué entre lui et les autres).`,
+      tete: `2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Cinq Tête-à-tête.
+* Équation des préoccupations : Préoccupations Cinq + Préoccupation Tête-à-tête (focalisation sur le partenaire) = CONFIDENCE / SECRET.
+* Comportement / Description du fonctionnement : Il vit une tension entre le besoin de rétraction et l'envie d'un lien intense. Il s'autorise des rencontres « hors du temps » sous le sceau du secret, où il peut tout dire à son confident, tout en gardant une grande autonomie le reste du temps.
+* Le paradoxe : Trop compartimenter les moments émotionnels du reste de sa vie finit par produire de l'inconfort.
+* Métaphore : L'Agent secret. Il sélectionne soigneusement ses relations et partage des confidences dans un cercle très réduit.
+* Signaux d'alerte du type : (Identiques au type Cinq).
+* Signaux d'alerte du sous-type : Zèle à vouloir prouver son intensité, attention focalisée (traque) sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du partenaire.
+* Témoignage (Éric) :
+    * Type : Apprécie sa délicatesse, son désir d'aller au fond des choses et sa fiabilité.
+    * Sous-type : La relation tête-à-tête est génératrice d'énergie et de plaisir, lui permettant d'être important aux yeux de l'autre.
+    * Combinaison : L'intensité d'une relation de confiance est l'antidote à sa rétraction naturelle, le rendant plus généreux et communicatif.
+* Référence cinématographique : Un Cœur en Hiver (Stéphane incarne l'introverti énigmatique, sobre de mots, partagé entre le désir de séduction du tête-à-tête et le réflexe de rétraction du Cinq).`,
+      social: `3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Cinq Social.
+* Équation des préoccupations : Préoccupations Cinq + Préoccupations Sociales (amis, groupes) = TOTEMS SOCIAUX.
+* Comportement / Description du fonctionnement : Il se passionne pour les idées, les experts et les événements qui marquent la culture ou l'histoire (les « totems »). Il cherche à devenir une source de savoir ou un conseiller pour les dirigeants, aimant les titres, les diplômes et les cercles d'initiés.
+* Le paradoxe : Trop d'emphase sur l'analyse peut rendre son langage abscons et incompréhensible pour les autres.
+* Métaphore : L'Académicien. Il a une faim de savoir et le souci de transmettre son expertise par l'enseignement ou l'écriture.
+* Signaux d'alerte du type : (Identiques au type Cinq).
+* Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Heather) :
+    * Type : Apprécie sa capacité à synthétiser des masses de données et son absence de besoin de possessions.
+    * Sous-type : Ressent une compulsion à enseigner et se sent « puissant » lorsqu'il est en position de transmettre son savoir.
+    * Combinaison : Gère la tension entre l'envie de se cacher et le besoin de jouer un rôle social, trouvant son équilibre dans l'animation de groupes de travail.
+* Référence cinématographique : Au revoir, M. Chips (M. Chipping est un professeur timide et formel qui finit par s'ouvrir émotionnellement à travers sa dimension sociale et son dévouement à ses élèves).`
+    };
+
+    function escapeHTML(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function isSubhead(line){
+      const t = line.trim();
+      if(!t) return false;
+      const noColon = new Set([
+        "Centre d'intelligence","Ordre Centre d'intelligence","Orientation","Compulsion","Passion et Fixation",
+        "Mécanisme de défense","Peurs et Désirs fondamentaux","Le Schéma de l'enfance","Les Sous-types d'Ailes (Wings)",
+        "Les Variantes Instinctives","Profil professionnel","Style de management","Style de communication","Points de vigilance",
+        "Réaction au Stress (Désintégration)","Chemin d'Intégration (Croissance)","Points d'amélioration à travailler",
+        "Intégration (idée supérieure et vertu)","L'Idée supérieure","La Vertu","Approche des Idées Sacrées (Almaas)",
+        "Le Fondement Énergétique","La Perspective et la Solution","Signaux et Pratiques","Transformation vers l'Essence",
+        "Hiérarchie des centres (Structure brute)","Titre : Hiérarchie des centres Sommet (relie les deux figures)",
+        "La Plage Saine (Niveaux 1 à 3) : L'Intégration et l'Innovation",
+        "La Plage Moyenne (Niveaux 4 à 6) : Le Retrait et la Spécialisation",
+        "La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation",
+        "Sain","Moyen","Malsain"
+      ]);
+      if(noColon.has(t)) return true;
+      if(/:\s*$/.test(t)) return true;
+      return false;
+    }
+
+    function renderTextToRT(text, rtEl){
+      const lines = (text || '').replace(/\r\n/g,'\n').split('\n');
+      let html = '';
+      let listMode = null;
+
+      const closeList = ()=>{ if(listMode){ html += `</ul>`; listMode = null; } };
+      const openList = (mode)=>{ if(listMode === mode) return; closeList(); listMode = mode; html += `<ul class="${mode}">`; };
+
+      const pushP = (line)=>{ closeList(); html += `<p>${escapeHTML(line)}</p>`; };
+      const pushGap = ()=>{ closeList(); html += `<div class="gap"></div>`; };
+      const pushSubhead = (title)=>{ closeList(); html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`; };
+      const pushLabelRow = (k, v)=>{ closeList(); html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`; };
+      const pushLI = (mode, k, v, keepColon=true)=>{
+        openList(mode);
+        if(v === null){ html += `<li>${escapeHTML(k)}</li>`; return; }
+        const label = keepColon ? `${k}` : k;
+        html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
+      };
+
+      for(const line of lines){
+        if(line.trim()===''){ pushGap(); continue; }
+
+        if(isSubhead(line)){
+          const cleaned = line.trim().replace(/:\s*$/,'');
+          pushSubhead(cleaned);
+          continue;
+        }
+
+        const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
+        if(kv){
+          const key = kv[1].trim();
+          const val = kv[2].trim();
+
+          if(/^Titre et Identité$/i.test(key) || /^Définition globale$/i.test(key) || /^Rôle Social$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          if(/^Centre Préféré$/i.test(key) || /^Centre de Support$/i.test(key) || /^Centre Réprimé$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          pushLabelRow(key, val);
+          continue;
+        }
+
+        const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
+        if(bullet){
+          openList('dot');
+          html += `<li>${escapeHTML(bullet[1])}</li>`;
+          continue;
+        }
+
+        pushP(line);
+      }
+
+      closeList();
+      rtEl.innerHTML = html;
+    }
+
+    function renderAllRichBlocks(){
+      qsa('.block.rich').forEach(block=>{
+        const raw = qs('.raw', block);
+        const rt = qs('.rt', block);
+        if(!raw || !rt) return;
+        renderTextToRT(raw.textContent, rt);
+      });
+    }
+
+    function setActiveTab(id){
+      const tabs = [
+        {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
+        {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
+        {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+      ];
+      tabs.forEach(t=>{
+        const on = (t.key === id);
+        t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.panel.hidden = !on;
+      });
+      setParam('tab', id);
+      try{ localStorage.setItem('type5_tab', id); }catch(e){}
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 5 • Profil complet' : (id === 'soustypes' ? 'Type 5 • Sous-types' : 'Type 5 • Niveaux de développement');
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('[data-search]');
+      if(!t){ blocks.forEach(b=>b.style.display=''); return; }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function updateLevel(n){
+      n = clamp(+n || 1, 1, 9);
+      const c = levelColor(n);
+      qs('#levelDot').style.background = c;
+      qs('#levelBadge').textContent = `Niveau ${n} • ${levelBand(n)}`;
+      qs('#levelRange').style.accentColor = c;
+
+      const rt = qs('#levelTextRT');
+      rt.innerHTML = '';
+      renderTextToRT(LEVELS[n-1] || '', rt);
+
+      setParam('lvl', String(n));
+      try{ localStorage.setItem('type5_lvl', String(n)); }catch(e){}
+    }
+
+    function openSubtype(key){
+      const mapBtn = {survie: qs('#btn-survie'), tete: qs('#btn-tete'), social: qs('#btn-social')};
+      Object.values(mapBtn).forEach(b=>b.classList.remove('active'));
+      if(mapBtn[key]) mapBtn[key].classList.add('active');
+
+      qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
+      qs('#modalSub').textContent = 'Type 5';
+
+      qs('#modalRaw').textContent = SUBTYPES[key] || '';
+      renderTextToRT(qs('#modalRaw').textContent, qs('#modalRT'));
+
+      qs('#subtypeModal').setAttribute('aria-hidden','false');
+
+      setParam('st', key);
+      try{ localStorage.setItem('type5_st', key); }catch(e){}
+    }
+    function closeSubtype(){ qs('#subtypeModal').setAttribute('aria-hidden','true'); }
+
+    function openCompare(){
+      qs('#cmpSurvieRaw').textContent = SUBTYPES.survie;
+      qs('#cmpTeteRaw').textContent = SUBTYPES.tete;
+      qs('#cmpSocialRaw').textContent = SUBTYPES.social;
+
+      renderTextToRT(qs('#cmpSurvieRaw').textContent, qs('#cmpSurvieRT'));
+      renderTextToRT(qs('#cmpTeteRaw').textContent, qs('#cmpTeteRT'));
+      renderTextToRT(qs('#cmpSocialRaw').textContent, qs('#cmpSocialRT'));
+
+      qs('#compareModal').setAttribute('aria-hidden','false');
+    }
+    function closeCompare(){ qs('#compareModal').setAttribute('aria-hidden','true'); }
+
+    function nextAction(){
+      const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+      if(tab === 'profil'){ setActiveTab('soustypes'); return; }
+      if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function initTop3Chip(){
+      const top = getParam('top');
+      if(!top) return;
+      const cleaned = top.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+      if(!cleaned.length) return;
+      qs('#top3Text').textContent = `Tes 3 résultats : ${cleaned.join(', ')}`;
+      qs('#top3Chip').style.display = '';
+    }
+
+    qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
+    qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
+    qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#nextBtn').addEventListener('click', nextAction);
+
+    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+    qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
+
+    qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
+    qs('#closeModal').addEventListener('click', closeSubtype);
+    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
+
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+
+    renderAllRichBlocks();
+    initTop3Chip();
+
+    const initTab = getParam('tab') || (()=>{
+      try{ return localStorage.getItem('type5_tab') || 'profil'; }catch(e){ return 'profil'; }
+    })();
+    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+
+    const initLvl = getParam('lvl') || (()=>{
+      try{ return localStorage.getItem('type5_lvl') || '1'; }catch(e){ return '1'; }
+    })();
+    updateLevel(initLvl);
+
+    const initSt = getParam('st') || (()=>{
+      try{ return localStorage.getItem('type5_st') || ''; }catch(e){ return ''; }
+    })();
+    if(initSt && SUBTYPES[initSt]){
+      setActiveTab('soustypes');
+      setTimeout(()=>openSubtype(initSt), 120);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1263 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Type 6 — Profil complet</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --line:rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a8b6dd;
+      --blue:#60a5fa;
+      --green:#34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.22), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.16), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(244,63,94,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .hero{
+      flex:1 1 700px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+    .dot{width:9px;height:9px;border-radius:50%}
+
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
+    .tab{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(96,165,250,.14), rgba(255,255,255,0));
+    }
+    summary::-webkit-details-marker{display:none}
+
+    .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
+    .sumTitle b{
+      font-size:15px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.98);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+
+    .content{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    .block{
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .raw{display:none}
+    .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
+    .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
+    .rt .gap{height:10px}
+
+    .rt .labelRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin:0 0 10px;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .rt .label{
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:.15px;
+      font-size:13px;
+      text-transform:none;
+    }
+    .rt .value{
+      color:rgba(255,255,255,.92);
+      font-size:15px;
+      flex:1 1 auto;
+      min-width:220px;
+    }
+
+    .rt .subhead{
+      margin:2px 0 10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(96,165,250,.20);
+      background:linear-gradient(180deg, rgba(96,165,250,.10), rgba(0,0,0,.10));
+      color:rgba(255,255,255,.96);
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .rt .subhead .t{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .rt ul{margin:0 0 10px 18px;padding:0}
+    .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dash{list-style-type:"-  "}
+    .rt ul.arrow{list-style-type:"→  "}
+    .rt ul.dot{list-style-type:"•  "}
+    .rt li .k{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .sectionHeader{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;
+      font-weight:900;
+    }
+
+    .btn, button, a.btn{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover, button:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
+    .btn:active, button:active{transform:translateY(0)}
+    .btn.primary{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+    .btn.primary:hover{
+      background:rgba(96,165,250,.20);
+      border-color:rgba(96,165,250,.45);
+    }
+
+    .subtypeBtns{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    .subtypeBtns .btn{padding:12px}
+    .subtypeBtns .btn.active{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.14);
+    }
+    @media (max-width: 860px){
+      .subtypeBtns{grid-template-columns:1fr}
+    }
+
+    .rangeWrap{display:grid;gap:10px}
+    .rangeLine{
+      width:100%;
+      padding:12px 12px 10px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:16px;
+    }
+    input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
+    .trackLabel{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+    }
+
+    .bottomBar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      padding:10px 12px;
+      z-index:999;
+    }
+    .barInner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .barInfo{color:var(--muted);font-size:12px;font-weight:900}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .sheet{
+      width:min(980px, 100%);
+      max-height:86vh;
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 25px 90px rgba(0,0,0,.65);
+    }
+    .sheetHeader{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(10,14,28,.78);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
+    .sheetHeader .title span{color:var(--muted);font-size:12px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sheetBody{padding:14px}
+    .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
+    @media (max-width: 980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Type 6 — Le Loyaliste / Le Gardien / Le Sceptique</h1>
+
+        <div class="chips" id="chips">
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Centre mental</span>
+          <span class="chip"><span class="dot" style="background:var(--green)"></span>Rôle social : Le Vaillant / Le Pilier</span>
+          <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Onglets">
+          <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
+          <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
+          <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Recherche</h2>
+          <input id="search" type="search" placeholder="Tape un mot, ex : peur, projection, doute, cynisme, foi..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Présentation et identification</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Présentation et Identification
+Titre et Identité : Le Type 6 est appelé le « Loyaliste », le « Gardien » ou le « Vaillant ». C'est une personnalité engagée, fiable et orientée vers la sécurité, souvent caractérisée par son sens des responsabilités et une anxiété sous-jacente.
+Définition globale : Le Type 6 est un individu dont l'orientation principale est la loyauté. Dévoué envers son groupe (famille, entreprise, cause), il recherche la sécurité à travers des structures stables, des justifications rationnelles et le soutien d'autrui. Il est particulièrement attentif aux dangers potentiels et aux intentions cachées, cherchant constamment à anticiper les difficultés. Il souffre souvent d'un manque de confiance en soi qui le pousse à s'attacher à des systèmes de croyances ou à des alliés extérieurs.
+Rôle Social : « Le Vaillant » ou « Le Pilier » (The Stalwart).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure et dynamique psychologique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Le Type 6 appartient au centre mental. Il l'utilise à la fois vers l'intérieur et l'extérieur pour tenter de comprendre le monde, mais paradoxalement, il le réprime également (étant sur le triangle central), ce qui crée une paralysie de la décision, une certaine confusion et une dépendance envers les autres.
+
+Hiérarchie des centres :
+* Centre Préféré : Mental (Utilisation intérieure/extérieure)
+* Centre de Support : Émotionnel (ou Instinctif selon l'aile)
+* Centre Réprimé : Mental (répression de son propre centre préféré)
+
+Orientation
+La loyauté et la recherche de sécurité.
+
+Compulsion
+Éviter la déviance (par rapport aux règles, aux normes ou au groupe).
+
+Passion et Fixation
+* Passion (Cœur) : La Peur. Elle est souvent vécue comme une anxiété ou une inquiétude constante face au futur. Elle peut se manifester par l'évitement (6 phobique) ou par une agression courageuse face au danger (6 contre-phobique).
+* Fixation (Tête) : Le Doute et la Suspicion. Il doute de lui-même, de ses décisions et remet en question de façon permanente les motifs d'autrui et la fiabilité de son environnement.
+
+Mécanisme de défense
+La projection. Il attribue aux autres ses propres émotions (souvent la peur ou l'hostilité) ou doutes inacceptables pour assurer sa sécurité. Cela crée souvent à l'extérieur l'hostilité qu'il craint tant.
+
+Peurs et Désirs fondamentaux
+* Peur de base : Être sans soutien ou sans guidance, et être incapable de survivre seul.
+* Désir de base : Trouver la sécurité et le soutien.
+* Message du Surmoi : « Tu es bien ou correct si tu fais ce qui est attendu de toi ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Origines, ailes, sous-types</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Origines et Variantes
+Le Schéma de l'enfance
+Le 6 a souvent ressenti une déconnexion de la figure protectrice (souvent le père), ne recevant pas le soutien nécessaire pour développer son autonomie. Il est resté bloqué dans une ambivalence envers l'autorité, cherchant à la fois protection et indépendance.
+
+Les Sous-types d'Ailes
+* 6w5 (Le Défenseur) : Plus sérieux, solitaire et attiré par les systèmes de connaissance théoriques.
+* 6w7 (Le Compagnon) : Plus sociable, engageant et utilise l'humour pour désarmer les menaces.
+
+Les trois sous-types instinctifs
+* Conservation (Cordialité) : Il manifeste beaucoup de chaleur et de cordialité pour désarmer les autres et se protéger d'eux. Il se focalise sur la responsabilité mutuelle et la sécurité domestique pour apaiser son anxiété.
+* Social (Devoir) : Il est très attaché aux règles et aux obligations sociales, cherchant la sécurité par l'appartenance à un groupe ou une cause ("la sécurité dans le nombre"). Il fait son devoir de manière scrupuleuse.
+* Sexuel (Force / Beauté) : Il combat son insécurité en affichant une force physique ou une attitude de défi (surtout chez les hommes) ou par la séduction et la beauté (surtout chez les femmes). Il défie souvent l'autorité pour prouver qu'il n'a pas peur.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux de développement (aperçu)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement est une mesure du degré d'identification d'une personne avec sa structure de personnalité. Plus on descend dans les niveaux, plus l'ego est aux commandes et plus les comportements deviennent automatiques et défensifs.
+
+La Plage Saine : Autonomie et Engagement (Niveaux 1 à 3)
+* Niveau 1 : Autonome et courageux. Il abandonne la croyance qu'il doit s'appuyer sur une autorité externe. Il découvre sa propre guidance intérieure, devenant solide, serein et capable de faire face à la vie avec courage.
+* Niveau 2 : Engagé et fiable. Il se concentre sur son environnement pour y construire des liens de confiance. Son image de soi est : « Je suis solide, attentif et fiable ».
+* Niveau 3 : Dévoué et coopératif. Il renforce son image en travaillant de manière responsable au sein de systèmes mutuellement bénéfiques. Il est discipliné, pratique et sait anticiper les problèmes.
+
+La Plage Moyenne : Ambivalence et Réactivité (Niveaux 4 à 6)
+* Niveau 4 : Respectueux des devoirs et loyal. Il craint de perdre son indépendance tout en ayant besoin de soutien. Il s'investit dans des organisations pour se rassurer, tout en restant inquiet.
+* Niveau 5 : Ambivalent et défensif. Il craint de ne pas pouvoir répondre aux demandes contradictoires. Il devient anxieux, pessimiste, suspicieux et indécis.
+* Niveau 6 : Autoritaire et accusateur. Craignant de perdre ses alliés, il cherche des coupables à son anxiété. Il devient cynique, réactif et peut se lancer dans des luttes de pouvoir pour tester la loyauté des autres.
+
+La Plage Malsaine : Panique et Paranoïa (Niveaux 7 à 9)
+* Niveau 7 : Paniqué et peu fiable. Il se sent impuissant, déprimé et cherche désespérément un sauveur.
+* Niveau 8 : Paranoïaque et agressif. Persuadé que les autres veulent le détruire, il développe des délires paranoïaques et peut s'en prendre violemment à des ennemis réels ou imaginaires.
+* Niveau 9 : Auto-punition et autodestruction. Accablé par la culpabilité, il peut inviter sa propre déchéance ou tenter de se suicider pour susciter un ultime secours.
+
+Signaux d'Alerte
+* Signal d'Éveil : La recherche d'une "chose sûre" ou d'une garantie absolue de sécurité.
+* Signal d'Alarme : La peur que ses propres actions défensives aient en réalité détruit sa propre sécurité.
+
+Les Défis de croissance
+Apprendre à écouter sa propre guidance intérieure plutôt que de chercher des "certitudes" à l'extérieur, et oser exprimer son opinion même si elle diffère de celle du groupe.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Type 6 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">4. Le Type 6 en Entreprise
+Profil professionnel
+Le 6 est un collaborateur fiable et travailleur qui respecte scrupuleusement les procédures. Il excelle dans l'analyse des risques et pressent les difficultés avant les autres, ce qui peut parfois le faire passer pour quelqu'un de négatif (l'avocat du diable).
+
+Style de management
+Il est au meilleur de lui-même dans les situations difficiles. Il met en place des procédures précises et valorise une atmosphère de coopération et de confiance. Il délègue facilement s'il a une confiance totale en ses collaborateurs.
+
+Style de communication
+Son style est qualifié de « Limites ». Il est cordial avec son groupe mais reste réservé et prudent avec l'extérieur, parlant souvent des inconvénients ou des risques liés à une situation.
+
+Points de vigilance
+Il peut être indécis et perdre du temps à vérifier son travail par manque de confiance en soi. Sa relation à l'autorité est complexe, oscillant entre soumission (phobique) et opposition (contre-phobique).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">5. Dynamique des Flèches
+Réaction au Stress (Désintégration)
+Vers le Type 3. Le 6 devient alors compétitif, soucieux de son image et hyperactif pour évacuer son anxiété.
+
+Chemin d'Intégration (Croissance)
+Vers le Type 9. Le 6 apprend à se détendre, devient plus ouvert, optimiste et serein face à l'inconnu.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution, pratiques, intégration</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">6. Évolution et Développement
+Points d'amélioration à travailler
+* Apprendre à porter son attention sur les aspects positifs d'un projet.
+* Améliorer sa confiance en soi en listant ses succès et compétences.
+* Pratiquer des exercices de relaxation pour gérer son anxiété.
+* Oser exprimer son opinion et faire confiance à son propre jugement.
+
+Pratiques suggérées et Attitudes de Guérison
+Pratiquer la méditation pour calmer le "comité intérieur" (les voix contradictoires), tester ses peurs par des actions concrètes. Se dire : « Peut-être que cela fonctionnera bien. Je n'ai pas besoin de tout prévoir ».
+
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 6 s'intègre vers le Type 9 (ou le Type 3).
+* Essence : L'état où il accède à ses potentialités réelles, libéré du doute permanent.
+* Idée supérieure : La Confiance ou la Foi. Il réalise qu'il possède les ressources nécessaires pour faire face à l'avenir et que la sécurité vient de l'intérieur.
+* Vertu : Le Courage. Il maîtrise sa peur et agit de manière autonome et responsable.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">7. Approche des Idées Sacrées (Perspective Almaas)
+L'Idée sacrée
+Foi Sacrée (la certitude que l'Essence est notre réalité intérieure stable) et Force Sacrée (la force objective de l'âme issue de son Essence).
+
+L'Illusion Spécifique
+Le Cynisme. La conviction que la nature humaine est foncièrement égoïste et qu'il n'existe pas de bonté ou de vérité intrinsèque.
+
+La Difficulté Spécifique
+L'insécurité peureuse. Un sentiment de vulnérabilité et de fragilité face à un monde perçu comme une jungle impitoyable.
+
+La Réaction Spécifique
+La suspicion défensive. Une vigilance paranoïaque et agressive visant à démasquer les intentions cachées d'autrui.
+
+Le Noyau de la Fixation
+La constellation entre le cynisme (illusion), l'insécurité (difficulté) et la suspicion défensive (réaction).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">8. Fondement Énergétique
+La Confiance Fondamentale
+Une certitude préverbale que la réalité est bienveillante et nous soutient.
+
+La Lumière du jour Vivante
+La qualité de l'Être perçue comme une conscience aimante universelle qui est la substance de toute chose.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Perspective et solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">9. La Perspective et la Solution
+L'Idée Sacrée comme Psycho-catalyseur
+La compréhension de la Foi Sacrée agit comme un solvant qui dissout le cynisme de l'ego.
+
+Rétablir la Confiance Fondamentale
+Cela passe par la reconnaissance que nous sommes des "enfants de l'univers", portés par la réalité.
+
+L'Abandon
+Cesser de manipuler la réalité pour se protéger et se laisser porter par le déploiement naturel de la vie.
+
+La Poussée Optimisante
+Reconnaître que la réalité possède une intelligence qui guide naturellement l'âme vers l'harmonie.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">10. Analogie
+Le Type 6 peut être comparé à un éclaireur vigilant ou à un radar de sécurité. Sa pensée scanne en permanence l'horizon pour détecter les mines et les obstacles invisibles aux yeux des autres.
+
+Analogie du pont suspendu
+Au niveau sain, il avance avec assurance sur le pont. Au niveau moyen, il s'agrippe aux cordages en doutant. Au niveau malsain, persuadé que le pont va s'effondrer, il saute dans le vide par désespoir.
+
+Le Type 6 est comme un marin : qui scrute désespérément l'horizon pour anticiper la tempête en consultant mille cartes, oubliant que son navire est insubmersible et que l'océan le porte.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-types instinctifs</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">LE type et sous types
+Items de présentation spécifique pour chaque sous-type</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn2" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie2" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete2" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social2" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SURVIE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Six Survie.
+* Équation des préoccupations : Préoccupations Six (faire confiance, remettre en question, s'inquiéter des conséquences) + Préoccupations Survie (focalisation sur la maison, la sécurité et la matérialité) = CHALEUR.
+* Comportement / Description du fonctionnement : Il utilise la gentillesse et la chaleur comme stratégie de survie : si les gens l'aiment, il ne sera pas agressé. Il développe une « garde rapprochée » d'amis fidèles pour se protéger et utilise souvent l'humour ou l'autodépréciation pour désarmer d'éventuels ennemis.
+* Le paradoxe : Espérer que la gentillesse rendra le monde plus sûr et prévisible est un leurre.
+* Métaphore : Le Loyaliste. Il a besoin d'établir des liens et de vivre dans des paysages connus pour accroître son sentiment de sécurité.
+* Signaux d'alerte du type : Trop d'inquiétude a priori, trop de préoccupations sur la sécurité, trop de réflexions sur les conséquences, trop de projections/scénarios noirs.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps au travail, préoccupations matérielles envahissantes, soirées routinières à la maison.
+* Témoignage (Claude) :
+    * Type : Apprécie sa sensibilité, ses dons d'anticipation et son intelligence pratique.
+    * Sous-type : Apprécie sa prévenance (tout organiser pour que personne ne manque de rien) et la capacité de l'autodérision pour évaluer ses inquiétudes.
+    * Combinaison : A pris conscience qu'elle utilisait la chaleur comme défense ; aujourd'hui, elle utilise son anticipation de manière moins crispée et plus intuitive.
+* Référence cinématographique : Le Troisième Homme (Holly Martins mène une enquête par intuition Six dans une ville de Vienne divisée et inquiétante, où il ne sait pas en qui avoir confiance).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Six Tête-à-tête.
+* Équation des préoccupations : Préoccupations Six + Préoccupation Tête-à-tête (focalisation sur le partenaire) = FORCE / BEAUTÉ.
+* Comportement / Description du fonctionnement : Il utilise la force ou la beauté pour se rassurer. S'il paraît fort et sexy, il se sent moins vulnérable. Il peut adopter des comportements « kamikazes » (défier l'autorité, sports extrêmes) pour se mesurer à sa peur et la museler par des actes de bravoure.
+* Le paradoxe : Rendre le monde extérieur responsable de sa propre peur n'améliore pas la confiance en soi sur le long terme.
+* Métaphore : M. Doux / M. Guerrier. Le pôle « Doux » cherche l'harmonie, tandis que le pôle « Guerrier » défie le doute par l'autosuggestion et des positions idéologiques fortes.
+* Signaux d'alerte du type : (Identiques au sous-type survie).
+* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention traquante sur le partenaire, manque de vision panoramique, rivalité avec les intérêts du conjoint.
+* Témoignage (Sammy) :
+    * Type : Apprécie sa loyauté envers ses proches et son courage à relever des défis physiques (saut en parachute).
+    * Sous-type : Apprécie la profondeur des rencontres confidentielles et sa capacité de concentration extrême sur un projet.
+    * Combinaison : Utilise l'intensité du tête-à-tête pour stabiliser sa confiance en elle et agir malgré la peur.
+* Référence cinématographique : Jeanne d’Arc (Jeanne incarne la dualité Force/Beauté, la foi galvanisée par le tête-à-tête avec Dieu et la bravoure face à l'insécurité totale).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SOCIAL</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Six Social.
+* Équation des préoccupations : Préoccupations Six + Préoccupations Sociales (amis, groupes) = DEVOIR.
+* Comportement / Description du fonctionnement : Le doute se focalise sur le groupe. Pour se sécuriser, il devient le gardien des règles, respecte scrupuleusement la loi et ses responsabilités. Il est intolérant envers l'ambiguïté et les « tricheurs » qui affaiblissent le système.
+* Le paradoxe : Être irréprochable dans ses devoirs n'augmente pas forcément la confiance en soi.
+* Métaphore : Le Vigilant. Il a besoin de contrats clairs et de connaître les règles pour éviter l'exclusion.
+* Signaux d'alerte du type : (Identiques).
+* Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Henri) :
+    * Type : Apprécie son analyse des situations complexes et son sérieux intègre.
+    * Sous-type : Apprécie sa capacité à sentir les aspects collectifs et à s'impliquer socialement pour améliorer le monde.
+    * Combinaison : Déploie une énergie colossale pour le bien commun, utilisant son acuité d'analyse pour faire avancer des réformes.
+* Référence cinématographique : La Tour Infernale (le chef des pompiers Mike incarne le sens du devoir absolu, l'anticipation du pire et la responsabilité envers le collectif face au danger).
+
+Analogie
+Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherche à se faire des amis parmi les indigènes pour ne pas être seul, le Six Tête-à-tête s'entraîne au combat et soigne son allure pour intimider les prédateurs, et le Six Social s'assure que tout le camp respecte rigoureusement le code de sentinelle pour que personne ne soit surpris.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux de développement</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le niveau de développement est une mesure du degré d'identification. Plus on descend, plus l'ego est aux commandes et plus les comportements deviennent automatiques et défensifs. Plus on monte, plus la sécurité vient de l'intérieur.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" id="levelDot" style="background:var(--green)"></span><span id="levelBadge">Niveau 1 • Sain</span></span>
+            </div>
+
+            <div class="rangeWrap">
+              <div class="rangeLine">
+                <div class="trackLabel"><span>1</span><span>9</span></div>
+                <input id="levelRange" type="range" min="1" max="9" step="1" value="1" />
+                <div class="bandPills">
+                  <span class="pill"><span class="dot" style="background:#22c55e"></span>Plage saine (1 à 3)</span>
+                  <span class="pill"><span class="dot" style="background:#f59e0b"></span>Plage moyenne (4 à 6)</span>
+                  <span class="pill"><span class="dot" style="background:#ef4444"></span>Plage malsaine (7 à 9)</span>
+                </div>
+              </div>
+
+              <div class="block" style="background:rgba(255,255,255,.03)">
+                <div class="rt" id="levelTextRT"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Liste des 9 niveaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Plage Saine : Autonomie et Engagement (Niveaux 1 à 3)
+* Niveau 1 : Autonome et courageux. Il abandonne la croyance qu'il doit s'appuyer sur une autorité externe. Il découvre sa propre guidance intérieure, devenant solide, serein et capable de faire face à la vie avec courage.
+* Niveau 2 : Engagé et fiable. Il se concentre sur son environnement pour y construire des liens de confiance. Son image de soi est : « Je suis solide, attentif et fiable ».
+* Niveau 3 : Dévoué et coopératif. Il renforce son image en travaillant de manière responsable au sein de systèmes mutuellement bénéfiques. Il est discipliné, pratique et sait anticiper les problèmes.
+
+La Plage Moyenne : Ambivalence et Réactivité (Niveaux 4 à 6)
+* Niveau 4 : Respectueux des devoirs et loyal. Il craint de perdre son indépendance tout en ayant besoin de soutien. Il s'investit dans des organisations pour se rassurer, tout en restant inquiet.
+* Niveau 5 : Ambivalent et défensif. Il craint de ne pas pouvoir répondre aux demandes contradictoires. Il devient anxieux, pessimiste, suspicieux et indécis.
+* Niveau 6 : Autoritaire et accusateur. Craignant de perdre ses alliés, il cherche des coupables à son anxiété. Il devient cynique, réactif et peut se lancer dans des luttes de pouvoir pour tester la loyauté des autres.
+
+La Plage Malsaine : Panique et Paranoïa (Niveaux 7 à 9)
+* Niveau 7 : Paniqué et peu fiable. Il craint que ses propres actions aient détruit sa sécurité. Il se sent impuissant, déprimé et cherche désespérément un sauveur.
+* Niveau 8 : Paranoïaque et agressif. Persuadé que les autres veulent le détruire, il développe des délires paranoïaques et peut s'en prendre violemment à des ennemis réels ou imaginaires.
+* Niveau 9 : Auto-punition et autodestruction. Accablé par la culpabilité, il peut inviter sa propre déchéance ou tenter de se suicider pour susciter un ultime secours.
+
+Signaux d'Alerte
+* Signal d'Éveil : La recherche d'une "chose sûre" ou d'une garantie absolue de sécurité.
+* Signal d'Alarme : La peur que ses propres actions défensives aient en réalité détruit sa propre sécurité.
+
+Les Défis de croissance
+Apprendre à écouter sa propre guidance intérieure plutôt que de chercher des "certitudes" à l'extérieur, et oser exprimer son opinion même si elle diffère de celle du groupe.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
+      </div>
+      <div class="barInfo" id="barInfo">Type 6</div>
+    </div>
+  </div>
+
+  <div class="modal" id="subtypeModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
+      <div class="sheetHeader">
+        <div class="title">
+          <b id="modalTitle">Sous-type</b>
+          <span id="modalSub">Type 6</span>
+        </div>
+        <div>
+          <button class="btn" id="closeModal" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="block rich">
+          <pre class="raw" id="modalRaw"></pre>
+          <div class="rt" id="modalRT"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Comparer les sous-types">
+      <div class="sheetHeader">
+        <div class="title">
+          <b>Comparer les 3 sous-types</b>
+          <span>Type 6</span>
+        </div>
+        <div>
+          <button class="btn" id="closeCompare" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="cols">
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SURVIE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSurvieRaw"></pre>
+              <div class="rt" id="cmpSurvieRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">TÊTE-À-TÊTE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpTeteRaw"></pre>
+              <div class="rt" id="cmpTeteRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SOCIAL</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSocialRaw"></pre>
+              <div class="rt" id="cmpSocialRT"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      if(value === null || value === undefined || value === '') u.searchParams.delete(name);
+      else u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
+    }
+    function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
+
+    function levelColor(n){
+      if(n<=3) return '#22c55e';
+      if(n<=6) return '#f59e0b';
+      return '#ef4444';
+    }
+    function levelBand(n){
+      if(n<=3) return 'Sain';
+      if(n<=6) return 'Moyen';
+      return 'Malsain';
+    }
+
+    const LEVELS = [
+      "Niveau 1 : Autonome et courageux. Il abandonne la croyance qu'il doit s'appuyer sur une autorité externe. Il découvre sa propre guidance intérieure, devenant solide, serein et capable de faire face à la vie avec courage.",
+      "Niveau 2 : Engagé et fiable. Il se concentre sur son environnement pour y construire des liens de confiance. Son image de soi est : « Je suis solide, attentif et fiable ».",
+      "Niveau 3 : Dévoué et coopératif. Il renforce son image en travaillant de manière responsable au sein de systèmes mutuellement bénéfiques. Il est discipliné, pratique et sait anticiper les problèmes.",
+      "Niveau 4 : Respectueux des devoirs et loyal. Il craint de perdre son indépendance tout en ayant besoin de soutien. Il s'investit dans des organisations pour se rassurer, tout en restant inquiet.",
+      "Niveau 5 : Ambivalent et défensif. Il craint de ne pas pouvoir répondre aux demandes contradictoires. Il devient anxieux, pessimiste, suspicieux et indécis.",
+      "Niveau 6 : Autoritaire et accusateur. Craignant de perdre ses alliés, il cherche des coupables à son anxiété. Il devient cynique, réactif et peut se lancer dans des luttes de pouvoir pour tester la loyauté des autres.",
+      "Niveau 7 : Paniqué et peu fiable. Il craint que ses propres actions aient détruit sa sécurité. Il se sent impuissant, déprimé et cherche désespérément un sauveur.",
+      "Niveau 8 : Paranoïaque et agressif. Persuadé que les autres veulent le détruire, il développe des délires paranoïaques et peut s'en prendre violemment à des ennemis réels ou imaginaires.",
+      "Niveau 9 : Auto-punition et autodestruction. Accablé par la culpabilité, il peut inviter sa propre déchéance ou tenter de se suicider pour susciter un ultime secours."
+    ];
+
+    const SUBTYPES = {
+      survie: `1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Six Survie.
+* Équation des préoccupations : Préoccupations Six (faire confiance, remettre en question, s'inquiéter des conséquences) + Préoccupations Survie (focalisation sur la maison, la sécurité et la matérialité) = CHALEUR.
+* Comportement / Description du fonctionnement : Il utilise la gentillesse et la chaleur comme stratégie de survie : si les gens l'aiment, il ne sera pas agressé. Il développe une « garde rapprochée » d'amis fidèles pour se protéger et utilise souvent l'humour ou l'autodépréciation pour désarmer d'éventuels ennemis.
+* Le paradoxe : Espérer que la gentillesse rendra le monde plus sûr et prévisible est un leurre.
+* Métaphore : Le Loyaliste. Il a besoin d'établir des liens et de vivre dans des paysages connus pour accroître son sentiment de sécurité.
+* Signaux d'alerte du type : Trop d'inquiétude a priori, trop de préoccupations sur la sécurité, trop de réflexions sur les conséquences, trop de projections/scénarios noirs.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps au travail, préoccupations matérielles envahissantes, soirées routinières à la maison.
+* Témoignage (Claude) :
+    * Type : Apprécie sa sensibilité, ses dons d'anticipation et son intelligence pratique.
+    * Sous-type : Apprécie sa prévenance (tout organiser pour que personne ne manque de rien) et la capacité de l'autodérision pour évaluer ses inquiétudes.
+    * Combinaison : A pris conscience qu'elle utilisait la chaleur comme défense ; aujourd'hui, elle utilise son anticipation de manière moins crispée et plus intuitive.
+* Référence cinématographique : Le Troisième Homme (Holly Martins mène une enquête par intuition Six dans une ville de Vienne divisée et inquiétante, où il ne sait pas en qui avoir confiance).`,
+      tete: `2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Six Tête-à-tête.
+* Équation des préoccupations : Préoccupations Six + Préoccupation Tête-à-tête (focalisation sur le partenaire) = FORCE / BEAUTÉ.
+* Comportement / Description du fonctionnement : Il utilise la force ou la beauté pour se rassurer. S'il paraît fort et sexy, il se sent moins vulnérable. Il peut adopter des comportements « kamikazes » (défier l'autorité, sports extrêmes) pour se mesurer à sa peur et la museler par des actes de bravoure.
+* Le paradoxe : Rendre le monde extérieur responsable de sa propre peur n'améliore pas la confiance en soi sur le long terme.
+* Métaphore : M. Doux / M. Guerrier. Le pôle « Doux » cherche l'harmonie, tandis que le pôle « Guerrier » défie le doute par l'autosuggestion et des positions idéologiques fortes.
+* Signaux d'alerte du type : (Identiques au sous-type survie).
+* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention traquante sur le partenaire, manque de vision panoramique, rivalité avec les intérêts du conjoint.
+* Témoignage (Sammy) :
+    * Type : Apprécie sa loyauté envers ses proches et son courage à relever des défis physiques (saut en parachute).
+    * Sous-type : Apprécie la profondeur des rencontres confidentielles et sa capacité de concentration extrême sur un projet.
+    * Combinaison : Utilise l'intensité du tête-à-tête pour stabiliser sa confiance en elle et agir malgré la peur.
+* Référence cinématographique : Jeanne d’Arc (Jeanne incarne la dualité Force/Beauté, la foi galvanisée par le tête-à-tête avec Dieu et la bravoure face à l'insécurité totale).`,
+      social: `3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Six Social.
+* Équation des préoccupations : Préoccupations Six + Préoccupations Sociales (amis, groupes) = DEVOIR.
+* Comportement / Description du fonctionnement : Le doute se focalise sur le groupe. Pour se sécuriser, il devient le gardien des règles, respecte scrupuleusement la loi et ses responsabilités. Il est intolérant envers l'ambiguïté et les « tricheurs » qui affaiblissent le système.
+* Le paradoxe : Être irréprochable dans ses devoirs n'augmente pas forcément la confiance en soi.
+* Métaphore : Le Vigilant. Il a besoin de contrats clairs et de connaître les règles pour éviter l'exclusion.
+* Signaux d'alerte du type : (Identiques).
+* Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Henri) :
+    * Type : Apprécie son analyse des situations complexes et son sérieux intègre.
+    * Sous-type : Apprécie sa capacité à sentir les aspects collectifs et à s'impliquer socialement pour améliorer le monde.
+    * Combinaison : Déploie une énergie colossale pour le bien commun, utilisant son acuité d'analyse pour faire avancer des réformes.
+* Référence cinématographique : La Tour Infernale (le chef des pompiers Mike incarne le sens du devoir absolu, l'anticipation du pire et la responsabilité envers le collectif face au danger).
+
+Analogie
+Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherche à se faire des amis parmi les indigènes pour ne pas être seul, le Six Tête-à-tête s'entraîne au combat et soigne son allure pour intimider les prédateurs, et le Six Social s'assure que tout le camp respecte rigoureusement le code de sentinelle pour que personne ne soit surpris.`
+    };
+
+    function escapeHTML(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function isSubhead(line){
+      const t = line.trim();
+      if(!t) return false;
+      const noColon = new Set([
+        "Centre d'intelligence","Hiérarchie des centres","Orientation","Compulsion","Passion et Fixation",
+        "Mécanisme de défense","Peurs et Désirs fondamentaux","Le Schéma de l'enfance","Les Sous-types d'Ailes",
+        "Les trois sous-types instinctifs","Profil professionnel","Style de management","Style de communication","Points de vigilance",
+        "Réaction au Stress (Désintégration)","Chemin d'Intégration (Croissance)","Points d'amélioration à travailler",
+        "Pratiques suggérées et Attitudes de Guérison","Intégration (Idée supérieure et Vertu)",
+        "L'Idée sacrée","L'Illusion Spécifique","La Difficulté Spécifique","La Réaction Spécifique","Le Noyau de la Fixation",
+        "La Confiance Fondamentale","La Lumière du jour Vivante",
+        "L'Idée Sacrée comme Psycho-catalyseur","Rétablir la Confiance Fondamentale","L'Abandon","La Poussée Optimisante",
+        "Analogie","Analogie du pont suspendu"
+      ]);
+      if(noColon.has(t)) return true;
+      if(/:\s*$/.test(t)) return true;
+      return false;
+    }
+
+    function renderTextToRT(text, rtEl){
+      const lines = (text || '').replace(/\r\n/g,'\n').split('\n');
+      let html = '';
+      let listMode = null;
+
+      const closeList = ()=>{ if(listMode){ html += `</ul>`; listMode = null; } };
+      const openList = (mode)=>{ if(listMode === mode) return; closeList(); listMode = mode; html += `<ul class="${mode}">`; };
+
+      const pushP = (line)=>{ closeList(); html += `<p>${escapeHTML(line)}</p>`; };
+      const pushGap = ()=>{ closeList(); html += `<div class="gap"></div>`; };
+      const pushSubhead = (title)=>{ closeList(); html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`; };
+      const pushLabelRow = (k, v)=>{ closeList(); html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`; };
+      const pushLI = (mode, k, v)=>{
+        openList(mode);
+        if(v === null){ html += `<li>${escapeHTML(k)}</li>`; return; }
+        html += `<li><span class="k">${escapeHTML(k)}</span> ${escapeHTML(v)}</li>`;
+      };
+
+      for(const line of lines){
+        if(line.trim()===''){ pushGap(); continue; }
+
+        if(isSubhead(line)){
+          const cleaned = line.trim().replace(/:\s*$/,'');
+          pushSubhead(cleaned);
+          continue;
+        }
+
+        const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
+        if(kv){
+          const key = kv[1].trim();
+          const val = kv[2].trim();
+          pushLabelRow(key, val);
+          continue;
+        }
+
+        const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
+        if(bullet){
+          openList('dot');
+          html += `<li>${escapeHTML(bullet[1])}</li>`;
+          continue;
+        }
+
+        pushP(line);
+      }
+
+      closeList();
+      rtEl.innerHTML = html;
+    }
+
+    function renderAllRichBlocks(){
+      qsa('.block.rich').forEach(block=>{
+        const raw = qs('.raw', block);
+        const rt = qs('.rt', block);
+        if(!raw || !rt) return;
+        renderTextToRT(raw.textContent, rt);
+      });
+    }
+
+    function setActiveTab(id){
+      const tabs = [
+        {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
+        {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
+        {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+      ];
+      tabs.forEach(t=>{
+        const on = (t.key === id);
+        t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.panel.hidden = !on;
+      });
+      setParam('tab', id);
+      try{ localStorage.setItem('type6_tab', id); }catch(e){}
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 6 • Profil complet' : (id === 'soustypes' ? 'Type 6 • Sous-types' : 'Type 6 • Niveaux de développement');
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('[data-search]');
+      if(!t){ blocks.forEach(b=>b.style.display=''); return; }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function updateLevel(n){
+      n = clamp(+n || 1, 1, 9);
+      const c = levelColor(n);
+      qs('#levelDot').style.background = c;
+      qs('#levelBadge').textContent = `Niveau ${n} • ${levelBand(n)}`;
+      qs('#levelRange').style.accentColor = c;
+
+      const rt = qs('#levelTextRT');
+      rt.innerHTML = '';
+      renderTextToRT(LEVELS[n-1] || '', rt);
+
+      setParam('lvl', String(n));
+      try{ localStorage.setItem('type6_lvl', String(n)); }catch(e){}
+    }
+
+    function openSubtype(key){
+      const mapBtn = {
+        survie: [qs('#btn-survie'), qs('#btn-survie2')],
+        tete: [qs('#btn-tete'), qs('#btn-tete2')],
+        social: [qs('#btn-social'), qs('#btn-social2')]
+      };
+      qsa('.subtypeBtns .btn').forEach(b=>b.classList.remove('active'));
+      (mapBtn[key]||[]).forEach(b=>b && b.classList.add('active'));
+
+      qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
+      qs('#modalSub').textContent = 'Type 6';
+
+      qs('#modalRaw').textContent = SUBTYPES[key] || '';
+      renderTextToRT(qs('#modalRaw').textContent, qs('#modalRT'));
+
+      qs('#subtypeModal').setAttribute('aria-hidden','false');
+
+      setParam('st', key);
+      try{ localStorage.setItem('type6_st', key); }catch(e){}
+    }
+    function closeSubtype(){ qs('#subtypeModal').setAttribute('aria-hidden','true'); }
+
+    function openCompare(){
+      qs('#cmpSurvieRaw').textContent = SUBTYPES.survie;
+      qs('#cmpTeteRaw').textContent = SUBTYPES.tete;
+      qs('#cmpSocialRaw').textContent = SUBTYPES.social;
+
+      renderTextToRT(qs('#cmpSurvieRaw').textContent, qs('#cmpSurvieRT'));
+      renderTextToRT(qs('#cmpTeteRaw').textContent, qs('#cmpTeteRT'));
+      renderTextToRT(qs('#cmpSocialRaw').textContent, qs('#cmpSocialRT'));
+
+      qs('#compareModal').setAttribute('aria-hidden','false');
+    }
+    function closeCompare(){ qs('#compareModal').setAttribute('aria-hidden','true'); }
+
+    function nextAction(){
+      const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+      if(tab === 'profil'){ setActiveTab('soustypes'); return; }
+      if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function initTop3Chip(){
+      const top = getParam('top');
+      if(!top) return;
+      const cleaned = top.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+      if(!cleaned.length) return;
+      qs('#top3Text').textContent = `Tes 3 résultats : ${cleaned.join(', ')}`;
+      qs('#top3Chip').style.display = '';
+    }
+
+    qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
+    qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
+    qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#nextBtn').addEventListener('click', nextAction);
+
+    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+    qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
+
+    qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
+    qs('#btn-survie2').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete2').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social2').addEventListener('click', ()=>openSubtype('social'));
+
+    qs('#closeModal').addEventListener('click', closeSubtype);
+    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
+
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#compareBtn2').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+
+    renderAllRichBlocks();
+    initTop3Chip();
+
+    const initTab = getParam('tab') || (()=>{
+      try{ return localStorage.getItem('type6_tab') || 'profil'; }catch(e){ return 'profil'; }
+    })();
+    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+
+    const initLvl = getParam('lvl') || (()=>{
+      try{ return localStorage.getItem('type6_lvl') || '1'; }catch(e){ return '1'; }
+    })();
+    updateLevel(initLvl);
+
+    const initSt = getParam('st') || (()=>{
+      try{ return localStorage.getItem('type6_st') || ''; }catch(e){ return ''; }
+    })();
+    if(initSt && SUBTYPES[initSt]){
+      setActiveTab('soustypes');
+      setTimeout(()=>openSubtype(initSt), 120);
+    }
+  </script>
+</body>
+</html>

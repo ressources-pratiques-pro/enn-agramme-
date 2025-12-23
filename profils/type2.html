@@ -1,0 +1,1294 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Type 2 — Profil complet</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --line:rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a8b6dd;
+      --blue:#60a5fa;
+      --green:#34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.26), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(244,63,94,.15), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .hero{
+      flex:1 1 700px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+    .dot{width:9px;height:9px;border-radius:50%}
+
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
+    .tab{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(96,165,250,.14), rgba(255,255,255,0));
+    }
+    summary::-webkit-details-marker{display:none}
+
+    .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
+    .sumTitle b{
+      font-size:15px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.98);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+
+    .content{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    .block{
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .raw{display:none}
+    .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
+    .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
+    .rt .gap{height:10px}
+
+    .rt .labelRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin:0 0 10px;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .rt .label{
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:.15px;
+      font-size:13px;
+      text-transform:none;
+    }
+    .rt .value{
+      color:rgba(255,255,255,.92);
+      font-size:15px;
+      flex:1 1 auto;
+      min-width:220px;
+    }
+
+    .rt .subhead{
+      margin:2px 0 10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(96,165,250,.20);
+      background:linear-gradient(180deg, rgba(96,165,250,.10), rgba(0,0,0,.10));
+      color:rgba(255,255,255,.96);
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .rt .subhead .t{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .rt ul{margin:0 0 10px 18px;padding:0}
+    .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dash{list-style-type:"-  "}
+    .rt ul.arrow{list-style-type:"→  "}
+    .rt ul.dot{list-style-type:"•  "}
+    .rt li .k{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .sectionHeader{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;
+      font-weight:900;
+    }
+
+    .btn, button, a.btn{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover, button:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
+    .btn:active, button:active{transform:translateY(0)}
+    .btn.primary{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+    .btn.primary:hover{
+      background:rgba(96,165,250,.20);
+      border-color:rgba(96,165,250,.45);
+    }
+
+    .subtypeBtns{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    .subtypeBtns .btn{padding:12px}
+    .subtypeBtns .btn.active{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.14);
+    }
+    @media (max-width: 860px){
+      .subtypeBtns{grid-template-columns:1fr}
+    }
+
+    .rangeWrap{display:grid;gap:10px}
+    .rangeLine{
+      width:100%;
+      padding:12px 12px 10px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:16px;
+    }
+    input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
+    .trackLabel{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+    }
+
+    .bottomBar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      padding:10px 12px;
+      z-index:999;
+    }
+    .barInner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .barInfo{color:var(--muted);font-size:12px;font-weight:900}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .sheet{
+      width:min(980px, 100%);
+      max-height:86vh;
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 25px 90px rgba(0,0,0,.65);
+    }
+    .sheetHeader{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(10,14,28,.78);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
+    .sheetHeader .title span{color:var(--muted);font-size:12px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sheetBody{padding:14px}
+    .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
+    @media (max-width: 980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Type 2 — Le Pourvoyeur / L'Altruiste</h1>
+
+        <div class="chips" id="chips">
+          <span class="chip"><span class="dot" style="background:var(--green)"></span>Centre émotionnel</span>
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Rôle social : L'Ami Spécial / Le Confident</span>
+          <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Onglets">
+          <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
+          <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
+          <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Recherche</h2>
+          <input id="search" type="search" placeholder="Tape un mot, ex : orgueil, besoin, limites..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Présentation</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Titre et Identité : Le Type 2 est appelé le Pourvoyeur, l'Altruiste, ou encore Celui qui aide. Il est défini comme le type attentionné, généreux, démonstratif et possessif. C'est une personne centrée sur les relations, cherchant à être aimée et appréciée pour sa bonté.
+Définition globale : Le Type 2, souvent nommé l'Altruiste ou le Donneur, place l'amour et l'aide au centre de son existence. C'est une personne chaleureuse qui possède une capacité naturelle à percevoir les besoins et les qualités d'autrui pour les encourager à se réaliser. Il cherche à être aimé en se rendant indispensable par une aide concrète, agissant souvent comme une éminence grise. Le 2 est animé par l'orientation de l'amour et de l'aide. Il possède un talent naturel pour percevoir les besoins des autres, les encourager et agir comme un confident chaleureux. Il cherche à créer une image de personne indispensable et désintéressée.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure et dynamique psychologique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Centre d'intelligence
+Le Type 2 appartient au centre émotionnel, qu'il utilise principalement vers l'extérieur.
+Hiérarchie des centres :
+* Centre Préféré : Émotionnel (Utilisation extérieure)
+* Centre de Support : Instinctif
+* Centre Réprimé : Mental
+Orientation
+L'amour et l'aide.
+Compulsion
+Éviter de reconnaître ses propres besoins.
+Passion et Fixation
+* Passion (Cœur) : L'Orgueil, qui se manifeste par la fierté d'aider sans avoir soi-même besoin d'aide. Se voir comme la source de l'aide sans avoir soi-même besoin de rien.
+* Fixation (Tête) : La Flatterie (pour séduire) et le Dédain (envers ceux qui ne semblent pas avoir besoin de lui ou qui sont "égoïstes").
+Mécanisme de défense
+La répression (ou refoulement). Il supprime ses propres besoins et les sentiments qui ne lui vaudraient pas l'approbation des autres pour projeter une image de générosité absolue. Il supprime inconsciemment ses propres besoins et les sentiments (comme l'agressivité) qui pourraient nuire à son image de personne aimante afin d'obtenir l'approbation d'autrui.
+Peurs et Désirs fondamentaux
+* Peur de base : Être indigne d'être aimé ou ne pas être voulu pour lui-même.
+* Désir de base : Se sentir aimé.
+* Le Message du Surmoi : « Tu es bien ou correct si tu es aimé par les autres et si tu es proche d'eux ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Origines et variantes</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Schéma de l'enfance
+L'enfant 2 a souvent ressenti que l'amour n'était pas gratuit et qu'il devait le gagner en étant serviable et en mettant les besoins des autres avant les siens. Il a appris à devenir un "petit parent" ou un médiateur pour obtenir l'attention de la figure nourricière.
+Les Sous-types d'Ailes
+* 2w1 (Le Serviteur) : Plus sérieux, moralisateur et tourné vers les tâches ingrates ou le service public.
+* 2w3 (L'Hôte/Hôtesse) : Plus extraverti, charmant, ambitieux et soucieux de son image sociale.
+Les trois sous-types instinctifs
+* Conservation (Privilège) : Se sent privilégié. Ce sous-type sacrifie excessivement ses besoins mais estime en retour avoir le droit à un traitement spécial et se sentir privilégié. Il attend un traitement spécial en retour de ses sacrifices extrêmes.
+* Social (Ambition) : L'ambitieux. Il possède un flair pour repérer les personnes puissantes ou de haut statut. Il cherche à les assister pour obtenir une influence indirecte et une protection. Il cherche l'influence et le prestige en se liant à des personnes puissantes.
+* Sexuel (Séduction agressive) : C'est un séducteur qui utilise son charme de manière active pour établir une relation intime forte, souvent avec des personnes de pouvoir. Il utilise son charme de façon intense pour fusionner avec une personne cible.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Le Type 2 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Profil professionnel
+En entreprise, le 2 privilégie les relations humaines. Il est positif, amical et dispose d'un vaste réseau relationnel interne. Il a cependant du mal à travailler seul et nécessite l'approbation de sa hiérarchie pour être efficace.
+Style de management
+Il est un manager formateur qui cherche à développer le potentiel de ses collaborateurs. Il privilégie l'improvisation à la planification et peut parfois "étouffer" son équipe par un excès d'aide.
+Style de communication
+Sa communication est chaleureuse et modulée. Il utilise le style « Aide / Avis », se tenant souvent proche de son interlocuteur pour renforcer le lien.
+Points de vigilance
+Il peut négliger ses propres priorités de travail pour aider les autres, se retrouver en surpoids de tâches ou manipuler indirectement pour obtenir de la reconnaissance.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Réaction au Stress (Désintégration)
+Vers le Type 8. Le 2 devient alors brusque, agressif, colérique et exigeant, reprochant ouvertement aux autres leur manque de gratitude.
+Chemin d'Intégration (Croissance)
+Vers le Type 4. Le 2 apprend à se connecter à ses propres émotions profondes, devient plus authentique et se permet d'être créatif pour lui-même.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution et développement</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Points d'amélioration à travailler
+* Apprendre à définir ses frontières et à dire « Non ».
+* N'aider que si on le lui demande expressément.
+* Séparer les facteurs rationnels des facteurs humains lors des prises de décision.
+* Accepter les critiques objectives sans y voir un rejet personnel.
+* Noter ses propres besoins quotidiens et ne pas aider quelqu'un qui n'a pas explicitement demandé de l'aide.
+Pratiques suggérées et Attitudes de Guérison
+Pratiquer la relaxation. Se dire : « Peut-être que je pourrais laisser quelqu'un d'autre faire cela. Peut-être que je pourrais faire quelque chose de bon pour moi aussi ».
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 2 s'intègre vers le Type 4 (ou le Type 8).
+* Essence : C'est l'état de la personnalité libérée des automatismes de l'ego, accédant à ses pleines potentialités.
+* Idée supérieure : La Liberté. Il réalise que sa valeur ne dépend pas de son utilité pour les autres. Être libéré du besoin d'approbation.
+* Vertu : L'Humilité, qui consiste à reconnaître ses limites et à prendre soin des autres dans le respect de leur autonomie. Reconnaître que l'amour ne se gagne pas par l'effort.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Perspective Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">L'Idée sacrée
+Volonté Sacrée / Liberté Sacrée. C'est la perception que tout ce qui se produit est le fonctionnement de la réalité une, et que la vraie liberté consiste à s'abandonner à ce flux.
+L'Illusion Spécifique
+La Volonté Séparée. La conviction qu'il existe un "moi" séparé capable de faire des choix indépendants et de manipuler la réalité à sa guise.
+La Difficulté Spécifique
+La Castration humiliante. Le sentiment d'être amenuisé et impuissant lorsque le soutien de l'environnement manque, vécu comme une blessure à l'orgueil.
+La Réaction Spécifique
+Action obstinée. Une tentative têtue et orgueilleuse de "faire à sa manière" pour compenser le sentiment d'impuissance.
+Le Noyau de la Fixation
+La constellation entre le sentiment de castration (difficulté) et l'activité d'obstination/manipulation (réaction).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Confiance Fondamentale
+Une certitude innée que l'univers est bienveillant et que tout finit par être bénéfique sans manipulation personnelle.
+La Lumière du jour Vivante
+La qualité de l'Être perçue comme un Amour Universel omniprésent qui soutient l'âme en permanence.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>La perspective et la solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">L'Idée Sacrée comme Psycho-catalyseur
+La compréhension de la Volonté Sacrée dissout l'erreur cognitive de l'ego (le sentiment de séparation).
+Rétablir la Confiance Fondamentale
+Cela passe par la reconnaissance que nous n'avons pas à "gagner" notre place ou l'amour, car nous sommes déjà portés par la réalité.
+L'Abandon
+Cesser de manipuler ses propres états ou ceux des autres, et se laisser porter par le déploiement naturel de la vie.
+La Poussée Optimisante
+Reconnaître que la réalité tend spontanément vers l'harmonie si l'ego s'arrête d'interférer.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Type 2 peut être comparé à un hôte dévoué d'une grande réception : il s'assure que chaque convive a tout ce dont il a besoin, anticipe les désirs de chacun et semble omniprésent pour garantir le confort de tous. Cependant, dans son zèle à servir, il en oublie souvent de s'asseoir lui-même à table, attendant secrètement que quelqu'un remarque son assiette vide sans qu'il ait à le demander.
+L'Essence du 2 : Comme un flux de chaleur naturelle qui n'a pas besoin d'être dirigé pour être ressenti.
+Le Type 2 est comme un voyageur dans un train qui garde sa lourde valise sur ses genoux, craignant que si il la pose, le train ne pourra pas la porter ; il doit apprendre que le train (la réalité) porte déjà tout le poids sans qu'il ait besoin de faire d'effort.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure de base</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">LE type et sous types
+
+Présentation générale du Type 2 : La structure de base
+* Blessure : Un jour, alors qu’il avait un besoin vital d’affection, l’enfant a eu le sentiment qu’il ne la recevrait pas naturellement, comme s'il n'avait aucune valeur personnelle. Il renonce à son « vrai moi » et réalise qu’il peut obtenir un substitut d’affection en décelant et en satisfaisant les besoins des autres.
+* Passion : L’orgueil. C’est la fierté de rendre service au point de nier ses propres besoins. Le Deux se perçoit comme un « donneur » généreux et comblé, utilisant le don comme stratégie de séduction et de valorisation. Il a un besoin massif d’amour, souvent masqué par une apparente indépendance.
+* Mécanisme de défense privilégié : La répression des besoins. Le Deux exclut de sa conscience ses propres désirs et sentiments pour se focaliser entièrement sur ceux de l’autre. Il évite ainsi de paraître défectueux (ce qui risquerait de le faire délaisser) et rejette souvent la faute sur les autres en cas de conflit pour ne pas ternir son image de personne serviable.
+
+Items de présentation spécifique pour chaque sous-type</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SURVIE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Deux Survie.
+* Équation des préoccupations : Préoccupation Deux (déceler les besoins de l'autre et réprimer les siens) + Préoccupations Survie (focalisation sur la maison, la sécurité et la matérialité) = PRIVILÈGES.
+* Comportement / Description du fonctionnement : Il consacre son énergie au bien-être matériel de ses proches et, en retour, revendique des privilèges. Il estime avoir droit à un traitement préférentiel (être servi en premier, avoir la meilleure place) car il se rend indispensable à la maisonnée. Au travail, il agit souvent comme une éminence grise, gérant les besoins logistiques de son supérieur avec une grande empathie tout en attendant des marques de reconnaissance indispensables.
+* Le paradoxe : Subvenir aux besoins de l'autre et recevoir de la reconnaissance ne l'incite pas à se poser des questions sur ses propres besoins réels.
+* Métaphore : La Nourrice. Douée pour materner, nourrir et prodiguer de la chaleur (ou l'image de la mammaitalienne qui dirige la maison sans en avoir l'air).
+* Signaux d'alerte du type : Trop de souci pour les autres, agitation physique, besoin excessif de reconnaissance, trop de sacrifice de soi.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, temps excessif passé au travail, préoccupations matérielles envahissantes, soirées routinières à la maison.
+* Témoignage (Pascale) :
+    * Type : Apprécie son intuition large, capable de capter ce qui ferait du bien à l'autre sans forcément agir immédiatement.
+    * Sous-type : A fini par accepter ce territoire comme un « camp de base » rassurant permettant d'explorer les autres domaines.
+    * Combinaison : A trouvé un équilibre entre sa compassion active et sa vision spirituelle, se sentant moins obligée de remédier immédiatement à toutes les souffrances.
+* Référence cinématographique : Beignets de Tomates Vertes (pour l'empathie d'Evelyn, les liens de tendresse entre générations et l'importance de la nourriture et du clan).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Deux Tête-à-tête.
+* Équation des préoccupations : Préoccupation Deux (déceler les besoins de l'autre et réprimer les siens) + Préoccupation Tête-à-tête (focalisation sur le partenaire) = SÉDUCTION / AGRESSION.
+* Comportement / Description du fonctionnement : Il utilise une présence intense et le langage corporel pour gagner l'approbation. Il y a une fierté à être le favori ou le confident. Si le contact ne se crée pas naturellement, il peut entrer dans une « séduction agressive », traquant l'autre pour le mettre en valeur et s'ajuster à ses attentes. Il recherche la fusion émotionnelle et la jouissance de l'instant partagé.
+* Le paradoxe : Aucun succès de son charme ne suffit à le combler, car sa capacité d'empathie l'empêche de découvrir ses propres besoins.
+* Métaphore : L'Amoureux. Capable de tout pour être aimé, même de renverser des montagnes pour intensifier la relation.
+* Signaux d'alerte du type : (Identiques) Trop de souci pour les autres, agitation physique, besoin de reconnaissance, sacrifice de soi.
+* Signaux d'alerte du sous-type : Zèle à prouver sa passion, attention focalisée sur le partenaire (traque), manque de vision panoramique, rivalité avec les autres centres d'intérêt du partenaire.
+* Témoignage (Pamela) :
+    * Type : Apprécie de créer des liens, son attitude positive et sa capacité à encourager les autres.
+    * Sous-type : Apprécie la rapidité de l'entrée en relation et l'atteinte de niveaux d'intensité rares.
+    * Combinaison : Réussit à donner envie aux autres de devenir « plus beaux » grâce à l'alliage de ses encouragements et de sa séduction agressive.
+* Référence cinématographique : Les Choristes (Gérard Jugnot incarne la bonhomie, le besoin de protéger les enfants et la création de liens privilégiés et passionnés avec eux et sa musique).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SOCIAL</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Deux Social.
+* Équation des préoccupations : Préoccupation Deux (déceler les besoins de l'autre et réprimer les siens) + Préoccupations Sociales (focalisation sur les amis, les groupes) = AMBITION SOCIALE.
+* Comportement / Description du fonctionnement : Il cherche l'estime de soi par l'approbation sociale et le prestige des groupes auxquels il appartient. Il est souvent l'ambitieux « par procuration » (le bras droit du chef, le coach d'une célébrité). Il se rend indispensable au sein d'une organisation en étant une mine d'informations sur les réseaux et les rapports de force.
+* Le paradoxe : Plus sa reconnaissance sociale croît, moins il fait l'effort de se centrer sur ses propres besoins.
+* Métaphore : L'Ambassadeur. Jovial, créant des « dettes » par des services rendus, il fait passer la réussite de sa cause avant son intérêt propre.
+* Signaux d'alerte du type : (Identiques) Trop de souci pour les autres, agitation physique, besoin de reconnaissance, sacrifice de soi.
+* Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Bernard) :
+    * Type : Apprécie sa capacité de rendre service, bien que conscient que cela compense une blessure d'enfance.
+    * Sous-type : Apprécie l'envergure que lui donne le social et son ambition pour le bien-être de l'homme en général.
+    * Combinaison : Se sent efficace en défendant les causes associatives, trouvant un équilibre entre son goût de l'indépendance et son incapacité à dire non.
+* Référence cinématographique : L'année de tous les dangers (le photographe Billy Kwan connaît tout le monde, brasse les informations stratégiques et vit par procuration en fabriquant la réussite de ses amis).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Définition + continuum</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
+Les niveaux de développement du Type 2 (l'Altruiste) décrivent un continuum qui mesure le degré d'identification d'une personne avec sa structure de personnalité. Ce continuum va de la liberté et de l'amour inconditionnel (niveaux sains) à la dépendance et au sentiment de victimisation (niveaux malsains).</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" id="levelDot" style="background:var(--green)"></span><span id="levelBadge">Niveau 1 • Sain</span></span>
+            </div>
+
+            <div class="rangeWrap">
+              <div class="rangeLine">
+                <div class="trackLabel"><span>1</span><span>9</span></div>
+                <input id="levelRange" type="range" min="1" max="9" step="1" value="1" />
+                <div class="bandPills">
+                  <span class="pill"><span class="dot" style="background:#22c55e"></span>Plage saine (1 à 3)</span>
+                  <span class="pill"><span class="dot" style="background:#f59e0b"></span>Plage moyenne (4 à 6)</span>
+                  <span class="pill"><span class="dot" style="background:#ef4444"></span>Plage malsaine (7 à 9)</span>
+                </div>
+              </div>
+
+              <div class="block" style="background:rgba(255,255,255,.03)">
+                <div class="rt" id="levelTextRT"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux 1 à 9</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Plage Saine : L'Amour Altruiste (Niveaux 1 à 3)
+À ces niveaux, le Type 2 est capable de prendre soin de lui-même tout en offrant un soutien sincère aux autres sans attentes cachées.
+* Niveau 1 : Prendre soin de soi et amour inconditionnel. Le 2 abandonne la croyance qu'il n'a pas le droit de s'occuper de ses propres besoins. Il accède à son désir de base (être aimé) et ressent un amour inconditionnel pour lui-même et pour les autres. Il devient joyeux, gracieux et humble.
+* Niveau 2 : Empathie et attention. Il se concentre sur les sentiments des autres avec une sollicitude aimante pour se protéger de sa peur de ne pas être aimé. Son image de soi est : « Je suis aimant, attentionné et désintéressé ».
+* Niveau 3 : Générosité et soutien. Il renforce son image de soi en faisant concrètement de bonnes choses pour les autres. Il est encourageant, exprime ouvertement ses sentiments et partage ses talents avec enthousiasme.
+La Plage Moyenne : Le Besoin d'être Aimé (Niveaux 4 à 6)
+C'est ici que l'identification à l'ego augmente. Le 2 commence à « donner pour recevoir » et à devenir plus intrusif.
+* Niveau 4 : Volonté de plaire. Le 2 commence à craindre que ses efforts ne suffisent pas et que les autres ne veuillent pas de lui. Il tente de conquérir les gens par la flatterie, le soutien excessif et en essayant d'être indispensable.
+* Niveau 5 : Possessivité et intrusion. Il s'inquiète que ses proches aiment quelqu'un d'autre plus que lui. Pour être nécessaire, il fait passer les besoins des autres avant les siens afin d'avoir une « créance » sur eux. Il devient fier mais exigeant, ne quittant pas les autres du regard.
+* Niveau 6 : Importance de soi et domination. Il est en colère d'être considéré comme acquis mais ne peut exprimer sa douleur directement. Il se plaint de sa santé, souligne ses bonnes actions et rappelle aux autres tout ce qu'ils lui doivent. Les sentiments refoulés causent des problèmes physiques.
+La Plage Malsaine : La Manipulation et la Victimisation (Niveaux 7 à 9)
+À ce stade, le 2 perd contact avec la réalité et ses efforts pour se rapprocher des autres finissent par les faire fuir.
+* Niveau 7 : Auto-justification et manipulation. Il craint de chasser les gens, ce qui est souvent le cas. Pour sauver son image de soi, il voit les autres comme des « ingrats égoïstes ». Il utilise la pitié pour créer une dépendance et empêcher les autres de partir.
+* Niveau 8 : Sentiment de droit et coercition. Désespéré, il poursuit l'affection de manière obsessive. Il se sent en droit d'obtenir tout ce qu'il veut parce qu'il a « tellement souffert » et peut agir de façon imprévisible ou inappropriée.
+* Niveau 9 : Victimisation et fardeau. Il réalise qu'il a pu être égoïste ou même nuire aux autres. Il s'effondre physiquement et émotionnellement, jouant le rôle de martyr pour obliger les autres à prendre soin de lui.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Signaux d’alerte</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Signaux d'Alerte
+* Signal d'Éveil : Le "people-pleasing" (tendance compulsive à vouloir plaire à tout le monde).
+* Signal d'Alarme : La peur que ses efforts pour se rapprocher des gens ne fassent en réalité que les chasser.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Défis de croissance</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les Défis de croissance
+Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sans culpabilité.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
+      </div>
+      <div class="barInfo" id="barInfo">Type 2</div>
+    </div>
+  </div>
+
+  <div class="modal" id="subtypeModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
+      <div class="sheetHeader">
+        <div class="title">
+          <b id="modalTitle">Sous-type</b>
+          <span id="modalSub">Type 2</span>
+        </div>
+        <div>
+          <button class="btn" id="closeModal" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="block rich">
+          <pre class="raw" id="modalRaw"></pre>
+          <div class="rt" id="modalRT"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Comparer les sous-types">
+      <div class="sheetHeader">
+        <div class="title">
+          <b>Comparer les 3 sous-types</b>
+          <span>Type 2</span>
+        </div>
+        <div>
+          <button class="btn" id="closeCompare" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="cols">
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SURVIE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSurvieRaw"></pre>
+              <div class="rt" id="cmpSurvieRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">TÊTE-À-TÊTE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpTeteRaw"></pre>
+              <div class="rt" id="cmpTeteRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SOCIAL</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSocialRaw"></pre>
+              <div class="rt" id="cmpSocialRT"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      if(value === null || value === undefined || value === '') u.searchParams.delete(name);
+      else u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
+    }
+    function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
+
+    function levelColor(n){
+      if(n<=3) return '#22c55e';
+      if(n<=6) return '#f59e0b';
+      return '#ef4444';
+    }
+    function levelBand(n){
+      if(n<=3) return 'Sain';
+      if(n<=6) return 'Moyen';
+      return 'Malsain';
+    }
+
+    const LEVELS = [
+      "Niveau 1 : Prendre soin de soi et amour inconditionnel. Le 2 abandonne la croyance qu'il n'a pas le droit de s'occuper de ses propres besoins. Il accède à son désir de base (être aimé) et ressent un amour inconditionnel pour lui-même et pour les autres. Il devient joyeux, gracieux et humble.",
+      "Niveau 2 : Empathie et attention. Il se concentre sur les sentiments des autres avec une sollicitude aimante pour se protéger de sa peur de ne pas être aimé. Son image de soi est : « Je suis aimant, attentionné et désintéressé ».",
+      "Niveau 3 : Générosité et soutien. Il renforce son image de soi en faisant concrètement de bonnes choses pour les autres. Il est encourageant, exprime ouvertement ses sentiments et partage ses talents avec enthousiasme.",
+      "Niveau 4 : Volonté de plaire. Le 2 commence à craindre que ses efforts ne suffisent pas et que les autres ne veuillent pas de lui. Il tente de conquérir les gens par la flatterie, le soutien excessif et en essayant d'être indispensable.",
+      "Niveau 5 : Possessivité et intrusion. Il s'inquiète que ses proches aiment quelqu'un d'autre plus que lui. Pour être nécessaire, il fait passer les besoins des autres avant les siens afin d'avoir une « créance » sur eux. Il devient fier mais exigeant, ne quittant pas les autres du regard.",
+      "Niveau 6 : Importance de soi et domination. Il est en colère d'être considéré comme acquis mais ne peut exprimer sa douleur directement. Il se plaint de sa santé, souligne ses bonnes actions et rappelle aux autres tout ce qu'ils lui doivent. Les sentiments refoulés causent des problèmes physiques.",
+      "Niveau 7 : Auto-justification et manipulation. Il craint de chasser les gens, ce qui est souvent le cas. Pour sauver son image de soi, il voit les autres comme des « ingrats égoïstes ». Il utilise la pitié pour créer une dépendance et empêcher les autres de partir.",
+      "Niveau 8 : Sentiment de droit et coercition. Désespéré, il poursuit l'affection de manière obsessive. Il se sent en droit d'obtenir tout ce qu'il veut parce qu'il a « tellement souffert » et peut agir de façon imprévisible ou inappropriée.",
+      "Niveau 9 : Victimisation et fardeau. Il réalise qu'il a pu être égoïste ou même nuire aux autres. Il s'effondre physiquement et émotionnellement, jouant le rôle de martyr pour obliger les autres à prendre soin de lui."
+    ];
+
+    const SUBTYPES = {
+      survie: `1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Deux Survie.
+* Équation des préoccupations : Préoccupation Deux (déceler les besoins de l'autre et réprimer les siens) + Préoccupations Survie (focalisation sur la maison, la sécurité et la matérialité) = PRIVILÈGES.
+* Comportement / Description du fonctionnement : Il consacre son énergie au bien-être matériel de ses proches et, en retour, revendique des privilèges. Il estime avoir droit à un traitement préférentiel (être servi en premier, avoir la meilleure place) car il se rend indispensable à la maisonnée. Au travail, il agit souvent comme une éminence grise, gérant les besoins logistiques de son supérieur avec une grande empathie tout en attendant des marques de reconnaissance indispensables.
+* Le paradoxe : Subvenir aux besoins de l'autre et recevoir de la reconnaissance ne l'incite pas à se poser des questions sur ses propres besoins réels.
+* Métaphore : La Nourrice. Douée pour materner, nourrir et prodiguer de la chaleur (ou l'image de la mammaitalienne qui dirige la maison sans en avoir l'air).
+* Signaux d'alerte du type : Trop de souci pour les autres, agitation physique, besoin excessif de reconnaissance, trop de sacrifice de soi.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, temps excessif passé au travail, préoccupations matérielles envahissantes, soirées routinières à la maison.
+* Témoignage (Pascale) :
+    * Type : Apprécie son intuition large, capable de capter ce qui ferait du bien à l'autre sans forcément agir immédiatement.
+    * Sous-type : A fini par accepter ce territoire comme un « camp de base » rassurant permettant d'explorer les autres domaines.
+    * Combinaison : A trouvé un équilibre entre sa compassion active et sa vision spirituelle, se sentant moins obligée de remédier immédiatement à toutes les souffrances.
+* Référence cinématographique : Beignets de Tomates Vertes (pour l'empathie d'Evelyn, les liens de tendresse entre générations et l'importance de la nourriture et du clan).`,
+      tete: `2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Deux Tête-à-tête.
+* Équation des préoccupations : Préoccupation Deux (déceler les besoins de l'autre et réprimer les siens) + Préoccupation Tête-à-tête (focalisation sur le partenaire) = SÉDUCTION / AGRESSION.
+* Comportement / Description du fonctionnement : Il utilise une présence intense et le langage corporel pour gagner l'approbation. Il y a une fierté à être le favori ou le confident. Si le contact ne se crée pas naturellement, il peut entrer dans une « séduction agressive », traquant l'autre pour le mettre en valeur et s'ajuster à ses attentes. Il recherche la fusion émotionnelle et la jouissance de l'instant partagé.
+* Le paradoxe : Aucun succès de son charme ne suffit à le combler, car sa capacité d'empathie l'empêche de découvrir ses propres besoins.
+* Métaphore : L'Amoureux. Capable de tout pour être aimé, même de renverser des montagnes pour intensifier la relation.
+* Signaux d'alerte du type : (Identiques) Trop de souci pour les autres, agitation physique, besoin de reconnaissance, sacrifice de soi.
+* Signaux d'alerte du sous-type : Zèle à prouver sa passion, attention focalisée sur le partenaire (traque), manque de vision panoramique, rivalité avec les autres centres d'intérêt du partenaire.
+* Témoignage (Pamela) :
+    * Type : Apprécie de créer des liens, son attitude positive et sa capacité à encourager les autres.
+    * Sous-type : Apprécie la rapidité de l'entrée en relation et l'atteinte de niveaux d'intensité rares.
+    * Combinaison : Réussit à donner envie aux autres de devenir « plus beaux » grâce à l'alliage de ses encouragements et de sa séduction agressive.
+* Référence cinématographique : Les Choristes (Gérard Jugnot incarne la bonhomie, le besoin de protéger les enfants et la création de liens privilégiés et passionnés avec eux et sa musique).`,
+      social: `3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Deux Social.
+* Équation des préoccupations : Préoccupation Deux (déceler les besoins de l'autre et réprimer les siens) + Préoccupations Sociales (focalisation sur les amis, les groupes) = AMBITION SOCIALE.
+* Comportement / Description du fonctionnement : Il cherche l'estime de soi par l'approbation sociale et le prestige des groupes auxquels il appartient. Il est souvent l'ambitieux « par procuration » (le bras droit du chef, le coach d'une célébrité). Il se rend indispensable au sein d'une organisation en étant une mine d'informations sur les réseaux et les rapports de force.
+* Le paradoxe : Plus sa reconnaissance sociale croît, moins il fait l'effort de se centrer sur ses propres besoins.
+* Métaphore : L'Ambassadeur. Jovial, créant des « dettes » par des services rendus, il fait passer la réussite de sa cause avant son intérêt propre.
+* Signaux d'alerte du type : (Identiques) Trop de souci pour les autres, agitation physique, besoin de reconnaissance, sacrifice de soi.
+* Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Bernard) :
+    * Type : Apprécie sa capacité de rendre service, bien que conscient que cela compense une blessure d'enfance.
+    * Sous-type : Apprécie l'envergure que lui donne le social et son ambition pour le bien-être de l'homme en général.
+    * Combinaison : Se sent efficace en défendant les causes associatives, trouvant un équilibre entre son goût de l'indépendance et son incapacité à dire non.
+* Référence cinématographique : L'année de tous les dangers (le photographe Billy Kwan connaît tout le monde, brasse les informations stratégiques et vit par procuration en fabriquant la réussite de ses amis).`
+    };
+
+    function escapeHTML(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function looksLikeDuplicateSectionTitle(line){
+      return /^\s*(GPT\s*\d+|Type\s*\d+)\b/i.test(line.trim()) || /^\s*\d+\.\s+/.test(line.trim());
+    }
+
+    function isPlainHeading(line){
+      const t = line.trim();
+      if(!t) return false;
+      if(looksLikeDuplicateSectionTitle(t)) return true;
+      if(/^LE\s+type\s+et\s+sous\s+types/i.test(t)) return false;
+      return false;
+    }
+
+    function isSubhead(line){
+      const t = line.trim();
+      if(!t) return false;
+
+      const noColonHeadings = new Set([
+        "Centre d'intelligence",
+        "Orientation",
+        "Compulsion",
+        "Passion et Fixation",
+        "Mécanisme de défense",
+        "Peurs et Désirs fondamentaux",
+        "Le Schéma de l'enfance",
+        "Les Sous-types d'Ailes",
+        "Les trois sous-types instinctifs",
+        "Profil professionnel",
+        "Style de management",
+        "Style de communication",
+        "Points de vigilance",
+        "Réaction au Stress (Désintégration)",
+        "Chemin d'Intégration (Croissance)",
+        "Points d'amélioration à travailler",
+        "Pratiques suggérées et Attitudes de Guérison",
+        "Intégration (Idée supérieure et Vertu)",
+        "L'Idée sacrée",
+        "L'Illusion Spécifique",
+        "La Difficulté Spécifique",
+        "La Réaction Spécifique",
+        "Le Noyau de la Fixation",
+        "La Confiance Fondamentale",
+        "La Lumière du jour Vivante",
+        "L'Idée Sacrée comme Psycho-catalyseur",
+        "Rétablir la Confiance Fondamentale",
+        "L'Abandon",
+        "La Poussée Optimisante",
+        "Signaux d'Alerte",
+        "Les Défis de croissance"
+      ]);
+      if(noColonHeadings.has(t)) return true;
+
+      if(/:\s*$/.test(t)) return true;
+
+      if(t === "Hiérarchie des centres :") return true;
+
+      return false;
+    }
+
+    function renderTextToRT(text, rtEl){
+      const lines = (text || '').replace(/\r\n/g,'\n').split('\n');
+      let html = '';
+      let listMode = null;
+
+      const closeList = ()=>{
+        if(listMode){ html += `</ul>`; listMode = null; }
+      };
+
+      const openList = (mode)=>{
+        if(listMode === mode) return;
+        closeList();
+        listMode = mode;
+        html += `<ul class="${mode}">`;
+      };
+
+      const pushP = (line)=>{
+        closeList();
+        html += `<p>${escapeHTML(line)}</p>`;
+      };
+
+      const pushGap = ()=>{
+        closeList();
+        html += `<div class="gap"></div>`;
+      };
+
+      const pushSubhead = (title)=>{
+        closeList();
+        html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`;
+      };
+
+      const pushLabelRow = (k, v)=>{
+        closeList();
+        html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`;
+      };
+
+      const pushLI = (mode, k, v, keepColon=true)=>{
+        openList(mode);
+        if(v === null){
+          html += `<li>${escapeHTML(k)}</li>`;
+          return;
+        }
+        const label = keepColon ? `${k}` : k;
+        html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
+      };
+
+      for(let i=0;i<lines.length;i++){
+        const line = lines[i];
+
+        if(line.trim()===''){
+          pushGap();
+          continue;
+        }
+
+        if(isPlainHeading(line)){
+          continue;
+        }
+
+        if(isSubhead(line)){
+          const cleaned = line.trim().replace(/:\s*$/,'');
+          pushSubhead(cleaned);
+          continue;
+        }
+
+        const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
+        if(kv){
+          const key = kv[1].trim();
+          const val = kv[2].trim();
+
+          if(/^Titre et Identité$/i.test(key) || /^Définition globale$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          if(/^Centre Préféré$/i.test(key) || /^Centre de Support$/i.test(key) || /^Centre Réprimé$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Le Message du Surmoi$/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          pushLabelRow(key, val);
+          continue;
+        }
+
+        const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
+        if(bullet){
+          openList('dot');
+          html += `<li>${escapeHTML(bullet[1])}</li>`;
+          continue;
+        }
+
+        pushP(line);
+      }
+
+      closeList();
+      rtEl.innerHTML = html;
+    }
+
+    function renderAllRichBlocks(){
+      qsa('.block.rich').forEach(block=>{
+        const raw = qs('.raw', block);
+        const rt = qs('.rt', block);
+        if(!raw || !rt) return;
+        renderTextToRT(raw.textContent, rt);
+      });
+    }
+
+    function setActiveTab(id){
+      const tabs = [
+        {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
+        {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
+        {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+      ];
+      tabs.forEach(t=>{
+        const on = (t.key === id);
+        t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.panel.hidden = !on;
+      });
+      setParam('tab', id);
+      try{ localStorage.setItem('type2_tab', id); }catch(e){}
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 2 • Profil complet' : (id === 'soustypes' ? 'Type 2 • Sous-types' : 'Type 2 • Niveaux de développement');
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('[data-search]');
+      if(!t){ blocks.forEach(b=>b.style.display=''); return; }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function updateLevel(n){
+      n = clamp(+n || 1, 1, 9);
+      const c = levelColor(n);
+      qs('#levelDot').style.background = c;
+      qs('#levelBadge').textContent = `Niveau ${n} • ${levelBand(n)}`;
+      qs('#levelRange').style.accentColor = c;
+
+      const rt = qs('#levelTextRT');
+      rt.innerHTML = '';
+      renderTextToRT(LEVELS[n-1] || '', rt);
+
+      setParam('lvl', String(n));
+      try{ localStorage.setItem('type2_lvl', String(n)); }catch(e){}
+    }
+
+    function openSubtype(key){
+      const mapBtn = {survie: qs('#btn-survie'), tete: qs('#btn-tete'), social: qs('#btn-social')};
+      Object.values(mapBtn).forEach(b=>b.classList.remove('active'));
+      if(mapBtn[key]) mapBtn[key].classList.add('active');
+
+      qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
+      qs('#modalSub').textContent = 'Type 2';
+
+      qs('#modalRaw').textContent = SUBTYPES[key] || '';
+      renderTextToRT(qs('#modalRaw').textContent, qs('#modalRT'));
+
+      qs('#subtypeModal').setAttribute('aria-hidden','false');
+
+      setParam('st', key);
+      try{ localStorage.setItem('type2_st', key); }catch(e){}
+    }
+    function closeSubtype(){ qs('#subtypeModal').setAttribute('aria-hidden','true'); }
+
+    function openCompare(){
+      qs('#cmpSurvieRaw').textContent = SUBTYPES.survie;
+      qs('#cmpTeteRaw').textContent = SUBTYPES.tete;
+      qs('#cmpSocialRaw').textContent = SUBTYPES.social;
+
+      renderTextToRT(qs('#cmpSurvieRaw').textContent, qs('#cmpSurvieRT'));
+      renderTextToRT(qs('#cmpTeteRaw').textContent, qs('#cmpTeteRT'));
+      renderTextToRT(qs('#cmpSocialRaw').textContent, qs('#cmpSocialRT'));
+
+      qs('#compareModal').setAttribute('aria-hidden','false');
+    }
+    function closeCompare(){ qs('#compareModal').setAttribute('aria-hidden','true'); }
+
+    function nextAction(){
+      const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+      if(tab === 'profil'){ setActiveTab('soustypes'); return; }
+      if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function initTop3Chip(){
+      const top = getParam('top');
+      if(!top) return;
+      const cleaned = top.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+      if(!cleaned.length) return;
+      qs('#top3Text').textContent = `Tes 3 résultats : ${cleaned.join(', ')}`;
+      qs('#top3Chip').style.display = '';
+    }
+
+    qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
+    qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
+    qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#nextBtn').addEventListener('click', nextAction);
+
+    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+    qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
+
+    qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
+    qs('#closeModal').addEventListener('click', closeSubtype);
+    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
+
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+
+    renderAllRichBlocks();
+    initTop3Chip();
+
+    const initTab = getParam('tab') || (()=>{
+      try{ return localStorage.getItem('type2_tab') || 'profil'; }catch(e){ return 'profil'; }
+    })();
+    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+
+    const initLvl = getParam('lvl') || (()=>{
+      try{ return localStorage.getItem('type2_lvl') || '1'; }catch(e){ return '1'; }
+    })();
+    updateLevel(initLvl);
+
+    const initSt = getParam('st') || (()=>{
+      try{ return localStorage.getItem('type2_st') || ''; }catch(e){ return ''; }
+    })();
+    if(initSt && SUBTYPES[initSt]){
+      setActiveTab('soustypes');
+      setTimeout(()=>openSubtype(initSt), 120);
+    }
+  </script>
+</body>
+</html>

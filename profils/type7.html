@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Type 7 — Profil complet</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --line:rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a8b6dd;
+      --blue:#60a5fa;
+      --green:#34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.18), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(245,158,11,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .top{display:flex;gap:14px;align-items:stretch;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+
+    .hero{
+      flex:1 1 700px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{margin:0 0 10px;font-size:clamp(22px, 3vw, 30px);letter-spacing:.2px}
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:7px 10px;border-radius:999px;
+      font-size:12px;color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+    .dot{width:9px;height:9px;border-radius:50%}
+
+    .side{flex:0 1 360px;display:grid;gap:12px;align-content:start}
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{margin:0 0 10px;font-size:14px;letter-spacing:.2px;color:rgba(255,255,255,.92)}
+
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+    .tab{
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.92);
+      font-weight:900;font-size:13px;
+      cursor:pointer;user-select:none;-webkit-tap-highlight-color: transparent;
+    }
+    .tab[aria-selected="true"]{background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.35)}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      user-select:none;-webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(245,158,11,.14), rgba(255,255,255,0));
+    }
+    summary::-webkit-details-marker{display:none}
+    .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
+    .sumTitle b{
+      font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.98);
+      display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    }
+    .chev{
+      width:10px;height:10px;border-right:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);transition:.18s ease;margin-right:4px;flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+    .content{padding:12px 14px 14px;border-top:1px solid var(--line)}
+
+    .block{background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:12px}
+    .raw{display:none}
+    .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
+    .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
+    .rt .gap{height:10px}
+
+    .rt .labelRow{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;
+      margin:0 0 10px;padding:10px 10px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .rt .label{color:var(--blue);font-weight:950;letter-spacing:.15px;font-size:13px}
+    .rt .value{color:rgba(255,255,255,.92);font-size:15px;flex:1 1 auto;min-width:220px}
+
+    .rt .subhead{
+      margin:2px 0 10px;padding:8px 10px;border-radius:12px;
+      border:1px solid rgba(245,158,11,.28);
+      background:linear-gradient(180deg, rgba(245,158,11,.12), rgba(0,0,0,.10));
+      color:rgba(255,255,255,.96);
+      font-weight:950;letter-spacing:.2px;
+    }
+    .rt .subhead .t{color:#fbbf24;font-weight:950}
+
+    .rt ul{margin:0 0 10px 18px;padding:0}
+    .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dot{list-style-type:"•  "}
+    .rt li .k{color:var(--blue);font-weight:950}
+
+    .sectionHeader{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;font-weight:900;
+    }
+
+    .btn, button, a.btn{
+      cursor:pointer;border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;border-radius:14px;
+      font-weight:900;letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;-webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover, button:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+    .btn:active, button:active{transform:translateY(0)}
+    .btn.primary{background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.35)}
+    .btn.primary:hover{background:rgba(96,165,250,.20);border-color:rgba(96,165,250,.45)}
+
+    .subtypeBtns{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:10px}
+    .subtypeBtns .btn{padding:12px}
+    .subtypeBtns .btn.active{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.14);
+    }
+    @media (max-width: 860px){.subtypeBtns{grid-template-columns:1fr}}
+
+    .rangeWrap{display:grid;gap:10px}
+    .rangeLine{
+      width:100%;
+      padding:12px 12px 10px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:16px;
+    }
+    input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
+    .trackLabel{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);font-weight:900}
+    .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;color:rgba(255,255,255,.92);
+      font-weight:900;
+    }
+
+    .bottomBar{
+      position:fixed;left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      padding:10px 12px;z-index:999;
+    }
+    .barInner{
+      max-width:1100px;margin:0 auto;
+      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .barInfo{color:var(--muted);font-size:12px;font-weight:900}
+
+    .modal{
+      position:fixed;inset:0;
+      display:none;align-items:flex-end;justify-content:center;
+      z-index:2000;padding:18px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .sheet{
+      width:min(980px, 100%);
+      max-height:86vh;overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 25px 90px rgba(0,0,0,.65);
+    }
+    .sheetHeader{
+      position:sticky;top:0;z-index:1;
+      background:rgba(10,14,28,.78);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+    }
+    .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
+    .sheetHeader .title span{color:var(--muted);font-size:12px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sheetBody{padding:14px}
+    .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
+    @media (max-width: 980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Type 7 — L’Enthousiaste / L’Épicurien / Le Généraliste</h1>
+
+        <div class="chips" id="chips">
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Centre mental</span>
+          <span class="chip"><span class="dot" style="background:#fbbf24"></span>Rôle social : L’Énergiseur / Le Catalyseur</span>
+          <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Onglets">
+          <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
+          <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
+          <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Recherche</h2>
+          <input id="search" type="search" placeholder="Tape un mot, ex : gloutonnerie, planification, rationalisation, clan..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Présentation et identification</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Présentation et Identification
+Titre et Identité : Le Type 7 est appelé l'« Épicurien », l'« Enthousiaste », le « Généraliste » ou le « Visionnaire ». C'est une personnalité polyvalente, spontanée et optimiste, dont l'énergie est dirigée vers la poursuite de la joie.
+Définition globale : Le Type 7 est un idéaliste curieux, doté d'une grande créativité intellectuelle et d'un esprit agile capable de synthétiser des informations diverses. Il cherche à vivre dans l'allégresse, attiré par la nouveauté et les possibilités positives. Il souhaite que le monde qui l'entoure partage cet état de bonheur permanent et cherche à maintenir son esprit occupé pour éviter l'anxiété intérieure.
+Rôle Social : « L'Énergiseur » ou « Le Catalyseur ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure et dynamique psychologique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Structure et Dynamique Psychologique
+Centre d'intelligence
+Le Type 7 appartient au centre mental, qu'il utilise de manière intérieure pour faire des plans, imaginer un futur plaisant et créer des options.
+
+Hiérarchie des centres :
+* Centre Préféré : Mental (Utilisation intérieure)
+* Centre de Support : Instinctif
+* Centre Réprimé : Émotionnel
+
+Orientation
+La joie et l’optimisme.
+
+Compulsion
+Éviter à tout prix la souffrance (physique ou psychologique) et le vide intérieur.
+
+Passion et Fixation
+* Passion (Cœur) : L'Intempérance (ou Gloutonnerie). Il ne s'agit pas uniquement de nourriture, mais d'un désir insatiable de consommer sans modération tout ce qui est agréable (expériences, idées), persuadé que "plus" apporte forcément plus de plaisir.
+* Fixation (Tête) : La Planification. Il passe son temps à bâtir des projets et à chercher des échappatoires mentales pour éviter de se confronter à la douleur du réel ou à l'ennui.
+
+Mécanisme de défense
+La rationalisation. Il utilise un discours logique pour éliminer la souffrance, transformer une critique ou un événement négatif en opportunité positive, évitant ainsi toute implication émotionnelle pénible.
+
+Peurs et Désirs fondamentaux
+* Peur de base : Être privé, piégé dans la souffrance ou ressentir de la douleur.
+* Désir de base : Être heureux, satisfait et trouver l'accomplissement.
+* Message du Surmoi : « Tu es bien ou correct si tu obtiens ce dont tu as besoin ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Origines, ailes, sous-types</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Origines et Variantes
+Le Schéma de l'enfance
+L'enfant 7 a souvent ressenti une déconnexion de la figure nourricière (souvent la mère). Ayant l'impression d'avoir été frustré dans ses besoins ou "sevré" trop tôt, il a décidé de se nourrir lui-même en cherchant des distractions extérieures pour masquer son vide intérieur.
+
+Les Sous-types d'Ailes
+Le modèle général inclut généralement une aile vers le 6 ou vers le 8.
+
+Les trois sous-types instinctifs
+* Conservation (Clan) : Il est loyal envers un groupe restreint (famille ou amis proches) qui partage ses idées. Il se focalise sur ses propres besoins et ceux de son cercle pour se sentir en sécurité.
+* Social (Sacrifice) : Cet idéaliste peut accepter de limiter ses propres choix ou aventures par esprit de sacrifice pour les autres ou pour une cause, souvent avec la conviction que ce frein sera de courte durée.
+* Sexuel (Imagination) : Il recherche des expériences nouvelles, intenses et fascinantes. Il privilégie souvent des relations peu impliquantes où son imaginaire et ses fantasmes comptent plus que la relation réelle.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux de développement (aperçu)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement mesure le degré de liberté psychologique. Plus le niveau est élevé, plus l'individu est libre et conscient ; plus il descend, plus il devient esclave de ses pulsions.
+
+La Plage Saine : La Joie et la Gratitude (Niveaux 1 à 3)
+* Niveau 1 : Joyeux et satisfait. Il abandonne la croyance que son bonheur dépend d'objets spécifiques. Il devient profondément reconnaissant, vivant une forme d'extase dans la simplicité du moment présent.
+* Niveau 2 : Enthousiaste et anticipateur. Il se concentre sur le monde des possibilités. Son image de soi est : « Je suis joyeux, spontané et extraverti ».
+* Niveau 3 : Réaliste et productif. Il s'engage pleinement dans la vie et accomplit des choses concrètes. Il devient polyvalent, audacieux et capable d'une production prolifique tout en restant pragmatique.
+
+La Plage Moyenne : L'Acquisition et la Distraction (Niveaux 4 à 6)
+* Niveau 4 : Acquisitif et consommateur. Craignant de manquer des expériences, il devient agité, veut multiplier ses options et tente de suivre toutes les tendances.
+* Niveau 5 : Distrait et éparpillé. Il craint de s'ennuyer ou de ressentir la douleur. Il s'efforce de rester excité, parle beaucoup et cherche de nouvelles aventures, mais manque souvent de suivi.
+* Niveau 6 : Égocentrique et excessif. Il a peur de manquer de ce dont il a besoin. Il devient impatient, exige une gratification instantanée et peut devenir gaspilleur, rejetant toute culpabilité.
+
+La Plage Malsaine : L'Insatiabilité et la Panique (Niveaux 7 à 9)
+* Niveau 7 : Insatiable et fuyant. Il panique à l'idée que ses actions ne lui apportent que de la douleur. Il devient impulsif, irresponsable et cherche n'importe quel soulagement temporaire.
+* Niveau 8 : Maniaque et imprudent. Désespéré d'échapper à l'anxiété, il alterne entre hystérie et dépression profonde, devenant instable.
+* Niveau 9 : Accablé et paralysé. Il réalise qu'il a ruiné sa vie et sa capacité à éprouver du plaisir. Souvent en proie à des problèmes graves, il est frappé par la terreur.
+
+Signaux d'Alerte
+* Signal d'Éveil : Le sentiment que « l'herbe est toujours plus verte ailleurs » (insatisfaction chronique du présent).
+* Signal d'Alarme : La peur que ses propres activités et son agitation ne lui apportent en fait que de la douleur.
+
+Les Défis de croissance
+Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans chercher d'échappatoires, et prendre davantage en compte les émotions des autres.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Type 7 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">4. Le Type 7 en Entreprise
+Profil professionnel
+Le 7 est une source d'innovation capable de synthétiser rapidement des informations variées. Il travaille vite et avec enthousiasme, mais peut s'acharner sur des projets irréalistes s'il n'en perçoit pas les failles. Il déteste la routine et les procédures trop strictes.
+
+Style de management
+C'est un manager qui bâtit une vision positive du futur et laisse beaucoup d'autonomie. Il est flexible et s'adapte facilement, mais son manque de contrôle et ses changements fréquents de cap peuvent dérouter son équipe.
+
+Style de communication
+Son style est celui des « Histoires ». Il charme par l'humour, les anecdotes et les métaphores, évitant soigneusement les sujets tristes, les conflits ou la négativité.
+
+Points de vigilance
+Il a tendance à la superficialité et peut abandonner un projet dès que les premières difficultés concrètes apparaissent. Il peut manquer de pugnacité face aux obstacles.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">5. Dynamique des Flèches
+Réaction au Stress (Désintégration)
+Vers le Type 1. Le 7 devient alors critique, rigide, impatient et moralisateur.
+
+Chemin d'Intégration (Croissance)
+Vers le Type 5. Le 7 apprend à se poser, à devenir plus profond, à observer la réalité avec calme et à assimiler ses expériences au lieu de les consommer avidement.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution, pratiques, intégration</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">6. Évolution et Développement
+Points d'amélioration à travailler
+* Apprendre à devenir plus réaliste en listant systématiquement les difficultés potentielles.
+* S'efforcer de mener ses projets jusqu'à leur terme malgré les obstacles.
+* Prendre davantage en compte les émotions et les besoins des autres.
+* Accepter les conflits nécessaires et reconnaître ses erreurs.
+
+Pratiques suggérées et Attitudes de Guérison
+Pratiquer la méditation pour calmer l'agitation mentale, rester présent avec les sentiments négatifs sans fuir, développer la discipline. Se dire : « Peut-être que ce que j'ai déjà est suffisant. Peut-être qu'il n'y a nulle part d'autre où je doive être ».
+
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le 7 s'intègre vers le Type 5 (ou le Type 1).
+* Essence : L'état où la personnalité accède à ses pleines potentialités, libérée des automatismes de l'ego.
+* Idée supérieure : Le Travail (ou le Plan Sacré). Il devient capable de se concentrer sur l'activité présente, ici et maintenant, sans s'échapper dans la planification du futur.
+* Vertu : La Tempérance. Il apprend le sens de la mesure et l'équilibre entre ses désirs et la réalité.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">7. Approche des Idées Sacrées (Perspective Almaas)
+L'Idée sacrée
+Le Plan Sacré, la Sagesse Sacrée ou le Travail Sacré. C'est la perception que la réalité se déploie selon un dessein intelligent instant après instant dans le présent.
+
+L'Illusion Spécifique
+Le développement séparé. Croire que l'on peut savoir ce qui est censé se passer ensuite et que l'on peut diriger son propre épanouissement.
+
+La Difficulté Spécifique
+La Désorientation. Le sentiment d'être perdu ou de "ne pas savoir quoi faire" suite à la perte de soutien.
+
+La Réaction Spécifique
+La Planification. Une tentative compulsive de créer sa propre orientation future par manque de confiance en la réalité.
+
+Le Noyau de la Fixation
+Le complexe formé par le sentiment de désorientation et l'activité réactive de planification.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">8. Fondement Énergétique
+La Confiance Fondamentale
+Une certitude innée que l'univers est bienveillant et que tout finit par être bénéfique sans manipulation personnelle.
+
+La Lumière du jour Vivante
+Qualité de l'Être perçue comme un amour universel qui permet de s'abandonner sans peur à l'inconnu.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Perspective et solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">9. La Perspective et la Solution
+L'Idée Sacrée comme Psycho-catalyseur
+Comprendre le Plan Sacré montre que l'effort de planification est inutile car la réalité se déploie déjà de façon optimale.
+
+Rétablir la Confiance Fondamentale
+Cela passe par l'acceptation de son impuissance à diriger son déploiement futur et par la présence totale au moment présent.
+
+L'Abandon
+Cesser de manipuler son expérience intérieure et laisser l'esprit se reposer.
+
+La Poussée Optimisante
+Reconnaître que le dynamisme de la réalité tend naturellement vers l'harmonie si l'ego arrête d'interférer.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">10. Analogie
+Le Type 7 peut être comparé à un papillon butineur qui survole une prairie fleurie. Ébloui par la multiplicité des couleurs, il se pose brièvement sur chaque fleur pour en goûter le nectar, mais s'envole prestement vers la suivante dès qu'il pressent l'ombre d'un nuage. Son défi est d'apprendre que la richesse d'un jardin se découvre aussi en prenant le temps d'observer une seule plante.
+
+Le 7 est comme un voyageur dans un train qui garde sa lourde valise sur ses genoux, ne faisant pas confiance au train (la réalité) pour porter ses bagages jusqu'à destination.
+
+L'âme est comme un jeune plant qui n'a pas besoin de diriger sa propre croissance (planification), mais seulement de l'environnement adéquat pour se déployer.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure de base</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Présentation générale du Type 7 : La structure de base
+* Blessure : Un jour, l’enfant a souffert d’être stoppé dans son élan, comme si on lui avait coupé les ailes. Il a été contraint de se plier aux instructions de l’autorité, ce qui fait qu'aujourd'hui, toute forme d'enfermement est vécue comme une douleur.
+* Passion : La gourmandise (gloutonnerie). Il s'agit d'un désir de multiplier les expériences variées et amusantes pour fuir la souffrance et l'ennui. Le Sept cherche à « croquer la vie » en restant toujours en mouvement vers un projet futur plus excitant.
+* Mécanisme de défense privilégié : La rationalisation. Le Sept reformule ses vécus douloureux en leur trouvant un côté positif ou une explication intellectuelle. Cela lui permet de se détacher de l'émotion pour ne pas se laisser toucher au niveau du cœur, ce qu'il juge dévastateur.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn2" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie2" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete2" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social2" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SURVIE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Sept Survie.
+* Équation des préoccupations : Préoccupations Sept (être libre, plaisir, mouvement) + Préoccupations Survie (maison, sécurité, matérialité) = CLAN.
+* Comportement / Description du fonctionnement : Il organise la vie la plus agréable possible en incluant sa famille et ses amis proches : son « clan ». Il utilise son réseau pour assurer sa sécurité et valider ses projets. Il est souvent doué pour le bricolage, l'organisation concrète et a une conscience aiguë de son corps et de sa santé.
+* Le paradoxe : Vouloir se rassurer par la proximité des membres du clan ne parvient pas à résoudre la peur du vide intérieur.
+* Métaphore : Le GO (Gentil Organisateur) du club de vacances. Le territoire est sécurisé, la nourriture variée, et le cadre permet à l'énergie du Sept de se déployer.
+* Signaux d'alerte du type : Trop de projets, trop de mouvement, trop de mental, trop d'optimisme.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps au travail, trop de préoccupations sur le bien-être matériel, répétition de soirées routinières.
+* Témoignage (Sébastien) :
+    * Type : Apprécie sa vivacité d'esprit, sa capacité à faire des associations d'idées incongrues et sa joie de vivre constante.
+    * Sous-type : Apprécie sa capacité de travail rapide, son habileté manuelle et son écoute des besoins de son corps.
+    * Combinaison : Le sous-type survie tempère son type en le ramenant au rythme de la terre et à l'importance du temps passé avec les siens.
+* Référence cinématographique : Rire et Châtiment (José Garcia incarne l'amuseur narcissique qui utilise l'humour pour anesthésier la souffrance avant de se transformer par la douleur d'une séparation).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Sept Tête-à-tête.
+* Équation des préoccupations : Préoccupations Sept + Préoccupation Tête-à-tête (focalisation sur le partenaire) = FASCINATION / SUGGESTION.
+* Comportement / Description du fonctionnement : Il est subjugué par chaque nouvelle personne ou projet, vivant dans un ravissement constant pour ce qui est nouveau. Il utilise son charme et sa vivacité pour fasciner l'autre et l'entraîner dans ses rêves, mais il peut avoir du mal à s'impliquer durablement une fois que la fascination s'estompe.
+* Le paradoxe : Savoir faire rêver le partenaire n'est pas forcément ce qu'il demande le plus au quotidien.
+* Métaphore : Don Juan. Il fascine l'autre, déclame des tirades enthousiastes et amène de la fraîcheur, tout en étant fortement influençable par la nouveauté.
+* Signaux d'alerte du type : (Identiques au sous-type survie).
+* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention focalisée sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du conjoint.
+* Témoignage (Vanessa) :
+    * Type : Apprécie son amour de l'aventure, sa curiosité de tout et son optimisme envers chaque rencontre.
+    * Sous-type : Apprécie sa capacité de concentration extrême (« sous cloche ») sur ce qui la passionne.
+    * Combinaison : Utilise l'agilité mentale du Sept et l'intensité du tête-à-tête pour créer des liens forts et joyeux, comme un « feu d'artifice permanent ».
+* Référence cinématographique : Le Cercle des Poètes disparus (John Keating insuffle l'amour de la liberté et de la passion à ses élèves, les poussant à rendre leur vie extraordinaire).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SOCIAL</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Sept Social.
+* Équation des préoccupations : Préoccupations Sept + Préoccupations Sociales (amis, groupes) = SACRIFICE.
+* Comportement / Description du fonctionnement : Il vit une tension entre son désir de plaisir et ses responsabilités envers le groupe. Il sacrifie sa liberté personnelle au profit d'idéaux sociaux, se sentant investi d'un devoir envers les autres, tout en essayant de rendre le monde plus joyeux.
+* Le paradoxe : Rechercher à faire partie d'un groupe tout en sachant que celui-ci bridera inévitablement son enthousiasme.
+* Métaphore : Le Visionnaire idéaliste. Il cherche à rendre le monde meilleur et plus doux, tout en luttant contre la peur d'un idéalisme qui deviendrait utopique.
+* Signaux d'alerte du type : (Identiques).
+* Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Philippe) :
+    * Type : Apprécie sa capacité de synthèse rapide, son côté créatif et son aptitude à relativiser les obstacles par l'humour.
+    * Sous-type : Apprécie son sens du devoir social et sa patience à œuvrer pour le bien commun.
+    * Combinaison : Le sous-type social compense les excès du Sept, faisant de lui un leader capable d'apporter de la légèreté et de la cohésion dans les groupes.
+* Référence cinématographique : Les Enfants du Marais (illustre la convivialité, le plaisir des rencontres et l'équilibre entre plaisirs personnels et obligations mondaines).
+
+Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie explore avec son clan pour sécuriser son camp de base, le Sept Tête-à-tête explore avec un partenaire pour vivre une intensité fascinante, et le Sept Social explore pour le compte d'une société qu'il rêve de rendre plus joyeuse, au prix de sa propre liberté.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux de développement</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le niveau de développement mesure le degré de liberté psychologique. Plus le niveau est élevé, plus l'individu est libre et conscient ; plus il descend, plus il devient esclave de ses pulsions. Le Type 7 apprend à trouver le bonheur à l’intérieur plutôt qu’à l’extérieur.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" id="levelDot" style="background:var(--green)"></span><span id="levelBadge">Niveau 1 • Sain</span></span>
+            </div>
+
+            <div class="rangeWrap">
+              <div class="rangeLine">
+                <div class="trackLabel"><span>1</span><span>9</span></div>
+                <input id="levelRange" type="range" min="1" max="9" step="1" value="1" />
+                <div class="bandPills">
+                  <span class="pill"><span class="dot" style="background:#22c55e"></span>Plage saine (1 à 3)</span>
+                  <span class="pill"><span class="dot" style="background:#f59e0b"></span>Plage moyenne (4 à 6)</span>
+                  <span class="pill"><span class="dot" style="background:#ef4444"></span>Plage malsaine (7 à 9)</span>
+                </div>
+              </div>
+
+              <div class="block" style="background:rgba(255,255,255,.03)">
+                <div class="rt" id="levelTextRT"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Liste des 9 niveaux</b></div>
+          <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Plage Saine : La Joie et la Gratitude (Niveaux 1 à 3)
+* Niveau 1 : Joyeux et satisfait. Il abandonne la croyance que son bonheur dépend d'objets spécifiques. Il devient profondément reconnaissant, vivant une forme d'extase dans la simplicité du moment présent.
+* Niveau 2 : Enthousiaste et anticipateur. Il se concentre sur le monde des possibilités. Son image de soi est : « Je suis joyeux, spontané et extraverti ».
+* Niveau 3 : Réaliste et productif. Il s'engage pleinement dans la vie et accomplit des choses concrètes. Il devient polyvalent, audacieux et capable d'une production prolifique tout en restant pragmatique.
+
+La Plage Moyenne : L'Acquisition et la Distraction (Niveaux 4 à 6)
+* Niveau 4 : Acquisitif et consommateur. Craignant de manquer des expériences, il devient agité, veut multiplier ses options et tente de suivre toutes les tendances.
+* Niveau 5 : Distrait et éparpillé. Il craint de s'ennuyer ou de ressentir la douleur. Il s'efforce de rester excité, parle beaucoup et cherche de nouvelles aventures, mais manque souvent de suivi.
+* Niveau 6 : Égocentrique et excessif. Il a peur de manquer de ce dont il a besoin. Il devient impatient, exige une gratification instantanée et peut devenir gaspilleur, rejetant toute culpabilité.
+
+La Plage Malsaine : L'Insatiabilité et la Panique (Niveaux 7 à 9)
+* Niveau 7 : Insatiable et fuyant. Il panique à l'idée que ses actions ne lui apportent que de la douleur. Il devient impulsif, irresponsable et cherche n'importe quel soulagement temporaire.
+* Niveau 8 : Maniaque et imprudent. Désespéré d'échapper à l'anxiété, il alterne entre hystérie et dépression profonde, devenant instable.
+* Niveau 9 : Accablé et paralysé. Il réalise qu'il a ruiné sa vie et sa capacité à éprouver du plaisir. Souvent en proie à des problèmes graves, il est frappé par la terreur.
+
+Signaux d'Alerte
+* Signal d'Éveil : Le sentiment que « l'herbe est toujours plus verte ailleurs » (insatisfaction chronique du présent).
+* Signal d'Alarme : La peur que ses propres activités et son agitation ne lui apportent en fait que de la douleur.
+
+Les Défis de croissance
+Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans chercher d'échappatoires, et prendre davantage en compte les émotions des autres.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
+      </div>
+      <div class="barInfo" id="barInfo">Type 7</div>
+    </div>
+  </div>
+
+  <div class="modal" id="subtypeModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
+      <div class="sheetHeader">
+        <div class="title">
+          <b id="modalTitle">Sous-type</b>
+          <span id="modalSub">Type 7</span>
+        </div>
+        <div><button class="btn" id="closeModal" type="button">Fermer</button></div>
+      </div>
+      <div class="sheetBody">
+        <div class="block rich">
+          <pre class="raw" id="modalRaw"></pre>
+          <div class="rt" id="modalRT"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Comparer les sous-types">
+      <div class="sheetHeader">
+        <div class="title">
+          <b>Comparer les 3 sous-types</b>
+          <span>Type 7</span>
+        </div>
+        <div><button class="btn" id="closeCompare" type="button">Fermer</button></div>
+      </div>
+      <div class="sheetBody">
+        <div class="cols">
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SURVIE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSurvieRaw"></pre>
+              <div class="rt" id="cmpSurvieRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">TÊTE-À-TÊTE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpTeteRaw"></pre>
+              <div class="rt" id="cmpTeteRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SOCIAL</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSocialRaw"></pre>
+              <div class="rt" id="cmpSocialRT"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      if(value === null || value === undefined || value === '') u.searchParams.delete(name);
+      else u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
+    }
+    function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
+
+    function levelColor(n){
+      if(n<=3) return '#22c55e';
+      if(n<=6) return '#f59e0b';
+      return '#ef4444';
+    }
+    function levelBand(n){
+      if(n<=3) return 'Sain';
+      if(n<=6) return 'Moyen';
+      return 'Malsain';
+    }
+
+    const LEVELS = [
+      "Niveau 1 : Joyeux et satisfait. Il abandonne la croyance que son bonheur dépend d'objets spécifiques. Il devient profondément reconnaissant, vivant une forme d'extase dans la simplicité du moment présent.",
+      "Niveau 2 : Enthousiaste et anticipateur. Il se concentre sur le monde des possibilités. Son image de soi est : « Je suis joyeux, spontané et extraverti ».",
+      "Niveau 3 : Réaliste et productif. Il s'engage pleinement dans la vie et accomplit des choses concrètes. Il devient polyvalent, audacieux et capable d'une production prolifique tout en restant pragmatique.",
+      "Niveau 4 : Acquisitif et consommateur. Craignant de manquer des expériences, il devient agité, veut multiplier ses options et tente de suivre toutes les tendances.",
+      "Niveau 5 : Distrait et éparpillé. Il craint de s'ennuyer ou de ressentir la douleur. Il s'efforce de rester excité, parle beaucoup et cherche de nouvelles aventures, mais manque souvent de suivi.",
+      "Niveau 6 : Égocentrique et excessif. Il a peur de manquer de ce dont il a besoin. Il devient impatient, exige une gratification instantanée et peut devenir gaspilleur, rejetant toute culpabilité.",
+      "Niveau 7 : Insatiable et fuyant. Il panique à l'idée que ses actions ne lui apportent que de la douleur. Il devient impulsif, irresponsable et cherche n'importe quel soulagement temporaire.",
+      "Niveau 8 : Maniaque et imprudent. Désespéré d'échapper à l'anxiété, il alterne entre hystérie et dépression profonde, devenant instable.",
+      "Niveau 9 : Accablé et paralysé. Il réalise qu'il a ruiné sa vie et sa capacité à éprouver du plaisir. Souvent en proie à des problèmes graves, il est frappé par la terreur."
+    ];
+
+    const SUBTYPES = {
+      survie: `1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Sept Survie.
+* Équation des préoccupations : Préoccupations Sept (être libre, plaisir, mouvement) + Préoccupations Survie (maison, sécurité, matérialité) = CLAN.
+* Comportement / Description du fonctionnement : Il organise la vie la plus agréable possible en incluant sa famille et ses amis proches : son « clan ». Il utilise son réseau pour assurer sa sécurité et valider ses projets. Il est souvent doué pour le bricolage, l'organisation concrète et a une conscience aiguë de son corps et de sa santé.
+* Le paradoxe : Vouloir se rassurer par la proximité des membres du clan ne parvient pas à résoudre la peur du vide intérieur.
+* Métaphore : Le GO (Gentil Organisateur) du club de vacances. Le territoire est sécurisé, la nourriture variée, et le cadre permet à l'énergie du Sept de se déployer.
+* Signaux d'alerte du type : Trop de projets, trop de mouvement, trop de mental, trop d'optimisme.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité, trop de temps au travail, trop de préoccupations sur le bien-être matériel, répétition de soirées routinières.
+* Témoignage (Sébastien) :
+    * Type : Apprécie sa vivacité d'esprit, sa capacité à faire des associations d'idées incongrues et sa joie de vivre constante.
+    * Sous-type : Apprécie sa capacité de travail rapide, son habileté manuelle et son écoute des besoins de son corps.
+    * Combinaison : Le sous-type survie tempère son type en le ramenant au rythme de la terre et à l'importance du temps passé avec les siens.
+* Référence cinématographique : Rire et Châtiment (José Garcia incarne l'amuseur narcissique qui utilise l'humour pour anesthésier la souffrance avant de se transformer par la douleur d'une séparation).`,
+      tete: `2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Sept Tête-à-tête.
+* Équation des préoccupations : Préoccupations Sept + Préoccupation Tête-à-tête (focalisation sur le partenaire) = FASCINATION / SUGGESTION.
+* Comportement / Description du fonctionnement : Il est subjugué par chaque nouvelle personne ou projet, vivant dans un ravissement constant pour ce qui est nouveau. Il utilise son charme et sa vivacité pour fasciner l'autre et l'entraîner dans ses rêves, mais il peut avoir du mal à s'impliquer durablement une fois que la fascination s'estompe.
+* Le paradoxe : Savoir faire rêver le partenaire n'est pas forcément ce qu'il demande le plus au quotidien.
+* Métaphore : Don Juan. Il fascine l'autre, déclame des tirades enthousiastes et amène de la fraîcheur, tout en étant fortement influençable par la nouveauté.
+* Signaux d'alerte du type : (Identiques au sous-type survie).
+* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention focalisée sur le partenaire, manque de vision panoramique, rivalité avec les autres centres d'intérêt du conjoint.
+* Témoignage (Vanessa) :
+    * Type : Apprécie son amour de l'aventure, sa curiosité de tout et son optimisme envers chaque rencontre.
+    * Sous-type : Apprécie sa capacité de concentration extrême (« sous cloche ») sur ce qui la passionne.
+    * Combinaison : Utilise l'agilité mentale du Sept et l'intensité du tête-à-tête pour créer des liens forts et joyeux, comme un « feu d'artifice permanent ».
+* Référence cinématographique : Le Cercle des Poètes disparus (John Keating insuffle l'amour de la liberté et de la passion à ses élèves, les poussant à rendre leur vie extraordinaire).`,
+      social: `3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Sept Social.
+* Équation des préoccupations : Préoccupations Sept + Préoccupations Sociales (amis, groupes) = SACRIFICE.
+* Comportement / Description du fonctionnement : Il vit une tension entre son désir de plaisir et ses responsabilités envers le groupe. Il sacrifie sa liberté personnelle au profit d'idéaux sociaux, se sentant investi d'un devoir envers les autres, tout en essayant de rendre le monde plus joyeux.
+* Le paradoxe : Rechercher à faire partie d'un groupe tout en sachant que celui-ci bridera inévitablement son enthousiasme.
+* Métaphore : Le Visionnaire idéaliste. Il cherche à rendre le monde meilleur et plus doux, tout en luttant contre la peur d'un idéalisme qui deviendrait utopique.
+* Signaux d'alerte du type : Trop de projets, trop de mouvement, trop de mental, trop d'optimisme.
+* Signaux d'alerte du sous-type : Souci excessif d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif à une cause.
+* Témoignage (Philippe) :
+    * Type : Apprécie sa capacité de synthèse rapide, son côté créatif et son aptitude à relativiser les obstacles par l'humour.
+    * Sous-type : Apprécie son sens du devoir social et sa patience à œuvrer pour le bien commun.
+    * Combinaison : Le sous-type social compense les excès du Sept, faisant de lui un leader capable d'apporter de la légèreté et de la cohésion dans les groupes.
+* Référence cinématographique : Les Enfants du Marais (illustre la convivialité, le plaisir des rencontres et l'équilibre entre plaisirs personnels et obligations mondaines).
+
+Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie explore avec son clan pour sécuriser son camp de base, le Sept Tête-à-tête explore avec un partenaire pour vivre une intensité fascinante, et le Sept Social explore pour le compte d'une société qu'il rêve de rendre plus joyeuse, au prix de sa propre liberté.`
+    };
+
+    function escapeHTML(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function isSubhead(line){
+      const t = line.trim();
+      if(!t) return false;
+      const noColon = new Set([
+        "Centre d'intelligence","Hiérarchie des centres","Orientation","Compulsion","Passion et Fixation",
+        "Mécanisme de défense","Peurs et Désirs fondamentaux","Le Schéma de l'enfance","Les Sous-types d'Ailes",
+        "Les trois sous-types instinctifs","Profil professionnel","Style de management","Style de communication","Points de vigilance",
+        "Réaction au Stress (Désintégration)","Chemin d'Intégration (Croissance)","Points d'amélioration à travailler",
+        "Pratiques suggérées et Attitudes de Guérison","Intégration (Idée supérieure et Vertu)",
+        "L'Idée sacrée","L'Illusion Spécifique","La Difficulté Spécifique","La Réaction Spécifique","Le Noyau de la Fixation",
+        "La Confiance Fondamentale","La Lumière du jour Vivante",
+        "L'Idée Sacrée comme Psycho-catalyseur","Rétablir la Confiance Fondamentale","L'Abandon","La Poussée Optimisante",
+        "Analogie"
+      ]);
+      if(noColon.has(t)) return true;
+      if(/:\s*$/.test(t)) return true;
+      return false;
+    }
+
+    function renderTextToRT(text, rtEl){
+      const lines = (text || '').replace(/\r\n/g,'\n').split('\n');
+      let html = '';
+      let listMode = null;
+
+      const closeList = ()=>{ if(listMode){ html += `</ul>`; listMode = null; } };
+      const openList = ()=>{ if(listMode) return; listMode = 'dot'; html += `<ul class="dot">`; };
+
+      const pushP = (line)=>{ closeList(); html += `<p>${escapeHTML(line)}</p>`; };
+      const pushGap = ()=>{ closeList(); html += `<div class="gap"></div>`; };
+      const pushSubhead = (title)=>{ closeList(); html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`; };
+      const pushLabelRow = (k, v)=>{ closeList(); html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`; };
+
+      for(const line of lines){
+        if(line.trim()===''){ pushGap(); continue; }
+
+        if(isSubhead(line)){
+          const cleaned = line.trim().replace(/:\s*$/,'');
+          pushSubhead(cleaned);
+          continue;
+        }
+
+        const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
+        if(kv){
+          pushLabelRow(kv[1].trim(), kv[2].trim());
+          continue;
+        }
+
+        const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
+        if(bullet){
+          openList();
+          html += `<li>${escapeHTML(bullet[1])}</li>`;
+          continue;
+        }
+
+        pushP(line);
+      }
+
+      closeList();
+      rtEl.innerHTML = html;
+    }
+
+    function renderAllRichBlocks(){
+      qsa('.block.rich').forEach(block=>{
+        const raw = qs('.raw', block);
+        const rt = qs('.rt', block);
+        if(!raw || !rt) return;
+        renderTextToRT(raw.textContent, rt);
+      });
+    }
+
+    function setActiveTab(id){
+      const tabs = [
+        {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
+        {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
+        {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+      ];
+      tabs.forEach(t=>{
+        const on = (t.key === id);
+        t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.panel.hidden = !on;
+      });
+      setParam('tab', id);
+      try{ localStorage.setItem('type7_tab', id); }catch(e){}
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 7 • Profil complet' : (id === 'soustypes' ? 'Type 7 • Sous-types' : 'Type 7 • Niveaux de développement');
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('[data-search]');
+      if(!t){ blocks.forEach(b=>b.style.display=''); return; }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function updateLevel(n){
+      n = clamp(+n || 1, 1, 9);
+      const c = levelColor(n);
+      qs('#levelDot').style.background = c;
+      qs('#levelBadge').textContent = `Niveau ${n} • ${levelBand(n)}`;
+      qs('#levelRange').style.accentColor = c;
+
+      const rt = qs('#levelTextRT');
+      rt.innerHTML = '';
+      renderTextToRT(LEVELS[n-1] || '', rt);
+
+      setParam('lvl', String(n));
+      try{ localStorage.setItem('type7_lvl', String(n)); }catch(e){}
+    }
+
+    function openSubtype(key){
+      const mapBtn = {
+        survie: [qs('#btn-survie'), qs('#btn-survie2')],
+        tete: [qs('#btn-tete'), qs('#btn-tete2')],
+        social: [qs('#btn-social'), qs('#btn-social2')]
+      };
+      qsa('.subtypeBtns .btn').forEach(b=>b.classList.remove('active'));
+      (mapBtn[key]||[]).forEach(b=>b && b.classList.add('active'));
+
+      qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
+      qs('#modalSub').textContent = 'Type 7';
+
+      qs('#modalRaw').textContent = SUBTYPES[key] || '';
+      renderTextToRT(qs('#modalRaw').textContent, qs('#modalRT'));
+
+      qs('#subtypeModal').setAttribute('aria-hidden','false');
+
+      setParam('st', key);
+      try{ localStorage.setItem('type7_st', key); }catch(e){}
+    }
+    function closeSubtype(){ qs('#subtypeModal').setAttribute('aria-hidden','true'); }
+
+    function openCompare(){
+      qs('#cmpSurvieRaw').textContent = SUBTYPES.survie;
+      qs('#cmpTeteRaw').textContent = SUBTYPES.tete;
+      qs('#cmpSocialRaw').textContent = SUBTYPES.social;
+
+      renderTextToRT(qs('#cmpSurvieRaw').textContent, qs('#cmpSurvieRT'));
+      renderTextToRT(qs('#cmpTeteRaw').textContent, qs('#cmpTeteRT'));
+      renderTextToRT(qs('#cmpSocialRaw').textContent, qs('#cmpSocialRT'));
+
+      qs('#compareModal').setAttribute('aria-hidden','false');
+    }
+    function closeCompare(){ qs('#compareModal').setAttribute('aria-hidden','true'); }
+
+    function nextAction(){
+      const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+      if(tab === 'profil'){ setActiveTab('soustypes'); return; }
+      if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function initTop3Chip(){
+      const top = getParam('top');
+      if(!top) return;
+      const cleaned = top.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+      if(!cleaned.length) return;
+      qs('#top3Text').textContent = `Tes 3 résultats : ${cleaned.join(', ')}`;
+      qs('#top3Chip').style.display = '';
+    }
+
+    qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
+    qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
+    qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#nextBtn').addEventListener('click', nextAction);
+
+    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+    qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
+
+    qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
+    qs('#btn-survie2').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete2').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social2').addEventListener('click', ()=>openSubtype('social'));
+
+    qs('#closeModal').addEventListener('click', closeSubtype);
+    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
+
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#compareBtn2').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+
+    renderAllRichBlocks();
+    initTop3Chip();
+
+    const initTab = getParam('tab') || (()=>{
+      try{ return localStorage.getItem('type7_tab') || 'profil'; }catch(e){ return 'profil'; }
+    })();
+    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+
+    const initLvl = getParam('lvl') || (()=>{
+      try{ return localStorage.getItem('type7_lvl') || '1'; }catch(e){ return '1'; }
+    })();
+    updateLevel(initLvl);
+
+    const initSt = getParam('st') || (()=>{
+      try{ return localStorage.getItem('type7_st') || ''; }catch(e){ return ''; }
+    })();
+    if(initSt && SUBTYPES[initSt]){
+      setActiveTab('soustypes');
+      setTimeout(()=>openSubtype(initSt), 120);
+    }
+  </script>
+</body>
+</html>

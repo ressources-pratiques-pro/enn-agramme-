@@ -1,0 +1,1298 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Type 4 — Profil complet</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1731;
+      --line:rgba(255,255,255,.10);
+      --text:#eef2ff;
+      --muted:#a8b6dd;
+      --blue:#60a5fa;
+      --green:#34d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
+      background:
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.26), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(168,85,247,.14), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .hero{
+      flex:1 1 700px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
+    .dot{width:9px;height:9px;border-radius:50%}
+
+    .side{
+      flex:0 1 360px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0 0;
+    }
+    .tab{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      background:linear-gradient(90deg, rgba(96,165,250,.14), rgba(255,255,255,0));
+    }
+    summary::-webkit-details-marker{display:none}
+
+    .sumTitle{display:flex;flex-direction:column;gap:0;min-width:0}
+    .sumTitle b{
+      font-size:15px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.98);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .chev{
+      width:10px;height:10px;
+      border-right:2px solid rgba(255,255,255,.7);
+      border-bottom:2px solid rgba(255,255,255,.7);
+      transform:rotate(45deg);
+      transition:.18s ease;
+      margin-right:4px;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(225deg);margin-top:4px}
+
+    .content{
+      padding:12px 14px 14px;
+      border-top:1px solid var(--line);
+    }
+
+    .block{
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .raw{display:none}
+    .rt{font-size:15px;line-height:1.78;color:rgba(255,255,255,.94)}
+    .rt p{margin:0 0 10px;color:rgba(255,255,255,.92)}
+    .rt .gap{height:10px}
+
+    .rt .labelRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin:0 0 10px;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .rt .label{
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:.15px;
+      font-size:13px;
+      text-transform:none;
+    }
+    .rt .value{
+      color:rgba(255,255,255,.92);
+      font-size:15px;
+      flex:1 1 auto;
+      min-width:220px;
+    }
+
+    .rt .subhead{
+      margin:2px 0 10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(96,165,250,.20);
+      background:linear-gradient(180deg, rgba(96,165,250,.10), rgba(0,0,0,.10));
+      color:rgba(255,255,255,.96);
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .rt .subhead .t{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .rt ul{margin:0 0 10px 18px;padding:0}
+    .rt li{margin:0 0 8px;color:rgba(255,255,255,.92)}
+    .rt ul.dash{list-style-type:"-  "}
+    .rt ul.arrow{list-style-type:"→  "}
+    .rt ul.dot{list-style-type:"•  "}
+    .rt li .k{
+      color:var(--blue);
+      font-weight:950;
+    }
+
+    .sectionHeader{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin:0 0 10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      width:fit-content;
+      font-weight:900;
+    }
+
+    .btn, button, a.btn{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.94);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      letter-spacing:.15px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover, button:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
+    .btn:active, button:active{transform:translateY(0)}
+    .btn.primary{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+    }
+    .btn.primary:hover{
+      background:rgba(96,165,250,.20);
+      border-color:rgba(96,165,250,.45);
+    }
+
+    .subtypeBtns{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    .subtypeBtns .btn{padding:12px}
+    .subtypeBtns .btn.active{
+      background:rgba(96,165,250,.16);
+      border-color:rgba(96,165,250,.35);
+      box-shadow: 0 0 0 4px rgba(96,165,250,.14);
+    }
+    @media (max-width: 860px){
+      .subtypeBtns{grid-template-columns:1fr}
+    }
+
+    .rangeWrap{display:grid;gap:10px}
+    .rangeLine{
+      width:100%;
+      padding:12px 12px 10px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      border-radius:16px;
+    }
+    input[type=range]{width:100%;margin:10px 0 0;accent-color: var(--green)}
+    .trackLabel{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .bandPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      font-weight:900;
+    }
+
+    .bottomBar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:rgba(8,12,24,.86);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      padding:10px 12px;
+      z-index:999;
+    }
+    .barInner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .barBtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .barInfo{color:var(--muted);font-size:12px;font-weight:900}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+    }
+    .modal[aria-hidden="false"]{display:flex}
+    .sheet{
+      width:min(980px, 100%);
+      max-height:86vh;
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow:0 25px 90px rgba(0,0,0,.65);
+    }
+    .sheetHeader{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(10,14,28,.78);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .sheetHeader .title{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .sheetHeader .title b{font-size:15px;letter-spacing:.2px;color:rgba(255,255,255,.96)}
+    .sheetHeader .title span{color:var(--muted);font-size:12px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sheetBody{padding:14px}
+    .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
+    @media (max-width: 980px){.cols{grid-template-columns:1fr}}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="top">
+      <div class="hero">
+        <h1 id="pageTitle">Type 4 — Le Romantique / L'Individualiste / L'Artiste</h1>
+
+        <div class="chips" id="chips">
+          <span class="chip"><span class="dot" style="background:var(--green)"></span>Centre émotionnel</span>
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Rôle social : L’Individu Spécial / L’Outsider Mystérieux</span>
+          <span class="chip" id="top3Chip" style="display:none"><span class="dot" style="background:#f59e0b"></span><span id="top3Text"></span></span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Onglets">
+          <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
+          <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
+          <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>Recherche</h2>
+          <input id="search" type="search" placeholder="Tape un mot, ex : envie, mélancolie, authenticité..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Présentation</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Titre et Identité : Le Type 4 est appelé le « Romantique », l'« Artiste » ou l'« Individualiste ». C'est une personnalité centrée sur la sensibilité, la créativité et la recherche d'authenticité, souvent qualifiée de type introspectif, expressif et dramatique.
+Définition globale : Le 4 possède un sens aigu du beau et cherche à vivre des émotions profondes. Sa motivation principale est de se sentir unique et différent des autres pour éviter de sombrer dans ce qu'il perçoit comme la banalité du quotidien. Il cherche à créer une identité stable à partir de son expérience intérieure, tout en ayant souvent le sentiment qu'il lui manque quelque chose d'essentiel que les autres possèdent.
+Rôle Social : « L'Individu Spécial » ou « L'Outsider Mystérieux ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure et dynamique psychologique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Centre d'intelligence
+Le Type 4 appartient au centre émotionnel, qu'il utilise de manière intérieure pour se focaliser sur ses propres réactions et son monde intérieur plutôt que sur le monde extérieur.
+Hiérarchie des centres :
+* Centre Préféré : Émotionnel (Utilisation intérieure)
+* Centre de Support : Mental
+* Centre Réprimé : Instinctif
+Orientation
+Le sens du beau.
+Compulsion
+Éviter la banalité et tout ce qui est ordinaire.
+Passion et Fixation
+* Passion (Cœur) : L'Envie. Il discerne ce que les autres ont et qu'il n'a pas, ce qui le pousse à désirer ce qui pourrait le rendre plus spécial ou combler son manque.
+* Fixation (Tête) : La Mélancolie. C'est une toile de fond émotionnelle permanente à laquelle il finit par s'identifier (tristesse continue comme fondement de l'identité).
+Mécanisme de défense
+L'introjection. Il s'agit d'intérioriser les critiques ou le malaise des autres, se sentant systématiquement responsable des sentiments négatifs d'autrui pour se concentrer sur sa vie intérieure. Il utilise aussi la sublimation, notamment par la création artistique.
+Peurs et Désirs fondamentaux
+* Peur de base : N'avoir aucune identité ou importance personnelle.
+* Désir de base : Se trouver lui-même et trouver sa propre signification.
+* Message du Surmoi : « Tu es bien ou correct si tu es fidèle à toi-même ».</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Origines et variantes</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Schéma de l'enfance
+L'enfant 4 a souvent ressenti une déconnexion vis-à-vis de ses parents, ayant l'impression de ne pas être "vu" ou compris par eux. Ce sentiment de ne pas être comme ses parents lance le 4 dans une quête perpétuelle d'identité.
+Les Sous-types d'Ailes
+* 4w3 (L'Aristocrate) : Plus social, ambitieux, soucieux de son image et de la façon dont il est perçu.
+* 4w5 (Le Bohémien) : Plus introverti, intellectuel, original et souvent excentrique ; il crée davantage pour lui-même que pour un public.
+Les trois sous-types instinctifs
+* Conservation (Intrépidité / Le Sensualiste) : Il peut prendre des risques excessifs pour vivre au bord de la catastrophe (espérant se distinguer par son courage ou ses épreuves), ou se focaliser sur la création d'un environnement esthétique et confortable pour pallier son isolement.
+* Social (Honte / L'Outsider) : Il craint d'être rejeté à cause de ses défauts intérieurs ou de son apparence qu'il juge inadéquate. Il se sent incapable de fonctionner comme les gens "normaux" et peut déployer du charme pour compenser sa honte.
+* Sexuel (Compétition / L'Infatuation) : Il veut jouer un rôle unique dans la vie de ses proches. Il recherche une connexion intense et unique avec un partenaire, alternant entre idéalisation et rejet, se sentant en concurrence perpétuelle pour obtenir une attention exclusive.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Le Type 4 en entreprise</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Profil professionnel
+Le 4 recherche un travail original qui lui permet d'exercer sa créativité. Il privilégie la qualité à la quantité et possède un esprit critique très développé qui peut parfois être perçu comme de la négativité.
+Style de management
+Il est intuitif et sait faire travailler les gens ensemble en tenant compte de leurs sentiments. Bien qu'il puisse parfois agir comme un "Battant" (Type 3) par souci de performance, il garde une frontière nette entre son rôle professionnel et sa personnalité réelle.
+Style de communication
+Son style est le « Drame ». Sa voix est modulée selon son humeur, allant de la joie à la lamentation, et il parsème souvent son discours de silences chargés de sens ou d'expressions symboliques.
+Points de vigilance
+Sa susceptibilité face aux critiques (liée à l'introjection) et ses changements d'humeur peuvent affecter sa productivité. Il a également une tendance à la procrastination, surtout face à des tâches qu'il juge banales.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Dynamique des flèches</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Réaction au Stress (Désintégration)
+Vers le Type 2. Le 4 devient alors collant, cherche l'affection de façon forcée et manipule les autres pour obtenir de la rassurance.
+Chemin d'Intégration (Croissance)
+Vers le Type 1. Le 4 apprend à devenir plus discipliné, objectif et actif, sortant de ses humeurs pour s'engager dans des projets concrets.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Évolution et développement</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Points d'amélioration à travailler
+* Apprendre à s'accepter tel qu'il est, à la fois unique et semblable aux autres.
+* Modérer l'effet de ses émotions en comprenant qu'il n'est pas ses émotions.
+* Porter son attention sur les aspects positifs et fêter ses réussites.
+* Mener ses projets jusqu'à leur terme, même s'ils deviennent routiniers.
+Pratiques suggérées et Attitudes de Guérison
+Établir des routines constructives, réaliser que « les sentiments ne sont pas des faits » et s'engager activement dans le monde. Se dire : « Peut-être qu'il n'y a rien de mal chez moi. Peut-être que les autres me comprennent et me soutiennent ».
+Intégration (Idée supérieure et Vertu)
+En se libérant de sa compulsion, le Type 4 s'intègre vers le Type 1 (ou le Type 2).
+* Essence : L'état de la personnalité libérée des automatismes de l'ego, accédant à ses potentialités réelles.
+* Idée supérieure : L'Originalité (ou l'Origine Sacrée). Il réalise que la vraie originalité se trouve dans l'acceptation du quotidien et que chaque moment est une nouvelle création.
+* Vertu : L'Harmonie et le Contentement (Équanimité). Il apprend à apprécier ce qu'il a ici et maintenant.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Approche des idées sacrées (Perspective Almaas)</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">L'Idée sacrée
+L'Origine Sacrée. C'est la perception que toute apparence est une manifestation de l'Être et reste inextricablement connectée à sa Source.
+L'Illusion Spécifique
+L'Identité Séparée. La conviction que son "Je" est indépendant et séparé du reste de l'univers.
+La Difficulté Spécifique
+La Déconnexion. Le sentiment d'être un étranger, un aliéné expulsé de sa source ou du "Paradis".
+La Réaction Spécifique
+Le Contrôle. Une tentative de manipuler son expérience intérieure pour éviter de ressentir le vide lié à la déconnexion.
+Le Noyau de la Fixation
+Le complexe formé par le sentiment de déconnexion et l'activité défensive de contrôle.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Fondement énergétique</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Confiance Fondamentale
+Une certitude préverbale que la réalité est bienveillante, permettant de sauter dans l'inconnu sans peur d'être détruit.
+La Lumière du jour Vivante
+La qualité de l'Être perçue comme un amour universel sans limites qui enveloppe et soutient l'âme.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>La perspective et la solution</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">L'Idée Sacrée comme Psycho-catalyseur
+Elle agit en montrant que la déconnexion est une illusion mentale, ce qui permet à l'âme de revenir à son état naturel d'unité.
+Rétablir la Confiance Fondamentale
+Cela se produit en cessant de contrôler son expérience et en s'autorisant à ressentir le "trou" du soutien jusqu'à ce que la Lumière Vivante le remplisse.
+L'Abandon
+Cesser de manipuler son état intérieur et se laisser porter par le déploiement spontané de l'Être.
+La Poussée Optimisante
+Reconnaître que la réalité tend naturellement vers l'harmonie et la vérité dès que l'ego s'arrête d'interférer.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Analogie</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Le Type 4 peut être comparé à un diamant brut caché dans une mine ordinaire : il est persuadé que sa valeur réside exclusivement dans sa rareté et ses reflets changeants, et il craint par-dessus tout d'être confondu avec un simple caillou. Il passe sa vie à se polir pour briller différemment, oubliant parfois que sa structure profonde est la même que celle de ses pairs.
+L'âme est comme une vague à la surface de l'océan : elle semble séparée et unique, mais sa substance est l'océan lui-même, et elle ne peut exister sans lui.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Structure de base</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">LE type et sous types
+
+Présentation générale du Type 4 : La structure de base
+* Blessure : Un jour, l’enfant a ressenti un sentiment très fort d’abandon ou de perte. Il s’est senti privé et déconnecté de son « vrai moi », gardant depuis la nostalgie d’un temps où il était relié à quelque chose de plus grand.
+* Passion : L’envie. Le Quatre se sent souvent déficient ou pas à la hauteur. Son attention se focalise naturellement sur ce qu’il n’a pas ou sur ce qui manque chez lui, tout en enviant ce qui semble bon chez les autres.
+* Mécanisme de défense privilégié : L’introjection. Pour éviter la souffrance de la perte ou de la séparation, le Quatre s'approprie ou incarne à l’intérieur de lui la personne ou l’objet idéalisé. Il compare sans cesse son ressenti présent à un idéal passé ou futur, se disant que « l'herbe est toujours plus verte ailleurs ».
+
+Items de présentation spécifique pour chaque sous-type</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
+            </div>
+
+            <div class="subtypeBtns">
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SURVIE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Quatre Survie.
+* Équation des préoccupations : Préoccupation Quatre (quête de sens, intensité, authenticité) + Préoccupation Survie (maison, sécurité, matérialité) = INTRÉPIDITÉ / TÉMÉRITÉ.
+* Comportement / Description du fonctionnement : Refusant une vie routinière, il recrée l'intensité par des actions imprudentes ou des métiers à risque (humanitaire en zone de guerre, contrats précaires). Il « danse sur un volcan » pour échapper à la banalité et retrouve sa créativité dans la précarité ou le danger.
+* Le paradoxe : Enchaîner les situations à risque ne fait qu'augmenter le besoin d'intensité.
+* Métaphore : Le Téméraire. Il agit de manière intrépide chaque fois que son instinct de survie est stimulé pour démultiplier sa sensation d'exister.
+* Signaux d'alerte du type : Trop de préoccupations sur ce qui manque, trop de références à soi, trop de besoin d'intensité, souci excessif d'être différent.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité (par réaction), trop de temps au travail, préoccupations matérielles, répétition de soirées routinières.
+* Témoignage (Patrick) :
+    * Type : Apprécie la profondeur intérieure et la dynamique qui le pousse vers le centre de lui-même.
+    * Sous-type : Apprécie le confort matériel (cuisine, sens) qui lui sert de point d'ancrage pour ne pas « s'envoler » dans ses pensées.
+    * Combinaison : Le type ouvre d'immenses espaces tandis que le sous-type aide à se recentrer, donnant force et cohérence.
+* Référence cinématographique : Out of Africa (Karen Blixen incarne l'intrépidité en gérant seule une ferme au Kenya et en refusant les conventions sociales).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type TÊTE-À-TÊTE</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Quatre Tête-à-tête.
+* Équation des préoccupations : Préoccupation Quatre (quête de sens, intensité, authenticité) + Préoccupation Tête-à-tête (partenaire) = COMPÉTITION / HAINE.
+* Comportement / Description du fonctionnement : C'est le « passionné puissance deux ». Il bâtit son estime de soi en se mettant en rivalité avec les autres (« Je vais vous montrer ce que vous allez voir ! »). Il utilise la séduction pour prouver sa valeur et peut rejeter l'autre en premier pour éviter d'être abandonné.
+* Le paradoxe : Se comparer avec les autres ne permet pas d'asseoir une confiance en soi stable et durable.
+* Métaphore : Le Roi / La Reine dramatique. Les qualités des autres sont vécues comme un défi personnel qui provoque une forte réaction émotionnelle.
+* Signaux d'alerte du type : (Identiques) Manque, références à soi, intensité, besoin de différence.
+* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention traquante sur le partenaire, manque de vision panoramique, rivalité avec les intérêts du conjoint.
+* Témoignage (Claire) :
+    * Type : Apprécie son immense liberté intérieure, son intuition et son écoute empathique de la souffrance des autres.
+    * Sous-type : Apprécie l'exclusivité et la profondeur des rencontres intimes qui la « rechargent ».
+    * Combinaison : Tente de dépasser la compétition pour être la plus aimée afin de viser une authenticité exigeante pour elle et les autres.
+* Référence cinématographique : Lawrence d’Arabie (pour l'exaltation passionnée, le côté décalé et individualiste, et l'intensité des face-à-face).</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Sous-type SOCIAL</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Quatre Social.
+* Équation des préoccupations : Préoccupation Quatre (quête de sens, intensité, authenticité) + Préoccupations Sociales (amis, groupes) = HONTE.
+* Comportement / Description du fonctionnement : L’envie se dirige vers le statut social des autres. Il a honte de ne pas se sentir à la hauteur des qualités du groupe. Par peur du rejet, il essaie de paraître original et séduisant, tout en étant très susceptible au moindre signe d'exclusion.
+* Le paradoxe : Être en quête d'authenticité individuelle tout en ayant des aspirations fortes à faire partie du groupe.
+* Métaphore : Le Commentateur Critique. Il cherche au sein du groupe le rôle de détenteur de la vérité émotionnelle.
+* Signaux d'alerte du type : (Identiques) Manque, références à soi, intensité, besoin de différence.
+* Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif.
+* Témoignage (Valérie) :
+    * Type : Apprécie sa franchise, son désir d'authenticité et sa capacité à comprendre les gens dans leur différence.
+    * Sous-type : Apprécie sa faculté d'adaptation à divers milieux et son plaisir à trouver des solutions aux problèmes des autres.
+    * Combinaison : La mise en action sociale et l'aide aux autres lui permettent de sortir de la mélancolie et d'oublier son sentiment de « pas assez bien ».
+* Référence cinématographique : Le Colonel Chabert (illustre le dilemme de la honte sociale et la peur d'être rejeté par le groupe si l'on ne correspond plus aux normes).
+Analogie : Le Type 4 est comme un artiste qui cherche sa propre lumière : le Quatre Survie la cherche en prenant des risques physiques pour se sentir vivant, le Quatre Tête-à-tête en se mesurant passionnément à un alter ego, et le Quatre Social en essayant de trouver sa place unique dans une galerie où il craint de ne pas être à la hauteur des autres œuvres.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
+        <details open data-search>
+          <summary>
+            <div class="sumTitle"><b>Définition + continuum</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement est une mesure du degré d'identification d'une personne avec sa structure de personnalité. Plus on descend dans les niveaux, plus la liberté diminue et plus les comportements deviennent automatiques.</pre>
+              <div class="rt"></div>
+            </div>
+
+            <div class="sectionHeader" style="margin-top:12px">
+              <span class="badge"><span class="dot" id="levelDot" style="background:var(--green)"></span><span id="levelBadge">Niveau 1 • Sain</span></span>
+            </div>
+
+            <div class="rangeWrap">
+              <div class="rangeLine">
+                <div class="trackLabel"><span>1</span><span>9</span></div>
+                <input id="levelRange" type="range" min="1" max="9" step="1" value="1" />
+                <div class="bandPills">
+                  <span class="pill"><span class="dot" style="background:#22c55e"></span>Plage saine (1 à 3)</span>
+                  <span class="pill"><span class="dot" style="background:#f59e0b"></span>Plage moyenne (4 à 6)</span>
+                  <span class="pill"><span class="dot" style="background:#ef4444"></span>Plage malsaine (7 à 9)</span>
+                </div>
+              </div>
+
+              <div class="block" style="background:rgba(255,255,255,.03)">
+                <div class="rt" id="levelTextRT"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Niveaux 1 à 9</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">La Plage Saine : La Créativité et l'Appréciation (Niveaux 1 à 3)
+À ces niveaux, le Type 4 est capable de transformer son introspection en une force créatrice universelle.
+* Niveau 1 : Acceptation de la vie et renforcement. Le 4 abandonne la croyance qu'il est "défectueux". Il parvient à trouver son identité réelle, devient capable de se renouveler et de transformer son expérience de manière rédemptrice (embrasse la vie).
+* Niveau 2 : Introspectif et sensible. Il se concentre sur ses sentiments et ses préférences pour établir un sentiment d'identité personnelle. Son image de soi est : « Je suis sensible, différent et conscient de moi-même ».
+* Niveau 3 : Révélation de soi et créativité. Il renforce son identité par l'action créative. Il exprime son individualité de manière subtile et éloquente, rendant son expérience personnelle universellement touchante.
+La Plage Moyenne : L'Auto-absorption et la Fantaisie (Niveaux 4 à 6)
+C'est ici que le Type 4 commence à utiliser son imagination pour maintenir une identité basée sur des humeurs changeantes.
+* Niveau 4 : Romantisation et individualisme. Craignant que ses sentiments ne suffisent pas, il utilise son imagination pour intensifier ses humeurs. Il commence à rêver d'un "sauveur" qui le comprendra enfin.
+* Niveau 5 : Auto-absorbé et tempérament. Il s'inquiète que les autres ne reconnaissent pas son unicité. Il devient distant, mélancolique et utilise sa "fragilité" pour tester l'intérêt des autres et attirer l'attention.
+* Niveau 6 : Auto-indulgent et décadent. Il craint que les exigences de la vie ne le forcent à abandonner ses rêves. Il s'exempte des règles communes, devient sensuel, prétentieux et improductif, enviant la stabilité des autres.
+La Plage Malsaine : L'Aliénation et le Désespoir (Niveaux 7 à 9)
+À ce stade, le Type 4 perd le contact avec la réalité et se sent totalement coupé du monde.
+* Niveau 7 : Haineux et aliéné. Il craint de gâcher sa vie. Pour sauver son image de soi, il rejette tout ce qui ne soutient pas ses exigences émotionnelles, sombrant dans une dépression marquée par la rage refoulée.
+* Niveau 8 : Rejet de soi et dépression clinique. Désespéré de devenir l'individu de ses fantasmes, il finit par détester tout ce qu'il est réellement. Il peut saboter le peu de bien qui reste dans sa vie.
+* Niveau 9 : Désespoir et déni de la vie. Réalisant qu'il a gaspillé sa vie dans des futilités imaginaires, il est accablé par le désespoir. Il peut tenter de provoquer un "sauvetage" par des actes autodestructeurs ou chercher à s'évader définitivement.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Signaux d’alerte</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Signaux d'Alerte
+* Signal d'Éveil : Utiliser son imagination pour intensifier ses sentiments au lieu de vivre l'instant présent.
+* Signal d'Alarme : La peur de ruiner sa vie et de gaspiller ses opportunités par excès de retrait.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+
+        <details data-search>
+          <summary>
+            <div class="sumTitle"><b>Défis de croissance</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <div class="block rich">
+              <pre class="raw">Les Défis de croissance
+Apprendre à s'accepter tel qu'il est (unique et semblable aux autres), modérer l'effet de ses émotions et mener ses projets jusqu'à leur terme même s'ils deviennent routiniers.</pre>
+              <div class="rt"></div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottomBar">
+    <div class="barInner">
+      <div class="barBtns">
+        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <button class="btn" id="nextBtn" type="button">Suivant</button>
+      </div>
+      <div class="barInfo" id="barInfo">Type 4</div>
+    </div>
+  </div>
+
+  <div class="modal" id="subtypeModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
+      <div class="sheetHeader">
+        <div class="title">
+          <b id="modalTitle">Sous-type</b>
+          <span id="modalSub">Type 4</span>
+        </div>
+        <div>
+          <button class="btn" id="closeModal" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="block rich">
+          <pre class="raw" id="modalRaw"></pre>
+          <div class="rt" id="modalRT"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Comparer les sous-types">
+      <div class="sheetHeader">
+        <div class="title">
+          <b>Comparer les 3 sous-types</b>
+          <span>Type 4</span>
+        </div>
+        <div>
+          <button class="btn" id="closeCompare" type="button">Fermer</button>
+        </div>
+      </div>
+      <div class="sheetBody">
+        <div class="cols">
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SURVIE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSurvieRaw"></pre>
+              <div class="rt" id="cmpSurvieRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">TÊTE-À-TÊTE</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpTeteRaw"></pre>
+              <div class="rt" id="cmpTeteRT"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px;border-radius:18px">
+            <h2 style="margin:0 0 10px">SOCIAL</h2>
+            <div class="block rich">
+              <pre class="raw" id="cmpSocialRaw"></pre>
+              <div class="rt" id="cmpSocialRT"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s, el=document)=>el.querySelector(s);
+    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+    function getParam(name){
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+    function setParam(name, value){
+      const u = new URL(location.href);
+      if(value === null || value === undefined || value === '') u.searchParams.delete(name);
+      else u.searchParams.set(name, value);
+      history.replaceState(null, '', u.toString());
+    }
+    function clamp(n,a,b){return Math.max(a, Math.min(b, n));}
+
+    function levelColor(n){
+      if(n<=3) return '#22c55e';
+      if(n<=6) return '#f59e0b';
+      return '#ef4444';
+    }
+    function levelBand(n){
+      if(n<=3) return 'Sain';
+      if(n<=6) return 'Moyen';
+      return 'Malsain';
+    }
+
+    const LEVELS = [
+      "Niveau 1 : Acceptation de la vie et renforcement. Le 4 abandonne la croyance qu'il est \"défectueux\". Il parvient à trouver son identité réelle, devient capable de se renouveler et de transformer son expérience de manière rédemptrice (embrasse la vie).",
+      "Niveau 2 : Introspectif et sensible. Il se concentre sur ses sentiments et ses préférences pour établir un sentiment d'identité personnelle. Son image de soi est : « Je suis sensible, différent et conscient de moi-même ».",
+      "Niveau 3 : Révélation de soi et créativité. Il renforce son identité par l'action créative. Il exprime son individualité de manière subtile et éloquente, rendant son expérience personnelle universellement touchante.",
+      "Niveau 4 : Romantisation et individualisme. Craignant que ses sentiments ne suffisent pas, il utilise son imagination pour intensifier ses humeurs. Il commence à rêver d'un \"sauveur\" qui le comprendra enfin.",
+      "Niveau 5 : Auto-absorbé et tempérament. Il s'inquiète que les autres ne reconnaissent pas son unicité. Il devient distant, mélancolique et utilise sa \"fragilité\" pour tester l'intérêt des autres et attirer l'attention.",
+      "Niveau 6 : Auto-indulgent et décadent. Il craint que les exigences de la vie ne le forcent à abandonner ses rêves. Il s'exempte des règles communes, devient sensuel, prétentieux et improductif, enviant la stabilité des autres.",
+      "Niveau 7 : Haineux et aliéné. Il craint de gâcher sa vie. Pour sauver son image de soi, il rejette tout ce qui ne soutient pas ses exigences émotionnelles, sombrant dans une dépression marquée par la rage refoulée.",
+      "Niveau 8 : Rejet de soi et dépression clinique. Désespéré de devenir l'individu de ses fantasmes, il finit par détester tout ce qu'il est réellement. Il peut saboter le peu de bien qui reste dans sa vie.",
+      "Niveau 9 : Désespoir et déni de la vie. Réalisant qu'il a gaspillé sa vie dans des futilités imaginaires, il est accablé par le désespoir. Il peut tenter de provoquer un \"sauvetage\" par des actes autodestructeurs ou chercher à s'évader définitivement."
+    ];
+
+    const SUBTYPES = {
+      survie: `1. Le sous-type SURVIE
+* Titre du sous-type : Le Profil Quatre Survie.
+* Équation des préoccupations : Préoccupation Quatre (quête de sens, intensité, authenticité) + Préoccupation Survie (maison, sécurité, matérialité) = INTRÉPIDITÉ / TÉMÉRITÉ.
+* Comportement / Description du fonctionnement : Refusant une vie routinière, il recrée l'intensité par des actions imprudentes ou des métiers à risque (humanitaire en zone de guerre, contrats précaires). Il « danse sur un volcan » pour échapper à la banalité et retrouve sa créativité dans la précarité ou le danger.
+* Le paradoxe : Enchaîner les situations à risque ne fait qu'augmenter le besoin d'intensité.
+* Métaphore : Le Téméraire. Il agit de manière intrépide chaque fois que son instinct de survie est stimulé pour démultiplier sa sensation d'exister.
+* Signaux d'alerte du type : Trop de préoccupations sur ce qui manque, trop de références à soi, trop de besoin d'intensité, souci excessif d'être différent.
+* Signaux d'alerte du sous-type : Trop d'attention sur la sécurité (par réaction), trop de temps au travail, préoccupations matérielles, répétition de soirées routinières.
+* Témoignage (Patrick) :
+    * Type : Apprécie la profondeur intérieure et la dynamique qui le pousse vers le centre de lui-même.
+    * Sous-type : Apprécie le confort matériel (cuisine, sens) qui lui sert de point d'ancrage pour ne pas « s'envoler » dans ses pensées.
+    * Combinaison : Le type ouvre d'immenses espaces tandis que le sous-type aide à se recentrer, donnant force et cohérence.
+* Référence cinématographique : Out of Africa (Karen Blixen incarne l'intrépidité en gérant seule une ferme au Kenya et en refusant les conventions sociales).`,
+      tete: `2. Le sous-type TÊTE-À-TÊTE
+* Titre du sous-type : Le Profil Quatre Tête-à-tête.
+* Équation des préoccupations : Préoccupation Quatre (quête de sens, intensité, authenticité) + Préoccupation Tête-à-tête (partenaire) = COMPÉTITION / HAINE.
+* Comportement / Description du fonctionnement : C'est le « passionné puissance deux ». Il bâtit son estime de soi en se mettant en rivalité avec les autres (« Je vais vous montrer ce que vous allez voir ! »). Il utilise la séduction pour prouver sa valeur et peut rejeter l'autre en premier pour éviter d'être abandonné.
+* Le paradoxe : Se comparer avec les autres ne permet pas d'asseoir une confiance en soi stable et durable.
+* Métaphore : Le Roi / La Reine dramatique. Les qualités des autres sont vécues comme un défi personnel qui provoque une forte réaction émotionnelle.
+* Signaux d'alerte du type : (Identiques) Manque, références à soi, intensité, besoin de différence.
+* Signaux d'alerte du sous-type : Zèle à prouver son intensité, attention traquante sur le partenaire, manque de vision panoramique, rivalité avec les intérêts du conjoint.
+* Témoignage (Claire) :
+    * Type : Apprécie son immense liberté intérieure, son intuition et son écoute empathique de la souffrance des autres.
+    * Sous-type : Apprécie l'exclusivité et la profondeur des rencontres intimes qui la « rechargent ».
+    * Combinaison : Tente de dépasser la compétition pour être la plus aimée afin de viser une authenticité exigeante pour elle et les autres.
+* Référence cinématographique : Lawrence d’Arabie (pour l'exaltation passionnée, le côté décalé et individualiste, et l'intensité des face-à-face).`,
+      social: `3. Le sous-type SOCIAL
+* Titre du sous-type : Le Profil Quatre Social.
+* Équation des préoccupations : Préoccupation Quatre (quête de sens, intensité, authenticité) + Préoccupations Sociales (amis, groupes) = HONTE.
+* Comportement / Description du fonctionnement : L’envie se dirige vers le statut social des autres. Il a honte de ne pas se sentir à la hauteur des qualités du groupe. Par peur du rejet, il essaie de paraître original et séduisant, tout en étant très susceptible au moindre signe d'exclusion.
+* Le paradoxe : Être en quête d'authenticité individuelle tout en ayant des aspirations fortes à faire partie du groupe.
+* Métaphore : Le Commentateur Critique. Il cherche au sein du groupe le rôle de détenteur de la vérité émotionnelle.
+* Signaux d'alerte du type : (Identiques) Manque, références à soi, intensité, besoin de différence.
+* Signaux d'alerte du sous-type : Trop de souci d'être reconnu, trop de temps en relations sociales, participation boulimique à des clubs, dévouement excessif.
+* Témoignage (Valérie) :
+    * Type : Apprécie sa franchise, son désir d'authenticité et sa capacité à comprendre les gens dans leur différence.
+    * Sous-type : Apprécie sa faculté d'adaptation à divers milieux et son plaisir à trouver des solutions aux problèmes des autres.
+    * Combinaison : La mise en action sociale et l'aide aux autres lui permettent de sortir de la mélancolie et d'oublier son sentiment de « pas assez bien ».
+* Référence cinématographique : Le Colonel Chabert (illustre le dilemme de la honte sociale et la peur d'être rejeté par le groupe si l'on ne correspond plus aux normes).
+Analogie : Le Type 4 est comme un artiste qui cherche sa propre lumière : le Quatre Survie la cherche en prenant des risques physiques pour se sentir vivant, le Quatre Tête-à-tête en se mesurant passionnément à un alter ego, et le Quatre Social en essayant de trouver sa place unique dans une galerie où il craint de ne pas être à la hauteur des autres œuvres.`
+    };
+
+    function escapeHTML(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function looksLikeDuplicateSectionTitle(line){
+      return /^\s*(GPT\s*\d+|Type\s*\d+)\b/i.test(line.trim()) || /^\s*\d+\.\s+/.test(line.trim());
+    }
+
+    function isPlainHeading(line){
+      const t = line.trim();
+      if(!t) return false;
+      if(looksLikeDuplicateSectionTitle(t)) return true;
+      if(/^LE\s+type\s+et\s+sous\s+types/i.test(t)) return false;
+      return false;
+    }
+
+    function isSubhead(line){
+      const t = line.trim();
+      if(!t) return false;
+
+      const noColonHeadings = new Set([
+        "Centre d'intelligence",
+        "Orientation",
+        "Compulsion",
+        "Passion et Fixation",
+        "Mécanisme de défense",
+        "Peurs et Désirs fondamentaux",
+        "Le Schéma de l'enfance",
+        "Les Sous-types d'Ailes",
+        "Les trois sous-types instinctifs",
+        "Profil professionnel",
+        "Style de management",
+        "Style de communication",
+        "Points de vigilance",
+        "Réaction au Stress (Désintégration)",
+        "Chemin d'Intégration (Croissance)",
+        "Points d'amélioration à travailler",
+        "Pratiques suggérées et Attitudes de Guérison",
+        "Intégration (Idée supérieure et Vertu)",
+        "L'Idée sacrée",
+        "L'Illusion Spécifique",
+        "La Difficulté Spécifique",
+        "La Réaction Spécifique",
+        "Le Noyau de la Fixation",
+        "La Confiance Fondamentale",
+        "La Lumière du jour Vivante",
+        "L'Idée Sacrée comme Psycho-catalyseur",
+        "Rétablir la Confiance Fondamentale",
+        "L'Abandon",
+        "La Poussée Optimisante",
+        "Signaux d'Alerte",
+        "Les Défis de croissance",
+        "Hiérarchie des centres",
+        "La Plage Saine : La Créativité et l'Appréciation (Niveaux 1 à 3)",
+        "La Plage Moyenne : L'Auto-absorption et la Fantaisie (Niveaux 4 à 6)",
+        "La Plage Malsaine : L'Aliénation et le Désespoir (Niveaux 7 à 9)"
+      ]);
+      if(noColonHeadings.has(t)) return true;
+
+      if(/:\s*$/.test(t)) return true;
+
+      if(t === "Hiérarchie des centres :") return true;
+
+      return false;
+    }
+
+    function renderTextToRT(text, rtEl){
+      const lines = (text || '').replace(/\r\n/g,'\n').split('\n');
+      let html = '';
+      let listMode = null;
+
+      const closeList = ()=>{
+        if(listMode){ html += `</ul>`; listMode = null; }
+      };
+
+      const openList = (mode)=>{
+        if(listMode === mode) return;
+        closeList();
+        listMode = mode;
+        html += `<ul class="${mode}">`;
+      };
+
+      const pushP = (line)=>{
+        closeList();
+        html += `<p>${escapeHTML(line)}</p>`;
+      };
+
+      const pushGap = ()=>{
+        closeList();
+        html += `<div class="gap"></div>`;
+      };
+
+      const pushSubhead = (title)=>{
+        closeList();
+        html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`;
+      };
+
+      const pushLabelRow = (k, v)=>{
+        closeList();
+        html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`;
+      };
+
+      const pushLI = (mode, k, v, keepColon=true)=>{
+        openList(mode);
+        if(v === null){
+          html += `<li>${escapeHTML(k)}</li>`;
+          return;
+        }
+        const label = keepColon ? `${k}` : k;
+        html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
+      };
+
+      for(let i=0;i<lines.length;i++){
+        const line = lines[i];
+
+        if(line.trim()===''){
+          pushGap();
+          continue;
+        }
+
+        if(isPlainHeading(line)){
+          continue;
+        }
+
+        if(isSubhead(line)){
+          const cleaned = line.trim().replace(/:\s*$/,'');
+          pushSubhead(cleaned);
+          continue;
+        }
+
+        const kv = line.match(/^\s*([^:]{2,110})\s*:\s*(.+)$/);
+        if(kv){
+          const key = kv[1].trim();
+          const val = kv[2].trim();
+
+          if(/^Titre et Identité$/i.test(key) || /^Définition globale$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          if(/^Centre Préféré$/i.test(key) || /^Centre de Support$/i.test(key) || /^Centre Réprimé$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi$/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
+          pushLabelRow(key, val);
+          continue;
+        }
+
+        const bullet = line.match(/^\s*[*•-]\s+(.+)$/);
+        if(bullet){
+          openList('dot');
+          html += `<li>${escapeHTML(bullet[1])}</li>`;
+          continue;
+        }
+
+        pushP(line);
+      }
+
+      closeList();
+      rtEl.innerHTML = html;
+    }
+
+    function renderAllRichBlocks(){
+      qsa('.block.rich').forEach(block=>{
+        const raw = qs('.raw', block);
+        const rt = qs('.rt', block);
+        if(!raw || !rt) return;
+        renderTextToRT(raw.textContent, rt);
+      });
+    }
+
+    function setActiveTab(id){
+      const tabs = [
+        {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
+        {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
+        {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+      ];
+      tabs.forEach(t=>{
+        const on = (t.key === id);
+        t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.panel.hidden = !on;
+      });
+      setParam('tab', id);
+      try{ localStorage.setItem('type4_tab', id); }catch(e){}
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 4 • Profil complet' : (id === 'soustypes' ? 'Type 4 • Sous-types' : 'Type 4 • Niveaux de développement');
+    }
+
+    function applySearchFilter(term){
+      const t = (term||'').trim().toLowerCase();
+      const blocks = qsa('[data-search]');
+      if(!t){ blocks.forEach(b=>b.style.display=''); return; }
+      blocks.forEach(b=>{
+        const txt = b.innerText.toLowerCase();
+        b.style.display = txt.includes(t) ? '' : 'none';
+      });
+    }
+
+    function updateLevel(n){
+      n = clamp(+n || 1, 1, 9);
+      const c = levelColor(n);
+      qs('#levelDot').style.background = c;
+      qs('#levelBadge').textContent = `Niveau ${n} • ${levelBand(n)}`;
+      qs('#levelRange').style.accentColor = c;
+
+      const rt = qs('#levelTextRT');
+      rt.innerHTML = '';
+      renderTextToRT(LEVELS[n-1] || '', rt);
+
+      setParam('lvl', String(n));
+      try{ localStorage.setItem('type4_lvl', String(n)); }catch(e){}
+    }
+
+    function openSubtype(key){
+      const mapBtn = {survie: qs('#btn-survie'), tete: qs('#btn-tete'), social: qs('#btn-social')};
+      Object.values(mapBtn).forEach(b=>b.classList.remove('active'));
+      if(mapBtn[key]) mapBtn[key].classList.add('active');
+
+      qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
+      qs('#modalSub').textContent = 'Type 4';
+
+      qs('#modalRaw').textContent = SUBTYPES[key] || '';
+      renderTextToRT(qs('#modalRaw').textContent, qs('#modalRT'));
+
+      qs('#subtypeModal').setAttribute('aria-hidden','false');
+
+      setParam('st', key);
+      try{ localStorage.setItem('type4_st', key); }catch(e){}
+    }
+    function closeSubtype(){ qs('#subtypeModal').setAttribute('aria-hidden','true'); }
+
+    function openCompare(){
+      qs('#cmpSurvieRaw').textContent = SUBTYPES.survie;
+      qs('#cmpTeteRaw').textContent = SUBTYPES.tete;
+      qs('#cmpSocialRaw').textContent = SUBTYPES.social;
+
+      renderTextToRT(qs('#cmpSurvieRaw').textContent, qs('#cmpSurvieRT'));
+      renderTextToRT(qs('#cmpTeteRaw').textContent, qs('#cmpTeteRT'));
+      renderTextToRT(qs('#cmpSocialRaw').textContent, qs('#cmpSocialRT'));
+
+      qs('#compareModal').setAttribute('aria-hidden','false');
+    }
+    function closeCompare(){ qs('#compareModal').setAttribute('aria-hidden','true'); }
+
+    function nextAction(){
+      const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+      if(tab === 'profil'){ setActiveTab('soustypes'); return; }
+      if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function initTop3Chip(){
+      const top = getParam('top');
+      if(!top) return;
+      const cleaned = top.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+      if(!cleaned.length) return;
+      qs('#top3Text').textContent = `Tes 3 résultats : ${cleaned.join(', ')}`;
+      qs('#top3Chip').style.display = '';
+    }
+
+    qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
+    qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
+    qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#nextBtn').addEventListener('click', nextAction);
+
+    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
+    qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
+
+    qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
+    qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
+    qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
+    qs('#closeModal').addEventListener('click', closeSubtype);
+    qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
+
+    qs('#compareBtn').addEventListener('click', openCompare);
+    qs('#closeCompare').addEventListener('click', closeCompare);
+    qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(qs('#subtypeModal').getAttribute('aria-hidden') === 'false') closeSubtype();
+        if(qs('#compareModal').getAttribute('aria-hidden') === 'false') closeCompare();
+      }
+    });
+
+    renderAllRichBlocks();
+    initTop3Chip();
+
+    const initTab = getParam('tab') || (()=>{
+      try{ return localStorage.getItem('type4_tab') || 'profil'; }catch(e){ return 'profil'; }
+    })();
+    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+
+    const initLvl = getParam('lvl') || (()=>{
+      try{ return localStorage.getItem('type4_lvl') || '1'; }catch(e){ return '1'; }
+    })();
+    updateLevel(initLvl);
+
+    const initSt = getParam('st') || (()=>{
+      try{ return localStorage.getItem('type4_st') || ''; }catch(e){ return ''; }
+    })();
+    if(initSt && SUBTYPES[initSt]){
+      setActiveTab('soustypes');
+      setTimeout(()=>openSubtype(initSt), 120);
+    }
+  </script>
+</body>
+</html>
