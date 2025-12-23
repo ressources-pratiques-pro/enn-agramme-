@@ -10,7 +10,7 @@
 <body>
   <div class="wrap">
     <header class="top">
-      <div class="topText">
+      <div class="headText">
         <h1>Ennéagramme</h1>
         <p>Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
       </div>
@@ -20,15 +20,7 @@
     </header>
 
     <main class="grid">
-      <section class="stage" id="stage">
-        <div id="stageOverlay" class="stageOverlay" hidden></div>
-
-        <div id="pickBanner" class="pickBanner" hidden>
-          <div class="pickTitle">Choisir un type</div>
-          <div class="pickSub">Touche un numéro sur le cercle</div>
-          <button id="btnPickClose" class="pickClose" type="button" aria-label="Fermer">Fermer</button>
-        </div>
-
+      <section class="stage" id="diagram">
         <div class="svgWrap">
           <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
             <defs>
@@ -51,8 +43,9 @@
             <circle class="ring" cx="350" cy="350" r="270"></circle>
             <circle class="innerRing" cx="350" cy="350" r="210"></circle>
 
-            <text x="350" y="352" text-anchor="middle" dominant-baseline="middle"
-              class="enneaCenterWord">Ennéagramme</text>
+            <text x="350" y="352" text-anchor="middle" dominant-baseline="middle" class="centerTitle">
+              ENNÉAGRAMME
+            </text>
 
             <g id="staticBg" class="staticBg">
               <path class="hex" d="" id="hexPath"></path>
@@ -118,7 +111,7 @@
             <a id="openFull" class="btn" href="profils/type1.html" aria-disabled="true">Voir la fiche complète</a>
             <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
             <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
-            <button id="btnPickProfile" class="btn btnGhost" type="button">Choisir un profil</button>
+            <a class="btn" href="#diagram">Choisir un profil</a>
           </div>
         </div>
       </aside>
@@ -135,60 +128,5 @@
   </div>
 
   <script src="assets/js/app.js?v=100"></script>
-
-  <script>
-    (function(){
-      const btn = document.getElementById('btnPickProfile');
-      const closeBtn = document.getElementById('btnPickClose');
-      const banner = document.getElementById('pickBanner');
-      const overlay = document.getElementById('stageOverlay');
-      const stage = document.getElementById('stage');
-      const svg = document.getElementById('enneaSvg');
-
-      if(!btn || !banner || !overlay || !stage || !svg) return;
-
-      let pickMode = false;
-
-      function setPickMode(on){
-        pickMode = !!on;
-        document.body.classList.toggle('pickModeOn', pickMode);
-        banner.hidden = !pickMode;
-        overlay.hidden = !pickMode;
-
-        if(pickMode){
-          stage.scrollIntoView({behavior:'smooth', block:'start'});
-          setTimeout(()=>{ window.scrollBy({top: -8, left:0, behavior:'smooth'}); }, 250);
-        }
-      }
-
-      btn.addEventListener('click', () => setPickMode(true));
-      closeBtn.addEventListener('click', () => setPickMode(false));
-
-      document.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape') setPickMode(false);
-      });
-
-      svg.addEventListener('click', (e) => {
-        if(!pickMode) return;
-
-        const node = e.target.closest && e.target.closest('.node');
-        if(!node) return;
-
-        let n = null;
-
-        if(node.dataset && node.dataset.type) n = node.dataset.type;
-
-        if(!n){
-          const t = node.querySelector('text');
-          if(t) n = (t.textContent || '').trim();
-        }
-
-        if(!n || !/^[1-9]$/.test(n)) return;
-
-        setPickMode(false);
-        window.location.href = 'profils/type' + n + '.html';
-      }, true);
-    })();
-  </script>
 </body>
 </html>
