@@ -138,7 +138,7 @@ function selectType(t){
   moveHealthText.textContent = data?.integr_text ?? "—";
   moveStressText.textContent = data?.disint_text ?? "—";
 
-  openFull.setAttribute("href", `type.html?type=${t}`);
+  openFull.setAttribute("href", `type${t}.html`);
   openFull.setAttribute("aria-disabled","false");
 
   showOnlyTypeArrows(t);
