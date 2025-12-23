@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=1430" />
+  <link rel="stylesheet" href="./assets/css/app.css?v=1431" />
 </head>
 
 <body>
@@ -37,12 +37,12 @@
             </defs>
 
             <g class="staticBg">
-              <circle class="ring" cx="380" cy="250" r="210"></circle>
-              <circle class="innerRing" cx="380" cy="250" r="160"></circle>
+              <circle class="ring" cx="380" cy="250" r="210" fill="none"></circle>
+              <circle class="innerRing" cx="380" cy="250" r="160" fill="none"></circle>
 
-              <path class="hex" d="M380 40 L545 145 L545 355 L380 460 L215 355 L215 145 Z"></path>
-              <path class="tri" d="M380 40 L545 355 L215 355 Z"></path>
-              <path class="tri" d="M545 145 L215 145 L380 460 Z"></path>
+              <path class="hex" fill="none" d="M380 40 L545 145 L545 355 L380 460 L215 355 L215 145 Z"></path>
+              <path class="tri" fill="none" d="M380 40 L545 355 L215 355 Z"></path>
+              <path class="tri" fill="none" d="M545 145 L215 145 L380 460 Z"></path>
 
               <line class="centerLine" x1="380" y1="70" x2="380" y2="430"></line>
               <line class="centerLine" x1="170" y1="250" x2="590" y2="250"></line>
@@ -54,7 +54,6 @@
               <text x="380" y="260" text-anchor="middle" style="fill:rgba(255,255,255,.22);font-weight:900;letter-spacing:2px;font-size:34px;">ENNÉAGRAMME</text>
             </g>
 
-            <!-- NODES (data-type obligatoire) -->
             <g class="node instinctif" data-type="9" transform="translate(380 40)">
               <circle r="34"></circle>
               <text y="2">9</text>
@@ -208,7 +207,6 @@
       return "mental";
     }
 
-    // Sécurise les couleurs
     nodes.forEach(node=>{
       const n = parseInt(node.getAttribute("data-type")||"0",10);
       if(!n) return;
