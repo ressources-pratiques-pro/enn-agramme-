@@ -30,7 +30,35 @@
       line-height:1.45;
     }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 92px}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px 92px}
+
+    /* --- MENU DE NAVIGATION (LE PONT) --- */
+    .type-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .nav-container {
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .type-links { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    .t-link {
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; font-weight: bold; text-decoration: none; transition: 0.2s;
+      font-size: 13px; background: rgba(255,255,255,0.03);
+    }
+    .t-link:hover { border-color: var(--blue); color: #fff; background: rgba(96,165,250,0.1); }
+    .t-link.active { 
+      background: var(--blue); color: #000; border-color: var(--blue); box-shadow: 0 0 10px rgba(96,165,250,0.3);
+    }
+    .nav-home, .nav-test { font-size: 13px; color: #eef2ff; text-decoration: none; font-weight: 600; opacity: 0.8; display:flex; align-items:center; gap:6px;}
+    .nav-home:hover, .nav-test:hover { opacity: 1; color: var(--blue); }
+
     .top{
       display:flex;
       gap:14px;
@@ -497,53 +525,6 @@ Les trois sous-types instinctifs
 * Sexuel (Force / Beauté) : Il combat son insécurité en affichant une force physique ou une attitude de défi (surtout chez les hommes) ou par la séduction et la beauté (surtout chez les femmes). Il défie souvent l'autorité pour prouver qu'il n'a pas peur.</pre>
               <div class="rt"></div>
             </div>
-
-            <div class="sectionHeader" style="margin-top:12px">
-              <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
-              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
-            </div>
-
-            <div class="subtypeBtns">
-              <button class="btn" id="btn-survie" type="button">SURVIE</button>
-              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
-              <button class="btn" id="btn-social" type="button">SOCIAL</button>
-            </div>
-          </div>
-        </details>
-
-        <details data-search>
-          <summary>
-            <div class="sumTitle"><b>Niveaux de développement (aperçu)</b></div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">
-            <div class="block rich">
-              <pre class="raw">Les 9 niveaux de Développement
-Le niveau de développement est une mesure du degré d'identification d'une personne avec sa structure de personnalité. Plus on descend dans les niveaux, plus l'ego est aux commandes et plus les comportements deviennent automatiques et défensifs.
-
-La Plage Saine : Autonomie et Engagement (Niveaux 1 à 3)
-* Niveau 1 : Autonome et courageux. Il abandonne la croyance qu'il doit s'appuyer sur une autorité externe. Il découvre sa propre guidance intérieure, devenant solide, serein et capable de faire face à la vie avec courage.
-* Niveau 2 : Engagé et fiable. Il se concentre sur son environnement pour y construire des liens de confiance. Son image de soi est : « Je suis solide, attentif et fiable ».
-* Niveau 3 : Dévoué et coopératif. Il renforce son image en travaillant de manière responsable au sein de systèmes mutuellement bénéfiques. Il est discipliné, pratique et sait anticiper les problèmes.
-
-La Plage Moyenne : Ambivalence et Réactivité (Niveaux 4 à 6)
-* Niveau 4 : Respectueux des devoirs et loyal. Il craint de perdre son indépendance tout en ayant besoin de soutien. Il s'investit dans des organisations pour se rassurer, tout en restant inquiet.
-* Niveau 5 : Ambivalent et défensif. Il craint de ne pas pouvoir répondre aux demandes contradictoires. Il devient anxieux, pessimiste, suspicieux et indécis.
-* Niveau 6 : Autoritaire et accusateur. Craignant de perdre ses alliés, il cherche des coupables à son anxiété. Il devient cynique, réactif et peut se lancer dans des luttes de pouvoir pour tester la loyauté des autres.
-
-La Plage Malsaine : Panique et Paranoïa (Niveaux 7 à 9)
-* Niveau 7 : Paniqué et peu fiable. Il se sent impuissant, déprimé et cherche désespérément un sauveur.
-* Niveau 8 : Paranoïaque et agressif. Persuadé que les autres veulent le détruire, il développe des délires paranoïaques et peut s'en prendre violemment à des ennemis réels ou imaginaires.
-* Niveau 9 : Auto-punition et autodestruction. Accablé par la culpabilité, il peut inviter sa propre déchéance ou tenter de se suicider pour susciter un ultime secours.
-
-Signaux d'Alerte
-* Signal d'Éveil : La recherche d'une "chose sûre" ou d'une garantie absolue de sécurité.
-* Signal d'Alarme : La peur que ses propres actions défensives aient en réalité détruit sa propre sécurité.
-
-Les Défis de croissance
-Apprendre à écouter sa propre guidance intérieure plutôt que de chercher des "certitudes" à l'extérieur, et oser exprimer son opinion même si elle diffère de celle du groupe.</pre>
-              <div class="rt"></div>
-            </div>
           </div>
         </details>
 
@@ -708,7 +689,7 @@ Le Type 6 est comme un marin : qui scrute désespérément l'horizon pour antici
       <section id="panel-soustypes" role="tabpanel" aria-labelledby="tab-soustypes" hidden>
         <details open data-search>
           <summary>
-            <div class="sumTitle"><b>Sous-types instinctifs</b></div>
+            <div class="sumTitle"><b>Structure de base</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
@@ -720,13 +701,13 @@ Items de présentation spécifique pour chaque sous-type</pre>
 
             <div class="sectionHeader" style="margin-top:12px">
               <span class="badge"><span class="dot" style="background:var(--blue)"></span>Choisir un sous-type</span>
-              <button class="btn" id="compareBtn2" type="button">Comparer les 3 sous-types</button>
+              <button class="btn" id="compareBtn" type="button">Comparer les 3 sous-types</button>
             </div>
 
             <div class="subtypeBtns">
-              <button class="btn" id="btn-survie2" type="button">SURVIE</button>
-              <button class="btn" id="btn-tete2" type="button">TÊTE-À-TÊTE</button>
-              <button class="btn" id="btn-social2" type="button">SOCIAL</button>
+              <button class="btn" id="btn-survie" type="button">SURVIE</button>
+              <button class="btn" id="btn-tete" type="button">TÊTE-À-TÊTE</button>
+              <button class="btn" id="btn-social" type="button">SOCIAL</button>
             </div>
           </div>
         </details>
@@ -813,12 +794,13 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
       <section id="panel-niveaux" role="tabpanel" aria-labelledby="tab-niveaux" hidden>
         <details open data-search>
           <summary>
-            <div class="sumTitle"><b>Niveaux de développement</b></div>
+            <div class="sumTitle"><b>Définition + continuum</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
             <div class="block rich">
-              <pre class="raw">Le niveau de développement est une mesure du degré d'identification. Plus on descend, plus l'ego est aux commandes et plus les comportements deviennent automatiques et défensifs. Plus on monte, plus la sécurité vient de l'intérieur.</pre>
+              <pre class="raw">Les 9 niveaux de Développement
+Le niveau de développement est une mesure du degré d'identification d'une personne avec sa structure de personnalité. Plus on descend dans les niveaux, plus l'ego est aux commandes et plus les comportements deviennent automatiques et défensifs.</pre>
               <div class="rt"></div>
             </div>
 
@@ -846,7 +828,7 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
 
         <details data-search>
           <summary>
-            <div class="sumTitle"><b>Liste des 9 niveaux</b></div>
+            <div class="sumTitle"><b>Niveaux 1 à 9</b></div>
             <span class="chev"></span>
           </summary>
           <div class="content">
@@ -862,7 +844,7 @@ La Plage Moyenne : Ambivalence et Réactivité (Niveaux 4 à 6)
 * Niveau 6 : Autoritaire et accusateur. Craignant de perdre ses alliés, il cherche des coupables à son anxiété. Il devient cynique, réactif et peut se lancer dans des luttes de pouvoir pour tester la loyauté des autres.
 
 La Plage Malsaine : Panique et Paranoïa (Niveaux 7 à 9)
-* Niveau 7 : Paniqué et peu fiable. Il craint que ses propres actions aient détruit sa sécurité. Il se sent impuissant, déprimé et cherche désespérément un sauveur.
+* Niveau 7 : Paniqué et peu fiable. Il se sent impuissant, déprimé et cherche désespérément un sauveur.
 * Niveau 8 : Paranoïaque et agressif. Persuadé que les autres veulent le détruire, il développe des délires paranoïaques et peut s'en prendre violemment à des ennemis réels ou imaginaires.
 * Niveau 9 : Auto-punition et autodestruction. Accablé par la culpabilité, il peut inviter sa propre déchéance ou tenter de se suicider pour susciter un ultime secours.
 
@@ -883,13 +865,33 @@ Apprendre à écouter sa propre guidance intérieure plutôt que de chercher des
   <div class="bottomBar">
     <div class="barInner">
       <div class="barBtns">
-        <a class="btn primary" id="backToTest" href="test-enneagramme.html">Retour au test</a>
-        <a class="btn" id="backToHome" href="index.html">Retour accueil</a>
+        <a class="btn primary" id="backToTest" href="../test-enneagramme.html">Retour au test</a>
+        <a class="btn" id="backToHome" href="../index.html">Retour accueil</a>
         <button class="btn" id="nextBtn" type="button">Suivant</button>
       </div>
       <div class="barInfo" id="barInfo">Type 6</div>
     </div>
   </div>
+
+  <nav class="type-nav">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-home"><span>⌂</span> Accueil</a>
+      
+      <div class="type-links">
+        <a href="type1.html" class="t-link">1</a>
+        <a href="type2.html" class="t-link">2</a>
+        <a href="type3.html" class="t-link">3</a>
+        <a href="type4.html" class="t-link">4</a>
+        <a href="type5.html" class="t-link">5</a>
+        <a href="type6.html" class="t-link active">6</a>
+        <a href="type7.html" class="t-link">7</a>
+        <a href="type8.html" class="t-link">8</a>
+        <a href="type9.html" class="t-link">9</a>
+      </div>
+
+      <a href="../test-enneagramme-sans-indice.html" class="nav-test">Faire le Test →</a>
+    </div>
+  </nav>
 
   <div class="modal" id="subtypeModal" aria-hidden="true">
     <div class="sheet" role="dialog" aria-modal="true" aria-label="Sous-type">
@@ -984,7 +986,7 @@ Apprendre à écouter sa propre guidance intérieure plutôt que de chercher des
       "Niveau 4 : Respectueux des devoirs et loyal. Il craint de perdre son indépendance tout en ayant besoin de soutien. Il s'investit dans des organisations pour se rassurer, tout en restant inquiet.",
       "Niveau 5 : Ambivalent et défensif. Il craint de ne pas pouvoir répondre aux demandes contradictoires. Il devient anxieux, pessimiste, suspicieux et indécis.",
       "Niveau 6 : Autoritaire et accusateur. Craignant de perdre ses alliés, il cherche des coupables à son anxiété. Il devient cynique, réactif et peut se lancer dans des luttes de pouvoir pour tester la loyauté des autres.",
-      "Niveau 7 : Paniqué et peu fiable. Il craint que ses propres actions aient détruit sa sécurité. Il se sent impuissant, déprimé et cherche désespérément un sauveur.",
+      "Niveau 7 : Paniqué et peu fiable. Il se sent impuissant, déprimé et cherche désespérément un sauveur.",
       "Niveau 8 : Paranoïaque et agressif. Persuadé que les autres veulent le détruire, il développe des délires paranoïaques et peut s'en prendre violemment à des ennemis réels ou imaginaires.",
       "Niveau 9 : Auto-punition et autodestruction. Accablé par la culpabilité, il peut inviter sa propre déchéance ou tenter de se suicider pour susciter un ultime secours."
     ];
@@ -1050,7 +1052,7 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
         "L'Idée sacrée","L'Illusion Spécifique","La Difficulté Spécifique","La Réaction Spécifique","Le Noyau de la Fixation",
         "La Confiance Fondamentale","La Lumière du jour Vivante",
         "L'Idée Sacrée comme Psycho-catalyseur","Rétablir la Confiance Fondamentale","L'Abandon","La Poussée Optimisante",
-        "Analogie","Analogie du pont suspendu"
+        "Analogie","Analogie du pont suspendu","Signaux d'Alerte","Les Défis de croissance"
       ]);
       if(noColon.has(t)) return true;
       if(/:\s*$/.test(t)) return true;
@@ -1069,10 +1071,11 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
       const pushGap = ()=>{ closeList(); html += `<div class="gap"></div>`; };
       const pushSubhead = (title)=>{ closeList(); html += `<div class="subhead"><span class="t">${escapeHTML(title)}</span></div>`; };
       const pushLabelRow = (k, v)=>{ closeList(); html += `<div class="labelRow"><span class="label">${escapeHTML(k)}</span><span class="value">${escapeHTML(v)}</span></div>`; };
-      const pushLI = (mode, k, v)=>{
+      const pushLI = (mode, k, v, keepColon=true)=>{
         openList(mode);
         if(v === null){ html += `<li>${escapeHTML(k)}</li>`; return; }
-        html += `<li><span class="k">${escapeHTML(k)}</span> ${escapeHTML(v)}</li>`;
+        const label = keepColon ? `${k}` : k;
+        html += `<li><span class="k">${escapeHTML(label)}</span> ${escapeHTML(v)}</li>`;
       };
 
       for(const line of lines){
@@ -1088,6 +1091,27 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
         if(kv){
           const key = kv[1].trim();
           const val = kv[2].trim();
+
+          if(/^Titre et Identité$/i.test(key) || /^Définition globale$/i.test(key) || /^Rôle Social$/i.test(key)){
+            pushLabelRow(key, val);
+            continue;
+          }
+
+          if(/^Centre Préféré$/i.test(key) || /^Centre de Support$/i.test(key) || /^Centre Réprimé$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Passion\s*\(Cœur\)$/i.test(key) || /^Fixation\s*\(Tête\)$/i.test(key)){
+            pushLI('dash', `${key} :`, val, false);
+            continue;
+          }
+
+          if(/^Peur de base$/i.test(key) || /^Désir de base$/i.test(key) || /^Message du Surmoi/i.test(key)){
+            pushLI('arrow', `${key} :`, val, false);
+            continue;
+          }
+
           pushLabelRow(key, val);
           continue;
         }
@@ -1157,13 +1181,9 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
     }
 
     function openSubtype(key){
-      const mapBtn = {
-        survie: [qs('#btn-survie'), qs('#btn-survie2')],
-        tete: [qs('#btn-tete'), qs('#btn-tete2')],
-        social: [qs('#btn-social'), qs('#btn-social2')]
-      };
-      qsa('.subtypeBtns .btn').forEach(b=>b.classList.remove('active'));
-      (mapBtn[key]||[]).forEach(b=>b && b.classList.add('active'));
+      const mapBtn = {survie: qs('#btn-survie'), tete: qs('#btn-tete'), social: qs('#btn-social')};
+      Object.values(mapBtn).forEach(b=>b.classList.remove('active'));
+      if(mapBtn[key]) mapBtn[key].classList.add('active');
 
       qs('#modalTitle').textContent = key === 'survie' ? 'Sous-type SURVIE' : (key === 'tete' ? 'Sous-type TÊTE-À-TÊTE' : 'Sous-type SOCIAL');
       qs('#modalSub').textContent = 'Type 6';
@@ -1219,15 +1239,10 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
     qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));
     qs('#btn-tete').addEventListener('click', ()=>openSubtype('tete'));
     qs('#btn-social').addEventListener('click', ()=>openSubtype('social'));
-    qs('#btn-survie2').addEventListener('click', ()=>openSubtype('survie'));
-    qs('#btn-tete2').addEventListener('click', ()=>openSubtype('tete'));
-    qs('#btn-social2').addEventListener('click', ()=>openSubtype('social'));
-
     qs('#closeModal').addEventListener('click', closeSubtype);
     qs('#subtypeModal').addEventListener('click', (e)=>{ if(e.target === qs('#subtypeModal')) closeSubtype(); });
 
     qs('#compareBtn').addEventListener('click', openCompare);
-    qs('#compareBtn2').addEventListener('click', openCompare);
     qs('#closeCompare').addEventListener('click', closeCompare);
     qs('#compareModal').addEventListener('click', (e)=>{ if(e.target === qs('#compareModal')) closeCompare(); });
 
