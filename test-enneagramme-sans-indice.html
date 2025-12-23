@@ -20,15 +20,33 @@
     }
     *{box-sizing:border-box}
 
+    /* Scrollbar claire (Firefox + WebKit) */
+    html{
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.62) rgba(255,255,255,.14);
+    }
+    ::-webkit-scrollbar{ width: 12px; height: 12px; }
+    ::-webkit-scrollbar-track{
+      background: rgba(255,255,255,.12);
+      border-left: 1px solid rgba(255,255,255,.10);
+    }
+    ::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.62);
+      border-radius: 999px;
+      border: 3px solid rgba(7,11,20,.55);
+    }
+    ::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.78); }
+    ::-webkit-scrollbar-corner{ background: rgba(0,0,0,0); }
+
     /* Progression (plus visible) */
     .scrollProg{
       position:fixed;
       left:0; top:0;
       width:100%;
-      height:6px;                 /* + épais */
+      height:6px;
       z-index:1000;
       pointer-events:none;
-      opacity:.85;                /* visible tout le temps */
+      opacity:.85;
       background: rgba(0,0,0,.18);
       backdrop-filter: blur(6px);
     }
