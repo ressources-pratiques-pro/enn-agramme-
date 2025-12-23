@@ -5,290 +5,145 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ennéagramme</title>
   <link rel="stylesheet" href="assets/css/app.css?v=99" />
-  <style>
-    .uiCard{ text-align:left; }
-    .uiHeader{ display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
-    .uiTop{ display:flex; align-items:baseline; gap:12px; }
-    .uiTypeNum{ font-size:44px; line-height:1; font-weight:900; letter-spacing:-.5px; }
-    .uiTypeName{ font-size:16px; font-weight:800; opacity:.95; }
-    .uiInfo{ display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0 14px; }
-    .uiKV{ display:flex; flex-direction:column; gap:4px; padding:10px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03); }
-    .uiK{ font-size:12px; letter-spacing:.06em; text-transform:uppercase; opacity:.7; }
-    .uiV{ font-size:14px; font-weight:650; opacity:.95; }
-    .uiMoves{ display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
-    .uiMove{ padding:10px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03); }
-    .uiMove .uiLine{ display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; }
-    .uiMove .dot{ width:9px; height:9px; border-radius:50%; display:inline-block; }
-    .uiActions{ display:flex; flex-direction:column; gap:10px; align-items:stretch; }
-    .uiActions .btn, .uiActions button.btn{ width:100%; justify-content:flex-start; text-align:left; }
-    .uiActions .btn[aria-disabled="true"]{ pointer-events:none; opacity:.5; }
-    #techSink{ display:none; }
-    #infoCard.isClosed{ opacity:.6; }
-
-    footer.siteFooter{opacity:0.9;margin-top:18px;padding:14px 0;text-align:center;font-size:13px;}
-    footer.siteFooter .sep{opacity:0.4;margin:0 8px;}
-    footer.siteFooter a{color:inherit;text-decoration:none;opacity:0.9;}
-    footer.siteFooter a:hover{opacity:1;text-decoration:underline;}
-  </style>
 </head>
+
 <body>
-  <main class="wrap">
-    <header>
-      <h1>Ennéagramme</h1>
-      <p class="subtitle">Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
-      <button id="btnReset" class="reset">Réinitialiser</button>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1>Ennéagramme</h1>
+        <p>Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
+      </div>
+      <div class="actions">
+        <button id="btnReset" type="button">Réinitialiser</button>
+      </div>
     </header>
 
-    <section class="grid">
-      <div class="diagram">
-        <svg viewBox="0 0 420 420" id="enneaSvg" aria-label="Diagramme Ennéagramme" role="img">
-          <circle cx="210" cy="210" r="180" class="outer" />
-          <g class="inner">
-            <circle cx="210" cy="210" r="120" />
-            <line x1="210" y1="30" x2="210" y2="390" />
-            <line x1="60" y1="300" x2="360" y2="300" />
-            <line x1="60" y1="120" x2="360" y2="120" />
-          </g>
-          <g class="lines" id="moveLines"></g>
-          <g class="nodes" id="nodes"></g>
-          <text x="210" y="170" text-anchor="middle" class="label inst">Instinctif</text>
-          <text x="135" y="270" text-anchor="middle" class="label ment">Mental</text>
-          <text x="285" y="270" text-anchor="middle" class="label emot">Émotionnel</text>
-        </svg>
-      </div>
+    <main class="grid">
+      <section class="stage">
+        <div class="svgWrap">
+          <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
+            <defs>
+              <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
+              </marker>
+              <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
+              </marker>
+
+              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="2.2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <circle class="ring" cx="350" cy="350" r="270"></circle>
+            <circle class="innerRing" cx="350" cy="350" r="210"></circle>
+
+            <g id="staticBg" class="staticBg">
+              <path class="hex" d="" id="hexPath"></path>
+              <path class="tri" d="" id="triPath"></path>
+
+              <g class="centers">
+                <path class="centerLine" d="M350 350 L350 120"></path>
+                <path class="centerLine" d="M350 350 L585 455"></path>
+                <path class="centerLine" d="M350 350 L115 455"></path>
+
+                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
+                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
+                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
+              </g>
+            </g>
+
+            <g id="arrowsLayer"></g>
+            <g id="nodesLayer"></g>
+          </svg>
+        </div>
+      </section>
 
       <aside class="side" aria-live="polite">
-        <div class="card uiCard isClosed" id="infoCard">
-          <div class="uiHeader">
-            <div class="uiTop">
-              <div class="uiTypeNum" id="uiTypeNum">—</div>
-              <div class="uiTypeName" id="uiTypeName">Clique sur un type</div>
-            </div>
-          </div>
-
-          <div class="uiInfo">
-            <div class="uiKV"><div class="uiK">Centre d'intelligence</div><div class="uiV" id="uiCenter">—</div></div>
-            <div class="uiKV"><div class="uiK">Peur de base</div><div class="uiV" id="uiFear">—</div></div>
-            <div class="uiKV"><div class="uiK">Désir de base</div><div class="uiV" id="uiDesire">—</div></div>
-            <div class="uiKV"><div class="uiK">Compulsion (évitement)</div><div class="uiV" id="uiCompulsion">—</div></div>
-          </div>
-
-          <div class="uiMoves">
-            <div class="uiMove">
-              <div class="uiLine"><span class="dot" style="background:rgba(109,219,160,.95)"></span><strong>Intégration</strong>&nbsp;(santé)&nbsp;→&nbsp;<span id="uiToIntegr">—</span>&nbsp;:&nbsp;<span id="uiMoveHealthText">—</span></div>
-            </div>
-            <div class="uiMove">
-              <div class="uiLine"><span class="dot" style="background:rgba(255,126,156,.95)"></span><strong>Désintégration</strong>&nbsp;(stress)&nbsp;→&nbsp;<span id="uiToDisint">—</span>&nbsp;:&nbsp;<span id="uiMoveStressText">—</span></div>
-            </div>
-          </div>
-
-          <div class="uiActions">
-            <a id="uiOpenFull" class="btn" href="#" aria-disabled="true">Voir la fiche complète</a>
-            <a class="btn" href="test-enneagramme-sans-indice.html">Test Ennéagramme</a>
-            <button id="uiCloseCard" class="btn" type="button">Explorer l'Ennéagramme</button>
-          </div>
+        <div class="badgeRow">
+          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
         </div>
 
-        <div id="techSink">
-          <div class="badgeRow">
-            <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
+        <div class="card">
+          <div class="miniGrid">
+            <div class="mini"><h3>Centre d'intelligence</h3><p id="center">-</p></div>
+            <div class="mini"><h3>Peur de base</h3><p id="fear">-</p></div>
+            <div class="mini"><h3>Désir de base</h3><p id="desire">-</p></div>
+            <div class="mini"><h3>Compulsion (évitement)</h3><p id="compulsion">-</p></div>
           </div>
 
-          <div class="card">
-            <div class="miniGrid">
-              <div class="mini"><h3>Centre d'intelligence</h3><p id="center">-</p></div>
-              <div class="mini"><h3>Peur de base</h3><p id="fear">-</p></div>
-              <div class="mini"><h3>Désir de base</h3><p id="desire">-</p></div>
-              <div class="mini"><h3>Compulsion (évitement)</h3><p id="compulsion">-</p></div>
+          <div class="moveLines">
+            <div id="moveHealth" class="moveLine">
+              <div class="moveHead">
+                <span class="dot good"></span>
+                <strong>Intégration</strong>
+                <span class="muted">(santé)</span>
+                <span class="muted"> > </span>
+                <strong id="toIntegr">-</strong>
+                <span class="muted">:</span>
+              </div>
+              <div class="moveBody" id="moveHealthText">-</div>
             </div>
 
-            <div class="moves">
-              <div class="move health">
-                <span class="dot"></span>
-                <div>
-                  <strong>Intégration</strong> (santé) &gt; <span id="toIntegr">-</span> :
-                  <span id="moveHealthText">-</span>
-                </div>
+            <div id="moveStress" class="moveLine">
+              <div class="moveHead">
+                <span class="dot warn"></span>
+                <strong>Désintégration</strong>
+                <span class="muted">(stress)</span>
+                <span class="muted"> > </span>
+                <strong id="toDisint">-</strong>
+                <span class="muted">:</span>
               </div>
-              <div class="move stress">
-                <span class="dot"></span>
-                <div>
-                  <strong>Désintégration</strong> (stress) &gt; <span id="toDisint">-</span> :
-                  <span id="moveStressText">-</span>
-                </div>
-              </div>
+              <div class="moveBody" id="moveStressText">-</div>
             </div>
+          </div>
 
-            <div class="ctaRow">
-              <a id="openFull" class="btn" href="type.html?type=1" aria-disabled="true">Voir la fiche complète</a>
-              <a id="openProfil" class="btn" href="profil.html?type=1" aria-disabled="true">Niveaux &amp; Profil</a>
-              <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
-            </div>
+          <div class="ctaRow">
+            <a id="openFull" class="btn" href="type1.html" aria-disabled="true">Voir la fiche complète</a>
+            <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html" style="border-color: #8bd3ff; color: #8bd3ff;">Passer le test</a>
+            <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
           </div>
         </div>
       </aside>
-    </section>
+    </main>
 
     <footer class="siteFooter">
-      <span>Brams — Tous droits réservés</span>
-      <span class="sep">|</span>
-      <a href="mailto:brahms@example.com" aria-label="Écrire à Brahms">✉ Écrire à Brahms</a>
+      <div class="footerInner">
+        <span class="copy">Brahms – Tous droits réservés</span>
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank">
+          ✉️ Écrire à Brahms
+        </a>
+      </div>
     </footer>
-  </main>
+  </div>
 
-  <script src="assets/js/app.js"></script>
+  <style>
+    .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
+    .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+    .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+    .siteFooter a:hover{opacity:1}
+  </style>
 
+  <script src="assets/js/app.js?v=99"></script>
+  
   <script>
     (function(){
-      const tech = {
-        badgeNum: document.getElementById('badgeNum'),
-        center: document.getElementById('center'),
-        fear: document.getElementById('fear'),
-        desire: document.getElementById('desire'),
-        compulsion: document.getElementById('compulsion'),
-        toIntegr: document.getElementById('toIntegr'),
-        toDisint: document.getElementById('toDisint'),
-        moveHealthText: document.getElementById('moveHealthText'),
-        moveStressText: document.getElementById('moveStressText'),
-        card: document.getElementById('infoCard'),
-        reset: document.getElementById('btnReset'),
-      };
-
-      const ui = {
-        typeNum: document.getElementById('uiTypeNum'),
-        typeName: document.getElementById('uiTypeName'),
-        center: document.getElementById('uiCenter'),
-        fear: document.getElementById('uiFear'),
-        desire: document.getElementById('uiDesire'),
-        compulsion: document.getElementById('uiCompulsion'),
-        toIntegr: document.getElementById('uiToIntegr'),
-        toDisint: document.getElementById('uiToDisint'),
-        moveHealthText: document.getElementById('uiMoveHealthText'),
-        moveStressText: document.getElementById('uiMoveStressText'),
-        openFull: document.getElementById('uiOpenFull'),
-        close: document.getElementById('uiCloseCard'),
-      };
-
-      let typesData = null;
-
-      async function tryFetchJson(url){
-        const res = await fetch(url, { cache: 'no-store' });
-        if(!res.ok) throw new Error(String(res.status));
-        return res.json();
+      // On sauvegarde la fonction originale selectType
+      const originalSelect = window.selectType;
+      const btnP = document.getElementById('openProfil');
+      
+      // On remplace la fonction pour qu'elle mette aussi à jour notre nouveau bouton
+      if(typeof originalSelect === 'function' && btnP){
+        window.selectType = function(t){
+          originalSelect(t); // Fait le travail habituel (textes, flèches...)
+          btnP.href = 'test-enneagramme-sans-indice.html';
+        };
       }
-
-      async function loadTypes(){
-        try{
-          try{
-            typesData = await tryFetchJson('data/types.json');
-          }catch(_){
-            typesData = await tryFetchJson('assets/data/types.json');
-          }
-          syncFromTech();
-        }catch(_){}
-      }
-      loadTypes();
-
-      function getTypeName(n){
-        if(!typesData) return '';
-
-        if(Array.isArray(typesData)){
-          const item = typesData.find(x => String(x.id ?? x.num ?? x.type) === String(n));
-          if(item && typeof item === 'object') return item.name || item.title || item.label || '';
-          return '';
-        }
-
-        const keyCandidates = [String(n), n, `type${n}`, `Type${n}`];
-        for(const k of keyCandidates){
-          const v = typesData[k];
-          if(v && typeof v === 'object') return v.name || v.title || v.label || '';
-        }
-        return '';
-      }
-
-      function normalizeDash(s){
-        const t = (s ?? '').toString().trim();
-        return t && t !== '-' ? t : '—';
-      }
-
-      function setFullLink(n){
-        const ok = Number.isFinite(n) && n >= 1 && n <= 9;
-        if(ok){
-          ui.openFull.href = `profils/type${n}.html`;
-          ui.openFull.removeAttribute('aria-disabled');
-        }else{
-          ui.openFull.href = '#';
-          ui.openFull.setAttribute('aria-disabled', 'true');
-        }
-      }
-
-      function setClosedState(closed){
-        tech.card.classList.toggle('isClosed', !!closed);
-      }
-
-      function syncFromTech(){
-        const numStr = (tech.badgeNum?.textContent || '').trim();
-        const num = parseInt(numStr, 10);
-        const hasNum = Number.isFinite(num) && num >= 1 && num <= 9;
-
-        if(!hasNum){
-          ui.typeNum.textContent = '—';
-          ui.typeName.textContent = 'Clique sur un type';
-          ui.center.textContent = '—';
-          ui.fear.textContent = '—';
-          ui.desire.textContent = '—';
-          ui.compulsion.textContent = '—';
-          ui.toIntegr.textContent = '—';
-          ui.toDisint.textContent = '—';
-          ui.moveHealthText.textContent = '—';
-          ui.moveStressText.textContent = '—';
-          setFullLink(NaN);
-          setClosedState(true);
-          return;
-        }
-
-        ui.typeNum.textContent = String(num);
-        const nm = getTypeName(num);
-        ui.typeName.textContent = nm ? nm : `Type ${num}`;
-
-        ui.center.textContent = normalizeDash(tech.center?.textContent);
-        ui.fear.textContent = normalizeDash(tech.fear?.textContent);
-        ui.desire.textContent = normalizeDash(tech.desire?.textContent);
-        ui.compulsion.textContent = normalizeDash(tech.compulsion?.textContent);
-        ui.toIntegr.textContent = normalizeDash(tech.toIntegr?.textContent);
-        ui.toDisint.textContent = normalizeDash(tech.toDisint?.textContent);
-        ui.moveHealthText.textContent = normalizeDash(tech.moveHealthText?.textContent);
-        ui.moveStressText.textContent = normalizeDash(tech.moveStressText?.textContent);
-
-        setFullLink(num);
-        setClosedState(false);
-      }
-
-      const observer = new MutationObserver(syncFromTech);
-      if(tech.badgeNum){
-        observer.observe(tech.badgeNum, { childList:true, characterData:true, subtree:true });
-      }
-      [tech.center, tech.fear, tech.desire, tech.compulsion, tech.toIntegr, tech.toDisint, tech.moveHealthText, tech.moveStressText]
-        .filter(Boolean)
-        .forEach(el => observer.observe(el, { childList:true, characterData:true, subtree:true }));
-
-      ui.close?.addEventListener('click', () => {
-        if(tech.reset) tech.reset.click();
-        setFullLink(NaN);
-        setClosedState(true);
-        ui.typeNum.textContent = '—';
-        ui.typeName.textContent = 'Clique sur un type';
-        ui.center.textContent = '—';
-        ui.fear.textContent = '—';
-        ui.desire.textContent = '—';
-        ui.compulsion.textContent = '—';
-        ui.toIntegr.textContent = '—';
-        ui.toDisint.textContent = '—';
-        ui.moveHealthText.textContent = '—';
-        ui.moveStressText.textContent = '—';
-      });
-
-      syncFromTech();
     })();
   </script>
 </body>
