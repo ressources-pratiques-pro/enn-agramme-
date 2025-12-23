@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ennéagramme</title>
-  <link rel="stylesheet" href="./assets/css/app.css?v=1431" />
+  <link rel="stylesheet" href="assets/css/app.css?v=1430" />
 </head>
 
 <body>
   <div class="wrap">
     <header class="top">
-      <div>
+      <div class="topText">
         <h1>Ennéagramme</h1>
         <p>Choisis un type pour afficher sa fiche. Tu peux lancer l’aide visuelle si besoin.</p>
       </div>
@@ -37,12 +37,12 @@
             </defs>
 
             <g class="staticBg">
-              <circle class="ring" cx="380" cy="250" r="210" fill="none"></circle>
-              <circle class="innerRing" cx="380" cy="250" r="160" fill="none"></circle>
+              <circle class="ring" cx="380" cy="250" r="210"></circle>
+              <circle class="innerRing" cx="380" cy="250" r="160"></circle>
 
-              <path class="hex" fill="none" d="M380 40 L545 145 L545 355 L380 460 L215 355 L215 145 Z"></path>
-              <path class="tri" fill="none" d="M380 40 L545 355 L215 355 Z"></path>
-              <path class="tri" fill="none" d="M545 145 L215 145 L380 460 Z"></path>
+              <path class="hex" d="M380 40 L545 145 L545 355 L380 460 L215 355 L215 145 Z"></path>
+              <path class="tri" d="M380 40 L545 355 L215 355 Z"></path>
+              <path class="tri" d="M545 145 L215 145 L380 460 Z"></path>
 
               <line class="centerLine" x1="380" y1="70" x2="380" y2="430"></line>
               <line class="centerLine" x1="170" y1="250" x2="590" y2="250"></line>
@@ -157,7 +157,7 @@
             <a class="btn" href="test.html">Passer le test</a>
           </div>
 
-          <div style="margin-top:12px;color:rgba(255,255,255,.60);font-size:12px;line-height:1.35">
+          <div class="hint">
             Astuce : clique sur un numéro. Si tu as besoin d’aide, clique sur Choisir un profil (les numéros clignotent au hasard).
           </div>
         </div>
@@ -215,14 +215,16 @@
     });
 
     let timer = null;
+
     function startBlink(){
-      if(timer) return;
+      stopBlink();
       timer = setInterval(()=>{
         const node = nodes[Math.floor(Math.random()*nodes.length)];
         node.classList.add("blink");
-        setTimeout(()=>node.classList.remove("blink"), 520);
+        setTimeout(()=>node.classList.remove("blink"), 560);
       }, 420);
     }
+
     function stopBlink(){
       if(timer) clearInterval(timer);
       timer = null;
@@ -268,6 +270,7 @@
 
     const openProfil = document.getElementById("openProfil");
     const stage = document.getElementById("diagramStage");
+
     openProfil.addEventListener("click", ()=>{
       stage.scrollIntoView({behavior:"smooth", block:"start"});
       startBlink();
