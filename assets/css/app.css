@@ -1,51 +1,285 @@
-<!-- Script à coller tout en bas de la page “Choisir un profil”, juste avant </body> -->
-<script>
-(function(){
-  const btn = document.getElementById("openProfil"); // ton bouton existant
-  if(!btn) return;
+/* assets/css/app.css */
 
-  const nodes = Array.from(document.querySelectorAll(".node"));
-  if(!nodes.length) return;
+:root{
+  --bg:#070b14;
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.68);
+  --line:rgba(255,255,255,.14);
+  --glass:rgba(255,255,255,.06);
+  --glass2:rgba(255,255,255,.08);
 
-  let timer = null;
-  let running = false;
+  --inst:#fbbf24;
+  --emo:#f472b6;
+  --ment:#60a5fa;
 
-  function pickRandomNode(){
-    const i = Math.floor(Math.random() * nodes.length);
-    return nodes[i];
-  }
+  --good:#86efac;
+  --warn:#ffd18b;
+  --bad:#fda4af;
 
-  function startBlink(){
-    if(running) return;
-    running = true;
+  --radius:22px;
+  --shadow:0 25px 60px rgba(0,0,0,.45);
 
-    timer = setInterval(() => {
-      const n = pickRandomNode();
-      n.classList.add("blink");
-      setTimeout(() => n.classList.remove("blink"), 520);
-    }, 420);
-  }
+  --accent: rgba(255,255,255,.55);
+}
 
-  function stopBlink(){
-    running = false;
-    if(timer) clearInterval(timer);
-    timer = null;
-    nodes.forEach(n => n.classList.remove("blink"));
-  }
+*{box-sizing:border-box}
+html,body{height:100%}
+html{background:var(--bg);}
 
-  // Quand tu actives “Choisir un profil”
-  btn.addEventListener("click", () => {
-    startBlink();
-  });
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+  color:var(--text);
+  background:var(--bg);
+}
 
-  // Dès qu’on clique sur un type, on arrête
-  nodes.forEach(n => {
-    n.addEventListener("click", () => {
-      stopBlink();
-    });
-  });
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
 
-  // Si tu reviens en arrière / change de page
-  window.addEventListener("pagehide", stopBlink);
-})();
-</script>
+.wrap{max-width:1180px;margin:34px auto 44px;padding:0 14px}
+
+.top{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:16px;
+}
+.top > div:first-child{ text-align:center; max-width: 820px; }
+.actions{
+  position:absolute;
+  right:0;
+  top:0;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+/* Titre centré (mobile aussi) */
+.top h1{margin:0;font-size:44px;letter-spacing:.2px}
+.top p{margin:10px 0 0;color:var(--muted);font-size:15px}
+
+button{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:650;
+  font-size:13px;
+  transition:background .18s ease,border-color .18s ease,transform .06s ease;
+}
+button:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22)}
+button:active{transform:translateY(1px)}
+
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 520px;
+  gap:18px;
+  align-items:start;
+}
+
+@media (max-width: 1060px){
+  .grid{grid-template-columns:1fr}
+  .top{justify-content:center}
+  .top > div:first-child{ text-align:center; }
+  .actions{position:static; justify-content:center; flex-wrap:wrap;}
+}
+
+.stage{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+  overflow:hidden;
+  min-height: 640px;
+}
+
+.svgWrap{display:flex;justify-content:center;align-items:center}
+.svgWrap svg{width:min(720px, 92vw);height:auto;display:block}
+
+.side{border-radius:var(--radius)}
+
+.badgeRow{margin-bottom:10px;text-align:center}
+.badge{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.20);
+  backdrop-filter: blur(10px);
+}
+#badgeNum{ color: var(--accent); }
+
+.card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+
+.miniGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+@media (max-width: 1060px){
+  .miniGrid{grid-template-columns:1fr}
+}
+
+.mini{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.10);
+  border-radius:16px;
+  padding:12px;
+}
+
+.mini h3{
+  margin:0 0 6px;
+  font-size:12px;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  color: var(--accent);
+}
+
+.mini p{margin:0;font-size:15px;font-weight:700;color:rgba(255,255,255,.88)}
+
+.moveLines{margin-top:12px;display:grid;gap:10px}
+
+.moveLine{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.10);
+  border-radius:16px;
+  padding:12px;
+}
+
+.moveHead{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.moveBody{margin-top:8px;color:rgba(255,255,255,.78);line-height:1.35}
+
+.muted{color:rgba(255,255,255,.55)}
+
+.dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+}
+.dot.good{background:rgba(134,239,172,.95)}
+.dot.warn{background:rgba(255,209,139,.95)}
+
+.ctaRow{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+  font-weight:650;
+  text-decoration:none;
+  transition:background .18s ease,border-color .18s ease,transform .06s ease;
+}
+
+.btn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+a[aria-disabled=true]{opacity:.55;pointer-events:none;}
+
+.ring{ stroke: rgba(147,197,253,.55); stroke-width: 3.2; fill: none; }
+.innerRing{ stroke: rgba(255,255,255,.08); stroke-width: 2; fill: none; }
+
+.staticBg{ pointer-events:none; }
+
+.hex, .tri{ fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.hex{ stroke: rgba(255,255,255,.08); stroke-width: 2.2; }
+.tri{ stroke: rgba(255,255,255,.06); stroke-width: 2; opacity: .65; }
+
+.centerLine{fill:none;stroke:rgba(255,255,255,.06);stroke-width:2}
+
+.centerLabel{
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-size:11px;
+  fill:rgba(255,255,255,.55);
+}
+.centerLabel.instinctif{fill:var(--inst)}
+.centerLabel.emotionnel{fill:var(--emo)}
+.centerLabel.mental{fill:var(--ment)}
+
+.node{cursor:pointer}
+.node circle{
+  fill: rgba(15,26,51,.85);
+  stroke: rgba(255,255,255,.20);
+  stroke-width: 2.2;
+  transition: stroke .18s ease, filter .18s ease, transform .18s ease;
+  filter:url(#softGlow);
+}
+
+/* Forcer les couleurs même si une règle écrase ailleurs */
+.node.instinctif circle{stroke:var(--inst) !important;}
+.node.emotionnel circle{stroke:var(--emo) !important;}
+.node.mental circle{stroke:var(--ment) !important;}
+
+.node text{
+  fill: var(--text);
+  font-weight: 850;
+  font-size: 22px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.arrow{ fill:none; stroke-width: 3.2; opacity: 0; }
+.arrow.on{ opacity: .95; }
+.arrow.integr{ stroke: rgba(134,239,172,.92); }
+.arrow.disint{ stroke: rgba(253,164,175,.92); }
+
+.siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
+.siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
+.siteFooter a:hover{opacity:1}
+
+@media (max-width: 640px){
+  .wrap{margin:18px auto 28px}
+  .top{flex-direction:column;align-items:center}
+  .top h1{font-size:36px;text-align:center;width:100%}
+  .top p{font-size:14px;text-align:center}
+  .actions{position:static; justify-content:center; width:100%}
+
+  .stage{min-height: unset;padding:14px}
+  .svgWrap{align-items:flex-start}
+  .svgWrap svg{width:min(620px, 96vw)}
+
+  .ctaRow{gap:8px}
+  .btn{padding:10px 12px}
+}
+
+#openProfil{
+  border-color: rgba(255,255,255,.14) !important;
+  color: var(--text) !important;
+  background: rgba(255,255,255,.06) !important;
+}
+
+/* Clignotement au hasard : pulse fin sans changer la couleur */
+@keyframes ringPulse{
+  0%   { stroke-width: 2.2; filter:url(#softGlow); }
+  50%  { stroke-width: 4.1; filter: drop-shadow(0 0 10px rgba(255,255,255,.22)); }
+  100% { stroke-width: 2.2; filter:url(#softGlow); }
+}
+.node.blink circle{
+  animation: ringPulse .55s ease-in-out 1;
+}
