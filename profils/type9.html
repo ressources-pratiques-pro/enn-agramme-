@@ -139,8 +139,8 @@
       white-space:nowrap;
     }
 
-    .dot:not(ul){width:9px;height:9px;border-radius:50%}
-    .rt ul.dot{width:auto;height:auto}
+    /* FIX: ne pas appliquer la taille 9px au <ul class="dot"> des listes */
+    span.dot{width:9px;height:9px;border-radius:50%}
 
     .side{
       flex:0 1 360px;
@@ -297,6 +297,7 @@
     .rt ul.dash{list-style-type:"-  "}
     .rt ul.arrow{list-style-type:"→  "}
     .rt ul.dot{list-style-type:"•  "}
+
     .rt li .k{
       color:var(--blue);
       font-weight:950;
