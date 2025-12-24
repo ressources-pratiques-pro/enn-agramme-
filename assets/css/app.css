@@ -162,12 +162,15 @@ button:active{transform:translateY(1px)}
 
 .muted{color:rgba(255,255,255,.55)}
 
-.dot{
+/* IMPORTANT : éviter le nom .dot (conflit avec ul.dot dans tes profils) */
+.uiDot{
   width:10px;height:10px;border-radius:50%;
   background:rgba(255,255,255,.25);
+  display:inline-block;
+  flex:0 0 auto;
 }
-.dot.good{background:rgba(134,239,172,.95)}
-.dot.warn{background:rgba(255,209,139,.95)}
+.uiDot.good{background:rgba(134,239,172,.95)}
+.uiDot.warn{background:rgba(255,209,139,.95)}
 
 .ctaRow{
   margin-top:12px;
@@ -274,26 +277,22 @@ a[aria-disabled=true]{
 
 @keyframes halo-pulse {
   0% {
-    transform: scale(1); /* Taille normale */
+    transform: scale(1);
     filter: drop-shadow(0 0 14px rgba(255,255,255,.35));
   }
   50% {
-    transform: scale(1.1); /* Grossit de 10% */
+    transform: scale(1.1);
     filter: drop-shadow(0 0 25px rgba(255,255,255,.6));
   }
   100% {
-    transform: scale(1); /* Revient à la taille normale */
+    transform: scale(1);
     filter: drop-shadow(0 0 14px rgba(255,255,255,.35));
   }
 }
 
 .node.hint circle {
   stroke-width: 14.30;
-  
-  /* LE FIX : Pour rester sur place */
   transform-box: fill-box;
   transform-origin: center;
-
-  /* Lancement de l'animation */
   animation: halo-pulse 2s infinite ease-in-out;
 }
