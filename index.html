@@ -2,837 +2,248 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Profil Ennéagramme</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ennéagramme</title>
+  <link rel="stylesheet" href="assets/css/app.css?v=201" />
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-1XYJK71TC4");
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  <style>
-    :root{
-      --bg:#0b1020;
-      --card:#0f1731;
-      --muted:#9fb0d6;
-      --text:#eef2ff;
-      --line:rgba(255,255,255,.10);
-      --chip:rgba(255,255,255,.08);
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --radius:18px;
-      --accent:#4ade80;
-      --blue-title:#60a5fa;
-      --blue-label:#93c5fd;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
-      background:
-        radial-gradient(900px 450px at 20% 10%, rgba(99,102,241,.28), transparent 55%),
-        radial-gradient(900px 450px at 80% 10%, rgba(16,185,129,.20), transparent 55%),
-        radial-gradient(1100px 600px at 50% 110%, rgba(244,63,94,.18), transparent 60%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.45;
-    }
-    a{color:inherit}
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 100px}
-    .top{
-      display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-    .hero{
-      flex:1 1 540px;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      border-radius:var(--radius);
-      padding:18px 18px 16px;
-      backdrop-filter: blur(10px);
-    }
-    .hero h1{
-      margin:0 0 6px;
-      font-size:clamp(22px, 3vw, 30px);
-      letter-spacing:.2px;
-      color:var(--blue-title);
-    }
-    .hero .sub{
-      color:var(--muted);
-      margin:0 0 10px;
-      font-size:14px;
-      display:none;
-    }
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{
-      background:var(--chip);
-      border:1px solid var(--line);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      color:rgba(255,255,255,.92);
-      white-space:nowrap;
-    }
-
-    .side{
-      flex:0 1 360px;
-      display:grid;
-      gap:12px;
-      align-content:start;
-    }
-    .card{
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:14px 14px 12px;
-      backdrop-filter: blur(10px);
-    }
-    .card h2{
-      margin:0 0 10px;
-      font-size:15px;
-      color:var(--blue-title);
-      letter-spacing:.2px;
-    }
-    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .select{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-    }
-    select, input[type=search]{
-      appearance:none;
-      background:rgba(0,0,0,.25);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:10px 12px;
-      color:var(--text);
-      outline:none;
-      width:100%;
-    }
-    .inline{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .inline > *{flex:1}
-    .hint{margin:8px 0 0;color:var(--muted);font-size:12px;display:none;}
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-
-    details{
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    summary{
-      list-style:none;
-      cursor:pointer;
-      padding:14px 14px 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      user-select:none;
-    }
-    summary::-webkit-details-marker{display:none}
-    .sumTitle{
-      display:flex;flex-direction:column;gap:2px
-    }
-    .sumTitle b{
-      font-size:15px;
-      letter-spacing:.2px;
-      color:var(--blue-title);
-    }
-    .sumTitle span{
-      font-size:12px;color:var(--muted)
-    }
-    .chev{
-      width:10px;height:10px;
-      border-right:2px solid rgba(255,255,255,.7);
-      border-bottom:2px solid rgba(255,255,255,.7);
-      transform:rotate(45deg);
-      transition:.18s ease;
-      margin-right:4px;
-      flex:0 0 auto;
-    }
-    details[open] .chev{transform:rotate(225deg);margin-top:4px}
-    .content{
-      padding:0 14px 14px;
-      border-top:1px solid var(--line);
-    }
-
-    .rich-text {
-      font-family: inherit;
-      font-size: 14px;
-      color: rgba(255,255,255,.92);
-      line-height: 1.7;
-    }
-    .highlight-title {
-      color: var(--blue-title);
-      font-weight: bold;
-      display: block;
-      margin-top: 16px;
-      margin-bottom: 6px;
-      font-size: 15px;
-    }
-    .highlight-label {
-      color: var(--blue-label);
-      font-weight: 600;
-    }
-    .highlight-list-item {
-      margin-bottom: 6px;
-      display: block;
-    }
-    .rich-text .p {
-      margin-bottom: 10px;
-    }
-
-    .levelsWrap{
-      display:grid;
-      gap:10px;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.92);
-      width:fit-content;
-    }
-    .dot{width:10px;height:10px;border-radius:50%}
-
-    .rangeLine{
-      width:100%;
-      padding:10px 10px 8px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.20);
-      border-radius:14px;
-    }
-    input[type=range]{
-      width:100%;
-      margin:8px 0 0;
-      accent-color:#22c55e;
-    }
-    .trackLabel{
-      display:flex;justify-content:space-between;gap:10px;
-      font-size:11px;color:var(--muted);
-      margin-top:6px;
-    }
-    .legend{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      font-size:12px;
-      color:rgba(255,255,255,.92);
-    }
-
-    .bottomBar{
-      position:fixed;
-      left:0;right:0;bottom:0;
-      background:rgba(8,12,24,.82);
-      border-top:1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(10px);
-      padding:10px 12px;
-      z-index:999;
-    }
-    .barInner{
-      max-width:1100px;
-      margin:0 auto;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-    .barBtns{display:flex;gap:10px;flex-wrap:wrap}
-    button, .btn{
-      cursor:pointer;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.94);
-      padding:10px 12px;
-      border-radius:14px;
-      font-weight:600;
-      letter-spacing:.15px;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      transition:transform .08s ease, background .12s ease, border-color .12s ease;
-    }
-    button:hover, .btn:hover{
-      background:rgba(255,255,255,.10);
-      border-color:rgba(255,255,255,.22);
-      transform:translateY(-1px);
-    }
-    button:active, .btn:active{transform:translateY(0)}
-    .btn-accent{
-      background:rgba(34,197,94,.16);
-      border-color:rgba(74,222,128,.9);
-      color:#bbf7d0;
-    }
-    .btn-accent:hover{
-      background:rgba(34,197,94,.25);
-      border-color:rgba(74,222,128,1);
-    }
-    .barInfo{color:var(--muted);font-size:12px}
-
-    /* ===== Modal chat privé ===== */
-    .chatOverlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.55);
-      backdrop-filter: blur(8px);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:14px;
-      z-index:3000;
-    }
-    .chatOverlay.open{display:flex}
-    .chatModal{
-      width:min(920px, 100%);
-      height:min(88vh, 900px);
-      background:rgba(10,14,28,.92);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.65);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-    .chatModalHeader{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      background:rgba(8,12,24,.75);
-    }
-    .chatModalHeader .title{
-      font-weight:700;
-      letter-spacing:.2px;
-      color:#bbf7d0;
-      font-size:13px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      min-width:0;
-    }
-    .chatModalHeader .title span{
-      color:rgba(255,255,255,.85);
-      font-weight:600;
-    }
-    .chatModalHeader .actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .chatModalHeader .btn-close{
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.18);
-    }
-    .chatModalHeader .btn-close:hover{
-      background:rgba(255,255,255,.12);
-      border-color:rgba(255,255,255,.26);
-    }
-    .chatFrame{
-      border:0;
-      width:100%;
-      height:100%;
-      flex:1;
-      background:#000;
-    }
-
-    @media (max-width: 900px){
-      .chatModal{
-        height:92vh;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{scroll-behavior:auto!important;transition:none!important}
-    }
-  </style>
+  gtag('config', 'G-1XYJK71TC4');
+</script>
 </head>
 
 <body>
   <div class="wrap">
-    <div class="top">
-      <div class="hero">
-        <h1 id="pageTitle">Profil</h1>
-        <p class="sub" id="pageSub"></p>
-        <div class="chips" id="chips"></div>
+    <header class="top">
+      <div>
+        <h1>Ennéagramme</h1>
+        <p id="subtitle">Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
       </div>
+      <div class="actions">
+        <button id="btnReset" type="button">Réinitialiser</button>
+      </div>
+    </header>
 
-      <div class="side">
+    <main class="grid">
+      <section class="stage" id="stage">
+        <div class="svgWrap">
+          <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
+            <defs>
+              <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
+              </marker>
+              <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
+              </marker>
+
+              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="2.2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <circle class="ring" cx="350" cy="350" r="270"></circle>
+            <circle class="innerRing" cx="350" cy="350" r="210"></circle>
+
+            <text x="350" y="352" text-anchor="middle" dominant-baseline="middle"
+                  style="font-family: ui-serif, Georgia, 'Times New Roman', serif; font-weight: 800; letter-spacing: 1.5px; font-size: 26px; fill: rgba(255,255,255,.22); text-transform: uppercase;">
+              Ennéagramme
+            </text>
+
+            <g id="staticBg" class="staticBg">
+              <path class="hex" d="" id="hexPath"></path>
+              <path class="tri" d="" id="triPath"></path>
+
+              <g class="centers">
+                <path class="centerLine" d="M350 350 L350 120"></path>
+                <path class="centerLine" d="M350 350 L585 455"></path>
+                <path class="centerLine" d="M350 350 L115 455"></path>
+
+                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
+                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
+                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
+              </g>
+            </g>
+
+            <g id="arrowsLayer"></g>
+            <g id="nodesLayer"></g>
+          </svg>
+        </div>
+      </section>
+
+      <aside class="side" id="sidePanel" aria-live="polite">
+        <div class="badgeRow">
+          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
+        </div>
+
         <div class="card">
-          <h2>Choisir un type</h2>
-          <div class="inline">
-            <select id="typeSelect" aria-label="Choisir un type"></select>
-            <button id="goBtn" type="button">Ouvrir</button>
+          <div class="miniGrid">
+            <div class="mini"><h3>Centre d'intelligence</h3><p id="center">—</p></div>
+            <div class="mini"><h3>Peur de base</h3><p id="fear">—</p></div>
+            <div class="mini"><h3>Désir de base</h3><p id="desire">—</p></div>
+            <div class="mini"><h3>Compulsion (évitement)</h3><p id="compulsion">—</p></div>
           </div>
-          <p class="hint">Astuce URL : profil.html?type=1 à 9</p>
-        </div>
 
-        <div class="card">
-          <h2>Rechercher dans la page</h2>
-          <input id="search" type="search" placeholder="Tape un mot, ex : compulsion, aile, stress...">
-          <p class="hint">Filtre uniquement l’affichage (le contenu reste intégral)</p>
-        </div>
-
-        <div class="card" id="levelsCard">
-          <h2>Niveaux de développement</h2>
-          <div class="levelsWrap">
-            <div class="badge" id="levelBadge">
-              <span class="dot" id="levelDot"></span>
-              <span id="levelLabel">Niveau</span>
-            </div>
-            <div class="rangeLine">
-              <div class="trackLabel"><span>1</span><span>9</span></div>
-              <input id="levelRange" type="range" min="1" max="9" step="1" value="1">
-              <div class="legend">
-                <span class="pill"><span class="dot" style="background:#22c55e"></span>Sain (1 à 3)</span>
-                <span class="pill"><span class="dot" style="background:#f59e0b"></span>Moyen (4 à 6)</span>
-                <span class="pill"><span class="dot" style="background:#ef4444"></span>Malsain (7 à 9)</span>
+          <div class="moveLines">
+            <div id="moveHealth" class="moveLine">
+              <div class="moveHead">
+                <span class="dot good"></span>
+                <strong>Intégration</strong>
+                <span class="muted">(santé)</span>
+                <span class="muted"> > </span>
+                <strong id="toIntegr">—</strong>
+                <span class="muted">:</span>
               </div>
+              <div class="moveBody" id="moveHealthText">—</div>
             </div>
-            <div class="card" style="padding:12px;border-radius:14px;margin:0;background:rgba(0,0,0,.18)">
-              <pre id="levelText" style="white-space: pre-wrap; font-family: inherit; font-size: 14px; margin: 0;"></pre>
+
+            <div id="moveStress" class="moveLine">
+              <div class="moveHead">
+                <span class="dot warn"></span>
+                <strong>Désintégration</strong>
+                <span class="muted">(stress)</span>
+                <span class="muted"> > </span>
+                <strong id="toDisint">—</strong>
+                <span class="muted">:</span>
+              </div>
+              <div class="moveBody" id="moveStressText">—</div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="grid" id="sections"></div>
+          <div class="ctaRow">
+            <a id="openFull" class="btn" href="profils/type1.html" aria-disabled="true">Voir la fiche complète</a>
+            <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
+            <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
+            <button id="btnChooseProfiles" class="btn" type="button">Explorer les profils</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="siteFooter">
+      <div class="footerInner">
+        <span class="copy">Tous droits réservés</span>
+        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank" rel="noopener">
+          ✉️ Contact
+        </a>
+      </div>
+    </footer>
   </div>
 
-  <div class="bottomBar">
-    <div class="barInner">
-      <div class="barBtns">
-        <button id="backBtn" type="button">Retour</button>
-        <a class="btn" id="exploreBtn" href="explorer-enneagramme.html">Retour vers Explorer Ennéagramme</a>
-        <a class="btn" id="indexBtn" href="index.html">Aller à l’index</a>
-
-        <!-- IMPORTANT : on ouvre le chat en fenêtre (modal) + bouton fermer -->
-        <button class="btn btn-accent" id="chatBtn" type="button">Ouvrir le chat privé</button>
-      </div>
-      <div class="barInfo" id="barInfo"></div>
-    </div>
-  </div>
-
-  <!-- Fenêtre chat privé (modal) -->
-  <div class="chatOverlay" id="chatOverlay" aria-hidden="true">
-    <div class="chatModal" role="dialog" aria-modal="true" aria-label="Chat privé">
-      <div class="chatModalHeader">
-        <div class="title">
-          <span>Chat privé</span>
-          <span style="opacity:.7;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Retour possible avec le bouton fermer</span>
-        </div>
-        <div class="actions">
-          <button class="btn btn-close" id="chatCloseBtn" type="button">Fermer</button>
-        </div>
-      </div>
-      <iframe class="chatFrame" id="chatFrame" src="chat-prive.html" title="Chat privé"></iframe>
-    </div>
-  </div>
+  <script src="assets/js/app.js?v=200"></script>
 
   <script>
-    const PROFILES = {
-      1: {
-        title: "Type 1 - Le Réformateur / Le Perfectionniste",
-        aliases: ["Le Réformateur","L’Idéaliste","L’Organisateur"],
-        sub: "Profil complet + curseur des 9 niveaux de développement",
-        sections: [
-          {k:"Présentation et Identification", d:"", t:`Type 1 - Le Réformateur / Le Perfectionniste
+  (function(){
+    const btn = document.getElementById('btnChooseProfiles');
+    const stage = document.getElementById('stage');
+    const svg = document.getElementById('enneaSvg');
+    const subtitle = document.getElementById('subtitle');
 
-1. Présentation et Identification
-Titre et Identité : Le Type 1 est appelé le Réformateur ou le Perfectionniste. C'est un type de personnalité rationnel et idéaliste, caractérisé par des principes solides, une grande maîtrise de soi et une recherche constante de perfection. Ils sont perçus comme des personnes sérieuses, intègres et dotées d'un sens aigu du bien et du mal.
-Définition globale : Le Type 1 est caractérisé par un désir profond d'être quelqu'un de bien sur le plan moral. Son énergie est dirigée vers le maintien d'idéaux élevés et la pratique d'une grande rigueur personnelle. Persuadé qu'il y a toujours moyen de s'améliorer, il évalue constamment ses actions et celles des autres par rapport à des standards d'excellence. Le 1 est animé par un désir d'amélioration, cherchant à corriger le désordre de son environnement par une action pratique et éthique. Il possède un talent naturel pour l'organisation, l'enseignement et la défense de causes nobles, se sentant investi d'une mission de vie.
-Rôle Social : L'Éducateur ou l'Enseignant.`},
+    let chooseMode = false;
+    let subtitleBackup = subtitle ? subtitle.textContent : '';
 
-          {k:"Structure et Dynamique Psychologique", d:"", t:`2. Structure et Dynamique Psychologique
-Centre d'intelligence
-Le Type 1 appartient au centre instinctif, qu'il utilise principalement vers l'intérieur pour agir sur lui-même.
-Hiérarchie des centres :
-* Centre Préféré : Instinctif (Utilisation intérieure)
-* Centre de Support : Émotionnel
-* Centre Réprimé : Mental
-Orientation
-La rigueur personnelle et les idéaux élevés.
-Compulsion
-Éviter à tout prix la colère (la sienne et celle des autres).
-Passion et Fixation
-* Passion (Cœur) : La Colère, qui naît du constat permanent d'imperfection dans le monde et en soi. Elle est souvent vécue comme un ressentiment permanent face à l'imperfection.
-* Fixation (Tête) : Le Perfectionnisme, qui pousse à travailler toujours plus pour atteindre un absolu souvent inaccessible. Vérification et correction incessante des détails.
-Mécanisme de défense
-La formation réactionnelle. Ce mécanisme consiste à transformer une émotion inacceptable (comme la colère ou le désir de plaisir) en son opposé (des conseils, de l'aide ou une tension accrue) pour rester "parfait". Cela consiste à prendre une émotion inacceptable (comme la colère) et à l'exprimer par son opposé (comme des conseils bienveillants ou un soutien constant), tout en réprimant l'impulsion originelle.
-Peurs et Désirs fondamentaux
-* Peur de base : Être mauvais, corrompu, pervers ou défectueux.
-* Désir de base : Être bon, vertueux, en équilibre et posséder de l'intégrité.
-* Message du Surmoi : « Tu es bien ou correct si tu fais ce qui est juste ». `},
-
-          {k:"Origines et Variantes", d:"", t:`3. Origines et Variantes
-Le Schéma de l'enfance
-Le 1 a souvent ressenti le besoin de justifier son existence en étant un « bon enfant » et en assumant des responsabilités précoces. Il a vécu une déconnexion de la figure protectrice (souvent le père), ce qui l'a poussé à devenir son propre guide moral et à s'auto-discipliner rigoureusement pour gagner son indépendance.
-Les Sous-types d'Ailes
-* 1w9 (L'Idéaliste) : Plus détaché, calme, érudit et souvent réservé. Il cherche à améliorer les choses avec une touche plus douce et philosophique.
-* 1w2 (L'Avocat) : Plus chaleureux, tourné vers les autres, persuasif et actif dans les réformes sociales.
-Les trois sous-types instinctifs
-* Conservation (Anxiété) : Focalisé sur l'auto-contrôle, la santé, le budget et l'ordre domestique. La personne croit que la moindre erreur peut compromettre sa sécurité. Elle cherche de manière obsessionnelle à tout bien faire pour éviter tout danger. Souvent anxieux face aux erreurs.
-* Social (Inadaptabilité) : Le « Croisé » qui représente des valeurs objectives et cherche à réformer la société ou son groupe. Ce sous-type a une vision rigide de la manière dont les interactions sociales devraient se dérouler. Il cherche à corriger et réformer le groupe pour qu'il suive les règles.
-* Sexuel (Jalousie) : Recherche une relation parfaite avec un partenaire idéalisé et peut devenir très critique si les standards ne sont pas partagés. Le 1 sexuel craint que son partenaire ne le rejette pour quelqu'un de plus "irréprochable". Il est extrêmement attentif aux détails de la relation et peut se montrer très critique envers l'autre pour qu'il soit idéal.`},
-
-          {k:"Entreprise", d:"", t:`4. Le Type 1 en Entreprise
-Profil professionnel
-Le Type 1 privilégie la qualité et l'éthique. Il respecte scrupuleusement les procédures et la discipline, considérant son travail comme un contrat moral. Il prend du temps pour décider afin d'éviter toute erreur, privilégiant le concret aux abstractions.
-Style de management
-Il bâtit des projets rationnels et précis. Une fois le plan validé, il donne des instructions rigoureuses et accepte mal les remises en cause. Sa difficulté à déléguer provient souvent de sa crainte des erreurs d'autrui.
-Style de communication
-Sa communication est souvent calme, précise et informative, privilégiant les conseils à la confrontation directe. Toutefois, une colère sous-jacente peut être perçue par ses interlocuteurs à travers une tension physique ou un ton sec.
-Points de vigilance
-Le Type 1 peut se perdre dans les détails, ce qui risque de ralentir les projets. Sa rigidité et ses critiques excessives peuvent frustrer ses collaborateurs.`},
-
-          {k:"Dynamique des Flèches", d:"", t:`5. Dynamique des Flèches
-Réaction au Stress (Désintégration)
-Vers le Type 4. Le 1 devient alors mélancolique, irrationnel, se sent seul et incompris, et peut se perdre dans des fantasmes romantiques pour échapper à ses fardeaux.
-Chemin d'Intégration (Croissance)
-Vers le Type 7. Le 1 apprend à se détendre, devient plus spontané, joyeux, curieux et accepte une plus grande variété de possibilités sans juger.`},
-
-          {k:"Évolution et Développement", d:"", t:`6. Évolution et Développement
-Points d'amélioration à travailler
-* Apprendre à être moins perfectionniste en acceptant que l'erreur est humaine.
-* Porter son attention sur les aspects positifs d'une situation avant de critiquer.
-* Pratiquer la relaxation pour évacuer les tensions physiques.
-* Être moins exigeant envers les autres et valoriser leurs compétences.
-* Développer le sens de l'humour.
-* Complimenter les autres et apprendre à écouter ses propres besoins émotionnels.
-Pratiques suggérées et Attitudes de Guérison
-Se dire : « Peut-être que les autres ont raison. Peut-être que j'ai fait tout ce qui pouvait être fait ».
-Intégration (Idée supérieure et Vertu)
-En se libérant de sa compulsion, le Type 1 s'intègre vers le Type 7 (ou le Type 4).
-* Essence : C'est la "vraie personnalité" libérée des automatismes de l'ego, permettant de se connecter à ses pleines potentialités.
-* Idée supérieure : La Perfection. Il réalise que la perfection est le meilleur compromis entre l'idéal et la réalité ici et maintenant.
-* Vertu : La Patience, acceptant le rythme des choses et l'imperfection du monde avec indulgence.`},
-
-          {k:"Approche Spirituelle", d:"", t:`7. Approche des Idées Sacrées (Perspective spirituelle)
-L'Idée sacrée
-La Perfection Sacrée. C'est la perception que la réalité est un processus complet et juste en chaque instant. Comprendre que la réalité est déjà parfaite telle qu'elle est.
-L'Illusion Spécifique
-Le Jugement Comparatif. Croire que le bien et le mal sont des absolus et que certaines choses sont intrinsèquement meilleures que d'autres au niveau de l'être.
-La Difficulté Spécifique
-Le sentiment d'être "mauvais", une conviction profonde d'avoir un défaut de fabrication intrinsèque.
-La Réaction Spécifique
-S'améliorer. Une activité mentale et pratique incessante pour corriger ce qui ne va pas.
-Le Noyau de la Fixation
-La constellation entre le sentiment de défaut intrinsèque (difficulté) et l'activité obsessive d'amélioration (réaction).`},
-
-          {k:"Fondement Énergétique", d:"", t:`8. Fondement Énergétique
-La Confiance Fondamentale
-Une certitude innée et préverbale que l'univers est bienveillant et que tout finira par être bénéfique.
-La Lumière du jour Vivante
-La qualité de l'Être qui ressemble à une conscience aimante et universelle, perçue comme la substance même de tout ce qui existe.`},
-
-          {k:"Perspective et Solution", d:"", t:`9. La Perspective et la Solution
-L'Idée Sacrée comme Psycho-catalyseur
-Elle agit comme un miroir qui révèle et dissout les distorsions cognitives de l'ego.
-Rétablir la Confiance Fondamentale
-Cela passe par l'acceptation de son impuissance existentielle et la découverte que la réalité nous soutient sans effort de notre part.
-L'Abandon
-Cesser de manipuler son expérience intérieure et laisser l'Être se déployer sans interférence.
-La Poussée Optimisante
-Reconnaître que le dynamisme de la réalité tend naturellement vers l'harmonie si l'on arrête d'essayer de la "fixer".`},
-
-          {k:"Analogie", d:"", t:`10. Analogie
-Le Type 1 peut être comparé à un sculpteur rigoureux qui, au lieu de contempler l'œuvre finie, ne voit que les minuscules aspérités de la pierre qu'il doit polir sans relâche. Son "petit juge" intérieur est une voix constante qui lui rappelle que le travail n'est jamais vraiment terminé tant qu'une seule imperfection subsiste.
-L'analogie de l'or : Un anneau d'or peut être bien ou mal façonné (perfection relative), mais sa nature profonde reste de l'or pur (perfection absolue/sacrée).`}
-        ],
-        levelsIntro: `Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
-
-Les niveaux de développement du Type 1 (le Réformateur) décrivent un continuum allant de la libération spirituelle et de la sagesse éthique à une rigidité obsessionnelle et potentiellement destructrice. Selon les sources, ces niveaux mesurent le degré d'identification d'une personne avec sa structure de personnalité : plus on descend dans les niveaux, plus l'ego prend le contrôle et plus la liberté de choix diminue.`,
-        levels: [
-          `Niveau 1 : L'acceptation et la sagesse. À ce stade, le 1 abandonne la conviction qu'il est en position de juger la réalité. Il devient profondément sage, discernant et capable d'accepter la vie telle qu'elle est sans réaction émotionnelle, atteignant ainsi son désir de base : avoir une intégrité totale.`,
-          `Niveau 2 : L'évaluation et la raison. La personne se concentre sur les directives de son surmoi pour se guider et se protéger des parties « désordonnées » d'elle-même. Son image de soi est celle d'une personne sensée, modérée et objective.`,
-          `Niveau 3 : L'intégrité et la responsabilité. Le 1 renforce son image de soi en vivant selon sa conscience et sa raison. Il est hautement éthique, discipliné et enseigne par l'exemple en mettant de côté ses désirs personnels pour le bien de tous.`,
-          `Niveau 4 : L'obligation et l'effort. Le 1 commence à craindre que les autres soient indifférents à ses principes. Il devient sérieux, se sent obligé de corriger tout ce qu'il voit et commence à débattre avec les autres pour les convaincre de la justesse de ses vues.`,
-          `Niveau 5 : La maîtrise de soi et l'ordre. La peur d'être condamné pour toute déviation par rapport à ses idéaux grandit. Le 1 s'oblige à vivre selon ses propres standards en permanence, s'organisant de manière rigoureuse. Il devient ponctuel et méthodique, mais aussi tendu et irritable.`,
-          `Niveau 6 : Le jugement et la critique. Il craint que les autres ne gâchent l'ordre qu'il a établi et s'en met en colère. Il réagit en reprochant aux autres de ne pas être à la hauteur de ses standards. Il devient perfectionniste, opinionné et souvent sarcastique.`,
-          `Niveau 7 : L'auto-justification et l'inflexibilité. Le 1 craint que ses idéaux soient faux, ce qui le rend amer et misanthrope. Pour sauver son image de soi, il devient extrêmement fermé d'esprit, refuse tout compromis et devient hautement moralisateur.`,
-          `Niveau 8 : L'obsession et la contradiction. Désespéré de contrôler ses désirs irrationnels, il devient obsédé par les parties de lui-même qu'il voulait dompter. Paradoxalement, il commence à agir selon ses désirs réprimés tout en continuant de les condamner publiquement.`,
-          `Niveau 9 : La condamnation et la punition. Réalisant qu'il a perdu le contrôle et qu'il commet les actes qu'il ne peut tolérer chez les autres, le 1 devient punitif. Il tente de supprimer la « cause » de ses obsessions en lui-même ou chez les autres, ce qui peut mener à l'auto-mutilation, au meurtre ou au suicide.`
-        ]
-      },
-
-      2: { title:"Type 2 - Le Pourvoyeur / L'Altruiste", aliases:["Le Pourvoyeur","L’Altruiste","Celui qui aide"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
-      3: { title:"Type 3 - Le Battant / L'Exécutant", aliases:["Le Battant","L’Exécutant","Celui qui réussit"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
-      4: { title:"Type 4 - Le Romantique / L’Individualiste / L’Artiste", aliases:["Le Romantique","L’Individualiste","L’Artiste"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
-      5: { title:"Type 5 - L’Observateur / L’Investigateur / Le Penseur", aliases:["L’Observateur","L’Investigateur","Le Penseur"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
-      6: { title:"Type 6 - Le Loyaliste / Le Gardien / Le Sceptique", aliases:["Le Loyaliste","Le Gardien","Le Sceptique"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
-      7: { title:"Type 7 - L’Enthousiaste / L’Épicurien / Le Généraliste", aliases:["L’Enthousiaste","L’Épicurien","Le Généraliste"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
-      8: { title:"Type 8 - Le Leader / Le Challenger / Le Chef", aliases:["Le Leader","Le Challenger","Le Chef"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
-      9: { title:"Type 9 - Le Médiateur / Le Pacificateur / Le Conciliateur", aliases:["Le Médiateur","Le Pacificateur","Le Conciliateur"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] }
-    };
-
-    const qs = (s, el=document)=>el.querySelector(s);
-    const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
-
-    function esc(s){
-      return String(s||"")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;");
+    function getNodes(){
+      return Array.from(document.querySelectorAll('#nodesLayer .node'));
     }
 
-    function formatText(raw){
-      const lines = String(raw||"").replaceAll("\r","").split("\n");
-      const out = [];
-      let inList = false;
+    function setHint(on){
+      const nodes = getNodes();
+      nodes.forEach(n => n.classList.toggle('hint', on));
+    }
 
-      const flushList = ()=>{
-        if(inList){
-          out.push("</ul>");
-          inList=false;
-        }
-      };
-
-      const isMainTitle = (ln)=> /^Type\s+\d+\s+-\s+/.test(ln.trim()) || /^\d+\.\s+/.test(ln.trim());
-      const isKeyVal = (ln)=> {
-        const t = ln.trim();
-        if(!t) return false;
-        if(t.startsWith("* ")) return false;
-        if(isMainTitle(t)) return false;
-        const i = t.indexOf(" : ");
-        if(i<=0) return false;
-        const k = t.slice(0,i);
-        if(k.length>42) return false;
-        return true;
-      };
-
-      for(let i=0;i<lines.length;i++){
-        const ln0 = lines[i];
-        const ln = ln0.trim();
-
-        if(!ln){
-          flushList();
-          continue;
-        }
-
-        if(isMainTitle(ln)){
-          flushList();
-          out.push(`<div class="highlight-title">${esc(ln)}</div>`);
-          continue;
-        }
-
-        if(ln.startsWith("* ")){
-          if(!inList){
-            out.push("<ul>");
-            inList=true;
-          }
-          const content = ln.slice(2);
-          if (content.includes(" : ")) {
-             const [k, v] = content.split(" : ");
-             out.push(`<li class="highlight-list-item"><span class="highlight-label">${esc(k)}</span> : ${esc(v)}</li>`);
-          } else {
-             out.push(`<li class="highlight-list-item">${esc(content)}</li>`);
-          }
-          continue;
-        }
-
-        if(isKeyVal(ln)){
-          flushList();
-          const [k,v] = ln.split(" : ");
-          out.push(`<div class="p"><span class="highlight-label">${esc(k)}</span> : ${esc(v)}</div>`);
-          continue;
-        }
-
-        flushList();
-        out.push(`<div class="p">${esc(ln)}</div>`);
+    function enterChooseMode(){
+      chooseMode = true;
+      setHint(true);
+      if (subtitle){
+        subtitleBackup = subtitle.textContent || subtitleBackup;
+        subtitle.textContent = "Choisis un type sur le diagramme pour ouvrir directement la fiche.";
       }
-
-      flushList();
-      return `<div class="rich-text">${out.join("")}</div>`;
+      stage.scrollIntoView({ behavior:'smooth', block:'start' });
+      setTimeout(()=>setHint(true), 250);
     }
 
-    function buildTypeSelect(){
-      const sel = qs("#typeSelect");
-      sel.innerHTML = "";
-      Object.keys(PROFILES).sort((a,b)=>+a-+b).forEach(k=>{
-        const p = PROFILES[k];
-        const opt = document.createElement("option");
-        opt.value = k;
-        opt.textContent = p.title || `Type ${k}`;
-        sel.appendChild(opt);
-      });
+    function exitChooseMode(){
+      chooseMode = false;
+      setHint(false);
+      if (subtitle) subtitle.textContent = subtitleBackup;
     }
 
-    function applySearchFilter(term){
-      const t = (term||"").trim().toLowerCase();
-      const blocks = qsa("details");
-      if(!t){
-        blocks.forEach(b=>b.style.display="");
+    btn && btn.addEventListener('click', function(){
+      if (!chooseMode) enterChooseMode();
+      else exitChooseMode();
+    });
+
+    svg && svg.addEventListener('click', function(e){
+      if (!chooseMode) return;
+
+      const node = e.target && e.target.closest ? e.target.closest('.node') : null;
+      if (!node) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+      let num = node.getAttribute('data-num') || node.getAttribute('data-type') || '';
+      if (!num){
+        const t = node.querySelector('text');
+        num = t ? (t.textContent || '').trim() : '';
+      }
+      if (!/^[1-9]$/.test(num)) return;
+
+      window.location.href = 'profils/type' + num + '.html';
+    }, true);
+
+    function waitNodes(){
+      const nodes = getNodes();
+      if (nodes.length){
+        nodes.forEach(n=>{
+          if (!n.hasAttribute('tabindex')) n.setAttribute('tabindex','0');
+        });
         return;
       }
-      blocks.forEach(b=>{
-        const txt = b.innerText.toLowerCase();
-        b.style.display = txt.includes(t) ? "" : "none";
-      });
+      requestAnimationFrame(waitNodes);
     }
-
-    function renderProfile(typeId){
-      const p = PROFILES[typeId];
-      if(!p) return;
-
-      qs("#pageTitle").textContent = p.title || `Type ${typeId}`;
-      qs("#pageSub").textContent = "";
-
-      const chips = qs("#chips");
-      chips.innerHTML = "";
-      (p.aliases||[]).forEach(a=>{
-        const s = document.createElement("span");
-        s.className = "chip";
-        s.textContent = a;
-        chips.appendChild(s);
-      });
-
-      const sec = qs("#sections");
-      sec.innerHTML = "";
-
-      (p.sections||[]).forEach((s, idx)=>{
-        const det = document.createElement("details");
-        det.open = idx < 2;
-
-        det.innerHTML = `
-          <summary>
-            <div class="sumTitle">
-              <b>${esc(s.k)}</b>
-              <span>${esc(s.d || "Déplier pour lire")}</span>
-            </div>
-            <span class="chev"></span>
-          </summary>
-          <div class="content">${formatText(String(s.t||"").replaceAll("Perspective Almaas","Perspective spirituelle"))}</div>
-        `;
-        sec.appendChild(det);
-      });
-
-      qs("#barInfo").textContent = `Type ${typeId}`;
-      qs("#typeSelect").value = String(typeId);
-
-      const hasLevels = Array.isArray(p.levels) && p.levels.length === 9;
-      qs("#levelsCard").style.display = hasLevels ? "" : "none";
-
-      if(hasLevels){
-        const r = qs("#levelRange");
-
-        const updateLvlText = (val) => {
-           const idx = parseInt(val,10) - 1;
-           if(p.levels[idx]) {
-             qs("#levelText").textContent = p.levels[idx];
-             qs("#levelLabel").textContent = "Niveau " + val;
-
-             const dot = qs("#levelDot");
-             if(val <= 3) dot.style.background = "#22c55e";
-             else if(val <= 6) dot.style.background = "#f59e0b";
-             else dot.style.background = "#ef4444";
-           }
-        };
-
-        r.value = "1";
-        updateLvlText(1);
-
-        r.oninput = (e) => {
-          updateLvlText(e.target.value);
-        };
-      }
-    }
-
-    function getParam(name){
-      const u = new URL(location.href);
-      return u.searchParams.get(name);
-    }
-
-    function goToType(typeId){
-      typeId = String(typeId);
-      if(!PROFILES[typeId]){
-        typeId = Object.keys(PROFILES).sort((a,b)=>+a-+b)[0];
-      }
-      renderProfile(typeId);
-      window.scrollTo({top:0, behavior:"smooth"});
-
-      const u = new URL(location.href);
-      u.searchParams.set("type", typeId);
-      history.replaceState(null, "", u.toString());
-    }
-
-    // ===== Modal chat privé =====
-    const chatOverlay = qs("#chatOverlay");
-    const chatBtn = qs("#chatBtn");
-    const chatCloseBtn = qs("#chatCloseBtn");
-
-    function openChat(){
-      if(!chatOverlay) return;
-      chatOverlay.classList.add("open");
-      chatOverlay.setAttribute("aria-hidden","false");
-      document.body.style.overflow = "hidden";
-      chatCloseBtn && chatCloseBtn.focus();
-    }
-
-    function closeChat(){
-      if(!chatOverlay) return;
-      chatOverlay.classList.remove("open");
-      chatOverlay.setAttribute("aria-hidden","true");
-      document.body.style.overflow = "";
-      chatBtn && chatBtn.focus();
-    }
-
-    chatBtn && chatBtn.addEventListener("click", openChat);
-    chatCloseBtn && chatCloseBtn.addEventListener("click", closeChat);
-
-    chatOverlay && chatOverlay.addEventListener("click", (e)=>{
-      if(e.target === chatOverlay) closeChat();
-    });
-
-    document.addEventListener("keydown", (e)=>{
-      if(e.key === "Escape" && chatOverlay && chatOverlay.classList.contains("open")){
-        closeChat();
-      }
-    });
-
-    // ===== Init page =====
-    buildTypeSelect();
-    const initial = getParam("type") || Object.keys(PROFILES).sort((a,b)=>+a-+b)[0];
-    goToType(initial);
-
-    qs("#goBtn").addEventListener("click", ()=>goToType(qs("#typeSelect").value));
-    qs("#typeSelect").addEventListener("change", ()=>goToType(qs("#typeSelect").value));
-    qs("#search").addEventListener("input", (e)=>applySearchFilter(e.target.value));
-    qs("#backBtn").addEventListener("click", ()=>history.back());
+    waitNodes();
+  })();
   </script>
+  <script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAd_3Qa9allKo9o4qZQQf3XVdRs3JMEGUQ",
+  authDomain: "enneagramme-chat.firebaseapp.com",
+  projectId: "enneagramme-chat",
+  storageBucket: "enneagramme-chat.firebasestorage.app",
+  messagingSenderId: "703457736548",
+  appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71",
+  measurementId: "G-6WB7Y3E5CK"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+signInAnonymously(auth)
+  .then(async () => {
+    console.log("✔️ Utilisateur anonyme connecté");
+
+    // Test d’écriture dans Firestore
+    const docRef = await addDoc(collection(db, "testMessages"), {
+      text: "Hello Firestore",
+      createdAt: serverTimestamp()
+    });
+    console.log("📄 Message écrit avec l’ID :", docRef.id);
+  })
+  .catch(err => console.error("Erreur auth :", err));
+</script>
 </body>
 </html>
