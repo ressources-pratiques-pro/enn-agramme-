@@ -3,247 +3,298 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ennéagramme</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=201" />
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <title>Chat privé</title>
 
-  gtag('config', 'G-1XYJK71TC4');
-</script>
+  <!-- (optionnel) tu peux garder ton app.css si tu veux le même thème -->
+  <link rel="stylesheet" href="assets/css/app.css?v=201" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .chat-wrap {
+      width: 100%;
+      max-width: 480px;
+      height: 80vh;
+      max-height: 680px;
+      background: #020617;
+      border-radius: 24px;
+      border: 1px solid rgba(148,163,184,.5);
+      box-shadow: 0 20px 40px rgba(15,23,42,.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(148,163,184,.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: radial-gradient(circle at top left,#1d4ed8,#020617);
+    }
+
+    .chat-header .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid rgba(248,250,252,.8);
+      background: #0f172a;
+    }
+
+    .chat-header .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .chat-header .info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .chat-header .info h1 {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .chat-header .info span {
+      font-size: 12px;
+      color: #cbd5f5;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 16px 16px 8px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: radial-gradient(circle at bottom,#020617,#020617);
+    }
+
+    .msg {
+      max-width: 80%;
+      padding: 8px 12px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.4;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    .msg.me {
+      align-self: flex-end;
+      background: #4f46e5;
+      color: #e5e7eb;
+      border-bottom-right-radius: 4px;
+    }
+
+    .msg.other {
+      align-self: flex-start;
+      background: #0f172a;
+      border: 1px solid rgba(148,163,184,.5);
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-meta {
+      font-size: 10px;
+      opacity: .7;
+      margin-top: 2px;
+    }
+
+    .chat-form {
+      padding: 10px 12px;
+      border-top: 1px solid rgba(148,163,184,.4);
+      background: #020617;
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-form input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.6);
+      padding: 8px 12px;
+      font-size: 14px;
+      background: #020617;
+      color: #e5e7eb;
+      outline: none;
+    }
+
+    .chat-form input::placeholder {
+      color: #64748b;
+    }
+
+    .chat-form button {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 14px;
+      font-size: 14px;
+      background: #4f46e5;
+      color: #e5e7eb;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .chat-form button:disabled {
+      opacity: .4;
+      cursor: default;
+    }
+
+    .status {
+      padding: 4px 12px 0;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header class="top">
-      <div>
-        <h1>Ennéagramme</h1>
-        <p id="subtitle">Clique sur un type pour voir un résumé, puis ouvrir la fiche complète.</p>
+  <div class="chat-wrap">
+    <header class="chat-header">
+      <div class="avatar">
+        <!-- ICI l'image de ton avatar -->
+        <img src="assets/images/avatar-brahms.png" alt="Avatar du guide">
       </div>
-      <div class="actions">
-        <button id="btnReset" type="button">Réinitialiser</button>
+      <div class="info">
+        <h1>Chat privé</h1>
+        <span>Pose ta question, je te répondrai dès que possible.</span>
       </div>
     </header>
 
-    <main class="grid">
-      <section class="stage" id="stage">
-        <div class="svgWrap">
-          <svg id="enneaSvg" viewBox="0 0 700 700" aria-label="Diagramme de l'ennéagramme">
-            <defs>
-              <marker id="arrowHeadGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(134,239,172,.95)"></path>
-              </marker>
-              <marker id="arrowHeadPink" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(253,164,175,.95)"></path>
-              </marker>
+    <div class="status" id="status">Connexion en cours…</div>
 
-              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="2.2" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
+    <main class="chat-messages" id="messages" aria-live="polite"></main>
 
-            <circle class="ring" cx="350" cy="350" r="270"></circle>
-            <circle class="innerRing" cx="350" cy="350" r="210"></circle>
-
-            <text x="350" y="352" text-anchor="middle" dominant-baseline="middle"
-                  style="font-family: ui-serif, Georgia, 'Times New Roman', serif; font-weight: 800; letter-spacing: 1.5px; font-size: 26px; fill: rgba(255,255,255,.22); text-transform: uppercase;">
-              Ennéagramme
-            </text>
-
-            <g id="staticBg" class="staticBg">
-              <path class="hex" d="" id="hexPath"></path>
-              <path class="tri" d="" id="triPath"></path>
-
-              <g class="centers">
-                <path class="centerLine" d="M350 350 L350 120"></path>
-                <path class="centerLine" d="M350 350 L585 455"></path>
-                <path class="centerLine" d="M350 350 L115 455"></path>
-
-                <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
-                <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
-                <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
-              </g>
-            </g>
-
-            <g id="arrowsLayer"></g>
-            <g id="nodesLayer"></g>
-          </svg>
-        </div>
-      </section>
-
-      <aside class="side" id="sidePanel" aria-live="polite">
-        <div class="badgeRow">
-          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
-        </div>
-
-        <div class="card">
-          <div class="miniGrid">
-            <div class="mini"><h3>Centre d'intelligence</h3><p id="center">—</p></div>
-            <div class="mini"><h3>Peur de base</h3><p id="fear">—</p></div>
-            <div class="mini"><h3>Désir de base</h3><p id="desire">—</p></div>
-            <div class="mini"><h3>Compulsion (évitement)</h3><p id="compulsion">—</p></div>
-          </div>
-
-          <div class="moveLines">
-            <div id="moveHealth" class="moveLine">
-              <div class="moveHead">
-                <span class="dot good"></span>
-                <strong>Intégration</strong>
-                <span class="muted">(santé)</span>
-                <span class="muted"> > </span>
-                <strong id="toIntegr">—</strong>
-                <span class="muted">:</span>
-              </div>
-              <div class="moveBody" id="moveHealthText">—</div>
-            </div>
-
-            <div id="moveStress" class="moveLine">
-              <div class="moveHead">
-                <span class="dot warn"></span>
-                <strong>Désintégration</strong>
-                <span class="muted">(stress)</span>
-                <span class="muted"> > </span>
-                <strong id="toDisint">—</strong>
-                <span class="muted">:</span>
-              </div>
-              <div class="moveBody" id="moveStressText">—</div>
-            </div>
-          </div>
-
-          <div class="ctaRow">
-            <a id="openFull" class="btn" href="profils/type1.html" aria-disabled="true">Voir la fiche complète</a>
-            <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
-            <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
-            <button id="btnChooseProfiles" class="btn" type="button">Explorer les profils</button>
-          </div>
-        </div>
-      </aside>
-    </main>
-
-    <footer class="siteFooter">
-      <div class="footerInner">
-        <span class="copy">Tous droits réservés</span>
-        <a class="contact" href="https://docs.google.com/forms/d/e/1FAIpQLScLBwWZA-VZf4OaIEl11fnKasayyVrll7DZL5A3uZZBCwLdkQ/viewform?usp=header" target="_blank" rel="noopener">
-          ✉️ Contact
-        </a>
-      </div>
-    </footer>
+    <form class="chat-form" id="chatForm">
+      <input
+        id="chatInput"
+        type="text"
+        autocomplete="off"
+        placeholder="Écris ton message…"
+        required
+      />
+      <button type="submit">Envoyer</button>
+    </form>
   </div>
 
-  <script src="assets/js/app.js?v=200"></script>
-
-  <script>
-  (function(){
-    const btn = document.getElementById('btnChooseProfiles');
-    const stage = document.getElementById('stage');
-    const svg = document.getElementById('enneaSvg');
-    const subtitle = document.getElementById('subtitle');
-
-    let chooseMode = false;
-    let subtitleBackup = subtitle ? subtitle.textContent : '';
-
-    function getNodes(){
-      return Array.from(document.querySelectorAll('#nodesLayer .node'));
-    }
-
-    function setHint(on){
-      const nodes = getNodes();
-      nodes.forEach(n => n.classList.toggle('hint', on));
-    }
-
-    function enterChooseMode(){
-      chooseMode = true;
-      setHint(true);
-      if (subtitle){
-        subtitleBackup = subtitle.textContent || subtitleBackup;
-        subtitle.textContent = "Choisis un type sur le diagramme pour ouvrir directement la fiche.";
-      }
-      stage.scrollIntoView({ behavior:'smooth', block:'start' });
-      setTimeout(()=>setHint(true), 250);
-    }
-
-    function exitChooseMode(){
-      chooseMode = false;
-      setHint(false);
-      if (subtitle) subtitle.textContent = subtitleBackup;
-    }
-
-    btn && btn.addEventListener('click', function(){
-      if (!chooseMode) enterChooseMode();
-      else exitChooseMode();
-    });
-
-    svg && svg.addEventListener('click', function(e){
-      if (!chooseMode) return;
-
-      const node = e.target && e.target.closest ? e.target.closest('.node') : null;
-      if (!node) return;
-
-      e.preventDefault();
-      e.stopPropagation();
-      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-
-      let num = node.getAttribute('data-num') || node.getAttribute('data-type') || '';
-      if (!num){
-        const t = node.querySelector('text');
-        num = t ? (t.textContent || '').trim() : '';
-      }
-      if (!/^[1-9]$/.test(num)) return;
-
-      window.location.href = 'profils/type' + num + '.html';
-    }, true);
-
-    function waitNodes(){
-      const nodes = getNodes();
-      if (nodes.length){
-        nodes.forEach(n=>{
-          if (!n.hasAttribute('tabindex')) n.setAttribute('tabindex','0');
-        });
-        return;
-      }
-      requestAnimationFrame(waitNodes);
-    }
-    waitNodes();
-  })();
-  </script>
+  <!-- Firebase + chat -->
   <script type="module">
-  // Import Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-  import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp,
+      query,
+      orderBy,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import {
+      getAuth,
+      signInAnonymously
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAd_3Qa9allKo9o4qZQQf3XVdRs3JMEGUQ",
-  authDomain: "enneagramme-chat.firebaseapp.com",
-  projectId: "enneagramme-chat",
-  storageBucket: "enneagramme-chat.firebasestorage.app",
-  messagingSenderId: "703457736548",
-  appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71",
-  measurementId: "G-6WB7Y3E5CK"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+    // Même config que sur index.html
+    const firebaseConfig = {
+      apiKey: "AIzaSyAd_3Qa9allKo9o4qZQQf3XVdRs3JMEGUQ",
+      authDomain: "enneagramme-chat.firebaseapp.com",
+      projectId: "enneagramme-chat",
+      storageBucket: "enneagramme-chat.firebasestorage.app",
+      messagingSenderId: "703457736548",
+      appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71",
+      measurementId: "G-6WB7Y3E5CK"
+    };
 
-signInAnonymously(auth)
-  .then(async () => {
-    console.log("✔️ Utilisateur anonyme connecté");
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
 
-    // Test d’écriture dans Firestore
-    const docRef = await addDoc(collection(db, "testMessages"), {
-      text: "Hello Firestore",
-      createdAt: serverTimestamp()
-    });
-    console.log("📄 Message écrit avec l’ID :", docRef.id);
-  })
-  .catch(err => console.error("Erreur auth :", err));
-</script>
+    const statusEl   = document.getElementById("status");
+    const messagesEl = document.getElementById("messages");
+    const form       = document.getElementById("chatForm");
+    const input      = document.getElementById("chatInput");
+
+    // Petit identifiant stocké dans le navigateur pour différencier tes visiteurs
+    let localId = localStorage.getItem("chatPriveId");
+    if (!localId) {
+      localId = "user_" + Math.random().toString(36).slice(2, 10);
+      localStorage.setItem("chatPriveId", localId);
+    }
+
+    // Connexion anonyme
+    signInAnonymously(auth)
+      .then(() => {
+        console.log("✔️ Utilisateur anonyme connecté (chat privé)");
+        statusEl.textContent = "Connecté.";
+        initChat();
+      })
+      .catch(err => {
+        console.error("Erreur auth (chat privé) :", err);
+        statusEl.textContent = "Impossible de se connecter au chat.";
+        form.querySelector("button").disabled = true;
+      });
+
+    function initChat() {
+      const messagesRef = collection(db, "chatPrive");
+      const q = query(messagesRef, orderBy("createdAt", "asc"));
+
+      onSnapshot(q, snap => {
+        messagesEl.innerHTML = "";
+        snap.forEach(doc => {
+          const data = doc.data();
+          const msg = document.createElement("div");
+          msg.className = "msg " + (data.authorId === localId ? "me" : "other");
+          msg.innerHTML = `
+            <div>${(data.text || "").toString()}</div>
+            <div class="msg-meta">${data.authorId === localId ? "Moi" : "Guide"} · ${
+              data.createdAt?.toDate
+                ? data.createdAt.toDate().toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})
+                : ""
+            }</div>
+          `;
+          messagesEl.appendChild(msg);
+        });
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+
+        form.querySelector("button").disabled = true;
+
+        try {
+          await addDoc(messagesRef, {
+            text,
+            authorId: localId,
+            createdAt: serverTimestamp()
+          });
+          input.value = "";
+        } catch (err) {
+          console.error("Erreur d'envoi :", err);
+          alert("Message non envoyé, réessaie dans un instant.");
+        } finally {
+          form.querySelector("button").disabled = false;
+          input.focus();
+        }
+      });
+    }
+  </script>
 </body>
 </html>
