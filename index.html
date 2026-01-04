@@ -17,6 +17,25 @@
   </script>
 
   <style>
+    /* ===== Boutons "chat" mis en valeur (léger) ===== */
+    .btn-chat{
+      border: 1px solid rgba(99,102,241,.75) !important;
+      box-shadow: 0 0 0 3px rgba(99,102,241,.18) !important;
+      position: relative;
+    }
+    .btn-chat:hover{
+      box-shadow: 0 0 0 4px rgba(99,102,241,.26), 0 10px 22px rgba(0,0,0,.25) !important;
+      transform: translateY(-1px);
+    }
+    .btn-chat:active{
+      transform: translateY(0);
+      box-shadow: 0 0 0 3px rgba(99,102,241,.18) !important;
+    }
+    .btn-chat:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(99,102,241,.35), 0 0 0 2px rgba(255,255,255,.12) inset !important;
+    }
+
     /* ===== Modal chat privé (léger, sans toucher au thème global) ===== */
     .chatOverlay{
       position:fixed;
@@ -102,7 +121,7 @@
       </div>
       <div class="actions">
         <button id="btnReset" type="button">Réinitialiser</button>
-        <button id="chatOpenBtn" type="button" class="btn">Poser une question</button>
+        <button id="chatOpenBtn" type="button" class="btn btn-chat">Poser une question</button>
       </div>
     </header>
 
@@ -200,7 +219,7 @@
             <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
             <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
             <button id="btnChooseProfiles" class="btn" type="button">Explorer les profils</button>
-            <button id="chatOpenBtn2" class="btn" type="button">Chat privé</button>
+            <button id="chatOpenBtn2" class="btn btn-chat" type="button">Chat privé</button>
           </div>
         </div>
       </aside>
