@@ -300,6 +300,81 @@
     }
     .barInfo{color:var(--muted);font-size:12px}
 
+    /* ===== Modal chat privé ===== */
+    .chatOverlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(8px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      z-index:3000;
+    }
+    .chatOverlay.open{display:flex}
+    .chatModal{
+      width:min(920px, 100%);
+      height:min(88vh, 900px);
+      background:rgba(10,14,28,.92);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.65);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .chatModalHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background:rgba(8,12,24,.75);
+    }
+    .chatModalHeader .title{
+      font-weight:700;
+      letter-spacing:.2px;
+      color:#bbf7d0;
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
+    }
+    .chatModalHeader .title span{
+      color:rgba(255,255,255,.85);
+      font-weight:600;
+    }
+    .chatModalHeader .actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .chatModalHeader .btn-close{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.18);
+    }
+    .chatModalHeader .btn-close:hover{
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.26);
+    }
+    .chatFrame{
+      border:0;
+      width:100%;
+      height:100%;
+      flex:1;
+      background:#000;
+    }
+
+    @media (max-width: 900px){
+      .chatModal{
+        height:92vh;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto!important;transition:none!important}
     }
@@ -364,9 +439,27 @@
         <button id="backBtn" type="button">Retour</button>
         <a class="btn" id="exploreBtn" href="explorer-enneagramme.html">Retour vers Explorer Ennéagramme</a>
         <a class="btn" id="indexBtn" href="index.html">Aller à l’index</a>
-        <a class="btn btn-accent" id="chatBtn" href="chat-prive.html">Ouvrir le chat privé</a>
+
+        <!-- IMPORTANT : on ouvre le chat en fenêtre (modal) + bouton fermer -->
+        <button class="btn btn-accent" id="chatBtn" type="button">Ouvrir le chat privé</button>
       </div>
       <div class="barInfo" id="barInfo"></div>
+    </div>
+  </div>
+
+  <!-- Fenêtre chat privé (modal) -->
+  <div class="chatOverlay" id="chatOverlay" aria-hidden="true">
+    <div class="chatModal" role="dialog" aria-modal="true" aria-label="Chat privé">
+      <div class="chatModalHeader">
+        <div class="title">
+          <span>Chat privé</span>
+          <span style="opacity:.7;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Retour possible avec le bouton fermer</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-close" id="chatCloseBtn" type="button">Fermer</button>
+        </div>
+      </div>
+      <iframe class="chatFrame" id="chatFrame" src="chat-prive.html" title="Chat privé"></iframe>
     </div>
   </div>
 
@@ -496,264 +589,8 @@ Les niveaux de développement du Type 1 (le Réformateur) décrivent un continuu
         ]
       },
 
-      2: {
-        title: "Type 2 - Le Pourvoyeur / L'Altruiste",
-        aliases: ["Le Pourvoyeur","L’Altruiste","Celui qui aide"],
-        sub: "Profil complet + curseur des 9 niveaux de développement",
-        sections: [
-          {k:"Présentation et Identification", d:"", t:`Type 2 - Le Pourvoyeur / L'Altruiste
-1. Présentation et Identification
-Titre et Identité : Le Type 2 est appelé le Pourvoyeur, l'Altruiste, ou encore Celui qui aide. Il est défini comme le type attentionné, généreux, démonstratif et possessif. C'est une personne centrée sur les relations, cherchant à être aimée et appréciée pour sa bonté.
-Définition globale : Le Type 2, souvent nommé l'Altruiste ou le Donneur, place l'amour et l'aide au centre de son existence. C'est une personne chaleureuse qui possède une capacité naturelle à percevoir les besoins et les qualités d'autrui pour les encourager à se réaliser. Il cherche à être aimé en se rendant indispensable par une aide concrète, agissant souvent comme une éminence grise. Le 2 est animé par l'orientation de l'amour et de l'aide. Il possède un talent naturel pour percevoir les besoins des autres, les encourager et agir comme un confident chaleureux. Il cherche à créer une image de personne indispensable et désintéressée.
-Rôle Social : L'"Ami Spécial" ou le Confident.`},
-
-          {k:"Structure et Dynamique Psychologique", d:"", t:`2. Structure et Dynamique Psychologique
-Centre d'intelligence
-Le Type 2 appartient au centre émotionnel, qu'il utilise principalement vers l'extérieur.
-Hiérarchie des centres :
-* Centre Préféré : Émotionnel (Utilisation extérieure)
-* Centre de Support : Instinctif
-* Centre Réprimé : Mental
-Orientation
-L'amour et l'aide.
-Compulsion
-Éviter de reconnaître ses propres besoins.
-Passion et Fixation
-* Passion (Cœur) : L'Orgueil, qui se manifeste par la fierté d'aider sans avoir soi-même besoin d'aide. Se voir comme la source de l'aide sans avoir soi-même besoin de rien.
-* Fixation (Tête) : La Flatterie (pour séduire) et le Dédain (envers ceux qui ne semblent pas avoir besoin de lui ou qui sont "égoïstes").
-Mécanisme de défense
-La répression (ou refoulement). Il supprime ses propres besoins et les sentiments qui ne lui vaudraient pas l'approbation des autres pour projeter une image de générosité absolue. Il supprime inconsciemment ses propres besoins et les sentiments (comme l'agressivité) qui pourraient nuire à son image de personne aimante afin d'obtenir l'approbation d'autrui.
-Peurs et Désirs fondamentaux
-* Peur de base : Être indigne d'être aimé ou ne pas être voulu pour lui-même.
-* Désir de base : Se sentir aimé.
-* Le Message du Surmoi : « Tu es bien ou correct si tu es aimé par les autres et si tu es proche d'eux ». `},
-
-          {k:"Origines et Variantes", d:"", t:`3. Origines et Variantes
-Le Schéma de l'enfance
-L'enfant 2 a souvent ressenti que l'amour n'était pas gratuit et qu'il devait le gagner en étant serviable et en mettant les besoins des autres avant les siens. Il a appris à devenir un "petit parent" ou un médiateur pour obtenir l'attention de la figure nourricière.
-Les Sous-types d'Ailes
-* 2w1 (Le Serviteur) : Plus sérieux, moralisateur et tourné vers les tâches ingrates ou le service public.
-* 2w3 (L'Hôte/Hôtesse) : Plus extraverti, charmant, ambitieux et soucieux de son image sociale.
-Les trois sous-types instinctifs
-* Conservation (Privilège) : Se sent privilégié. Ce sous-type sacrifie excessivement ses besoins mais estime en retour avoir le droit à un traitement spécial et se sentir privilégié. Il attend un traitement spécial en retour de ses sacrifices extrêmes.
-* Social (Ambition) : L'ambitieux. Il possède un flair pour repérer les personnes puissantes ou de haut statut. Il cherche à les assister pour obtenir une influence indirecte et une protection. Il cherche l'influence et le prestige en se liant à des personnes puissantes.
-* Sexuel (Séduction agressive) : C'est un séducteur qui utilise son charme de manière active pour établir une relation intime forte, souvent avec des personnes de pouvoir. Il utilise son charme de façon intense pour fusionner avec une personne cible.`},
-
-          {k:"Signaux et Défis", d:"", t:`Signaux d'Alerte
-* Signal d'Éveil : Le "people-pleasing" (tendance compulsive à vouloir plaire à tout le monde).
-* Signal d'Alarme : La peur que ses efforts pour se rapprocher des gens ne fassent en réalité que les chasser.
-Les Défis de croissance
-Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sans culpabilité.`},
-
-          {k:"Entreprise", d:"", t:`4. Le Type 2 en Entreprise
-Profil professionnel
-En entreprise, le 2 privilégie les relations humaines. Il est positif, amical et dispose d'un vaste réseau relationnel interne. Il a cependant du mal à travailler seul et nécessite l'approbation de sa hiérarchie pour être efficace.
-Style de management
-Il est un manager formateur qui cherche à développer le potentiel de ses collaborateurs. Il privilégie l'improvisation à la planification et peut parfois "étouffer" son équipe par un excès d'aide.
-Style de communication
-Sa communication est chaleureuse et modulée. Il utilise le style « Aide / Avis », se tenant souvent proche de son interlocuteur pour renforcer le lien.
-Points de vigilance
-Il peut négliger ses propres priorités de travail pour aider les autres, se retrouver en surpoids de tâches ou manipuler indirectement pour obtenir de la reconnaissance.`},
-
-          {k:"Dynamique des Flèches", d:"", t:`5. Dynamique des Flèches
-Réaction au Stress (Désintégration)
-Vers le Type 8. Le 2 devient alors brusque, agressif, colérique et exigeant, reprochant ouvertement aux autres leur manque de gratitude.
-Chemin d'Intégration (Croissance)
-Vers le Type 4. Le 2 apprend à se connecter à ses propres émotions profondes, devient plus authentique et se permet d'être créatif pour lui-même.`},
-
-          {k:"Évolution et Développement", d:"", t:`6. Évolution et Développement
-Points d'amélioration à travailler
-* Apprendre à définir ses frontières et à dire « Non ».
-* N'aider que si on le lui demande expressément.
-* Séparer les facteurs rationnels des facteurs humains lors des prises de décision.
-* Accepter les critiques objectives sans y voir un rejet personnel.
-* Noter ses propres besoins quotidiens et ne pas aider quelqu'un qui n'a pas explicitement demandé de l'aide.
-Pratiques suggérées et Attitudes de Guérison
-Pratiquer la relaxation. Se dire : « Peut-être que je pourrais laisser quelqu'un d'autre faire cela. Peut-être que je pourrais faire quelque chose de bon pour moi aussi ».
-Intégration (Idée supérieure et Vertu)
-En se libérant de sa compulsion, le Type 2 s'intègre vers le Type 4 (ou le Type 8).
-* Essence : C'est l'état de la personnalité libérée des automatismes de l'ego, accédant à ses pleines potentialités.
-* Idée supérieure : La Liberté. Il réalise que sa valeur ne dépend pas de son utilité pour les autres. Être libéré du besoin d'approbation.
-* Vertu : L'Humilité, qui consiste à reconnaître ses limites et à prendre soin des autres dans le respect de leur autonomie. Reconnaître que l'amour ne se gagne pas par l'effort.`},
-
-          {k:"Approche Spirituelle", d:"", t:`7. Approche des Idées Sacrées (Perspective spirituelle)
-L'Idée sacrée
-Volonté Sacrée / Liberté Sacrée. C'est la perception que tout ce qui se produit est le fonctionnement de la réalité une, et que la vraie liberté consiste à s'abandonner à ce flux.
-L'Illusion Spécifique
-La Volonté Séparée. La conviction qu'il existe un "moi" séparé capable de faire des choix indépendants et de manipuler la réalité à sa guise.
-La Difficulté Spécifique
-La Castration humiliante. Le sentiment d'être amenuisé et impuissant lorsque le soutien de l'environnement manque, vécu comme une blessure à l'orgueil.
-La Réaction Spécifique
-Action obstinée. Une tentative têtue et orgueilleuse de "faire à sa manière" pour compenser le sentiment d'impuissance.
-Le Noyau de la Fixation
-La constellation entre le sentiment de castration (difficulté) et l'activité d'obstination/manipulation (réaction).`},
-
-          {k:"Fondement Énergétique", d:"", t:`8. Fondement Énergétique
-La Confiance Fondamentale
-Une certitude innée que l'univers est bienveillant et que tout finit par être bénéfique sans manipulation personnelle.
-La Lumière du jour Vivante
-La qualité de l'Être perçue comme un Amour Universel omniprésent qui soutient l'âme en permanence.`},
-
-          {k:"Perspective et Solution", d:"", t:`9. La Perspective et la Solution
-L'Idée Sacrée comme Psycho-catalyseur
-La compréhension de la Volonté Sacrée dissout l'erreur cognitive de l'ego (le sentiment de séparation).
-Rétablir la Confiance Fondamentale
-Cela passe par la reconnaissance que nous n'avons pas à "gagner" notre place ou l'amour, car nous sommes déjà portés par la réalité.
-L'Abandon
-Cesser de manipuler ses propres états ou ceux des autres, et se laisser porter par le déploiement naturel de la vie.
-La Poussée Optimisante
-Reconnaître que la réalité tend spontanément vers l'harmonie si l'ego s'arrête d'interférer.`},
-
-          {k:"Analogie", d:"", t:`10. Analogie
-Le Type 2 peut être comparé à un hôte dévoué d'une grande réception : il s'assure que chaque convive a tout ce dont il a besoin, anticipe les désirs de chacun et semble omniprésent pour garantir le confort de tous. Cependant, dans son zèle à servir, il en oublie souvent de s'asseoir lui-même à table, attendant secrètement que quelqu'un remarque son assiette vide sans qu'il ait à le demander.
-L'Essence du 2 : Comme un flux de chaleur naturelle qui n'a pas besoin d'être dirigé pour être ressenti.
-Le Type 2 est comme un voyageur dans un train qui garde sa lourde valise sur ses genoux, craignant que si il la pose, le train ne pourra pas la porter ; il doit apprendre que le train (la réalité) porte déjà tout le poids sans qu'il ait besoin de faire d'effort.`}
-        ],
-        levelsIntro: `Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
-
-Les niveaux de développement du Type 2 (l'Altruiste) décrivent un continuum qui mesure le degré d'identification d'une personne avec sa structure de personnalité. Ce continuum va de la liberté et de l'amour inconditionnel (niveaux sains) à la dépendance et au sentiment de victimisation (niveaux malsains).`,
-        levels: [
-          `Niveau 1 : Prendre soin de soi et amour inconditionnel. Le 2 abandonne la croyance qu'il n'a pas le droit de s'occuper de ses propres besoins. Il accède à son désir de base (être aimé) et ressent un amour inconditionnel pour lui-même et pour les autres. Il devient joyeux, gracieux et humble.`,
-          `Niveau 2 : Empathie et attention. Il se concentre sur les sentiments des autres avec une sollicitude aimante pour se protéger de sa peur de ne pas être aimé. Son image de soi est : « Je suis aimant, attentionné et désintéressé ».`,
-          `Niveau 3 : Générosité et soutien. Il renforce son image de soi en faisant concrètement de bonnes choses pour les autres. Il est encourageant, exprime ouvertement ses sentiments et partage ses talents avec enthousiasme.`,
-          `Niveau 4 : Volonté de plaire. Le 2 commence à craindre que ses efforts ne suffisent pas et que les autres ne veuillent pas de lui. Il tente de conquérir les gens par la flatterie, le soutien excessif et en essayant d'être indispensable.`,
-          `Niveau 5 : Possessivité et intrusion. Il s'inquiète que ses proches aiment quelqu'un d'autre plus que lui. Pour être nécessaire, il fait passer les besoins des autres avant les siens afin d'avoir une « créance » sur eux. Il devient fier mais exigeant, ne quittant pas les autres du regard.`,
-          `Niveau 6 : Importance de soi et domination. Il est en colère d'être considéré comme acquis mais ne peut exprimer sa douleur directement. Il se plaint de sa santé, souligne ses bonnes actions et rappelle aux autres tout ce qu'ils lui doivent. Les sentiments refoulés causent des problèmes physiques.`,
-          `Niveau 7 : Auto-justification et manipulation. Il craint de chasser les gens, ce qui est souvent le cas. Pour sauver son image de soi, il voit les autres comme des « ingrats égoïstes ». Il utilise la pitié pour créer une dépendance et empêcher les autres de partir.`,
-          `Niveau 8 : Sentiment de droit et coercition. Désespéré, il poursuit l'affection de manière obsessive. Il se sent en droit d'obtenir tout ce qu'il veut parce qu'il a « tellement souffert » et peut agir de façon imprévisible ou inappropriée.`,
-          `Niveau 9 : Victimisation et fardeau. Il réalise qu'il a pu être égoïste ou même nuire aux autres. Il s'effondre physiquement et émotionnellement, jouant le rôle de martyr pour obliger les autres à prendre soin de lui.`
-        ]
-      },
-
-      3: {
-        title: "Type 3 - Le Battant / L'Exécutant",
-        aliases: ["Le Battant","L’Exécutant","Celui qui réussit"],
-        sub: "Profil complet + curseur des 9 niveaux de développement",
-        sections: [
-          {k:"Présentation et Identification", d:"", t:`Type 3 - Le Battant / L'Exécutant
-1. Présentation et Identification
-Titre et Identité : Le Type 3 est appelé le Battant ou l'Exécutant. C'est le type adaptable et orienté vers le succès, caractérisé par son pragmatisme, son ambition et son souci de l'image. On les appelle souvent les « stars » de la nature humaine car ils incarnent les qualités valorisées par leur culture.
-Définition globale : Le Type 3, souvent appelé le Battant ou Celui qui réussit, est une personnalité centrée sur la capacité à réaliser et à réussir. C'est un individu dynamique, très relationnel et particulièrement attentif à son image sociale. Il cherche à être admiré pour ses compétences et ses succès concrets, s'identifiant souvent totalement à son travail. Le 3 est animé par le besoin de se sentir efficace et remarquable. Il possède un talent naturel pour l'organisation, la communication et la motivation des autres. Il tend à confondre son identité avec son travail et ses accomplissements.
-Rôle Social : « Le Meilleur ». `},
-
-          {k:"Structure et Dynamique Psychologique", d:"", t:`2. Structure et Dynamique Psychologique
-Centre d'intelligence
-Le Type 3 appartient au centre émotionnel, qu'il utilise à la fois vers l'intérieur et l'extérieur pour chercher un équilibre. Paradoxalement, il réprime ce même centre, ce qui l'amène à mal connaître ses propres émotions. Il privilégie le centre Émotionnel (utilisé pour maintenir l'équilibre entre l'intérieur et l'extérieur), mais paradoxalement, il le réprime pour ne pas freiner sa productivité.
-Hiérarchie des centres :
-* Centre Préféré : Émotionnel (Utilisation intérieure/extérieure)
-* Centre de Support : Instinctif
-* Centre Réprimé : Mental (Note : Le centre émotionnel est également considéré comme réprimé chez le 3 car il cherche à l'équilibrer)
-Orientation
-Capacité à réaliser et à réussir.
-Compulsion
-Éviter les échecs.
-Passion et Fixation
-* Passion (Cœur) : Le Mensonge (ou Tromperie). Il s'agit d'un mensonge "sincère" envers lui-même, où il finit par croire au rôle social qu'il joue au détriment de son être réel. C'est avant tout un mensonge envers soi-même, en se faisant croire que l'on est l'image de succès que l'on projette.
-* Fixation (Tête) : La Vanité et le Succès. Il court après l'admiration et les marques extérieures de réussite. La Vanité et la poursuite du succès comme preuve de sa valeur.
-Mécanisme de défense
-L'identification. Le 3 s'identifie aux normes sociales et à son rôle professionnel pour masquer ses doutes ou ses sentiments pénibles. Le 3 s'identifie si complètement à son rôle social et à ses succès qu'il en oublie son être véritable pour ne pas ressentir de sentiments pénibles comme la peur ou l'incertitude.
-Peurs et Désirs fondamentaux
-* Peur de base : Être sans valeur ou sans intérêt intrinsèque en dehors de ses réalisations.
-* Désir de base : Se sentir estimé, accepté et désirable.
-* Message du Surmoi : « Tu es bien ou correct si tu réussis et que les autres ont une bonne opinion de toi ». `},
-
-          {k:"Origines et Variantes", d:"", t:`3. Origines et Variantes
-Le Schéma de l'enfance
-L'enfant 3 a souvent ressenti qu'il n'était pas valorisé pour lui-même mais pour ce qu'il faisait. Il a développé un lien profond avec la figure nourricière (souvent la mère) en cherchant à répondre à ses attentes pour être aimé. Il a appris à jouer le rôle du « héros de la famille ».
-Les Sous-types d'Ailes
-* 3w2 (Le Charmeur) : Plus extraverti, amical, encourageant et soucieux d'être aimé.
-* 3w4 (Le Professionnel) : Plus sérieux, axé sur le travail, la compétence et l'intégrité professionnelle.
-Les trois sous-types instinctifs
-* Conservation (Accumulation) : Le « Bourreau de travail ». Il cherche à assurer sa sécurité par l'accumulation d'argent et d'objets coûteux ou luxueux qui symbolisent sa réussite. Cherche la sécurité par l'accumulation financière et matérielle.
-* Social (Prestige) : Le « Chercheur de statut ». Il accorde une importance capitale au prestige et au fait d'appartenir à des groupes ou entreprises valorisants pour provoquer l'admiration. Veut être reconnu comme le meilleur dans son groupe ou sa profession.
-* Sexuel (Masculinité / Féminité) : La « Star » ou la perle rare. Il cherche à incarner l'idéal masculin ou féminin selon les critères sociaux en vigueur pour être considéré comme un partenaire idéal. Cherche à incarner l'idéal de désirabilité pour attirer un partenaire.`},
-
-          {k:"Signaux et Défis", d:"", t:`Signaux d'Alerte
-* Signal d'Éveil : Commencer à croire que sa valeur dépend exclusivement de son succès.
-* Signal d'Alarme : La peur que ses succès soient vides ou que ses prétentions soient démasquées comme frauduleuses.
-Les Défis de croissance
-Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et identifier ses vrais buts personnels.`},
-
-          {k:"Entreprise", d:"", t:`4. Le Type 3 en Entreprise
-Profil professionnel
-Le 3 est un travailleur acharné, efficace et pragmatique. Il supporte très bien la pression et sait mener plusieurs tâches de front. Il privilégie souvent la quantité et le résultat visible au détriment des détails ou des procédures.
-Style de management
-C'est un dirigeant naturel qui entraîne son équipe par son enthousiasme. Il fixe des buts clairs et délègue facilement, mais peut instaurer une compétition interne pour stimuler la productivité.
-Style de communication
-Son style est qualifié de « Propagande ». Il est persuasif, chaleureux et s'adapte comme un caméléon à son interlocuteur pour "vendre" ses projets ou son image.
-Points de vigilance
-Il risque l'épuisement (burn-out) par hyperactivité et peut négliger sa santé ou sa vie privée. Sa compétitivité excessive peut également créer des rivalités au sein de son équipe.`},
-
-          {k:"Dynamique des Flèches", d:"", t:`5. Dynamique des Flèches
-Réaction au Stress (Désintégration)
-Vers le Type 9. Le 3 devient alors apathique, désengagé, procrastinateur et se perd dans des routines inutiles.
-Chemin d'Intégration (Croissance)
-Vers le Type 6. Le 3 apprend à s'engager envers les autres, devient plus loyal, coopératif et trouve une sécurité intérieure au lieu de chercher l'admiration.`},
-
-          {k:"Évolution et Développement", d:"", t:`6. Évolution et Développement
-Points d'amélioration à travailler
-* Apprendre à ralentir et à respecter le rythme des autres.
-* S'intéresser au long terme plutôt qu'aux profits immédiats.
-* Reconnaître la part des autres dans ses succès et être plus attentif à leurs besoins.
-* Identifier ses vrais buts personnels au-delà de la reconnaissance sociale.
-* Développer sa créativité sans public et partager ses vulnérabilités avec des amis de confiance.
-Pratiques suggérées et Attitudes de Guérison
-Pratiquer la méditation pour « simplement être ». Se dire : « Peut-être que je n'ai pas besoin d'être le meilleur. Peut-être que les gens m'accepteront tel que je suis ».
-Intégration (Idée supérieure et Vertu)
-En se libérant de sa compulsion, le Type 3 s'intègre vers le Type 6 (ou le Type 9).
-* Essence : L'état où la personnalité exprime ses potentialités réelles, libérée de la recherche d'image.
-* Idée supérieure : L'Espérance (ou l'Harmonie Sacrée, la Loi Sacrée). Il réalise qu'il n'a pas besoin de tout forcer par lui-même et que le succès peut advenir naturellement. C'est la conscience que tout l'univers fonctionne comme une unité dynamique et interconnectée. Confiance que l'univers se déploie harmonieusement.
-* Vertu : La Vérité. Il devient capable d'être authentique et de montrer qui il est réellement, acceptant ses échecs comme des éléments ordinaires de la vie. Authenticité totale.`},
-
-          {k:"Approche Spirituelle", d:"", t:`7. Approche des Idées Sacrées (Perspective spirituelle)
-L'Idée sacrée
-L'Harmonie Sacrée, la Loi Sacrée ou l'Espérance Sacrée. C'est la conscience que tout l'univers fonctionne comme une unité dynamique et interconnectée.
-L'Illusion Spécifique
-L'Acteur séparé. La conviction que l'on peut agir de façon indépendante et isolée du reste de l'univers.
-La Difficulté Spécifique
-L'Impuissance. Un sentiment profond d'inadéquation et d'incapacité résultant d'un manque de soutien environnemental filtré par l'illusion d'autonomie.
-La Réaction Spécifique
-La Lutte. Une activité agitée, compulsive et réactive pour prouver sa capacité et cacher son impuissance.
-Le Noyau de la Fixation
-Le complexe formé par le sentiment d'impuissance et la réaction de lutte incessante pour réussir.`},
-
-          {k:"Fondement Énergétique", d:"", t:`8. Fondement Énergétique
-La Confiance Fondamentale
-La certitude que le flux de la réalité est intrinsèquement optimal et qu'on n'a pas besoin de « forcer » les choses.
-La Lumière du jour Vivante
-La perception de la réalité comme un temps réel fluide, où chaque moment est une création nouvelle et harmonieuse.`},
-
-          {k:"Perspective et Solution", d:"", t:`9. La Perspective et la Solution
-L'Idée Sacrée comme Psycho-catalyseur
-Elle dissout la vanité en montrant que l'action est un processus universel dont l'individu n'est qu'une partie.
-Rétablir la Confiance Fondamentale
-Cela passe par l'acceptation de son impuissance existentielle, qui est en fait une forme d'humilité ouvrant la porte à l'action de l'Être.
-L'Abandon
-Cesser de manipuler son expérience pour « paraître » et se laisser porter par le mouvement naturel de la vie.
-La Poussée Optimisante
-Reconnaître que la réalité possède une intelligence intrinsèque qui guide naturellement l'âme vers l'harmonie si l'on arrête d'essayer de lutter.`},
-
-          {k:"Analogie", d:"", t:`10. Analogie
-Le Type 3 est souvent comparé à un caméléon. Comme cet animal change de couleur selon son environnement, le 3 modifie son apparence, son discours et ses attitudes en fonction des attentes de son public pour toujours paraître sous son meilleur jour et garantir sa réussite.
-L'ego du 3 : Comme un acteur si convaincu par son rôle qu'il a oublié son nom véritable ; l'Essence est le retour à la simplicité d'être soi-même.
-Le Type 3 est comme les pixels sur un écran de télévision : On croit voir une personne courir (l'acteur séparé), mais en réalité, c'est tout l'écran qui change de configuration en même temps de façon harmonieuse (la Loi Sacrée).`}
-        ],
-        levelsIntro: `Le niveau de développement est défini comme une mesure du degré d'identification d'une personne avec sa structure de personnalité, servant ainsi d'indicateur de son degré de liberté, de conscience et de santé psychologique. À leur niveau le plus simple, ils constituent un barème permettant d'évaluer si un individu est sur la défensive et fermé, ou au contraire libéré et ouvert.
-
-Les niveaux de développement du Type 3 (le Battant) mesurent le degré d'identification d'une personne avec sa structure de personnalité et son image de soi. Ce continuum représente une échelle de liberté psychologique : plus on monte, plus on est authentique et libre ; plus on descend, plus on devient un "automate" de sa propre image de succès.`,
-        levels: [
-          `Niveau 1 : Dirigé de l'intérieur et authentique. Le 3 abandonne la croyance que sa valeur dépend de l'admiration des autres. Il découvre son identité réelle et ses désirs profonds, devenant authentique, modeste et bienveillant.`,
-          `Niveau 2 : Adaptable et admirable. Il se concentre sur les qualités valorisées par son entourage pour se sentir "valable". Son image de soi est : « Je suis exceptionnel, compétent et j'ai un potentiel illimité ».`,
-          `Niveau 3 : Orienté vers les objectifs et s'améliorant. Il renforce son image en développant réellement ses talents. Il devient un modèle inspirant, efficace et discipliné, capable de motiver les autres par son exemple.`,
-          `Niveau 4 : Orienté vers le succès et performant. Il craint d'être éclipsé par les autres. Il commence à se pousser sans relâche pour se distinguer et obtenir de l'attention par le surpassement constant.`,
-          `Niveau 5 : Soucieux de son image et expédient. Il a peur de perdre l'estime des autres. Il travaille frénétiquement à cultiver l'image la plus séduisante possible, cachant ses doutes derrière un masque de "professionnel cool".`,
-          `Niveau 6 : Auto-promotion et grandiose. Il craint de passer inaperçu s'il n'est pas "énorme". Il commence à se vanter, devient compétitif et arrogant pour protéger une estime de soi devenue fragile et narcissique.`,
-          `Niveau 7 : Sans principes et trompeur. Il craint que ses succès ne soient vides ou frauduleux. Pour sauver les apparences, il commence à mentir effrontément à lui-même et aux autres, se sentant vide et déprimé intérieurement.`,
-          `Niveau 8 : Duplicité et opportunisme. Désespéré d'obtenir de l'attention, il invente des histoires ou des stratagèmes pour cacher sa détérioration psychologique. Il est prêt à tout pour que personne ne voie ses erreurs.`,
-          `Niveau 9 : Monomaniaque et implacable. Il sent qu'il ne peut plus regagner l'admiration de ses proches. Il peut perdre le contrôle de sa rage réprimée et chercher à se venger de ceux qui, selon lui, l'ont rejeté ou "humilié".`
-        ]
-      },
-
+      2: { title:"Type 2 - Le Pourvoyeur / L'Altruiste", aliases:["Le Pourvoyeur","L’Altruiste","Celui qui aide"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
+      3: { title:"Type 3 - Le Battant / L'Exécutant", aliases:["Le Battant","L’Exécutant","Celui qui réussit"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
       4: { title:"Type 4 - Le Romantique / L’Individualiste / L’Artiste", aliases:["Le Romantique","L’Individualiste","L’Artiste"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
       5: { title:"Type 5 - L’Observateur / L’Investigateur / Le Penseur", aliases:["L’Observateur","L’Investigateur","Le Penseur"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
       6: { title:"Type 6 - Le Loyaliste / Le Gardien / Le Sceptique", aliases:["Le Loyaliste","Le Gardien","Le Sceptique"], sub:"Profil complet + curseur des 9 niveaux de développement", sections:[], levelsIntro:"", levels:[] },
@@ -953,6 +790,41 @@ Les niveaux de développement du Type 3 (le Battant) mesurent le degré d'identi
       history.replaceState(null, "", u.toString());
     }
 
+    // ===== Modal chat privé =====
+    const chatOverlay = qs("#chatOverlay");
+    const chatBtn = qs("#chatBtn");
+    const chatCloseBtn = qs("#chatCloseBtn");
+
+    function openChat(){
+      if(!chatOverlay) return;
+      chatOverlay.classList.add("open");
+      chatOverlay.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+      chatCloseBtn && chatCloseBtn.focus();
+    }
+
+    function closeChat(){
+      if(!chatOverlay) return;
+      chatOverlay.classList.remove("open");
+      chatOverlay.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+      chatBtn && chatBtn.focus();
+    }
+
+    chatBtn && chatBtn.addEventListener("click", openChat);
+    chatCloseBtn && chatCloseBtn.addEventListener("click", closeChat);
+
+    chatOverlay && chatOverlay.addEventListener("click", (e)=>{
+      if(e.target === chatOverlay) closeChat();
+    });
+
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape" && chatOverlay && chatOverlay.classList.contains("open")){
+        closeChat();
+      }
+    });
+
+    // ===== Init page =====
     buildTypeSelect();
     const initial = getParam("type") || Object.keys(PROFILES).sort((a,b)=>+a-+b)[0];
     goToType(initial);
