@@ -373,5 +373,42 @@
         console.error("Erreur auth Firebase (index) :", err);
       });
   </script>
+
+  <script>
+  (function () {
+    const badgeNum = document.getElementById("badgeNum");
+    const openFull = document.getElementById("openFull");
+    if (!badgeNum || !openFull) return;
+
+    function currentType() {
+      const t = (badgeNum.textContent || "").trim();
+      return /^[1-9]$/.test(t) ? t : null;
+    }
+
+    function syncLink() {
+      const t = currentType();
+      if (!t) {
+        openFull.setAttribute("aria-disabled", "true");
+        openFull.dataset.forcedHref = "";
+        return;
+      }
+      const href = `profils/type${t}.html`;
+      openFull.href = href;
+      openFull.dataset.forcedHref = href;
+      openFull.setAttribute("aria-disabled", "false");
+    }
+
+    syncLink();
+
+    const obs = new MutationObserver(syncLink);
+    obs.observe(badgeNum, { childList: true, characterData: true, subtree: true });
+
+    openFull.addEventListener("click", (e) => {
+      syncLink();
+      const href = openFull.dataset.forcedHref;
+      if (!href) e.preventDefault();
+    }, true);
+  })();
+  </script>
 </body>
 </html>
