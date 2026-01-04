@@ -1423,5 +1423,46 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
       setTimeout(()=>openSubtype(initSt), 120);
     }
   </script>
+  <script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  // Même configuration que sur index.html
+  const firebaseConfig = {
+    apiKey: "AIzaSyAd_3Qa9allKo9o4qZQQf3XVdRs3JMEGUQ",
+    authDomain: "enneagramme-chat.firebaseapp.com",
+    projectId: "enneagramme-chat",
+    storageBucket: "enneagramme-chat.firebasestorage.app",
+    messagingSenderId: "703457736548",
+    appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71",
+    measurementId: "G-6WB7Y3E5CK"
+  };
+
+  // Initialisation
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  // Connexion anonyme
+  signInAnonymously(auth)
+    .then(() => {
+      console.log("✔️ Utilisateur anonyme connecté (page type)");
+      // ICI tu pourras plus tard ajouter la logique spécifique à cette page :
+      // écriture/lecture dans une collection, etc.
+      //
+      // Exemple de test d’écriture (optionnel, tu peux le laisser ou le supprimer) :
+      /*
+      addDoc(collection(db, "testMessages"), {
+        page: "type",
+        createdAt: serverTimestamp()
+      }).then(docRef => {
+        console.log("Message test (type.html) ID :", docRef.id);
+      });
+      */
+    })
+    .catch(err => console.error("Erreur auth (page type) :", err));
+</script>
 </body>
 </html>
