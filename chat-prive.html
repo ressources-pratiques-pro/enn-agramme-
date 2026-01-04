@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat privé – Ennéagramme</title>
+
+  <!-- (facultatif) même police que le site principal -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-body: #020617;
+      --bg-panel: #020617;
+      --bg-header: #020617;
+      --bg-local: #0f172a;
+      --bg-user: #22c55e;
+      --bg-author: #1e293b;
+      --text-main: #e5e7eb;
+      --text-muted: #94a3b8;
+      --border-subtle: #1f2937;
+      --accent: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 16px;
+    }
+
+    .chat-shell {
+      width: 100%;
+      max-width: 680px;
+      background: var(--bg-panel);
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+      box-shadow:
+        0 0 0 1px rgba(15,23,42,.5),
+        0 24px 80px rgba(0,0,0,.72);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 14px 16px;
+      background: radial-gradient(circle at top left, #22c55e22, #020617 55%, #020617 100%);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.65);
+      background: radial-gradient(circle at 30% 20%, #f9fafb, #e5e7eb 40%, #cbd5f5 100%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 999px;
+      display: block;
+    }
+
+    .header-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+
+    .header-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      margin-right: 4px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34,197,94,.25);
+    }
+
+    .status-row {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--text-muted);
+    }
+
+    .chat-main {
+      flex: 1;
+      background: radial-gradient(circle at top, #020617, #000 68%);
+      padding: 12px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .system-tip {
+      align-self: center;
+      max-width: 90%;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.85);
+      border: 1px dashed rgba(148,163,184,.5);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 2px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .msg-row {
+      display: flex;
+      width: 100%;
+    }
+
+    .msg-row.user {
+      justify-content: flex-end;
+    }
+
+    .msg-row.author {
+      justify-content: flex-start;
+    }
+
+    .msg-bubble {
+      max-width: 78%;
+      padding: 8px 11px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.4;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .msg-user {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #022c22;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 10px 25px rgba(34,197,94,.45);
+    }
+
+    .msg-author {
+      background: radial-gradient(circle at top left, #334155, #020617 72%);
+      border-bottom-left-radius: 4px;
+      border: 1px solid rgba(30,64,175,.65);
+    }
+
+    .msg-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .msg-row.user .msg-meta {
+      text-align: right;
+    }
+
+    .chat-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-local);
+      padding: 8px 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .chat-input {
+      flex: 1;
+      min-height: 40px;
+      max-height: 96px;
+      padding: 7px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(51,65,85,.9);
+      background: #020617;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 13px;
+      resize: none;
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(34,197,94,.35);
+    }
+
+    .chat-input::placeholder {
+      color: #64748b;
+    }
+
+    .send-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #022c22;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      box-shadow: 0 12px 30px rgba(34,197,94,.55);
+    }
+
+    .send-btn:disabled {
+      opacity: .4;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    .send-icon {
+      font-size: 14px;
+      transform: translateY(-1px);
+    }
+
+    .small-note {
+      font-size: 10px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .small-note strong {
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 8px;
+      }
+
+      .chat-shell {
+        border-radius: 18px;
+      }
+
+      .msg-bubble {
+        max-width: 86%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="chat-shell" aria-label="Chat privé avec l'auteur du site">
+    <header class="chat-header">
+      <div class="avatar-badge">
+        <!-- Mets ton image dans assets/img/avatar-chat.png -->
+        <img src="assets/img/avatar-chat.png" alt="Auteur du site">
+      </div>
+      <div class="header-text">
+        <div class="header-title">Chat privé</div>
+        <div class="header-sub">
+          Questions sur l’Ennéagramme, vécu, type, relations…
+        </div>
+      </div>
+      <div class="status-row" id="status">
+        <span class="status-dot"></span>
+        <span>Connexion…</span>
+      </div>
+    </header>
+
+    <main class="chat-main">
+      <div class="system-tip">
+        Tu peux m’écrire librement. Ta conversation est privée et rattachée
+        à ton appareil uniquement.
+      </div>
+
+      <div id="messages" class="messages" aria-live="polite" aria-label="Messages du chat">
+        <!-- Messages injectés ici -->
+      </div>
+    </main>
+
+    <footer class="chat-footer">
+      <form id="chatForm" class="input-row" autocomplete="off">
+        <textarea
+          id="chatInput"
+          class="chat-input"
+          rows="1"
+          placeholder="Écris ton message…"
+          aria-label="Écrire un message"
+          disabled
+        ></textarea>
+        <button type="submit" class="send-btn" id="sendBtn" disabled>
+          <span class="send-icon">➤</span>
+          Envoyer
+        </button>
+      </form>
+      <div class="small-note">
+        <span><strong>Important :</strong> je répondrai quand je pourrai, ce n’est pas un chat « temps réel ».</span>
+        <span>ID de session : <span id="sessionId">—</span></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Firebase / chat logique -->
+  <script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      addDoc,
+      setDoc,
+      updateDoc,
+      getDoc,
+      serverTimestamp,
+      query,
+      orderBy,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import {
+      getAuth,
+      signInAnonymously,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    // Configuration Firebase (même projet que le reste du site)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAd_3Qa9allKo9o4qZQQf3XVdRs3JMEGUQ",
+      authDomain: "enneagramme-chat.firebaseapp.com",
+      projectId: "enneagramme-chat",
+      storageBucket: "enneagramme-chat.firebasestorage.app",
+      messagingSenderId: "703457736548",
+      appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71",
+      measurementId: "G-6WB7Y3E5CK"
+    };
+
+    // Initialisation Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // Sélecteurs DOM
+    const messagesEl = document.getElementById("messages");
+    const chatForm = document.getElementById("chatForm");
+    const chatInput = document.getElementById("chatInput");
+    const sendBtn = document.getElementById("sendBtn");
+    const statusEl = document.getElementById("status");
+    const sessionIdEl = document.getElementById("sessionId");
+
+    let conversationDocRef = null;
+    let messagesColRef = null;
+    let unsubscribeMessages = null;
+    let ready = false;
+
+    function setStatus(text, connected = false) {
+      if (!statusEl) return;
+      const dot = statusEl.querySelector(".status-dot");
+      const label = statusEl.querySelector("span:last-child");
+      if (label) label.textContent = text;
+      if (dot) {
+        dot.style.backgroundColor = connected ? "#22c55e" : "#64748b";
+        dot.style.boxShadow = connected
+          ? "0 0 0 6px rgba(34,197,94,.25)"
+          : "none";
+      }
+    }
+
+    function enableInput(on) {
+      chatInput.disabled = !on;
+      sendBtn.disabled = !on;
+    }
+
+    function appendMessage(docSnapshot) {
+      const data = docSnapshot.data();
+      if (!data || !data.text) return;
+
+      const role = data.from === "author" ? "author" : "user";
+
+      const row = document.createElement("div");
+      row.className = "msg-row " + role;
+
+      const bubbleWrap = document.createElement("div");
+
+      const bubble = document.createElement("div");
+      bubble.className =
+        "msg-bubble " + (role === "author" ? "msg-author" : "msg-user");
+      bubble.textContent = data.text;
+
+      const meta = document.createElement("div");
+      meta.className = "msg-meta";
+
+      let who = role === "author" ? "Auteur" : "Moi";
+      meta.textContent = who;
+
+      bubbleWrap.appendChild(bubble);
+      bubbleWrap.appendChild(meta);
+
+      row.appendChild(bubbleWrap);
+      messagesEl.appendChild(row);
+
+      // Scroll en bas
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    async function ensureConversation(userId) {
+      conversationDocRef = doc(db, "conversations", userId);
+      const snap = await getDoc(conversationDocRef);
+
+      if (!snap.exists()) {
+        await setDoc(conversationDocRef, {
+          createdAt: serverTimestamp(),
+          lastMessage: "",
+          lastUpdated: serverTimestamp(),
+          source: "chat-prive"
+        });
+      }
+
+      messagesColRef = collection(conversationDocRef, "messages");
+
+      const q = query(messagesColRef, orderBy("createdAt", "asc"));
+
+      if (unsubscribeMessages) {
+        unsubscribeMessages();
+      }
+
+      unsubscribeMessages = onSnapshot(q, (snapshot) => {
+        messagesEl.innerHTML = "";
+        snapshot.forEach((docSnap) => appendMessage(docSnap));
+      });
+    }
+
+    async function sendMessage(text) {
+      if (!messagesColRef) return;
+
+      const clean = text.trim();
+      if (!clean) return;
+
+      const payload = {
+        text: clean,
+        from: "user",
+        createdAt: serverTimestamp()
+      };
+
+      await addDoc(messagesColRef, payload);
+      await updateDoc(conversationDocRef, {
+        lastMessage: clean,
+        lastUpdated: serverTimestamp()
+      });
+    }
+
+    // Auth anonyme
+    setStatus("Connexion…", false);
+    enableInput(false);
+
+    signInAnonymously(auth).catch((err) => {
+      console.error("Erreur auth :", err);
+      setStatus("Erreur de connexion", false);
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        setStatus("Déconnecté", false);
+        enableInput(false);
+        return;
+      }
+
+      ready = true;
+      const uid = user.uid;
+      sessionIdEl.textContent = uid.slice(0, 6) + "…";
+
+      setStatus("Connecté", true);
+      enableInput(true);
+
+      try {
+        await ensureConversation(uid);
+      } catch (e) {
+        console.error("Erreur Firestore :", e);
+        setStatus("Erreur de chargement", false);
+      }
+    });
+
+    // Gestion du formulaire
+    chatForm.addEventListener("submit", async (evt) => {
+      evt.preventDefault();
+      if (!ready) return;
+
+      const value = chatInput.value;
+      if (!value.trim()) return;
+
+      enableInput(false);
+      try {
+        await sendMessage(value);
+        chatInput.value = "";
+      } catch (e) {
+        console.error("Erreur d’envoi :", e);
+        alert("Impossible d’envoyer le message pour le moment.");
+      } finally {
+        enableInput(true);
+        chatInput.focus();
+      }
+    });
+
+    // Entrée = envoyer (sans Shift)
+    chatInput.addEventListener("keydown", (evt) => {
+      if (evt.key === "Enter" && !evt.shiftKey) {
+        evt.preventDefault();
+        chatForm.requestSubmit();
+      }
+    });
+  </script>
+</body>
+</html>
