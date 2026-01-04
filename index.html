@@ -216,7 +216,7 @@
   <script type="module">
   // Import Firebase
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
   import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -228,14 +228,22 @@ const firebaseConfig = {
   appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71",
   measurementId: "G-6WB7Y3E5CK"
 };
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const auth = getAuth(app);
+signInAnonymously(auth)
+  .then(async () => {
+    console.log("✔️ Utilisateur anonyme connecté");
 
-  signInAnonymously(auth)
-    .then(() => console.log("✔️ Utilisateur anonyme connecté"))
-    .catch(err => console.error("Erreur auth :", err));
+    // Test d’écriture dans Firestore
+    const docRef = await addDoc(collection(db, "testMessages"), {
+      text: "Hello Firestore",
+      createdAt: serverTimestamp()
+    });
+    console.log("📄 Message écrit avec l’ID :", docRef.id);
+  })
+  .catch(err => console.error("Erreur auth :", err));
 </script>
 </body>
 </html>
