@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chat privé – Ennéagramme</title>
 
-  <!-- (facultatif) même police que le site principal -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -166,6 +165,7 @@
       line-height: 1.4;
       word-wrap: break-word;
       word-break: break-word;
+      display: inline-block;
     }
 
     .msg-user {
@@ -293,7 +293,6 @@
   <div class="chat-shell" aria-label="Chat privé avec l'auteur du site">
     <header class="chat-header">
       <div class="avatar-badge">
-        <!-- Mets ton image dans assets/img/avatar-chat.png -->
         <img src="assets/images/avatar-brahms.png" alt="Auteur du site">
       </div>
       <div class="header-text">
@@ -314,9 +313,7 @@
         à ton appareil uniquement.
       </div>
 
-      <div id="messages" class="messages" aria-live="polite" aria-label="Messages du chat">
-        <!-- Messages injectés ici -->
-      </div>
+      <div id="messages" class="messages" aria-live="polite" aria-label="Messages du chat"></div>
     </main>
 
     <footer class="chat-footer">
@@ -341,9 +338,7 @@
     </footer>
   </div>
 
-  <!-- Firebase / chat logique -->
   <script type="module">
-    // Import Firebase
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import {
       getFirestore,
@@ -364,7 +359,6 @@
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-    // Configuration Firebase (même projet que le reste du site)
     const firebaseConfig = {
       apiKey: "AIzaSyAd_3Qa9allKo9o4qZQQf3XVdRs3JMEGUQ",
       authDomain: "enneagramme-chat.firebaseapp.com",
@@ -375,12 +369,10 @@
       measurementId: "G-6WB7Y3E5CK"
     };
 
-    // Initialisation Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const auth = getAuth(app);
 
-    // Sélecteurs DOM
     const messagesEl = document.getElementById("messages");
     const chatForm = document.getElementById("chatForm");
     const chatInput = document.getElementById("chatInput");
@@ -439,7 +431,6 @@
       row.appendChild(bubbleWrap);
       messagesEl.appendChild(row);
 
-      // Scroll en bas
       messagesEl.scrollTop = messagesEl.scrollHeight;
     }
 
@@ -489,7 +480,6 @@
       });
     }
 
-    // Auth anonyme
     setStatus("Connexion…", false);
     enableInput(false);
 
@@ -520,7 +510,6 @@
       }
     });
 
-    // Gestion du formulaire
     chatForm.addEventListener("submit", async (evt) => {
       evt.preventDefault();
       if (!ready) return;
@@ -541,7 +530,6 @@
       }
     });
 
-    // Entrée = envoyer (sans Shift)
     chatInput.addEventListener("keydown", (evt) => {
       if (evt.key === "Enter" && !evt.shiftKey) {
         evt.preventDefault();
