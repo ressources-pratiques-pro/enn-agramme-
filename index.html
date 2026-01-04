@@ -245,13 +245,14 @@
   import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyAd_3Qa9aallKo9o4qZQQf3XVdRs3JMEGUQ",
-    authDomain: "enneagramme-chat.firebaseapp.com",
-    projectId: "enneagramme-chat",
-    storageBucket: "enneagramme-chat.appspot.com",
-    messagingSenderId: "703457736548",
-    appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71"
-  };
+  apiKey: "AIzaSyAd_3Qa9aallKo9o4qZQQf3XVdRs3JMEGUQ",
+  authDomain: "enneagramme-chat.firebaseapp.com",
+  projectId: "enneagramme-chat",
+  storageBucket: "enneagramme-chat.firebasestorage.app",
+  messagingSenderId: "703457736548",
+  appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71",
+  measurementId: "G-6WBY73E5CK"
+};
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
