@@ -16,6 +16,29 @@
     gtag('config', 'G-1XYJK71TC4');
   </script>
 
+  <style>
+    /* === ANIMATION D'ENTRÉE DU DIAGRAMME === */
+    .anim-draw{
+      stroke-dashoffset:var(--len);
+      stroke-dasharray:var(--len);
+      animation:drawLine 1.4s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    @keyframes drawLine{to{stroke-dashoffset:0}}
+
+    .anim-fade{opacity:0;animation:fadeUp .5s ease forwards}
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(6px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .anim-node{opacity:0;transform-origin:center;transform:scale(0)}
+    .anim-node-in{animation:nodePopIn .35s cubic-bezier(.34,1.56,.64,1) forwards}
+    @keyframes nodePopIn{to{opacity:1;transform:scale(1)}}
+
+    .anim-center{opacity:0}
+    .anim-center-in{animation:centerFade .6s ease forwards}
+    @keyframes centerFade{to{opacity:1}}
+  </style>
 </head>
 
 <body>
@@ -141,6 +164,61 @@
 
 
   <script src="assets/js/app.js?v=200"></script>
+
+  <script>
+  (function(){
+    if(sessionStorage.getItem('ennea_intro_done')) return;
+    sessionStorage.setItem('ennea_intro_done','1');
+
+    var svg = document.getElementById('enneaSvg');
+    if(!svg) return;
+
+    /* --- 1. Cercles : dessiner progressivement --- */
+    var rings = svg.querySelectorAll('.ring, .innerRing');
+    rings.forEach(function(el){
+      var len = Math.round(el.getTotalLength());
+      el.style.setProperty('--len', len);
+      el.classList.add('anim-draw');
+    });
+
+    /* --- 2. Lignes internes (hex, tri, centerLine) --- */
+    var lines = svg.querySelectorAll('.hex, .tri, .centerLine');
+    lines.forEach(function(el, i){
+      var len = Math.round(el.getTotalLength());
+      el.style.setProperty('--len', len);
+      el.classList.add('anim-draw');
+      el.style.animationDelay = (0.3 + i * 0.1) + 's';
+    });
+
+    /* --- 3. Labels de centre --- */
+    var labels = svg.querySelectorAll('.centerLabel');
+    labels.forEach(function(el){
+      el.classList.add('anim-center');
+    });
+    setTimeout(function(){
+      labels.forEach(function(el){ el.classList.add('anim-center-in'); });
+    }, 900);
+
+    /* --- 4. Texte central "ENNÉAGRAMME" --- */
+    var centerText = svg.querySelector('text[style*="serif"]');
+    if(centerText){
+      centerText.classList.add('anim-center');
+      setTimeout(function(){ centerText.classList.add('anim-center-in'); }, 1100);
+    }
+
+    /* --- 5. Noeuds : apparition échelonnée --- */
+    function animNodes(){
+      var nodes = svg.querySelectorAll('#nodesLayer .node');
+      if(!nodes.length){ requestAnimationFrame(animNodes); return; }
+      nodes.forEach(function(n){ n.classList.add('anim-node'); });
+      var order = [9,1,2,3,4,5,6,7,8];
+      nodes.forEach(function(n, i){
+        setTimeout(function(){ n.classList.add('anim-node-in'); }, 800 + i * 80);
+      });
+    }
+    animNodes();
+  })();
+  </script>
 
   <script>
   (function(){

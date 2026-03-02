@@ -79,8 +79,7 @@ button:active{transform:translateY(1px)}
 
 @media (max-width:1060px){
   .grid{grid-template-columns:1fr}
-  .top{justify-content:flex-start}
-  .top > div:first-child{text-align:left}
+  .top > div:first-child{text-align:center}
   .actions{position:static}
 }
 
@@ -183,7 +182,7 @@ button:active{transform:translateY(1px)}
 .uiDot.warn,.dot.warn:not(ul){background:var(--warn)}
 .uiDot.bad,.dot.bad:not(ul){background:var(--bad)}
 
-.ctaRow{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+.ctaRow{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 
 .btn{
   display:inline-flex;
