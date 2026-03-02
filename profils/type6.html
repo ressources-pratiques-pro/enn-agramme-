@@ -472,10 +472,93 @@
     .cols{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px}
     @media (max-width: 980px){.cols{grid-template-columns:1fr}}
     .bottomBar{display:none!important}
+
+    /* === BARRE DE PROGRESSION === */
+    .readProgress{
+      position:fixed;top:0;left:0;height:3px;
+      background:linear-gradient(90deg, var(--blue), var(--green));
+      z-index:1001;width:0%;
+      transition:width .1s linear;
+      pointer-events:none;
+    }
+
+    /* === BOUTON RETOUR EN HAUT === */
+    .scrollTop{
+      position:fixed;bottom:24px;right:24px;
+      width:46px;height:46px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(15,23,42,.92);
+      backdrop-filter:blur(10px);
+      color:white;font-size:20px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;transform:translateY(10px);
+      transition:opacity .3s,transform .3s,background .18s,border-color .18s;
+      z-index:998;
+      box-shadow:0 8px 24px rgba(0,0,0,.45);
+    }
+    .scrollTop.visible{opacity:1;transform:translateY(0)}
+    .scrollTop:hover{background:rgba(96,165,250,.18);border-color:rgba(96,165,250,.4)}
+
+    /* === BORDURE DETAILS OUVERTS === */
+    details[open]{border-left:3px solid var(--blue)}
+
+    /* === ANIMATION ACCORDÉONS === */
+    details[open] .content{animation:fadeSlideIn .3s ease}
+    @keyframes fadeSlideIn{
+      from{opacity:0;transform:translateY(-8px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    /* === ESPACEMENT + LARGEUR DE LECTURE === */
+    .grid{gap:16px}
+    .rt{max-width:75ch}
+
+    /* === ONGLETS AMÉLIORÉS === */
+    .tab[aria-selected="true"]{
+      background:rgba(96,165,250,.22);
+      border-color:rgba(96,165,250,.50);
+      box-shadow:0 0 14px rgba(96,165,250,.15);
+    }
+
+    /* === NAV PREV/NEXT === */
+    .typeNavBottom{
+      display:flex;justify-content:space-between;gap:12px;
+      margin-top:28px;padding:20px 0 8px;
+      border-top:1px solid var(--line);
+    }
+    .typeNavBottom a{
+      display:flex;flex-direction:column;gap:4px;
+      padding:14px 18px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      text-decoration:none;color:var(--text);
+      transition:.2s ease;min-width:160px;
+    }
+    .typeNavBottom a:hover{
+      border-color:rgba(96,165,250,.4);
+      background:rgba(96,165,250,.08);
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(0,0,0,.3);
+    }
+    .typeNavBottom .navLabel{
+      font-size:11px;text-transform:uppercase;
+      letter-spacing:.6px;color:var(--muted);font-weight:900;
+    }
+    .typeNavBottom .navType{font-weight:900;font-size:15px}
+    .typeNavBottom .next{text-align:right;margin-left:auto}
+
+    @media(max-width:640px){
+      .typeNavBottom{flex-direction:column}
+      .typeNavBottom a{min-width:unset}
+      .typeNavBottom .next{text-align:left;margin-left:0}
+      .scrollTop{bottom:16px;right:16px;width:42px;height:42px}
+    }
   </style>
 </head>
 
 <body>
+
+  <div class="readProgress" id="readProgress"></div>
 
   <nav class="type-nav">
     <div class="nav-container">
@@ -938,7 +1021,20 @@ Apprendre à écouter sa propre guidance intérieure plutôt que de chercher des
         </details>
       </section>
     </div>
+
+  <div class="typeNavBottom">
+    <a href="type5.html" class="prev">
+      <span class="navLabel">Type pr&eacute;c&eacute;dent</span>
+      <span class="navType">&larr; Type 5 &mdash; L'Observateur</span>
+    </a>
+    <a href="type7.html" class="next">
+      <span class="navLabel">Type suivant</span>
+      <span class="navType">Type 7 &mdash; L'&Eacute;picurien &rarr;</span>
+    </a>
   </div>
+  </div>
+
+  <button class="scrollTop" id="scrollTopBtn" aria-label="Retour en haut">&uarr;</button>
 
   <div class="bottomBar">
     <div class="barInner">
@@ -1400,6 +1496,17 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
       setActiveTab('soustypes');
       setTimeout(()=>openSubtype(initSt), 120);
     }
+
+    // Barre de progression de lecture
+    const readBar = document.getElementById('readProgress');
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', ()=>{
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+      readBar.style.width = pct + '%';
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+    }, {passive:true});
+    scrollTopBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
   </script>
 </body>
 </html>

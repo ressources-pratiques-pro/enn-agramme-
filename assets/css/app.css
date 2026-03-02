@@ -1,7 +1,7 @@
 :root{
   --bg:#070b14;
   --text:rgba(255,255,255,.92);
-  --muted:rgba(255,255,255,.68);
+  --muted:rgba(255,255,255,.78);
   --line:rgba(255,255,255,.14);
   --glass:rgba(255,255,255,.06);
   --glass2:rgba(255,255,255,.08);
@@ -17,7 +17,7 @@
   --radius:22px;
   --shadow:0 25px 60px rgba(0,0,0,.45);
 
-  --accent:rgba(255,255,255,.55);
+  --accent:rgba(255,255,255,.75);
 }
 
 *{box-sizing:border-box}
@@ -220,7 +220,7 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none}
   letter-spacing:1px;
   text-transform:uppercase;
   font-size:11px;
-  fill:rgba(255,255,255,.55);
+  fill:rgba(255,255,255,.72);
 }
 .centerLabel.instinctif{fill:var(--inst)}
 .centerLabel.emotionnel{fill:var(--emo)}
@@ -251,7 +251,7 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none}
 .arrow.integr{stroke:rgba(134,239,172,.92)}
 .arrow.disint{stroke:rgba(253,164,175,.92)}
 
-.siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.78}
+.siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.90}
 .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
 .siteFooter a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
 .siteFooter a:hover{opacity:1}

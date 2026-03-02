@@ -399,10 +399,10 @@
   (function() {
     const TYPES = {
       1:{name:"Le Perfectionniste", desc:"Exigence, principes, amélioration, critique intérieure."},
-      2:{name:"L'Altruiste", desc:"Aide, lien, besoin d’être apprécié, attention à l’autre."},
+      2:{name:"L'Altruiste", desc:"Aide, lien, besoin d'être apprécié, attention à l'autre."},
       3:{name:"Le Réalisateur", desc:"Efficacité, image, réussite, performance, adaptabilité."},
       4:{name:"L'Individualiste", desc:"Identité, profondeur, sens, intensité émotionnelle."},
-      5:{name:"L'Observateur", desc:"Comprendre, retrait, économie d’énergie, expertise."},
+      5:{name:"L'Observateur", desc:"Comprendre, retrait, économie d'énergie, expertise."},
       6:{name:"Le Loyaliste", desc:"Sécurité, vigilance, doute, loyauté, anticipation."},
       7:{name:"L'Épicurien", desc:"Options, enthousiasme, plaisir, éviter la douleur."},
       8:{name:"Le Protecteur", desc:"Force, autonomie, justice, confrontation, leadership."},
@@ -410,36 +410,36 @@
     };
 
     const ITEMS = [
+      {t:3, s:"Je me sens valorisé quand je suis efficace et que j'obtiens des résultats visibles."},
+      {t:6, s:"Je scanne les risques et j'anticipe ce qui pourrait mal tourner."},
       {t:1, s:"Je remarque spontanément ce qui pourrait être corrigé, amélioré ou optimisé."},
-      {t:1, s:"J’ai du mal à me détendre si tout n’est pas fait correctement."},
-      {t:1, s:"Je me juge (ou je juge les situations) selon des principes et des standards élevés."},
-      {t:2, s:"Je me sens naturellement responsable d’aider, soutenir ou prendre soin des autres."},
-      {t:2, s:"J’ai tendance à deviner les besoins des autres avant les miens."},
-      {t:2, s:"Je peux me sentir blessé si mon aide n’est pas reconnue ou appréciée."},
-      {t:3, s:"Je me sens valorisé quand je suis efficace et que j’obtiens des résultats visibles."},
-      {t:3, s:"Je m’adapte facilement à ce qui est attendu pour réussir."},
-      {t:3, s:"J’évite de montrer l’échec ou la vulnérabilité, je préfère garder une image solide."},
+      {t:8, s:"Je prends vite la place quand il faut décider, protéger ou agir."},
       {t:4, s:"Je me sens différent et je cherche un sens profond à ce que je vis."},
-      {t:4, s:"Je remarque facilement ce qui me manque ou ce qui rend la vie incomplète."},
-      {t:4, s:"Mes émotions guident souvent mon identité et mes choix."},
-      {t:5, s:"J’ai besoin de beaucoup d’espace mental et de solitude pour me ressourcer."},
-      {t:5, s:"Je préfère observer et comprendre avant d’agir ou de m’engager."},
-      {t:5, s:"Je protège mon énergie et mon temps, je n’aime pas être sollicité en continu."},
-      {t:6, s:"Je scanne les risques et j’anticipe ce qui pourrait mal tourner."},
-      {t:6, s:"Je peux douter longtemps avant de trancher, et chercher des garanties."},
-      {t:6, s:"La loyauté et la fiabilité sont essentielles pour que je me sente en sécurité."},
+      {t:9, s:"Je cherche à maintenir la paix et j'évite les conflits directs."},
+      {t:5, s:"J'ai besoin de beaucoup d'espace mental et de solitude pour me ressourcer."},
+      {t:2, s:"Je me sens naturellement responsable d'aider, soutenir ou prendre soin des autres."},
       {t:7, s:"Je cherche naturellement des options, des idées et des expériences stimulantes."},
       {t:7, s:"Je préfère recadrer positivement plutôt que rester dans la douleur ou la tristesse."},
-      {t:7, s:"Je peux me disperser si je me sens limité, ennuyé ou enfermé."},
-      {t:8, s:"Je prends vite la place quand il faut décider, protéger ou agir."},
+      {t:2, s:"J'ai tendance à deviner les besoins des autres avant les miens."},
+      {t:5, s:"Je préfère observer et comprendre avant d'agir ou de m'engager."},
       {t:8, s:"Je déteste me sentir contrôlé ; je veux garder mon autonomie."},
-      {t:8, s:"Je préfère la franchise, même si ça confronte ou choque."},
-      {t:9, s:"Je cherche à maintenir la paix et j’évite les conflits directs."},
+      {t:1, s:"J'ai du mal à me détendre si tout n'est pas fait correctement."},
+      {t:6, s:"Je peux douter longtemps avant de trancher, et chercher des garanties."},
+      {t:4, s:"Je remarque facilement ce qui me manque ou ce qui rend la vie incomplète."},
       {t:9, s:"Je peux oublier mes priorités en me fondant dans les besoins des autres ou la routine."},
-      {t:9, s:"Quand c’est tendu, j’ai tendance à me mettre en mode “pilotage automatique”."}
+      {t:3, s:"Je m'adapte facilement à ce qui est attendu pour réussir."},
+      {t:5, s:"Je protège mon énergie et mon temps, je n'aime pas être sollicité en continu."},
+      {t:8, s:"Je préfère la franchise, même si ça confronte ou choque."},
+      {t:2, s:"Je peux me sentir blessé si mon aide n'est pas reconnue ou appréciée."},
+      {t:6, s:"La loyauté et la fiabilité sont essentielles pour que je me sente en sécurité."},
+      {t:9, s:"Quand c'est tendu, j'ai tendance à me mettre en mode \u00abpilotage automatique\u00bb."},
+      {t:3, s:"J'évite de montrer l'échec ou la vulnérabilité, je préfère garder une image solide."},
+      {t:1, s:"Je me juge (ou je juge les situations) selon des principes et des standards élevés."},
+      {t:7, s:"Je peux me disperser si je me sens limité, ennuyé ou enfermé."},
+      {t:4, s:"Mes émotions guident souvent mon identité et mes choix."}
     ];
 
-    const LS_KEY = "ennea_test_sample_v1";
+    const LS_KEY = "ennea_test_sample_v2";
     const PROFILE_PREFIX = "profils/type";
 
     const elQuestions = document.getElementById("questions");
