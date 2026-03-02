@@ -16,100 +16,6 @@
     gtag('config', 'G-1XYJK71TC4');
   </script>
 
-  <style>
-    /* ===== Boutons "chat" mis en valeur (léger) ===== */
-    .btn-chat{
-      border: 1px solid rgba(99,102,241,.75) !important;
-      box-shadow: 0 0 0 3px rgba(99,102,241,.18) !important;
-      position: relative;
-    }
-    .btn-chat:hover{
-      box-shadow: 0 0 0 4px rgba(99,102,241,.26), 0 10px 22px rgba(0,0,0,.25) !important;
-      transform: translateY(-1px);
-    }
-    .btn-chat:active{
-      transform: translateY(0);
-      box-shadow: 0 0 0 3px rgba(99,102,241,.18) !important;
-    }
-    .btn-chat:focus-visible{
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(99,102,241,.35), 0 0 0 2px rgba(255,255,255,.12) inset !important;
-    }
-
-    /* ===== Modal chat privé (léger, sans toucher au thème global) ===== */
-    .chatOverlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.55);
-      backdrop-filter: blur(8px);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:14px;
-      z-index:3000;
-    }
-    .chatOverlay.open{display:flex}
-
-    .chatModal{
-      width:min(920px, 100%);
-      height:min(88vh, 900px);
-      background:rgba(10,14,28,.92);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.65);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .chatModalHeader{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      background:rgba(8,12,24,.75);
-    }
-
-    .chatModalHeader .title{
-      font-weight:700;
-      letter-spacing:.2px;
-      font-size:13px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-      color:rgba(255,255,255,.9);
-    }
-
-    .chatModalHeader .title .hint{
-      opacity:.7;
-      font-weight:500;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .chatModalHeader .actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .chatFrame{
-      border:0;
-      width:100%;
-      height:100%;
-      flex:1;
-      background:#000;
-    }
-
-    @media (max-width: 900px){
-      .chatModal{height:92vh}
-    }
-  </style>
 </head>
 
 <body>
@@ -121,7 +27,6 @@
       </div>
       <div class="actions">
         <button id="btnReset" type="button">Réinitialiser</button>
-        <button id="chatOpenBtn" type="button" class="btn btn-chat">Poser une question</button>
       </div>
     </header>
 
@@ -219,7 +124,6 @@
             <a id="openProfil" class="btn" href="test-enneagramme-sans-indice.html">Passer le test</a>
             <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
             <button id="btnChooseProfiles" class="btn" type="button">Explorer les profils</button>
-            <button id="chatOpenBtn2" class="btn btn-chat" type="button">Poser une question</button>
           </div>
         </div>
       </aside>
@@ -235,25 +139,6 @@
     </footer>
   </div>
 
-  <!-- Fenêtre chat privé (modal) -->
-  <div class="chatOverlay" id="chatOverlay" aria-hidden="true">
-    <div class="chatModal" role="dialog" aria-modal="true" aria-label="Chat privé">
-      <div class="chatModalHeader">
-        <div class="title">
-          <span>Chat privé</span>
-          <span class="hint">Fermer pour revenir à l’accueil</span>
-        </div>
-        <div class="actions">
-          <button class="btn" id="chatCloseBtn" type="button">Fermer</button>
-        </div>
-      </div>
-      <iframe
-        class="chatFrame"
-        id="chatFrame"
-        src="https://ressources-pratiques-pro.github.io/enn-agramme-/chat-prive.html"
-        title="Chat privé"></iframe>
-    </div>
-  </div>
 
   <script src="assets/js/app.js?v=200"></script>
 
@@ -332,70 +217,6 @@
   })();
   </script>
 
-  <script>
-    (function(){
-      const chatOverlay = document.getElementById("chatOverlay");
-      const chatCloseBtn = document.getElementById("chatCloseBtn");
-      const open1 = document.getElementById("chatOpenBtn");
-      const open2 = document.getElementById("chatOpenBtn2");
-
-      function openChat(){
-        if(!chatOverlay) return;
-        chatOverlay.classList.add("open");
-        chatOverlay.setAttribute("aria-hidden","false");
-        document.body.style.overflow = "hidden";
-        chatCloseBtn && chatCloseBtn.focus();
-      }
-
-      function closeChat(){
-        if(!chatOverlay) return;
-        chatOverlay.classList.remove("open");
-        chatOverlay.setAttribute("aria-hidden","true");
-        document.body.style.overflow = "";
-        (open2 || open1) && (open2 || open1).focus();
-      }
-
-      open1 && open1.addEventListener("click", openChat);
-      open2 && open2.addEventListener("click", openChat);
-      chatCloseBtn && chatCloseBtn.addEventListener("click", closeChat);
-
-      chatOverlay && chatOverlay.addEventListener("click", (e)=>{
-        if(e.target === chatOverlay) closeChat();
-      });
-
-      document.addEventListener("keydown", (e)=>{
-        if(e.key === "Escape" && chatOverlay && chatOverlay.classList.contains("open")){
-          closeChat();
-        }
-      });
-    })();
-  </script>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAd_3Qa9allKo9o4qZQQf3XVdRs3JMEGUQ",
-      authDomain: "enneagramme-chat.firebaseapp.com",
-      projectId: "enneagramme-chat",
-      storageBucket: "enneagramme-chat.firebasestorage.app",
-      messagingSenderId: "703457736548",
-      appId: "1:703457736548:web:f91f0a1f36fd1a441e6c71",
-      measurementId: "G-6WB7Y3E5CK"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    signInAnonymously(auth)
-      .then(() => {
-        console.log("✔️ Firebase OK : utilisateur anonyme connecté (index)");
-      })
-      .catch(err => {
-        console.error("Erreur auth Firebase (index) :", err);
-      });
-  </script>
 
   <script>
   (function () {
