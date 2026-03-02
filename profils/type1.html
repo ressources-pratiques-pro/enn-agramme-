@@ -1399,7 +1399,6 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      try{ localStorage.setItem('type1_tab', id); }catch(e){}
       qs('#barInfo').textContent = id === 'profil' ? 'Type 1 • Profil complet' : (id === 'soustypes' ? 'Type 1 • Sous-types' : 'Type 1 • Niveaux de développement');
     }
 
@@ -1526,9 +1525,7 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
     initTop3Chip();
     initLinks();
 
-    const initTab = getParam('tab') || (()=>{
-      try{ return localStorage.getItem('type1_tab') || 'profil'; }catch(e){ return 'profil'; }
-    })();
+    const initTab = getParam('tab') || 'profil';
     setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{

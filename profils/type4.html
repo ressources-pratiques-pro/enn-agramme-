@@ -1372,7 +1372,6 @@ Analogie : Le Type 4 est comme un artiste qui cherche sa propre lumière : le Qu
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      try{ localStorage.setItem('type4_tab', id); }catch(e){}
       qs('#barInfo').textContent = id === 'profil' ? 'Type 4 • Profil complet' : (id === 'soustypes' ? 'Type 4 • Sous-types' : 'Type 4 • Niveaux de développement');
     }
 
@@ -1477,9 +1476,7 @@ Analogie : Le Type 4 est comme un artiste qui cherche sa propre lumière : le Qu
     renderAllRichBlocks();
     initTop3Chip();
 
-    const initTab = getParam('tab') || (()=>{
-      try{ return localStorage.getItem('type4_tab') || 'profil'; }catch(e){ return 'profil'; }
-    })();
+    const initTab = getParam('tab') || 'profil';
     setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{

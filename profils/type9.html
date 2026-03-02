@@ -1340,7 +1340,6 @@ Analogie : Le Type 9 est comme une eau calme : le Neuf Survie est une mare confo
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      try{ localStorage.setItem('type9_tab', id); }catch(e){}
       qs('#barInfo').textContent = id === 'profil' ? 'Type 9 • Profil complet' : (id === 'soustypes' ? 'Type 9 • Sous-types' : 'Type 9 • Niveaux de développement');
     }
 
@@ -1445,9 +1444,7 @@ Analogie : Le Type 9 est comme une eau calme : le Neuf Survie est une mare confo
     renderAllRichBlocks();
     initTop3Chip();
 
-    const initTab = getParam('tab') || (()=>{
-      try{ return localStorage.getItem('type9_tab') || 'profil'; }catch(e){ return 'profil'; }
-    })();
+    const initTab = getParam('tab') || 'profil';
     setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{

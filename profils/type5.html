@@ -1365,7 +1365,6 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      try{ localStorage.setItem('type5_tab', id); }catch(e){}
       qs('#barInfo').textContent = id === 'profil' ? 'Type 5 • Profil complet' : (id === 'soustypes' ? 'Type 5 • Sous-types' : 'Type 5 • Niveaux de développement');
     }
 
@@ -1470,9 +1469,7 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
     renderAllRichBlocks();
     initTop3Chip();
 
-    const initTab = getParam('tab') || (()=>{
-      try{ return localStorage.getItem('type5_tab') || 'profil'; }catch(e){ return 'profil'; }
-    })();
+    const initTab = getParam('tab') || 'profil';
     setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{

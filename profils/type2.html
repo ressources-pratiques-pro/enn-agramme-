@@ -1366,7 +1366,6 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      try{ localStorage.setItem('type2_tab', id); }catch(e){}
       qs('#barInfo').textContent = id === 'profil' ? 'Type 2 • Profil complet' : (id === 'soustypes' ? 'Type 2 • Sous-types' : 'Type 2 • Niveaux de développement');
     }
 
@@ -1471,9 +1470,7 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
     renderAllRichBlocks();
     initTop3Chip();
 
-    const initTab = getParam('tab') || (()=>{
-      try{ return localStorage.getItem('type2_tab') || 'profil'; }catch(e){ return 'profil'; }
-    })();
+    const initTab = getParam('tab') || 'profil';
     setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{

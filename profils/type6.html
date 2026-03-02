@@ -1374,7 +1374,6 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      try{ localStorage.setItem('type6_tab', id); }catch(e){}
       qs('#barInfo').textContent = id === 'profil' ? 'Type 6 • Profil complet' : (id === 'soustypes' ? 'Type 6 • Sous-types' : 'Type 6 • Niveaux de développement');
     }
 
@@ -1479,9 +1478,7 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
     renderAllRichBlocks();
     initTop3Chip();
 
-    const initTab = getParam('tab') || (()=>{
-      try{ return localStorage.getItem('type6_tab') || 'profil'; }catch(e){ return 'profil'; }
-    })();
+    const initTab = getParam('tab') || 'profil';
     setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{

@@ -1372,7 +1372,6 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      try{ localStorage.setItem('type3_tab', id); }catch(e){}
       qs('#barInfo').textContent = id === 'profil' ? 'Type 3 • Profil complet' : (id === 'soustypes' ? 'Type 3 • Sous-types' : 'Type 3 • Niveaux de développement');
     }
 
@@ -1477,9 +1476,7 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
     renderAllRichBlocks();
     initTop3Chip();
 
-    const initTab = getParam('tab') || (()=>{
-      try{ return localStorage.getItem('type3_tab') || 'profil'; }catch(e){ return 'profil'; }
-    })();
+    const initTab = getParam('tab') || 'profil';
     setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{

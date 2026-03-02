@@ -1396,7 +1396,6 @@ Analogie : Le Type 8 est comme un volcan : le Huit Survie est la lave qui constr
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      try{ localStorage.setItem('type8_tab', id); }catch(e){}
       qs('#barInfo').textContent = id === 'profil' ? 'Type 8 • Profil complet' : (id === 'soustypes' ? 'Type 8 • Sous-types' : 'Type 8 • Niveaux de développement');
     }
 
@@ -1501,9 +1500,7 @@ Analogie : Le Type 8 est comme un volcan : le Huit Survie est la lave qui constr
     renderAllRichBlocks();
     initTop3Chip();
 
-    const initTab = getParam('tab') || (()=>{
-      try{ return localStorage.getItem('type8_tab') || 'profil'; }catch(e){ return 'profil'; }
-    })();
+    const initTab = getParam('tab') || 'profil';
     setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{
