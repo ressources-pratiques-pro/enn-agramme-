@@ -122,24 +122,59 @@ button:active{transform:translateY(1px)}
   border:1px solid var(--line);
   background:rgba(0,0,0,.20);
   backdrop-filter:blur(10px);
-  transition:border-color .16s ease, box-shadow .16s ease;
+  transition:border-color .16s ease, box-shadow .16s ease, background-color .16s ease, transform .16s ease;
 }
 #badgeNum{color:var(--accent)}
 #typeBadge[data-group="instinctif"]{
   border-color:rgba(251,191,36,.48);
+  background:rgba(251,191,36,.10);
   box-shadow:0 0 0 2px rgba(251,191,36,.14) inset;
+  transform:translateY(-1px);
 }
 #typeBadge[data-group="emotionnel"]{
   border-color:rgba(244,114,182,.48);
+  background:rgba(244,114,182,.10);
   box-shadow:0 0 0 2px rgba(244,114,182,.14) inset;
+  transform:translateY(-1px);
 }
 #typeBadge[data-group="mental"]{
   border-color:rgba(96,165,250,.48);
+  background:rgba(96,165,250,.10);
   box-shadow:0 0 0 2px rgba(96,165,250,.14) inset;
+  transform:translateY(-1px);
 }
 #typeBadge[data-group="instinctif"] #badgeNum{color:var(--inst)}
 #typeBadge[data-group="emotionnel"] #badgeNum{color:var(--emo)}
 #typeBadge[data-group="mental"] #badgeNum{color:var(--ment)}
+
+.centerLegend{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 12px;
+}
+.centerLegendItem{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.14);
+  color:rgba(255,255,255,.84);
+  font-size:12px;
+  font-weight:700;
+}
+.centerLegendDot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  display:inline-block;
+}
+.centerLegendDot.instinctif{background:var(--inst)}
+.centerLegendDot.emotionnel{background:var(--emo)}
+.centerLegendDot.mental{background:var(--ment)}
 
 .card{
   border:1px solid var(--line);
@@ -243,12 +278,22 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none}
   fill:rgba(15,26,51,.85);
   stroke:rgba(255,255,255,.20);
   stroke-width:2.2;
-  transition:stroke .18s ease,filter .18s ease,transform .18s ease;
+  transition:stroke .14s ease,filter .14s ease,transform .14s ease,opacity .14s ease,stroke-width .14s ease;
   filter:url(#softGlow);
 }
 .node.instinctif circle{stroke:var(--inst)}
 .node.emotionnel circle{stroke:var(--emo)}
 .node.mental circle{stroke:var(--ment)}
+.node{transition:opacity .14s ease}
+.node.is-dimmed{opacity:.44}
+.node.is-active{opacity:1}
+.node.is-active circle{
+  stroke-width:3.6;
+  transform:scale(1.08);
+}
+.node.instinctif.is-active circle{filter:url(#softGlow) drop-shadow(0 0 10px rgba(251,191,36,.38))}
+.node.emotionnel.is-active circle{filter:url(#softGlow) drop-shadow(0 0 10px rgba(244,114,182,.38))}
+.node.mental.is-active circle{filter:url(#softGlow) drop-shadow(0 0 10px rgba(96,165,250,.38))}
 
 .node text{
   fill:var(--text);
@@ -256,12 +301,23 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none}
   font-size:22px;
   dominant-baseline:middle;
   text-anchor:middle;
+  transition:fill .14s ease,opacity .14s ease;
 }
+.node.is-dimmed text{fill:rgba(255,255,255,.58)}
+.node.is-active text{fill:#ffffff}
 
-.arrow{fill:none;stroke-width:3.2;opacity:0}
+.arrow{fill:none;stroke-width:3.2;opacity:0;transition:opacity .14s ease}
 .arrow.on{opacity:.95}
 .arrow.integr{stroke:rgba(134,239,172,.92)}
 .arrow.disint{stroke:rgba(253,164,175,.92)}
+
+#sidePanel.is-updating .card{
+  animation:panelRefresh .16s ease;
+}
+@keyframes panelRefresh{
+  from{opacity:.92;transform:translateY(2px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
 .siteFooter{margin-top:28px;padding:18px 12px;text-align:center;font-size:12px;opacity:.90}
 .siteFooter .footerInner{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}

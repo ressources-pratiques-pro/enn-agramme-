@@ -71,6 +71,7 @@ function showOnlyTypeArrows(t){
 function makeNode(t){
   const g = document.createElementNS("http://www.w3.org/2000/svg","g");
   g.setAttribute("class","node " + groupOf(t));
+  g.setAttribute("data-type", String(t));
 
   const p = points[t];
 
@@ -111,6 +112,36 @@ const moveHealthText = document.getElementById("moveHealthText");
 const moveStressText = document.getElementById("moveStressText");
 const openFull = document.getElementById("openFull");
 const typeBadge = document.getElementById("typeBadge");
+const sidePanel = document.getElementById("sidePanel");
+
+let sidePanelUpdateTimer = null;
+
+function highlightActiveNode(t){
+  nodesLayer.querySelectorAll(".node").forEach((node) => {
+    const nodeType = Number(node.getAttribute("data-type"));
+    const isActive = nodeType === t;
+    node.classList.toggle("is-active", isActive);
+    node.classList.toggle("is-dimmed", !isActive);
+  });
+}
+
+function clearNodeHighlights(){
+  nodesLayer.querySelectorAll(".node").forEach((node) => {
+    node.classList.remove("is-active", "is-dimmed");
+  });
+}
+
+function pulseSidePanel(){
+  if(!sidePanel) return;
+  sidePanel.classList.remove("is-updating");
+  // Force reflow so quick consecutive clicks replay the animation.
+  void sidePanel.offsetWidth;
+  sidePanel.classList.add("is-updating");
+  if(sidePanelUpdateTimer) clearTimeout(sidePanelUpdateTimer);
+  sidePanelUpdateTimer = setTimeout(() => {
+    sidePanel.classList.remove("is-updating");
+  }, 180);
+}
 
 let typesData = null;
 
@@ -123,6 +154,7 @@ loadData().catch(()=>{});
 function selectType(t){
   badgeNum.textContent = t;
   typeBadge?.setAttribute("data-group", groupOf(t));
+  highlightActiveNode(t);
 
   const data = typesData ? typesData[String(t)] : null;
 
@@ -144,11 +176,13 @@ function selectType(t){
   openFull.setAttribute("aria-disabled","false");
 
   showOnlyTypeArrows(t);
+  pulseSidePanel();
 }
 
 document.getElementById("btnReset").addEventListener("click", ()=>{
   badgeNum.textContent = "—";
   typeBadge?.removeAttribute("data-group");
+  clearNodeHighlights();
   centerEl.textContent = "—";
   fearEl.textContent = "—";
   desireEl.textContent = "—";
