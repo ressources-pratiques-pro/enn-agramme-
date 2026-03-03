@@ -350,6 +350,30 @@
         box-shadow var(--motion-fast) var(--motion-ease);
     }
 
+
+    /* === READABILITY TYPO PATCH === */
+    .grid{gap:20px}
+    details + details{margin-top:2px}
+    summary{padding:15px 16px 14px}
+    .sumTitle b{font-size:16px;line-height:1.28}
+    .sumTitle span{font-size:12px;line-height:1.35;color:rgba(255,255,255,.66)}
+    .content{padding:0 16px 18px}
+    .card h2{font-size:15px;letter-spacing:.35px}
+    .rich-text{
+      max-width:68ch;
+      font-size:15.5px;
+      line-height:1.9;
+      letter-spacing:.005em;
+    }
+    .rich-text .p,.rich-text p{margin-bottom:12px}
+    .highlight-title{font-size:16px;line-height:1.34;margin-top:18px;margin-bottom:8px}
+    .highlight-list-item{margin-bottom:8px}
+    @media (max-width:640px){
+      summary{padding:14px 14px 12px}
+      .content{padding:0 14px 16px}
+      .rich-text{max-width:100%;font-size:15px;line-height:1.84}
+    }
+
   </style>
 </head>
 

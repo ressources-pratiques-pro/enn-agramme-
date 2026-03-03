@@ -607,6 +607,37 @@
       transform:translateY(-1px);
     }
 
+
+    /* === READABILITY TYPO PATCH === */
+    .grid{gap:20px}
+    details + details{margin-top:2px}
+    summary{padding:16px 16px 14px}
+    .sumTitle b{font-size:16px;line-height:1.28}
+    .sumTitle span{font-size:12px;line-height:1.35;color:rgba(255,255,255,.66)}
+    .content{padding:14px 16px 18px}
+    .block{padding:16px;border-radius:18px;background:rgba(8,13,25,.34)}
+    .rt{
+      max-width:68ch;
+      font-size:15.5px;
+      line-height:1.9;
+      letter-spacing:.005em;
+    }
+    .rt p{margin:0 0 12px}
+    .rt p + p{margin-top:1px}
+    .rt ul{margin:2px 0 12px 20px}
+    .rt li{margin:0 0 10px;line-height:1.76}
+    .rt .labelRow{padding:11px 12px;gap:12px;margin-bottom:12px}
+    .rt .label{font-size:12.5px;letter-spacing:.25px}
+    .rt .value{line-height:1.72}
+    .rt .subhead{margin:4px 0 12px;padding:10px 12px}
+    .card h2{font-size:15px;letter-spacing:.35px}
+    .badge{letter-spacing:.25px}
+    @media (max-width:640px){
+      summary{padding:14px 14px 12px}
+      .content{padding:12px 14px 16px}
+      .rt{max-width:100%;font-size:15px;line-height:1.84}
+    }
+
   </style>
 </head>
 
