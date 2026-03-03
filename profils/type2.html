@@ -638,6 +638,66 @@
       .rt{max-width:100%;font-size:15px;line-height:1.84}
     }
 
+
+    /* Palmer tab styles */
+    .palmerQuote{
+      padding:16px 20px;
+      margin-bottom:12px;
+      border-left:4px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
+      border-radius:0 12px 12px 0;
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(255,255,255,.85);
+    }
+    .palmerMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .palmerChip{
+      padding:4px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:700;
+      font-family:ui-sans-serif,system-ui,sans-serif;
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .palmerChip.travers{background:rgba(251,113,133,.12);color:#fb7185;border-color:rgba(251,113,133,.25)}
+    .palmerChip.essence{background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)}
+    .palmerSousTypes{
+      padding:10px 16px;
+      margin-bottom:16px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      line-height:1.5;
+    }
+    .palmerSousTypes strong{color:rgba(255,255,255,.9)}
+    .palmerSection{margin-bottom:2px}
+    .palmerSection .content{padding:4px 8px 16px}
+    .palmerList{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .palmerList li{
+      position:relative;
+      padding:8px 8px 8px 24px;
+      font-size:14px;
+      line-height:1.65;
+      color:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .palmerList li:last-child{border-bottom:none}
+    .palmerList li::before{
+      content:"—";
+      position:absolute;
+      left:4px;
+      color:rgba(255,255,255,.3);
+      font-weight:700;
+    }
   </style>
 </head>
 
@@ -683,6 +743,7 @@
           <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
           <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
           <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+          <button class="tab" id="tab-palmer" role="tab" aria-selected="false" aria-controls="panel-palmer">Selon Palmer</button>
         </div>
       </div>
     </div>
@@ -1092,6 +1153,127 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
       </section>
     </div>
 
+
+      <section id="panel-palmer" role="tabpanel" aria-labelledby="tab-palmer" hidden>
+        <div class="palmerQuote"><em>« Les gens dépendent de mon aide. On a besoin de moi. »</em></div>
+        <div class="palmerMeta"><span class="palmerChip">Deux</span><span class="palmerChip travers">Flatterie / Fierté</span><span class="palmerChip essence">Volonté / Humilité</span></div>
+        <div class="palmerSousTypes"><strong>Sous-types :</strong> Séduction (tête-à-tête) · Ambition (social) · Privilège (survie)</div>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>📋 Penchants &amp; Préoccupations</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Recherchent l&#x27;approbation et évitent le rejet.</li>
+              <li>Fiers que l&#x27;on ait besoin d&#x27;eux, d&#x27;être au centre de la vie des autres.</li>
+              <li>Expriment leur fierté dans trois secteurs : séduction (tête-à-tête), ambition (social), privilège (survie).</li>
+              <li>Ont des difficultés à reconnaître leurs besoins et leurs envies.</li>
+              <li>Répriment leurs sentiments afin d&#x27;être aimés.</li>
+              <li>Ont des problèmes de limites : « Ce n&#x27;est pas que je prenne la direction des opérations, je réponds juste au besoin de l&#x27;autre. »</li>
+              <li>Forts de leur empathie émotionnelle : s&#x27;adaptent aux désirs des autres comme moyen d&#x27;obtenir leur affection.</li>
+              <li>Une personnalité multiple : leur moi se modifie en fonction des personnes avec lesquelles ils se trouvent.</li>
+              <li>Difficulté à distinguer leurs vrais sentiments de ceux qu&#x27;ils jouent pour plaire.</li>
+              <li>L&#x27;attirance sentimentale est source immédiate d&#x27;énergie. Vivent par et pour les sentiments.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>❓ Questions cruciales</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>La référence aux autres : les Deux se définissent à travers les yeux des autres. Ils découvrent leur identité dans leurs relations.</li>
+              <li>Sont particulièrement sensibles aux préoccupations de l&#x27;être aimé. Leur attention est partagée entre les sentiments des autres et les leurs.</li>
+              <li>Une personnalité multiple : « Devrais-je incarner une personne douce, agressive, gaie, ou sévère ? »</li>
+              <li>Quand ils sont attirés de différents côtés, les Deux disent être déchirés entre leurs différentes options possibles.</li>
+              <li>Le sentiment d&#x27;être un Altruiste désintéressé cache le besoin d&#x27;être approuvé et protégé.</li>
+              <li>La demande de privilèges survient quand ils aident les gens à réussir et qu&#x27;ils subissent la frustration de ne pas être récompensés.</li>
+              <li>Exercer indirectement le pouvoir, par l&#x27;entremise d&#x27;autrui, leur semble plus naturel que de dire ce qu&#x27;ils veulent.</li>
+              <li>Les Deux sont fiers de leur indépendance en croyant que les autres dépendent d&#x27;eux.</li>
+              <li>S&#x27;ils sont gagnants, on l&#x27;est aussi et quand leurs succès sont célébrés, ils s&#x27;attendent à recevoir un traitement privilégié.</li>
+              <li>La fierté cache la dépendance à l&#x27;approbation. L&#x27;humilité est la perception de sa juste valeur.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>⇆ Sécurité &amp; Stress</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Sécurité (→ Quatre) : délivrés de l&#x27;inquiétude, les Deux ne sont plus contraints de plaire à tout prix.</li>
+              <li>Leur attention se tourne vers eux-mêmes. « Qu&#x27;est-ce que je veux ? Qu&#x27;est-ce qui m&#x27;intéresse vraiment ? »</li>
+              <li>Un moi constant se développe. On cultive ses talents et on apprend à les estimer avec enthousiasme.</li>
+              <li>Difficulté en sécurité : les Deux peuvent tomber dans la déprime en réalisant qu&#x27;il leur est plus facile de vivre pour les autres que pour eux-mêmes.</li>
+              <li>Apitoiement possible : « Les autres ont eu tellement plus de facilités que moi. Pourquoi ai-je tant attendu ? »</li>
+              <li>Stress (→ Huit) : les Deux qui s&#x27;en défendent peuvent devenir impitoyables, comme s&#x27;ils se battaient pour leur liberté.</li>
+              <li>Les premiers signes de stress : ils se préoccupent de plus en plus des besoins de l&#x27;autre et répriment les leurs.</li>
+              <li>Prémices d&#x27;hystérie émotionnelle : courtes crises d&#x27;irritabilité et réactions émotives pour des motifs superficiels.</li>
+              <li>Si la source du stress ne cesse pas, les Deux s&#x27;écarteront des autres au lieu de se rapprocher.</li>
+              <li>Quand le déplacement vers le Huit est libérateur, il aide à reconnaître les droits de la personne.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>❤ Vie affective</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Les Deux prodiguent l&#x27;attention que les autres s&#x27;attendent à recevoir. Ils s&#x27;adapteront de façon à plaire à leurs partenaires.</li>
+              <li>Ces couples donnent souvent l&#x27;apparence du « parfait amour ». Chacun soutient l&#x27;autre professionnellement.</li>
+              <li>Le sujet de dispute le plus courant : le partenaire rentre tard du travail et s&#x27;endort aussitôt. Les Deux ont besoin de beaucoup d&#x27;attention.</li>
+              <li>Les deux partenaires découvrent souvent leur point commun au point Quatre : la compréhension mutuelle de la déception et de la mélancolie.</li>
+              <li>Les Un respectent les personnes qui luttent et les Deux viennent en aide aux gens qui souffrent.</li>
+              <li>Les obligations qui gouvernent la vie du partenaire peuvent être ressenties comme répressives par les Deux.</li>
+              <li>Les Altruistes menacés se battront pour redevenir le centre de l&#x27;attention. Ils seront fiers que leur partenaire réagisse.</li>
+              <li>Les Deux en couple doivent redéfinir leur notion de relation : la moitié d&#x27;une relation se bâtit en se rendant utile, l&#x27;autre en se développant soi-même.</li>
+              <li>Les Deux en couple sont plus souvent amis qu&#x27;amants. En tant qu&#x27;amis, ils peuvent mutuellement s&#x27;encourager à recevoir.</li>
+              <li>Les couples de Deux sont rares. Si on est généreux de nature, on recherchera plutôt quelqu&#x27;un à aider.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>📡 Signaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Signaux positifs : chaleureux, empathiques, généreux, bons promoteurs, savent créer des réseaux.</li>
+              <li>Sont souvent incontournables dans leur secteur d&#x27;activité et des alliés indispensables.</li>
+              <li>Signaux négatifs : manipulation indirecte, tendance à se sentir indispensables sans l&#x27;être réellement.</li>
+              <li>Peuvent répandre des insinuations. Quand leur fierté est atteinte, esquivent la responsabilité : « Ce n&#x27;était pas de ma faute. »</li>
+              <li>Leur humeur instable peut transparaître au travail. Un manque de respect, même sous-entendu, les énervera.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>💼 Au travail</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Approche de l&#x27;éminence grise : il leur est plus facile de diriger de manière indirecte que d&#x27;affronter l&#x27;hostilité ou le rejet.</li>
+              <li>En tenant le rôle de chambellan, les Deux observent, conseillent et prennent la température de la situation.</li>
+              <li>Heureux de réduire les formalités administratives et de donner la priorité aux relations humaines.</li>
+              <li>Plus productifs dans un cadre interactif que dans l&#x27;isolement. Prennent souvent leurs décisions avec des conseillers de confiance.</li>
+              <li>Les Altruistes satisfaits sont un trésor dans l&#x27;entreprise : ils vous représentent bien, font des suggestions constructives.</li>
+              <li>Leurs problèmes personnels peuvent transpirer dans le milieu professionnel.</li>
+              <li>Quand ils arrivent dans l&#x27;entreprise, les Deux ont besoin d&#x27;être soutenus. C&#x27;est au départ qu&#x27;ils éprouvent des difficultés.</li>
+              <li>L&#x27;équipe est homogène quand ses membres sont d&#x27;égale importance. Mais les Deux cherchent souvent à attirer l&#x27;attention de quelqu&#x27;un de haut placé.</li>
+              <li>Leur tendance est encouragée s&#x27;ils peuvent profiter de la bonne volonté d&#x27;un collègue bien placé.</li>
+              <li>Les Deux sont façonnés par les rêves intérieurs des autres. Quand ils croient en un objectif et sont en relation émotionnelle avec lui, ils donnent le meilleur d&#x27;eux-mêmes.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
   <div class="typeNavBottom">
     <a href="type1.html" class="prev">
       <span class="navLabel">Type pr&eacute;c&eacute;dent</span>
@@ -1440,6 +1622,7 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
         {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
         {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
         {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+        {btn: qs('#tab-palmer'), panel: qs('#panel-palmer'), key:'palmer'},
       ];
       tabs.forEach(t=>{
         const on = (t.key === id);
@@ -1447,7 +1630,7 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      qs('#barInfo').textContent = id === 'profil' ? 'Type 2 • Profil complet' : (id === 'soustypes' ? 'Type 2 • Sous-types' : 'Type 2 • Niveaux de développement');
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 2 • Profil complet' : (id === 'soustypes' ? 'Type 2 • Sous-types' : (id === 'niveaux' ? 'Type 2 • Niveaux de développement' : 'Type 2 • Selon Palmer'));
     }
 
     function applySearchFilter(term){
@@ -1508,9 +1691,11 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
 
     function nextAction(){
       const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
-                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' :
+                  (qs('#tab-niveaux').getAttribute('aria-selected') === 'true' ? 'niveaux' : 'palmer'));
       if(tab === 'profil'){ setActiveTab('soustypes'); return; }
       if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      if(tab === 'niveaux'){ setActiveTab('palmer'); return; }
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
@@ -1526,6 +1711,7 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
     qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#tab-palmer').addEventListener('click', ()=>setActiveTab('palmer'));
     qs('#nextBtn').addEventListener('click', nextAction);
     qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
 
@@ -1550,7 +1736,7 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
     initTop3Chip();
 
     const initTab = getParam('tab') || 'profil';
-    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+    setActiveTab(['profil','soustypes','niveaux','palmer'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{
       try{ return localStorage.getItem('type2_lvl') || '1'; }catch(e){ return '1'; }

@@ -640,6 +640,66 @@
       .rt{max-width:100%;font-size:15px;line-height:1.84}
     }
 
+
+    /* Palmer tab styles */
+    .palmerQuote{
+      padding:16px 20px;
+      margin-bottom:12px;
+      border-left:4px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
+      border-radius:0 12px 12px 0;
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(255,255,255,.85);
+    }
+    .palmerMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .palmerChip{
+      padding:4px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:700;
+      font-family:ui-sans-serif,system-ui,sans-serif;
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .palmerChip.travers{background:rgba(251,113,133,.12);color:#fb7185;border-color:rgba(251,113,133,.25)}
+    .palmerChip.essence{background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)}
+    .palmerSousTypes{
+      padding:10px 16px;
+      margin-bottom:16px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      line-height:1.5;
+    }
+    .palmerSousTypes strong{color:rgba(255,255,255,.9)}
+    .palmerSection{margin-bottom:2px}
+    .palmerSection .content{padding:4px 8px 16px}
+    .palmerList{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .palmerList li{
+      position:relative;
+      padding:8px 8px 8px 24px;
+      font-size:14px;
+      line-height:1.65;
+      color:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .palmerList li:last-child{border-bottom:none}
+    .palmerList li::before{
+      content:"—";
+      position:absolute;
+      left:4px;
+      color:rgba(255,255,255,.3);
+      font-weight:700;
+    }
   </style>
 </head>
 
@@ -685,6 +745,7 @@
           <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
           <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
           <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+          <button class="tab" id="tab-palmer" role="tab" aria-selected="false" aria-controls="panel-palmer">Selon Palmer</button>
         </div>
       </div>
     </div>
@@ -1126,6 +1187,127 @@ Apprendre à devenir plus réaliste, mener ses projets jusqu'à leur terme sans 
       </section>
     </div>
 
+
+      <section id="panel-palmer" role="tabpanel" aria-labelledby="tab-palmer" hidden>
+        <div class="palmerQuote"><em>« La vie est un festin de possibilités. Je veux tout vivre et éviter la douleur. »</em></div>
+        <div class="palmerMeta"><span class="palmerChip">Sept</span><span class="palmerChip travers">Gourmandise / Gloutonnerie</span><span class="palmerChip essence">Travail / Sobriété</span></div>
+        <div class="palmerSousTypes"><strong>Sous-types :</strong> Famille/Clan (tête-à-tête) · Sacrifier les limites (social) · Idéalisme/Opportunisme (survie)</div>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>📋 Penchants &amp; Préoccupations</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Orientés vers les plaisirs, les nouvelles expériences et la diversité des options.</li>
+              <li>Planifient et fantasment à l&#x27;avance pour s&#x27;assurer un avenir agréable.</li>
+              <li>Évitent la douleur, l&#x27;ennui et les contraintes. Rationalisent les problèmes.</li>
+              <li>Ont du mal à s&#x27;engager dans une seule voie — trop de possibilités séduisantes.</li>
+              <li>Pensée réticulaire : établissent des liens entre des idées diverses et fascinantes.</li>
+              <li>Aiment travailler sur plusieurs projets à la fois. Changent facilement d&#x27;idée.</li>
+              <li>Grands communicateurs, enthousiasmes contagieux. Inspirent les autres.</li>
+              <li>Peuvent devenir superficiels si leur besoin de variété l&#x27;emporte sur leur capacité d&#x27;approfondissement.</li>
+              <li>Cherchent l&#x27;idéal dans les relations. Idéalisent les partenaires, puis sont déçus par la réalité.</li>
+              <li>La douleur et la souffrance sont évitées ou rationalisées comme une opportunité d&#x27;apprentissage.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>❓ Questions cruciales</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Leur besoin de stimulation permanente peut rendre difficile l&#x27;engagement dans une relation ou un projet à long terme.</li>
+              <li>La peur de manquer une meilleure option les pousse à garder des portes ouvertes.</li>
+              <li>Ils peuvent s&#x27;impliquer pour l&#x27;enthousiasme du début sans finir ce qu&#x27;ils ont commencé.</li>
+              <li>Les Sept considèrent leurs nombreuses options comme les facettes d&#x27;un même projet.</li>
+              <li>Leur optimisme peut devenir naïf. La planification positive efface les obstacles réalistes.</li>
+              <li>Leur inconstance d&#x27;intentions hérisse les collaborateurs qui se sont habitués à un cadre de travail.</li>
+              <li>Un Sept effrayé va rationaliser les problèmes et prendre la fuite.</li>
+              <li>Ils n&#x27;admettront jamais avoir eu une mauvaise intention : ce n&#x27;était qu&#x27;une forme d&#x27;apprentissage.</li>
+              <li>La réconciliation des partenaires : les couples de longue date apprennent à s&#x27;entendre à mi-chemin.</li>
+              <li>Les Sept ont appris à assurer leurs engagements sans exiger de portes de sortie.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>⇆ Sécurité &amp; Stress</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Sécurité (→ Cinq) : les Sept se stabilisent et approfondissent. Ils deviennent capables de concentration et d&#x27;observation patiente.</li>
+              <li>En sécurité, ils accèdent à une sagesse plus calme, moins frénétique.</li>
+              <li>Stress (→ Un) : les Sept deviennent rigides, critiques envers eux-mêmes et les autres.</li>
+              <li>Sous stress, leur pensée positive cède la place à une pensée punitive et perfectionniste.</li>
+              <li>La douleur refoulée remonte en situation de stress intense.</li>
+              <li>Le travail, leur qualité de l&#x27;essence, revient quand ils cessent de fuir pour s&#x27;engager pleinement.</li>
+              <li>La sobriété — savourer ce qui est là sans en vouloir davantage — est leur développement spirituel.</li>
+              <li>Une soirée divertissante chasse la paranoïa. Les Sept savent que le plaisir partagé consolide les liens.</li>
+              <li>Pour se développer, les Sept doivent apprendre à rester dans l&#x27;inconfort sans chercher à s&#x27;en échapper.</li>
+              <li>Le Sept développé allie enthousiasme, profondeur et capacité à honorer ses engagements.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>❤ Vie affective</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Les Épicuriens se nourrissent d&#x27;expériences. Ils aiment voyager, se former et travailler sur plusieurs projets à la fois.</li>
+              <li>Idéalisent les partenaires dans les premières phases, puis peuvent être déçus par la réalité quotidienne.</li>
+              <li>Cherchent des partenaires qui partagent leur amour de la vie et des nouvelles expériences.</li>
+              <li>La relation avec un Cinq : le Sept est ravi d&#x27;avoir un partenaire pour l&#x27;accompagner dans ses sorties.</li>
+              <li>Les Sept organisent les sorties. Une après-midi ensoleillée à se distraire ensemble est leur langage d&#x27;amour.</li>
+              <li>Les couples de longue date disent avoir réussi à s&#x27;entendre à mi-chemin.</li>
+              <li>Le Six a appris à faire la différence entre les doutes et la réalité des actions du Sept.</li>
+              <li>Le Sept a appris à assurer ses engagements sans exiger de portes de sortie.</li>
+              <li>Leur enthousiasme peut masquer une difficulté à s&#x27;engager réellement dans la profondeur d&#x27;une relation.</li>
+              <li>Ils peuvent trouver difficile de s&#x27;asseoir et de s&#x27;engager dans des conversations difficiles.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>📡 Signaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Signaux positifs : enthousiasme contagieux, créativité, capacité à relier des idées entre elles, optimisme.</li>
+              <li>Grands communicateurs. Inspirent les autres à voir les possibilités.</li>
+              <li>Signaux négatifs : inconstance, difficulté à finir ce qu&#x27;ils commencent, évitement de la douleur.</li>
+              <li>Peuvent prendre des initiatives sans réaliser qu&#x27;ils redéfinissent leurs attributions.</li>
+              <li>Leur besoin de variété peut être vécu comme un manque d&#x27;engagement par leurs partenaires et collègues.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>💼 Au travail</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Aiment déléguer en répartissant la réalisation de leurs projets. Suite d&#x27;objectifs à court terme très attrayante.</li>
+              <li>Changent parfois d&#x27;idée en cours de route. Cette inconstance d&#x27;intentions hérisse les collaborateurs.</li>
+              <li>Travaillent bien avec des partenaires qui peuvent assurer le suivi qu&#x27;ils n&#x27;aiment pas faire.</li>
+              <li>Les Sept peuvent prendre des initiatives sans réaliser qu&#x27;ils redéfinissent leurs attributions.</li>
+              <li>Ne respectent les règles que dans leur esprit. Ce que d&#x27;autres considèrent comme une faute n&#x27;est pour eux qu&#x27;apprentissage.</li>
+              <li>Ont besoin d&#x27;un bon coup de gueule pour s&#x27;éveiller à la réalité si nécessaire.</li>
+              <li>Cette association peut soit aggraver leur tendance à tout remettre au lendemain, soit permettre d&#x27;atteindre des objectifs communs.</li>
+              <li>Les idées, à peine émises, peuvent être oubliées. On dresse des plans, on les change, on les met de côté.</li>
+              <li>Les Épicuriens peuvent se concentrer sur une seule vision quand ils le décident — et produire des résultats remarquables.</li>
+              <li>Ils s&#x27;épanouissent lorsqu&#x27;ils attellent à un travail exigeant qui mérite leur enthousiasme.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
   <div class="typeNavBottom">
     <a href="type6.html" class="prev">
       <span class="navLabel">Type pr&eacute;c&eacute;dent</span>
@@ -1470,6 +1652,7 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
         {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
         {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
         {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+        {btn: qs('#tab-palmer'), panel: qs('#panel-palmer'), key:'palmer'},
       ];
       tabs.forEach(t=>{
         const on = (t.key === id);
@@ -1477,7 +1660,7 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      qs('#barInfo').textContent = id === 'profil' ? 'Type 7 • Profil complet' : (id === 'soustypes' ? 'Type 7 • Sous-types' : 'Type 7 • Niveaux de développement');
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 7 • Profil complet' : (id === 'soustypes' ? 'Type 7 • Sous-types' : (id === 'niveaux' ? 'Type 7 • Niveaux de développement' : 'Type 7 • Selon Palmer'));
     }
 
     function applySearchFilter(term){
@@ -1538,9 +1721,11 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
 
     function nextAction(){
       const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
-                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' :
+                  (qs('#tab-niveaux').getAttribute('aria-selected') === 'true' ? 'niveaux' : 'palmer'));
       if(tab === 'profil'){ setActiveTab('soustypes'); return; }
       if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      if(tab === 'niveaux'){ setActiveTab('palmer'); return; }
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
@@ -1556,6 +1741,7 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
     qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#tab-palmer').addEventListener('click', ()=>setActiveTab('palmer'));
     qs('#nextBtn').addEventListener('click', nextAction);
     qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
 
@@ -1580,7 +1766,7 @@ Analogie : Le Type 7 est comme un explorateur fuyant l'ennui : le Sept Survie ex
     initTop3Chip();
 
     const initTab = getParam('tab') || 'profil';
-    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+    setActiveTab(['profil','soustypes','niveaux','palmer'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{
       try{ return localStorage.getItem('type7_lvl') || '1'; }catch(e){ return '1'; }

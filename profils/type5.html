@@ -641,6 +641,66 @@
       .rt{max-width:100%;font-size:15px;line-height:1.84}
     }
 
+
+    /* Palmer tab styles */
+    .palmerQuote{
+      padding:16px 20px;
+      margin-bottom:12px;
+      border-left:4px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
+      border-radius:0 12px 12px 0;
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(255,255,255,.85);
+    }
+    .palmerMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .palmerChip{
+      padding:4px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:700;
+      font-family:ui-sans-serif,system-ui,sans-serif;
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .palmerChip.travers{background:rgba(251,113,133,.12);color:#fb7185;border-color:rgba(251,113,133,.25)}
+    .palmerChip.essence{background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)}
+    .palmerSousTypes{
+      padding:10px 16px;
+      margin-bottom:16px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      line-height:1.5;
+    }
+    .palmerSousTypes strong{color:rgba(255,255,255,.9)}
+    .palmerSection{margin-bottom:2px}
+    .palmerSection .content{padding:4px 8px 16px}
+    .palmerList{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .palmerList li{
+      position:relative;
+      padding:8px 8px 8px 24px;
+      font-size:14px;
+      line-height:1.65;
+      color:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .palmerList li:last-child{border-bottom:none}
+    .palmerList li::before{
+      content:"—";
+      position:absolute;
+      left:4px;
+      color:rgba(255,255,255,.3);
+      font-weight:700;
+    }
   </style>
 </head>
 
@@ -686,6 +746,7 @@
           <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
           <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
           <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+          <button class="tab" id="tab-palmer" role="tab" aria-selected="false" aria-controls="panel-palmer">Selon Palmer</button>
         </div>
       </div>
     </div>
@@ -1084,6 +1145,127 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
       </section>
     </div>
 
+
+      <section id="panel-palmer" role="tabpanel" aria-labelledby="tab-palmer" hidden>
+        <div class="palmerQuote"><em>« Je comprends le monde par l&#x27;observation. Je dois préserver mon énergie. »</em></div>
+        <div class="palmerMeta"><span class="palmerChip">Cinq</span><span class="palmerChip travers">Avarice / Détachement</span><span class="palmerChip essence">Omniscience / Générosité</span></div>
+        <div class="palmerSousTypes"><strong>Sous-types :</strong> Totems/Confidences (tête-à-tête) · Idéaux (social) · Château fort (survie)</div>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>📋 Penchants &amp; Préoccupations</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>A besoin d&#x27;intimité. Accumule des connaissances. Les vides intellectuels le rebutent.</li>
+              <li>Se contente du minimum pour maintenir son indépendance.</li>
+              <li>Attache de l&#x27;importance au contrôle des émotions. Préfère les événements structurés, prévus et minutés.</li>
+              <li>Compartimente : les éléments de son existence sont soigneusement séparés les uns des autres.</li>
+              <li>A d&#x27;énormes facultés d&#x27;apprentissage. Utilise un mode de fonctionnement analytique. Veut avoir la vue d&#x27;ensemble.</li>
+              <li>Confond le non-attachement spirituel avec le besoin de se détacher de la souffrance émotionnelle.</li>
+              <li>Considère la vie sous l&#x27;angle d&#x27;un observateur extérieur. Peut se sentir étranger aux événements de sa propre existence.</li>
+              <li>Aptitude à adopter un point de vue non affecté par la peur ou le désir.</li>
+              <li>Les Cinq apprécient un environnement de travail protégé. Craignent d&#x27;être dérangés.</li>
+              <li>Au mieux, leur attitude détachée leur donne d&#x27;excellentes capacités d&#x27;analyse et de synthèse.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>❓ Questions cruciales</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Captivés par la collecte d&#x27;informations, les Cinq n&#x27;aiment pas être découverts ni qu&#x27;on essaye de lire le fond de leur pensée.</li>
+              <li>L&#x27;indépendance signifie être capables de s&#x27;en aller sans que personne sache où ils vont.</li>
+              <li>Les Observateurs peuvent disparaître des heures entières, et réapparaissent ensuite sans explication.</li>
+              <li>Contrôle de l&#x27;information : les Cinq répondent habituellement aux questions de manière concise et n&#x27;en diront pas plus que nécessaire.</li>
+              <li>Sensibles aux besoins des autres, les Cinq veulent conserver leur autonomie émotionnelle.</li>
+              <li>En donnant, les Cinq gagnent du temps : « Tu as ce que tu veux, alors va-t&#x27;en et laisse-moi tranquille. »</li>
+              <li>Peuvent être jaloux de leur monde intérieur. Ceux qui y ont accès y trouvent une vision intelligente, originale et fort étrange.</li>
+              <li>Ce sont des auditeurs attentifs et, aussi longtemps qu&#x27;on n&#x27;insiste pas pour qu&#x27;ils partagent vos sentiments, ils peuvent être d&#x27;un grand secours.</li>
+              <li>L&#x27;esprit des Cinq s&#x27;accorde souvent, et parfois de façon poignante, aux grandes questions métaphysiques.</li>
+              <li>Finalement mis au pied du mur, les Cinq diront exactement ce qu&#x27;ils pensent de façon brutale, sans réaliser l&#x27;humiliation qu&#x27;ils font subir aux autres.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>⇆ Sécurité &amp; Stress</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Sécurité (→ Huit) : les Cinq sortent de leur retrait. Ils deviennent plus affirmés, plus présents, plus décisifs.</li>
+              <li>En sécurité, ils assument un leadership naturel, forts de leurs analyses solides.</li>
+              <li>Stress (→ Sept) : ils se dispersent intellectuellement, sautent d&#x27;un projet à l&#x27;autre.</li>
+              <li>Sous stress, leur tendance à l&#x27;accumulation de connaissances peut devenir frénétique et désorganisée.</li>
+              <li>La peur d&#x27;être envahi ou dérangé s&#x27;intensifie en situation de stress.</li>
+              <li>Leur recul peut, sous stress, se transformer en isolement total.</li>
+              <li>Pour se développer, les Cinq doivent apprendre à partager leur monde intérieur.</li>
+              <li>La générosité d&#x27;esprit est leur qualité de l&#x27;essence : donner sans calcul leur énergie et leur connaissance.</li>
+              <li>Le Cinq développé allie profondeur analytique et capacité à s&#x27;engager dans l&#x27;action.</li>
+              <li>La communication non verbale marche bien dans leurs couples. Une qualité de présence intangible peut faire partie de leur relation.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>❤ Vie affective</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Indifférent aux démonstrations affectives et aux émotions profondes.</li>
+              <li>A besoin de solitude pour savoir ce qu&#x27;il ressent. Se tient à l&#x27;écart en public.</li>
+              <li>Dans les relations amoureuses, leurs partenaires devront respecter leur indépendance, leur imprévisibilité et leur intimité.</li>
+              <li>Les Cinq prouvent leur disponibilité de façon tacite : en révélant des choses les concernant, en étant présents.</li>
+              <li>La communication non verbale marche bien dans leurs couples.</li>
+              <li>Ils peuvent être jaloux de leur monde intérieur. Leurs partenaires qui y ont accès y trouvent une vision remarquable de la réalité.</li>
+              <li>Les Cinq détestent être englobés émotionnellement. La dépendance émotionnelle les rend froids et distants.</li>
+              <li>Ce couple Cinq-Neuf semble marquer une préférence pour la communication non verbale. Ils comprennent l&#x27;autre sans demande explicite.</li>
+              <li>Les Cinq ne peuvent endurer la dépendance émotionnelle et deviennent froids et distants si leur partenaire entretient des attentes injustifiées.</li>
+              <li>Leurs goûts sont délicats. Ascétiques et esthétiques : un simple pouf dans une pièce vide, une bouchée d&#x27;un mets raffiné.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>📡 Signaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Signaux positifs : explorateurs érudits, sages et réfléchis des domaines de l&#x27;esprit. Calmes et lucides en période de crise.</li>
+              <li>On peut se confier à eux en toute confiance. Grande délicatesse de perception dans leurs relations.</li>
+              <li>Signaux négatifs : leurs partenaires peuvent se sentir déconnectés, négligés ou paralysés.</li>
+              <li>Les besoins d&#x27;intimité des Cinq sont perçus comme des signes de rejet. Leur silence est perçu comme un aveu de culpabilité.</li>
+              <li>Manifestent leur sang-froid en se réservant du temps, de l&#x27;espace, de l&#x27;énergie et des moyens d&#x27;accéder à eux-mêmes.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>💼 Au travail</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Les Cinq apprécient un environnement de travail protégé. Craignent d&#x27;être dérangés et leurs contacts avec l&#x27;extérieur sont limités.</li>
+              <li>Apprécient que leurs activités soient planifiées. Travaillent avec méthode.</li>
+              <li>Si des difficultés surviennent, les Cinq pourraient essayer d&#x27;éviter des confrontations en adoptant une attitude de froideur.</li>
+              <li>Les Cinq mal dans leur peau peuvent, en court-circuitant l&#x27;information, paralyser tout un service.</li>
+              <li>Finalement mis au pied du mur, ils diront exactement ce qu&#x27;ils pensent de façon brutale.</li>
+              <li>Opèrent typiquement par contrôle à distance. Les réunions n&#x27;abordent qu&#x27;un sujet à la fois.</li>
+              <li>Les Observateurs préfèrent présenter des projets originaux et bien conçus que d&#x27;autres transformeront ensuite en systèmes réalisables.</li>
+              <li>La mise à jour des informations est une façon neutre pour les Cinq de montrer qu&#x27;ils sont présents.</li>
+              <li>Les Cinq négocient mieux quand ils savent d&#x27;avance sous quelle forme présenter leur point de vue.</li>
+              <li>Leur productivité semble obéir au principe d&#x27;inertie : un corps en mouvement tend à le demeurer.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
   <div class="typeNavBottom">
     <a href="type4.html" class="prev">
       <span class="navLabel">Type pr&eacute;c&eacute;dent</span>
@@ -1439,6 +1621,7 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
         {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
         {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
         {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+        {btn: qs('#tab-palmer'), panel: qs('#panel-palmer'), key:'palmer'},
       ];
       tabs.forEach(t=>{
         const on = (t.key === id);
@@ -1446,7 +1629,7 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      qs('#barInfo').textContent = id === 'profil' ? 'Type 5 • Profil complet' : (id === 'soustypes' ? 'Type 5 • Sous-types' : 'Type 5 • Niveaux de développement');
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 5 • Profil complet' : (id === 'soustypes' ? 'Type 5 • Sous-types' : (id === 'niveaux' ? 'Type 5 • Niveaux de développement' : 'Type 5 • Selon Palmer'));
     }
 
     function applySearchFilter(term){
@@ -1507,9 +1690,11 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
 
     function nextAction(){
       const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
-                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' :
+                  (qs('#tab-niveaux').getAttribute('aria-selected') === 'true' ? 'niveaux' : 'palmer'));
       if(tab === 'profil'){ setActiveTab('soustypes'); return; }
       if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      if(tab === 'niveaux'){ setActiveTab('palmer'); return; }
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
@@ -1525,6 +1710,7 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
     qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#tab-palmer').addEventListener('click', ()=>setActiveTab('palmer'));
     qs('#nextBtn').addEventListener('click', nextAction);
     qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
 
@@ -1549,7 +1735,7 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
     initTop3Chip();
 
     const initTab = getParam('tab') || 'profil';
-    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+    setActiveTab(['profil','soustypes','niveaux','palmer'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{
       try{ return localStorage.getItem('type5_lvl') || '1'; }catch(e){ return '1'; }

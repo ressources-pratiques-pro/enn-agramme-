@@ -637,6 +637,66 @@
       .rt{max-width:100%;font-size:15px;line-height:1.84}
     }
 
+
+    /* Palmer tab styles */
+    .palmerQuote{
+      padding:16px 20px;
+      margin-bottom:12px;
+      border-left:4px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
+      border-radius:0 12px 12px 0;
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(255,255,255,.85);
+    }
+    .palmerMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .palmerChip{
+      padding:4px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:700;
+      font-family:ui-sans-serif,system-ui,sans-serif;
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .palmerChip.travers{background:rgba(251,113,133,.12);color:#fb7185;border-color:rgba(251,113,133,.25)}
+    .palmerChip.essence{background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)}
+    .palmerSousTypes{
+      padding:10px 16px;
+      margin-bottom:16px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      line-height:1.5;
+    }
+    .palmerSousTypes strong{color:rgba(255,255,255,.9)}
+    .palmerSection{margin-bottom:2px}
+    .palmerSection .content{padding:4px 8px 16px}
+    .palmerList{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .palmerList li{
+      position:relative;
+      padding:8px 8px 8px 24px;
+      font-size:14px;
+      line-height:1.65;
+      color:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .palmerList li:last-child{border-bottom:none}
+    .palmerList li::before{
+      content:"—";
+      position:absolute;
+      left:4px;
+      color:rgba(255,255,255,.3);
+      font-weight:700;
+    }
   </style>
 </head>
 
@@ -682,6 +742,7 @@
           <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
           <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
           <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+          <button class="tab" id="tab-palmer" role="tab" aria-selected="false" aria-controls="panel-palmer">Selon Palmer</button>
         </div>
       </div>
     </div>
@@ -1092,6 +1153,127 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
       </section>
     </div>
 
+
+      <section id="panel-palmer" role="tabpanel" aria-labelledby="tab-palmer" hidden>
+        <div class="palmerQuote"><em>« Je suis ce que je réalise. L&#x27;image de réussite est primordiale. »</em></div>
+        <div class="palmerMeta"><span class="palmerChip">Trois</span><span class="palmerChip travers">Tromperie / Vanité</span><span class="palmerChip essence">Espoir / Honnêteté</span></div>
+        <div class="palmerSousTypes"><strong>Sous-types :</strong> Image (tête-à-tête) · Prestige (social) · Sécurité matérielle (survie)</div>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>📋 Penchants &amp; Préoccupations</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Résultats, productivité et performance.</li>
+              <li>Sens de la compétition et efficacité. Évite les échecs.</li>
+              <li>Vie émotionnelle compartimentée.</li>
+              <li>Pensée convergente : les différentes parties du moi sont dirigées vers un seul but.</li>
+              <li>« Je suis ce que je fais. » Il y a confusion entre le moi réel et le moi qui travaille.</li>
+              <li>Apprend à jouer des sentiments, prend l&#x27;apparence du rôle et passe en mode acteur.</li>
+              <li>Caméléon qui peut changer d&#x27;image en fonction de l&#x27;interlocuteur.</li>
+              <li>Peut commencer à croire à l&#x27;image qu&#x27;il donne.</li>
+              <li>Efficient et bien en vue au travail. Sensible au statut. Veut être le premier en tout.</li>
+              <li>L&#x27;amour doit être gagné par ses exploits et son image.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>❓ Questions cruciales</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>La suspension des sentiments : les Trois apprennent à fonctionner sans sentiments dans le contexte professionnel.</li>
+              <li>Ils sont angoissés quand leurs collaborateurs s&#x27;attachent aux détails ou évoquent leur vie privée au bureau.</li>
+              <li>Les seuls sentiments que tolèrent les Trois sont ceux concernant l&#x27;esprit d&#x27;équipe.</li>
+              <li>L&#x27;échec est vécu comme une menace existentielle. La peur de l&#x27;échec polarise les Trois.</li>
+              <li>Peuvent réagir trop rapidement à une menace imminente : vouloir changer de cap pour s&#x27;assurer des profits à court terme.</li>
+              <li>Sont contestataires et peuvent ruer dans les brancards lors d&#x27;une phase de consolidation.</li>
+              <li>Leur esprit de compétition peut ressembler à l&#x27;attitude égoïste de celui qui veut vaincre à tout prix.</li>
+              <li>La reconnaissance publique est essentielle. Ils ont besoin de savoir que leurs mérites sont reconnus.</li>
+              <li>Peuvent devenir particulièrement efficaces quand ils se consacrent à une tâche commune.</li>
+              <li>Deux Trois travaillant ensemble peuvent former un duo invincible quand leurs objectifs coïncident.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>⇆ Sécurité &amp; Stress</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Sécurité (→ Six) : les Trois se stabilisent. Ils intègrent un esprit d&#x27;équipe et une loyauté envers le groupe.</li>
+              <li>En sécurité, ils deviennent plus attentifs aux besoins des autres et moins focalisés sur leur propre performance.</li>
+              <li>Stress (→ Neuf) : ils peuvent sembler désengagés, procrastiner ou s&#x27;endormir sur leurs lauriers.</li>
+              <li>Sous stress, l&#x27;efficacité habituelle cède la place à l&#x27;inertie. Ils multiplient les activités sans se concentrer.</li>
+              <li>Le stress révèle une fatigue profonde liée à années à performer pour maintenir une image.</li>
+              <li>La déconnexion entre leur image et leur ressenti intérieur devient alors plus visible.</li>
+              <li>Pour se transformer, les Trois doivent apprendre à distinguer ce qu&#x27;ils font de ce qu&#x27;ils sont.</li>
+              <li>La connexion avec les sentiments authentiques est la clé de leur développement personnel.</li>
+              <li>L&#x27;espoir, qualité de l&#x27;essence, revient quand ils cessent de confondre accomplissement et valeur personnelle.</li>
+              <li>Le Trois développé allie efficacité et authenticité émotionnelle.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>❤ Vie affective</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Le travail est souvent le centre de ses préoccupations : ses sentiments sont mis en veilleuse pendant l&#x27;accomplissement de ses tâches.</li>
+              <li>Les Battants semblent toujours préoccupés par leur travail, même dans les instants d&#x27;intimité.</li>
+              <li>Cette dérive de l&#x27;attention peut irriter leurs partenaires, qui ont un grand besoin de contacts intimes.</li>
+              <li>Les partenaires semblent n&#x27;avoir jamais assez d&#x27;attention de la part des Trois.</li>
+              <li>Les états d&#x27;âme et les sentiments suspendus sont à l&#x27;origine des principales difficultés du couple.</li>
+              <li>Les Quatre sont en manque d&#x27;affection tandis que les Trois jurent de leur consacrer plus de temps et tiennent rarement leurs promesses.</li>
+              <li>Les partenaires Quatre ont de la difficulté à s&#x27;imaginer une vie de couple avec une intimité a minima.</li>
+              <li>Ils sont rarement absents pour cause de maladie et pensent que les sentiments ne devraient pas intervenir tant que le travail n&#x27;est pas achevé.</li>
+              <li>Quand leur équipe a réussi, ils penseront à organiser une fête pour célébrer le succès. Sont généreux dans la réussite partagée.</li>
+              <li>Pour le couple, il faudrait intégrer suffisamment d&#x27;exutoires émotionnels pour que les deux partenaires se sentent heureux.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>📡 Signaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Signaux positifs : efficaces, énergiques, bons leaders, capables de reprendre en main une entreprise chancelante.</li>
+              <li>Peuvent mobiliser leurs forces contre un concurrent. Performent dans les situations d&#x27;urgence.</li>
+              <li>Signaux négatifs : peuvent sacrifier l&#x27;authenticité à l&#x27;image. Peuvent se leurrer eux-mêmes en croyant au rôle qu&#x27;ils jouent.</li>
+              <li>Dans les couples, peuvent donner l&#x27;impression d&#x27;être toujours « ailleurs ». Peu disponibles émotionnellement.</li>
+              <li>Leur compétitivité peut nuire à la cohésion d&#x27;équipe s&#x27;ils valorisent les exploits personnels au détriment de la coopération.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>💼 Au travail</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Efficient et bien en vue. Sensible au statut. Veut être le premier et être vu.</li>
+              <li>Adoptent l&#x27;allure ambiante et imiteront le modèle jugé optimal dans leur milieu de travail.</li>
+              <li>S&#x27;il y a collaboration, les Trois vont collaborer de leur mieux. S&#x27;il y a compétition, ils deviennent de redoutables concurrents.</li>
+              <li>Recherchent les postes leur permettant d&#x27;évoluer. Les conditions d&#x27;avancement devraient être claires.</li>
+              <li>Pour bien travailler avec des Trois : reconnaître leurs mérites, éviter de les mettre en concurrence.</li>
+              <li>L&#x27;entreprise devrait prôner l&#x27;esprit d&#x27;équipe ; sa structure devrait reposer sur une collaboration efficace.</li>
+              <li>Il faudrait leur confier l&#x27;entière responsabilité d&#x27;un travail dans leur domaine.</li>
+              <li>Les Trois devraient être encouragés à échanger des informations en donnant l&#x27;exemple d&#x27;une collaboration valorisant les succès d&#x27;équipe.</li>
+              <li>Polarisés par l&#x27;échec, peuvent réagir trop rapidement à une menace. Pas à leur affaire lors de planifications à long terme.</li>
+              <li>Deux Trois ensemble : duo invincible si objectifs coïncident, mais risque de superficialité dans l&#x27;exécution.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
   <div class="typeNavBottom">
     <a href="type2.html" class="prev">
       <span class="navLabel">Type pr&eacute;c&eacute;dent</span>
@@ -1446,6 +1628,7 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
         {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
         {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
         {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+        {btn: qs('#tab-palmer'), panel: qs('#panel-palmer'), key:'palmer'},
       ];
       tabs.forEach(t=>{
         const on = (t.key === id);
@@ -1453,7 +1636,7 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      qs('#barInfo').textContent = id === 'profil' ? 'Type 3 • Profil complet' : (id === 'soustypes' ? 'Type 3 • Sous-types' : 'Type 3 • Niveaux de développement');
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 3 • Profil complet' : (id === 'soustypes' ? 'Type 3 • Sous-types' : (id === 'niveaux' ? 'Type 3 • Niveaux de développement' : 'Type 3 • Selon Palmer'));
     }
 
     function applySearchFilter(term){
@@ -1514,9 +1697,11 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
 
     function nextAction(){
       const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
-                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' :
+                  (qs('#tab-niveaux').getAttribute('aria-selected') === 'true' ? 'niveaux' : 'palmer'));
       if(tab === 'profil'){ setActiveTab('soustypes'); return; }
       if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      if(tab === 'niveaux'){ setActiveTab('palmer'); return; }
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
@@ -1532,6 +1717,7 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
     qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#tab-palmer').addEventListener('click', ()=>setActiveTab('palmer'));
     qs('#nextBtn').addEventListener('click', nextAction);
     qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
 
@@ -1556,7 +1742,7 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
     initTop3Chip();
 
     const initTab = getParam('tab') || 'profil';
-    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+    setActiveTab(['profil','soustypes','niveaux','palmer'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{
       try{ return localStorage.getItem('type3_lvl') || '1'; }catch(e){ return '1'; }

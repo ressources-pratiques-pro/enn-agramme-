@@ -641,6 +641,66 @@
       .rt{max-width:100%;font-size:15px;line-height:1.84}
     }
 
+
+    /* Palmer tab styles */
+    .palmerQuote{
+      padding:16px 20px;
+      margin-bottom:12px;
+      border-left:4px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
+      border-radius:0 12px 12px 0;
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(255,255,255,.85);
+    }
+    .palmerMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .palmerChip{
+      padding:4px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:700;
+      font-family:ui-sans-serif,system-ui,sans-serif;
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .palmerChip.travers{background:rgba(251,113,133,.12);color:#fb7185;border-color:rgba(251,113,133,.25)}
+    .palmerChip.essence{background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)}
+    .palmerSousTypes{
+      padding:10px 16px;
+      margin-bottom:16px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      line-height:1.5;
+    }
+    .palmerSousTypes strong{color:rgba(255,255,255,.9)}
+    .palmerSection{margin-bottom:2px}
+    .palmerSection .content{padding:4px 8px 16px}
+    .palmerList{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .palmerList li{
+      position:relative;
+      padding:8px 8px 8px 24px;
+      font-size:14px;
+      line-height:1.65;
+      color:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .palmerList li:last-child{border-bottom:none}
+    .palmerList li::before{
+      content:"—";
+      position:absolute;
+      left:4px;
+      color:rgba(255,255,255,.3);
+      font-weight:700;
+    }
   </style>
 </head>
 
@@ -686,6 +746,7 @@
           <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
           <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
           <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+          <button class="tab" id="tab-palmer" role="tab" aria-selected="false" aria-controls="panel-palmer">Selon Palmer</button>
         </div>
       </div>
     </div>
@@ -1126,6 +1187,127 @@ Apprendre à faire confiance, à déléguer, à écouter sans interrompre et à 
       </section>
     </div>
 
+
+      <section id="panel-palmer" role="tabpanel" aria-labelledby="tab-palmer" hidden>
+        <div class="palmerQuote"><em>« Le monde est injuste. Je dois être fort pour protéger les miens. »</em></div>
+        <div class="palmerMeta"><span class="palmerChip">Huit</span><span class="palmerChip travers">Luxure / Excès</span><span class="palmerChip essence">Vérité / Innocence</span></div>
+        <div class="palmerSousTypes"><strong>Sous-types :</strong> Possession (tête-à-tête) · Amitié/Loyauté (social) · Survie/Puissance (survie)</div>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>📋 Penchants &amp; Préoccupations</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Plus concentrés sur la victoire que sur l&#x27;image du vainqueur.</li>
+              <li>Se retrouvent souvent à des postes de direction, car ils détestent être dirigés.</li>
+              <li>Sont souvent créateurs d&#x27;entreprises. Leur énergie est appréciée dans les cycles de croissance.</li>
+              <li>Cherchent à défier ce qui les mécontente plutôt que d&#x27;explorer leurs motivations intérieures.</li>
+              <li>Leur amour est très différent de leur style professionnel : affectueux, réconfortants et aimant les confidences à la maison.</li>
+              <li>N&#x27;ont pas peur des conflits et continuent à avancer sous le feu de la concurrence.</li>
+              <li>Les Huit attachent de la valeur à la loyauté. Savent reconnaître et récompenser ceux qui sont fidèles.</li>
+              <li>Font rarement le premier pas quand ils ne sont pas sûrs des résultats.</li>
+              <li>Ont plus de facilité à être de solides soutiens qu&#x27;à s&#x27;aventurer dans un domaine émotionnel inconnu.</li>
+              <li>La colère ne signifie pas nécessairement que vos sentiments sont heurtés. On ne se sépare pas juste parce qu&#x27;on n&#x27;est pas d&#x27;humeur à se parler.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>❓ Questions cruciales</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Une association de deux Huit annonce presque à coup sûr une lutte de pouvoir.</li>
+              <li>Il ne peut y avoir qu&#x27;un seul vrai Huit dans un ménage, car les confrontations pourraient s&#x27;aggraver.</li>
+              <li>Les couples de longue date semblent généralement composés d&#x27;un Huit affirmé et d&#x27;un partenaire qui va sur ses flèches Cinq ou Deux.</li>
+              <li>Les Huit, en amour, sont très différents de ceux que l&#x27;on rencontre dans les milieux professionnels.</li>
+              <li>L&#x27;affection fait apparaître les aspects réceptifs et vulnérables de leur profil.</li>
+              <li>Il faudrait que les partenaires arrivent à se sonder intérieurement. Cherchent à l&#x27;extérieur ce qu&#x27;ils pourraient chercher à l&#x27;intérieur.</li>
+              <li>Si l&#x27;un des Huit entre dans un processus d&#x27;observation de lui-même, l&#x27;autre peut assumer le rôle de protecteur.</li>
+              <li>Leur loyauté s&#x27;exprime surtout dans l&#x27;adversité. La fidélité est leur langage d&#x27;amour principal.</li>
+              <li>Dans leurs relations, les Huit valorisent la franchise totale. Les demi-vérités sont perçues comme une trahison.</li>
+              <li>Leur stéréotype : un vif mélange de colère et de sexe. La confrontation peut rapprocher les partenaires.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>⇆ Sécurité &amp; Stress</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Sécurité (→ Deux) : les Huit deviennent plus doux, plus attentifs aux besoins des autres, plus capables de recevoir.</li>
+              <li>En sécurité, ils révèlent une chaleur et une générosité souvent insoupçonnées.</li>
+              <li>Stress (→ Cinq) : les Huit se retirent, deviennent secrets, observateurs distants.</li>
+              <li>Sous stress, leur énergie habituellement déployée vers l&#x27;extérieur se retourne vers l&#x27;intérieur.</li>
+              <li>La vérité, leur qualité de l&#x27;essence, revient quand ils cessent de se battre pour le contrôle.</li>
+              <li>L&#x27;innocence — voir le monde avec fraîcheur, sans la peur d&#x27;être trahis — est leur développement spirituel.</li>
+              <li>Pour se développer, les Huit doivent apprendre à reconnaître leur vulnérabilité sans la percevoir comme une faiblesse.</li>
+              <li>La colère et la sexualité peuvent être des moyens d&#x27;expression constructifs, à l&#x27;opposé de leurs tendances naturelles à taire leurs sentiments.</li>
+              <li>Les Huit font partie de ceux qui, ayant tout réussi, restent insatisfaits et sont attirés par l&#x27;Ennéagramme pour un développement spirituel.</li>
+              <li>Le Huit développé allie force, loyauté et capacité à s&#x27;ouvrir émotionnellement.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>❤ Vie affective</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Les Huit sont plus concentrés sur la victoire que sur l&#x27;image du vainqueur.</li>
+              <li>En amour, ils sont très différents : sociables, réconfortants, aimant les confidences.</li>
+              <li>Le stéréotype : vif mélange de colère et de sexe. Mais avec le temps, les conflits peuvent rapprocher.</li>
+              <li>C&#x27;est moins une question d&#x27;avoir raison que de dégager suffisamment d&#x27;énergie pour se sentir vibrer et vivre.</li>
+              <li>Les Huit en couple ont compris que les conflits pouvaient les rapprocher.</li>
+              <li>La combinaison la plus courante : un Huit affirmé et un partenaire plus en retrait, semblable au Cinq ou au Deux.</li>
+              <li>À la maison, le Huit est souvent confondu avec le Deux : sociable, réconfortant, aimant que les gens se confient à lui.</li>
+              <li>Il faudrait que les partenaires arrivent à se sonder intérieurement.</li>
+              <li>Les Huit font rarement le premier pas quand ils ne sont pas sûrs des résultats.</li>
+              <li>Les vieux couples n&#x27;hésitent pas à dire que la colère et la sexualité ont été des moyens d&#x27;expression constructifs.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>📡 Signaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Signaux positifs : forts, directs, protecteurs des personnes vulnérables. Valorisent la loyauté et l&#x27;honnêteté.</li>
+              <li>Capables de mobiliser une équipe en situation de crise. Inspirent confiance et respect.</li>
+              <li>Signaux négatifs : peuvent être intimidants, voire dominateurs. Leur besoin de contrôle peut étouffer les autres.</li>
+              <li>Sont tant respectés que craints dans leur milieu professionnel.</li>
+              <li>Leur franchise peut blesser sans qu&#x27;ils s&#x27;en rendent compte. Leur puissance naturelle intimide les personnalités plus douces.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>💼 Au travail</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Les Huit sont plus concentrés sur la victoire que sur l&#x27;image du vainqueur.</li>
+              <li>Se retrouvent souvent à des postes de direction, car ils détestent être dirigés.</li>
+              <li>Leur énergie est appréciée dans les cycles de croissance. N&#x27;ont pas peur des conflits.</li>
+              <li>Une association de deux Huit annonce presque à coup sûr une lutte de pouvoir.</li>
+              <li>Les subordonnés Huit, exigeants sur la qualité de la direction, analyseront de près la loyauté du dirigeant.</li>
+              <li>Il est recommandé que des limites soient définies et que les conséquences de leur dépassement soient bien connues.</li>
+              <li>Privés de règlement intérieur, le Huit pourrait se sentir menacé et refuser de collaborer pleinement.</li>
+              <li>Les Huit indiscrets recherchent le contact. Ils valorisent la présence physique et l&#x27;information directe.</li>
+              <li>Quel que soit celui qui porte le titre de dirigeant, les Huit s&#x27;imposeront si le leadership leur semble défaillant.</li>
+              <li>Quand les Huit entrent en action, les Cinq sont protégés des conflits. En travaillant avec des Cinq, les Huit apprennent à réfléchir avant d&#x27;agir.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
   <div class="typeNavBottom">
     <a href="type7.html" class="prev">
       <span class="navLabel">Type pr&eacute;c&eacute;dent</span>
@@ -1470,6 +1652,7 @@ Analogie : Le Type 8 est comme un volcan : le Huit Survie est la lave qui constr
         {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
         {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
         {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+        {btn: qs('#tab-palmer'), panel: qs('#panel-palmer'), key:'palmer'},
       ];
       tabs.forEach(t=>{
         const on = (t.key === id);
@@ -1477,7 +1660,7 @@ Analogie : Le Type 8 est comme un volcan : le Huit Survie est la lave qui constr
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      qs('#barInfo').textContent = id === 'profil' ? 'Type 8 • Profil complet' : (id === 'soustypes' ? 'Type 8 • Sous-types' : 'Type 8 • Niveaux de développement');
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 8 • Profil complet' : (id === 'soustypes' ? 'Type 8 • Sous-types' : (id === 'niveaux' ? 'Type 8 • Niveaux de développement' : 'Type 8 • Selon Palmer'));
     }
 
     function applySearchFilter(term){
@@ -1538,9 +1721,11 @@ Analogie : Le Type 8 est comme un volcan : le Huit Survie est la lave qui constr
 
     function nextAction(){
       const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
-                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' :
+                  (qs('#tab-niveaux').getAttribute('aria-selected') === 'true' ? 'niveaux' : 'palmer'));
       if(tab === 'profil'){ setActiveTab('soustypes'); return; }
       if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      if(tab === 'niveaux'){ setActiveTab('palmer'); return; }
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
@@ -1556,6 +1741,7 @@ Analogie : Le Type 8 est comme un volcan : le Huit Survie est la lave qui constr
     qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#tab-palmer').addEventListener('click', ()=>setActiveTab('palmer'));
     qs('#nextBtn').addEventListener('click', nextAction);
     qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
 
@@ -1580,7 +1766,7 @@ Analogie : Le Type 8 est comme un volcan : le Huit Survie est la lave qui constr
     initTop3Chip();
 
     const initTab = getParam('tab') || 'profil';
-    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+    setActiveTab(['profil','soustypes','niveaux','palmer'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{
       try{ return localStorage.getItem('type8_lvl') || '1'; }catch(e){ return '1'; }

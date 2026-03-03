@@ -637,6 +637,66 @@
       .rt{max-width:100%;font-size:15px;line-height:1.84}
     }
 
+
+    /* Palmer tab styles */
+    .palmerQuote{
+      padding:16px 20px;
+      margin-bottom:12px;
+      border-left:4px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
+      border-radius:0 12px 12px 0;
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(255,255,255,.85);
+    }
+    .palmerMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .palmerChip{
+      padding:4px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:700;
+      font-family:ui-sans-serif,system-ui,sans-serif;
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .palmerChip.travers{background:rgba(251,113,133,.12);color:#fb7185;border-color:rgba(251,113,133,.25)}
+    .palmerChip.essence{background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)}
+    .palmerSousTypes{
+      padding:10px 16px;
+      margin-bottom:16px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      line-height:1.5;
+    }
+    .palmerSousTypes strong{color:rgba(255,255,255,.9)}
+    .palmerSection{margin-bottom:2px}
+    .palmerSection .content{padding:4px 8px 16px}
+    .palmerList{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .palmerList li{
+      position:relative;
+      padding:8px 8px 8px 24px;
+      font-size:14px;
+      line-height:1.65;
+      color:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .palmerList li:last-child{border-bottom:none}
+    .palmerList li::before{
+      content:"—";
+      position:absolute;
+      left:4px;
+      color:rgba(255,255,255,.3);
+      font-weight:700;
+    }
   </style>
 </head>
 
@@ -682,6 +742,7 @@
           <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
           <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
           <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+          <button class="tab" id="tab-palmer" role="tab" aria-selected="false" aria-controls="panel-palmer">Selon Palmer</button>
         </div>
       </div>
     </div>
@@ -1105,6 +1166,129 @@ Apprendre que la perfection est un processus et non un état final, et accepter 
     </div>
   </div>
 
+
+      <section id="panel-palmer" role="tabpanel" aria-labelledby="tab-palmer" hidden>
+        <div class="palmerQuote"><em>« Le monde est imparfait. J&#x27;essaie d&#x27;atteindre la perfection. »</em></div>
+        <div class="palmerMeta"><span class="palmerChip">Un</span><span class="palmerChip travers">Ressentiment / Colère</span><span class="palmerChip essence">Perfection / Sérénité</span></div>
+        <div class="palmerSousTypes"><strong>Sous-types :</strong> Jalousie (tête-à-tête) · Inadaptabilité (social) · Anxiété (survie)</div>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>📋 Penchants &amp; Préoccupations</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Travaille en essayant d&#x27;atteindre la perfection. Évite les erreurs.</li>
+              <li>L&#x27;abnégation fait monter la colère. Les besoins non satisfaits génèrent du ressentiment.</li>
+              <li>Trouve une soupape à sa colère en corrigeant les erreurs et en défendant des causes sociales.</li>
+              <li>Manifeste sa colère dans trois domaines : jalousie (tête-à-tête), inadaptabilité (social), anxiété (survie).</li>
+              <li>Cherche à être éthiquement irréprochable. Consciencieux. Contrôle ses propres actions.</li>
+              <li>Pense bien ! Des pensées moralisatrices bloquent ses sentiments réels. « Je devrais, je dois, j&#x27;aurais dû. »</li>
+              <li>Agis bien ! Admire les vertus pratiques : le travail, l&#x27;honnêteté et l&#x27;effort.</li>
+              <li>Sois juste ! Se critique sévèrement quand il juge ses propres actions : surmoi impitoyable.</li>
+              <li>Se sent coupable de ne pas atteindre les hauts critères moraux qu&#x27;il s&#x27;est fixés.</li>
+              <li>A de la difficulté à percevoir les signes avant-coureurs de la colère. « Non, je ne suis pas fâché, je me sens seulement plein d&#x27;énergie. »</li>
+              <li>L&#x27;autocritique se mue en autodéfense pour critiquer les autres.</li>
+              <li>Dirige par l&#x27;exemplarité. Garant de l&#x27;éthique, essaie de faire respecter les normes.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>❓ Questions cruciales</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>La colère justifiée : on sait que la colère va éclater dès que les Un se raidissent physiquement et deviennent exagérément polis.</li>
+              <li>Quand la colère se déclenche, elle sera justifiée. Les Un doivent pouvoir expliquer leur colère, qui s&#x27;accompagne du souvenir des injustices subies.</li>
+              <li>Le pardon serait comme nier les faits reprochés. Si l&#x27;on pardonne, l&#x27;erreur précédemment commise pourrait se reproduire.</li>
+              <li>Maîtrise des émotions : on n&#x27;a pas permis aux Un d&#x27;exprimer leurs « mauvaises émotions ». Ils ont donc peur de ne pas pouvoir se contrôler.</li>
+              <li>Les sentiments refoulés prennent une importance accrue. L&#x27;autodiscipline et la maîtrise des émotions ont été placées au rang des vertus.</li>
+              <li>Tendances compulsives : le temps libre est source d&#x27;angoisse. Une activité débordante le remplit.</li>
+              <li>Le dilemme entre ce que l&#x27;on veut et ce qui est juste rend les décisions difficiles. Un choix judicieux devrait tenir compte de tous les aspects.</li>
+              <li>Les Un préfèrent ne pas être seuls à émettre une critique, de peur de dire une bêtise. Leur confiance est renforcée si quelqu&#x27;un d&#x27;autre prend la parole.</li>
+              <li>Repousser l&#x27;échéance : retravailler les données « pour être tout à fait sûr » ne ressemble pas à de la procrastination pour le Un.</li>
+              <li>Les Un saints : certains Un convaincus d&#x27;agir correctement ont dépassé l&#x27;autocritique et se comparent favorablement aux autres.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>⇆ Sécurité &amp; Stress</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Sécurité (→ Sept) : les préoccupations habituelles se détendent. On se relaxe plus facilement, on diminue son rythme au profit des loisirs.</li>
+              <li>Le passage au point Sept se fait naturellement quand l&#x27;environnement change. Les Un sont connus pour être radicalement différents en vacances.</li>
+              <li>Le côté négatif du point Sept : désir de tout posséder, colère issue d&#x27;années de privations. Une rébellion narcissique peut se déclencher.</li>
+              <li>Stress (→ Quatre) : le temps libre provoque l&#x27;angoisse, le travail devient compulsif, le plaisir est exclu. L&#x27;autocritique devient plus punitive.</li>
+              <li>Si le stress s&#x27;installe, leur attention se tourne vers les préoccupations des Quatre. Ils peuvent devenir paralysés par la dépression.</li>
+              <li>En état de choc, ils réalisent que la bonne conduite et le surmenage ne garantissent ni le succès ni le bonheur.</li>
+              <li>Le bon côté du stress : découverte que des besoins émotionnels enfouis doivent avoir leur part dans la prise de décision.</li>
+              <li>Au point Quatre, ce que l&#x27;on « devrait faire » est moins important que de découvrir ce que l&#x27;on voudrait faire.</li>
+              <li>Questions libératrices au point Quatre : « Quels sont mes vrais sentiments ? Quel travail m&#x27;inspirerait ? Quel genre de vie me séduirait ? »</li>
+              <li>Le Un développé allie le penchant du Quatre pour la différence, la tranquillité du Sept et la rigueur du Perfectionniste.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>❤ Vie affective</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Ce couple peut s&#x27;évertuer à mener un style de vie parfait. Les projets cimentent ce couple, mais le travail d&#x27;équipe favorise l&#x27;action plutôt que les sentiments.</li>
+              <li>Les manifestations de tendresse peuvent passer après les activités professionnelles. L&#x27;amour se manifeste autant dans l&#x27;effort que par les sentiments.</li>
+              <li>Un couple de Perfectionnistes accepte la critique. Critiquer celui que l&#x27;on aime est une façon de s&#x27;investir dans la relation.</li>
+              <li>Un conflit entre deux Un se développe lentement, se manifeste par une prise de bec explosive, se prolonge par une trêve silencieuse et se termine par une réconciliation progressive.</li>
+              <li>Une saine querelle fait du bien à ce couple. Dès que la relation admet l&#x27;expression de la colère, la sensation d&#x27;étouffement disparaît.</li>
+              <li>Les vieux couples de Un affirment qu&#x27;un profond attachement dépend de la faculté de se quereller et que les manifestations de colère sont des actes de foi.</li>
+              <li>Le plaisir peut angoisser les Un. Les devoirs passent avant le confort. Le temps libre est source de soucis.</li>
+              <li>Un partenaire peut aider le Un en prenant l&#x27;initiative des loisirs ou en organisant un mode de vie plus détendu.</li>
+              <li>Quand les Un s&#x27;engagent dans des activités extérieures, ils cesseront de soutenir le couple. Les corvées peuvent poser des problèmes.</li>
+              <li>Loin de chez lui, le Un change radicalement — comme le gamin qui a fini ses devoirs et peut sortir jouer.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>📡 Signaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Signaux positifs : consciencieux, éthique élevée, travailleur, bon sens de l&#x27;organisation, critique constructif.</li>
+              <li>Ont une intuition de comment les choses pourraient être à leur mieux. Défenseurs de causes importantes.</li>
+              <li>Signaux négatifs : rigidité, difficulté à se détendre, surmoi impitoyable, tendance à trouver des défauts chez les autres.</li>
+              <li>Pensée à sens unique : le bien ou le mal, noir ou blanc, sans nuance. Peut mettre les autres mal à l&#x27;aise.</li>
+              <li>Leur tension intérieure peut ressembler à de l&#x27;énergie positive à leurs yeux, alors qu&#x27;elle est perçue comme de la colère par les autres.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>💼 Au travail</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Les Un se recherchent souvent entre eux. Ça les soulage de retrouver quelqu&#x27;un qui comprend la nécessité de bien faire les choses.</li>
+              <li>Travaillent bien en équipe quand les autres sont motivés et bien entraînés. Adorent le travail bien fait.</li>
+              <li>Voient facilement les détails, les raisonnements foireux et les points faibles d&#x27;un plan, mais préfèrent ne pas être seuls à émettre une critique.</li>
+              <li>Un travail adéquat ne suffit pas ; il doit être absolument irréprochable. Peuvent se transformer en obstacles quand le perfectionnisme prend le dessus.</li>
+              <li>Si l&#x27;équipe est faible, les Un peuvent retenir leurs efforts. Insistez sur le développement des aptitudes plutôt que sur la compétition.</li>
+              <li>Dirige par l&#x27;exemplarité. Établissent des plans précis et à long terme. Garants de l&#x27;éthique.</li>
+              <li>Leur participation sera affectée s&#x27;il y a dans l&#x27;équipe une forte tête qui se met en avant.</li>
+              <li>Peuvent avoir du mal à prendre certaines décisions, de peur de se tromper.</li>
+              <li>Leur façon méticuleuse et chronophage d&#x27;aborder les problèmes peut amener chez les autres de la frustration.</li>
+              <li>Les Un au mieux quand leur énergie et leur rendement sont mis au service de personnes qu&#x27;ils respectent.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
   <div class="typeNavBottom">
     <a href="type9.html" class="prev">
       <span class="navLabel">Type pr&eacute;c&eacute;dent</span>
@@ -1473,6 +1657,7 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
         {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
         {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
         {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+        {btn: qs('#tab-palmer'), panel: qs('#panel-palmer'), key:'palmer'},
       ];
       tabs.forEach(t=>{
         const on = (t.key === id);
@@ -1480,7 +1665,7 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      qs('#barInfo').textContent = id === 'profil' ? 'Type 1 • Profil complet' : (id === 'soustypes' ? 'Type 1 • Sous-types' : 'Type 1 • Niveaux de développement');
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 1 • Profil complet' : (id === 'soustypes' ? 'Type 1 • Sous-types' : (id === 'niveaux' ? 'Type 1 • Niveaux de développement' : 'Type 1 • Selon Palmer'));
     }
 
     function applySearchFilter(term){
@@ -1541,9 +1726,11 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
 
     function nextAction(){
       const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
-                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' :
+                  (qs('#tab-niveaux').getAttribute('aria-selected') === 'true' ? 'niveaux' : 'palmer'));
       if(tab === 'profil'){ setActiveTab('soustypes'); return; }
       if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      if(tab === 'niveaux'){ setActiveTab('palmer'); return; }
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
@@ -1570,6 +1757,7 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
     qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#tab-palmer').addEventListener('click', ()=>setActiveTab('palmer'));
 
     // Buttons
     // qs('#startBtn').addEventListener('click', ()=>{
@@ -1603,7 +1791,7 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
     initLinks();
 
     const initTab = getParam('tab') || 'profil';
-    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+    setActiveTab(['profil','soustypes','niveaux','palmer'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{
       try{ return localStorage.getItem('type1_lvl') || '1'; }catch(e){ return '1'; }

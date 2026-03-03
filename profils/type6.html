@@ -641,6 +641,66 @@
       .rt{max-width:100%;font-size:15px;line-height:1.84}
     }
 
+
+    /* Palmer tab styles */
+    .palmerQuote{
+      padding:16px 20px;
+      margin-bottom:12px;
+      border-left:4px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
+      border-radius:0 12px 12px 0;
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(255,255,255,.85);
+    }
+    .palmerMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .palmerChip{
+      padding:4px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:700;
+      font-family:ui-sans-serif,system-ui,sans-serif;
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .palmerChip.travers{background:rgba(251,113,133,.12);color:#fb7185;border-color:rgba(251,113,133,.25)}
+    .palmerChip.essence{background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)}
+    .palmerSousTypes{
+      padding:10px 16px;
+      margin-bottom:16px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      line-height:1.5;
+    }
+    .palmerSousTypes strong{color:rgba(255,255,255,.9)}
+    .palmerSection{margin-bottom:2px}
+    .palmerSection .content{padding:4px 8px 16px}
+    .palmerList{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .palmerList li{
+      position:relative;
+      padding:8px 8px 8px 24px;
+      font-size:14px;
+      line-height:1.65;
+      color:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .palmerList li:last-child{border-bottom:none}
+    .palmerList li::before{
+      content:"—";
+      position:absolute;
+      left:4px;
+      color:rgba(255,255,255,.3);
+      font-weight:700;
+    }
   </style>
 </head>
 
@@ -686,6 +746,7 @@
           <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil">Profil complet</button>
           <button class="tab" id="tab-soustypes" role="tab" aria-selected="false" aria-controls="panel-soustypes">Sous-types</button>
           <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
+          <button class="tab" id="tab-palmer" role="tab" aria-selected="false" aria-controls="panel-palmer">Selon Palmer</button>
         </div>
       </div>
     </div>
@@ -1103,6 +1164,127 @@ Apprendre à écouter sa propre guidance intérieure plutôt que de chercher des
       </section>
     </div>
 
+
+      <section id="panel-palmer" role="tabpanel" aria-labelledby="tab-palmer" hidden>
+        <div class="palmerQuote"><em>« Doute de l&#x27;amour et d&#x27;un avenir serein. A peur de faire confiance et d&#x27;être ensuite trahi. »</em></div>
+        <div class="palmerMeta"><span class="palmerChip">Six</span><span class="palmerChip travers">Lâcheté / Doute</span><span class="palmerChip essence">Courage / Foi</span></div>
+        <div class="palmerSousTypes"><strong>Sous-types :</strong> Chaleur/Beauté (tête-à-tête) · Devoir (social) · Force/Beauté (survie)</div>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>📋 Penchants &amp; Préoccupations</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>A tendance à remettre à plus tard, à cause du doute. La réflexion prend souvent le pas sur l&#x27;action.</li>
+              <li>L&#x27;angoisse est proportionnelle au succès : réussir, c&#x27;est s&#x27;exposer.</li>
+              <li>Tend à oublier les réussites et les satisfactions.</li>
+              <li>Rapports ambivalents avec la hiérarchie : se soumet ou se rebelle contre l&#x27;autorité.</li>
+              <li>Loyal en amour. Recherchent à être rassurés par leurs proches.</li>
+              <li>Ne font pas confiance à la hiérarchie. Au travail, remettent souvent en question les motivations d&#x27;un projet.</li>
+              <li>Utilisé à bon escient, leur esprit inquisiteur contribue à clarifier, à prévoir et à résoudre.</li>
+              <li>Le doute intérieur, quand il est systématique, empêche d&#x27;avancer.</li>
+              <li>Les Six sont vigilants : leur attention est très concentrée et, quand ils sont inquiets, ils cherchent à l&#x27;extérieur l&#x27;explication de leurs incertitudes.</li>
+              <li>« Tiens-tu toujours à moi ? Es-tu certain de ce que tu avances ? Ai-je des raisons de douter ? »</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" open data-search>
+          <summary>
+            <div class="sumTitle"><b>❓ Questions cruciales</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Les projections : les Six cherchent à l&#x27;extérieur l&#x27;explication de leurs incertitudes intérieures. Leur entourage devient subitement plein de signification.</li>
+              <li>Les visages et les gestes semblent suggérer des réponses aux questions inexprimées : « Est-ce que tu m&#x27;aimes ? Suis-je en sécurité ? »</li>
+              <li>Le mot projection est pratiquement synonyme de la tendance craintive des Six.</li>
+              <li>La certitude : les doutes peuvent se calmer si quelqu&#x27;un prend les devants. Les Six sont sensibles aux personnes qui leur font des avances.</li>
+              <li>La cohérence est de première importance : dire la vérité et faire en sorte qu&#x27;elle soit alignée jour après jour.</li>
+              <li>Les Six veulent savoir ce que l&#x27;on veut et ce que l&#x27;on pense vraiment, car cela élimine leurs doutes.</li>
+              <li>Les Six « chaleureux » séduisent pour se sentir en sécurité.</li>
+              <li>Rassurés sur la sécurité de leur emploi, les Six feront preuve d&#x27;une extrême loyauté.</li>
+              <li>Mal préparés pour affronter les situations conflictuelles, peuvent soit reculer, soit chercher à se débarrasser des récalcitrants.</li>
+              <li>La pensée contestataire permet à l&#x27;autre de rebondir. Quand un des partenaires prend peur, cela interpelle naturellement l&#x27;autre.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>⇆ Sécurité &amp; Stress</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Sécurité (→ Neuf) : les Six se détendent, arrêtent de questionner, font confiance au processus.</li>
+              <li>En sécurité, ils développent une confiance tranquille et une capacité à apprécier le présent.</li>
+              <li>Stress (→ Trois) : les Six sous pression commencent à se performer, à se présenter sous leur meilleur jour.</li>
+              <li>Sous stress, leur tendance au doute peut alterner avec des épisodes d&#x27;action effrénée.</li>
+              <li>Les Six phobiques hésitent et reculent devant le danger. Les Six contre-phobiques foncent malgré la peur.</li>
+              <li>Leur doute peut déclencher une « folie à deux » où le couple se partage une idée fausse qui prolonge la difficulté.</li>
+              <li>Un manque infime de confiance peut s&#x27;aggraver et prendre des proportions catastrophiques.</li>
+              <li>Pour se développer, les Six doivent apprendre à se faire confiance plutôt qu&#x27;à chercher l&#x27;assurance extérieure.</li>
+              <li>Le courage est leur qualité de l&#x27;essence : agir malgré la peur, non par son absence.</li>
+              <li>Le Six développé allie vigilance utile et confiance fondamentale en la vie et les autres.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>❤ Vie affective</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Loyal en amour. Recherchent à être rassurés par leurs proches.</li>
+              <li>Un couple de Six : les partenaires apprécient le fait que l&#x27;autre puisse soulever des questions épineuses.</li>
+              <li>Le questionnement élimine le doute et permet au couple d&#x27;avancer.</li>
+              <li>Quand les partenaires sont tous deux inquiets, ils forment une « alliance défensive contre le monde entier ».</li>
+              <li>Un manque infime de confiance peut s&#x27;aggraver : « Si cela nous fait déjà peur maintenant, imagine plus tard ! »</li>
+              <li>Le Huit, homme ou femme, se montre très actif dans la phase de séduction, ce qui contribue à éliminer les doutes des Six.</li>
+              <li>Ce couple Loyaliste-Protecteur incarne une union du corps et de l&#x27;esprit plutôt qu&#x27;un sentiment amoureux.</li>
+              <li>Les actes et l&#x27;inspiration comptent plus que l&#x27;entretien de tendres sentiments.</li>
+              <li>La confiance naît principalement du constat que le partenaire agit pour le bien de l&#x27;autre.</li>
+              <li>Une après-midi ensoleillée à se distraire ensemble peut faire davantage pour rassurer le Six que des centaines d&#x27;heures à discuter.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>📡 Signaux</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Signaux positifs : loyaux, fiables, esprits inquisiteurs utiles pour détecter les problèmes à l&#x27;avance.</li>
+              <li>Bons stratèges, sens politique, comprennent les conséquences possibles d&#x27;une décision.</li>
+              <li>Signaux négatifs : questionnement permanent qui peut paraître négatif. Les « Oui, mais » peuvent épuiser l&#x27;entourage.</li>
+              <li>Leur vigilance peut virer à la suspicion. Peuvent projeter des intentions hostiles là où il n&#x27;y en a pas.</li>
+              <li>Sous pression, peuvent entraîner leurs partenaires dans une spirale d&#x27;anxiété partagée.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="palmerSection" data-search>
+          <summary>
+            <div class="sumTitle"><b>💼 Au travail</b></div>
+            <span class="chev"></span>
+          </summary>
+          <div class="content">
+            <ul class="palmerList">
+              <li>Ne font pas confiance à la hiérarchie. Remettent souvent en question les motivations d&#x27;un projet.</li>
+              <li>Rassurés sur la sécurité de leur emploi, font preuve d&#x27;une extrême loyauté.</li>
+              <li>Les Six ont besoin d&#x27;être informés et les subordonné Cinq a besoin de réfléchir avant de consacrer du temps à son travail.</li>
+              <li>Les doutes des Six peuvent être un outil précieux pour identifier les failles d&#x27;un plan.</li>
+              <li>Leur loyauté est leur force principale dans le milieu professionnel.</li>
+              <li>Mal préparés pour affronter les situations conflictuelles : peuvent soit reculer, soit chercher à se débarrasser des récalcitrants.</li>
+              <li>Les Six peuvent s&#x27;alléger de leurs doutes grâce à une structure claire et des objectifs bien définis.</li>
+              <li>Sous un dirigeant bienveillant et cohérent, les Six se dépassent.</li>
+              <li>Les dirigeants Six ont toujours peur qu&#x27;un mouvement d&#x27;insubordination ne se déclenche.</li>
+              <li>Il faudrait que le dirigeant Six s&#x27;abstienne de trop réfléchir et s&#x27;en tienne à un projet sans tout le temps le remettre en question.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
   <div class="typeNavBottom">
     <a href="type5.html" class="prev">
       <span class="navLabel">Type pr&eacute;c&eacute;dent</span>
@@ -1448,6 +1630,7 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
         {btn: qs('#tab-profil'), panel: qs('#panel-profil'), key:'profil'},
         {btn: qs('#tab-soustypes'), panel: qs('#panel-soustypes'), key:'soustypes'},
         {btn: qs('#tab-niveaux'), panel: qs('#panel-niveaux'), key:'niveaux'},
+        {btn: qs('#tab-palmer'), panel: qs('#panel-palmer'), key:'palmer'},
       ];
       tabs.forEach(t=>{
         const on = (t.key === id);
@@ -1455,7 +1638,7 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
         t.panel.hidden = !on;
       });
       setParam('tab', id);
-      qs('#barInfo').textContent = id === 'profil' ? 'Type 6 • Profil complet' : (id === 'soustypes' ? 'Type 6 • Sous-types' : 'Type 6 • Niveaux de développement');
+      qs('#barInfo').textContent = id === 'profil' ? 'Type 6 • Profil complet' : (id === 'soustypes' ? 'Type 6 • Sous-types' : (id === 'niveaux' ? 'Type 6 • Niveaux de développement' : 'Type 6 • Selon Palmer'));
     }
 
     function applySearchFilter(term){
@@ -1516,9 +1699,11 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
 
     function nextAction(){
       const tab = qs('#tab-profil').getAttribute('aria-selected') === 'true' ? 'profil' :
-                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' : 'niveaux');
+                  (qs('#tab-soustypes').getAttribute('aria-selected') === 'true' ? 'soustypes' :
+                  (qs('#tab-niveaux').getAttribute('aria-selected') === 'true' ? 'niveaux' : 'palmer'));
       if(tab === 'profil'){ setActiveTab('soustypes'); return; }
       if(tab === 'soustypes'){ setActiveTab('niveaux'); return; }
+      if(tab === 'niveaux'){ setActiveTab('palmer'); return; }
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
@@ -1534,6 +1719,7 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
     qs('#tab-profil').addEventListener('click', ()=>setActiveTab('profil'));
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
+    qs('#tab-palmer').addEventListener('click', ()=>setActiveTab('palmer'));
     qs('#nextBtn').addEventListener('click', nextAction);
     qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
 
@@ -1558,7 +1744,7 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
     initTop3Chip();
 
     const initTab = getParam('tab') || 'profil';
-    setActiveTab(['profil','soustypes','niveaux'].includes(initTab) ? initTab : 'profil');
+    setActiveTab(['profil','soustypes','niveaux','palmer'].includes(initTab) ? initTab : 'profil');
 
     const initLvl = getParam('lvl') || (()=>{
       try{ return localStorage.getItem('type6_lvl') || '1'; }catch(e){ return '1'; }
