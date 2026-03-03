@@ -22,7 +22,7 @@
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{height:100%;overflow-x:hidden}
     body{
       margin:0;
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
@@ -61,6 +61,7 @@
     .btn[disabled]{opacity:.55;cursor:not-allowed}
 
     .grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:16px;align-items:start}
+    .grid > *{min-width:0}
 
     .card{
       border:1px solid var(--line);
@@ -70,8 +71,8 @@
     }
 
     .diagramCard{padding:16px}
-    .svgWrap{display:flex;justify-content:center;align-items:center;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:10px}
-    .svgWrap svg{width:min(720px,92vw);height:auto;display:block}
+    .svgWrap{display:flex;justify-content:center;align-items:center;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:10px;overflow:hidden}
+    .svgWrap svg{width:100%;max-width:720px;height:auto;display:block}
     .hint{margin:10px 2px 2px;color:rgba(255,255,255,.76);font-size:14px;text-align:center}
 
     .ring{stroke:rgba(147,197,253,.55);stroke-width:3.2;fill:none}
@@ -160,8 +161,8 @@
     .subBlock{display:grid;gap:6px}
     .subBlock b{font-size:13px;letter-spacing:.35px;text-transform:uppercase;color:rgba(255,255,255,.84)}
     .subBlock ul{margin:0;padding-left:18px;display:grid;gap:6px}
-    .subBlock li{color:rgba(255,255,255,.88);line-height:1.45}
-    .sourceInfo{margin:2px 2px 0;color:var(--muted);font-size:12px;line-height:1.45}
+    .subBlock li{color:rgba(255,255,255,.88);line-height:1.45;overflow-wrap:anywhere;word-break:break-word}
+    .sourceInfo{margin:2px 2px 0;color:var(--muted);font-size:12px;line-height:1.45;overflow-wrap:anywhere;word-break:break-word}
 
     @media (max-width:1060px){
       .grid{grid-template-columns:1fr}
