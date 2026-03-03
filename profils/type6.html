@@ -31,9 +31,9 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
       background:
-        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.12), transparent 55%),
-        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.08), transparent 55%),
-        radial-gradient(1100px 600px at 50% 115%, rgba(203,213,225,.07), transparent 60%), /* Silver/Gris pour le 6 */
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.08), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.05), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(203,213,225,.04), transparent 60%), /* Silver/Gris pour le 6 */
         var(--bg);
       color:var(--text);
       line-height:1.45;
@@ -553,6 +553,63 @@
       .typeNavBottom .next{text-align:left;margin-left:0}
       .scrollTop{bottom:16px;right:16px;width:42px;height:42px}
     }
+
+    /* === VISUAL REFINEMENT PATCH === */
+    :root{
+      --line: rgba(255,255,255,.16);
+      --text: #e8eeff;
+      --muted: #9fb1da;
+      --shadow: 0 26px 72px rgba(2,10,28,.42);
+      --motion-fast: .14s;
+      --motion-ease: cubic-bezier(.22,.61,.36,1);
+    }
+    body{line-height:1.5}
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.5;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 4px);
+      mix-blend-mode:soft-light;
+    }
+    body > *{position:relative;z-index:1}
+    .hero,.card,details{
+      border-color:var(--line);
+      box-shadow:var(--shadow);
+    }
+    .hero{background:linear-gradient(180deg, rgba(21,31,58,.78), rgba(12,19,36,.74))}
+    .card,details{background:rgba(14,21,40,.74)}
+    .top{gap:16px;margin-bottom:18px}
+    .side{gap:14px}
+    .grid{gap:18px;margin-top:14px}
+    .hero h1,.sumTitle b{color:rgba(248,250,255,.98)}
+    .card h2{color:rgba(242,246,255,.96)}
+    .rt{
+      max-width:70ch;
+      color:rgba(228,236,255,.86);
+      line-height:1.82;
+    }
+    .rt p,.rt li,.rt .value{color:rgba(231,239,255,.88)}
+    summary{transition:background-color var(--motion-fast) var(--motion-ease)}
+    summary:hover{background:linear-gradient(90deg, rgba(96,165,250,.10), rgba(255,255,255,0))}
+    .nav-pill,.t-link,.tab,.btn,button,a.btn,.typeNavBottom a,.scrollTop{
+      transition:
+        transform var(--motion-fast) var(--motion-ease),
+        background-color var(--motion-fast) var(--motion-ease),
+        border-color var(--motion-fast) var(--motion-ease),
+        color var(--motion-fast) var(--motion-ease),
+        box-shadow var(--motion-fast) var(--motion-ease);
+    }
+    .tab:hover{
+      border-color:rgba(96,165,250,.42);
+      background:rgba(96,165,250,.11);
+      transform:translateY(-1px);
+    }
+
   </style>
 </head>
 
