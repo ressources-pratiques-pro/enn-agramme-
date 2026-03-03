@@ -18,6 +18,7 @@
       --ment:#60a5fa;
       --love:#fb7185;
       --work:#34d399;
+      --hier:#5eead4;
     }
 
     *{box-sizing:border-box}
@@ -154,11 +155,13 @@
     .resultBlock h3{margin:0;font-size:17px;letter-spacing:.2px}
     .resultBlock.love h3{color:var(--love)}
     .resultBlock.work h3{color:var(--work)}
+    .resultBlock.hier h3{color:var(--hier)}
 
     .subBlock{display:grid;gap:6px}
     .subBlock b{font-size:13px;letter-spacing:.35px;text-transform:uppercase;color:rgba(255,255,255,.84)}
     .subBlock ul{margin:0;padding-left:18px;display:grid;gap:6px}
     .subBlock li{color:rgba(255,255,255,.88);line-height:1.45}
+    .sourceInfo{margin:2px 2px 0;color:var(--muted);font-size:12px;line-height:1.45}
 
     @media (max-width:1060px){
       .grid{grid-template-columns:1fr}
@@ -178,7 +181,7 @@
         <a class="btn" href="index.html">← Accueil</a>
       </div>
       <h1>Compatibilite</h1>
-      <p class="sub">Choisis deux types sur le diagramme. La relation est decrite selon deux themes : vie amoureuse et travail.</p>
+      <p class="sub">Choisis deux types sur le diagramme. La relation est decrite selon trois themes : vie amoureuse, travail et hierarchie au travail.</p>
     </header>
 
     <main class="grid">
@@ -220,40 +223,33 @@
           <button class="miniBtn" id="btnReset" type="button">Reinitialiser</button>
         </div>
 
-        <div class="empty" id="resultEmpty">Clique deux types pour voir la compatibilite en amour et au travail.</div>
+        <div class="empty" id="resultEmpty">Clique deux types pour afficher la synthese source en amour, travail et hierarchie.</div>
 
         <div id="resultWrap" hidden>
           <section class="resultBlock love">
             <h3>Vie amoureuse</h3>
             <div class="subBlock">
-              <b>Ce qui marche</b>
-              <ul id="loveStrengths"></ul>
-            </div>
-            <div class="subBlock">
-              <b>Points d'attention</b>
-              <ul id="loveRisks"></ul>
-            </div>
-            <div class="subBlock">
-              <b>Conseils pratiques</b>
-              <ul id="loveActions"></ul>
+              <b>Synthese fidele</b>
+              <ul id="loveSummary"></ul>
             </div>
           </section>
 
           <section class="resultBlock work">
             <h3>Travail</h3>
             <div class="subBlock">
-              <b>Ce qui marche</b>
-              <ul id="workStrengths"></ul>
-            </div>
-            <div class="subBlock">
-              <b>Points d'attention</b>
-              <ul id="workRisks"></ul>
-            </div>
-            <div class="subBlock">
-              <b>Conseils pratiques</b>
-              <ul id="workActions"></ul>
+              <b>Synthese fidele</b>
+              <ul id="workSummary"></ul>
             </div>
           </section>
+
+          <section class="resultBlock hier">
+            <h3>Hierarchie au travail</h3>
+            <div class="subBlock">
+              <b>Relations dirigeant/subordonne</b>
+              <ul id="hierSummary"></ul>
+            </div>
+          </section>
+          <p class="sourceInfo" id="sourceInfo"></p>
         </div>
       </aside>
     </main>
@@ -267,60 +263,6 @@
       emotionnel: [2,3,4],
       mental: [5,6,7]
     };
-
-    const centerRules = {
-      "Instinctif-Instinctif": {
-        loveBase: 7,
-        workBase: 5,
-        lovePlus: "Vous partagez un langage direct et une forte presence dans la relation.",
-        loveRisk: "Les confrontations peuvent vite devenir des rapports de force.",
-        workPlus: "Vous savez agir vite et trancher quand c'est necessaire.",
-        workRisk: "Le besoin de controler peut creer des tensions de pouvoir."
-      },
-      "Emotionnel-Emotionnel": {
-        loveBase: 8,
-        workBase: 3,
-        lovePlus: "La connexion affective et la sensibilite relationnelle sont naturelles.",
-        loveRisk: "Les attentes implicites peuvent generer des malentendus.",
-        workPlus: "Vous captez bien les besoins humains et l'ambiance du groupe.",
-        workRisk: "Le relationnel peut prendre le pas sur les decisions concretes."
-      },
-      "Mental-Mental": {
-        loveBase: 4,
-        workBase: 8,
-        lovePlus: "Le dialogue intellectuel et la clarte d'analyse sont de vrais atouts.",
-        loveRisk: "Le lien peut se refroidir si les emotions ne sont pas verbalisees.",
-        workPlus: "Vous structurez bien les problemes et anticipez les risques.",
-        workRisk: "Trop d'analyse peut retarder l'action."
-      },
-      "Instinctif-Emotionnel": {
-        loveBase: 6,
-        workBase: 6,
-        lovePlus: "L'un apporte l'ancrage, l'autre apporte la chaleur relationnelle.",
-        loveRisk: "Le rythme de l'un peut sembler brusque pour l'autre.",
-        workPlus: "Excellent duo pour faire avancer les sujets tout en tenant compte des personnes.",
-        workRisk: "Des conflits de style peuvent apparaitre sur la forme de communication."
-      },
-      "Instinctif-Mental": {
-        loveBase: 5,
-        workBase: 7,
-        lovePlus: "L'un protege et agit, l'autre clarifie et planifie.",
-        loveRisk: "La spontaneite de l'un peut heurter le besoin de preparation de l'autre.",
-        workPlus: "Complementarite forte entre execution et strategie.",
-        workRisk: "Risque de friction entre vitesse et prudence."
-      },
-      "Emotionnel-Mental": {
-        loveBase: 6,
-        workBase: 7,
-        lovePlus: "Vous combinez empathie et prise de recul, ce qui enrichit le lien.",
-        loveRisk: "L'un peut se sentir trop analytique, l'autre trop sensible.",
-        workPlus: "Bonne alliance entre cohesion d'equipe et logique de decision.",
-        workRisk: "Les priorites peuvent diverger entre humain et performance."
-      }
-    };
-
-    const distLove = {0: 5, 1: 9, 2: 6, 3: 2, 4: -2};
-    const distWork = {0: 3, 1: 5, 2: 8, 3: 6, 4: 2};
 
     const points = {};
     order.forEach((t, i) => {
@@ -354,48 +296,15 @@
     const pairLove = document.getElementById("pairLove");
     const pairWork = document.getElementById("pairWork");
 
-    const loveStrengths = document.getElementById("loveStrengths");
-    const loveRisks = document.getElementById("loveRisks");
-    const loveActions = document.getElementById("loveActions");
-    const workStrengths = document.getElementById("workStrengths");
-    const workRisks = document.getElementById("workRisks");
-    const workActions = document.getElementById("workActions");
+    const loveSummary = document.getElementById("loveSummary");
+    const workSummary = document.getElementById("workSummary");
+    const hierSummary = document.getElementById("hierSummary");
+    const sourceInfo = document.getElementById("sourceInfo");
 
     const state = { a: null, b: null };
     let typesData = null;
-
-    function centerRule(centerA, centerB){
-      const ca = normalizeCenterName(centerA);
-      const cb = normalizeCenterName(centerB);
-      const key1 = `${ca}-${cb}`;
-      const key2 = `${cb}-${ca}`;
-      return centerRules[key1] || centerRules[key2] || centerRules["Instinctif-Emotionnel"];
-    }
-
-    function normalizeCenterName(center){
-      const c = (center || "").toLowerCase();
-      if (c.includes("instinct")) return "Instinctif";
-      if (c.includes("emotion") || c.includes("émotion")) return "Emotionnel";
-      if (c.includes("mental")) return "Mental";
-      return "Instinctif";
-    }
-
-    function circularDistance(a, b){
-      const ia = order.indexOf(a);
-      const ib = order.indexOf(b);
-      if (ia < 0 || ib < 0) return 0;
-      const d = Math.abs(ia - ib);
-      return Math.min(d, 9 - d);
-    }
-
-    function clamp(v, min, max){
-      return Math.max(min, Math.min(max, v));
-    }
-
-    function lowerFirst(text){
-      if (!text) return "";
-      return text.charAt(0).toLowerCase() + text.slice(1);
-    }
+    let duosDataByKey = {};
+    let duosLoaded = false;
 
     function setList(el, items){
       el.innerHTML = "";
@@ -440,6 +349,12 @@
       });
     }
 
+    function duoKey(a, b){
+      const min = Math.min(a, b);
+      const max = Math.max(a, b);
+      return `${min}-${max}`;
+    }
+
     function getTypeData(t){
       return typesData && typesData[String(t)]
         ? typesData[String(t)]
@@ -456,68 +371,32 @@
           };
     }
 
-    function computeReport(a, b){
-      const A = getTypeData(a);
-      const B = getTypeData(b);
-      const d = circularDistance(a, b);
-      const rule = centerRule(A.center, B.center);
+    function sectionPoints(section){
+      if (!section) return [];
+      if (Array.isArray(section.points) && section.points.length) return section.points;
+      const text = String(section.text || "").trim();
+      return text ? [text] : [];
+    }
 
-      const growLink = A.integr === b || B.integr === a;
-      const stressLink = A.disint === b || B.disint === a;
-      const sameType = a === b;
-
-      let loveScore = 58 + rule.loveBase + (distLove[d] ?? 0);
-      let workScore = 60 + rule.workBase + (distWork[d] ?? 0);
-
-      if (growLink) { loveScore += 6; workScore += 7; }
-      if (stressLink) { loveScore += 2; workScore += 1; }
-      if (sameType) { loveScore += 4; workScore += 3; }
-
-      loveScore = clamp(Math.round(loveScore), 35, 95);
-      workScore = clamp(Math.round(workScore), 35, 95);
-
-      const loveStrength = [
-        rule.lovePlus,
-        `Type ${a}: ${A.desire}. Type ${b}: ${B.desire}.`,
-        growLink ? "Bonne dynamique de croissance reciproque: vous pouvez vous aider a evoluer." : "Vos styles sont differents, ce qui peut enrichir la relation avec une bonne communication."
-      ];
-      const loveRisk = [
-        rule.loveRisk,
-        `En tension, Type ${a}: ${lowerFirst(A.disint_text)}. Type ${b}: ${lowerFirst(B.disint_text)}.`,
-        `Vos automatismes peuvent se heurter: ${lowerFirst(A.compulsion)} / ${lowerFirst(B.compulsion)}.`
-      ];
-      const loveAction = [
-        "Faire un point hebdomadaire: besoins, limites, attentes (20 minutes).",
-        "Nommer les emotions avant de chercher une solution.",
-        "En conflit, ralentir le rythme et reformuler avant de repondre."
-      ];
-
-      const workStrength = [
-        rule.workPlus,
-        `Type ${a}: ${A.integr_text}. Type ${b}: ${B.integr_text}.`,
-        "La complementarite est meilleure quand les roles et responsabilites sont explicites."
-      ];
-      const workRisk = [
-        rule.workRisk,
-        `Sous pression, Type ${a}: ${lowerFirst(A.disint_text)}. Type ${b}: ${lowerFirst(B.disint_text)}.`,
-        "Sans cadre clair, les priorites peuvent diverger et creer des frictions."
-      ];
-      const workAction = [
-        "Definir un objectif commun + un mode de decision explicite.",
-        "Faire un point court regulier: avancement, blocages, arbitrages.",
-        "Se repartir les taches selon les forces naturelles de chacun."
-      ];
-
-      return {
-        loveScore,
-        workScore,
-        loveStrength,
-        loveRisk,
-        loveAction,
-        workStrength,
-        workRisk,
-        workAction
-      };
+    function hierarchyPoints(section){
+      if (!section) return [];
+      if (Array.isArray(section.blocks) && section.blocks.length){
+        const out = [];
+        section.blocks.forEach((block) => {
+          const title = String(block?.title || "").trim();
+          const points = Array.isArray(block?.points) ? block.points.filter(Boolean) : [];
+          if (points.length){
+            points.forEach((point) => {
+              out.push(title ? `${title}: ${point}` : point);
+            });
+            return;
+          }
+          const text = String(block?.text || "").trim();
+          if (text) out.push(title ? `${title}: ${text}` : text);
+        });
+        if (out.length) return out;
+      }
+      return sectionPoints(section);
     }
 
     function renderReport(){
@@ -527,25 +406,41 @@
       if (!a || !b) {
         resultWrap.hidden = true;
         resultEmpty.hidden = false;
-        setList(loveStrengths, []);
-        setList(loveRisks, []);
-        setList(loveActions, []);
-        setList(workStrengths, []);
-        setList(workRisks, []);
-        setList(workActions, []);
+        resultEmpty.textContent = "Clique deux types pour afficher la synthese source en amour, travail et hierarchie.";
+        setList(loveSummary, []);
+        setList(workSummary, []);
+        setList(hierSummary, []);
+        sourceInfo.textContent = "";
         return;
       }
 
-      const report = computeReport(a, b);
+      if (!duosLoaded) {
+        resultWrap.hidden = true;
+        resultEmpty.hidden = false;
+        resultEmpty.textContent = "Chargement des fiches duos...";
+        return;
+      }
+
+      const key = duoKey(a, b);
+      const report = duosDataByKey[key];
+      if (!report){
+        resultWrap.hidden = true;
+        resultEmpty.hidden = false;
+        resultEmpty.textContent = `Duo ${key} non trouve dans la source.`;
+        setList(loveSummary, []);
+        setList(workSummary, []);
+        setList(hierSummary, []);
+        sourceInfo.textContent = "";
+        return;
+      }
+
       resultWrap.hidden = false;
       resultEmpty.hidden = true;
 
-      setList(loveStrengths, report.loveStrength);
-      setList(loveRisks, report.loveRisk);
-      setList(loveActions, report.loveAction);
-      setList(workStrengths, report.workStrength);
-      setList(workRisks, report.workRisk);
-      setList(workActions, report.workAction);
+      setList(loveSummary, sectionPoints(report.amour));
+      setList(workSummary, sectionPoints(report.travail));
+      setList(hierSummary, hierarchyPoints(report.hierarchie));
+      sourceInfo.textContent = [report.title, report.source].filter(Boolean).join(" — ");
     }
 
     function updateSelectionUI(){
@@ -560,7 +455,7 @@
 
       if (!a) hintEl.textContent = "Selectionne Type A, puis Type B.";
       else if (!b) hintEl.textContent = "Type A choisi. Selectionne maintenant Type B.";
-      else hintEl.textContent = `Compatibilite calculee pour Type ${a} et Type ${b}.`;
+      else hintEl.textContent = `Fiche source affichee pour le duo ${duoKey(a, b)}.`;
 
       renderNodes();
       updateLines();
@@ -613,6 +508,23 @@
       updateSelectionUI();
     }
 
+    async function loadDuosData(){
+      try {
+        const res = await fetch("assets/data/duos-palmer-synthese.json");
+        if (!res.ok) throw new Error("duos-palmer-synthese.json indisponible");
+        const payload = await res.json();
+        const byKey = {};
+        (payload?.duos || []).forEach((duo) => {
+          if (duo && duo.duo) byKey[String(duo.duo)] = duo;
+        });
+        duosDataByKey = byKey;
+      } catch (err) {
+        duosDataByKey = {};
+      }
+      duosLoaded = true;
+      updateSelectionUI();
+    }
+
     btnReset.addEventListener("click", () => {
       state.a = null;
       state.b = null;
@@ -630,6 +542,7 @@
     createNodes();
     updateSelectionUI();
     loadTypesData();
+    loadDuosData();
   </script>
 </body>
 </html>
