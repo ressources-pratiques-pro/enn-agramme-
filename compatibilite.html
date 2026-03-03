@@ -230,7 +230,6 @@
           <section class="resultBlock love">
             <h3>Vie amoureuse</h3>
             <div class="subBlock">
-              <b>Synthese fidele</b>
               <ul id="loveSummary"></ul>
             </div>
           </section>
@@ -238,19 +237,16 @@
           <section class="resultBlock work">
             <h3>Travail</h3>
             <div class="subBlock">
-              <b>Synthese fidele</b>
               <ul id="workSummary"></ul>
             </div>
           </section>
 
-          <section class="resultBlock hier">
-            <h3>Hierarchie au travail</h3>
+          <section class="resultBlock hier" id="hierBlock">
+            <h3>Relation dirigeant–subordonné</h3>
             <div class="subBlock">
-              <b>Relations dirigeant/subordonne</b>
               <ul id="hierSummary"></ul>
             </div>
           </section>
-          <p class="sourceInfo" id="sourceInfo"></p>
         </div>
       </aside>
     </main>
@@ -300,7 +296,7 @@
     const loveSummary = document.getElementById("loveSummary");
     const workSummary = document.getElementById("workSummary");
     const hierSummary = document.getElementById("hierSummary");
-    const sourceInfo = document.getElementById("sourceInfo");
+    const hierBlock = document.getElementById("hierBlock");
 
     const state = { a: null, b: null };
     let typesData = null;
@@ -372,32 +368,8 @@
           };
     }
 
-    function sectionPoints(section){
-      if (!section) return [];
-      if (Array.isArray(section.points) && section.points.length) return section.points;
-      const text = String(section.text || "").trim();
-      return text ? [text] : [];
-    }
-
-    function hierarchyPoints(section){
-      if (!section) return [];
-      if (Array.isArray(section.blocks) && section.blocks.length){
-        const out = [];
-        section.blocks.forEach((block) => {
-          const title = String(block?.title || "").trim();
-          const points = Array.isArray(block?.points) ? block.points.filter(Boolean) : [];
-          if (points.length){
-            points.forEach((point) => {
-              out.push(title ? `${title}: ${point}` : point);
-            });
-            return;
-          }
-          const text = String(block?.text || "").trim();
-          if (text) out.push(title ? `${title}: ${text}` : text);
-        });
-        if (out.length) return out;
-      }
-      return sectionPoints(section);
+    function sectionPoints(arr){
+      return Array.isArray(arr) ? arr : [];
     }
 
     function renderReport(){
@@ -411,7 +383,6 @@
         setList(loveSummary, []);
         setList(workSummary, []);
         setList(hierSummary, []);
-        sourceInfo.textContent = "";
         return;
       }
 
@@ -431,7 +402,6 @@
         setList(loveSummary, []);
         setList(workSummary, []);
         setList(hierSummary, []);
-        sourceInfo.textContent = "";
         return;
       }
 
@@ -440,8 +410,14 @@
 
       setList(loveSummary, sectionPoints(report.amour));
       setList(workSummary, sectionPoints(report.travail));
-      setList(hierSummary, hierarchyPoints(report.hierarchie));
-      sourceInfo.textContent = [report.title, report.source].filter(Boolean).join(" — ");
+
+      if (report.hierarchie && report.hierarchie.length) {
+        hierBlock.hidden = false;
+        setList(hierSummary, sectionPoints(report.hierarchie));
+      } else {
+        hierBlock.hidden = true;
+        setList(hierSummary, []);
+      }
     }
 
     function updateSelectionUI(){
@@ -511,7 +487,7 @@
 
     async function loadDuosData(){
       try {
-        const res = await fetch("assets/data/duos-palmer-synthese.json");
+        const res = await fetch("assets/data/duos-palmer-synthese.json?v=2");
         if (!res.ok) throw new Error("duos-palmer-synthese.json indisponible");
         const payload = await res.json();
         const byKey = {};
