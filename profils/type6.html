@@ -688,13 +688,6 @@
           <button class="tab" id="tab-niveaux" role="tab" aria-selected="false" aria-controls="panel-niveaux">Niveaux de développement</button>
         </div>
       </div>
-
-      <div class="side">
-        <div class="card">
-          <h2>Recherche</h2>
-          <input id="search" type="search" placeholder="Tape un mot, ex : peur, projection, doute, cynisme, foi..." style="width:100%;appearance:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);outline:none" />
-        </div>
-      </div>
     </div>
 
     <div class="grid">
@@ -1542,8 +1535,6 @@ Le Type 6 est comme un éclaireur dans une forêt inconnue : le Six Survie cherc
     qs('#tab-soustypes').addEventListener('click', ()=>setActiveTab('soustypes'));
     qs('#tab-niveaux').addEventListener('click', ()=>setActiveTab('niveaux'));
     qs('#nextBtn').addEventListener('click', nextAction);
-
-    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
     qs('#levelRange').addEventListener('input', (e)=>updateLevel(e.target.value));
 
     qs('#btn-survie').addEventListener('click', ()=>openSubtype('survie'));

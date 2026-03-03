@@ -396,12 +396,6 @@
           <p class="hint">Astuce URL : profil.html?type=1 à 9</p>
         </div>
 
-        <div class="card">
-          <h2>Rechercher dans la page</h2>
-          <input id="search" type="search" placeholder="Tape un mot, ex : compulsion, aile, stress...">
-          <p class="hint">Filtre uniquement l’affichage (le contenu reste intégral)</p>
-        </div>
-
         <div class="card" id="levelsCard">
           <h2>Niveaux de développement</h2>
           <div class="levelsWrap">
@@ -1048,7 +1042,6 @@ Les niveaux de développement du Type 3 (le Battant) mesurent le degré d'identi
 
     qs('#goBtn').addEventListener('click', ()=>goToType(qs('#typeSelect').value));
     qs('#typeSelect').addEventListener('change', ()=>goToType(qs('#typeSelect').value));
-    qs('#search').addEventListener('input', (e)=>applySearchFilter(e.target.value));
     qs('#backBtn').addEventListener('click', ()=>history.back());
 
     // Navigation clavier supprimée ici comme demandé.
