@@ -239,6 +239,14 @@
       nodes.forEach(n => n.classList.toggle('hint', on));
     }
 
+    function scrollToDiagram(){
+      if (!stage) return;
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      const offset = isMobile ? 8 : 16;
+      const top = stage.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: Math.max(0, top), behavior:'smooth' });
+    }
+
     function enterChooseMode(){
       chooseMode = true;
       setHint(true);
@@ -246,7 +254,8 @@
         subtitleBackup = subtitle.textContent || subtitleBackup;
         subtitle.textContent = "Choisis un type sur le diagramme pour ouvrir directement la fiche.";
       }
-      stage.scrollIntoView({ behavior:'smooth', block:'start' });
+      scrollToDiagram();
+      setTimeout(scrollToDiagram, 220);
       setTimeout(()=>setHint(true), 250);
     }
 

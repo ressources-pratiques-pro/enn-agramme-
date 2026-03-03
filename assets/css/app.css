@@ -349,13 +349,13 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none}
 }
 
 @keyframes halo-pulse{
-  0%{transform:scale(1);filter:drop-shadow(0 0 14px rgba(255,255,255,.35))}
-  50%{transform:scale(1.1);filter:drop-shadow(0 0 25px rgba(255,255,255,.6))}
-  100%{transform:scale(1);filter:drop-shadow(0 0 14px rgba(255,255,255,.35))}
+  0%{transform:scale(1);filter:drop-shadow(0 0 10px rgba(255,255,255,.28))}
+  50%{transform:scale(1.04);filter:drop-shadow(0 0 16px rgba(255,255,255,.42))}
+  100%{transform:scale(1);filter:drop-shadow(0 0 10px rgba(255,255,255,.28))}
 }
 
 .node.hint circle{
-  stroke-width:14.30;
+  stroke-width:6.8;
   transform-box:fill-box;
   transform-origin:center;
   animation:halo-pulse 2s infinite ease-in-out;
