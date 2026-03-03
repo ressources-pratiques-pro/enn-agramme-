@@ -1484,9 +1484,7 @@ Analogie : Le Type 4 est comme un artiste qui cherche sa propre lumière : le Qu
     })();
     updateLevel(initLvl);
 
-    const initSt = getParam('st') || (()=>{
-      try{ return localStorage.getItem('type4_st') || ''; }catch(e){ return ''; }
-    })();
+    const initSt = getParam('st') || '';
     if(initSt && SUBTYPES[initSt]){
       setActiveTab('soustypes');
       setTimeout(()=>openSubtype(initSt), 120);

@@ -31,9 +31,9 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif;
       background:
-        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.26), transparent 55%),
-        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.18), transparent 55%),
-        radial-gradient(1100px 600px at 50% 115%, rgba(45,212,191,.15), transparent 60%), /* Teal spécifique au 5 */
+        radial-gradient(900px 450px at 18% 8%, rgba(96,165,250,.12), transparent 55%),
+        radial-gradient(900px 450px at 82% 10%, rgba(52,211,153,.08), transparent 55%),
+        radial-gradient(1100px 600px at 50% 115%, rgba(45,212,191,.07), transparent 60%), /* Teal spécifique au 5 */
         var(--bg);
       color:var(--text);
       line-height:1.45;
@@ -1477,9 +1477,7 @@ La Plage Malsaine (Niveaux 7 à 9) : L'Isolement et la Dissociation
     })();
     updateLevel(initLvl);
 
-    const initSt = getParam('st') || (()=>{
-      try{ return localStorage.getItem('type5_st') || ''; }catch(e){ return ''; }
-    })();
+    const initSt = getParam('st') || '';
     if(initSt && SUBTYPES[initSt]){
       setActiveTab('soustypes');
       setTimeout(()=>openSubtype(initSt), 120);

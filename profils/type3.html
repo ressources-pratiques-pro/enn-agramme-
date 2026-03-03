@@ -1484,9 +1484,7 @@ Apprendre à ralentir, s'intéresser au long terme, être attentif aux autres et
     })();
     updateLevel(initLvl);
 
-    const initSt = getParam('st') || (()=>{
-      try{ return localStorage.getItem('type3_st') || ''; }catch(e){ return ''; }
-    })();
+    const initSt = getParam('st') || '';
     if(initSt && SUBTYPES[initSt]){
       setActiveTab('soustypes');
       setTimeout(()=>openSubtype(initSt), 120);

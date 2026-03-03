@@ -1478,9 +1478,7 @@ Apprendre à s'auto-nurturer, définir des limites claires et oser dire "non" sa
     })();
     updateLevel(initLvl);
 
-    const initSt = getParam('st') || (()=>{
-      try{ return localStorage.getItem('type2_st') || ''; }catch(e){ return ''; }
-    })();
+    const initSt = getParam('st') || '';
     if(initSt && SUBTYPES[initSt]){
       setActiveTab('soustypes');
       setTimeout(()=>openSubtype(initSt), 120);

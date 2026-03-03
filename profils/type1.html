@@ -1533,9 +1533,7 @@ Référence cinématographique : Les Vestiges du Jour (le majordome Stevens inca
     })();
     updateLevel(initLvl);
 
-    const initSt = getParam('st') || (()=>{
-      try{ return localStorage.getItem('type1_st') || ''; }catch(e){ return ''; }
-    })();
+    const initSt = getParam('st') || '';
     if(initSt && SUBTYPES[initSt]){
       setActiveTab('soustypes');
       setTimeout(()=>openSubtype(initSt), 120);
