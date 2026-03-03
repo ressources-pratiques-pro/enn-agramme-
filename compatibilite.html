@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Compatibilite - Enneagramme</title>
+  <title>Affinité - Ennéagramme</title>
   <style>
     :root{
       --bg:#070b14;
@@ -38,8 +38,8 @@
       margin-bottom:14px;
     }
     .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-    h1{margin:0;font-size:clamp(28px,4.5vw,46px);line-height:1.05}
-    .sub{margin:0;color:var(--muted);font-size:17px;max-width:78ch}
+    h1{margin:0;font-size:clamp(28px,4.5vw,46px);line-height:1.05;text-align:center}
+    .sub{margin:0 auto;color:var(--muted);font-size:17px;max-width:78ch;text-align:center}
 
     .btn{
       display:inline-flex;
@@ -181,14 +181,14 @@
       <div class="topBar">
         <a class="btn" href="index.html">← Accueil</a>
       </div>
-      <h1>Compatibilite</h1>
-      <p class="sub">Choisis deux types sur le diagramme. La relation est decrite selon trois themes : vie amoureuse, travail et hierarchie au travail.</p>
+      <h1>Affinité</h1>
+      <p class="sub">Choisis deux types sur le diagramme. La relation est décrite selon trois thèmes : vie amoureuse, travail et hiérarchie au travail.</p>
     </header>
 
     <main class="grid">
       <section class="card diagramCard">
         <div class="svgWrap">
-          <svg id="compatSvg" viewBox="0 0 700 700" aria-label="Diagramme de compatibilite enneagramme">
+          <svg id="compatSvg" viewBox="0 0 700 700" aria-label="Diagramme affinité ennéagramme">
             <circle class="ring" cx="350" cy="350" r="270"></circle>
 
             <g id="staticBg">
@@ -303,11 +303,23 @@
     let duosDataByKey = {};
     let duosLoaded = false;
 
-    function setList(el, items){
+    function setList(el, items, boldPrefix){
       el.innerHTML = "";
       items.forEach((item) => {
         const li = document.createElement("li");
-        li.textContent = item;
+        if (boldPrefix) {
+          const m = item.match(/^(Dirigeant\s+.+?\/Subordonn\u00e9\s+.+?\s*:)\s*/);
+          if (m) {
+            const strong = document.createElement("strong");
+            strong.textContent = m[1] + " ";
+            li.appendChild(strong);
+            li.appendChild(document.createTextNode(item.slice(m[0].length)));
+          } else {
+            li.textContent = item;
+          }
+        } else {
+          li.textContent = item;
+        }
         el.appendChild(li);
       });
     }
@@ -413,7 +425,7 @@
 
       if (report.hierarchie && report.hierarchie.length) {
         hierBlock.hidden = false;
-        setList(hierSummary, sectionPoints(report.hierarchie));
+        setList(hierSummary, sectionPoints(report.hierarchie), true);
       } else {
         hierBlock.hidden = true;
         setList(hierSummary, []);
