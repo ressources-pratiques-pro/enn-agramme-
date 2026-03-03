@@ -149,20 +149,65 @@
       border:1px solid var(--line);
       border-radius:16px;
       background:rgba(0,0,0,.18);
-      padding:12px;
-      display:grid;
-      gap:10px;
+      overflow:hidden;
     }
-    .resultBlock h3{margin:0;font-size:17px;letter-spacing:.2px}
-    .resultBlock.love h3{color:var(--love)}
-    .resultBlock.work h3{color:var(--work)}
-    .resultBlock.hier h3{color:var(--hier)}
+    .resultBlock summary{
+      padding:12px 14px;
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:17px;
+      font-weight:700;
+      letter-spacing:.2px;
+      user-select:none;
+    }
+    .resultBlock summary::-webkit-details-marker{display:none}
+    .resultBlock summary::after{
+      content:"▸";
+      font-size:14px;
+      color:var(--muted);
+      transition:transform .2s ease;
+    }
+    .resultBlock[open] summary::after{transform:rotate(90deg)}
+    .resultBlock.love summary{color:var(--love)}
+    .resultBlock.work summary{color:var(--work)}
 
+    .accordionBody{padding:0 14px 14px;display:grid;gap:10px}
     .subBlock{display:grid;gap:6px}
-    .subBlock b{font-size:13px;letter-spacing:.35px;text-transform:uppercase;color:rgba(255,255,255,.84)}
     .subBlock ul{margin:0;padding-left:18px;display:grid;gap:6px}
     .subBlock li{color:rgba(255,255,255,.88);line-height:1.45;overflow-wrap:anywhere;word-break:break-word}
-    .sourceInfo{margin:2px 2px 0;color:var(--muted);font-size:12px;line-height:1.45;overflow-wrap:anywhere;word-break:break-word}
+
+    .hierSub{
+      border:1px solid rgba(94,234,212,.15);
+      border-radius:12px;
+      background:rgba(94,234,212,.04);
+      overflow:hidden;
+      margin-top:4px;
+    }
+    .hierSub summary{
+      padding:10px 12px;
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:.2px;
+      color:var(--hier);
+      user-select:none;
+    }
+    .hierSub summary::-webkit-details-marker{display:none}
+    .hierSub summary::after{
+      content:"▸";
+      font-size:12px;
+      color:var(--muted);
+      transition:transform .2s ease;
+    }
+    .hierSub[open] summary::after{transform:rotate(90deg)}
+    .hierSubBody{padding:0 12px 12px;display:grid;gap:6px}
 
     @media (max-width:1060px){
       .grid{grid-template-columns:1fr}
@@ -226,27 +271,30 @@
 
         <div class="empty" id="resultEmpty">Clique deux types pour afficher la synthese source en amour, travail et hierarchie.</div>
 
-        <div id="resultWrap" hidden>
-          <section class="resultBlock love">
-            <h3>Vie amoureuse</h3>
-            <div class="subBlock">
-              <ul id="loveSummary"></ul>
+        <div id="resultWrap" hidden style="display:grid;gap:12px">
+          <details class="resultBlock love" open>
+            <summary>Vie amoureuse</summary>
+            <div class="accordionBody">
+              <div class="subBlock">
+                <ul id="loveSummary"></ul>
+              </div>
             </div>
-          </section>
+          </details>
 
-          <section class="resultBlock work">
-            <h3>Travail</h3>
-            <div class="subBlock">
-              <ul id="workSummary"></ul>
+          <details class="resultBlock work" open>
+            <summary>Travail</summary>
+            <div class="accordionBody">
+              <div class="subBlock">
+                <ul id="workSummary"></ul>
+              </div>
+              <details class="hierSub" id="hierBlock">
+                <summary>Relation dirigeant–subordonné</summary>
+                <div class="hierSubBody">
+                  <ul id="hierSummary"></ul>
+                </div>
+              </details>
             </div>
-          </section>
-
-          <section class="resultBlock hier" id="hierBlock">
-            <h3>Relation dirigeant–subordonné</h3>
-            <div class="subBlock">
-              <ul id="hierSummary"></ul>
-            </div>
-          </section>
+          </details>
         </div>
       </aside>
     </main>
@@ -424,10 +472,10 @@
       setList(workSummary, sectionPoints(report.travail));
 
       if (report.hierarchie && report.hierarchie.length) {
-        hierBlock.hidden = false;
+        hierBlock.style.display = '';
         setList(hierSummary, sectionPoints(report.hierarchie), true);
       } else {
-        hierBlock.hidden = true;
+        hierBlock.style.display = 'none';
         setList(hierSummary, []);
       }
     }

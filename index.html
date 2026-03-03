@@ -38,6 +38,16 @@
     .anim-center{opacity:0}
     .anim-center-in{animation:centerFade .6s ease forwards}
     @keyframes centerFade{to{opacity:1}}
+
+    .node-invite circle{
+      animation:nodeInvite .6s ease forwards;
+      animation-delay:inherit;
+    }
+    @keyframes nodeInvite{
+      0%{stroke-opacity:1}
+      40%{stroke-opacity:.3;stroke-width:4}
+      100%{stroke-opacity:1;stroke-width:2.2}
+    }
   </style>
 </head>
 
@@ -250,7 +260,11 @@
 
     function enterChooseMode(){
       chooseMode = true;
+      /* Reset sélection en cours (flèches, panneau) */
+      const resetBtn = document.getElementById('btnReset');
+      if (resetBtn) resetBtn.click();
       setHint(true);
+      pulseNodes();
       if (subtitle){
         subtitleBackup = subtitle.textContent || subtitleBackup;
         subtitle.textContent = "Choisis un type sur le diagramme pour ouvrir directement la fiche.";
@@ -258,6 +272,16 @@
       scrollToDiagram();
       setTimeout(scrollToDiagram, 220);
       setTimeout(()=>setHint(true), 250);
+    }
+
+    function pulseNodes(){
+      const nodes = getNodes();
+      nodes.forEach((n, i) => {
+        n.classList.remove('node-invite');
+        void n.offsetWidth;
+        n.style.animationDelay = (i * 70) + 'ms';
+        n.classList.add('node-invite');
+      });
     }
 
     function exitChooseMode(){
