@@ -285,7 +285,8 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none}
 .node.emotionnel circle{stroke:var(--emo)}
 .node.mental circle{stroke:var(--ment)}
 .node{transition:opacity .14s ease}
-.node.is-dimmed{opacity:.44}
+.node.is-key{opacity:.88}
+.node.is-dimmed{opacity:.18}
 .node.is-active{opacity:1}
 .node.is-active circle{
   stroke-width:3.6;
@@ -301,9 +302,11 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none}
   font-size:22px;
   dominant-baseline:middle;
   text-anchor:middle;
+  opacity:1;
   transition:fill .14s ease,opacity .14s ease;
 }
-.node.is-dimmed text{fill:rgba(255,255,255,.58)}
+.node.is-dimmed text{fill:rgba(255,255,255,.42)}
+.node.is-key text{fill:rgba(255,255,255,.90)}
 .node.is-active text{fill:#ffffff}
 
 .arrow{fill:none;stroke-width:3.2;opacity:0;transition:opacity .14s ease}

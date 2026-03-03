@@ -116,18 +116,23 @@ const sidePanel = document.getElementById("sidePanel");
 
 let sidePanelUpdateTimer = null;
 
-function highlightActiveNode(t){
+function highlightKeyNodes(activeType, integrType, disintType){
+  const active = Number(activeType);
+  const keep = new Set([active, Number(integrType), Number(disintType)].filter((n) => n >= 1 && n <= 9));
+
   nodesLayer.querySelectorAll(".node").forEach((node) => {
     const nodeType = Number(node.getAttribute("data-type"));
-    const isActive = nodeType === t;
+    const isActive = nodeType === active;
+    const isKey = keep.has(nodeType);
     node.classList.toggle("is-active", isActive);
-    node.classList.toggle("is-dimmed", !isActive);
+    node.classList.toggle("is-key", !isActive && isKey);
+    node.classList.toggle("is-dimmed", !isKey);
   });
 }
 
 function clearNodeHighlights(){
   nodesLayer.querySelectorAll(".node").forEach((node) => {
-    node.classList.remove("is-active", "is-dimmed");
+    node.classList.remove("is-active", "is-key", "is-dimmed");
   });
 }
 
@@ -154,7 +159,6 @@ loadData().catch(()=>{});
 function selectType(t){
   badgeNum.textContent = t;
   typeBadge?.setAttribute("data-group", groupOf(t));
-  highlightActiveNode(t);
 
   const data = typesData ? typesData[String(t)] : null;
 
@@ -175,6 +179,7 @@ function selectType(t){
   openFull.setAttribute("href", `type.html?type=${t}`);
   openFull.setAttribute("aria-disabled","false");
 
+  highlightKeyNodes(t, it, dt);
   showOnlyTypeArrows(t);
   pulseSidePanel();
 }
