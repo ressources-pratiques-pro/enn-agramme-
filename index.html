@@ -75,7 +75,6 @@
             </defs>
 
             <circle class="ring" cx="350" cy="350" r="270"></circle>
-            <circle class="innerRing" cx="350" cy="350" r="210"></circle>
 
             <text x="350" y="352" text-anchor="middle" dominant-baseline="middle"
                   style="font-family: ui-serif, Georgia, 'Times New Roman', serif; font-weight: 800; letter-spacing: 1.5px; font-size: 26px; fill: rgba(255,255,255,.22); text-transform: uppercase;">
@@ -87,10 +86,6 @@
               <path class="tri" d="" id="triPath"></path>
 
               <g class="centers">
-                <path class="centerLine" d="M350 350 L350 120"></path>
-                <path class="centerLine" d="M350 350 L585 455"></path>
-                <path class="centerLine" d="M350 350 L115 455"></path>
-
                 <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
                 <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Émotionnel</text>
                 <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
@@ -105,7 +100,7 @@
 
       <aside class="side" id="sidePanel" aria-live="polite">
         <div class="badgeRow">
-          <div class="badge"><strong>Type</strong> <span id="badgeNum">—</span></div>
+          <div class="badge" id="typeBadge"><strong>Type</strong> <span id="badgeNum">—</span></div>
         </div>
 
         <div class="card">
@@ -174,15 +169,15 @@
     if(!svg) return;
 
     /* --- 1. Cercles : dessiner progressivement --- */
-    var rings = svg.querySelectorAll('.ring, .innerRing');
+    var rings = svg.querySelectorAll('.ring');
     rings.forEach(function(el){
       var len = Math.round(el.getTotalLength());
       el.style.setProperty('--len', len);
       el.classList.add('anim-draw');
     });
 
-    /* --- 2. Lignes internes (hex, tri, centerLine) --- */
-    var lines = svg.querySelectorAll('.hex, .tri, .centerLine');
+    /* --- 2. Lignes internes (hex, tri) --- */
+    var lines = svg.querySelectorAll('.hex, .tri');
     lines.forEach(function(el, i){
       var len = Math.round(el.getTotalLength());
       el.style.setProperty('--len', len);

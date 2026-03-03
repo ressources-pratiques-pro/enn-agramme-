@@ -122,8 +122,24 @@ button:active{transform:translateY(1px)}
   border:1px solid var(--line);
   background:rgba(0,0,0,.20);
   backdrop-filter:blur(10px);
+  transition:border-color .16s ease, box-shadow .16s ease;
 }
 #badgeNum{color:var(--accent)}
+#typeBadge[data-group="instinctif"]{
+  border-color:rgba(251,191,36,.48);
+  box-shadow:0 0 0 2px rgba(251,191,36,.14) inset;
+}
+#typeBadge[data-group="emotionnel"]{
+  border-color:rgba(244,114,182,.48);
+  box-shadow:0 0 0 2px rgba(244,114,182,.14) inset;
+}
+#typeBadge[data-group="mental"]{
+  border-color:rgba(96,165,250,.48);
+  box-shadow:0 0 0 2px rgba(96,165,250,.14) inset;
+}
+#typeBadge[data-group="instinctif"] #badgeNum{color:var(--inst)}
+#typeBadge[data-group="emotionnel"] #badgeNum{color:var(--emo)}
+#typeBadge[data-group="mental"] #badgeNum{color:var(--ment)}
 
 .card{
   border:1px solid var(--line);
@@ -204,7 +220,6 @@ button:active{transform:translateY(1px)}
 a[aria-disabled=true]{opacity:.55;pointer-events:none}
 
 .ring{stroke:rgba(147,197,253,.55);stroke-width:3.2;fill:none}
-.innerRing{stroke:rgba(255,255,255,.08);stroke-width:2;fill:none}
 
 .staticBg{pointer-events:none}
 
@@ -212,13 +227,11 @@ a[aria-disabled=true]{opacity:.55;pointer-events:none}
 .hex{stroke:rgba(255,255,255,.08);stroke-width:2.2}
 .tri{stroke:rgba(255,255,255,.06);stroke-width:2;opacity:.65}
 
-.centerLine{fill:none;stroke:rgba(255,255,255,.06);stroke-width:2}
-
 .centerLabel{
   font-weight:800;
   letter-spacing:1px;
   text-transform:uppercase;
-  font-size:11px;
+  font-size:13px;
   fill:rgba(255,255,255,.72);
 }
 .centerLabel.instinctif{fill:var(--inst)}

@@ -110,6 +110,7 @@ const toDisint = document.getElementById("toDisint");
 const moveHealthText = document.getElementById("moveHealthText");
 const moveStressText = document.getElementById("moveStressText");
 const openFull = document.getElementById("openFull");
+const typeBadge = document.getElementById("typeBadge");
 
 let typesData = null;
 
@@ -121,6 +122,7 @@ loadData().catch(()=>{});
 
 function selectType(t){
   badgeNum.textContent = t;
+  typeBadge?.setAttribute("data-group", groupOf(t));
 
   const data = typesData ? typesData[String(t)] : null;
 
@@ -146,6 +148,7 @@ function selectType(t){
 
 document.getElementById("btnReset").addEventListener("click", ()=>{
   badgeNum.textContent = "—";
+  typeBadge?.removeAttribute("data-group");
   centerEl.textContent = "—";
   fearEl.textContent = "—";
   desireEl.textContent = "—";
