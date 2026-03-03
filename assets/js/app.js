@@ -18,6 +18,11 @@ function groupOf(t){
   return "mental";
 }
 
+function groupOfTypeValue(value){
+  const n = Number(value);
+  return n >= 1 && n <= 9 ? groupOf(n) : null;
+}
+
 function polarPoint(index){
   const angle = (-90 + index * (360/9)) * (Math.PI/180);
   return { x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) };
@@ -166,12 +171,19 @@ function selectType(t){
   const dt = data?.disint ?? arrowsFallback.disint[t];
 
   centerEl.textContent = data?.center ?? "—";
+  centerEl.setAttribute("data-group", groupOf(t));
   fearEl.textContent = data?.fear ?? "—";
   desireEl.textContent = data?.desire ?? "—";
   compulsionEl.textContent = data?.compulsion ?? "—";
 
   toIntegr.textContent = it;
   toDisint.textContent = dt;
+  const integrGroup = groupOfTypeValue(it);
+  const disintGroup = groupOfTypeValue(dt);
+  if (integrGroup) toIntegr.setAttribute("data-group", integrGroup);
+  else toIntegr.removeAttribute("data-group");
+  if (disintGroup) toDisint.setAttribute("data-group", disintGroup);
+  else toDisint.removeAttribute("data-group");
 
   moveHealthText.textContent = data?.integr_text ?? "—";
   moveStressText.textContent = data?.disint_text ?? "—";
@@ -189,11 +201,14 @@ document.getElementById("btnReset").addEventListener("click", ()=>{
   typeBadge?.removeAttribute("data-group");
   clearNodeHighlights();
   centerEl.textContent = "—";
+  centerEl.removeAttribute("data-group");
   fearEl.textContent = "—";
   desireEl.textContent = "—";
   compulsionEl.textContent = "—";
   toIntegr.textContent = "—";
   toDisint.textContent = "—";
+  toIntegr.removeAttribute("data-group");
+  toDisint.removeAttribute("data-group");
   moveHealthText.textContent = "—";
   moveStressText.textContent = "—";
   openFull.setAttribute("aria-disabled","true");

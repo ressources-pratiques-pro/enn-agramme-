@@ -18,6 +18,7 @@
   --shadow:0 25px 60px rgba(0,0,0,.45);
 
   --accent:rgba(255,255,255,.75);
+  --fieldTitle:rgba(215,220,230,.86);
 }
 
 *{box-sizing:border-box}
@@ -204,9 +205,25 @@ button:active{transform:translateY(1px)}
   font-size:12px;
   letter-spacing:.7px;
   text-transform:uppercase;
-  color:var(--accent);
+  color:var(--fieldTitle);
 }
 .mini p{margin:0;font-size:15px;font-weight:700;color:rgba(255,255,255,.88)}
+
+#center{
+  color:var(--accent);
+  transition:color .14s ease;
+}
+#center[data-group="instinctif"]{color:var(--inst)}
+#center[data-group="emotionnel"]{color:var(--emo)}
+#center[data-group="mental"]{color:var(--ment)}
+
+#toIntegr,#toDisint{
+  color:var(--accent);
+  transition:color .14s ease;
+}
+#toIntegr[data-group="instinctif"],#toDisint[data-group="instinctif"]{color:var(--inst)}
+#toIntegr[data-group="emotionnel"],#toDisint[data-group="emotionnel"]{color:var(--emo)}
+#toIntegr[data-group="mental"],#toDisint[data-group="mental"]{color:var(--ment)}
 
 .moveLines{margin-top:12px;display:grid;gap:10px}
 .moveLine{
