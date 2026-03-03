@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compatibilite - Enneagramme</title>
+  <style>
+    :root{
+      --bg:#070b14;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.14);
+      --glass:rgba(255,255,255,.05);
+      --shadow:0 24px 58px rgba(0,0,0,.45);
+      --radius:20px;
+      --inst:#fbbf24;
+      --emo:#f472b6;
+      --ment:#60a5fa;
+      --love:#fb7185;
+      --work:#34d399;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    .wrap{max-width:1180px;margin:24px auto 34px;padding:0 14px}
+
+    .top{
+      display:grid;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    h1{margin:0;font-size:clamp(28px,4.5vw,46px);line-height:1.05}
+    .sub{margin:0;color:var(--muted);font-size:17px;max-width:78ch}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.07);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+      transition:background .14s ease,border-color .14s ease,transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.24)}
+    .btn:active{transform:translateY(1px)}
+    .btn[disabled]{opacity:.55;cursor:not-allowed}
+
+    .grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:16px;align-items:start}
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--glass);
+      box-shadow:var(--shadow);
+    }
+
+    .diagramCard{padding:16px}
+    .svgWrap{display:flex;justify-content:center;align-items:center;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:10px}
+    .svgWrap svg{width:min(720px,92vw);height:auto;display:block}
+    .hint{margin:10px 2px 2px;color:rgba(255,255,255,.76);font-size:14px;text-align:center}
+
+    .ring{stroke:rgba(147,197,253,.55);stroke-width:3.2;fill:none}
+    .hex,.tri{fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .hex{stroke:rgba(255,255,255,.08);stroke-width:2.2}
+    .tri{stroke:rgba(255,255,255,.06);stroke-width:2;opacity:.65}
+
+    .centerLabel{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;fill:rgba(255,255,255,.72)}
+    .centerLabel.instinctif{fill:var(--inst)}
+    .centerLabel.emotionnel{fill:var(--emo)}
+    .centerLabel.mental{fill:var(--ment)}
+
+    .pairLine{stroke:rgba(255,255,255,.22);stroke-width:2.6;opacity:0;transition:opacity .18s ease}
+    .pairLine.on{opacity:.95}
+    .pairLine.love{stroke:rgba(251,113,133,.86)}
+    .pairLine.work{stroke:rgba(52,211,153,.84)}
+
+    .node{cursor:pointer;transition:opacity .14s ease}
+    .node circle{
+      fill:rgba(15,26,51,.85);
+      stroke:rgba(255,255,255,.2);
+      stroke-width:2.2;
+      transition:stroke .14s ease,transform .14s ease,opacity .14s ease;
+    }
+    .node text{
+      fill:var(--text);
+      font-size:22px;
+      font-weight:850;
+      dominant-baseline:middle;
+      text-anchor:middle;
+      transition:fill .14s ease;
+    }
+    .node.instinctif circle{stroke:var(--inst)}
+    .node.emotionnel circle{stroke:var(--emo)}
+    .node.mental circle{stroke:var(--ment)}
+
+    .node.dimmed{opacity:.24}
+    .node.selectedA,.node.selectedB{opacity:1}
+    .node.selectedA circle{stroke-width:3.2;transform:scale(1.03)}
+    .node.selectedB circle{stroke-width:3.2;transform:scale(1.03)}
+    .node.selectedA text,.node.selectedB text{fill:#fff}
+
+    .panel{padding:14px;display:grid;gap:12px}
+    .picks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .pick{
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:14px;
+      padding:10px 10px;
+      background:rgba(0,0,0,.18);
+      min-height:60px;
+      display:grid;
+      gap:3px;
+      align-content:center;
+    }
+    .pick .k{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+    .pick .v{font-size:18px;font-weight:800;line-height:1.15}
+    .pick.a{border-color:rgba(52,211,153,.38)}
+    .pick.b{border-color:rgba(251,113,133,.38)}
+
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    .miniBtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:9px 12px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .miniBtn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.24)}
+
+    .empty{border:1px dashed rgba(255,255,255,.2);border-radius:14px;padding:12px;color:var(--muted);font-size:14px}
+
+    .scores{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .scoreCard{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px;
+      background:rgba(0,0,0,.18);
+      display:grid;
+      gap:4px;
+    }
+    .scoreCard .k{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:700}
+    .scoreCard .v{font-size:26px;font-weight:900;line-height:1}
+    .scoreCard.love .v{color:var(--love)}
+    .scoreCard.work .v{color:var(--work)}
+
+    .resultBlock{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:12px;
+      display:grid;
+      gap:10px;
+    }
+    .resultBlock h3{margin:0;font-size:17px;letter-spacing:.2px}
+    .resultBlock.love h3{color:var(--love)}
+    .resultBlock.work h3{color:var(--work)}
+
+    .subBlock{display:grid;gap:6px}
+    .subBlock b{font-size:13px;letter-spacing:.35px;text-transform:uppercase;color:rgba(255,255,255,.84)}
+    .subBlock ul{margin:0;padding-left:18px;display:grid;gap:6px}
+    .subBlock li{color:rgba(255,255,255,.88);line-height:1.45}
+
+    @media (max-width:1060px){
+      .grid{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .wrap{margin:16px auto 26px}
+      .sub{font-size:15px}
+      .panel{padding:12px}
+      .scoreCard .v{font-size:24px}
+      .hint{font-size:13px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="topBar">
+        <a class="btn" href="index.html">← Accueil</a>
+      </div>
+      <h1>Compatibilite</h1>
+      <p class="sub">Choisis deux types sur le diagramme. La relation est decrite selon deux themes : vie amoureuse et travail.</p>
+    </header>
+
+    <main class="grid">
+      <section class="card diagramCard">
+        <div class="svgWrap">
+          <svg id="compatSvg" viewBox="0 0 700 700" aria-label="Diagramme de compatibilite enneagramme">
+            <circle class="ring" cx="350" cy="350" r="270"></circle>
+
+            <g id="staticBg">
+              <path class="hex" d="" id="hexPath"></path>
+              <path class="tri" d="" id="triPath"></path>
+              <text class="centerLabel instinctif" x="350" y="255" text-anchor="middle">Instinctif</text>
+              <text class="centerLabel emotionnel" x="468" y="415" text-anchor="middle">Emotionnel</text>
+              <text class="centerLabel mental" x="232" y="415" text-anchor="middle">Mental</text>
+            </g>
+
+            <line id="pairLove" class="pairLine love" x1="0" y1="0" x2="0" y2="0"></line>
+            <line id="pairWork" class="pairLine work" x1="0" y1="0" x2="0" y2="0"></line>
+            <g id="nodesLayer"></g>
+          </svg>
+        </div>
+        <p class="hint" id="selectHint">Selectionne Type A, puis Type B.</p>
+      </section>
+
+      <aside class="card panel">
+        <div class="picks">
+          <div class="pick a">
+            <span class="k">Type A</span>
+            <span class="v" id="pickA">—</span>
+          </div>
+          <div class="pick b">
+            <span class="k">Type B</span>
+            <span class="v" id="pickB">—</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="miniBtn" id="btnSwap" type="button" disabled>Inverser A/B</button>
+          <button class="miniBtn" id="btnReset" type="button">Reinitialiser</button>
+        </div>
+
+        <div class="empty" id="resultEmpty">Clique deux types pour voir la compatibilite en amour et au travail.</div>
+
+        <div id="resultWrap" hidden>
+          <div class="scores">
+            <div class="scoreCard love">
+              <span class="k">Score amour</span>
+              <span class="v" id="scoreLove">--</span>
+            </div>
+            <div class="scoreCard work">
+              <span class="k">Score travail</span>
+              <span class="v" id="scoreWork">--</span>
+            </div>
+          </div>
+
+          <section class="resultBlock love">
+            <h3>Vie amoureuse</h3>
+            <div class="subBlock">
+              <b>Ce qui marche</b>
+              <ul id="loveStrengths"></ul>
+            </div>
+            <div class="subBlock">
+              <b>Points d'attention</b>
+              <ul id="loveRisks"></ul>
+            </div>
+            <div class="subBlock">
+              <b>Conseils pratiques</b>
+              <ul id="loveActions"></ul>
+            </div>
+          </section>
+
+          <section class="resultBlock work">
+            <h3>Travail</h3>
+            <div class="subBlock">
+              <b>Ce qui marche</b>
+              <ul id="workStrengths"></ul>
+            </div>
+            <div class="subBlock">
+              <b>Points d'attention</b>
+              <ul id="workRisks"></ul>
+            </div>
+            <div class="subBlock">
+              <b>Conseils pratiques</b>
+              <ul id="workActions"></ul>
+            </div>
+          </section>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const cx = 350, cy = 350, R = 270;
+    const order = [9,1,2,3,4,5,6,7,8];
+    const centerGroups = {
+      instinctif: [8,9,1],
+      emotionnel: [2,3,4],
+      mental: [5,6,7]
+    };
+
+    const centerRules = {
+      "Instinctif-Instinctif": {
+        loveBase: 7,
+        workBase: 5,
+        lovePlus: "Vous partagez un langage direct et une forte presence dans la relation.",
+        loveRisk: "Les confrontations peuvent vite devenir des rapports de force.",
+        workPlus: "Vous savez agir vite et trancher quand c'est necessaire.",
+        workRisk: "Le besoin de controler peut creer des tensions de pouvoir."
+      },
+      "Emotionnel-Emotionnel": {
+        loveBase: 8,
+        workBase: 3,
+        lovePlus: "La connexion affective et la sensibilite relationnelle sont naturelles.",
+        loveRisk: "Les attentes implicites peuvent generer des malentendus.",
+        workPlus: "Vous captez bien les besoins humains et l'ambiance du groupe.",
+        workRisk: "Le relationnel peut prendre le pas sur les decisions concretes."
+      },
+      "Mental-Mental": {
+        loveBase: 4,
+        workBase: 8,
+        lovePlus: "Le dialogue intellectuel et la clarte d'analyse sont de vrais atouts.",
+        loveRisk: "Le lien peut se refroidir si les emotions ne sont pas verbalisees.",
+        workPlus: "Vous structurez bien les problemes et anticipez les risques.",
+        workRisk: "Trop d'analyse peut retarder l'action."
+      },
+      "Instinctif-Emotionnel": {
+        loveBase: 6,
+        workBase: 6,
+        lovePlus: "L'un apporte l'ancrage, l'autre apporte la chaleur relationnelle.",
+        loveRisk: "Le rythme de l'un peut sembler brusque pour l'autre.",
+        workPlus: "Excellent duo pour faire avancer les sujets tout en tenant compte des personnes.",
+        workRisk: "Des conflits de style peuvent apparaitre sur la forme de communication."
+      },
+      "Instinctif-Mental": {
+        loveBase: 5,
+        workBase: 7,
+        lovePlus: "L'un protege et agit, l'autre clarifie et planifie.",
+        loveRisk: "La spontaneite de l'un peut heurter le besoin de preparation de l'autre.",
+        workPlus: "Complementarite forte entre execution et strategie.",
+        workRisk: "Risque de friction entre vitesse et prudence."
+      },
+      "Emotionnel-Mental": {
+        loveBase: 6,
+        workBase: 7,
+        lovePlus: "Vous combinez empathie et prise de recul, ce qui enrichit le lien.",
+        loveRisk: "L'un peut se sentir trop analytique, l'autre trop sensible.",
+        workPlus: "Bonne alliance entre cohesion d'equipe et logique de decision.",
+        workRisk: "Les priorites peuvent diverger entre humain et performance."
+      }
+    };
+
+    const distLove = {0: 5, 1: 9, 2: 6, 3: 2, 4: -2};
+    const distWork = {0: 3, 1: 5, 2: 8, 3: 6, 4: 2};
+
+    const points = {};
+    order.forEach((t, i) => {
+      const angle = (-90 + i * (360 / 9)) * (Math.PI / 180);
+      points[t] = { x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) };
+    });
+
+    function groupOf(t){
+      if (centerGroups.instinctif.includes(t)) return "instinctif";
+      if (centerGroups.emotionnel.includes(t)) return "emotionnel";
+      return "mental";
+    }
+
+    function pathFromSeq(seq){
+      return seq
+        .map((t, idx) => (idx === 0 ? "M" : "L") + points[t].x.toFixed(2) + " " + points[t].y.toFixed(2))
+        .join(" ");
+    }
+
+    document.getElementById("hexPath").setAttribute("d", pathFromSeq([1,4,2,8,5,7,1]));
+    document.getElementById("triPath").setAttribute("d", pathFromSeq([3,6,9,3]));
+
+    const nodesLayer = document.getElementById("nodesLayer");
+    const pickAEl = document.getElementById("pickA");
+    const pickBEl = document.getElementById("pickB");
+    const hintEl = document.getElementById("selectHint");
+    const btnSwap = document.getElementById("btnSwap");
+    const btnReset = document.getElementById("btnReset");
+    const resultWrap = document.getElementById("resultWrap");
+    const resultEmpty = document.getElementById("resultEmpty");
+    const scoreLove = document.getElementById("scoreLove");
+    const scoreWork = document.getElementById("scoreWork");
+    const pairLove = document.getElementById("pairLove");
+    const pairWork = document.getElementById("pairWork");
+
+    const loveStrengths = document.getElementById("loveStrengths");
+    const loveRisks = document.getElementById("loveRisks");
+    const loveActions = document.getElementById("loveActions");
+    const workStrengths = document.getElementById("workStrengths");
+    const workRisks = document.getElementById("workRisks");
+    const workActions = document.getElementById("workActions");
+
+    const state = { a: null, b: null };
+    let typesData = null;
+
+    function centerRule(centerA, centerB){
+      const ca = normalizeCenterName(centerA);
+      const cb = normalizeCenterName(centerB);
+      const key1 = `${ca}-${cb}`;
+      const key2 = `${cb}-${ca}`;
+      return centerRules[key1] || centerRules[key2] || centerRules["Instinctif-Emotionnel"];
+    }
+
+    function normalizeCenterName(center){
+      const c = (center || "").toLowerCase();
+      if (c.includes("instinct")) return "Instinctif";
+      if (c.includes("emotion") || c.includes("émotion")) return "Emotionnel";
+      if (c.includes("mental")) return "Mental";
+      return "Instinctif";
+    }
+
+    function circularDistance(a, b){
+      const ia = order.indexOf(a);
+      const ib = order.indexOf(b);
+      if (ia < 0 || ib < 0) return 0;
+      const d = Math.abs(ia - ib);
+      return Math.min(d, 9 - d);
+    }
+
+    function clamp(v, min, max){
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function lowerFirst(text){
+      if (!text) return "";
+      return text.charAt(0).toLowerCase() + text.slice(1);
+    }
+
+    function setList(el, items){
+      el.innerHTML = "";
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        el.appendChild(li);
+      });
+    }
+
+    function updateLines(){
+      const a = state.a;
+      const b = state.b;
+      if (!a || !b) {
+        pairLove.classList.remove("on");
+        pairWork.classList.remove("on");
+        return;
+      }
+      pairLove.setAttribute("x1", points[a].x);
+      pairLove.setAttribute("y1", points[a].y);
+      pairLove.setAttribute("x2", points[b].x);
+      pairLove.setAttribute("y2", points[b].y);
+
+      pairWork.setAttribute("x1", points[a].x);
+      pairWork.setAttribute("y1", points[a].y);
+      pairWork.setAttribute("x2", points[b].x);
+      pairWork.setAttribute("y2", points[b].y);
+
+      pairLove.classList.add("on");
+      pairWork.classList.add("on");
+    }
+
+    function renderNodes(){
+      nodesLayer.querySelectorAll(".node").forEach((node) => {
+        const t = Number(node.getAttribute("data-type"));
+        const isA = t === state.a;
+        const isB = t === state.b;
+        const hasSelection = state.a !== null || state.b !== null;
+        node.classList.toggle("selectedA", isA);
+        node.classList.toggle("selectedB", isB);
+        node.classList.toggle("dimmed", hasSelection && !isA && !isB);
+      });
+    }
+
+    function getTypeData(t){
+      return typesData && typesData[String(t)]
+        ? typesData[String(t)]
+        : {
+            name: `Type ${t}`,
+            center: groupOf(t) === "instinctif" ? "Instinctif" : groupOf(t) === "emotionnel" ? "Emotionnel" : "Mental",
+            fear: "a besoin de securite",
+            desire: "recherche l'equilibre",
+            compulsion: "evite les tensions",
+            integr: t,
+            disint: t,
+            integr_text: "apporte des ressources positives",
+            disint_text: "revele des tensions en periode de stress"
+          };
+    }
+
+    function computeReport(a, b){
+      const A = getTypeData(a);
+      const B = getTypeData(b);
+      const d = circularDistance(a, b);
+      const rule = centerRule(A.center, B.center);
+
+      const growLink = A.integr === b || B.integr === a;
+      const stressLink = A.disint === b || B.disint === a;
+      const sameType = a === b;
+
+      let loveScore = 58 + rule.loveBase + (distLove[d] ?? 0);
+      let workScore = 60 + rule.workBase + (distWork[d] ?? 0);
+
+      if (growLink) { loveScore += 6; workScore += 7; }
+      if (stressLink) { loveScore += 2; workScore += 1; }
+      if (sameType) { loveScore += 4; workScore += 3; }
+
+      loveScore = clamp(Math.round(loveScore), 35, 95);
+      workScore = clamp(Math.round(workScore), 35, 95);
+
+      const loveStrength = [
+        rule.lovePlus,
+        `Type ${a}: ${A.desire}. Type ${b}: ${B.desire}.`,
+        growLink ? "Bonne dynamique de croissance reciproque: vous pouvez vous aider a evoluer." : "Vos styles sont differents, ce qui peut enrichir la relation avec une bonne communication."
+      ];
+      const loveRisk = [
+        rule.loveRisk,
+        `En tension, Type ${a}: ${lowerFirst(A.disint_text)}. Type ${b}: ${lowerFirst(B.disint_text)}.`,
+        `Vos automatismes peuvent se heurter: ${lowerFirst(A.compulsion)} / ${lowerFirst(B.compulsion)}.`
+      ];
+      const loveAction = [
+        "Faire un point hebdomadaire: besoins, limites, attentes (20 minutes).",
+        "Nommer les emotions avant de chercher une solution.",
+        "En conflit, ralentir le rythme et reformuler avant de repondre."
+      ];
+
+      const workStrength = [
+        rule.workPlus,
+        `Type ${a}: ${A.integr_text}. Type ${b}: ${B.integr_text}.`,
+        "La complementarite est meilleure quand les roles et responsabilites sont explicites."
+      ];
+      const workRisk = [
+        rule.workRisk,
+        `Sous pression, Type ${a}: ${lowerFirst(A.disint_text)}. Type ${b}: ${lowerFirst(B.disint_text)}.`,
+        "Sans cadre clair, les priorites peuvent diverger et creer des frictions."
+      ];
+      const workAction = [
+        "Definir un objectif commun + un mode de decision explicite.",
+        "Faire un point court regulier: avancement, blocages, arbitrages.",
+        "Se repartir les taches selon les forces naturelles de chacun."
+      ];
+
+      return {
+        loveScore,
+        workScore,
+        loveStrength,
+        loveRisk,
+        loveAction,
+        workStrength,
+        workRisk,
+        workAction
+      };
+    }
+
+    function renderReport(){
+      const a = state.a;
+      const b = state.b;
+
+      if (!a || !b) {
+        resultWrap.hidden = true;
+        resultEmpty.hidden = false;
+        scoreLove.textContent = "--";
+        scoreWork.textContent = "--";
+        setList(loveStrengths, []);
+        setList(loveRisks, []);
+        setList(loveActions, []);
+        setList(workStrengths, []);
+        setList(workRisks, []);
+        setList(workActions, []);
+        return;
+      }
+
+      const report = computeReport(a, b);
+      resultWrap.hidden = false;
+      resultEmpty.hidden = true;
+
+      scoreLove.textContent = `${report.loveScore}/100`;
+      scoreWork.textContent = `${report.workScore}/100`;
+
+      setList(loveStrengths, report.loveStrength);
+      setList(loveRisks, report.loveRisk);
+      setList(loveActions, report.loveAction);
+      setList(workStrengths, report.workStrength);
+      setList(workRisks, report.workRisk);
+      setList(workActions, report.workAction);
+    }
+
+    function updateSelectionUI(){
+      const a = state.a;
+      const b = state.b;
+      const A = a ? getTypeData(a) : null;
+      const B = b ? getTypeData(b) : null;
+
+      pickAEl.textContent = A ? `${a} · ${A.name}` : "—";
+      pickBEl.textContent = B ? `${b} · ${B.name}` : "—";
+      btnSwap.disabled = !(a && b);
+
+      if (!a) hintEl.textContent = "Selectionne Type A, puis Type B.";
+      else if (!b) hintEl.textContent = "Type A choisi. Selectionne maintenant Type B.";
+      else hintEl.textContent = `Compatibilite calculee pour Type ${a} et Type ${b}.`;
+
+      renderNodes();
+      updateLines();
+      renderReport();
+    }
+
+    function onNodeClick(t){
+      if (state.a === null || (state.a !== null && state.b !== null)) {
+        state.a = t;
+        state.b = null;
+      } else if (state.a === t) {
+        state.a = t;
+      } else {
+        state.b = t;
+      }
+      updateSelectionUI();
+    }
+
+    function createNodes(){
+      [1,2,3,4,5,6,7,8,9].forEach((t) => {
+        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        g.setAttribute("class", `node ${groupOf(t)}`);
+        g.setAttribute("data-type", String(t));
+
+        const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("cx", points[t].x);
+        c.setAttribute("cy", points[t].y);
+        c.setAttribute("r", 28);
+
+        const tx = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tx.setAttribute("x", points[t].x);
+        tx.setAttribute("y", points[t].y + 1);
+        tx.textContent = t;
+
+        g.appendChild(c);
+        g.appendChild(tx);
+        g.addEventListener("click", () => onNodeClick(t));
+        nodesLayer.appendChild(g);
+      });
+    }
+
+    async function loadTypesData(){
+      try {
+        const res = await fetch("assets/data/types.json");
+        if (!res.ok) throw new Error("types.json indisponible");
+        typesData = await res.json();
+      } catch (err) {
+        typesData = null;
+      }
+      updateSelectionUI();
+    }
+
+    btnReset.addEventListener("click", () => {
+      state.a = null;
+      state.b = null;
+      updateSelectionUI();
+    });
+
+    btnSwap.addEventListener("click", () => {
+      if (!(state.a && state.b)) return;
+      const a = state.a;
+      state.a = state.b;
+      state.b = a;
+      updateSelectionUI();
+    });
+
+    createNodes();
+    updateSelectionUI();
+    loadTypesData();
+  </script>
+</body>
+</html>
