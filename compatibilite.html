@@ -93,7 +93,7 @@
       fill:rgba(15,26,51,.85);
       stroke:rgba(255,255,255,.2);
       stroke-width:2.2;
-      transition:stroke .14s ease,transform .14s ease,opacity .14s ease;
+      transition:stroke .14s ease,opacity .14s ease,stroke-width .14s ease;
     }
     .node text{
       fill:var(--text);
@@ -109,8 +109,7 @@
 
     .node.dimmed{opacity:.24}
     .node.selectedA,.node.selectedB{opacity:1}
-    .node.selectedA circle{stroke-width:3.2;transform:scale(1.03)}
-    .node.selectedB circle{stroke-width:3.2;transform:scale(1.03)}
+    .node.selectedA circle,.node.selectedB circle{stroke-width:3.2}
     .node.selectedA text,.node.selectedB text{fill:#fff}
 
     .panel{padding:14px;display:grid;gap:12px}
@@ -144,20 +143,6 @@
 
     .empty{border:1px dashed rgba(255,255,255,.2);border-radius:14px;padding:12px;color:var(--muted);font-size:14px}
 
-    .scores{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-    .scoreCard{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:10px;
-      background:rgba(0,0,0,.18);
-      display:grid;
-      gap:4px;
-    }
-    .scoreCard .k{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:700}
-    .scoreCard .v{font-size:26px;font-weight:900;line-height:1}
-    .scoreCard.love .v{color:var(--love)}
-    .scoreCard.work .v{color:var(--work)}
-
     .resultBlock{
       border:1px solid var(--line);
       border-radius:16px;
@@ -182,7 +167,6 @@
       .wrap{margin:16px auto 26px}
       .sub{font-size:15px}
       .panel{padding:12px}
-      .scoreCard .v{font-size:24px}
       .hint{font-size:13px}
     }
   </style>
@@ -239,17 +223,6 @@
         <div class="empty" id="resultEmpty">Clique deux types pour voir la compatibilite en amour et au travail.</div>
 
         <div id="resultWrap" hidden>
-          <div class="scores">
-            <div class="scoreCard love">
-              <span class="k">Score amour</span>
-              <span class="v" id="scoreLove">--</span>
-            </div>
-            <div class="scoreCard work">
-              <span class="k">Score travail</span>
-              <span class="v" id="scoreWork">--</span>
-            </div>
-          </div>
-
           <section class="resultBlock love">
             <h3>Vie amoureuse</h3>
             <div class="subBlock">
@@ -378,8 +351,6 @@
     const btnReset = document.getElementById("btnReset");
     const resultWrap = document.getElementById("resultWrap");
     const resultEmpty = document.getElementById("resultEmpty");
-    const scoreLove = document.getElementById("scoreLove");
-    const scoreWork = document.getElementById("scoreWork");
     const pairLove = document.getElementById("pairLove");
     const pairWork = document.getElementById("pairWork");
 
@@ -556,8 +527,6 @@
       if (!a || !b) {
         resultWrap.hidden = true;
         resultEmpty.hidden = false;
-        scoreLove.textContent = "--";
-        scoreWork.textContent = "--";
         setList(loveStrengths, []);
         setList(loveRisks, []);
         setList(loveActions, []);
@@ -570,9 +539,6 @@
       const report = computeReport(a, b);
       resultWrap.hidden = false;
       resultEmpty.hidden = true;
-
-      scoreLove.textContent = `${report.loveScore}/100`;
-      scoreWork.textContent = `${report.workScore}/100`;
 
       setList(loveStrengths, report.loveStrength);
       setList(loveRisks, report.loveRisk);
