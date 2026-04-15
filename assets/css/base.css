@@ -1,0 +1,109 @@
+/* ============================================================
+   BASE.CSS — Design tokens, reset, shared foundations
+   Included by ALL pages as the first stylesheet
+   ============================================================ */
+
+:root{
+  /* Background & surfaces */
+  --bg:#070b14;
+  --card:rgba(14,21,40,.74);
+  --glass:rgba(255,255,255,.06);
+  --glass2:rgba(255,255,255,.08);
+
+  /* Text */
+  --text:#e8eeff;
+  --muted:#9fb1da;
+
+  /* Borders & shadows */
+  --line:rgba(255,255,255,.16);
+  --shadow:0 26px 72px rgba(2,10,28,.42);
+  --radius:18px;
+
+  /* Center colors */
+  --inst:#fbbf24;
+  --emo:#f472b6;
+  --ment:#60a5fa;
+
+  /* Status */
+  --good:#86efac;
+  --warn:#ffd18b;
+  --bad:#fda4af;
+
+  /* Functional */
+  --blue:#60a5fa;
+  --green:#34d399;
+
+  /* Motion */
+  --motion-fast:.14s;
+  --motion-med:.24s;
+  --motion-ease:cubic-bezier(.22,.61,.36,1);
+
+  /* Touch */
+  --touch-min:44px;
+
+  /* Misc */
+  --accent:rgba(255,255,255,.75);
+  --fieldTitle:rgba(215,220,230,.86);
+}
+
+/* --- Reset --- */
+*{box-sizing:border-box}
+html,body{height:100%}
+html{
+  background:var(--bg);
+  scroll-behavior:smooth;
+}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* --- Accessibility — focus ring --- */
+:focus-visible{
+  outline:2px solid var(--ment);
+  outline-offset:2px;
+  border-radius:4px;
+}
+:focus:not(:focus-visible){outline:none}
+
+/* --- Page entrance --- */
+body{animation:pageIn .38s var(--motion-ease) both}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
+/* --- Subtle grain texture --- */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:.5;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 1px,transparent 1px 4px);
+  mix-blend-mode:soft-light;
+}
+body>*{position:relative;z-index:1}
+
+/* --- Scrollbar (desktop) --- */
+@media(pointer:fine){
+  *::-webkit-scrollbar{width:6px;height:6px}
+  *::-webkit-scrollbar-track{background:transparent}
+  *::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:3px}
+  *::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.22)}
+}
+
+/* --- Print base --- */
+@media print{
+  body,html{background:#fff!important;color:#111!important}
+  body::after{display:none!important}
+  a{color:#111;text-decoration:underline}
+}

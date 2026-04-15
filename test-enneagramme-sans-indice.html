@@ -13,39 +13,18 @@
 
   gtag('config', 'G-1XYJK71TC4');
 </script>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="assets/css/base.css">
   <style>
     :root{
-      --bg:#070b14;
       --panel:rgba(255,255,255,.06);
       --panel2:rgba(255,255,255,.08);
       --txt:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.68);
-      --line:rgba(255,255,255,.14);
       --accent:#8bd3ff;
       --good:#9ff2b1;
       --warn:#ffd18b;
       --bad:#ff8b8b;
-      --radius:18px;
     }
-    *{box-sizing:border-box}
-
-    html{
-      background: var(--bg);
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.72) rgba(255,255,255,.14);
-    }
-    ::-webkit-scrollbar{ width: 12px; height: 12px; }
-    ::-webkit-scrollbar-track{
-      background: rgba(255,255,255,.12);
-      border-left: 1px solid rgba(255,255,255,.10);
-    }
-    ::-webkit-scrollbar-thumb{
-      background: rgba(255,255,255,.72);
-      border-radius: 999px;
-      border: 3px solid rgba(7,11,20,.70);
-    }
-    ::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.86); }
-    ::-webkit-scrollbar-corner{ background: rgba(0,0,0,0); }
 
     .scrollProg{
       position:fixed;
@@ -72,13 +51,7 @@
       transition: width .06s linear;
     }
 
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: var(--bg);
-      color:var(--txt);
-      min-height:100vh;
-    }
+    body{color:var(--txt);min-height:100vh}
 
     .wrap{max-width:1100px;margin:0 auto;padding:22px;padding-bottom:110px}
 

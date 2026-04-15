@@ -4,31 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Affinité - Ennéagramme</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="assets/css/base.css">
   <style>
     :root{
-      --bg:#070b14;
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.72);
-      --line:rgba(255,255,255,.14);
-      --glass:rgba(255,255,255,.05);
-      --shadow:0 24px 58px rgba(0,0,0,.45);
-      --radius:20px;
-      --inst:#fbbf24;
-      --emo:#f472b6;
-      --ment:#60a5fa;
       --love:#fb7185;
       --work:#34d399;
       --hier:#5eead4;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%;overflow-x:hidden}
-    body{
-      margin:0;
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
-      background:var(--bg);
-    }
+    html,body{overflow-x:hidden}
 
     .wrap{max-width:1180px;margin:24px auto 34px;padding:0 14px}
 
@@ -46,7 +30,8 @@
       align-items:center;
       justify-content:center;
       gap:8px;
-      padding:10px 12px;
+      padding:12px 16px;
+      min-height:var(--touch-min);
       border-radius:999px;
       border:1px solid rgba(255,255,255,.16);
       background:rgba(255,255,255,.07);
@@ -54,9 +39,9 @@
       text-decoration:none;
       font-weight:700;
       cursor:pointer;
-      transition:background .14s ease,border-color .14s ease,transform .06s ease;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
     }
-    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.24)}
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.24);text-decoration:none}
     .btn:active{transform:translateY(1px)}
     .btn[disabled]{opacity:.55;cursor:not-allowed}
 
@@ -137,11 +122,13 @@
       background:rgba(255,255,255,.06);
       color:var(--text);
       border-radius:999px;
-      padding:9px 12px;
+      padding:10px 14px;
+      min-height:var(--touch-min);
       font-weight:700;
       cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform var(--motion-fast) var(--motion-ease);
     }
-    .miniBtn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.24)}
+    .miniBtn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.24);transform:translateY(-1px)}
 
     .empty{border:1px dashed rgba(255,255,255,.2);border-radius:14px;padding:12px;color:var(--muted);font-size:14px}
 
@@ -208,6 +195,10 @@
     }
     .hierSub[open] summary::after{transform:rotate(90deg)}
     .hierSubBody{padding:0 12px 12px;display:grid;gap:6px}
+
+    /* Accordion animations */
+    .resultBlock .accordionBody,.hierSubBody{animation:fadeSlideIn .28s cubic-bezier(.22,.61,.36,1)}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
     @media (max-width:1060px){
       .grid{grid-template-columns:1fr}
@@ -581,5 +572,6 @@
     loadTypesData();
     loadDuosData();
   </script>
+  <script src="assets/js/shared.js"></script>
 </body>
 </html>
