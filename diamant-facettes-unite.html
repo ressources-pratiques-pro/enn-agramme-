@@ -277,6 +277,71 @@
       background:linear-gradient(135deg, rgba(196,181,253,.08), rgba(196,181,253,.02));
     }
 
+    /* Séparateur "voie de retour" */
+    .returnDivider{
+      display:flex;align-items:center;gap:14px;
+      margin:6px 0 14px;color:#86efac;
+      font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;
+    }
+    .returnDivider::before, .returnDivider::after{
+      content:"";flex:1;height:1px;
+      background:linear-gradient(90deg, transparent, rgba(134,239,172,.45), transparent);
+    }
+    .returnDivider .gem{font-size:13px;color:#7dd3fc}
+
+    /* 4e bloc : Clé essentielle */
+    .essenceCard{
+      position:relative;padding:22px 24px 22px 60px;border-radius:14px;
+      border:1px solid rgba(134,239,172,.35);
+      background:
+        radial-gradient(ellipse at top right, rgba(252,211,77,.08), transparent 60%),
+        linear-gradient(135deg, rgba(125,211,252,.10), rgba(134,239,172,.05));
+      border-left:4px solid #86efac;
+      box-shadow:0 0 32px rgba(125,211,252,.10) inset;
+    }
+    .essenceCard .step{
+      position:absolute;left:14px;top:22px;
+      width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;
+      font-size:15px;font-weight:850;color:#0b1120;
+      background:linear-gradient(135deg,#7dd3fc,#86efac,#fcd34d);
+      box-shadow:0 0 18px rgba(125,211,252,.45);
+    }
+    .essenceCard .label{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:800;margin:0 0 4px;color:#86efac;
+    }
+    .essenceCard .name{
+      margin:0 0 4px;font-size:20px;font-weight:850;color:#fff;line-height:1.2;
+      background:linear-gradient(135deg,#fff 0%,#e0f5ea 60%,#fef3c7 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .essenceCard .nameEn{
+      margin:0 0 12px;font-size:12px;color:rgba(255,255,255,.5);
+      font-style:italic;letter-spacing:.3px;
+    }
+    .essenceCard .desc{
+      margin:0 0 14px;line-height:1.65;font-size:14.5px;color:#e8eeff;
+    }
+    .essenceCard .subBlock{
+      margin:10px 0 0;padding:12px 14px;border-radius:10px;
+      background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.06);
+    }
+    .essenceCard .subBlock .subLabel{
+      font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;
+      font-weight:800;margin:0 0 6px;color:#bae6fd;
+    }
+    .essenceCard .subBlock.texture .subLabel{color:#fcd34d}
+    .essenceCard .subBlock.unlock .subLabel{color:#86efac}
+    .essenceCard .subBlock p{
+      margin:0;font-size:14px;line-height:1.6;color:#e8eeff;
+    }
+    .essenceCard .quote{
+      margin:14px 0 0;padding:12px 14px 12px 18px;
+      border-left:2px solid rgba(125,211,252,.5);
+      font-style:italic;font-size:13.5px;line-height:1.55;color:#cfe9ff;
+    }
+
     /* Schéma du mouvement de la perte */
     .moveSchema svg{max-width:780px}
     .moveSchema .moveStep{font-weight:800;font-size:12px;letter-spacing:.4px}
@@ -359,8 +424,8 @@
       <div class="cover" aria-hidden="true"></div>
       <div class="info">
         <p class="meta">A.H. Almaas</p>
-        <h1>Facettes de l'Unité</h1>
-        <p class="subtitle">L'Ennéagramme des Idées Saintes</p>
+        <h1>Facettes de l'Unité &amp; Clés essentielles</h1>
+        <p class="subtitle">L'Ennéagramme des Idées Saintes — et la voie de retour par les qualités essentielles</p>
       </div>
     </header>
 
@@ -368,6 +433,7 @@
       <p>Cette perspective propose une lecture <strong>contemplative et ontologique</strong> de l'Ennéagramme. Chaque type n'est pas qu'un mécanisme défensif : c'est aussi le <em>voile</em> d'une perception juste de la réalité. Cette perception juste s'appelle l'<strong>Idée Sainte</strong>. Quand cette Idée s'éveille en nous, une qualité naturelle émerge — la <strong>Vertu Sainte</strong>.</p>
       <p>Au cœur de cette approche se trouve un concept essentiel : la <strong>Confiance fondamentale</strong>. C'est l'expérience implicite, souvent perdue dans l'enfance, qu'il existe une bienveillance profonde dans la nature même de la réalité — une <em>Lumière Vivante</em> qui soutient toute chose. Sans cette confiance, les Idées Saintes restent des concepts ; avec elle, elles deviennent une rencontre directe.</p>
       <p>Le travail proposé n'est pas de comprendre intellectuellement ces neuf perceptions, mais de les <strong>laisser se révéler</strong> par une pratique de questionnement intérieur — l'<em>inquiry</em>. Chaque Idée Sainte est, comme une facette de diamant, une manière dont l'Unité se montre.</p>
+      <p>À la perte d'une Idée Sainte répond, pour chaque type, une <strong>voie de retour</strong> : une <em>qualité essentielle</em> — un aspect réel de l'Être, doté d'une texture, d'une couleur, d'une localisation dans le corps subtil — que l'idéal de l'ego imite inconsciemment. La reconnaître, puis la laisser s'incarner, dénoue la fixation à sa racine. Chaque fiche-type ci-dessous présente donc le mouvement complet : la <strong>perte</strong> en trois temps, puis la <strong>clé essentielle</strong> qui ouvre le retour.</p>
     </section>
 
     <p class="sectionTitle">Le voile et la facette</p>
@@ -436,12 +502,12 @@
       <p>La <strong>Lumière Vivante</strong> (<em>Living Daylight</em>) est la qualité fondamentale de la réalité elle-même : une présence aimante, tendre, qui imprègne toute chose. La <strong>Confiance fondamentale</strong> (<em>Basic Trust</em>) est l'expérience intime, souvent oubliée, que cette Lumière nous porte. Sans cette confiance, l'ego se durcit pour se protéger ; avec elle, il peut se relâcher et laisser la vérité émerger.</p>
     </section>
 
-    <p class="sectionTitle">Le mouvement de la perte</p>
+    <p class="sectionTitle">Le mouvement de la perte et du retour</p>
 
     <section class="schemaCard moveSchema">
-      <h3>Comment l'Idée se voile en trois temps</h3>
-      <p class="lead">Pour chaque type, la perte de l'Idée Sainte se déploie en trois facettes interdépendantes. Comprendre ces trois temps, c'est comprendre la mécanique intime du type.</p>
-      <svg viewBox="0 0 780 230" aria-label="Mouvement de la perte : Idée Sainte → Illusion → Difficulté → Réaction">
+      <h3>Le cycle complet : trois temps de la perte, une clé pour le retour</h3>
+      <p class="lead">Pour chaque type, la perte de l'Idée Sainte se déploie en trois facettes interdépendantes — illusion, difficulté, réaction. Le retour passe par une quatrième facette : la <em>qualité essentielle</em>, présence réelle qui dissout la fixation à sa source.</p>
+      <svg viewBox="0 0 780 360" aria-label="Mouvement de la perte et du retour : Idée Sainte → Illusion → Difficulté → Réaction → Clé essentielle → retour à l'Idée">
         <defs>
           <marker id="arrowM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L10,5 L0,10 z" fill="rgba(255,255,255,.4)"/>
@@ -493,8 +559,39 @@
         <text x="300" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">« je vois ainsi »</text>
         <text x="510" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">« je ressens ainsi »</text>
         <text x="710" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">« j'agis ainsi »</text>
+
+        <!-- Bande "voie de retour" -->
+        <line x1="40" y1="245" x2="740" y2="245" stroke="rgba(134,239,172,.25)" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="390" y="240" fill="#86efac" font-size="10.5" font-weight="800" letter-spacing="2.4" text-anchor="middle">VOIE DE RETOUR</text>
+
+        <!-- Flèche descendante de ③ vers ④ -->
+        <path d="M 710 160 Q 710 220 600 280" stroke="rgba(134,239,172,.55)" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#arrowReturn)"/>
+
+        <!-- Marker spécial retour -->
+        <defs>
+          <marker id="arrowReturn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="rgba(134,239,172,.7)"/>
+          </marker>
+          <radialGradient id="essenceGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fef3c7" stop-opacity=".95"/>
+            <stop offset=".5" stop-color="#86efac" stop-opacity=".4"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- ④ Clé essentielle -->
+        <rect x="370" y="270" width="220" height="70" rx="12" fill="url(#essenceGlow)" stroke="rgba(134,239,172,.6)" stroke-width="1.6"/>
+        <circle cx="395" cy="295" r="13" fill="rgba(11,17,32,.85)" stroke="#86efac" stroke-width="1.8"/>
+        <text x="395" y="299" fill="#fff" font-size="13" font-weight="850" text-anchor="middle">4</text>
+        <text x="490" y="298" class="moveStep" fill="#fff" text-anchor="middle">Clé essentielle</text>
+        <text x="490" y="316" class="moveSub" fill="rgba(255,255,255,.85)" text-anchor="middle">qualité d'Être</text>
+        <text x="490" y="332" class="moveSub" fill="rgba(255,255,255,.6)" text-anchor="middle">« je suis cela »</text>
+
+        <!-- Arc de retour vers Idée Sainte -->
+        <path d="M 370 305 Q 200 305 90 165" stroke="rgba(125,211,252,.55)" stroke-width="1.8" fill="none" stroke-dasharray="5 4" marker-end="url(#arrowReturn)"/>
+        <text x="220" y="335" fill="rgba(125,211,252,.75)" font-size="10.5" font-style="italic" text-anchor="middle">le retour à l'Idée Sainte</text>
       </svg>
-      <p>Chacun des neuf types reproduit ce même mouvement, avec des contenus très différents. Le travail contemplatif consiste à reconnaître ces trois temps en soi, sans chercher à les supprimer — leur reconnaissance même commence à les dénouer.</p>
+      <p>Chacun des neuf types reproduit ce même mouvement, avec des contenus très différents. Le travail contemplatif consiste à reconnaître ces trois temps en soi, sans chercher à les supprimer — leur reconnaissance même commence à les dénouer. Et c'est l'incarnation de la quatrième facette, la <em>clé essentielle</em>, qui complète le cycle : la fixation se résorbe parce que la qualité réelle qu'elle imitait obscurément est maintenant présente.</p>
     </section>
 
     <p class="sectionTitle">Les neuf Idées Saintes</p>
@@ -572,6 +669,47 @@
 
     <article class="typeCard" id="typeCard" hidden></article>
 
+    <p class="sectionTitle">Les neuf clés essentielles</p>
+
+    <section class="schemaCard" style="border-color:rgba(134,239,172,.28); background:radial-gradient(ellipse at top, rgba(134,239,172,.05), rgba(255,255,255,.02));">
+      <h3>Vue d'ensemble — la voie de retour pour chaque type</h3>
+      <p class="lead">Pour chaque type, une qualité essentielle réelle — un aspect de l'Être avec sa texture, sa couleur, sa localisation propres — que l'idéal de l'ego imite obscurément, et qui dénoue la fixation quand elle est reconnue puis incarnée.</p>
+      <div class="keysGrid">
+        <div class="keyRow"><span class="kn">1</span><span class="kc" style="background:linear-gradient(135deg,#fff,#e0e0e0)"></span><span class="ktitle">La Brillance</span><span class="kdesc">essence de l'intelligence — fluide lisse, sans couleur, qui contient toutes les qualités</span></div>
+        <div class="keyRow"><span class="kn">2</span><span class="kc" style="background:linear-gradient(135deg,#fbbf24,#fde68a)"></span><span class="ktitle">L'Amour Fusionnel</span><span class="kdesc">or transparent doux qui fait fondre le cœur — principe de connexion vraie</span></div>
+        <div class="keyRow"><span class="kn">3</span><span class="kc" style="background:linear-gradient(135deg,#f8fafc,#cbd5e1)"></span><span class="ktitle">L'Essence Personnelle</span><span class="kdesc">la perle blanche — la personne véritable, individuation essentielle</span></div>
+        <div class="keyRow"><span class="kn">4</span><span class="kc" style="background:radial-gradient(circle,#fff 30%,#7dd3fc)"></span><span class="ktitle">L'Identité Essentielle</span><span class="kdesc">le point de lumière — le « Je » authentique, étoile concentrée</span></div>
+        <div class="keyRow"><span class="kn">5</span><span class="kc" style="background:linear-gradient(135deg,#60a5fa,#86efac,#fcd34d)"></span><span class="ktitle">La Guidance Diamant</span><span class="kdesc">véhicule de diamants colorés au front — l'intellect essentiel</span></div>
+        <div class="keyRow"><span class="kn">6</span><span class="kc" style="background:linear-gradient(135deg,#e2e8f0,#94a3b8)"></span><span class="ktitle">La Volonté Personnelle</span><span class="kdesc">l'argent chatoyant — solidité, soutien intérieur, persévérance sans effort</span></div>
+        <div class="keyRow"><span class="kn">7</span><span class="kc" style="background:conic-gradient(from 0deg,#fcd34d,#86efac,#7dd3fc,#c4b5fd,#fcd34d)"></span><span class="ktitle">Le Véhicule du Plaisir</span><span class="kdesc">diamants tournoyants multicolores — plaisir essentiel, félicité sans cause</span></div>
+        <div class="keyRow"><span class="kn">8</span><span class="kc" style="background:linear-gradient(135deg,#dc2626,#fb923c)"></span><span class="ktitle">La Force Véritable</span><span class="kdesc">feu rouge rubis dans le bas du corps — vitalité organique, capacité d'affirmation</span></div>
+        <div class="keyRow"><span class="kn">9</span><span class="kc" style="background:radial-gradient(circle,#fef3c7,#fff,#fef3c7)"></span><span class="ktitle">L'Amour Sans Limites</span><span class="kdesc">lumière blanche-dorée enveloppante — amour non duel, matrice du tout</span></div>
+      </div>
+    </section>
+
+    <style>
+      .keysGrid{display:grid;gap:8px;margin-top:6px}
+      .keyRow{
+        display:grid;grid-template-columns:32px 26px 1fr 2fr;gap:14px;align-items:center;
+        padding:12px 14px;border-radius:10px;
+        background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+        transition:background .15s ease,border-color .15s ease;
+      }
+      .keyRow:hover{background:rgba(134,239,172,.06);border-color:rgba(134,239,172,.25)}
+      .keyRow .kn{font-size:18px;font-weight:850;color:#fff;text-align:center}
+      .keyRow .kc{
+        width:22px;height:22px;border-radius:50%;
+        border:1.5px solid rgba(255,255,255,.4);
+        box-shadow:0 0 12px rgba(255,255,255,.15);
+      }
+      .keyRow .ktitle{font-size:14.5px;font-weight:800;color:#fff}
+      .keyRow .kdesc{font-size:13px;color:#cfe9ff;line-height:1.5}
+      @media(max-width:640px){
+        .keyRow{grid-template-columns:32px 26px 1fr;gap:10px}
+        .keyRow .kdesc{grid-column:1 / -1;padding-left:46px;font-size:12.5px}
+      }
+    </style>
+
     <p class="sectionTitle">Les trois facettes de l'Unité</p>
 
     <section class="triangles">
@@ -612,7 +750,7 @@
     </section>
 
     <section class="closing">
-      <p>Les neuf Idées Saintes ne sont pas des croyances à adopter, mais des <strong>perceptions à retrouver</strong>. Chacune est une facette de la même Unité — la même Lumière Vivante vue sous neuf angles. Le travail de l'inquiry n'est pas d'ajouter quelque chose à soi, mais de laisser tomber ce qui voile ce qui est déjà là.</p>
+      <p>Les neuf Idées Saintes ne sont pas des croyances à adopter, mais des <strong>perceptions à retrouver</strong>. Les neuf clés essentielles ne sont pas des vertus à cultiver, mais des <strong>présences à laisser émerger</strong>. À chaque type sa porte d'entrée — et c'est toujours le même diamant qui se révèle, vu sous une nouvelle facette. Le travail de l'inquiry n'ajoute rien : il laisse tomber ce qui voile ce qui est déjà là.</p>
     </section>
 
     <footer class="siteFooter">Tous droits réservés</footer>
@@ -634,6 +772,13 @@
                    desc:"Pas la culpabilité d'avoir mal agi (Type 8), mais la conviction silencieuse qu'il y a quelque chose qui cloche en soi, dans ce qu'on est. Une imperfection inhérente, qui semble inscrite au cœur même de l'âme." },
       reaction:{ name:"L'auto-amélioration compulsive",
                  desc:"Un travail intérieur incessant pour se corriger, se rectifier, ou à l'inverse se prouver qu'on a raison. Activité ressentie, légèrement coléreuse, qui dit en fond « je ne veux pas de ça » à l'expérience." },
+      essence:{
+        name:"La Brillance", nameEn:"Brilliancy",
+        desc:"L'essence de l'intelligence — non l'intellect mental, mais une qualité de l'Être qui synthétise toutes les autres qualités essentielles en une seule présence indifférenciée. Chaque aspect (volonté, force, amour, joie…) y est implicite. De cette complétude provient le sens véritable de la perfection : rien n'y manque.",
+        texture:"Un fluide d'une lissité extrême, plus léger que le mercure mais dense, sans friction ni adhérence. Visuellement, pas de couleur — la brillance pure de la lumière, comme le reflet du soleil sur l'eau qu'on pourrait regarder sans douleur. Son centre n'est pas la tête mais le mobius, au milieu du sternum inférieur. Elle peut affluer dans le cerveau (qui fonctionne alors « brillamment »), s'accumuler dans le ventre comme plénitude dense, ou imprégner le cœur.",
+        unlock:"La Brillance révèle que la perfection n'est pas une norme externe à atteindre, mais la présence elle-même dans sa complétude. La conscience cesse d'être empruntée et devient l'intelligence vivante de l'Être, qui répond à chaque situation de façon complète et appropriée. Le ressentiment perd son objet : le réel n'a plus à être corrigé selon une image, il est rencontré dans son intelligence intrinsèque.",
+        quote:"« La perfection n'est pas dans quelque chose d'extérieur, comme dans une action ou une création ; elle n'est pas non plus basée sur une norme. La perfection est dans sa présence elle-même, qui est complétude et aussi préciosité. »"
+      },
       inquiry:"Et si rien, en cet instant, n'avait besoin d'être corrigé — qu'est-ce qui resterait ?"
     },
     {
@@ -648,6 +793,13 @@
                    desc:"Ne pas obtenir ce qu'on attend devient un coup porté à l'orgueil. Une diminution, une gifle qui amenuise — le sentiment qu'on perd sa force, sa vitalité, sa valeur d'être." },
       reaction:{ name:"L'action obstinée",
                  desc:"Se dresser contre ce qui est : « je vais faire comme je l'entends ». De là viennent les manœuvres pour influencer, séduire, retenir l'autre, se rendre indispensable — toutes manifestations de cette posture entêtée." },
+      essence:{
+        name:"L'Amour Fusionnel", nameEn:"Merging Love (or Merging Gold)",
+        desc:"L'amour qui incarne le principe de connexion : la qualité spécifique de l'amour essentiel qui forme une relation, qui dissout les frontières du soi et de l'autre et permet l'union sans abolir la différenciation. C'est l'essence de la connexion vraie — ce qui fait qu'une rencontre devient une relation.",
+        texture:"Une douceur sans équivalent terrestre. Le cœur — et tout ce que cette présence touche — est ressenti comme fondant littéralement, à la manière du beurre qui fond. Visuellement, un fluide doré pur, transparent, lumineux, comparable au miel mais moins dense, traversé de soleil. Son centre est sur le côté gauche du sternum. Quand deux personnes la partagent, elles sentent former un bassin doux et lumineux d'amour.",
+        unlock:"L'or fusionnel donne au Deux la véritable nourriture intérieure dont il a soif et qu'il cherchait à extraire des autres par manipulation. Quand cette présence est intégrée, le don devient gratuit (la nourriture est déjà là), la connexion ne dépend plus du comportement de l'autre, l'autonomie devient possible parce que la fusion est intérieure. La codépendance se dissout : on a déjà la fusion, on n'a plus à la chercher ailleurs.",
+        quote:"« La nature de cet amour est une présence substantielle qui fait fondre notre cœur et notre esprit en douceur. Elle fait fondre toute partie qu'elle touche de notre subjectivité intérieure. »"
+      },
       inquiry:"Si je n'avais plus besoin d'être nécessaire à personne, qui serais-je ?"
     },
     {
@@ -662,6 +814,13 @@
                    desc:"Sous l'image, un sentiment d'inadéquation, d'incapacité, d'échec. La conviction qu'au fond, on n'est pas vraiment quelqu'un qui peut agir — mais croyant l'être, on se vit comme défaillant." },
       reaction:{ name:"La lutte / l'activité incessante",
                  desc:"Une agitation perpétuelle, intérieure et extérieure : faire, accomplir, performer, réussir. L'acte de produire compte plus que ce qui est produit. Cette activité couvre l'impuissance, l'imite avec un dynamisme de surface." },
+      essence:{
+        name:"L'Essence Personnelle", nameEn:"Personal Essence (the Pearl Beyond Price)",
+        desc:"La « perle inestimable » : la présence essentielle qui se manifeste comme personne véritable, individu mûr et fonctionnel sur le plan spirituel. Ni l'ego, ni l'absorption impersonnelle dans le transcendant — l'âme arrivée à son individuation essentielle, capable d'incarner l'être en tant qu'humain qui fonctionne. C'est l'aboutissement de la maturation : être une personne réelle qui exprime la profondeur tout en vivant pleinement la vie humaine.",
+        texture:"Une présence pleine et arrondie, dense et résiliente, mais entièrement faite de conscience. Plénitude charnue dans le ventre, comparée à la fermeté d'un muscle jeune et sain — sans être physique. Visuellement, une perle blanche luminescente, pas brillante mais douée d'une douce lueur. Quand on l'incarne, on est l'expression vivante du « Je suis » authentique. Elle confère le contact réel par sa simple présence, et l'efficience qui ponte les deux mondes.",
+        unlock:"La perle est la véritable réussite humaine : non externe mais ontologique. Quand le Trois reconnaît qu'il est un faux, une imitation, et accepte le vide qui sous-tend la coquille, il se libère du paraître. La perle peut alors émerger : il devient une personne réelle, non plus un acteur. Sa fonctionnalité reste, mais désormais au service du véritable fonctionner, pas de l'image. Il peut contacter les autres comme personnes à part entière, non comme miroirs de son excellence.",
+        quote:"« La véritable histoire du succès humain consiste à trouver la perle, ou à mûrir au point de pouvoir l'incarner, plutôt que de réussir d'une manière extérieure ou dans le monde extérieur. »"
+      },
       inquiry:"Si je n'avais plus rien à prouver, qu'est-ce qui demeurerait ?"
     },
     {
@@ -676,6 +835,13 @@
                    desc:"Se sentir étranger, aliéné, coupé de soi-même et de la réalité. Pas l'isolement (Type 5), mais l'éloignement de ce qui aime, de l'origine — d'où la mélancolie, la tristesse, le désespoir caractéristiques." },
       reaction:{ name:"Le contrôle du vécu intérieur",
                  desc:"Une activité subtile pour contrôler son expérience, ne pas ressentir le vide de la déconnexion. Cela crée un faux centre — un « moi » fabriqué qui masque l'absence du centre réel et soutient l'identité de l'ego." },
+      essence:{
+        name:"L'Identité Essentielle", nameEn:"Essential Identity (the Point)",
+        desc:"Le « point de lumière » : la présence concentrée qui confère à l'âme son sens de « Je » authentique, irréductible. Pas une identité construite à partir d'images ou d'histoire, mais le prototype même du soi, doté d'un affect inhérent d'identité, d'authenticité et d'unicité. Chaque âme a son propre point, dont le rayonnement diffère par les couleurs qu'il émet — d'où l'unicité réelle de chaque personne.",
+        texture:"Un point de lumière brillant comme une étoile, parfois aperçu comme une étoile filante traversant la conscience. Quand on s'y attarde, on ressent une présence concentrée, dotée d'un sentiment précis et non-fabriqué d'« être moi ». On peut devenir le point : sensation d'être un centre de lumière et de sagesse qui irradie toutes les qualités essentielles. Il apporte liberté, légèreté, espace, enjouement, qualité unique, authenticité.",
+        unlock:"Le point est littéralement l'origine dans l'âme — l'expression individuelle du fondement de l'Être. La nostalgie du Quatre, sa mélancolie, son sentiment d'avoir perdu un bien-aimé inconnu, est en fait l'aspiration à cette présence. Quand il ose traverser sa vacuité d'identité, le point peut descendre. Il devient alors authentique sans drame, spécial de manière ordinaire, original simplement en étant lui-même. Le besoin de feux de la rampe et la créativité forcée tombent : la profondeur n'a plus à s'annoncer.",
+        quote:"« Le point a le sens de la simplicité et de l'ordinaire, qui est l'essence même d'être authentiquement qui nous sommes. Lorsque nous sommes authentiquement qui nous sommes, nous n'avons pas besoin d'être vus ni d'exprimer qui nous sommes de façon dramatique pour attirer l'attention. »"
+      },
       inquiry:"Si rien d'essentiel ne manquait en cet instant, comment serait-ce ?"
     },
     {
@@ -690,6 +856,13 @@
                    desc:"Se sentir petit, vide, démuni, seul. Un état de pauvreté intérieure : pas assez d'énergie, de ressources, de présence pour faire face au monde et à ses sollicitations." },
       reaction:{ name:"Le retrait / l'évitement",
                  desc:"Se cacher, se retirer, couper les contacts, fuir tout ce qui pourrait blesser. Dissociation entre mental et corps, retrait émotionnel, observation à distance plutôt que participation au vivant." },
+      essence:{
+        name:"La Guidance Diamant", nameEn:"Diamond Guidance (Nous)",
+        desc:"L'intellect essentiel : un véhicule diamant qui contient toutes les qualités essentielles configurées pour la fonction de discernement, de synthèse et de compréhension. Ni l'intellect mental ordinaire ni son opposé : l'intelligence discernante de l'Être, capable de combiner la connaissance acquise avec la connaissance directe du présent immédiat pour produire une compréhension expérientielle complète. Le véritable guide du chemin intérieur.",
+        texture:"Une présence délicate et palpitante au centre du front, brillante et lumineuse. Dans sa pleine manifestation, un véhicule de diamants colorés transparents, chaque diamant étant la forme cristalline d'une qualité essentielle — toutes présentes, chacune avec sa clarté de couleur propre. L'expérience est marquée par une précision diamantaire : perception nette, expérience nette, fonctionnement mental net. Les qualités dominantes sont le bleu (gnose), le vert (cœur empathique) et l'or massif (vérité).",
+        unlock:"La Guidance Diamant donne au Cinq ce qu'il cherchait sous la forme déformée de l'accumulation mentale : la véritable compréhension, qui est expérientielle et inclut le mental sans s'y réduire. Elle l'autorise à ressentir ses émotions sans perdre la clarté — au contraire, l'ouverture émotionnelle devient condition de la compréhension véritable. Le retrait devient inutile : on peut être pleinement engagé et pleinement clair. La vacuité que le Cinq évite s'avère être l'espace où le véritable intellect émerge.",
+        quote:"« Diamond guidance est inattendue dans sa vérité et sa présence, mystérieuse dans sa façon de guider notre recherche et notre exploration de la vérité de l'expérience. Elle a l'étrange capacité de combiner les données de notre expérience d'ici et de maintenant avec les données et les connaissances du passé. »"
+      },
       inquiry:"Et si participer ne diminuait pas mon être, mais le révélait ?"
     },
     {
@@ -704,6 +877,13 @@
                    desc:"Le monde apparaît comme une jungle dangereuse peuplée d'égoïstes. Personne pour soutenir, rien d'intérieur sur quoi s'appuyer. Un état sensible et délicat où peur et insécurité se confondent." },
       reaction:{ name:"La suspicion défensive",
                  desc:"Méfiance constante, vigilance, scan du danger. Que ce soit en mode phobique (recul, retrait suspect) ou contre-phobique (charger en avant pour prouver qu'on n'a pas peur), c'est la même posture défensive." },
+      essence:{
+        name:"La Volonté Personnelle", nameEn:"Personal Will",
+        desc:"La présence de la solidité essentielle : un fondement intérieur qui confère confiance, sécurité, fermeté, persévérance sans effort, capacité d'engagement véritable. Pas la volonté au sens d'effort imposé à soi-même — la qualité d'être qui rend possibles la résolution, la fidélité et la stabilité parce qu'on est ancré dans la réalité.",
+        texture:"D'abord comme une « pleine lune » blanc-argenté lumineuse au plexus solaire, avec sens de centrage et de fermeté flexible. Plus en profondeur, comme la présence de l'argent — soit liquide, soit solide — au plexus solaire, dans le ventre, dans la colonne vertébrale (« avoir une colonne »), ou remplissant tout le corps comme une statue d'argent vivante. L'argent essentiel est chatoyant, lumineux, frais, malléable — par contraste avec la « volonté de fer », sombre et lourde.",
+        unlock:"La présence d'argent restitue le soutien intérieur que le Six cherche désespérément à l'extérieur. Avec la volonté véritable, la persévérance devient sans effort, la confiance émerge spontanément, l'engagement est possible parce qu'on n'a plus besoin de garanties externes. La peur — et son traitement par la rigidité ou la conformité — perd son fondement : la sécurité vient de l'ancrage intérieur. La flexibilité, incompatible avec la fausse volonté, devient possible sans qu'elle implique faiblesse.",
+        quote:"« L'argent essentiel est chatoyant et lumineux, contrairement à la volonté de fer, qui a tendance à être ressentie comme étant sombre et lourde — parfois même rouillée et vieille — comme de la fonte. »"
+      },
       inquiry:"Si la vie était digne de confiance, comment respirerais-je ?"
     },
     {
@@ -718,6 +898,13 @@
                    desc:"Quand la confiance manque, surgit le sentiment qu'on devrait savoir mais qu'on ne sait pas. Un état déficient : la capacité d'orientation paraît coupée, on ne sait plus quoi faire ni quel chemin prendre." },
       reaction:{ name:"La planification",
                  desc:"Construire mentalement une direction pour ses futures actions. Le plan vient des expériences passées et manque la fraîcheur du présent. Activité incessante, compulsive, qui fuit l'instant." },
+      essence:{
+        name:"Le Véhicule du Plaisir", nameEn:"Pleasure Vehicle (the Markabah)",
+        desc:"Un véhicule diamant qui rassemble toutes les qualités essentielles dans une configuration où chacune se manifeste comme une forme spécifique de plaisir, de délectation ou de félicité. Ce n'est pas une qualité simple mais une plénitude : la bonté ressentie comme plaisir, l'intelligence comme plaisir, la paix comme plaisir. L'essence du plaisir véritable, sans cause externe, qui jaillit du simple fait d'être soi-même librement.",
+        texture:"À son ouverture initiale, comme un soleil jaune transparent au-dessus du mamelon gauche, donnant une joie pure et éthérée sans cause. Plus complètement, comme une présence de plénitude et de richesse dans la poitrine, accompagnée de musique intérieure et de la vue de diamants tournoyants de couleurs variées. Chaque qualité a son goût de douceur spécifique : la joie jaune a goût de sucre, la paix noire de réglisse, la bonté verte de menthe… L'aspect synesthésique est total.",
+        unlock:"La Markabah est précisément ce que le Sept cherche — un plaisir véritable et inépuisable — mais à l'intérieur, comme nature même de l'Être. Quand il ose traverser la vacuité au lieu de la fuir par la stimulation, le plaisir essentiel émerge spontanément. La planification compulsive cesse parce que le bonheur n'est plus dans un futur à fabriquer. La curiosité véritable (qui suit la vérité) remplace la curiosité dispersée. Loyauté envers la vérité intérieure devient le chemin le plus court vers la félicité authentique.",
+        quote:"« Le vrai plaisir, sans artifice, est une qualité de notre être propre. Nous avons juste besoin d'être nous-mêmes librement, d'une façon insouciante. Si nous nous tournons profondément vers l'intérieur, ce plaisir extatique sera naturellement là. »"
+      },
       inquiry:"Et si la profondeur que je cherche se trouvait dans cet instant précis ?"
     },
     {
@@ -732,6 +919,13 @@
                    desc:"Au niveau ontologique, le sentiment d'avoir « commis quelque chose », d'être de travers, séparé du tout. Pas une culpabilité morale circonstancielle (Type 1) — quelque chose de plus profond, comme une faute d'être." },
       reaction:{ name:"L'auto-reproche retourné en revanche",
                  desc:"L'auto-reproche, dirigé vers l'extérieur, se transforme en dureté, en intensité, en désir de prendre revanche. Imposer sa vérité, dominer plutôt qu'être dominé, frapper plutôt qu'être frappé." },
+      essence:{
+        name:"La Force Véritable", nameEn:"True Strength",
+        desc:"L'essence de la force vitale, prototype de toute force (physique, émotionnelle, morale, mentale). C'est l'agressivité au sens originel et non destructeur : capacité d'affirmation, courage, audace, vigueur, expansion, capacité à dire « je peux ». La force de l'Être lui-même — non la force que l'on possède, mais la force que l'on est.",
+        texture:"Une chaleur dans le bas du corps, comme un feu qui ne brûle pas. Visuellement comme une flamme, un feu rouge rubis lumineux, ou de la lave en écoulement dense traversant le pelvis, les jambes, le corps entier. Aussi comme un fluide rouge sang qui pulse dans la conscience. La couleur est invariablement rouge rubis pur, surnaturel. L'affect est inconfondable : sens de vitalité débordante, de robustesse, d'expansion (« plus grand que son corps »), d'audace spontanée et de capacité.",
+        unlock:"La Force véritable confère au Huit ce qu'il cherchait par la brutalité : une affirmation réellement efficace, qui n'a besoin ni d'être bruyante ni de blesser, qui peut être douce et néanmoins solide. Elle dissout le besoin de défendre la faiblesse parce qu'on incarne une force qui ne peut pas être menacée. L'agression au service de la vérité reste possible, mais elle perd sa dimension réactive et vengeresse. Le passage clé : oser ressentir la faiblesse évitée, qui se révèle comme espace où la force essentielle peut surgir.",
+        quote:"« Lorsque nous faisons l'expérience de la force véritable, nous nous sentons forts parce que nous ressentons la présence de la force elle-même — nous sommes pleins d'une énergie et d'une présence qui est l'essence de la force vitale. Elle n'est pas physique ni animale, ni musculaire ni émotionnelle, mais organique et innée. »"
+      },
       inquiry:"Et si je n'avais plus à faire arriver les choses, qui serais-je ?"
     },
     {
@@ -746,6 +940,13 @@
                    desc:"Sentiment global qu'on n'est pas digne d'amour, qu'il manque ce qui rend une âme bonne. Pas un trou précis, mais une qualité diffuse de manque, une honte basse, le sentiment que la substance même de soi est privée de valeur." },
       reaction:{ name:"S'endormir à sa propre nature",
                  desc:"L'âme se rend lourde, oublieuse, résignée. On adhère à la réalité conventionnelle, on continue comme si rien d'autre n'était possible. La paresse n'est pas du faire extérieur — c'est l'oubli de ce qu'on est." },
+      essence:{
+        name:"L'Amour Sans Limites", nameEn:"Boundless Love (Loving Light, Living Daylight)",
+        desc:"La dimension non duelle de l'amour : un amour universel, omniprésent, qui n'est pas relationnel comme l'or fusionnel mais qui est la matrice et le fondement dont tout est fait. La « mer d'amour » qui se différencie en toutes les formes d'amour relatives à la vie humaine. Sa réalisation est l'éveil à l'unité de l'être comme bonté pure — confiance fondamentale, sentiment d'être tenu par une présence bienveillante qui imprègne tout.",
+        texture:"Une présence blanche-dorée délicate, douce et sucrée, perçue à la fois comme lumière aimante et comme conscience pure. À l'intérieur : relaxation profonde, apaisement du mental, aisance corporelle. À l'extérieur : sensation d'être baigné, soutenu, caressé par une présence enveloppante, comme si une main tendre touchait toute l'atmosphère. Dans sa forme non duelle : un champ infini de lumière dorée légère, dont on découvre qu'il est la nature même de tout — et qu'on est ce champ.",
+        unlock:"L'Amour Sans Limites donne au Neuf la véritable paix — celle qui naît d'affronter le conflit (et non de l'éviter), parce que la confiance fondamentale est là. La présence aimante tient la situation, libérant les autres qualités essentielles (force, intelligence, compassion) qui peuvent agir réellement. L'engourdissement devient inutile : on est intérieurement en paix, donc plus besoin de distractions ni d'amasser. La générosité devient naturelle (on déborde). L'action véritable remplace l'activité affairée. Le Neuf libéré peut faire la paix parce qu'il est issu de l'harmonie de l'amour.",
+        quote:"« Cet amour-ci est ressenti différemment, avec une texture et un goût différents, une couleur et une fonction différentes. C'est l'océan de l'amour, qui se différencie en de nombreuses formes d'amour pertinentes pour les êtres humains et leur vie. Nous nous sentons tout autour de nous soutenus, baignés, par une douceur qui imprègne toute l'atmosphère. »"
+      },
       inquiry:"Et si ma présence comptait autant que celle de tous les autres, qu'est-ce que je ferais maintenant ?"
     }
   ];
@@ -837,7 +1038,26 @@
           </div>
         </div>
 
-        <div class="inquiry">
+        <div class="returnDivider"><span class="gem">◆</span> La voie de retour <span class="gem">◆</span></div>
+
+        <div class="essenceCard">
+          <span class="step">4</span>
+          <p class="label">Clé essentielle — qualité d'Être à incarner</p>
+          <p class="name">${t.essence.name}</p>
+          <p class="nameEn">${t.essence.nameEn}</p>
+          <p class="desc">${t.essence.desc}</p>
+          <div class="subBlock texture">
+            <p class="subLabel">Comment elle se ressent</p>
+            <p>${t.essence.texture}</p>
+          </div>
+          <div class="subBlock unlock">
+            <p class="subLabel">Comment elle dénoue la fixation</p>
+            <p>${t.essence.unlock}</p>
+          </div>
+          <p class="quote">${t.essence.quote}</p>
+        </div>
+
+        <div class="inquiry" style="margin-top:18px">
           <p class="label">Une question d'inquiry</p>
           <p class="question">« ${t.inquiry} »</p>
         </div>
