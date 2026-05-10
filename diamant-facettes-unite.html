@@ -242,6 +242,46 @@
     .block.fixation{border-left-color:#fda4af;color:#fecdd3}
     .block.fixation{background:rgba(253,164,175,.05)}
 
+    /* Trois facettes : illusion / difficulté / réaction */
+    .facets3{display:grid;gap:14px;margin:0 0 16px}
+    .facet3{
+      position:relative;padding:18px 20px 18px 56px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);
+      border-left-width:4px;
+    }
+    .facet3 .step{
+      position:absolute;left:14px;top:18px;
+      width:30px;height:30px;border-radius:50%;
+      display:grid;place-items:center;
+      font-size:14px;font-weight:850;color:#fff;
+      background:rgba(0,0,0,.35);border:1.5px solid currentColor;
+    }
+    .facet3 .label{
+      font-size:11px;letter-spacing:1.2px;text-transform:uppercase;
+      font-weight:800;margin:0 0 4px;color:inherit;
+    }
+    .facet3 .name{
+      margin:0 0 8px;font-size:17px;font-weight:800;color:#fff;line-height:1.25;
+    }
+    .facet3 p{margin:0;line-height:1.65;font-size:14.5px;color:#e8eeff}
+    .facet3.illusion{
+      border-left-color:#fda4af;color:#fecdd3;
+      background:linear-gradient(135deg, rgba(253,164,175,.07), rgba(253,164,175,.02));
+    }
+    .facet3.difficulty{
+      border-left-color:#fcd34d;color:#fde68a;
+      background:linear-gradient(135deg, rgba(252,211,77,.07), rgba(252,211,77,.02));
+    }
+    .facet3.reaction{
+      border-left-color:#c4b5fd;color:#ddd6fe;
+      background:linear-gradient(135deg, rgba(196,181,253,.08), rgba(196,181,253,.02));
+    }
+
+    /* Schéma du mouvement de la perte */
+    .moveSchema svg{max-width:780px}
+    .moveSchema .moveStep{font-weight:800;font-size:12px;letter-spacing:.4px}
+    .moveSchema .moveSub{font-size:10.5px;letter-spacing:.3px}
+
     .inquiry{
       margin:0;padding:22px 24px;border-radius:14px;
       border:1px solid rgba(196,181,253,.32);
@@ -396,6 +436,67 @@
       <p>La <strong>Lumière Vivante</strong> (<em>Living Daylight</em>) est la qualité fondamentale de la réalité elle-même : une présence aimante, tendre, qui imprègne toute chose. La <strong>Confiance fondamentale</strong> (<em>Basic Trust</em>) est l'expérience intime, souvent oubliée, que cette Lumière nous porte. Sans cette confiance, l'ego se durcit pour se protéger ; avec elle, il peut se relâcher et laisser la vérité émerger.</p>
     </section>
 
+    <p class="sectionTitle">Le mouvement de la perte</p>
+
+    <section class="schemaCard moveSchema">
+      <h3>Comment l'Idée se voile en trois temps</h3>
+      <p class="lead">Pour chaque type, la perte de l'Idée Sainte se déploie en trois facettes interdépendantes. Comprendre ces trois temps, c'est comprendre la mécanique intime du type.</p>
+      <svg viewBox="0 0 780 230" aria-label="Mouvement de la perte : Idée Sainte → Illusion → Difficulté → Réaction">
+        <defs>
+          <marker id="arrowM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="rgba(255,255,255,.4)"/>
+          </marker>
+          <radialGradient id="ideaGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".9"/>
+            <stop offset=".6" stop-color="#7dd3fc" stop-opacity=".3"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Idée Sainte (perdue) -->
+        <circle cx="80" cy="115" r="55" fill="url(#ideaGlow)"/>
+        <circle cx="80" cy="115" r="30" fill="none" stroke="rgba(125,211,252,.55)" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text x="80" y="113" class="moveStep" fill="#cfe9ff" text-anchor="middle">Idée Sainte</text>
+        <text x="80" y="128" class="moveSub" fill="rgba(207,233,255,.7)" text-anchor="middle">(perdue de vue)</text>
+
+        <!-- Flèche 1 -->
+        <line x1="145" y1="115" x2="220" y2="115" stroke="rgba(255,255,255,.4)" stroke-width="1.5" marker-end="url(#arrowM)"/>
+
+        <!-- ① Illusion -->
+        <rect x="230" y="70" width="140" height="90" rx="10" fill="rgba(253,164,175,.10)" stroke="rgba(253,164,175,.50)" stroke-width="1.4"/>
+        <circle cx="248" cy="88" r="11" fill="rgba(0,0,0,.35)" stroke="#fda4af" stroke-width="1.5"/>
+        <text x="248" y="92" fill="#fff" font-size="12" font-weight="850" text-anchor="middle">1</text>
+        <text x="300" y="115" class="moveStep" fill="#fecdd3" text-anchor="middle">Illusion</text>
+        <text x="300" y="132" class="moveSub" fill="rgba(254,205,211,.75)" text-anchor="middle">vision déformée</text>
+
+        <!-- Flèche 2 -->
+        <line x1="375" y1="115" x2="430" y2="115" stroke="rgba(255,255,255,.4)" stroke-width="1.5" marker-end="url(#arrowM)"/>
+
+        <!-- ② Difficulté -->
+        <rect x="440" y="70" width="140" height="90" rx="10" fill="rgba(252,211,77,.08)" stroke="rgba(252,211,77,.50)" stroke-width="1.4"/>
+        <circle cx="458" cy="88" r="11" fill="rgba(0,0,0,.35)" stroke="#fcd34d" stroke-width="1.5"/>
+        <text x="458" y="92" fill="#fff" font-size="12" font-weight="850" text-anchor="middle">2</text>
+        <text x="510" y="115" class="moveStep" fill="#fde68a" text-anchor="middle">Difficulté</text>
+        <text x="510" y="132" class="moveSub" fill="rgba(253,230,138,.75)" text-anchor="middle">douleur intérieure</text>
+
+        <!-- Flèche 3 -->
+        <line x1="585" y1="115" x2="640" y2="115" stroke="rgba(255,255,255,.4)" stroke-width="1.5" marker-end="url(#arrowM)"/>
+
+        <!-- ③ Réaction -->
+        <rect x="650" y="70" width="120" height="90" rx="10" fill="rgba(196,181,253,.10)" stroke="rgba(196,181,253,.55)" stroke-width="1.4"/>
+        <circle cx="668" cy="88" r="11" fill="rgba(0,0,0,.35)" stroke="#c4b5fd" stroke-width="1.5"/>
+        <text x="668" y="92" fill="#fff" font-size="12" font-weight="850" text-anchor="middle">3</text>
+        <text x="710" y="115" class="moveStep" fill="#ddd6fe" text-anchor="middle">Réaction</text>
+        <text x="710" y="132" class="moveSub" fill="rgba(221,214,254,.75)" text-anchor="middle">stratégie défensive</text>
+
+        <!-- Étiquettes du bas -->
+        <text x="300" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">« je vois ainsi »</text>
+        <text x="510" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">« je ressens ainsi »</text>
+        <text x="710" y="195" class="moveSub" fill="rgba(255,255,255,.55)" text-anchor="middle">« j'agis ainsi »</text>
+      </svg>
+      <p>Chacun des neuf types reproduit ce même mouvement, avec des contenus très différents. Le travail contemplatif consiste à reconnaître ces trois temps en soi, sans chercher à les supprimer — leur reconnaissance même commence à les dénouer.</p>
+    </section>
+
     <p class="sectionTitle">Les neuf Idées Saintes</p>
 
     <section class="ennea9">
@@ -524,82 +625,127 @@
     {
       n:1, name:"Le Perfectionniste",
       idea:{ name:"La Perfection Sacrée",
-             desc:"Le réel est déjà parfait, non au sens moral, mais au sens où il est exactement ce qu'il est, sans manque. Chaque instant est complet en lui-même, et la réalité se déploie sans nécessiter d'être corrigée." },
+             desc:"Tout est intrinsèquement parfait, juste comme il faut, par sa nature même. Si tout est parfait, rien ne peut être fondamentalement mauvais en soi, parce qu'on est une partie du tout." },
       virtue:{ name:"La Sérénité",
-               desc:"Une présence calme qui n'a plus besoin d'améliorer. Une acceptation profonde de ce qui est, qui n'est ni résignation ni indifférence, mais reconnaissance que rien n'est à fixer." },
-      fixation:"Quand la Perfection Sacrée se voile, le monde apparaît comme défectueux, à corriger. Le juge intérieur prend le relais : la passion devient la <strong>colère</strong> contenue contre tout ce qui n'est pas à la hauteur d'un standard.",
+               desc:"Une présence calme qui n'a plus besoin d'améliorer. Une acceptation profonde de ce qui est, qui n'est ni résignation ni indifférence, mais reconnaissance que rien n'est à corriger." },
+      illusion:{ name:"Le jugement comparatif",
+                 desc:"Une voix intérieure compare ce qui est à un standard idéal absent. Le réel est divisé en bon/mauvais, juste/erroné, parfait/défectueux. Tout passe par ce filtre évaluatif, dont les critères viennent du surmoi et des valeurs sociales intériorisées." },
+      difficulty:{ name:"Le sentiment d'être foncièrement mauvais",
+                   desc:"Pas la culpabilité d'avoir mal agi (Type 8), mais la conviction silencieuse qu'il y a quelque chose qui cloche en soi, dans ce qu'on est. Une imperfection inhérente, qui semble inscrite au cœur même de l'âme." },
+      reaction:{ name:"L'auto-amélioration compulsive",
+                 desc:"Un travail intérieur incessant pour se corriger, se rectifier, ou à l'inverse se prouver qu'on a raison. Activité ressentie, légèrement coléreuse, qui dit en fond « je ne veux pas de ça » à l'expérience." },
       inquiry:"Et si rien, en cet instant, n'avait besoin d'être corrigé — qu'est-ce qui resterait ?"
     },
     {
       n:2, name:"Le Donneur",
       idea:{ name:"La Volonté Sacrée",
-             desc:"Le mouvement réel ne vient pas de l'effort de l'ego ; il émerge de l'Être lui-même. Ce qui doit advenir advient, sans que je doive tout porter ou tout fournir. Je ne suis pas séparé de la source qui agit à travers moi." },
+             desc:"La réalité se déploie comme un flux unifié selon des lois naturelles ; on n'est pas séparé de cette force, on en est une partie. La vraie liberté est de vouloir ce que veut le mouvement même de la vie." },
       virtue:{ name:"L'Humilité",
-               desc:"Non l'effacement, mais la juste mesure de soi. La capacité de donner sans se gonfler, de recevoir sans se diminuer. Reconnaître que je ne suis ni au-dessus ni au-dessous des autres." },
-      fixation:"Quand la Volonté Sacrée se voile, on croit devoir tout fournir, devenir indispensable pour mériter d'exister. La passion devient l'<strong>orgueil</strong> caché derrière le don.",
+               desc:"Non l'effacement, mais la juste mesure de soi. La capacité de donner sans se gonfler, de recevoir sans se diminuer. Reconnaître qu'on n'est ni au-dessus ni au-dessous des autres." },
+      illusion:{ name:"La volonté séparée",
+                 desc:"Croire qu'il existe un « je » indépendant qui peut faire que les choses aillent comme il veut. L'orgueil silencieux : « je vais m'arranger pour que ça arrive », opposition incessante à ce qui se déploie." },
+      difficulty:{ name:"L'humiliation de ne pas avoir gain de cause",
+                   desc:"Ne pas obtenir ce qu'on attend devient un coup porté à l'orgueil. Une diminution, une gifle qui amenuise — le sentiment qu'on perd sa force, sa vitalité, sa valeur d'être." },
+      reaction:{ name:"L'action obstinée",
+                 desc:"Se dresser contre ce qui est : « je vais faire comme je l'entends ». De là viennent les manœuvres pour influencer, séduire, retenir l'autre, se rendre indispensable — toutes manifestations de cette posture entêtée." },
       inquiry:"Si je n'avais plus besoin d'être nécessaire à personne, qui serais-je ?"
     },
     {
       n:3, name:"Le Performeur",
       idea:{ name:"L'Harmonie Sacrée",
-             desc:"Le cosmos fonctionne selon des lois objectives et harmonieuses. Tout est interconnecté, tout déploie sa juste mesure sans qu'il faille produire son existence. Aussi appelée Loi Sacrée ou Espérance Sacrée." },
+             desc:"Il n'y a pas d'exceptions aux lois qui gouvernent le réel ; toute action est manifestation d'un seul mouvement unifié. Aussi appelée Loi Sacrée ou Espérance Sacrée — la certitude expérientielle de cette objectivité." },
       virtue:{ name:"La Véracité",
-               desc:"Être vrai, sans masque, sans fabrication d'image. Reposer dans ce qu'on est sans devoir le démontrer. Une présence transparente." },
-      fixation:"Quand l'Harmonie Sacrée se voile, on croit devoir produire son existence, performer pour exister, ajuster son image pour être valable. La passion devient le <strong>mensonge sur soi</strong>.",
+               desc:"Être vrai, sans masque, sans fabrication d'image. Reposer dans ce qu'on est sans devoir le démontrer. Une présence transparente, sans posture." },
+      illusion:{ name:"La vanité de l'agent indépendant",
+                 desc:"Croire qu'on est un acteur autonome qui produit ses propres résultats, par ses propres lois. Comme si l'univers ne participait pas — comme si tout dépendait de soi seul." },
+      difficulty:{ name:"L'impuissance fondamentale",
+                   desc:"Sous l'image, un sentiment d'inadéquation, d'incapacité, d'échec. La conviction qu'au fond, on n'est pas vraiment quelqu'un qui peut agir — mais croyant l'être, on se vit comme défaillant." },
+      reaction:{ name:"La lutte / l'activité incessante",
+                 desc:"Une agitation perpétuelle, intérieure et extérieure : faire, accomplir, performer, réussir. L'acte de produire compte plus que ce qui est produit. Cette activité couvre l'impuissance, l'imite avec un dynamisme de surface." },
       inquiry:"Si je n'avais plus rien à prouver, qu'est-ce qui demeurerait ?"
     },
     {
       n:4, name:"Le Romantique",
       idea:{ name:"L'Origine Sacrée",
-             desc:"Toute manifestation, y compris moi, vient d'une seule origine vivante. Je ne suis jamais réellement séparé de cette source. Rien d'essentiel ne manque, parce que je suis déjà tenu dans l'origine de tout ce qui est." },
+             desc:"Chaque être est une expression unique d'une même Source qui en est le centre. Notre vraie identité n'est pas séparée de cette origine — elle en est une facette." },
       virtue:{ name:"L'Équanimité",
                desc:"Une stabilité intérieure qui n'est ni au-dessus ni en-dessous, ni dramatique ni indifférente. Reposer dans le réel tel qu'il est, sans le comparer à un idéal absent." },
-      fixation:"Quand l'Origine Sacrée se voile, on se sent fondamentalement séparé, déficient, abandonné. La passion devient l'<strong>envie</strong> et la mélancolie de ce qui semble manquer.",
+      illusion:{ name:"L'identité séparée",
+                 desc:"Croire que son « je » est ultimement séparé, unique, différent. La spécialité comme manière de masquer la déconnexion d'avec la Source — l'obsession d'être original, irremplaçable, à part." },
+      difficulty:{ name:"La déconnexion / l'abandon",
+                   desc:"Se sentir étranger, aliéné, coupé de soi-même et de la réalité. Pas l'isolement (Type 5), mais l'éloignement de ce qui aime, de l'origine — d'où la mélancolie, la tristesse, le désespoir caractéristiques." },
+      reaction:{ name:"Le contrôle du vécu intérieur",
+                 desc:"Une activité subtile pour contrôler son expérience, ne pas ressentir le vide de la déconnexion. Cela crée un faux centre — un « moi » fabriqué qui masque l'absence du centre réel et soutient l'identité de l'ego." },
       inquiry:"Si rien d'essentiel ne manquait en cet instant, comment serait-ce ?"
     },
     {
       n:5, name:"L'Observateur",
       idea:{ name:"L'Omniscience Sacrée",
-             desc:"Le réel est connaissable de l'intérieur de son unité. La connaissance n'est pas extérieure à ce qui est connu — elle est la transparence même de l'être à lui-même. Aussi appelée Transparence Sacrée." },
+             desc:"Tout est interconnecté dans une unité multiple ; chaque être est inséparable du tout, ses frontières transparentes. Aussi appelée Transparence Sacrée — pas de séparation possible sinon par hallucination mentale." },
       virtue:{ name:"Le Non-attachement",
                desc:"Une ouverture qui ne retient rien et qui n'a peur de rien manquer. L'énergie peut circuler librement, parce qu'on n'est plus séparé de sa source." },
-      fixation:"Quand la Transparence se voile, on craint d'être vidé, on accumule, on retient, on se retire. La passion devient l'<strong>avarice</strong> — non seulement de biens, mais de temps, d'énergie, de présence.",
+      illusion:{ name:"La séparation",
+                 desc:"Percevoir ses frontières comme réelles et infranchissables. Croire qu'on est une entité distincte, fondamentalement coupée des autres et du tout." },
+      difficulty:{ name:"L'isolement appauvri",
+                   desc:"Se sentir petit, vide, démuni, seul. Un état de pauvreté intérieure : pas assez d'énergie, de ressources, de présence pour faire face au monde et à ses sollicitations." },
+      reaction:{ name:"Le retrait / l'évitement",
+                 desc:"Se cacher, se retirer, couper les contacts, fuir tout ce qui pourrait blesser. Dissociation entre mental et corps, retrait émotionnel, observation à distance plutôt que participation au vivant." },
       inquiry:"Et si participer ne diminuait pas mon être, mais le révélait ?"
     },
     {
       n:6, name:"Le Loyal Sceptique",
       idea:{ name:"La Foi Sacrée",
-             desc:"Le réel possède une force intrinsèque sur laquelle on peut s'appuyer. La vie est fiable, non parce qu'elle est garantie, mais parce qu'elle nous porte au moment même où elle se déploie. Aussi appelée Puissance Sacrée." },
+             desc:"La certitude expérientielle que l'Être existe, qu'il est notre nature intérieure, qu'il est fiable. Aussi appelée Puissance Sacrée — pas une croyance, mais la certitude vécue d'une essence en chacun." },
       virtue:{ name:"Le Courage",
                desc:"Avancer dans l'inconnu sans demander de garantie. Une force tranquille qui repose sur la confiance dans la nature même de la réalité." },
-      fixation:"Quand la Foi Sacrée se voile, le monde devient menaçant, on cherche désespérément une certitude impossible. La passion devient la <strong>peur</strong> — de l'autorité ou contre l'autorité.",
+      illusion:{ name:"Le cynisme",
+                 desc:"La conviction d'avance qu'il n'y a pas de bonté désintéressée chez les autres, que toute apparence d'amour est intérêt caché. Pas un doute ouvert, mais une conclusion fermée qui invalide toute confiance possible." },
+      difficulty:{ name:"L'insécurité peureuse",
+                   desc:"Le monde apparaît comme une jungle dangereuse peuplée d'égoïstes. Personne pour soutenir, rien d'intérieur sur quoi s'appuyer. Un état sensible et délicat où peur et insécurité se confondent." },
+      reaction:{ name:"La suspicion défensive",
+                 desc:"Méfiance constante, vigilance, scan du danger. Que ce soit en mode phobique (recul, retrait suspect) ou contre-phobique (charger en avant pour prouver qu'on n'a pas peur), c'est la même posture défensive." },
       inquiry:"Si la vie était digne de confiance, comment respirerais-je ?"
     },
     {
       n:7, name:"L'Épicurien",
       idea:{ name:"La Sagesse Sacrée",
-             desc:"Le vrai déploiement de la vie se fait dans le présent. La sagesse est dans ce qui est, pas dans ce qui pourrait être ailleurs. Aussi appelée Plan Sacré ou Travail Sacré." },
+             desc:"Le déploiement de l'âme et de tout être fait partie d'un travail qui se fait spontanément ; il existe déjà un plan inhérent orienté vers la réalisation du potentiel. Aussi appelée Plan Sacré ou Travail Sacré." },
       virtue:{ name:"La Sobriété",
-               desc:"Habiter pleinement ce qui est, sans fuir vers l'ailleurs. Une présence non saturée, capable de goûter sans avoir besoin d'accumuler." },
-      fixation:"Quand le Plan Sacré se voile, on cherche la vie ailleurs, dans la prochaine option, le prochain plaisir, le prochain projet. La passion devient la <strong>gloutonnerie</strong> — de stimulation, d'expérience, de possible.",
+               desc:"Habiter pleinement ce qui est, sans fuir vers l'ailleurs. Une présence non saturée, capable de goûter sans avoir besoin d'accumuler ou d'anticiper." },
+      illusion:{ name:"Pouvoir diriger son déploiement",
+                 desc:"Croire qu'on peut programmer le déroulement de sa vie, savoir d'avance ce qui doit venir, tracer la trajectoire. Une orientation auto-fabriquée à la place de l'intelligence organique du présent." },
+      difficulty:{ name:"La désorientation / être perdu",
+                   desc:"Quand la confiance manque, surgit le sentiment qu'on devrait savoir mais qu'on ne sait pas. Un état déficient : la capacité d'orientation paraît coupée, on ne sait plus quoi faire ni quel chemin prendre." },
+      reaction:{ name:"La planification",
+                 desc:"Construire mentalement une direction pour ses futures actions. Le plan vient des expériences passées et manque la fraîcheur du présent. Activité incessante, compulsive, qui fuit l'instant." },
       inquiry:"Et si la profondeur que je cherche se trouvait dans cet instant précis ?"
     },
     {
       n:8, name:"Le Protecteur",
       idea:{ name:"La Vérité Sacrée",
-             desc:"Le cosmos existe objectivement, là, maintenant, indépendamment de nos interprétations ou de notre volonté. La vérité n'est pas à imposer — elle est, et elle se révèle à qui s'incline pour la voir." },
+             desc:"Le cosmos existe objectivement comme une unité non-duelle dans laquelle tout est inclus. Il n'y a que la vérité, et tout est vérité — un seul tissu d'être, sans division réelle." },
       virtue:{ name:"L'Innocence",
                desc:"Une fraîcheur sans agenda, une présence ouverte qui ne vient ni dominer ni se défendre. La capacité d'être touché sans être affaibli." },
-      fixation:"Quand la Vérité Sacrée se voile, on impose sa propre vérité, on se durcit pour ne pas être touché. La passion devient l'<strong>excès</strong> — la convoitise de pouvoir, d'intensité, de contrôle.",
+      illusion:{ name:"La dualité",
+                 desc:"Percevoir la réalité comme divisée en objets séparés et opposés : moi/l'autre, fort/faible, juste/injuste. Le tout se fragmente en camps qui s'affrontent ; il n'y a plus d'unité, seulement des pôles antagonistes." },
+      difficulty:{ name:"Le sentiment d'être mauvais et coupable",
+                   desc:"Au niveau ontologique, le sentiment d'avoir « commis quelque chose », d'être de travers, séparé du tout. Pas une culpabilité morale circonstancielle (Type 1) — quelque chose de plus profond, comme une faute d'être." },
+      reaction:{ name:"L'auto-reproche retourné en revanche",
+                 desc:"L'auto-reproche, dirigé vers l'extérieur, se transforme en dureté, en intensité, en désir de prendre revanche. Imposer sa vérité, dominer plutôt qu'être dominé, frapper plutôt qu'être frappé." },
       inquiry:"Et si je n'avais plus à faire arriver les choses, qui serais-je ?"
     },
     {
       n:9, name:"Le Médiateur",
       idea:{ name:"L'Amour Sacré",
-             desc:"La nature fondamentale du réel est l'amour. Tout est tenu, soutenu, aimé d'une manière essentielle. Je ne suis pas un détail accessoire de l'univers : je suis aimé du même amour qui tient toute chose." },
+             desc:"La nature intime de tout ce qui existe est bonne et aimable. L'univers a une qualité aimante non-conditionnelle, une positivité qui imprègne directement l'âme — tout est amour." },
       virtue:{ name:"L'Action juste",
-               desc:"Agir depuis la présence à soi, exprimer son désir vrai dans le mouvement de la vie. Une diligence qui n'est plus passive mais incarnée." },
-      fixation:"Quand l'Amour Sacré se voile, on se rend invisible, on s'endort intérieurement, on évite d'exister distinctement. La passion devient la <strong>paresse</strong> — non du faire extérieur, mais de l'être propre.",
+               desc:"Agir depuis la présence à soi, exprimer son désir vrai dans le mouvement de la vie. Une diligence qui n'est plus passive mais incarnée, présente." },
+      illusion:{ name:"L'amour conditionnel et localisé",
+                 desc:"Croire que l'amour est un phénomène local, présent ici mais pas là, à certains moments, sous certaines conditions. La bonté pourrait être ailleurs — chez les autres, dans certaines situations — mais peut-être pas en soi." },
+      difficulty:{ name:"L'infériorité",
+                   desc:"Sentiment global qu'on n'est pas digne d'amour, qu'il manque ce qui rend une âme bonne. Pas un trou précis, mais une qualité diffuse de manque, une honte basse, le sentiment que la substance même de soi est privée de valeur." },
+      reaction:{ name:"S'endormir à sa propre nature",
+                 desc:"L'âme se rend lourde, oublieuse, résignée. On adhère à la réalité conventionnelle, on continue comme si rien d'autre n'était possible. La paresse n'est pas du faire extérieur — c'est l'oubli de ce qu'on est." },
       inquiry:"Et si ma présence comptait autant que celle de tous les autres, qu'est-ce que je ferais maintenant ?"
     }
   ];
@@ -670,9 +816,25 @@
           </div>
         </div>
 
-        <div class="block fixation">
-          <h3>La fixation — le voile</h3>
-          <p>${t.fixation}</p>
+        <div class="facets3">
+          <div class="facet3 illusion">
+            <span class="step">1</span>
+            <p class="label">Illusion spécifique</p>
+            <p class="name">${t.illusion.name}</p>
+            <p>${t.illusion.desc}</p>
+          </div>
+          <div class="facet3 difficulty">
+            <span class="step">2</span>
+            <p class="label">Difficulté spécifique</p>
+            <p class="name">${t.difficulty.name}</p>
+            <p>${t.difficulty.desc}</p>
+          </div>
+          <div class="facet3 reaction">
+            <span class="step">3</span>
+            <p class="label">Réaction spécifique</p>
+            <p class="name">${t.reaction.name}</p>
+            <p>${t.reaction.desc}</p>
+          </div>
         </div>
 
         <div class="inquiry">

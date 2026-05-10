@@ -12,7 +12,7 @@
     "sections": []
   },
   "2": {
-    "name": "Type 2",
+    "name": "Le Donneur",
     "center": "Émotionnel",
     "fear": "Être indigne d'être aimé ou non désiré pour soi-même",
     "desire": "Se sentir aimé",
@@ -24,7 +24,7 @@
     "sections": []
   },
   "3": {
-    "name": "Type 3",
+    "name": "Le Performeur",
     "center": "Émotionnel",
     "fear": "Être sans valeur ou sans valeur intrinsèque",
     "desire": "Se sentir précieux, admiré et accepté",
@@ -36,7 +36,7 @@
     "sections": []
   },
   "4": {
-    "name": "Type 4",
+    "name": "Le Romantique",
     "center": "Émotionnel",
     "fear": "N'avoir aucune identité propre ou signification personnelle",
     "desire": "Se trouver et se comprendre soi-même pour être unique",
@@ -48,7 +48,7 @@
     "sections": []
   },
   "5": {
-    "name": "Type 5",
+    "name": "L'Observateur",
     "center": "Mental",
     "fear": "Être incapable, inutile, incompétent ou envahi",
     "desire": "Être compétent, capable et maîtriser son environnement",
@@ -60,7 +60,7 @@
     "sections": []
   },
   "6": {
-    "name": "Type 6",
+    "name": "Le Loyal Sceptique",
     "center": "Mental",
     "fear": "Être sans soutien ou guidance, incapable de survivre seul",
     "desire": "Avoir de la sécurité et du soutien",
@@ -72,7 +72,7 @@
     "sections": []
   },
   "7": {
-    "name": "Type 7",
+    "name": "L'Épicurien",
     "center": "Mental",
     "fear": "Être privé, souffrir ou être piégé dans la douleur",
     "desire": "Être heureux, satisfait et comblé",
@@ -84,7 +84,7 @@
     "sections": []
   },
   "8": {
-    "name": "Type 8",
+    "name": "Le Protecteur",
     "center": "Instinctif",
     "fear": "Être blessé, dominé, contrôlé ou violé par les autres",
     "desire": "Se protéger et rester autonome",
@@ -96,7 +96,7 @@
     "sections": []
   },
   "9": {
-    "name": "Type 9",
+    "name": "Le Médiateur",
     "center": "Instinctif",
     "fear": "La perte, la séparation, la fragmentation ou le conflit",
     "desire": "La paix intérieure, l'harmonie et la stabilité",

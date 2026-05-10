@@ -491,13 +491,13 @@
     }
 
     function onNodeClick(t){
-      if (state.a === null || (state.a !== null && state.b !== null)) {
+      if (state.a === null) {
+        state.a = t;
+      } else if (state.b === null) {
+        state.b = t;
+      } else {
         state.a = t;
         state.b = null;
-      } else if (state.a === t) {
-        state.a = t;
-      } else {
-        state.b = t;
       }
       updateSelectionUI();
     }
@@ -527,7 +527,7 @@
 
     async function loadTypesData(){
       try {
-        const res = await fetch("assets/data/types.json");
+        const res = await fetch("assets/data/types.json?v=2");
         if (!res.ok) throw new Error("types.json indisponible");
         typesData = await res.json();
       } catch (err) {
