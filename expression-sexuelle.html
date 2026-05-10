@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expression sexuelle des 9 types — Ennéagramme</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="assets/css/base.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+
+    .wrap{max-width:1100px;margin:24px auto 48px;padding:0 16px}
+
+    .topBar{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:10px;flex-wrap:wrap;margin-bottom:18px;
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;
+      cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    .head{
+      text-align:center;
+      max-width:780px;margin:0 auto 22px;
+    }
+    .head h1{
+      margin:0;
+      font-size:clamp(30px,4.6vw,46px);
+      letter-spacing:.3px;line-height:1.08;
+    }
+    .head .sub{
+      margin:12px auto 0;color:var(--muted);
+      font-size:16.5px;line-height:1.55;max-width:72ch;
+    }
+
+    /* Intro card */
+    .intro{
+      margin:22px auto 26px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(244,114,182,.06), rgba(96,165,250,.04));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px 22px;
+      max-width:880px;
+    }
+    .intro p{margin:0 0 12px;line-height:1.65;font-size:15.5px}
+    .intro p:last-child{margin-bottom:0}
+    .intro strong{color:#fff}
+
+    /* Type selector */
+    .selector{
+      margin:30px auto 18px;
+      max-width:880px;
+    }
+    .selectorTitle{
+      text-align:center;color:var(--muted);
+      font-size:13px;letter-spacing:1.2px;text-transform:uppercase;
+      font-weight:700;margin:0 0 14px;
+    }
+    .pills{
+      display:grid;
+      grid-template-columns:repeat(9,minmax(0,1fr));
+      gap:8px;
+    }
+    @media(max-width:640px){
+      .pills{grid-template-columns:repeat(5,minmax(0,1fr))}
+    }
+    .pill{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(15,26,51,.72);
+      color:var(--text);
+      border-radius:14px;
+      padding:12px 6px 10px;
+      cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      transition:transform .12s ease, border-color .14s ease, background .14s ease;
+      min-height:64px;
+    }
+    .pill:hover{transform:translateY(-2px);background:rgba(255,255,255,.06)}
+    .pill .num{font-size:22px;font-weight:850;line-height:1}
+    .pill .lbl{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.2px;text-align:center}
+    .pill.instinctif{border-color:rgba(251,191,36,.55)}
+    .pill.emotionnel{border-color:rgba(244,114,182,.55)}
+    .pill.mental{border-color:rgba(96,165,250,.55)}
+    .pill.active{
+      background:rgba(255,255,255,.10);
+      border-width:2px;
+      transform:translateY(-2px);
+      box-shadow:0 8px 22px rgba(0,0,0,.35);
+    }
+    .pill.instinctif.active{box-shadow:0 8px 22px rgba(251,191,36,.18)}
+    .pill.emotionnel.active{box-shadow:0 8px 22px rgba(244,114,182,.18)}
+    .pill.mental.active{box-shadow:0 8px 22px rgba(96,165,250,.18)}
+
+    .legend{
+      display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+      margin-top:12px;color:var(--muted);font-size:12.5px;
+    }
+    .legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+    .legend .i-inst{background:#fbbf24}
+    .legend .i-emo{background:#f472b6}
+    .legend .i-ment{background:#60a5fa}
+
+    /* Type card */
+    .typeCard{
+      margin:24px auto 0;max-width:920px;
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      animation:fadeUp .35s ease;
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    .typeHead{
+      padding:22px 24px 18px;
+      display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+    }
+    .typeHead .num{
+      width:64px;height:64px;border-radius:50%;
+      display:grid;place-items:center;
+      font-size:30px;font-weight:850;
+      border:2px solid rgba(255,255,255,.2);
+      background:rgba(15,26,51,.7);
+      flex:0 0 auto;
+    }
+    .typeHead .titles{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .typeHead h2{margin:0;font-size:clamp(22px,3vw,30px);letter-spacing:.2px}
+    .typeHead .nick{color:var(--muted);font-weight:600;font-size:14.5px;letter-spacing:.5px;text-transform:uppercase}
+    .typeHead .centerTag{
+      margin-left:auto;
+      padding:6px 12px;border-radius:999px;
+      font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .ct-instinctif{color:#fbbf24;border-color:rgba(251,191,36,.45);background:rgba(251,191,36,.08)}
+    .ct-emotionnel{color:#f472b6;border-color:rgba(244,114,182,.45);background:rgba(244,114,182,.08)}
+    .ct-mental{color:#60a5fa;border-color:rgba(96,165,250,.45);background:rgba(96,165,250,.08)}
+
+    .typeBody{padding:22px 26px 26px}
+    .section{margin:0 0 22px}
+    .section:last-child{margin-bottom:0}
+    .section h3{
+      margin:0 0 10px;font-size:16px;letter-spacing:.6px;text-transform:uppercase;
+      color:var(--fieldTitle);font-weight:800;
+      display:flex;align-items:center;gap:8px;
+    }
+    .section h3::before{
+      content:"";width:6px;height:6px;border-radius:50%;
+      background:currentColor;opacity:.7;
+    }
+    .section p{margin:0 0 10px;line-height:1.7;font-size:15.5px;color:#e8eeff}
+    .section p:last-child{margin-bottom:0}
+
+    .quality{
+      display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+      padding:14px 16px;border-radius:14px;
+      border:1px solid rgba(134,239,172,.32);
+      background:rgba(134,239,172,.06);
+    }
+    .quality .lbl{font-size:11.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);font-weight:800}
+    .quality .val{font-size:18px;font-weight:800;color:#bbf7d0}
+
+    .question{
+      margin-top:18px;
+      padding:18px 20px;
+      border-left:3px solid rgba(255,255,255,.5);
+      background:rgba(255,255,255,.04);
+      border-radius:0 14px 14px 0;
+      font-style:italic;font-size:16px;line-height:1.55;
+    }
+    .question .lbl{
+      display:block;font-style:normal;
+      font-size:11.5px;letter-spacing:.8px;text-transform:uppercase;
+      color:var(--muted);font-weight:800;margin-bottom:6px;
+    }
+
+    .navTypes{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px 22px;border-top:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+    }
+    .navTypes .btn{font-size:13px;padding:9px 14px}
+
+    /* Synthesis */
+    .synth{
+      margin:36px auto 0;max-width:920px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:22px 24px;
+    }
+    .synth h2{margin:0 0 8px;font-size:22px;letter-spacing:.3px}
+    .synth .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+    .synthGrid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;
+    }
+    .synthItem{
+      display:flex;gap:12px;align-items:flex-start;
+      padding:12px 14px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+    }
+    .synthItem .n{
+      flex:0 0 auto;width:32px;height:32px;border-radius:50%;
+      display:grid;place-items:center;font-weight:850;
+      border:1.5px solid rgba(255,255,255,.22);
+      font-size:14px;
+    }
+    .synthItem .txt{font-size:13.5px;line-height:1.5}
+    .synthItem .txt b{display:block;margin-bottom:2px}
+    .synthItem.instinctif .n{border-color:rgba(251,191,36,.7);color:#fde68a}
+    .synthItem.emotionnel .n{border-color:rgba(244,114,182,.7);color:#fbcfe8}
+    .synthItem.mental .n{border-color:rgba(96,165,250,.7);color:#bfdbfe}
+
+    .closing{
+      margin:30px auto 0;max-width:880px;
+      padding:22px 24px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(96,165,250,.05), rgba(244,114,182,.04));
+      line-height:1.7;font-size:15.5px;
+    }
+    .closing strong{color:#fff}
+
+    .placeholder{
+      max-width:880px;margin:8px auto 0;
+      text-align:center;color:var(--muted);
+      font-size:14.5px;padding:14px;
+    }
+
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="index.html">← Accueil</a>
+      <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
+    </div>
+
+    <header class="head">
+      <h1>L'expression sexuelle des 9 types</h1>
+      <p class="sub">D'après le chapitre <em>Sexual Expression and the Nine Enneagram Types</em>. La sexualité comme révélateur de la structure profonde : peurs, défenses, qualité essentielle et chemin de présence.</p>
+    </header>
+
+    <section class="intro">
+      <p>Dans le chapitre 14, intitulé <em>Sexual Expression and the Nine Enneagram Types</em>, les auteurs ne parlent pas de sexualité de manière seulement physique. Ils expliquent que la sexualité <strong>révèle la structure profonde de chaque type</strong> : ses peurs, ses défenses, sa manière d'aimer, sa façon d'être présent ou absent, son rapport au corps, au désir, à la vulnérabilité et à l'autre.</p>
+      <p>L'idée centrale est que chaque type possède une <strong>qualité essentielle</strong> qui enrichit naturellement l'intimité, mais que cette qualité est souvent voilée par les mécanismes de l'ego. Le travail consiste donc à revenir à plus de présence, de réceptivité, de vérité intérieure et d'ouverture du cœur.</p>
+      <p>Les auteurs parlent des <em>enrichments</em> et <em>diminishments</em>, c'est-à-dire des enrichissements et des diminutions de l'expérience sexuelle. La sexualité devient <strong>enrichie</strong> quand la personne est présente, ouverte, reliée au corps, au cœur et à l'esprit. Elle devient <strong>diminuée</strong> quand le type fonctionne à partir de sa peur centrale, de ses automatismes défensifs ou de son besoin de contrôler l'expérience.</p>
+    </section>
+
+    <section class="selector" aria-label="Sélection du type">
+      <p class="selectorTitle">Choisis un type</p>
+      <div class="pills" id="pills"></div>
+      <div class="legend">
+        <span><i class="i-inst"></i> Instinctif (8·9·1)</span>
+        <span><i class="i-emo"></i> Émotionnel (2·3·4)</span>
+        <span><i class="i-ment"></i> Mental (5·6·7)</span>
+      </div>
+    </section>
+
+    <p class="placeholder" id="placeholder">↑ Sélectionne un type ci-dessus pour afficher sa fiche complète.</p>
+
+    <article class="typeCard" id="typeCard" hidden></article>
+
+    <section class="synth">
+      <h2>Synthèse générale</h2>
+      <p class="sub">Le livre montre que la sexualité est un révélateur très puissant de l'ego. Chaque type y rejoue son mécanisme central.</p>
+      <div class="synthGrid" id="synthGrid"></div>
+    </section>
+
+    <section class="closing">
+      <p>Au fond, pour les auteurs, la <strong>sexualité consciente</strong> n'est pas seulement une affaire de désir ou de technique. C'est un <strong>chemin de présence</strong>. Elle demande d'habiter son corps, de reconnaître ses peurs, de communiquer avec honnêteté, de recevoir autant que donner, et de laisser l'autre nous rencontrer là où l'ego se défend habituellement. C'est pour cela que le chapitre relie constamment sexualité, intimité, développement personnel et qualités essentielles de chaque type.</p>
+    </section>
+
+    <footer class="siteFooter">Tous droits réservés</footer>
+  </div>
+
+  <script>
+  const TYPES = [
+    {
+      n:1, name:"Le Perfectionniste", center:"instinctif",
+      quality:"La sérénité",
+      question:"Est-ce que je suis en train de vivre l'expérience, ou de la juger ?",
+      synth:"cherche à être correct et doit apprendre la sérénité.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 1 est marquée par la tension entre le désir profond de vivre une expérience juste, belle, intense et digne, et le poids du jugement intérieur. Le Type 1 peut avoir une grande capacité de sensualité, de passion et de présence sacrée, mais cette énergie est souvent freinée par la critique, la culpabilité, la honte ou le besoin que tout soit correct. Le corps, le partenaire, le contexte, le moment, les draps, l'hygiène, l'attitude, le comportement : tout peut devenir objet d'évaluation."
+        ]},
+        {h:"Le piège", p:[
+          "Le piège du Type 1 est de ne pas pouvoir se laisser aller parce qu'une partie de lui surveille. Il peut se demander si c'est bien, si c'est moral, si c'est propre, si c'est maîtrisé, si c'est acceptable. La sexualité peut alors devenir contractée. Au lieu d'être une expérience de détente, de joie et d'abandon, elle devient une situation où il faut être à la hauteur, ne pas fauter, ne pas être mauvais, ne pas être indigne.",
+          "Le livre insiste sur le fait que le Type 1 peut être coupé de sa sensualité par son mental critique. Les auteurs évoquent la peur d'être mauvais, l'impression que l'excitation peut être honteuse, la colère réprimée qui peut tuer le désir, et la culpabilité qui transforme le plaisir en faute. Le Type 1 peut aussi devenir irrité contre son partenaire si celui-ci ne correspond pas à ses standards. Le désir se bloque alors derrière la tension, la rigidité ou le ressentiment."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 1 consiste à relâcher le juge intérieur. Il doit apprendre à respirer, à ralentir, à accueillir le corps tel qu'il est, le partenaire tel qu'il est, l'instant tel qu'il est. Sa qualité essentielle est la sérénité : une présence calme, non jugeante, capable d'accepter l'imperfection sans perdre la beauté de l'expérience.",
+          "Quand il évolue, le Type 1 découvre que la sexualité n'a pas besoin d'être parfaite pour être profonde. Il peut vivre une sexualité plus libre, plus tendre, plus joyeuse, parce qu'il ne cherche plus à corriger l'instant. Il passe du contrôle à l'acceptation, du jugement à la présence, de la tension morale à la joie incarnée."
+        ]}
+      ]
+    },
+    {
+      n:2, name:"Le Donneur", center:"emotionnel",
+      quality:"L'humilité",
+      question:"Est-ce que je donne librement, ou est-ce que je donne pour être aimé ?",
+      synth:"cherche à être indispensable et doit apprendre la réciprocité.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 2 est profondément liée au besoin d'être aimé, désiré, utile et irremplaçable. Le Type 2 peut vivre la sexualité comme un espace de don : donner du plaisir, satisfaire l'autre, deviner ses besoins, prendre soin de son corps et de ses émotions. Cette générosité peut être très belle, chaleureuse et affective, mais elle peut aussi devenir une stratégie inconsciente pour obtenir de l'amour."
+        ]},
+        {h:"Le piège", p:[
+          "Le piège du Type 2 est de s'oublier. Il peut être tellement centré sur le plaisir de l'autre qu'il ne sait plus ce qu'il désire lui-même. Il peut dire oui alors qu'il ne veut pas vraiment, éviter de demander, ne pas oser refuser, ou croire que son rôle est de faire fonctionner l'intimité. Le livre explique que le Type 2 peut avoir du mal à sentir ses propres besoins sexuels parce que son attention est constamment tournée vers le partenaire.",
+          "Dans cette logique, la sexualité peut devenir une preuve : preuve qu'il est aimé, preuve qu'il est nécessaire, preuve qu'il donne bien, preuve qu'il n'est pas rejetable. Mais plus il donne sans se recevoir lui-même, plus il risque de devenir frustré, collant, exigeant ou blessé. Le ressentiment peut apparaître quand il donne beaucoup sans reconnaître qu'il attend aussi quelque chose en retour."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 2 consiste à apprendre la réciprocité. Il doit revenir à son propre corps, sentir ce qu'il aime, ce qu'il ne veut pas, ce qu'il désire, ce qu'il peut demander. Sa qualité essentielle est l'humilité : non pas l'effacement, mais la liberté de donner et de recevoir sans manipulation, sans fierté, sans besoin d'être indispensable.",
+          "Quand il évolue, le Type 2 peut dire : je peux recevoir, je peux demander, je peux refuser, je peux être aimé sans devoir tout porter. La sexualité devient alors un partage, et non une mission. Le plaisir ne dépend plus seulement de la satisfaction de l'autre, mais d'un mouvement vivant entre deux personnes."
+        ]}
+      ]
+    },
+    {
+      n:3, name:"Le Performeur", center:"emotionnel",
+      quality:"La véracité",
+      question:"Est-ce que je suis en train d'être présent, ou d'être performant ?",
+      synth:"cherche à réussir et doit apprendre la vérité du cœur.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 3 est liée à l'image, à la réussite, à la compétence et à la peur de l'échec. Le Type 3 peut être séduisant, énergique, attentif à l'effet qu'il produit, capable de mettre beaucoup d'intensité dans la relation. Mais son piège est de transformer l'intimité en performance."
+        ]},
+        {h:"Le piège", p:[
+          "Le Type 3 peut vouloir être un bon amant, être désirable, être efficace, provoquer du plaisir, réussir l'acte sexuel. Même l'orgasme peut devenir un objectif. L'attention peut se déplacer de l'expérience vécue vers le résultat : est-ce que j'ai réussi ? est-ce que l'autre me trouve attirant ? est-ce que je suis compétent ? est-ce que je donne une bonne image ?",
+          "Le problème, c'est que la performance coupe du cœur. Le Type 3 peut être très actif, mais peu présent à ses vrais sentiments. Il peut faire ce qu'il faut faire, mais ne pas vraiment sentir. Il peut avoir peur d'être incompétent, peur de décevoir, peur de vieillir, peur de perdre son attractivité. Si la honte apparaît, il peut éviter l'intimité ou se protéger derrière une image maîtrisée."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 3 consiste à ralentir. Il doit apprendre à ne plus faire l'amour comme une tâche à réussir, mais comme une rencontre à habiter. Sa qualité essentielle est la véracité : être vrai, être présent, sentir ce qui est authentique, exprimer ses vrais besoins, ses vrais désirs, ses vrais sentiments.",
+          "Quand il évolue, le Type 3 découvre qu'il est aimé pour son être, pas seulement pour ce qu'il produit. La sexualité devient moins démonstrative et plus incarnée. Il peut demander à l'autre ce qu'il aime, reconnaître ce qu'il ressent, abandonner l'image du bon partenaire, et entrer dans une intimité plus vraie."
+        ]}
+      ]
+    },
+    {
+      n:4, name:"Le Romantique", center:"emotionnel",
+      quality:"L'équanimité",
+      question:"Est-ce que je suis présent à ce qui est là, ou hypnotisé par ce qui manque ?",
+      synth:"cherche l'intensité idéale et doit apprendre la gratitude du réel.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 4 est liée à l'intensité, à la profondeur, au désir d'une expérience unique, belle, authentique et chargée de sens. Le Type 4 ne cherche pas seulement une relation physique. Il cherche une expérience qui touche l'âme, qui confirme qu'il est spécial, désiré, choisi, profondément vu."
+        ]},
+        {h:"Le piège", p:[
+          "Le piège du Type 4 est l'idéalisation. Il peut imaginer une sexualité plus intense, plus romantique, plus esthétique, plus fusionnelle, plus exceptionnelle que ce qui est réellement en train de se vivre. Il peut alors manquer l'expérience présente parce qu'il compare ce qui est là avec ce qui pourrait être. Le livre explique que le Type 4 peut se focaliser sur ce qui manque, ce qui déçoit, ce qui n'est pas assez beau, assez profond, assez intense ou assez complet.",
+          "Le Type 4 peut aussi être pris dans l'envie : imaginer que les autres vivent une sexualité plus libre, plus passionnée, plus réussie. Il peut avoir honte de son corps, de ses limites, de son désir, de son insuffisance supposée. La peur d'être déficient ou abandonné peut l'amener à vouloir devenir le partenaire idéal, ou au contraire à se retirer par peur de ne pas être assez.",
+          "Le livre montre que le fantasme peut nourrir son désir, mais qu'il peut aussi l'éloigner de la présence. Plus il cherche l'expérience parfaite, plus l'expérience réelle risque de paraître plate. Plus il cherche l'intensité, plus il risque de ne pas goûter la simplicité du lien."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 4 consiste à revenir à ce qui est là. Sa qualité essentielle est l'équanimité : ne pas être au-dessus, ne pas être en dessous, ne pas comparer, ne pas dramatiser le manque. Il doit apprendre à sentir que rien d'essentiel ne manque dans l'instant présent.",
+          "Quand il évolue, le Type 4 transforme le manque en gratitude. Il peut vivre une sexualité profonde, sensible, créative, émotionnellement riche, mais sans être prisonnier de la nostalgie, de la comparaison ou du fantasme. Il apprend à aimer le réel : le corps réel, le partenaire réel, l'instant réel, l'imperfection réelle."
+        ]}
+      ]
+    },
+    {
+      n:5, name:"L'Observateur", center:"mental",
+      quality:"Le non-attachement",
+      question:"Est-ce que je suis dans mon corps, ou réfugié dans ma tête ?",
+      synth:"cherche à préserver son énergie et doit apprendre l'ouverture incarnée.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 5 est liée à la peur d'être envahi, vidé, sollicité ou épuisé. Le Type 5 cherche souvent l'autonomie, la maîtrise intérieure, la distance, la compréhension et la préservation de son énergie. Dans l'intimité, il peut désirer la connexion, mais se retirer quand elle devient trop réelle, trop corporelle ou trop demandante."
+        ]},
+        {h:"Le piège", p:[
+          "Le piège du Type 5 est de mentaliser la sexualité. Il peut observer au lieu d'habiter, penser au lieu de sentir, comprendre au lieu de se laisser toucher. Le livre explique qu'il peut y avoir une séparation entre la tête, le cœur et le corps. La sexualité devient alors trop mentale, trop coûteuse, parfois vécue comme un effort ou une demande supplémentaire.",
+          "Le Type 5 peut garder son monde intérieur privé. Il peut avoir du mal à partager ses pensées, ses désirs, ses fantasmes, ses besoins. Sa peur de manquer d'énergie peut réduire sa spontanéité. Il peut se contracter, surtout dans la poitrine, et croire que se donner va le vider. Mais le livre insiste sur un renversement important : ce retrait protecteur finit souvent par drainer davantage d'énergie que l'intimité elle-même."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 5 consiste à revenir au corps et au cœur. Respirer, relâcher la contraction, accepter d'être touché, rester engagé, sentir que l'énergie peut circuler sans être perdue. Sa qualité essentielle est le non-attachement : ne pas contrôler le résultat, ne pas retenir l'énergie, ne pas se crisper sur la peur d'être vidé.",
+          "Quand il évolue, le Type 5 découvre que la sexualité peut être nourrissante. Elle peut lui donner de la vitalité au lieu de lui en prendre. Il peut vivre une sexualité subtile, profonde, curieuse, consciente, à condition de ne pas rester spectateur. Il doit permettre au corps, au cœur et à l'esprit de participer ensemble."
+        ]}
+      ]
+    },
+    {
+      n:6, name:"Le Loyal Sceptique", center:"mental",
+      quality:"La confiance (le courage)",
+      question:"Est-ce que je cherche la confiance, ou est-ce que je cherche une certitude impossible ?",
+      synth:"cherche la sécurité et doit apprendre la confiance.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 6 est liée à la sécurité, à la confiance et à la peur de ce qui pourrait mal tourner. Le Type 6 peut être loyal, engagé, profond, très attentif à la relation, mais son système intérieur cherche souvent à vérifier, anticiper, tester ou se protéger."
+        ]},
+        {h:"Le piège", p:[
+          "Le piège du Type 6 est l'anxiété. Dans la sexualité, il peut se demander : est-ce que je peux faire confiance ? est-ce que je suis en sécurité ? est-ce que l'autre va me trahir ? est-ce que je vais être utilisé ? est-ce qu'il y a un risque ? est-ce que je vais décevoir ? Cette inquiétude peut concerner le corps, la grossesse, la maladie, la performance, le consentement, la fidélité, la dépendance ou le jugement.",
+          "Le Type 6 peut avoir deux formes : phobique ou contre-phobique. Le 6 phobique peut hésiter, se contracter, demander des garanties, chercher une sécurité avant de s'abandonner. Le 6 contre-phobique peut au contraire aller vers l'intensité, le risque, la provocation ou l'audace pour affronter sa peur. Dans les deux cas, la peur reste au centre, même si elle se manifeste différemment."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 6 consiste à développer la confiance. Le livre parle de foi, de courage et de capacité à entrer dans l'expérience sans demander une certitude totale. Il doit respirer, sentir son corps, reconnaître ses peurs, mais ne pas leur donner tout le pouvoir. Il doit aussi éviter de tester l'amour de l'autre par des accusations, des doutes ou des mises à l'épreuve.",
+          "Quand il évolue, le Type 6 devient capable d'une grande présence. Sa sexualité peut devenir lente, profonde, engagée, sécurisante, parfois spirituelle, parce qu'il ose être là sans tout contrôler. Il peut demander ce qu'il veut, partager ses peurs, faire confiance à son corps et à son partenaire."
+        ]}
+      ]
+    },
+    {
+      n:7, name:"L'Épicurien", center:"mental",
+      quality:"La sobriété",
+      question:"Est-ce que je goûte vraiment ce que je vis, ou est-ce que je cherche déjà autre chose ?",
+      synth:"cherche la stimulation et doit apprendre la présence.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 7 est liée à la stimulation, à la variété, au plaisir, à la liberté et à la peur d'être enfermé dans la limitation. Le Type 7 peut être joueur, curieux, expérimental, vivant, enthousiaste, ouvert aux possibilités. Il peut apporter beaucoup de joie, de créativité et d'énergie dans l'intimité."
+        ]},
+        {h:"Le piège", p:[
+          "Le piège du Type 7 est la dispersion. Il peut vouloir essayer, multiplier, imaginer, comparer, fantasmer, chercher autre chose, anticiper la suite. Son mental part vite vers d'autres options. Même quand l'expérience est belle, il peut déjà être ailleurs intérieurement. Le livre parle de fuite hors du moment présent par la pensée associative, le fantasme, l'anticipation ou la recherche de stimulation.",
+          "Le Type 7 peut confondre intensité et profondeur. Il peut croire que plus de variété donnera plus de satisfaction, alors que cette quête peut le maintenir à la surface. Il peut avoir peur de s'ennuyer, peur d'être limité par un seul partenaire, peur d'être enfermé dans une relation, peur de sentir des émotions plus lourdes comme la tristesse, la frustration ou la vulnérabilité."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 7 consiste à rester. Rester dans le corps, rester dans le moment, rester avec le partenaire, rester même quand l'expérience devient simple, lente, imparfaite ou émotionnellement vulnérable. Sa qualité essentielle est la sobriété : non pas l'austérité, mais la capacité à habiter pleinement ce qui est là, sans fuir vers autre chose.",
+          "Quand il évolue, le Type 7 découvre que la présence n'enlève pas la joie. Au contraire, elle l'approfondit. Il peut vivre la variété sans se perdre, l'excitation sans fuir, le plaisir sans dispersion. Il apprend à donner autant d'attention au désir de l'autre qu'au sien."
+        ]}
+      ]
+    },
+    {
+      n:8, name:"Le Protecteur", center:"instinctif",
+      quality:"L'innocence",
+      question:"Est-ce que je suis dans la puissance ouverte, ou dans le contrôle défensif ?",
+      synth:"cherche la puissance et doit apprendre la vulnérabilité.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 8 est liée à la puissance, à l'intensité, au désir, au contrôle et à la vulnérabilité. Le Type 8 peut avoir une grande énergie sexuelle, une présence forte, une passion directe, une capacité à initier, à oser, à engager le corps. Il peut vivre la sexualité avec force, instinct, générosité et intensité."
+        ]},
+        {h:"Le piège", p:[
+          "Le piège du Type 8 est l'excès de puissance. Il peut confondre intensité et domination, désir et prise de pouvoir, force et absence de vulnérabilité. Le livre explique que l'expression sexuelle du Type 8 peut devenir non retenue plutôt que libre. La nuance est importante : la liberté est vivante et respectueuse, tandis que l'absence de retenue peut écraser l'autre ou négliger sa réceptivité.",
+          "Le Type 8 peut avoir du mal à être doux, réceptif, touché, vulnérable. Il peut vivre la tendresse comme une faiblesse. Il peut préférer prendre le contrôle plutôt que se laisser affecter. Pourtant, au fond, son chemin passe précisément par l'accueil de cette vulnérabilité. Le livre évoque la peur d'être exposé, de ne pas être prêt, de ne pas se sentir en sécurité quand l'autre initie, ou de fermer le corps quand le contrôle est menacé."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 8 consiste à retrouver l'innocence. L'innocence signifie ici venir à l'expérience sans agenda, sans rapport de force, avec un cœur ouvert, une curiosité fraîche, une capacité à être touché. Il ne s'agit pas de perdre sa force, mais de l'unir à la douceur.",
+          "Quand il évolue, le Type 8 découvre que la réceptivité est une force. Il peut être puissant et tendre, intense et délicat, passionné et présent. Sa sexualité devient plus unifiée, moins défensive, plus réellement intime. Il n'a plus besoin de dominer pour se sentir vivant."
+        ]}
+      ]
+    },
+    {
+      n:9, name:"Le Médiateur", center:"instinctif",
+      quality:"L'action juste",
+      question:"Est-ce que je suis vraiment là, ou est-ce que je me fonds dans l'autre ?",
+      synth:"cherche l'harmonie et doit apprendre à exister pleinement.",
+      sections:[
+        {h:"Dynamique générale", p:[
+          "La sexualité du Type 9 est liée à la fusion, à l'harmonie, à la présence tranquille, mais aussi à la passivité, à l'effacement de soi et à l'inertie. Le Type 9 peut avoir une capacité naturelle à s'accorder à l'autre, à créer une atmosphère douce, à recevoir, à se fondre dans l'expérience. Il peut vivre une belle unité avec le partenaire."
+        ]},
+        {h:"Le piège", p:[
+          "Le piège du Type 9 est de disparaître. Il peut suivre le désir de l'autre sans savoir clairement ce qu'il veut lui-même. Il peut éviter d'initier, ne pas exprimer ses préférences, se laisser porter, remettre à plus tard, s'endormir intérieurement. Le livre parle de dispersion de l'énergie, de passivité, de perte d'auto-agence, de tendance à ne pas se différencier.",
+          "Le Type 9 peut avoir besoin que l'autre prenne l'initiative pour se réveiller sexuellement. Il peut être réceptif une fois engagé, mais avoir du mal à déclencher lui-même l'élan. Son inertie peut se manifester par la fatigue, la routine confortable, le manque d'énergie dirigée, ou l'impression silencieuse de ne pas compter. Il peut se sentir invisible sans oser le dire."
+        ]},
+        {h:"Le chemin de transformation", p:[
+          "Le chemin de transformation du Type 9 consiste à reconnaître que son désir compte autant que celui de l'autre. Sa qualité essentielle est l'action juste : agir depuis une présence à soi, se différencier, prendre sa place, exprimer ce qu'il veut, initier, choisir, dire oui ou non consciemment.",
+          "Quand il évolue, le Type 9 devient plus vivant dans son corps. Il peut être doux sans être passif, fusionnel sans se perdre, réceptif sans disparaître. Il apprend à être présent pour l'autre seulement s'il est d'abord présent à lui-même. Sa sexualité devient plus incarnée, plus active, plus joyeuse, plus personnelle."
+        ]}
+      ]
+    }
+  ];
+
+  const CENTER_LABEL = {
+    instinctif:"Centre instinctif",
+    emotionnel:"Centre émotionnel",
+    mental:"Centre mental"
+  };
+
+  // Build pills
+  const pillsEl = document.getElementById('pills');
+  TYPES.forEach(t=>{
+    const b = document.createElement('button');
+    b.className = `pill ${t.center}`;
+    b.dataset.n = t.n;
+    b.innerHTML = `<span class="num">${t.n}</span><span class="lbl">${t.name.replace(/^Le |^L'/, '')}</span>`;
+    b.addEventListener('click', ()=> selectType(t.n));
+    pillsEl.appendChild(b);
+  });
+
+  // Build synthesis
+  const synthEl = document.getElementById('synthGrid');
+  TYPES.forEach(t=>{
+    const d = document.createElement('div');
+    d.className = `synthItem ${t.center}`;
+    d.innerHTML = `<div class="n">${t.n}</div><div class="txt"><b>Type ${t.n} — ${t.name}</b>${t.synth}</div>`;
+    d.style.cursor='pointer';
+    d.addEventListener('click', ()=> selectType(t.n));
+    synthEl.appendChild(d);
+  });
+
+  function selectType(n){
+    const t = TYPES.find(x=>x.n===n);
+    if(!t) return;
+    document.querySelectorAll('.pill').forEach(p=>{
+      p.classList.toggle('active', Number(p.dataset.n)===n);
+    });
+
+    const card = document.getElementById('typeCard');
+    document.getElementById('placeholder').hidden = true;
+    card.hidden = false;
+
+    const sectionsHtml = t.sections.map(s=>`
+      <div class="section">
+        <h3>${s.h}</h3>
+        ${s.p.map(p=>`<p>${p}</p>`).join('')}
+      </div>
+    `).join('');
+
+    const prev = n===1 ? 9 : n-1;
+    const next = n===9 ? 1 : n+1;
+
+    card.innerHTML = `
+      <div class="typeHead">
+        <div class="num">${t.n}</div>
+        <div class="titles">
+          <h2>Type ${t.n} — ${t.name}</h2>
+          <span class="nick">Expression sexuelle</span>
+        </div>
+        <span class="centerTag ct-${t.center}">${CENTER_LABEL[t.center]}</span>
+      </div>
+      <div class="typeBody">
+        ${sectionsHtml}
+        <div class="section">
+          <h3>Qualité essentielle</h3>
+          <div class="quality">
+            <span class="lbl">Qualité</span>
+            <span class="val">${t.quality}</span>
+          </div>
+        </div>
+        <div class="question">
+          <span class="lbl">Question de travail pour le Type ${t.n}</span>
+          ${t.question}
+        </div>
+      </div>
+      <div class="navTypes">
+        <button class="btn" type="button" data-go="${prev}">← Type ${prev}</button>
+        <a class="btn" href="profils/type${t.n}.html">Voir la fiche complète du Type ${t.n} →</a>
+        <button class="btn" type="button" data-go="${next}">Type ${next} →</button>
+      </div>
+    `;
+
+    card.querySelectorAll('[data-go]').forEach(b=>{
+      b.addEventListener('click', ()=> {
+        selectType(Number(b.dataset.go));
+        card.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  }
+
+  // Optional: select via URL hash (#type5)
+  const m = (location.hash||'').match(/type([1-9])/i);
+  if(m) selectType(Number(m[1]));
+  </script>
+</body>
+</html>
