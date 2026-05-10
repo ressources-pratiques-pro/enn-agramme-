@@ -232,6 +232,129 @@
 
     .placeholder{max-width:880px;margin:8px auto 0;text-align:center;color:var(--muted);font-size:14.5px;padding:14px}
     .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Bandeau Pause + Citation */
+    .pauseBanner{
+      max-width:920px;margin:0 auto 28px;
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    }
+    @media(max-width:720px){.pauseBanner{grid-template-columns:1fr}}
+    .pauseBox, .quoteBox{
+      padding:20px 22px;border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .pauseBox{
+      border-left:4px solid #93c5fd;
+      background:linear-gradient(180deg, rgba(96,165,250,.08), rgba(96,165,250,.02));
+    }
+    .pauseBox .lbl, .quoteBox .lbl{
+      font-size:11.5px;letter-spacing:.8px;text-transform:uppercase;
+      color:var(--muted);font-weight:800;
+    }
+    .pauseBox .lbl{color:#bfdbfe}
+    .pauseBox h3{margin:0;font-size:18px;letter-spacing:.3px}
+    .pauseBox p{margin:0;font-size:14.5px;line-height:1.55;color:#e8eeff}
+    .pauseBox .breath{
+      display:flex;gap:14px;font-size:12.5px;color:var(--muted);
+      margin-top:4px;align-items:center;flex-wrap:wrap;
+    }
+    .pauseBox .breath span{display:inline-flex;align-items:center;gap:5px}
+    .pauseBox .breath i{
+      width:8px;height:8px;border-radius:50%;display:inline-block;
+      background:#93c5fd;box-shadow:0 0 8px rgba(147,197,253,.7);
+    }
+    .quoteBox{
+      border-left:4px solid #c4b5fd;
+      background:linear-gradient(180deg, rgba(196,181,253,.08), rgba(196,181,253,.02));
+      justify-content:center;
+    }
+    .quoteBox .lbl{color:#ddd6fe}
+    .quoteBox blockquote{
+      margin:0;font-size:18px;line-height:1.45;font-style:italic;font-weight:600;
+      color:#fff;
+    }
+    .quoteBox cite{
+      font-style:normal;font-size:13px;color:var(--muted);font-weight:700;
+      display:block;margin-top:6px;
+    }
+
+    /* Outils transverses */
+    .tools{
+      max-width:920px;margin:0 auto 32px;
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    }
+    @media(max-width:720px){.tools{grid-template-columns:1fr}}
+    .tool{
+      padding:18px 20px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-left-width:4px;
+    }
+    .tool h3{
+      margin:0 0 8px;font-size:15.5px;letter-spacing:.3px;
+      display:flex;align-items:center;gap:8px;
+    }
+    .tool h3 .ico{
+      display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;
+      font-size:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);
+    }
+    .tool p{margin:0 0 8px;font-size:14.5px;line-height:1.6;color:#e8eeff}
+    .tool p:last-child{margin-bottom:0}
+    .tool .micro{
+      margin-top:8px;padding:10px 12px;border-radius:10px;
+      background:rgba(255,255,255,.04);font-size:13.5px;line-height:1.5;
+      font-style:italic;border-left:2px solid currentColor;
+    }
+    .tool.curiosity{border-left-color:#fcd34d;color:#fde68a}
+    .tool.coach{border-left-color:#86efac;color:#bbf7d0}
+    .tool h3, .tool p{color:#e8eeff}
+    .tool h3{color:inherit}
+
+    .toolsTitle{
+      text-align:center;font-size:13px;letter-spacing:1.2px;
+      text-transform:uppercase;color:var(--muted);font-weight:700;
+      margin:0 0 14px;
+    }
+
+    /* Trigger encadré dans Awareness */
+    .trigger{
+      margin-top:10px;padding:12px 14px;border-radius:10px;
+      background:rgba(253,164,175,.08);border:1px solid rgba(253,164,175,.30);
+      border-left:3px solid #fda4af;font-size:14.5px;line-height:1.55;
+    }
+    .trigger b{
+      display:block;color:#fecdd3;
+      font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;
+      margin-bottom:4px;
+    }
+
+    /* Ce qui bloque l'adhésion */
+    .blockers{
+      margin:30px auto 0;max-width:920px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.03);
+      padding:22px 24px;
+      border-left:4px solid #fcd34d;
+    }
+    .blockers h2{margin:0 0 6px;font-size:20px}
+    .blockers .sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+    .blockerGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:14px}
+    .blockerCard{
+      padding:14px 16px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+    }
+    .blockerCard h4{margin:0 0 6px;font-size:14.5px;color:#fde68a;letter-spacing:.3px}
+    .blockerCard p{margin:0;font-size:13.5px;line-height:1.55;color:#e8eeff}
+    .blockers .will{
+      margin-top:14px;padding:14px 16px;border-radius:12px;
+      background:rgba(134,239,172,.06);border:1px solid rgba(134,239,172,.30);
+      border-left:3px solid #86efac;
+    }
+    .blockers .will h4{margin:0 0 6px;color:#bbf7d0;font-size:14.5px;letter-spacing:.3px}
+    .blockers .will p{margin:0;font-size:14px;line-height:1.6;color:#e8eeff}
   </style>
 </head>
 
@@ -252,6 +375,24 @@
       <p>Les <strong>5A</strong> forment une méthode appelée <em>Universal Growth Process</em> (UGP), fondée sur cinq étapes : <strong>Awareness, Acceptance, Appreciation, Action, Adherence</strong> — en français : <strong>Conscience, Acceptation, Appréciation, Action, Adhésion</strong>. Cette méthode sert à transformer les automatismes de l'ego en présence consciente. Elle ne vise pas à changer de type, mais à observer son mécanisme, le comprendre, l'accepter, puis poser une action plus libre.</p>
       <p>Le contenu ne suffit pas. Lire sur l'Ennéagramme ne transforme pas automatiquement. Il faut une <strong>pratique répétée et incarnée</strong>, qui engage le corps, les émotions, l'attention et les comportements. La méthode des 5A sert précisément à passer de la compréhension intellectuelle à une transformation vécue.</p>
       <p>Chaque type possède une croyance centrale, une peur profonde et une qualité essentielle qui passe à l'arrière-plan. Le travail des 5A permet de repérer la croyance automatique du type, de voir comment elle déclenche la réactivité, puis de revenir progressivement à la qualité essentielle du type : <strong>sérénité</strong> pour le 1, <strong>humilité</strong> pour le 2, <strong>véracité</strong> pour le 3, <strong>équanimité</strong> pour le 4, <strong>non-attachement</strong> pour le 5, <strong>courage</strong> pour le 6, <strong>sobriété</strong> pour le 7, <strong>innocence</strong> pour le 8, <strong>action juste</strong> pour le 9.</p>
+    </section>
+
+    <section class="pauseBanner">
+      <div class="pauseBox">
+        <span class="lbl">Le geste fondateur</span>
+        <h3>La Pause</h3>
+        <p>Un seul souffle profond suffit à diffuser le cortisol — l'hormone de la réactivité. Toute action consciente naît d'une pause minuscule mais décisive : <strong>inspirer (attendre)</strong>, <strong>expirer (évaluer)</strong>, <strong>puis décider</strong>. Sans cette pause, on réagit ; avec elle, on répond.</p>
+        <div class="breath">
+          <span><i></i> Inspire — attendre</span>
+          <span><i></i> Expire — évaluer</span>
+          <span><i></i> Décider — agir</span>
+        </div>
+      </div>
+      <div class="quoteBox">
+        <span class="lbl">Citation</span>
+        <blockquote>« La conscience sans action n'est pas vraiment de la conscience. »</blockquote>
+        <cite>— David Daniels, M.D.</cite>
+      </div>
     </section>
 
     <h2 style="text-align:center;font-size:22px;letter-spacing:.3px;margin:0 0 14px">Les 5 étapes</h2>
@@ -283,6 +424,22 @@
       </div>
     </section>
 
+    <p class="toolsTitle">Deux outils transverses qui traversent les 5 étapes</p>
+    <section class="tools">
+      <div class="tool curiosity">
+        <h3><span class="ico">🔍</span>La Curiosité &amp; l'Enquête douce</h3>
+        <p>La <strong>curiosité</strong> est une de nos plus grandes ressources : neutre, non jugeante, comme une qualité d'enfant. Elle n'est ni d'accord ni en désaccord avec ce qu'elle découvre — elle est simplement intéressée. Elle ouvre, là où le jugement ferme.</p>
+        <p>L'<strong>Enquête douce</strong> (<em>Gentle Inquiry</em>) en est la prolongation : un questionnement bienveillant, sans agenda, qui descend sous la surface de la réactivité. Elle laisse émerger la vulnérabilité, parfois la honte, l'orgueil, la déception ou la rationalisation, sans les attaquer.</p>
+        <div class="micro"><b>À se demander :</b> « Est-ce que je suis déclenché par quelque chose de l'intérieur (vieux schéma) ou par quelque chose d'extérieur (vraie violation présente) qui demande mon attention ? »</div>
+      </div>
+      <div class="tool coach">
+        <h3><span class="ico">🧭</span>Le coach intérieur</h3>
+        <p>En chacun de nous repose un <strong>coach intérieur</strong> : une voix bienveillante, non jugeante, faite de vérité, d'encouragement et de discipline aimante. C'est elle qui nous accompagne du mode <em>automatique</em> à la <em>conduite consciente</em>.</p>
+        <p>Le but n'est pas de combattre la croyance centrale du type, mais d'apprendre à <strong>l'utiliser plus consciemment</strong>. Comment exprimer mes talents et mes aptitudes — ceux organisés autour de ma croyance centrale — de la manière dont ils sont <em>conçus</em> pour être offerts au monde ? Cela demande de la discipline : la discipline de pratiquer, de rester curieux, de recommencer après un échec.</p>
+        <div class="micro"><b>À se demander :</b> « De quel côté de mes qualités supérieures suis-je en train d'être ? Est-ce que je les exprime largement et avec dignité — ou étroitement, avec mépris ? Comment puis-je revenir à mon meilleur self ? »</div>
+      </div>
+    </section>
+
     <section class="selector" aria-label="Sélection du type">
       <p class="selectorTitle">Application des 5A — Choisis un type</p>
       <div class="pills" id="pills"></div>
@@ -301,6 +458,33 @@
       <h2>Synthèse pédagogique des 5A par type</h2>
       <p class="sub">Une vue d'ensemble pour comparer les 9 types en un coup d'œil.</p>
       <div class="synthGrid" id="synthGrid"></div>
+    </section>
+
+    <section class="blockers">
+      <h2>Ce qui bloque l'Adhésion</h2>
+      <p class="sub">L'engagement dans la durée est la marche la plus exigeante. Voici ce qui, le plus souvent, sabote la pratique — pour mieux le reconnaître quand cela arrive.</p>
+      <div class="blockerGrid">
+        <div class="blockerCard">
+          <h4>Les raisons « visibles »</h4>
+          <p>On est trop occupé. On s'épuise. On oublie. Quelque chose de plus immédiat ou agréable nous distrait. On ne voit pas les résultats assez vite et on perd l'intérêt. Tous ces motifs sont réels — mais ils ne sont souvent que la surface.</p>
+        </div>
+        <div class="blockerCard">
+          <h4>Les parts de soi qui résistent</h4>
+          <p>Plus en profondeur, une <strong>part de soi</strong> peut s'opposer au changement parce qu'elle a peur de ce que nous allons devenir, ou de la vulnérabilité que ce travail expose. Ces parts sont des stratégies anciennes mises en place pour nous protéger ; elles ne sont pas l'ennemi, elles demandent à être comprises et écoutées.</p>
+        </div>
+        <div class="blockerCard">
+          <h4>L'intention floue</h4>
+          <p>Sans intention claire, l'énergie se disperse. Avant la pratique : nommer les résistances, faire l'inventaire de ce que ce travail peut apporter (moins de douleur, plus de joie, meilleure communication, plus de présence), et ancrer l'intention dans cette promesse.</p>
+        </div>
+        <div class="blockerCard">
+          <h4>L'absence de discipline aimante</h4>
+          <p>L'auto-maîtrise demande une <strong>discipline tendre</strong> : la discipline de réessayer après l'échec, de respirer pour entrer dans la pause, de revenir à la pratique sans se condamner. Ce n'est pas la rigueur dure — c'est l'amour-propre en action.</p>
+        </div>
+      </div>
+      <div class="will">
+        <h4>L'Adhésion comme expression de la volonté libre</h4>
+        <p>L'Adhésion est l'expression de notre <strong>volonté</strong> — cette force intérieure qui dirige nos choix conscients et alimente notre <em>self-agency</em>. Choisir de répondre plutôt que réagir, choisir « pour le plus grand bien de soi et de l'autre » : c'est la marque de l'auto-maîtrise. La vie elle-même devient alors notre méditation : pause, centrage, observation, enquête douce, et conduite consciente.</p>
+      </div>
     </section>
 
     <section class="formula">
@@ -328,6 +512,7 @@
     {
       n:1, name:"Le Perfectionniste", center:"instinctif",
       arc:"Du jugement à la sérénité",
+      trigger:"Le Type 1 réagit fortement quand quelqu'un a « laissé tomber la balle » et qu'il se retrouve injustement responsable de réparer ou d'assumer.",
       synth:["je vois mon jugement","j'accepte l'imperfection","je reconnais mon désir de justice","j'agis sans durcir","je pratique la sérénité"],
       objectif:"Passer de « je dois corriger » à « je peux accueillir et agir justement ».",
       preface:"Le Type 1 se construit autour de l'idée : je dois être bon, juste, correct, irréprochable. Il évite profondément d'être mauvais, fautif, incorrect ou moralement condamnable. Son attention va vers les erreurs, les imperfections, les injustices, les responsabilités et ce qui doit être corrigé. Sa qualité essentielle oubliée est la sérénité : la capacité à accepter la réalité sans devoir constamment l'améliorer.",
@@ -358,6 +543,7 @@
     {
       n:2, name:"Le Donneur", center:"emotionnel",
       arc:"De l'indispensabilité à l'humilité",
+      trigger:"Le Type 2 réagit fortement quand il donne et donne et finit par ne pas se sentir apprécié, reconnu ou remercié.",
       synth:["je vois mon besoin d'être utile","j'accepte mes propres besoins","je reconnais ma capacité d'amour","je demande et je reçois","je pratique l'humilité"],
       objectif:"Passer de « je dois donner pour être aimé » à « je peux donner et recevoir librement ».",
       preface:"Le Type 2 se construit autour de l'idée : je dois donner, aider, être utile, prendre soin pour recevoir de l'amour. Il évite profondément d'être perçu comme égoïste, inutile, nécessiteux ou dispensable. Son attention va vers les besoins et désirs des autres, souvent au détriment des siens. Sa qualité essentielle oubliée est l'humilité, c'est-à-dire le flux simple et réciproque entre donner et recevoir.",
@@ -387,6 +573,7 @@
     {
       n:3, name:"Le Performeur", center:"emotionnel",
       arc:"De la performance à la vérité",
+      trigger:"Le Type 3 réagit fortement quand il s'est épuisé au travail et qu'un collègue est reconnu à sa place — la peur d'être invisible dans ses efforts.",
       synth:["je vois ma performance","j'accepte mes vrais sentiments","je reconnais mon énergie de réalisation","je choisis la vérité plutôt que l'image","je pratique la véracité"],
       objectif:"Passer de « je vaux par ma réussite » à « je peux être vrai et digne d'amour sans performance ».",
       preface:"Le Type 3 se construit autour de l'idée : je dois réussir, faire, accomplir, être efficace, être reconnu. Il évite profondément l'échec, l'inutilité, l'incompétence ou le fait de ne pas avoir de valeur. Son attention va vers les objectifs, les résultats, l'image, les attentes et la réussite. Sa qualité essentielle oubliée est la véracité : le contact avec ses vrais sentiments et son être réel.",
@@ -415,6 +602,7 @@
     {
       n:4, name:"Le Romantique", center:"emotionnel",
       arc:"Du manque à l'équanimité",
+      trigger:"Le Type 4 réagit fortement quand quelque chose est moins que ce qu'il attendait, moins que l'idéal qu'il avait imaginé ou fantasmé.",
       synth:["je vois mon attachement au manque","j'accepte le réel","je reconnais ma profondeur","je reviens à ce qui est présent","je pratique l'équanimité"],
       objectif:"Passer de « il manque quelque chose » à « je peux habiter pleinement ce qui est là ».",
       preface:"Le Type 4 se construit autour de l'idée : je dois être spécial, profond, unique, complet, intensément relié. Il évite profondément d'être banal, déficient, incomplet, abandonné ou sans identité. Son attention va vers ce qui manque, ce qui pourrait être, ce qui est perdu, inaccessible ou idéalisé. Sa qualité essentielle oubliée est l'équanimité : être à égalité avec la réalité, sans se placer au-dessus ou en dessous.",
@@ -443,6 +631,7 @@
     {
       n:5, name:"L'Observateur", center:"mental",
       arc:"Du retrait au non-attachement",
+      trigger:"Le Type 5 réagit fortement quand quelqu'un n'est pas intéressé par ce qu'il s'apprête à partager, et veut au contraire parler de quelque chose qu'il perçoit comme inutile, trop personnel ou envahissant.",
       synth:["je vois mon retrait","j'accepte mon besoin de lien","je reconnais ma lucidité","je participe sans me couper","je pratique le non-attachement"],
       objectif:"Passer de « je dois me préserver du monde » à « je peux participer sans être vidé ».",
       preface:"Le Type 5 se construit autour de l'idée : je dois être autonome, autosuffisant, protégé, compétent, non envahi. Il évite profondément d'être vidé, intrusé, dépendant ou incapable de faire face. Son attention va vers ce qui demande trop, envahit, consomme son énergie, ainsi que vers l'observation, la compréhension et la distance. Sa qualité essentielle oubliée est le non-attachement : la capacité à laisser circuler l'énergie sans se crisper sur la peur de manquer.",
@@ -471,6 +660,7 @@
     {
       n:6, name:"Le Loyal Sceptique", center:"mental",
       arc:"Du doute au courage",
+      trigger:"Le Type 6 réagit fortement quand il pense que quelqu'un n'est pas digne de confiance, et qu'il pourrait abuser de sa gentillesse et de sa loyauté.",
       synth:["je vois mon doute","j'accepte l'incertitude","je reconnais ma vigilance","j'avance malgré la peur","je pratique le courage"],
       objectif:"Passer de « je dois être certain pour avancer » à « je peux avancer avec courage dans l'incertitude ».",
       preface:"Le Type 6 se construit autour de l'idée : je dois être certain, vigilant, préparé, sécurisé. Il évite profondément d'être impuissant, dépendant, trahi ou sans appui. Son attention va vers ce qui pourrait mal tourner, les dangers, les scénarios, la confiance, la trahison et les garanties. Sa qualité essentielle oubliée est le courage, lié à la foi en soi, en l'autre et dans la vie.",
@@ -499,6 +689,7 @@
     {
       n:7, name:"L'Épicurien", center:"mental",
       arc:"De la stimulation à la sobriété",
+      trigger:"Le Type 7 réagit fortement quand il ne peut pas faire ce qu'il veut faire et se sent piégé, enfermé, par quelqu'un ou par une situation.",
       synth:["je vois ma fuite vers la stimulation","j'accepte la limite et l'inconfort","je reconnais ma joie","je reste présent","je pratique la sobriété"],
       objectif:"Passer de « je dois éviter la douleur et multiplier les possibles » à « je peux goûter pleinement ce qui est là ».",
       preface:"Le Type 7 se construit autour de l'idée : je dois garder la vie stimulante, positive, ouverte, pleine d'options. Il évite profondément la limitation, l'ennui, la souffrance, la frustration ou l'enfermement. Son attention va vers les possibilités, les plaisirs, les plans, les idées, les alternatives et les sorties de secours. Sa qualité essentielle oubliée est la sobriété ou constance : la capacité à rester présent à toute l'expérience, joie comme tristesse.",
@@ -527,6 +718,7 @@
     {
       n:8, name:"Le Protecteur", center:"instinctif",
       arc:"Du contrôle à l'innocence",
+      trigger:"Le Type 8 réagit fortement quand il est ignoré, ou quand il voit quelqu'un de plus faible se faire écraser, intimider ou maltraiter sans pouvoir se défendre.",
       synth:["je vois mon contrôle","j'accepte ma vulnérabilité","je reconnais ma force","j'ouvre sans dominer","je pratique l'innocence"],
       objectif:"Passer de « je dois être fort pour ne pas être atteint » à « je peux être ouvert sans perdre ma puissance ».",
       preface:"Le Type 8 se construit autour de l'idée : je dois être fort, puissant, souverain, non vulnérable. Il évite profondément la faiblesse, l'impuissance, la dépendance, la soumission ou l'humiliation. Son attention va vers l'injustice, le contrôle, la protection, le pouvoir, la vérité imposée et les rapports de force. Sa qualité essentielle oubliée est l'innocence : venir à la situation sans agenda de domination, avec une présence fraîche et ouverte.",
@@ -555,6 +747,7 @@
     {
       n:9, name:"Le Médiateur", center:"instinctif",
       arc:"De l'effacement à l'action juste",
+      trigger:"Le Type 9 réagit fortement quand il est poussé à faire quelque chose qu'il ne veut pas faire, mais qu'il ne veut pas — ou ne trouve pas le moyen — de dire « non ».",
       synth:["je vois mon effacement","j'accepte mon importance","je reconnais ma paix","je me différencie et j'agis","je pratique l'action juste"],
       objectif:"Passer de « je dois me fondre pour appartenir » à « je peux être pleinement moi et rester relié ».",
       preface:"Le Type 9 se construit autour de l'idée : je dois maintenir l'harmonie, m'adapter, ne pas faire de vagues, appartenir en me fondant dans l'ensemble. Il évite profondément le conflit, la séparation, la différenciation ou le fait de déranger. Son attention va vers les agendas des autres, l'environnement, les demandes extérieures et les activités secondaires. Sa qualité essentielle oubliée est l'action juste : honorer sa propre présence et apparaître comme égal aux autres.",
@@ -641,6 +834,7 @@
           <span class="lbl">Préface</span>
           <span class="val" style="color:#e8eeff;font-weight:500;font-size:15px;line-height:1.6">${t.preface}</span>
         </div>
+        ${t.trigger ? `<div class="trigger"><b>Déclencheur typique du Type ${t.n}</b>${t.trigger}</div>` : ''}
         ${sectionsHtml}
         <div class="arcBox" style="margin-top:14px">
           <span class="lbl">Objectif du Type ${t.n}</span>
