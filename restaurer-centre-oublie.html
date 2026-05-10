@@ -200,9 +200,16 @@
     .typeHead .nick{color:var(--muted);font-weight:600;font-size:14px;letter-spacing:.4px}
     .typeHead .nick em{color:#c4b5fd;font-style:normal}
     .typeHead .stanceTag{
+      margin-left:auto;
       padding:6px 12px;border-radius:999px;
       font-size:11.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
       border:1px solid rgba(255,255,255,.18);
+      white-space:nowrap;
+    }
+    @media(max-width:560px){
+      .typeHead{flex-direction:column;align-items:flex-start;gap:10px}
+      .typeHead .titles{flex:none;width:100%}
+      .typeHead .stanceTag{margin-left:0}
     }
     .stanceTag.aggressive{color:#fda4af;border-color:rgba(253,164,175,.45);background:rgba(253,164,175,.08)}
     .stanceTag.dependent{color:#fde68a;border-color:rgba(252,211,77,.45);background:rgba(252,211,77,.08)}
@@ -357,17 +364,17 @@
     <p class="sectionTitle">Les trois centres d'intelligence</p>
     <section class="centers3">
       <div class="centerCard mental">
-        <h3><span class="ico">🧠</span>Mental</h3>
+        <h3>Mental</h3>
         <p>Le centre de la <strong>vision, de la conscience, de la compréhension</strong>. Il sert à observer, analyser, prévoir, donner du sens, prendre du recul, discerner.</p>
         <p class="types">Types préférant ce centre : <b>5 · 6 · 7</b></p>
       </div>
       <div class="centerCard emotionnel">
-        <h3><span class="ico">💗</span>Émotionnel</h3>
+        <h3>Émotionnel</h3>
         <p>Le centre du <strong>lien, de la relation, de l'unité</strong>. Il rend visible la vie intérieure par les mots, les sentiments, les images, les symboles, les histoires.</p>
         <p class="types">Types préférant ce centre : <b>2 · 3 · 4</b></p>
       </div>
       <div class="centerCard instinctif">
-        <h3><span class="ico">🔥</span>Instinctif</h3>
+        <h3>Instinctif</h3>
         <p>Le centre du <strong>corps, de l'action, de la vitalité créative</strong>. Il avance par imagination et innovation, transforme l'intention en geste, fait exister.</p>
         <p class="types">Types préférant ce centre : <b>8 · 9 · 1</b></p>
       </div>
@@ -655,7 +662,7 @@
   ];
 
   const CENTER_NAMES = {mental:"Mental", emotionnel:"Émotionnel", instinctif:"Instinctif"};
-  const CENTER_ICONS = {mental:"🧠", emotionnel:"💗", instinctif:"🔥"};
+  const CENTER_ICONS = {mental:"", emotionnel:"", instinctif:""};
   const STANCE_LABELS = {aggressive:"Posture agressive", dependent:"Posture dépendante", withdrawing:"Posture de retrait"};
 
   // Build pills
