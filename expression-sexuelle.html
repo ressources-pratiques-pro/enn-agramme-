@@ -162,19 +162,33 @@
     .ct-mental{color:#60a5fa;border-color:rgba(96,165,250,.45);background:rgba(96,165,250,.08)}
 
     .typeBody{padding:22px 26px 26px}
-    .section{margin:0 0 22px}
+    .section{
+      margin:0 0 18px;
+      padding:16px 18px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+      border-left-width:4px;
+    }
     .section:last-child{margin-bottom:0}
     .section h3{
-      margin:0 0 10px;font-size:16px;letter-spacing:.6px;text-transform:uppercase;
-      color:var(--fieldTitle);font-weight:800;
-      display:flex;align-items:center;gap:8px;
-    }
-    .section h3::before{
-      content:"";width:6px;height:6px;border-radius:50%;
-      background:currentColor;opacity:.7;
+      margin:0 0 10px;font-size:13px;letter-spacing:.8px;text-transform:uppercase;
+      font-weight:800;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:5px 12px;border-radius:999px;
     }
     .section p{margin:0 0 10px;line-height:1.7;font-size:15.5px;color:#e8eeff}
     .section p:last-child{margin-bottom:0}
+
+    /* Couleurs par type de section */
+    .section.s-dyn{border-left-color:#93c5fd;background:rgba(96,165,250,.05)}
+    .section.s-dyn h3{background:rgba(96,165,250,.14);color:#bfdbfe}
+    .section.s-piege{border-left-color:#fda4af;background:rgba(251,113,133,.05)}
+    .section.s-piege h3{background:rgba(251,113,133,.14);color:#fecdd3}
+    .section.s-chemin{border-left-color:#86efac;background:rgba(134,239,172,.05)}
+    .section.s-chemin h3{background:rgba(134,239,172,.14);color:#bbf7d0}
+    .section.s-qualite{border-left-color:#c4b5fd;background:rgba(196,181,253,.05)}
+    .section.s-qualite h3{background:rgba(196,181,253,.14);color:#ddd6fe}
 
     .quality{
       display:flex;align-items:center;gap:14px;flex-wrap:wrap;
@@ -267,13 +281,13 @@
 
     <header class="head">
       <h1>L'expression sexuelle des 9 types</h1>
-      <p class="sub">D'après le chapitre <em>Sexual Expression and the Nine Enneagram Types</em>. La sexualité comme révélateur de la structure profonde : peurs, défenses, qualité essentielle et chemin de présence.</p>
+      <p class="sub">La sexualité comme révélateur de la structure profonde : peurs, défenses, qualité essentielle et chemin de présence.</p>
     </header>
 
     <section class="intro">
-      <p>Dans le chapitre 14, intitulé <em>Sexual Expression and the Nine Enneagram Types</em>, les auteurs ne parlent pas de sexualité de manière seulement physique. Ils expliquent que la sexualité <strong>révèle la structure profonde de chaque type</strong> : ses peurs, ses défenses, sa manière d'aimer, sa façon d'être présent ou absent, son rapport au corps, au désir, à la vulnérabilité et à l'autre.</p>
-      <p>L'idée centrale est que chaque type possède une <strong>qualité essentielle</strong> qui enrichit naturellement l'intimité, mais que cette qualité est souvent voilée par les mécanismes de l'ego. Le travail consiste donc à revenir à plus de présence, de réceptivité, de vérité intérieure et d'ouverture du cœur.</p>
-      <p>Les auteurs parlent des <em>enrichments</em> et <em>diminishments</em>, c'est-à-dire des enrichissements et des diminutions de l'expérience sexuelle. La sexualité devient <strong>enrichie</strong> quand la personne est présente, ouverte, reliée au corps, au cœur et à l'esprit. Elle devient <strong>diminuée</strong> quand le type fonctionne à partir de sa peur centrale, de ses automatismes défensifs ou de son besoin de contrôler l'expérience.</p>
+      <p>La sexualité n'est pas seulement une expérience physique. Elle est un <strong>révélateur de la structure profonde</strong> de chaque type : ses peurs, ses défenses, sa manière d'aimer, sa façon d'être présent ou absent, son rapport au corps, au désir, à la vulnérabilité et à l'autre.</p>
+      <p>Chaque type possède une <strong>qualité essentielle</strong> qui enrichit naturellement l'intimité, mais cette qualité est souvent voilée par les mécanismes de l'ego. Le travail consiste à revenir à plus de présence, de réceptivité, de vérité intérieure et d'ouverture du cœur.</p>
+      <p>La sexualité devient <strong>enrichie</strong> quand la personne est présente, ouverte, reliée au corps, au cœur et à l'esprit. Elle devient <strong>diminuée</strong> quand le type fonctionne à partir de sa peur centrale, de ses automatismes défensifs ou de son besoin de contrôler l'expérience. Explorer l'expression sexuelle de chaque ennéatype, c'est donc parcourir un chemin d'intimité — avec soi d'abord, puis avec l'autre.</p>
     </section>
 
     <section class="selector" aria-label="Sélection du type">
@@ -518,8 +532,13 @@
     document.getElementById('placeholder').hidden = true;
     card.hidden = false;
 
+    const SECTION_CLASS = {
+      "Dynamique générale":"s-dyn",
+      "Le piège":"s-piege",
+      "Le chemin de transformation":"s-chemin"
+    };
     const sectionsHtml = t.sections.map(s=>`
-      <div class="section">
+      <div class="section ${SECTION_CLASS[s.h]||''}">
         <h3>${s.h}</h3>
         ${s.p.map(p=>`<p>${p}</p>`).join('')}
       </div>
@@ -539,7 +558,7 @@
       </div>
       <div class="typeBody">
         ${sectionsHtml}
-        <div class="section">
+        <div class="section s-qualite">
           <h3>Qualité essentielle</h3>
           <div class="quality">
             <span class="lbl">Qualité</span>
@@ -559,10 +578,13 @@
     `;
 
     card.querySelectorAll('[data-go]').forEach(b=>{
-      b.addEventListener('click', ()=> {
-        selectType(Number(b.dataset.go));
-        card.scrollIntoView({behavior:'smooth', block:'start'});
-      });
+      b.addEventListener('click', ()=> selectType(Number(b.dataset.go)));
+    });
+
+    // Toujours ramener la fiche en haut de la fenêtre pour une bonne lecture
+    requestAnimationFrame(()=>{
+      const y = card.getBoundingClientRect().top + window.scrollY - 16;
+      window.scrollTo({top: Math.max(0, y), behavior:'smooth'});
     });
   }
 

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Les approches — Ennéagramme</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 48px;padding:0 16px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    .head{text-align:center;max-width:780px;margin:0 auto 22px}
+    .head h1{margin:0;font-size:clamp(30px,4.6vw,46px);letter-spacing:.3px;line-height:1.08}
+    .head .sub{margin:12px auto 0;color:var(--muted);font-size:16.5px;line-height:1.55;max-width:72ch}
+
+    .intro{
+      margin:22px auto 30px;max-width:880px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(96,165,250,.06), rgba(134,239,172,.04));
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:20px 22px;
+    }
+    .intro p{margin:0;line-height:1.65;font-size:15.5px}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:14px;max-width:1000px;margin:0 auto;
+    }
+
+    .card{
+      display:flex;flex-direction:column;gap:10px;
+      padding:20px 20px 18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      color:var(--text);text-decoration:none;
+      transition:transform .15s ease, background .18s ease, border-color .18s ease;
+      position:relative;overflow:hidden;
+      border-left-width:4px;
+    }
+    .card.active{border-left-color:#86efac}
+    .card.soon{opacity:.55;cursor:default;border-left-color:rgba(255,255,255,.18)}
+    .card:not(.soon):hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.07);
+      border-color:rgba(255,255,255,.28);
+    }
+    .card .icon{
+      width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);
+      font-size:22px;font-weight:850;letter-spacing:.5px;
+    }
+    .card h2{margin:4px 0 0;font-size:18px;letter-spacing:.2px}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+    .card .more{
+      margin-top:auto;font-size:13px;font-weight:700;color:#bbf7d0;
+      display:inline-flex;align-items:center;gap:6px;
+    }
+    .card.soon .more{color:var(--muted)}
+    .badge{
+      position:absolute;top:14px;right:14px;
+      font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+      padding:4px 9px;border-radius:999px;
+      background:rgba(134,239,172,.14);color:#bbf7d0;border:1px solid rgba(134,239,172,.35);
+    }
+    .card.soon .badge{background:rgba(255,255,255,.06);color:var(--muted);border-color:rgba(255,255,255,.16)}
+
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topBar">
+      <a class="btn" href="index.html">← Accueil</a>
+      <a class="btn" href="explore.html">Explorer l'Ennéagramme</a>
+    </div>
+
+    <header class="head">
+      <h1>Les approches</h1>
+      <p class="sub">Méthodes pratiques pour passer de la compréhension intellectuelle à une transformation vécue.</p>
+    </header>
+
+    <section class="intro">
+      <p>L'Ennéagramme propose plusieurs <strong>approches concrètes</strong> pour observer son mécanisme, l'accueillir et poser une action plus libre. Chaque approche est un <strong>outil pratique</strong> à utiliser au quotidien — non une théorie à mémoriser. Choisis une approche ci-dessous pour découvrir ses étapes et son application type par type.</p>
+    </section>
+
+    <div class="grid">
+
+      <a class="card active" href="approche-5a.html">
+        <span class="badge">Disponible</span>
+        <div class="icon">5A</div>
+        <h2>L'approche des 5A</h2>
+        <p>Conscience, Acceptation, Appréciation, Action, Adhésion — un processus universel de croissance pour transformer l'automatisme en présence consciente.</p>
+        <span class="more">Découvrir →</span>
+      </a>
+
+      <div class="card soon" aria-disabled="true">
+        <span class="badge">À venir</span>
+        <div class="icon">·</div>
+        <h2>D'autres approches</h2>
+        <p>De nouvelles méthodes pratiques seront ajoutées au fur et à mesure dans cette section.</p>
+        <span class="more">Bientôt</span>
+      </div>
+
+    </div>
+
+    <footer class="siteFooter">Tous droits réservés</footer>
+  </div>
+</body>
+</html>
