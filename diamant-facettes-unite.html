@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Facettes de l'Unité — A. H. Almaas</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="assets/css/base.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XYJK71TC4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1XYJK71TC4');
+  </script>
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1100px;margin:24px auto 48px;padding:0 16px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;min-height:var(--touch-min);border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);text-decoration:none;font-weight:700;font-size:14px;cursor:pointer;
+      transition:background var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),transform .06s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    /* Bandeau livre */
+    .bookHead{
+      max-width:920px;margin:0 auto 28px;padding:26px 28px;
+      border:1px solid rgba(125,211,252,.22);
+      background:linear-gradient(135deg, rgba(125,211,252,.08), rgba(196,181,253,.05));
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      display:flex;gap:24px;align-items:center;flex-wrap:wrap;
+    }
+    .bookHead .cover{
+      width:90px;height:130px;flex:0 0 auto;
+      border-radius:8px;
+      background:linear-gradient(135deg,#1e3a8a 0%,#312e81 50%,#1e1b4b 100%);
+      display:grid;place-items:center;
+      box-shadow:0 14px 32px rgba(0,0,0,.4);
+      position:relative;overflow:hidden;
+    }
+    .bookHead .cover::after{
+      content:"◆";font-size:36px;color:#7dd3fc;
+      text-shadow:0 0 18px rgba(125,211,252,.5);
+    }
+    .bookHead .cover::before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.10), transparent 40%);
+    }
+    .bookHead .info{flex:1;min-width:240px}
+    .bookHead .meta{
+      font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;
+      color:#bae6fd;font-weight:800;margin:0 0 6px;
+    }
+    .bookHead h1{
+      margin:0;font-size:clamp(26px,3.6vw,38px);letter-spacing:.2px;line-height:1.1;
+      background:linear-gradient(135deg,#fff 0%,#cfe9ff 60%,#e0d4ff 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .bookHead .subtitle{margin:4px 0 0;color:var(--muted);font-size:14.5px;line-height:1.4}
+    .bookHead .author{margin:10px 0 0;color:#bae6fd;font-size:13.5px;font-weight:700;letter-spacing:.5px}
+
+    /* Intro narrative */
+    .intro{
+      margin:0 auto 32px;max-width:880px;
+      padding:22px 24px;border-radius:var(--radius);
+      background:rgba(255,255,255,.03);border:1px solid var(--line);
+    }
+    .intro p{margin:0 0 12px;line-height:1.7;font-size:15.5px}
+    .intro p:last-child{margin-bottom:0}
+    .intro strong{color:#fff}
+    .intro em{color:#cfe9ff;font-style:normal;font-weight:600}
+
+    /* Section title */
+    .sectionTitle{
+      text-align:center;font-size:13px;letter-spacing:1.4px;
+      text-transform:uppercase;color:#bae6fd;font-weight:800;
+      margin:36px 0 18px;
+    }
+    .sectionTitle::before, .sectionTitle::after{
+      content:"◆";color:rgba(125,211,252,.45);margin:0 12px;font-size:10px;
+    }
+
+    /* Schémas */
+    .schemaCard{
+      max-width:920px;margin:0 auto 28px;padding:24px;
+      border-radius:var(--radius);border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+    }
+    .schemaCard h3{
+      margin:0 0 6px;font-size:18px;letter-spacing:.3px;color:#fff;
+    }
+    .schemaCard .lead{margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.5}
+    .schemaCard svg{width:100%;height:auto;display:block;max-width:680px;margin:0 auto}
+    .schemaCard p{margin:14px 0 0;line-height:1.65;font-size:14.5px}
+    .schemaCard p:first-of-type{margin-top:0}
+
+    /* Diagramme ennéagramme avec 9 Idées */
+    .ennea9{
+      max-width:920px;margin:0 auto 28px;padding:24px;
+      border-radius:var(--radius);border:1px solid rgba(125,211,252,.22);
+      background:radial-gradient(ellipse at center, rgba(125,211,252,.06), rgba(255,255,255,.02));
+    }
+    .ennea9 svg{width:100%;height:auto;display:block;max-width:720px;margin:0 auto}
+    .enneaRing{stroke:rgba(125,211,252,.5);stroke-width:2.5;fill:none}
+    .enneaHex{stroke:rgba(255,255,255,.08);stroke-width:1.6;fill:none}
+    .enneaTri{stroke:rgba(196,181,253,.18);stroke-width:1.6;fill:none}
+    .enneaNode circle{
+      fill:rgba(15,26,51,.92);
+      stroke:rgba(125,211,252,.55);stroke-width:2;
+      transition:fill .15s ease, stroke .15s ease, stroke-width .15s ease;
+      cursor:pointer;
+    }
+    .enneaNode:hover circle{fill:rgba(125,211,252,.18);stroke-width:3}
+    .enneaNode text.num{
+      fill:#fff;font-size:18px;font-weight:850;
+      text-anchor:middle;dominant-baseline:middle;
+      pointer-events:none;
+    }
+    .enneaNode text.idea{
+      fill:#cfe9ff;font-size:11px;font-weight:700;letter-spacing:.4px;
+      text-anchor:middle;
+      pointer-events:none;
+    }
+    .enneaCenter{
+      fill:rgba(125,211,252,.06);stroke:rgba(125,211,252,.22);stroke-width:1;
+    }
+    .enneaCenter text{
+      fill:rgba(255,255,255,.85);font-size:11px;letter-spacing:1.6px;
+      text-anchor:middle;font-weight:700;text-transform:uppercase;
+    }
+
+    /* Sélecteur de type */
+    .selector{margin:14px auto 0;max-width:880px}
+    .pills{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px}
+    @media(max-width:640px){.pills{grid-template-columns:repeat(5,minmax(0,1fr))}}
+    .pill{
+      appearance:none;border:1px solid rgba(125,211,252,.32);
+      background:rgba(15,26,51,.72);color:var(--text);
+      border-radius:14px;padding:12px 6px 10px;cursor:pointer;
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      transition:transform .12s ease, border-color .14s ease, background .14s ease;
+      min-height:64px;
+    }
+    .pill:hover{transform:translateY(-2px);background:rgba(125,211,252,.08)}
+    .pill .num{font-size:22px;font-weight:850;line-height:1}
+    .pill .lbl{font-size:10.5px;color:var(--muted);font-weight:600;text-align:center}
+    .pill.active{
+      background:rgba(125,211,252,.14);border-width:2px;
+      transform:translateY(-2px);box-shadow:0 8px 22px rgba(125,211,252,.22);
+    }
+
+    /* Carte de type */
+    .typeCard{
+      margin:24px auto 0;max-width:920px;
+      border:1px solid rgba(125,211,252,.22);background:var(--card);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      overflow:hidden;animation:fadeUp .35s ease;
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .typeHead{
+      padding:24px 26px 20px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(135deg, rgba(125,211,252,.10), rgba(196,181,253,.05));
+      text-align:center;
+    }
+    .typeHead .num{
+      display:inline-grid;place-items:center;
+      width:56px;height:56px;border-radius:50%;
+      font-size:26px;font-weight:850;color:#fff;
+      background:rgba(15,26,51,.85);
+      border:2px solid rgba(125,211,252,.55);
+      margin-bottom:10px;
+      box-shadow:0 0 24px rgba(125,211,252,.20);
+    }
+    .typeHead h2{margin:0;font-size:clamp(22px,3vw,28px);letter-spacing:.2px}
+    .typeHead .typeName{color:var(--muted);font-weight:600;font-size:14px;margin-top:2px}
+
+    .typeBody{padding:24px 26px 26px}
+
+    /* Diamant : Idée ↔ Vertu */
+    .pairing{
+      display:grid;grid-template-columns:1fr 60px 1fr;gap:0;
+      align-items:stretch;margin:0 0 22px;
+    }
+    @media(max-width:640px){
+      .pairing{grid-template-columns:1fr;gap:8px}
+      .pairing .gem{display:none}
+    }
+    .pairing .facet{
+      padding:18px 20px;border-radius:14px;
+      border:1px solid rgba(125,211,252,.28);
+      background:linear-gradient(135deg, rgba(125,211,252,.10), rgba(125,211,252,.02));
+    }
+    .pairing .facet.virtue{
+      border-color:rgba(196,181,253,.30);
+      background:linear-gradient(135deg, rgba(196,181,253,.10), rgba(196,181,253,.02));
+    }
+    .pairing .label{
+      font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+      font-weight:800;margin:0 0 6px;
+    }
+    .pairing .idea .label{color:#bae6fd}
+    .pairing .virtue .label{color:#ddd6fe}
+    .pairing .name{
+      font-size:20px;font-weight:800;letter-spacing:.2px;margin:0 0 10px;color:#fff;
+      line-height:1.2;
+    }
+    .pairing .desc{margin:0;font-size:14.5px;line-height:1.6;color:#e8eeff}
+    .pairing .gem{
+      display:grid;place-items:center;
+    }
+    .pairing .gem svg{width:54px;height:54px;animation:gemPulse 4s ease-in-out infinite}
+    @keyframes gemPulse{
+      0%,100%{opacity:.7;transform:rotate(0deg)}
+      50%{opacity:1;transform:rotate(180deg)}
+    }
+
+    /* Sections */
+    .block{
+      margin:0 0 16px;padding:18px 20px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-left-width:4px;
+    }
+    .block:last-child{margin-bottom:0}
+    .block h3{
+      margin:0 0 10px;font-size:13px;letter-spacing:.7px;text-transform:uppercase;
+      font-weight:800;color:inherit;
+    }
+    .block p{margin:0 0 8px;line-height:1.7;font-size:15px;color:#e8eeff}
+    .block p:last-child{margin-bottom:0}
+
+    .block.fixation{border-left-color:#fda4af;color:#fecdd3}
+    .block.fixation{background:rgba(253,164,175,.05)}
+
+    .inquiry{
+      margin:0;padding:22px 24px;border-radius:14px;
+      border:1px solid rgba(196,181,253,.32);
+      background:radial-gradient(ellipse at center, rgba(196,181,253,.10), rgba(196,181,253,.02));
+      text-align:center;
+    }
+    .inquiry .label{
+      font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+      color:#ddd6fe;font-weight:800;margin:0 0 10px;
+    }
+    .inquiry .question{
+      margin:0;font-size:18px;line-height:1.5;font-weight:600;font-style:italic;
+      color:#fff;max-width:600px;margin-left:auto;margin-right:auto;
+    }
+    .inquiry::before, .inquiry::after{
+      content:"◆";color:rgba(196,181,253,.40);font-size:10px;display:block;margin:6px 0;
+    }
+
+    .navTypes{
+      display:flex;justify-content:space-between;align-items:center;
+      flex-wrap:wrap;gap:8px;padding:14px 22px;
+      border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);
+    }
+    .navTypes .btn{font-size:13px;padding:9px 14px}
+
+    /* 3 triangles d'Idées */
+    .triangles{
+      max-width:920px;margin:0 auto;padding:24px 26px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.03);
+    }
+    .triangles h2{margin:0 0 6px;font-size:22px;letter-spacing:.3px}
+    .triangles .lead{color:var(--muted);font-size:14px;margin:0 0 18px}
+    .triGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media(max-width:720px){.triGrid{grid-template-columns:1fr}}
+    .triCard{
+      padding:18px 18px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);border-top:3px solid currentColor;
+    }
+    .triCard .pts{
+      font-size:24px;font-weight:850;color:#fff;
+      letter-spacing:6px;margin:0 0 6px;
+    }
+    .triCard h3{margin:0 0 8px;font-size:14px;letter-spacing:.5px;color:inherit}
+    .triCard ul{margin:8px 0 0;padding-left:18px;color:#e8eeff;font-size:13.5px;line-height:1.5}
+    .triCard li{margin:3px 0}
+    .triCard .desc{margin:0 0 6px;font-size:13.5px;line-height:1.55;color:#e8eeff}
+    .triCard.t-doing{color:#fcd34d}
+    .triCard.t-being{color:#7dd3fc}
+    .triCard.t-relating{color:#f9a8d4}
+
+    .closing{
+      margin:30px auto 0;max-width:880px;padding:24px 26px;
+      border:1px solid rgba(125,211,252,.22);border-radius:var(--radius);
+      background:linear-gradient(135deg, rgba(125,211,252,.06), rgba(196,181,253,.04));
+      line-height:1.7;font-size:15px;text-align:center;
+    }
+    .closing strong{color:#fff}
+    .closing::before{content:"◆";color:rgba(125,211,252,.5);display:block;font-size:18px;margin-bottom:10px}
+
+    .placeholder{max-width:880px;margin:14px auto 0;text-align:center;color:var(--muted);font-size:14.5px;padding:14px}
+    .siteFooter{margin-top:40px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a class="btn" href="approche-diamant.html">← L'approche Diamant</a>
+      <a class="btn" href="index.html">Accueil</a>
+    </div>
+
+    <header class="bookHead">
+      <div class="cover" aria-hidden="true"></div>
+      <div class="info">
+        <p class="meta">A.H. Almaas</p>
+        <h1>Facettes de l'Unité</h1>
+        <p class="subtitle">L'Ennéagramme des Idées Saintes</p>
+      </div>
+    </header>
+
+    <section class="intro">
+      <p>Cette perspective propose une lecture <strong>contemplative et ontologique</strong> de l'Ennéagramme. Chaque type n'est pas qu'un mécanisme défensif : c'est aussi le <em>voile</em> d'une perception juste de la réalité. Cette perception juste s'appelle l'<strong>Idée Sainte</strong>. Quand cette Idée s'éveille en nous, une qualité naturelle émerge — la <strong>Vertu Sainte</strong>.</p>
+      <p>Au cœur de cette approche se trouve un concept essentiel : la <strong>Confiance fondamentale</strong>. C'est l'expérience implicite, souvent perdue dans l'enfance, qu'il existe une bienveillance profonde dans la nature même de la réalité — une <em>Lumière Vivante</em> qui soutient toute chose. Sans cette confiance, les Idées Saintes restent des concepts ; avec elle, elles deviennent une rencontre directe.</p>
+      <p>Le travail proposé n'est pas de comprendre intellectuellement ces neuf perceptions, mais de les <strong>laisser se révéler</strong> par une pratique de questionnement intérieur — l'<em>inquiry</em>. Chaque Idée Sainte est, comme une facette de diamant, une manière dont l'Unité se montre.</p>
+    </section>
+
+    <p class="sectionTitle">Le voile et la facette</p>
+
+    <section class="schemaCard">
+      <h3>L'Idée Sainte et la Fixation</h3>
+      <p class="lead">Chaque type est traversé par cette dynamique fondamentale : une vision juste du réel, et le voile qui la masque.</p>
+      <svg viewBox="0 0 720 200" aria-label="Idée Sainte voilée par la fixation">
+        <defs>
+          <radialGradient id="lightSource" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+            <stop offset=".5" stop-color="#cfe9ff" stop-opacity=".5"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Source : Idée -->
+        <circle cx="120" cy="100" r="65" fill="url(#lightSource)"/>
+        <text x="120" y="98" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" letter-spacing=".5">Idée Sainte</text>
+        <text x="120" y="115" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="11">vision juste</text>
+
+        <!-- Le voile (fixation) -->
+        <rect x="280" y="40" width="160" height="120" rx="6" fill="rgba(253,164,175,.10)" stroke="rgba(253,164,175,.40)" stroke-width="1.2"/>
+        <text x="360" y="92" text-anchor="middle" fill="#fecdd3" font-size="13" font-weight="800" letter-spacing=".5">Fixation</text>
+        <text x="360" y="110" text-anchor="middle" fill="rgba(254,205,211,.75)" font-size="11">vision déformée</text>
+        <text x="360" y="124" text-anchor="middle" fill="rgba(254,205,211,.65)" font-size="10">(le voile de l'ego)</text>
+
+        <!-- Œil : la perception -->
+        <ellipse cx="600" cy="100" rx="60" ry="32" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+        <circle cx="600" cy="100" r="14" fill="rgba(125,211,252,.4)" stroke="rgba(125,211,252,.7)" stroke-width="1.5"/>
+        <circle cx="600" cy="100" r="5" fill="#fff"/>
+        <text x="600" y="160" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="11" letter-spacing=".5">la perception</text>
+
+        <!-- Rayons traversés -->
+        <line x1="185" y1="80" x2="280" y2="60" stroke="rgba(125,211,252,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="185" y1="100" x2="280" y2="100" stroke="rgba(125,211,252,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="185" y1="120" x2="280" y2="140" stroke="rgba(125,211,252,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <line x1="440" y1="100" x2="540" y2="100" stroke="rgba(253,164,175,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+      </svg>
+      <p>Tant que la fixation tient, l'Idée Sainte est invisible — l'ego perçoit le réel à travers son propre filtre déformant. La <em>pratique de l'inquiry</em> consiste à explorer ce voile avec patience, jusqu'à ce qu'il devienne transparent et que la vision juste se révèle d'elle-même.</p>
+    </section>
+
+    <section class="schemaCard">
+      <h3>Confiance fondamentale &amp; Lumière Vivante</h3>
+      <p class="lead">Le socle expérientiel sans lequel l'inquiry ne peut pas s'ouvrir.</p>
+      <svg viewBox="0 0 720 200" aria-label="Basic Trust et Living Daylight">
+        <defs>
+          <radialGradient id="livingLight" cx="50%" cy="50%" r="60%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+            <stop offset=".5" stop-color="#fde68a" stop-opacity=".25"/>
+            <stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Champ universel : Living Daylight -->
+        <ellipse cx="360" cy="100" rx="320" ry="80" fill="url(#livingLight)"/>
+        <text x="360" y="46" text-anchor="middle" fill="#fde68a" font-size="12" font-weight="800" letter-spacing="2" text-transform="uppercase">LUMIÈRE VIVANTE</text>
+        <text x="360" y="62" text-anchor="middle" fill="rgba(253,230,138,.7)" font-size="10" font-style="italic">présence universelle aimante</text>
+
+        <!-- Personne au centre : confiance fondamentale -->
+        <circle cx="360" cy="115" r="22" fill="rgba(125,211,252,.18)" stroke="rgba(125,211,252,.6)" stroke-width="1.5"/>
+        <text x="360" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">moi</text>
+
+        <text x="360" y="170" text-anchor="middle" fill="rgba(125,211,252,.85)" font-size="12" font-weight="700">Confiance fondamentale</text>
+        <text x="360" y="186" text-anchor="middle" fill="rgba(255,255,255,.55)" font-size="10" font-style="italic">« la réalité me soutient »</text>
+      </svg>
+      <p>La <strong>Lumière Vivante</strong> (<em>Living Daylight</em>) est la qualité fondamentale de la réalité elle-même : une présence aimante, tendre, qui imprègne toute chose. La <strong>Confiance fondamentale</strong> (<em>Basic Trust</em>) est l'expérience intime, souvent oubliée, que cette Lumière nous porte. Sans cette confiance, l'ego se durcit pour se protéger ; avec elle, il peut se relâcher et laisser la vérité émerger.</p>
+    </section>
+
+    <p class="sectionTitle">Les neuf Idées Saintes</p>
+
+    <section class="ennea9">
+      <svg viewBox="0 0 720 720" aria-label="Diagramme de l'ennéagramme avec les 9 Idées Saintes">
+        <!-- Centre -->
+        <circle class="enneaCenter" cx="360" cy="360" r="65"/>
+        <text x="360" y="356" class="enneaCenter">Unité</text>
+        <text x="360" y="376" fill="rgba(125,211,252,.7)" font-size="9" letter-spacing="1.5" text-anchor="middle">9 facettes</text>
+
+        <!-- Cercle externe -->
+        <circle class="enneaRing" cx="360" cy="360" r="250"/>
+
+        <!-- Triangle intérieur 9-3-6 -->
+        <polygon class="enneaTri" points="360,110 577,485 143,485"/>
+
+        <!-- Hexagone 1-4-2-8-5-7 -->
+        <polygon class="enneaHex" points="521,169 410,595 596,317 199,169 124,317 310,595"/>
+
+        <!-- 9 noeuds -->
+        <g class="enneaNode" data-n="9" tabindex="0">
+          <circle cx="360" cy="110" r="22"/>
+          <text class="num" x="360" y="110">9</text>
+          <text class="idea" x="360" y="78">Amour</text>
+        </g>
+        <g class="enneaNode" data-n="1" tabindex="0">
+          <circle cx="521" cy="169" r="22"/>
+          <text class="num" x="521" y="169">1</text>
+          <text class="idea" x="556" y="148">Perfection</text>
+        </g>
+        <g class="enneaNode" data-n="2" tabindex="0">
+          <circle cx="596" cy="317" r="22"/>
+          <text class="num" x="596" y="317">2</text>
+          <text class="idea" x="643" y="320">Volonté</text>
+        </g>
+        <g class="enneaNode" data-n="3" tabindex="0">
+          <circle cx="577" cy="485" r="22"/>
+          <text class="num" x="577" y="485">3</text>
+          <text class="idea" x="616" y="510">Harmonie</text>
+        </g>
+        <g class="enneaNode" data-n="4" tabindex="0">
+          <circle cx="410" cy="595" r="22"/>
+          <text class="num" x="410" y="595">4</text>
+          <text class="idea" x="448" y="624">Origine</text>
+        </g>
+        <g class="enneaNode" data-n="5" tabindex="0">
+          <circle cx="310" cy="595" r="22"/>
+          <text class="num" x="310" y="595">5</text>
+          <text class="idea" x="270" y="624">Omniscience</text>
+        </g>
+        <g class="enneaNode" data-n="6" tabindex="0">
+          <circle cx="143" cy="485" r="22"/>
+          <text class="num" x="143" y="485">6</text>
+          <text class="idea" x="100" y="510">Foi</text>
+        </g>
+        <g class="enneaNode" data-n="7" tabindex="0">
+          <circle cx="124" cy="317" r="22"/>
+          <text class="num" x="124" y="317">7</text>
+          <text class="idea" x="80" y="320">Sagesse</text>
+        </g>
+        <g class="enneaNode" data-n="8" tabindex="0">
+          <circle cx="199" cy="169" r="22"/>
+          <text class="num" x="199" y="169">8</text>
+          <text class="idea" x="164" y="148">Vérité</text>
+        </g>
+      </svg>
+    </section>
+
+    <section class="selector" aria-label="Sélection du type">
+      <div class="pills" id="pills"></div>
+    </section>
+
+    <p class="placeholder" id="placeholder">↑ Sélectionne un type sur le diagramme ou les pastilles pour découvrir son Idée Sainte et sa Vertu.</p>
+
+    <article class="typeCard" id="typeCard" hidden></article>
+
+    <p class="sectionTitle">Les trois facettes de l'Unité</p>
+
+    <section class="triangles">
+      <h2>Trois groupes d'Idées Saintes</h2>
+      <p class="lead">Almaas regroupe les neuf Idées en trois familles, qui correspondent à trois manières dont l'Unité se montre dans l'expérience.</p>
+      <div class="triGrid">
+        <div class="triCard t-being">
+          <p class="pts">8 · 5 · 2</p>
+          <h3>Le triangle de l'Être</h3>
+          <p class="desc">Comment la réalité <em>est</em>, indépendamment de nos interprétations.</p>
+          <ul>
+            <li><strong>8</strong> — Vérité Sacrée</li>
+            <li><strong>5</strong> — Omniscience Sacrée</li>
+            <li><strong>2</strong> — Volonté Sacrée</li>
+          </ul>
+        </div>
+        <div class="triCard t-doing">
+          <p class="pts">1 · 7 · 4</p>
+          <h3>Le triangle du Faire</h3>
+          <p class="desc">Comment la réalité <em>se déploie</em>, comment l'action et la création s'accomplissent.</p>
+          <ul>
+            <li><strong>1</strong> — Perfection Sacrée</li>
+            <li><strong>7</strong> — Sagesse / Plan Sacré</li>
+            <li><strong>4</strong> — Origine Sacrée</li>
+          </ul>
+        </div>
+        <div class="triCard t-relating">
+          <p class="pts">9 · 6 · 3</p>
+          <h3>Le triangle du Lien</h3>
+          <p class="desc">Comment la réalité <em>nous tient</em>, dans la relation, l'amour et la confiance.</p>
+          <ul>
+            <li><strong>9</strong> — Amour Sacré</li>
+            <li><strong>6</strong> — Foi Sacrée</li>
+            <li><strong>3</strong> — Harmonie Sacrée</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p>Les neuf Idées Saintes ne sont pas des croyances à adopter, mais des <strong>perceptions à retrouver</strong>. Chacune est une facette de la même Unité — la même Lumière Vivante vue sous neuf angles. Le travail de l'inquiry n'est pas d'ajouter quelque chose à soi, mais de laisser tomber ce qui voile ce qui est déjà là.</p>
+    </section>
+
+    <footer class="siteFooter">Tous droits réservés</footer>
+  </div>
+
+  <script>
+  // Données pour chaque type — Idée Sainte + Vertu + Fixation + Inquiry
+  // Source : A. H. Almaas, Facets of Unity (1998)
+  const TYPES = [
+    {
+      n:1, name:"Le Perfectionniste",
+      idea:{ name:"La Perfection Sacrée",
+             desc:"Le réel est déjà parfait, non au sens moral, mais au sens où il est exactement ce qu'il est, sans manque. Chaque instant est complet en lui-même, et la réalité se déploie sans nécessiter d'être corrigée." },
+      virtue:{ name:"La Sérénité",
+               desc:"Une présence calme qui n'a plus besoin d'améliorer. Une acceptation profonde de ce qui est, qui n'est ni résignation ni indifférence, mais reconnaissance que rien n'est à fixer." },
+      fixation:"Quand la Perfection Sacrée se voile, le monde apparaît comme défectueux, à corriger. Le juge intérieur prend le relais : la passion devient la <strong>colère</strong> contenue contre tout ce qui n'est pas à la hauteur d'un standard.",
+      inquiry:"Et si rien, en cet instant, n'avait besoin d'être corrigé — qu'est-ce qui resterait ?"
+    },
+    {
+      n:2, name:"Le Donneur",
+      idea:{ name:"La Volonté Sacrée",
+             desc:"Le mouvement réel ne vient pas de l'effort de l'ego ; il émerge de l'Être lui-même. Ce qui doit advenir advient, sans que je doive tout porter ou tout fournir. Je ne suis pas séparé de la source qui agit à travers moi." },
+      virtue:{ name:"L'Humilité",
+               desc:"Non l'effacement, mais la juste mesure de soi. La capacité de donner sans se gonfler, de recevoir sans se diminuer. Reconnaître que je ne suis ni au-dessus ni au-dessous des autres." },
+      fixation:"Quand la Volonté Sacrée se voile, on croit devoir tout fournir, devenir indispensable pour mériter d'exister. La passion devient l'<strong>orgueil</strong> caché derrière le don.",
+      inquiry:"Si je n'avais plus besoin d'être nécessaire à personne, qui serais-je ?"
+    },
+    {
+      n:3, name:"Le Performeur",
+      idea:{ name:"L'Harmonie Sacrée",
+             desc:"Le cosmos fonctionne selon des lois objectives et harmonieuses. Tout est interconnecté, tout déploie sa juste mesure sans qu'il faille produire son existence. Aussi appelée Loi Sacrée ou Espérance Sacrée." },
+      virtue:{ name:"La Véracité",
+               desc:"Être vrai, sans masque, sans fabrication d'image. Reposer dans ce qu'on est sans devoir le démontrer. Une présence transparente." },
+      fixation:"Quand l'Harmonie Sacrée se voile, on croit devoir produire son existence, performer pour exister, ajuster son image pour être valable. La passion devient le <strong>mensonge sur soi</strong>.",
+      inquiry:"Si je n'avais plus rien à prouver, qu'est-ce qui demeurerait ?"
+    },
+    {
+      n:4, name:"Le Romantique",
+      idea:{ name:"L'Origine Sacrée",
+             desc:"Toute manifestation, y compris moi, vient d'une seule origine vivante. Je ne suis jamais réellement séparé de cette source. Rien d'essentiel ne manque, parce que je suis déjà tenu dans l'origine de tout ce qui est." },
+      virtue:{ name:"L'Équanimité",
+               desc:"Une stabilité intérieure qui n'est ni au-dessus ni en-dessous, ni dramatique ni indifférente. Reposer dans le réel tel qu'il est, sans le comparer à un idéal absent." },
+      fixation:"Quand l'Origine Sacrée se voile, on se sent fondamentalement séparé, déficient, abandonné. La passion devient l'<strong>envie</strong> et la mélancolie de ce qui semble manquer.",
+      inquiry:"Si rien d'essentiel ne manquait en cet instant, comment serait-ce ?"
+    },
+    {
+      n:5, name:"L'Observateur",
+      idea:{ name:"L'Omniscience Sacrée",
+             desc:"Le réel est connaissable de l'intérieur de son unité. La connaissance n'est pas extérieure à ce qui est connu — elle est la transparence même de l'être à lui-même. Aussi appelée Transparence Sacrée." },
+      virtue:{ name:"Le Non-attachement",
+               desc:"Une ouverture qui ne retient rien et qui n'a peur de rien manquer. L'énergie peut circuler librement, parce qu'on n'est plus séparé de sa source." },
+      fixation:"Quand la Transparence se voile, on craint d'être vidé, on accumule, on retient, on se retire. La passion devient l'<strong>avarice</strong> — non seulement de biens, mais de temps, d'énergie, de présence.",
+      inquiry:"Et si participer ne diminuait pas mon être, mais le révélait ?"
+    },
+    {
+      n:6, name:"Le Loyal Sceptique",
+      idea:{ name:"La Foi Sacrée",
+             desc:"Le réel possède une force intrinsèque sur laquelle on peut s'appuyer. La vie est fiable, non parce qu'elle est garantie, mais parce qu'elle nous porte au moment même où elle se déploie. Aussi appelée Puissance Sacrée." },
+      virtue:{ name:"Le Courage",
+               desc:"Avancer dans l'inconnu sans demander de garantie. Une force tranquille qui repose sur la confiance dans la nature même de la réalité." },
+      fixation:"Quand la Foi Sacrée se voile, le monde devient menaçant, on cherche désespérément une certitude impossible. La passion devient la <strong>peur</strong> — de l'autorité ou contre l'autorité.",
+      inquiry:"Si la vie était digne de confiance, comment respirerais-je ?"
+    },
+    {
+      n:7, name:"L'Épicurien",
+      idea:{ name:"La Sagesse Sacrée",
+             desc:"Le vrai déploiement de la vie se fait dans le présent. La sagesse est dans ce qui est, pas dans ce qui pourrait être ailleurs. Aussi appelée Plan Sacré ou Travail Sacré." },
+      virtue:{ name:"La Sobriété",
+               desc:"Habiter pleinement ce qui est, sans fuir vers l'ailleurs. Une présence non saturée, capable de goûter sans avoir besoin d'accumuler." },
+      fixation:"Quand le Plan Sacré se voile, on cherche la vie ailleurs, dans la prochaine option, le prochain plaisir, le prochain projet. La passion devient la <strong>gloutonnerie</strong> — de stimulation, d'expérience, de possible.",
+      inquiry:"Et si la profondeur que je cherche se trouvait dans cet instant précis ?"
+    },
+    {
+      n:8, name:"Le Protecteur",
+      idea:{ name:"La Vérité Sacrée",
+             desc:"Le cosmos existe objectivement, là, maintenant, indépendamment de nos interprétations ou de notre volonté. La vérité n'est pas à imposer — elle est, et elle se révèle à qui s'incline pour la voir." },
+      virtue:{ name:"L'Innocence",
+               desc:"Une fraîcheur sans agenda, une présence ouverte qui ne vient ni dominer ni se défendre. La capacité d'être touché sans être affaibli." },
+      fixation:"Quand la Vérité Sacrée se voile, on impose sa propre vérité, on se durcit pour ne pas être touché. La passion devient l'<strong>excès</strong> — la convoitise de pouvoir, d'intensité, de contrôle.",
+      inquiry:"Et si je n'avais plus à faire arriver les choses, qui serais-je ?"
+    },
+    {
+      n:9, name:"Le Médiateur",
+      idea:{ name:"L'Amour Sacré",
+             desc:"La nature fondamentale du réel est l'amour. Tout est tenu, soutenu, aimé d'une manière essentielle. Je ne suis pas un détail accessoire de l'univers : je suis aimé du même amour qui tient toute chose." },
+      virtue:{ name:"L'Action juste",
+               desc:"Agir depuis la présence à soi, exprimer son désir vrai dans le mouvement de la vie. Une diligence qui n'est plus passive mais incarnée." },
+      fixation:"Quand l'Amour Sacré se voile, on se rend invisible, on s'endort intérieurement, on évite d'exister distinctement. La passion devient la <strong>paresse</strong> — non du faire extérieur, mais de l'être propre.",
+      inquiry:"Et si ma présence comptait autant que celle de tous les autres, qu'est-ce que je ferais maintenant ?"
+    }
+  ];
+
+  // Build pills
+  const pillsEl = document.getElementById('pills');
+  TYPES.forEach(t=>{
+    const b = document.createElement('button');
+    b.className = 'pill';
+    b.dataset.n = t.n;
+    b.innerHTML = `<span class="num">${t.n}</span><span class="lbl">${t.idea.name.replace(/^La |^Le |^L'/, '')}</span>`;
+    b.addEventListener('click', ()=> selectType(t.n));
+    pillsEl.appendChild(b);
+  });
+
+  // Diagram nodes clickable
+  document.querySelectorAll('.enneaNode').forEach(n=>{
+    n.addEventListener('click', ()=> selectType(Number(n.dataset.n)));
+    n.addEventListener('keydown', e=>{
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectType(Number(n.dataset.n)); }
+    });
+  });
+
+  function selectType(n){
+    const t = TYPES.find(x=>x.n===n);
+    if(!t) return;
+
+    document.querySelectorAll('.pill').forEach(p=>{
+      p.classList.toggle('active', Number(p.dataset.n)===n);
+    });
+
+    const card = document.getElementById('typeCard');
+    document.getElementById('placeholder').hidden = true;
+    card.hidden = false;
+
+    const prev = n===1 ? 9 : n-1;
+    const next = n===9 ? 1 : n+1;
+
+    card.innerHTML = `
+      <div class="typeHead">
+        <div class="num">${t.n}</div>
+        <h2>${t.idea.name}</h2>
+        <p class="typeName">Type ${t.n} — ${t.name}</p>
+      </div>
+      <div class="typeBody">
+        <div class="pairing">
+          <div class="facet idea">
+            <p class="label">Idée Sainte</p>
+            <p class="name">${t.idea.name}</p>
+            <p class="desc">${t.idea.desc}</p>
+          </div>
+          <div class="gem" aria-hidden="true">
+            <svg viewBox="0 0 60 60">
+              <defs>
+                <linearGradient id="diamGrad${t.n}" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#7dd3fc"/>
+                  <stop offset="1" stop-color="#c4b5fd"/>
+                </linearGradient>
+              </defs>
+              <polygon points="30,5 55,30 30,55 5,30" fill="url(#diamGrad${t.n})" opacity=".75" stroke="#fff" stroke-width="1.5"/>
+              <polygon points="30,5 55,30 30,30" fill="rgba(255,255,255,.20)"/>
+            </svg>
+          </div>
+          <div class="facet virtue">
+            <p class="label">Vertu</p>
+            <p class="name">${t.virtue.name}</p>
+            <p class="desc">${t.virtue.desc}</p>
+          </div>
+        </div>
+
+        <div class="block fixation">
+          <h3>La fixation — le voile</h3>
+          <p>${t.fixation}</p>
+        </div>
+
+        <div class="inquiry">
+          <p class="label">Une question d'inquiry</p>
+          <p class="question">« ${t.inquiry} »</p>
+        </div>
+      </div>
+      <div class="navTypes">
+        <button class="btn" type="button" data-go="${prev}">← Type ${prev}</button>
+        <a class="btn" href="profils/type${t.n}.html">Voir la fiche complète du Type ${t.n} →</a>
+        <button class="btn" type="button" data-go="${next}">Type ${next} →</button>
+      </div>
+    `;
+
+    card.querySelectorAll('[data-go]').forEach(b=>{
+      b.addEventListener('click', ()=> selectType(Number(b.dataset.go)));
+    });
+
+    requestAnimationFrame(()=>{
+      const y = card.getBoundingClientRect().top + window.scrollY - 16;
+      window.scrollTo({top: Math.max(0, y), behavior:'smooth'});
+    });
+  }
+
+  const m = (location.hash||'').match(/type([1-9])/i);
+  if(m) selectType(Number(m[1]));
+  </script>
+</body>
+</html>
