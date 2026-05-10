@@ -240,7 +240,7 @@
             <g id="nodesLayer"></g>
           </svg>
         </div>
-        <p class="hint" id="selectHint">Selectionne Type A, puis Type B.</p>
+        <p class="hint" id="selectHint">Sélectionne Type A, puis Type B.</p>
       </section>
 
       <aside class="card panel">
@@ -257,10 +257,10 @@
 
         <div class="actions">
           <button class="miniBtn" id="btnSwap" type="button" disabled>Inverser A/B</button>
-          <button class="miniBtn" id="btnReset" type="button">Reinitialiser</button>
+          <button class="miniBtn" id="btnReset" type="button">Réinitialiser</button>
         </div>
 
-        <div class="empty" id="resultEmpty">Clique deux types pour afficher la synthese source en amour, travail et hierarchie.</div>
+        <div class="empty" id="resultEmpty">Clique deux types pour afficher la synthèse en amour, travail et hiérarchie.</div>
 
         <div id="resultWrap" hidden style="display:grid;gap:12px">
           <details class="resultBlock love" open>
@@ -430,7 +430,7 @@
       if (!a || !b) {
         resultWrap.hidden = true;
         resultEmpty.hidden = false;
-        resultEmpty.textContent = "Clique deux types pour afficher la synthese source en amour, travail et hierarchie.";
+        resultEmpty.textContent = "Clique deux types pour afficher la synthèse en amour, travail et hiérarchie.";
         setList(loveSummary, []);
         setList(workSummary, []);
         setList(hierSummary, []);
@@ -449,7 +449,7 @@
       if (!report){
         resultWrap.hidden = true;
         resultEmpty.hidden = false;
-        resultEmpty.textContent = `Duo ${key} non trouve dans la source.`;
+        resultEmpty.textContent = `Duo ${key} introuvable.`;
         setList(loveSummary, []);
         setList(workSummary, []);
         setList(hierSummary, []);
@@ -481,9 +481,9 @@
       pickBEl.textContent = B ? `${b} · ${B.name}` : "—";
       btnSwap.disabled = !(a && b);
 
-      if (!a) hintEl.textContent = "Selectionne Type A, puis Type B.";
-      else if (!b) hintEl.textContent = "Type A choisi. Selectionne maintenant Type B.";
-      else hintEl.textContent = `Fiche source affichee pour le duo ${duoKey(a, b)}.`;
+      if (!a) hintEl.textContent = "Sélectionne Type A, puis Type B.";
+      else if (!b) hintEl.textContent = "Type A choisi. Sélectionne maintenant Type B.";
+      else hintEl.textContent = `Fiche affichée pour le duo ${duoKey(a, b)}.`;
 
       renderNodes();
       updateLines();
