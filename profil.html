@@ -378,31 +378,6 @@
 </head>
 
 <body>
-  <button id="themeBtn" class="themeBtn" type="button" aria-label="Basculer thème clair / sombre" title="Basculer le thème">🌙</button>
-  <script>
-    (function(){
-      const KEY='ennea_theme';
-      const root=document.documentElement;
-      const saved=localStorage.getItem(KEY);
-      const sysLight=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches;
-      const initial=saved||(sysLight?'light':'dark');
-      if(initial==='light')root.setAttribute('data-theme','light');
-      function syncIcon(){
-        const b=document.getElementById('themeBtn');
-        if(b)b.textContent=root.getAttribute('data-theme')==='light'?'☀️':'🌙';
-      }
-      syncIcon();
-      document.addEventListener('click',function(e){
-        if(e.target&&e.target.id==='themeBtn'){
-          const cur=root.getAttribute('data-theme')==='light'?'dark':'light';
-          if(cur==='light')root.setAttribute('data-theme','light');
-          else root.removeAttribute('data-theme');
-          localStorage.setItem(KEY,cur);
-          syncIcon();
-        }
-      });
-    })();
-  </script>
   <div class="wrap">
     <div class="top">
       <div class="hero">
