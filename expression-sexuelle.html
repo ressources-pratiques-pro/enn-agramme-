@@ -581,7 +581,7 @@
       b.addEventListener('click', ()=> selectType(Number(b.dataset.go)));
     });
 
-    // Toujours ramener la fiche en haut de la fenêtre pour une bonne lecture
+    // Toujours ramener la fiche en haut, quel que soit le déclencheur
     requestAnimationFrame(()=>{
       const y = card.getBoundingClientRect().top + window.scrollY - 16;
       window.scrollTo({top: Math.max(0, y), behavior:'smooth'});
