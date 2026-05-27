@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Découverte de votre type — Prototype</title>
+  <title>Comprendre votre type — Ennéagramme</title>
   <style>html{background:#070b14}</style>
   <link rel="stylesheet" href="assets/css/base.css">
 
@@ -219,8 +219,8 @@
   <div class="wrap">
 
     <div class="topBar">
-      <span class="title">Découverte de votre type · prototype visuel</span>
-      <span class="badge">Test</span>
+      <a class="title" href="index.html" style="text-decoration:none;color:var(--muted)">← Accueil</a>
+      <span class="badge">6 étapes</span>
     </div>
 
     <div class="progress" id="progress" aria-label="Progression"></div>
@@ -314,7 +314,28 @@
 
   // Données par type — Type 2 complet, autres en placeholder
   const TYPES = {
-    1:{name:"Le Perfectionniste", short:"orienté vers le juste, l'amélioration, l'éthique."},
+    1:{
+      name:"Le Perfectionniste",
+      short:"orienté vers le juste, la rectitude, l'amélioration éthique.",
+      wings:{
+        a:{n:9, name:"1 avec aile 9 — L'Idéaliste", desc:"Plus détaché, contemplatif, accommodant. Standards intérieurs forts mais expression plus douce. Tendance philosophique."},
+        b:{n:2, name:"1 avec aile 2 — Le Défenseur", desc:"Plus chaleureux, militant, engagé envers les autres. Standards moraux qu'il veut transmettre. Tendance plus interpersonnelle."}
+      },
+      arrows:{
+        int:{n:7, label:"Vers le 7 (en santé)", desc:"Quand vous grandissez, vous devenez plus joyeux, spontané, ouvert. Vous acceptez vos élans, lâchez le contrôle moral, savourez la vie sans culpabiliser."},
+        dis:{n:4, label:"Vers le 4 (en stress)", desc:"Quand vous craquez, vous devenez mélancolique, replié, hyper-critique de vous-même. La colère se retourne contre soi, la honte monte."}
+      },
+      levels:{
+        healthy:"Sage et discernant. Accepte l'imperfection comme partie du réel. Sa sérénité rayonne et inspire.",
+        average:"Critique perpétuel. Juge ce qui ne correspond pas à ses standards. Tendu, irritable, contrôlant.",
+        unhealthy:"Punitif, obsessionnel, rigide. Devient cruel envers soi et les autres au nom du « bien »."
+      },
+      instincts:{
+        sp:{name:"1 SP — Anxiété (du foyer)", desc:"Contrôle de l'environnement, hygiène, ordre méticuleux. « Tout doit être à sa place. » Le 1 le plus anxieux."},
+        so:{name:"1 SO — Inadaptabilité (le réformateur)", desc:"Réformateur social, militant moral. Veut corriger la société, l'organisation, le groupe. Posture exemplaire."},
+        sx:{name:"1 SX — Zèle (jalousie)", desc:"Cherche le partenaire moralement idéal. Intensité morale dans l'intime. Le 1 le plus chaud, le plus jaloux."}
+      }
+    },
     2:{
       name:"Le Donneur",
       short:"orienté vers les autres, leurs besoins, et son désir d'être aimé.",
@@ -337,13 +358,160 @@
         sx:{name:"2 SX — Séduction", desc:"Donne en séduisant intensément un partenaire élu. Énergie de fascination, possessivité, intensité un-à-un."}
       }
     },
-    3:{name:"Le Performeur", short:"orienté vers la réussite, l'image, l'efficacité."},
-    4:{name:"Le Romantique", short:"orienté vers la profondeur, l'authentique, l'unique."},
-    5:{name:"L'Observateur", short:"orienté vers la connaissance, l'autonomie, l'observation."},
-    6:{name:"Le Loyal Sceptique", short:"orienté vers la sécurité, la loyauté, la vigilance."},
-    7:{name:"L'Épicurien", short:"orienté vers le plaisir, la stimulation, la liberté."},
-    8:{name:"Le Protecteur", short:"orienté vers la force, le contrôle, la justice."},
-    9:{name:"Le Médiateur", short:"orienté vers la paix, l'harmonie, l'accord."}
+    3:{
+      name:"Le Performeur",
+      short:"orienté vers la réussite, l'image, l'admiration des autres.",
+      wings:{
+        a:{n:2, name:"3 avec aile 2 — Le Charmeur", desc:"Plus chaleureux, sociable, courtisan. Travaille la relation pour réussir. Le 3 le plus avenant, séducteur."},
+        b:{n:4, name:"3 avec aile 4 — Le Professionnel", desc:"Plus introverti, posé, exigeant artistiquement. Sérieux, ambitieux dans des domaines créatifs ou techniques."}
+      },
+      arrows:{
+        int:{n:6, label:"Vers le 6 (en santé)", desc:"Quand vous grandissez, vous devenez loyal, coopératif, fait confiance. Vous vous engagez envers les autres, plus que pour votre succès personnel."},
+        dis:{n:9, label:"Vers le 9 (en stress)", desc:"Quand vous craquez, vous devenez apathique, déconnecté, démotivé. Vous abandonnez vos objectifs, comme si rien n'importait plus."}
+      },
+      levels:{
+        healthy:"Authentique. Accepte sa valeur intrinsèque sans avoir à la prouver. Inspire sincèrement les autres.",
+        average:"Obsédé par l'image, le succès, la comparaison. Pose, présente une façade, mesure tout au regard d'autrui.",
+        unhealthy:"Trompeur, vide intérieurement, peut détruire ce qui menace son image. Hostile, arrogant."
+      },
+      instincts:{
+        sp:{name:"3 SP — Sécurité matérielle", desc:"Veut être l'exemple du bon professionnel, bien organisé. Discret sur sa réussite. Travaille beaucoup, sans vantardise."},
+        so:{name:"3 SO — Prestige", desc:"Cherche les titres, la reconnaissance publique, le statut social. Le 3 le plus politique, le plus visible."},
+        sx:{name:"3 SX — Charisme", desc:"Image de la séduction parfaite, attire le partenaire idéal. Performance dans l'intime, charme magnétique."}
+      }
+    },
+    4:{
+      name:"Le Romantique",
+      short:"orienté vers l'unique, le profond, l'authentique, l'expressif.",
+      wings:{
+        a:{n:3, name:"4 avec aile 3 — L'Aristocrate", desc:"Plus extraverti, ambitieux, soigne son image artistique. Cherche la reconnaissance pour son originalité."},
+        b:{n:5, name:"4 avec aile 5 — Le Bohême", desc:"Plus introverti, contemplatif, marginal. Créatif solitaire, indifférent à la reconnaissance externe."}
+      },
+      arrows:{
+        int:{n:1, label:"Vers le 1 (en santé)", desc:"Quand vous grandissez, vous devenez discipliné, principiel. Vous mettez vos dons au service du monde, sortez du nombrilisme émotionnel."},
+        dis:{n:2, label:"Vers le 2 (en stress)", desc:"Quand vous craquez, vous devenez collant, sacrificiel. Vous cherchez à fusionner avec quelqu'un pour ne pas vous sentir abandonné."}
+      },
+      levels:{
+        healthy:"Profond, créatif, transforme l'expérience en sens. Vit sa singularité sans s'isoler des autres.",
+        average:"Mélancolique. Comparaison constante avec les autres, sentiment de manque. Auto-référent, dramatique.",
+        unhealthy:"Dépressif, auto-destructeur. Rejette ce qui pourrait l'aider. Honte profonde, peut s'enfoncer."
+      },
+      instincts:{
+        sp:{name:"4 SP — Endurance (Tenacity)", desc:"Style stoïque. Souffre en silence, mépris du confort. Le « stoïque » de la triade — paradoxalement le 4 qui se plaint le moins."},
+        so:{name:"4 SO — Honte", desc:"Hyperconscient de sa différence sociale. Sentiment d'infériorité ou de supériorité par rapport au groupe."},
+        sx:{name:"4 SX — Compétition", desc:"Veut être l'unique aux yeux de l'aimé. Intensité, jalousie, drame amoureux. Le 4 le plus passionné."}
+      }
+    },
+    5:{
+      name:"L'Observateur",
+      short:"orienté vers la connaissance, l'autonomie, la maîtrise mentale.",
+      wings:{
+        a:{n:4, name:"5 avec aile 4 — L'Iconoclaste", desc:"Créatif, intuitif, monde intérieur riche et excentrique. Pensée non-conventionnelle, esthète."},
+        b:{n:6, name:"5 avec aile 6 — Le Problem-solver", desc:"Plus analytique, méfiant, théoricien. Pensée systématique, prudent, expert d'une discipline."}
+      },
+      arrows:{
+        int:{n:8, label:"Vers le 8 (en santé)", desc:"Quand vous grandissez, vous devenez assertif, confiant, incarné. Vous prenez votre place avec force, sortez de la tour d'ivoire."},
+        dis:{n:7, label:"Vers le 7 (en stress)", desc:"Quand vous craquez, vous devenez dispersé, hyperactif mentalement. Vous fuyez dans les distractions, ne tenez plus en place."}
+      },
+      levels:{
+        healthy:"Visionnaire, lucide, expert généreux de sa connaissance. Habite son corps, contribue au monde.",
+        average:"Théorique, retiré. Accumule du savoir, économise son énergie et ses émotions. Distant.",
+        unhealthy:"Isolé, nihiliste, parfois paranoïde. Hostile au monde, asphyxié par ses propres constructions mentales."
+      },
+      instincts:{
+        sp:{name:"5 SP — Refuge / Château", desc:"Veut un espace à soi, intouchable. Minimaliste matériellement, économe. Le 5 le plus retiré."},
+        so:{name:"5 SO — Totem", desc:"Cherche les groupes d'experts, les niches intellectuelles. Spécialiste reconnu d'une discipline rare."},
+        sx:{name:"5 SX — Confidence", desc:"Cherche un partenaire à qui confier son monde intérieur secret. Intensité par la complicité mentale."}
+      }
+    },
+    6:{
+      name:"Le Loyal Sceptique",
+      short:"orienté vers la sécurité, la fiabilité, l'anticipation des dangers.",
+      wings:{
+        a:{n:5, name:"6 avec aile 5 — Le Défenseur", desc:"Plus intellectuel, indépendant, sérieux. Tendance prudente, technique, expert d'un domaine de sécurité."},
+        b:{n:7, name:"6 avec aile 7 — Le Compagnon", desc:"Plus extraverti, jovial, recherche l'affiliation. Tendance sociable, charmeur, fidèle à son groupe."}
+      },
+      arrows:{
+        int:{n:9, label:"Vers le 9 (en santé)", desc:"Quand vous grandissez, vous devenez calme, confiant, vous faites confiance à la vie. L'anxiété cède la place à une paix tranquille."},
+        dis:{n:3, label:"Vers le 3 (en stress)", desc:"Quand vous craquez, vous devenez performant, compétitif. Vous soignez votre image pour vous rassurer, fuyez dans l'action."}
+      },
+      levels:{
+        healthy:"Courageux, loyal, fiable. Foi en lui-même et au-delà de lui-même. Pilier pour les autres.",
+        average:"Anxieux, doutant. Scénarios catastrophes. Oscille entre soumission à l'autorité et rébellion contre elle.",
+        unhealthy:"Paranoïaque, auto-destructeur. Voit des menaces partout, peut basculer en panique ou en agression."
+      },
+      instincts:{
+        sp:{name:"6 SP — Chaleur", desc:"Cherche les alliances proches, le foyer, les liens familiaux solides. Désamorce l'anxiété par la chaleur humaine."},
+        so:{name:"6 SO — Devoir", desc:"Très conscient des règles, des hiérarchies. Loyal à l'institution. Le 6 « bon élève », bon citoyen."},
+        sx:{name:"6 SX — Force/Beauté (contre-phobique)", desc:"Affronte ses peurs par l'intensité, la séduction, l'audace. Provocateur. Le 6 qui ressemble à un 8."}
+      }
+    },
+    7:{
+      name:"L'Épicurien",
+      short:"orienté vers le plaisir, la stimulation, la liberté, les possibilités.",
+      wings:{
+        a:{n:6, name:"7 avec aile 6 — L'Amuseur", desc:"Plus loyal, anxieux, sociable et fidèle. Tendance plus relationnelle, sens du groupe et de l'humour."},
+        b:{n:8, name:"7 avec aile 8 — Le Réaliste", desc:"Plus assertif, matérialiste, ambitieux et pragmatique. Tendance entrepreneur, audacieux, conquérant."}
+      },
+      arrows:{
+        int:{n:5, label:"Vers le 5 (en santé)", desc:"Quand vous grandissez, vous devenez profond, focalisé. Vous restez avec une seule chose, sortez de la dispersion, sondez."},
+        dis:{n:1, label:"Vers le 1 (en stress)", desc:"Quand vous craquez, vous devenez critique, perfectionniste, irritable. Vous moralisez, rigide, vous attaquez le manque chez les autres."}
+      },
+      levels:{
+        healthy:"Joyeux, satisfait, savoure ce qui est. Pleinement présent à l'instant. Reconnaissant, généreux.",
+        average:"Excité, dispersé. Multiplie les options, fuit l'ennui et l'inconfort. Sur-consomme, papillonne.",
+        unhealthy:"Compulsif, maniaque. Fuite frénétique. Effondrement quand les distractions ne suffisent plus."
+      },
+      instincts:{
+        sp:{name:"7 SP — Tribu de partage", desc:"Cultive un réseau de soutien, gourmandise plaisante. Famille d'amis, plaisirs du quotidien."},
+        so:{name:"7 SO — Sacrifice", desc:"Paradoxalement le 7 le plus « sérieux », conscient des limites. Sacrifie ses plaisirs pour aider le collectif."},
+        sx:{name:"7 SX — Fascination", desc:"Cherche l'expérience qui éblouit. Idéaliste romantique, propulse l'autre dans le rêve. Le 7 le plus intense."}
+      }
+    },
+    8:{
+      name:"Le Protecteur",
+      short:"orienté vers la force, le contrôle, la protection des siens.",
+      wings:{
+        a:{n:7, name:"8 avec aile 7 — Le Maverick", desc:"Plus aventurier, entrepreneur, audacieux. Tendance extravertie, énergique, ambitieux dans le monde."},
+        b:{n:9, name:"8 avec aile 9 — L'Ours", desc:"Plus calme, contenu, autoritaire posé. Tendance plus terre-à-terre, force tranquille, moins explosif."}
+      },
+      arrows:{
+        int:{n:2, label:"Vers le 2 (en santé)", desc:"Quand vous grandissez, vous devenez tendre, attentionné. Vous ouvrez votre cœur, prenez soin sincèrement des autres."},
+        dis:{n:5, label:"Vers le 5 (en stress)", desc:"Quand vous craquez, vous devenez retiré, secret, paranoïaque. Vous planifiez votre revanche en isolement, perdez votre énergie."}
+      },
+      levels:{
+        healthy:"Magnanime, héroïque. Protège et inspire. Ouvert et vulnérable malgré sa force apparente.",
+        average:"Intimidant, contrôlant. Va à l'affrontement. Tient l'environnement par sa force, ne plie pas.",
+        unhealthy:"Tyrannique, destructeur, sans pitié. Voit l'autre comme obstacle à écraser. Vengeance."
+      },
+      instincts:{
+        sp:{name:"8 SP — Survie satisfaisante", desc:"Veut le contrôle de son territoire matériel, sa sécurité concrète. Sensuel, exigeant sur le confort."},
+        so:{name:"8 SO — Solidarité / Amitié", desc:"Le chef de meute. Loyal à son groupe, protège les siens contre l'injustice. Le 8 le plus social."},
+        sx:{name:"8 SX — Possession", desc:"Fusion intense avec le partenaire choisi. Possessivité, conquête, jalousie. Le 8 le plus passionné."}
+      }
+    },
+    9:{
+      name:"Le Médiateur",
+      short:"orienté vers la paix, l'harmonie, l'évitement du conflit.",
+      wings:{
+        a:{n:8, name:"9 avec aile 8 — L'Arbitre", desc:"Plus assertif, terre-à-terre. Peut s'enraciner, prendre position quand c'est nécessaire. Médiateur autoritaire."},
+        b:{n:1, name:"9 avec aile 1 — Le Rêveur", desc:"Plus idéaliste, contenu, ordonné. Tendance plus contemplative, valeurs morales discrètes."}
+      },
+      arrows:{
+        int:{n:3, label:"Vers le 3 (en santé)", desc:"Quand vous grandissez, vous devenez motivé, productif. Vous prenez votre place, vos désirs comptent, vous accomplissez."},
+        dis:{n:6, label:"Vers le 6 (en stress)", desc:"Quand vous craquez, vous devenez anxieux, méfiant. Scénarios catastrophes, doute permanent, vous perdez votre calme."}
+      },
+      levels:{
+        healthy:"Présent, ancré. Médiateur naturel. Sa paix vient de l'intérieur, non de l'évitement du réel.",
+        average:"Accommodant, complaisant. Remet à plus tard, se dilue dans les autres, évite ses propres priorités.",
+        unhealthy:"Dissocié, dépressif. Néglige sa propre vie. Passif-agressif, têtu. S'éteint intérieurement."
+      },
+      instincts:{
+        sp:{name:"9 SP — Appétit", desc:"Se fond dans le confort physique, routines, nourriture, télé. « Inertie du corps ». Le 9 le plus terrien."},
+        so:{name:"9 SO — Participation", desc:"Le membre invisible du groupe. Accompagne, soutient, ne brille pas. Sociable mais sans s'imposer."},
+        sx:{name:"9 SX — Union / Fusion", desc:"Se confond avec l'aimé, perd ses propres contours. Vit à travers l'autre. Le 9 le plus passionné."}
+      }
+    }
   };
 
   // État
