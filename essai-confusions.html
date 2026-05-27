@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vous hésitez entre deux types ? — Prototype</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="assets/css/base.css">
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:1200px;margin:18px auto 40px;padding:0 14px}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+    .topBar .title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:800}
+    .topBar .badge{
+      font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;
+      padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(252,211,77,.4);background:rgba(252,211,77,.10);
+      color:#fde68a;font-weight:800;
+    }
+
+    .head{max-width:880px;margin:0 auto 18px;text-align:center}
+    .head h1{margin:0;font-size:clamp(26px,4vw,36px);letter-spacing:.3px;line-height:1.1}
+    .head .sub{margin:10px auto 0;color:var(--muted);font-size:14.5px;line-height:1.5;max-width:64ch}
+
+    /* Main two-column layout */
+    .stage{
+      display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:18px;
+      align-items:start;
+    }
+    @media(max-width:1000px){
+      .stage{grid-template-columns:1fr}
+    }
+
+    /* Diagram */
+    .diagram{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.02);box-shadow:var(--shadow);padding:16px;
+    }
+    .diagram svg{width:100%;height:auto;max-width:640px;margin:0 auto;display:block}
+    .stepHint{
+      text-align:center;color:var(--muted);font-size:12.5px;
+      letter-spacing:.6px;margin:8px 0 0;
+    }
+    .stepHint b{color:#7dd3fc}
+
+    /* SVG styles */
+    .ring{stroke:rgba(147,197,253,.4);stroke-width:2;fill:none}
+    .hex{stroke:rgba(255,255,255,.07);stroke-width:1.5;fill:none}
+    .tri{stroke:rgba(255,255,255,.05);stroke-width:1.5;fill:none}
+    .node{cursor:pointer;transition:all .3s ease}
+    .node circle{
+      fill:rgba(15,26,51,.85);
+      stroke:rgba(255,255,255,.22);stroke-width:2;
+      transition:all .3s ease;
+    }
+    .node text{
+      fill:#e8eeff;font-size:17px;font-weight:850;
+      text-anchor:middle;dominant-baseline:middle;pointer-events:none;
+      transition:all .3s ease;
+    }
+    .node.dim{opacity:.30}
+    .node.dim circle{stroke:rgba(255,255,255,.10)}
+
+    .node.A circle{
+      fill:rgba(125,211,252,.20);stroke:#7dd3fc;stroke-width:3.5;
+      filter:drop-shadow(0 0 14px rgba(125,211,252,.6));
+    }
+    .node.A text{font-size:20px;fill:#fff}
+
+    .node.B circle{
+      fill:rgba(196,181,253,.20);stroke:#c4b5fd;stroke-width:3.5;
+      filter:drop-shadow(0 0 14px rgba(196,181,253,.6));
+    }
+    .node.B text{font-size:20px;fill:#fff}
+
+    /* When first type is selected, show relationships */
+    .node.rel-wing circle{stroke:#fcd34d;stroke-width:2.8}
+    .node.rel-growth circle{stroke:#86efac;stroke-width:2.8}
+    .node.rel-stress circle{stroke:#fda4af;stroke-width:2.8}
+
+    /* Connection lines from A to others */
+    .conn{stroke-width:2;fill:none;opacity:0;transition:opacity .35s ease;stroke-dasharray:5 4}
+    .conn.show{opacity:.7}
+    .conn.wing{stroke:#fcd34d}
+    .conn.growth{stroke:#86efac}
+    .conn.stress{stroke:#fda4af}
+    .conn.none{stroke:rgba(255,255,255,.20)}
+
+    /* Panel */
+    .panel{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(255,255,255,.03);box-shadow:var(--shadow);
+      padding:20px 22px;
+      display:flex;flex-direction:column;
+      min-height:540px;
+    }
+
+    .panel h2{margin:0 0 8px;font-size:20px;letter-spacing:.2px;color:#fff}
+    .panel .sub{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.55}
+
+    /* Empty state */
+    .empty{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;flex:1;padding:20px 10px}
+    .empty .num{
+      font-size:48px;line-height:1;color:#7dd3fc;font-weight:850;margin-bottom:14px;
+      text-shadow:0 0 28px rgba(125,211,252,.5);
+    }
+    .empty p{color:#cfe9ff;font-size:15px;margin:6px 0;max-width:30ch;line-height:1.55}
+    .empty p.muted{color:var(--muted);font-size:13.5px}
+
+    /* Pair detail */
+    .pairDetail{display:flex;flex-direction:column;gap:14px;flex:1}
+    .pairHeader{
+      display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+      padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .pairHeader .who{
+      display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;
+    }
+    .pairHeader .bigNum{
+      display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;
+      font-size:18px;font-weight:850;
+      border:2px solid currentColor;
+    }
+    .pairHeader .A{color:#7dd3fc}
+    .pairHeader .B{color:#c4b5fd}
+    .pairHeader .vs{color:var(--muted);font-size:14px;font-weight:600}
+
+    /* Structural relationship badge */
+    .relBadge{
+      padding:10px 14px;border-radius:12px;
+      font-size:13.5px;line-height:1.45;
+      border:1px solid currentColor;
+      display:flex;align-items:center;gap:10px;
+    }
+    .relBadge .icon{font-size:18px;line-height:1;flex:0 0 auto}
+    .relBadge.wing{color:#fde68a;background:rgba(252,211,77,.08);border-color:rgba(252,211,77,.35)}
+    .relBadge.growth{color:#bbf7d0;background:rgba(134,239,172,.08);border-color:rgba(134,239,172,.35)}
+    .relBadge.stress{color:#fecdd3;background:rgba(253,164,175,.08);border-color:rgba(253,164,175,.35)}
+    .relBadge.none{color:var(--muted);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18)}
+    .relBadge.mixed{background:linear-gradient(135deg,rgba(134,239,172,.08),rgba(253,164,175,.08));border-color:rgba(255,255,255,.20);color:#e8eeff}
+
+    /* Sections */
+    .sec{
+      padding:12px 14px;border-radius:10px;
+      border-left:3px solid currentColor;
+      background:rgba(255,255,255,.03);
+    }
+    .sec h3{
+      margin:0 0 6px;font-size:11.5px;letter-spacing:.9px;text-transform:uppercase;
+      font-weight:800;color:inherit;
+    }
+    .sec p{margin:0;font-size:14px;line-height:1.55;color:#e8eeff}
+    .sec.s1{color:#fde68a}
+    .sec.s2{color:#bfdbfe}
+    .sec.s3{color:#fbcfe8}
+    .sec.s4{color:#bbf7d0}
+
+    .panelFooter{
+      margin-top:auto;padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;gap:8px;flex-wrap:wrap;
+    }
+    .panelFooter .btn{
+      flex:1;min-width:0;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+      color:var(--text);font-weight:700;font-size:13px;cursor:pointer;text-decoration:none;
+      text-align:center;
+      transition:background .14s ease, border-color .14s ease;
+    }
+    .panelFooter .btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28)}
+    .panelFooter .btn.reset{flex:0 0 auto;color:#fda4af;border-color:rgba(253,164,175,.30)}
+
+    /* Filter bar */
+    .filterBar{
+      margin:22px auto 14px;max-width:1100px;
+      padding:14px 16px;border-radius:var(--radius);
+      border:1px solid var(--line);background:rgba(255,255,255,.02);
+    }
+    .filterBar .lbl{
+      font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;
+      color:var(--muted);font-weight:800;margin:0 0 10px;
+    }
+    .filterPills{display:flex;flex-wrap:wrap;gap:8px}
+    .filterPills button{
+      padding:8px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);
+      color:var(--text);font-weight:700;font-size:13px;cursor:pointer;
+      transition:all .14s ease;
+    }
+    .filterPills button:hover{background:rgba(255,255,255,.10)}
+    .filterPills button.active{
+      background:rgba(125,211,252,.16);border-color:rgba(125,211,252,.45);color:#bae6fd;
+    }
+
+    /* Matrix */
+    .matrixWrap{
+      margin:0 auto;max-width:1100px;
+      padding:18px 16px;border-radius:var(--radius);
+      border:1px solid var(--line);background:rgba(255,255,255,.02);
+    }
+    .matrixWrap .lbl{
+      font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;
+      color:var(--muted);font-weight:800;margin:0 0 12px;text-align:center;
+    }
+    .matrix{
+      display:grid;grid-template-columns:36px repeat(9, minmax(0,1fr));gap:4px;
+      max-width:680px;margin:0 auto;
+    }
+    .matrix .corner{}
+    .matrix .head{
+      display:grid;place-items:center;
+      font-size:13px;font-weight:800;color:var(--muted);
+      padding:6px 0;
+    }
+    .matrix .head.col{border-bottom:1px solid rgba(255,255,255,.06)}
+    .matrix .head.row{border-right:1px solid rgba(255,255,255,.06)}
+    .matrix .cell{
+      aspect-ratio:1;display:grid;place-items:center;
+      border-radius:8px;cursor:pointer;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.02);
+      font-size:11px;font-weight:700;color:var(--muted);
+      transition:all .14s ease;
+    }
+    .matrix .cell:hover{transform:scale(1.08);border-color:rgba(125,211,252,.6)}
+    .matrix .cell.dimmed{opacity:.25;cursor:default;pointer-events:none}
+    .matrix .cell.diag{background:rgba(0,0,0,.25);cursor:default;color:rgba(255,255,255,.18);border:none}
+    .matrix .cell.diag:hover{transform:none}
+    .matrix .cell.wing{background:rgba(252,211,77,.12);border-color:rgba(252,211,77,.40);color:#fde68a}
+    .matrix .cell.growth{background:rgba(134,239,172,.12);border-color:rgba(134,239,172,.40);color:#bbf7d0}
+    .matrix .cell.stress{background:rgba(253,164,175,.12);border-color:rgba(253,164,175,.40);color:#fecdd3}
+    .matrix .cell.mixed{background:linear-gradient(135deg,rgba(134,239,172,.10),rgba(253,164,175,.10));border-color:rgba(255,255,255,.30);color:#fff}
+
+    .matrixLegend{
+      margin-top:14px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+      font-size:12px;color:var(--muted);
+    }
+    .matrixLegend span{display:inline-flex;align-items:center;gap:6px}
+    .matrixLegend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+    .matrixLegend i.wing{background:rgba(252,211,77,.4)}
+    .matrixLegend i.growth{background:rgba(134,239,172,.4)}
+    .matrixLegend i.stress{background:rgba(253,164,175,.4)}
+    .matrixLegend i.mixed{background:linear-gradient(135deg,rgba(134,239,172,.4),rgba(253,164,175,.4))}
+    .matrixLegend i.none{background:rgba(255,255,255,.10)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <span class="title">Résolveur de confusions · prototype</span>
+      <span class="badge">Test · 36 paires Riso</span>
+    </div>
+
+    <header class="head">
+      <h1>Vous hésitez entre deux types ?</h1>
+      <p class="sub">Cliquez d'abord votre type provisoire sur le diagramme, puis l'autre type qui vous parle. La fiche de la paire apparaît, avec le lien structurel qui explique pourquoi cette confusion est si fréquente.</p>
+    </header>
+
+    <div class="stage">
+      <!-- Diagram -->
+      <div class="diagram">
+        <svg id="ennea" viewBox="0 0 700 700" aria-label="Diagramme">
+          <circle class="ring" cx="350" cy="350" r="250"/>
+          <polygon class="tri" points="350,100 566,475 134,475"/>
+          <polygon class="hex" points="511,159 435,585 596,307 189,159 104,307 566,475"/>
+
+          <!-- Connection lines layer -->
+          <g id="connLayer"></g>
+
+          <!-- Nodes -->
+          <g id="nodesLayer">
+            <g class="node" data-n="9"><circle cx="350" cy="100" r="22"/><text x="350" y="100">9</text></g>
+            <g class="node" data-n="1"><circle cx="511" cy="159" r="22"/><text x="511" y="159">1</text></g>
+            <g class="node" data-n="2"><circle cx="596" cy="307" r="22"/><text x="596" y="307">2</text></g>
+            <g class="node" data-n="3"><circle cx="566" cy="475" r="22"/><text x="566" y="475">3</text></g>
+            <g class="node" data-n="4"><circle cx="435" cy="585" r="22"/><text x="435" y="585">4</text></g>
+            <g class="node" data-n="5"><circle cx="265" cy="585" r="22"/><text x="265" y="585">5</text></g>
+            <g class="node" data-n="6"><circle cx="134" cy="475" r="22"/><text x="134" y="475">6</text></g>
+            <g class="node" data-n="7"><circle cx="104" cy="307" r="22"/><text x="104" y="307">7</text></g>
+            <g class="node" data-n="8"><circle cx="189" cy="159" r="22"/><text x="189" y="159">8</text></g>
+          </g>
+        </svg>
+        <p class="stepHint" id="stepHint"><b>Étape 1</b> · cliquez votre type provisoire</p>
+      </div>
+
+      <!-- Panel -->
+      <aside class="panel" id="panel">
+        <!-- Empty state by default -->
+        <div class="empty" id="empty">
+          <div class="num">?</div>
+          <p>Cliquez un point sur le diagramme.</p>
+          <p class="muted">Une fois sélectionné, les autres types apparaîtront colorés selon leur lien avec le vôtre — aile, point de croissance, point de stress.</p>
+        </div>
+        <div class="pairDetail" id="pairDetail" hidden></div>
+      </aside>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filterBar">
+      <p class="lbl">Filtrer les paires par type de lien structurel</p>
+      <div class="filterPills" id="filterPills">
+        <button class="active" data-f="all">Toutes (36)</button>
+        <button data-f="wing">Ailes (9)</button>
+        <button data-f="growth">Croissance (9)</button>
+        <button data-f="stress">Stress (9)</button>
+        <button data-f="none">Sans lien structurel (18)</button>
+      </div>
+    </div>
+
+    <!-- Matrix -->
+    <div class="matrixWrap">
+      <p class="lbl">Ou choisissez directement une paire</p>
+      <div class="matrix" id="matrix"></div>
+      <div class="matrixLegend">
+        <span><i class="wing"></i> Aile</span>
+        <span><i class="growth"></i> Croissance</span>
+        <span><i class="stress"></i> Stress</span>
+        <span><i class="mixed"></i> Croissance + Stress (les deux types ont une flèche vers l'autre)</span>
+        <span><i class="none"></i> Sans lien direct</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+  // === Relations classiques ===
+  const POS = {
+    1:{x:511,y:159}, 2:{x:596,y:307}, 3:{x:566,y:475},
+    4:{x:435,y:585}, 5:{x:265,y:585}, 6:{x:134,y:475},
+    7:{x:104,y:307}, 8:{x:189,y:159}, 9:{x:350,y:100}
+  };
+  const INTEGRATION =    {1:7, 2:4, 3:6, 4:1, 5:8, 6:9, 7:5, 8:2, 9:3};
+  const DISINTEGRATION = {1:4, 2:8, 3:9, 4:2, 5:7, 6:3, 7:1, 8:5, 9:6};
+  const WINGS = {1:[9,2], 2:[1,3], 3:[2,4], 4:[3,5], 5:[4,6], 6:[5,7], 7:[6,8], 8:[7,9], 9:[8,1]};
+
+  const TYPE_NAMES = {
+    1:"Le Perfectionniste", 2:"Le Donneur", 3:"Le Performeur",
+    4:"Le Romantique", 5:"L'Observateur", 6:"Le Loyal Sceptique",
+    7:"L'Épicurien", 8:"Le Protecteur", 9:"Le Médiateur"
+  };
+
+  // Get relationship from a's perspective to b
+  function relFromTo(a, b){
+    if(WINGS[a].includes(b)) return 'wing';
+    if(INTEGRATION[a]===b) return 'growth';
+    if(DISINTEGRATION[a]===b) return 'stress';
+    return 'none';
+  }
+
+  // === Contenu des 36 paires (synthèse fidèle de Riso, Understanding the Enneagram, chap. 5) ===
+  function k(a,b){ return Math.min(a,b)+'-'+Math.max(a,b); }
+  const PAIRS = {
+    "1-2": {
+      common: "Tous deux sérieux, mus par la conscience, aiment se sentir au service. Tous deux peuvent être profondément altruistes.",
+      difference: "Le 1 transcende le personnel, s'appuie sur des principes et la « justesse » de sa position ; le 2 est hautement personnel, voit le service en termes affectifs et cherche la fusion.",
+      direction: "Souvent confusion entre une aile et le type dominant (1w2 ↔ 2w1). Le genre influence : les femmes 1w2 se prennent souvent pour 2w1, les hommes 2w1 pour 1w2.",
+      discernment: "Le 1 défend son autonomie, retient ses élans positifs mais exprime ses irritations. Le 2 cherche l'intimité, exprime librement son affection mais a du mal avec la colère."
+    },
+    "1-3": {
+      common: "Tous deux efficaces, organisés, orientés vers la tâche, mettent leurs émotions de côté pour atteindre leurs objectifs. Tous deux ont des standards élevés.",
+      difference: "Le 1 est un idéaliste mu par sa conscience intérieure ; le 3 est un pragmatique mu par ses buts, qui change de tactique si le résultat n'est pas au rendez-vous.",
+      direction: "La confusion peut aller dans les deux sens, selon que l'on s'identifie aux standards (penser 1) ou à la réussite (penser 3).",
+      discernment: "Le 1 ne cache pas son irritation, ses émotions transparaissent ; le 3 projette l'émotion qui convient au moment. Le 1 dit « écoutez-moi, je sais comment faire » ; le 3 dit « soyez comme moi, j'ai réussi »."
+    },
+    "1-4": {
+      common: "Tous deux perfectionnistes, insatisfaits, parfois critiques et pointilleux sur leur environnement. Tous deux peuvent vivre des épisodes dépressifs et se sentir frustrés.",
+      difference: "Le 1 s'occupe d'abord de ses responsabilités et gère ses émotions ensuite ; le 4 veut traiter ses émotions d'abord et ses devoirs après.",
+      direction: "Plus souvent c'est un 1 sous stress qui se prend pour un 4 — parce que 4 est son point de désintégration : il y glisse pour éviter de tomber dans les niveaux bas du 1.",
+      discernment: "Le 1 ne se retire pas, il impose ses opinions à l'autre avec une urgence croissante ; le 4 se retire émotionnellement et physiquement quand il se sent blessé, refuse la communication."
+    },
+    "1-5": {
+      common: "Tous deux philosophiques, aiment la connaissance, peuvent être réservés et cérébraux. Tous deux correspondent à des types pensants au sens jungien.",
+      difference: "Le 1 est instinctif, homme d'action, n'aime que les idées qui mènent à un résultat pratique ; le 5 est purement mental, peut s'immerger dans des idées sans application pratique.",
+      direction: "Confusion peu fréquente.",
+      discernment: "Le 1 est déductif (des principes aux applications), enseignant et moraliste ; le 5 est inductif (des données aux théories), inventeur et iconoclaste. Le 1 vit dans la certitude, le 5 dans le doute permanent."
+    },
+    "1-6": {
+      common: "Tous deux types compliants, surmoi sévère, se sentent obligés par les devoirs, peuvent culpabiliser. Tous deux ont une voix critique intérieure (le 1) ou un comité intérieur (le 6).",
+      difference: "Le 1 est self-controlled, certain, sait son opinion et la défend ; le 6 est anxieux, indécis, ambivalent, oscille entre dépendance et rébellion.",
+      direction: "Rare comme auto-confusion. Plutôt observée de l'extérieur, surtout un 6 à aile 5 qui ressemble à un 1 par son sérieux.",
+      discernment: "Le 1 a des opinions fortes et tente de convaincre ; le 6 cherche la réassurance et s'appuie sur une autorité externe. Le 1 souffre de colère contenue et d'indignation morale ; le 6 souffre de peur, de suspicion et d'anxiété."
+    },
+    "1-7": {
+      common: "Tous deux idéalistes avec un sens de la « mission », tous deux portent l'idée de perfection.",
+      difference: "Le 7 est optimiste sur l'avenir ; le 1 s'attend à être déçu par les gens et le monde. Le 7 est spontané et n'aime pas les procédures ; le 1 est méthodique et planifie.",
+      direction: "Les 7 sous stress prolongé peuvent se croire 1 — parce que 1 est leur point de désintégration : ils remarquent perfectionnisme et besoin d'ordre.",
+      discernment: "Le 7 est mu par l'anxiété, dispersé, curieux ; le 1 est mu par la colère sourde, focalisé, fermé d'esprit. Le « perfectionnisme » du 7 = frustration ponctuelle sur la qualité de l'expérience ; celui du 1 = autocritique tenace pour la moindre virgule."
+    },
+    "1-8": {
+      common: "Tous deux du centre instinctif, volonté puissante, orientés vers l'action, idées fortes sur comment faire les choses, sens aigu de la justice.",
+      difference: "Le 1 persuade par l'argument moral (« c'est ce qu'il faut faire ») ; le 8 s'impose par sa conviction viscérale et son charisme (« c'est ma manière »).",
+      direction: "Plus souvent un 1 se prend pour un 8 (désir d'autorité et d'influence) que l'inverse. Les 8 méprisent les 1, vus comme moralisateurs et faibles.",
+      discernment: "Le 1 est compliant (à ses idéaux) ; le 8 est l'agressif par excellence. La justice du 1 = principes abstraits, la justice du 8 = protection viscérale des « siens »."
+    },
+    "1-9": {
+      common: "Tous deux idéalistes, philosophiques, plutôt retirés. Tous deux mal à l'aise avec leur propre colère.",
+      difference: "Le 9 veut préserver la paix et évite les conflits, même s'il a des convictions ; le 1 défend ses principes et impose son point de vue, quitte à créer des disputes.",
+      direction: "Souvent confusion entre l'aile 9 d'un 1 et l'aile 1 d'un 9 (1w9 ↔ 9w1) — ailes voisines très proches.",
+      discernment: "Le 9 aime les pauses, a du mal à passer de la relaxation à l'activité ; le 1 culpabilise quand il ne travaille pas. Sous stress, le 9 va vers le 6 (anxiété) ; le 1 va vers le 4 (repli maussade)."
+    },
+    "2-3": {
+      common: "Tous deux charmants, veulent être aimés et plaire. Tous deux peuvent être « séducteurs » dans leur style propre.",
+      difference: "Le 2 séduit en s'occupant de l'autre (« comment vous sentez-vous ? ») ; le 3 séduit en se présentant lui-même comme désirable et brillant — « regardez ce que je suis ».",
+      direction: "Souvent confusion 2w3 ↔ 3w2 (deux ailes voisines très semblables en surface).",
+      discernment: "Le 2 cherche l'intimité et la proximité ; le 3 craint l'intimité dès qu'elle devient trop proche. Le 2 est ouvertement sentimental et s'émeut facilement ; le 3 est plus composé, accède difficilement à ses émotions."
+    },
+    "2-4": {
+      common: "Tous deux types émotionnels (centre du cœur), mettent beaucoup d'importance sur les hauts et les bas des relations personnelles.",
+      difference: "Le 2 va vers les autres pour aider, parfois excessivement ; le 4 se retire des autres en espérant être recherché.",
+      direction: "Confusion rare. Un 2 qui a vécu une dépression peut se croire 4 — mais tous les types peuvent traverser une dépression, ce n'est pas un marqueur du 4.",
+      discernment: "Le 2 cherche qui sauver ; le 4 cherche qui le sauvera. Le 2 est aveugle à ses propres besoins et motivations ; le 4 est aveugle à son impact sur les autres."
+    },
+    "2-5": {
+      common: "Les 5 qui forment de rares dépendances émotionnelles peuvent devenir collants avec leurs proches, ce qui peut faire penser à un 2.",
+      difference: "Le 2 est expressif émotionnellement et tourné vers les gens ; le 5 est détaché émotionnellement, vrai solitaire de l'ennéagramme.",
+      direction: "Confusion extrêmement rare. Surtout un 5 en lien dépendant qu'on confond de l'extérieur avec un 2.",
+      discernment: "Le 2 gère le rejet en gagnant l'autre ; le 5 gère le rejet en se détachant et s'isolant davantage. Le 2 fonctionne par sentiment ; le 5 par concept intellectuel et complexité."
+    },
+    "2-6": {
+      common: "Tous deux chaleureux, engageants, veulent être appréciés. Tous deux types émotionnels au sens jungien.",
+      difference: "Le 6 veut l'approbation et le soutien, cherche des partenariats sécurisants mais s'inquiète si ça devient trop fusionnel ; le 2 veut être aimé et important, cultive l'intimité fusionnelle.",
+      direction: "Confusion assez courante car nombreux traits communs (chaleur, désir d'être apprécié).",
+      discernment: "Le 2 affiche son cœur sur sa manche, démonstratif ; le 6 est ambivalent, envoie des signaux mixtes. Le 2 devient autorité (donne des conseils à tous) ; le 6 cherche une autorité externe à consulter."
+    },
+    "2-7": {
+      common: "Tous deux peuvent être émotionnels et histrioniques, dramatisent leurs émotions, sociables, aiment être avec les gens.",
+      difference: "Le 2 veut être nécessaire à l'autre, cultive l'intimité durable ; le 7 ne veut pas être nécessaire à qui que ce soit, voit les autres comme compagnons d'aventure.",
+      direction: "Plus souvent les 7 se prennent pour des 2 que l'inverse.",
+      discernment: "Émotions du 7 = labiles, large gamme rapide (de l'élation à la colère en un instant). Émotions du 2 = chaleur durable et personnelle. Le 2 est possessif et lâche difficilement ; le 7 peut clore une relation rapidement, sans regrets."
+    },
+    "2-8": {
+      common: "Tous deux ont des ego forts et tendance à dominer. Tous deux luttent avec des sentiments sous-jacents de rejet.",
+      difference: "Le 8 est ouvertement agressif et direct dans sa communication ; le 2 est agressif sous le vernis de l'amour, indirect, manipule par culpabilité.",
+      direction: "Les 2 (surtout les hommes, pour raisons culturelles) peuvent se croire 8. Sous stress, le 2 glisse vers 8 — c'est son point de désintégration, il devient autoritaire et accusateur.",
+      discernment: "Le 8 domine pour son autoprotection et étendre son pouvoir ; le 2 domine pour empêcher les autres de partir. Le 8 communique directement la colère ; le 2 fait sentir sa souffrance pour culpabiliser (« après tout ce que j'ai fait pour toi ! »)."
+    },
+    "2-9": {
+      common: "Tous deux interpersonnels, mettent les besoins des autres avant les leurs, croient au service, gardent les choses positives.",
+      difference: "Le 2 a une conscience aiguë de son identité, sait ce qu'il ressent et ses qualités ; le 9 a un sens de soi diffus, s'efface naturellement.",
+      direction: "Plus souvent un 9 se prend pour un 2 — notamment les femmes — parce qu'il se voit aimant. Mais aimer n'est pas l'apanage du 2.",
+      discernment: "Le 2 va vers les gens activement, va « chercher » l'autre ; le 9 attend patiemment, accommodant. Le 2 dit aux autres combien ils lui sont redevables ; le 9 reste silencieux et accommodant. L'ego du 2 gonfle ; l'ego du 9 s'efface."
+    },
+    "3-4": {
+      common: "Tous deux peuvent se reconnaître dans une certaine sensibilité, dans la créativité artistique parfois.",
+      difference: "Le 3 met ses émotions de côté pour la tâche et la performance ; le 4 arrête tout pour traiter ses émotions avant de reprendre — moins il est sain, plus il a besoin de temps émotionnel.",
+      direction: "Plus souvent les 3 se prennent pour des 4 — surtout dans des familles où l'expression artistique a été valorisée. Le 3 peut croire à tort que seul le 4 est créatif.",
+      discernment: "Le 3 voit la préoccupation émotionnelle du 4 comme immature et non professionnelle ; le 4 voit l'obsession de performance du 3 comme inauthentique et superficielle."
+    },
+    "3-5": {
+      common: "Les 3 intelligents peuvent vouloir se voir comme « penseurs » et se croire 5. Tous deux peuvent exceller intellectuellement.",
+      difference: "Le 5 est process-oriented, aime la connaissance pour elle-même, sans souci de but pratique ou de reconnaissance ; le 3 poursuit l'intellectuel avec un objectif personnel — gloire, prestige, être reconnu.",
+      direction: "Quasi exclusivement les 3 qui se croient 5 — pour s'attribuer une identité flatteuse de penseur. Les 5 ne se confondent presque jamais avec des 3.",
+      discernment: "Le 3 est sociable, soigné, attentif à son image et au regard des autres ; le 5 est solitaire, peu soucieux d'apparence, indifférent à l'opinion. Le 3 change de sujet si le succès tarde ; le 5 peut rester des années sur un sujet par amour de la connaissance."
+    },
+    "3-6": {
+      common: "Tous deux focalisés sur le travail et la performance, peuvent être de durs travailleurs.",
+      difference: "Le 3 se voit en soliste, veut exceller, a besoin de reconnaissance ; le 6 préfère rester dans l'ombre (« celui qui dépasse prend les coups »), cherche à convaincre de sa fiabilité.",
+      direction: "Sous stress, un 6 peut se croire 3 — c'est son point de désintégration : il devient compétitif, soigne son image. La variante sexuelle du 6 (charme, magnétisme) peut aussi ressembler superficiellement au 3.",
+      discernment: "Le 3 projette calme et maîtrise émotionnelle ; le 6 projette nervosité et émotions volatiles, peut être maladroit dans ses interactions."
+    },
+    "3-7": {
+      common: "Tous deux types agressifs, intéressés par le succès et l'acquisition. Tous deux peuvent paraître narcissiques en surface.",
+      difference: "Le 7 cherche la variété d'expériences pour maintenir son sens de soi par la stimulation ; le 3 cherche les symboles de statut qui renforcent sa valeur personnelle.",
+      direction: "Plus souvent les 7 maniaques (grandiosité sur leurs plans) sont confondus avec des 3 narcissiques (grandiosité sur leur valeur personnelle). Les 3 peuvent vouloir paraître 7 (plus libres).",
+      discernment: "Le 3 est cool, sous contrôle, parfaitement composé ; le 7 a des aspérités, peut être vulgaire, drôle, débridé. La grandiosité du 7 = échapper à l'angoisse ; celle du 3 = compenser la peur de l'échec."
+    },
+    "3-8": {
+      common: "Tous deux types agressifs, ambitieux, compétitifs, veulent s'élever au-dessus des autres.",
+      difference: "Le 8 cherche le pouvoir et la domination concrète, leadership ; le 3 cherche le prestige et la reconnaissance des autres.",
+      direction: "Les 3 se prennent parfois pour des 8 (image flatteuse de leader). Les 8 ne se prennent quasiment jamais pour des 3.",
+      discernment: "L'échec du 3 = humiliation publique redoutée ; l'échec du 8 = occasion d'apprendre et de revenir plus fort. Le 8 ne se compare pas aux autres ; le 3 se compare en permanence. Le 8 « prend la chaleur » d'un conflit ; le 3 fuit la confrontation ouverte."
+    },
+    "3-9": {
+      common: "Tous deux hautement adaptables, intéressés par l'acceptation des autres. Tous deux peuvent avoir du mal à savoir qui ils sont vraiment.",
+      difference: "Le 3 est un self-starter motivé, lance des projets ; le 9 a souvent besoin d'un proche pour le maintenir motivé sur ses objectifs.",
+      direction: "Le 3 désintégré va vers 9 (devient désengagé, démotivé). Les 9 en intégration touchent au 3 (peuvent se croire 3 dans les périodes de réussite).",
+      discernment: "Le 3 cherche activement l'attention ; le 9 hésite à demander de l'attention et se sous-estime. Le 3 s'enthousiasme pour ses projets ; le 9 pour son temps libre et son confort."
+    },
+    "4-5": {
+      common: "Tous deux types retirés, individualistes et excentriques selon les standards courants, peuvent être créatifs.",
+      difference: "Le 4 est volatil émotionnellement, son art est autobiographique sur les relations et le subjectif ; le 5 a des émotions intenses mais privées, son art est plus abstrait, expérimental, sur la vision du réel.",
+      direction: "Plus souvent les 5 se prennent pour des 4 — notamment les femmes 5, parce qu'on suppose à tort que 4 est le « féminin émotionnel ».",
+      discernment: "Le 4 explore ses désappointements amoureux, son enfance, sa douleur, exprime ses émotions ; le 5 explore le vide intérieur et l'absence de sens, pénètre intellectuellement la surface des choses."
+    },
+    "4-6": {
+      common: "Tous deux peuvent vivre dépression, doute de soi, sentiments d'infériorité et de désespoir.",
+      difference: "Le 4 se rapporte à ses états émotionnels internes ; le 6 se rapporte aux gens, sait engager leurs émotions pour créer du lien.",
+      direction: "Les 6 se prennent souvent pour des 4 quand ils s'identifient aux traits négatifs (dépression, infériorité, désespoir).",
+      discernment: "Dépression du 4 = colère retournée contre soi pour avoir gaspillé une chance. Dépression du 6 = anxiété refoulée, peur d'avoir fâché une autorité. Art du 6 = traditions ou rébellion contre tradition ; art du 4 = personnel, hors traditions."
+    },
+    "4-7": {
+      common: "Tous deux peuvent être excessifs et décadents sensuellement, aimer les belles choses, vivre des extrêmes.",
+      difference: "Le 7 fuit la douleur et l'anxiété par l'extravagance externe et matérielle ; le 4 plonge dans la sensualité pour intensifier ses émotions et anesthésier sa conscience de soi.",
+      direction: "Les 7 peuvent se croire 4 s'ils ont traversé une dépression.",
+      discernment: "Le 7 = chercheur d'expériences positives, ne reste pas dans la tristesse ; le 4 = esthète langissant, se sent confortable avec la tristesse car elle fait partie de son identité. Le 4 chérit longtemps un objet beau ; le 7 accumule sans appréciation durable."
+    },
+    "4-8": {
+      common: "Tous deux peuvent se sentir passionnés et intenses, ressentir des blessures d'enfance et un sentiment d'aliénation.",
+      difference: "Le 8 se durcit pour surmonter et maintenir son indépendance (« il faut passer à autre chose ») ; le 4 ne veut pas passer à autre chose, garde ses blessures comme matière d'identité.",
+      direction: "Plus souvent les 8 se prennent pour des 4 — revendication de passion et d'intensité émotionnelle.",
+      discernment: "Le 4 montre sa vulnérabilité ouvertement, est plus résilient qu'il ne le croit ; le 8 se blinde contre toute apparence de faiblesse, est plus vulnérable qu'il ne l'admet."
+    },
+    "4-9": {
+      common: "Tous deux types retirés. Tous deux peuvent être doux, distraits, créatifs, déconnectés du monde extérieur.",
+      difference: "Le 4 se retire pour digérer ses émotions douloureuses ; le 9 se déconnecte de tout ce qui menace sa paix, idéalise une version simple et fantastique du réel.",
+      direction: "Les 9 se prennent souvent pour des 4 quand ils ont des talents artistiques. Mais l'art n'est pas l'apanage du 4.",
+      discernment: "Art du 9 = mythes, archétypes, fins heureuses (« ils vécurent heureux »). Art du 4 = tragique, sens du manque, redemption par la douleur comprise. Le 4 voit le monde de sa fenêtre comme étranger ; le 9 le voit avec des lunettes roses."
+    },
+    "5-6": {
+      common: "Tous deux types pensants, intellectuels quand instruits.",
+      difference: "Le 6 est linéaire, analytique, fait du troubleshooting et de la procédure ; le 5 est non-linéaire, iconoclaste, ébranle les structures établies.",
+      direction: "Plus souvent les 6 se prennent pour des 5 — flatteur de se voir comme « le penseur ».",
+      discernment: "Le 5 fait confiance à son propre esprit, considère que les autres sont moins bien informés ; le 6 ne fait pas confiance à son propre esprit, cherche une référence externe (mentor, autorité, citation). Le monde académique est plutôt celui des 6 (citations, sources, procédures) que des 5."
+    },
+    "5-7": {
+      common: "Tous deux types pensants, curieux, exploratoires, propension à collectionner les choses ou les idées, nerveux.",
+      difference: "Le 5 est isolé socialement, replié, aime le divertissement cérébral et les longues heures seul ; le 7 est grégaire, actif, impatient avec l'immobilité.",
+      direction: "Sous stress, le 5 ressemble au 7 — c'est son point de désintégration : il devient dispersé et distrait.",
+      discernment: "Le 5 voit l'optimisme comme irréaliste, est attiré par le macabre et le nihilisme ; le 7 voit le positif et évite tout ce qui est sombre, douloureux ou lourd."
+    },
+    "5-8": {
+      common: "Tous deux se voient comme des outsiders, sentent facilement le rejet. Tous deux hautement indépendants, prêts à se battre pour cette indépendance. Communication directe.",
+      difference: "Le 8 prend les problèmes de front, assertif, va chercher ce qu'il veut ; le 5 se retire des autres et se coupe de ses besoins pour éviter toute dépendance.",
+      direction: "Les 8 sous stress vont vers 5 (se retirent pour réfléchir et planifier) et peuvent se croire 5.",
+      discernment: "Le 8 est instinctif, intimement lié à son corps, action pratique et sensualité ; le 5 reste dans sa tête, relation ambivalente au corps, déconnecté de la vie pratique."
+    },
+    "5-9": {
+      common: "Tous deux types retirés. Tous deux utilisent une défense schizoïde (se détachent de leurs émotions). Tous deux peuvent être brillants.",
+      difference: "Le 9 est doux, ouvert, accueillant, fait confiance ; le 5 est intense, anguleux, méfiant, suspicieux.",
+      direction: "Très souvent les 9 (notamment les hommes éduqués) se prennent pour des 5 — parce qu'ils ont l'impression d'avoir des « idées profondes ».",
+      discernment: "Pensée du 9 = impressionniste, généralités, synthèse imaginative, fantasmes idéalisés. Pensée du 5 = laser, microscopique, spécifique, technique. Le 9 simplifie ; le 5 complexifie. Le 9 = utopiste ; le 5 = nihiliste. Le 9 fantasme ; le 5 théorise."
+    },
+    "6-7": {
+      common: "Tous deux types pensants, mus par l'anxiété.",
+      difference: "Le 6 réagit à l'anxiété en s'inquiétant plus et en cherchant des garanties ; le 7 la fuit en cherchant des distractions plaisantes et en maintenant l'optimisme.",
+      direction: "Confusion possible entre 6w7 et 7w6 (ailes voisines).",
+      discernment: "Le 6 a un sens élevé de la responsabilité, ne se permet pas de « lâcher » avant la fin des obligations ; le 7 est spontané, résiste aux engagements lourds, veut rester libre. Le 6 cherche les structures ; le 7 y résiste."
+    },
+    "6-8": {
+      common: "Tous deux types agressifs (mais seul le 8 l'est entièrement). Au niveau 6 de l'échelle de santé, similarités frappantes : combatifs, intimidants, colère facile, menace de violence.",
+      difference: "Le 6 oscille, ambivalent, passif-agressif, évasif ; le 8 a un ego solide et une volonté formidable, ne cède pas.",
+      direction: "Confusion peu fréquente.",
+      discernment: "Sous pression, le 6 finit par céder et ses défenses tombent ; le 8 redouble d'agressivité quand on lui résiste. Le 6 cherche protection ; le 8 offre protection. Le 6 dangereux car impulsif et irrationnel ; le 8 dangereux car calculé et impitoyable."
+    },
+    "6-9": {
+      common: "Tous deux concernés par la sécurité et le maintien du statu quo. Tous deux family-oriented, modestes sur eux-mêmes.",
+      difference: "Le 9 reste imperturbable et bland malgré les difficultés ; le 6 affiche sa nervosité, ses doutes, ne peut cacher ses émotions.",
+      direction: "Sous stress, le 9 va vers 6 (devient anxieux et réactif), peut se croire 6 brièvement. Mais cela ne dure pas — il revient vite à son mode easygoing.",
+      discernment: "Le 9 est silencieux dans sa paix intérieure ; le 6 a besoin de ventiler ses peurs avec d'autres pour les décharger. Le 9 fait confiance facilement (parfois trop) ; le 6 teste avant de laisser approcher."
+    },
+    "7-8": {
+      common: "Tous deux types agressifs, personnalités puissantes, vont chercher ce qu'ils veulent dans la vie.",
+      difference: "Le 7 cherche la variété d'expériences ; le 8 cherche l'intensité et le pouvoir comme moyens d'indépendance et de domination.",
+      direction: "Confusion peu fréquente.",
+      discernment: "Le 8 est instinctif, gut, terre-à-terre, pragmatique et sensuel ; le 7 est mental, vif, peut perdre prise au sol dans ses plans. Le 7 = idéaliste optimiste ; le 8 = réaliste sans complaisance."
+    },
+    "7-9": {
+      common: "Tous deux peuvent être extrêmement occupés, ébullients, heureux. Tous deux refoulent les aspects sombres (le 9 pour maintenir son identification idéalisée, le 7 pour fuir la douleur). Tous deux types sensoriels jungiens.",
+      difference: "Le 7 est extraverti, hyperactif, cherche stimulation et excitation ; le 9 est introverti, easygoing, fuit la stimulation excessive.",
+      direction: "Confusion possible mais peu fréquente.",
+      discernment: "Le 7 veut être stimulé ; le 9 veut éviter toute stimulation excessive. Le 7 cherche l'euphorie ; le 9 cherche un contentement placide. Le 7 cherche des activités à haute charge émotionnelle ; le 9 cherche des activités neutres et non menaçantes."
+    },
+    "8-9": {
+      common: "Confusion possible entre 8w9 et 9w8 (ailes voisines).",
+      difference: "Le 8 est ouvertement assertif, aime débattre et cherche les conflits qui l'énergisent ; le 9 fuit toute contention et préfère s'accorder pour garder la paix.",
+      direction: "Confusion rare.",
+      discernment: "Sous stress, le 8 devient plus en colère, agressif et dominateur ; le 9 devient plus passif, désengagé et déprimé."
+    }
+  };
+
+  // === Encart structurel adapté à la perspective ===
+  function structuralBadge(first, second){
+    if(!first || !second) return {cls:'none', icon:'•', text:''};
+    const r = relFromTo(first, second);
+    if(r === 'wing'){
+      return {cls:'wing', icon:'◆', text:`Le <b>${second}</b> est l'<b>aile</b> de votre type ${first} — c'est l'une de ses deux nuances voisines. Cette confusion arrive très souvent entre 1w2 / 2w1, 2w3 / 3w2, etc.`};
+    }
+    if(r === 'growth'){
+      return {cls:'growth', icon:'↗', text:`Le <b>${second}</b> est votre <b>point de croissance</b> (vous touchez à ses qualités quand vous évoluez). C'est pourquoi vous pouvez vous reconnaître dedans.`};
+    }
+    if(r === 'stress'){
+      return {cls:'stress', icon:'↘', text:`Le <b>${second}</b> est votre <b>point de stress</b> (vous glissez vers ses traits sous pression). Vous reconnaître dedans est typique des périodes difficiles.`};
+    }
+    return {cls:'none', icon:'∙', text:'Pas de lien structurel direct entre ces deux types sur le diagramme. La confusion vient d\'une <b>ressemblance de surface</b>, plus subtile à démêler.'};
+  }
+
+  // === État et rendu ===
+  let state = { A: null, B: null, filter: 'all' };
+
+  function selectNode(n){
+    if(state.A === null){
+      state.A = n;
+      renderAll();
+      return;
+    }
+    if(state.B === null){
+      if(n === state.A){ state.A = null; renderAll(); return; }
+      state.B = n;
+      renderAll();
+      return;
+    }
+    // Both set : reset and start over with new selection
+    state.A = n; state.B = null;
+    renderAll();
+  }
+
+  function openPair(a, b){
+    state.A = Math.min(a,b);
+    state.B = Math.max(a,b);
+    renderAll();
+    // scroll to panel on mobile
+    if(window.innerWidth < 1000){
+      document.getElementById('panel').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+
+  function reset(){
+    state.A = null; state.B = null;
+    renderAll();
+  }
+
+  // === Render diagram ===
+  function renderDiagram(){
+    document.querySelectorAll('.node').forEach(n => {
+      n.classList.remove('A','B','dim','rel-wing','rel-growth','rel-stress');
+    });
+    const connLayer = document.getElementById('connLayer');
+    connLayer.innerHTML = '';
+
+    if(state.A === null) return;
+
+    const selA = document.querySelector(`.node[data-n="${state.A}"]`);
+    selA.classList.add('A');
+
+    if(state.B !== null){
+      const selB = document.querySelector(`.node[data-n="${state.B}"]`);
+      selB.classList.add('B');
+      // Dim others
+      document.querySelectorAll('.node').forEach(n=>{
+        const num = Number(n.dataset.n);
+        if(num !== state.A && num !== state.B) n.classList.add('dim');
+      });
+      // Draw single line between A and B
+      drawConn(state.A, state.B, relFromTo(state.A, state.B));
+    } else {
+      // First selected, show all 8 connections
+      for(let i=1; i<=9; i++){
+        if(i === state.A) continue;
+        const r = relFromTo(state.A, i);
+        const node = document.querySelector(`.node[data-n="${i}"]`);
+        if(r === 'wing') node.classList.add('rel-wing');
+        else if(r === 'growth') node.classList.add('rel-growth');
+        else if(r === 'stress') node.classList.add('rel-stress');
+        drawConn(state.A, i, r);
+      }
+    }
+  }
+
+  function drawConn(a, b, rel){
+    const A = POS[a], B = POS[b];
+    const dx = B.x - A.x, dy = B.y - A.y;
+    const len = Math.sqrt(dx*dx + dy*dy);
+    const off = 24;
+    const x1 = A.x + (dx*off)/len;
+    const y1 = A.y + (dy*off)/len;
+    const x2 = B.x - (dx*off)/len;
+    const y2 = B.y - (dy*off)/len;
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+    line.setAttribute('class', `conn show ${rel}`);
+    document.getElementById('connLayer').appendChild(line);
+  }
+
+  // === Render panel ===
+  function renderPanel(){
+    const empty = document.getElementById('empty');
+    const detail = document.getElementById('pairDetail');
+    const hint = document.getElementById('stepHint');
+
+    if(state.A === null){
+      empty.hidden = false; detail.hidden = true;
+      hint.innerHTML = '<b>Étape 1</b> · cliquez votre type provisoire';
+      return;
+    }
+    if(state.B === null){
+      empty.hidden = true; detail.hidden = false;
+      hint.innerHTML = `<b>Étape 2</b> · cliquez l'autre type qui vous parle (vous avez choisi le <b>${state.A}</b>)`;
+      // Show "first selected" intermediate panel
+      detail.innerHTML = `
+        <div class="pairHeader">
+          <div class="who A"><span class="bigNum">${state.A}</span> Type ${state.A}</div>
+        </div>
+        <p class="sub">Vous avez choisi le <strong>Type ${state.A} — ${TYPE_NAMES[state.A]}</strong>. Maintenant cliquez sur l'autre type que vous hésitez avec sur le diagramme.</p>
+        <div class="sec s1" style="border-left-color:#fcd34d">
+          <h3>Les couleurs sur le diagramme</h3>
+          <p><b style="color:#fde68a">Jaune</b> = aile (votre voisin sur le cercle).<br>
+          <b style="color:#bbf7d0">Vert</b> = votre point de croissance (vers où vous évoluez).<br>
+          <b style="color:#fecdd3">Rose</b> = votre point de stress (vers où vous glissez sous pression).<br>
+          <b style="color:#9fb1da">Gris</b> = pas de lien structurel direct.</p>
+        </div>
+        <div class="panelFooter">
+          <button class="btn reset" onclick="reset()">Annuler</button>
+        </div>
+      `;
+      return;
+    }
+
+    // Both selected
+    empty.hidden = true; detail.hidden = false;
+    hint.innerHTML = `Fiche de la paire <b>${state.A} ↔ ${state.B}</b>`;
+    const a = state.A, b = state.B;
+    const data = PAIRS[k(a,b)];
+    const badge = structuralBadge(a, b);
+
+    detail.innerHTML = `
+      <div class="pairHeader">
+        <div class="who A"><span class="bigNum">${a}</span> Type ${a}</div>
+        <span class="vs">↔</span>
+        <div class="who B"><span class="bigNum">${b}</span> Type ${b}</div>
+      </div>
+      <div class="relBadge ${badge.cls}">
+        <span class="icon">${badge.icon}</span>
+        <span>${badge.text}</span>
+      </div>
+      <div class="sec s1"><h3>Pourquoi on les confond</h3><p>${data.common}</p></div>
+      <div class="sec s2"><h3>Différence fondamentale</h3><p>${data.difference}</p></div>
+      <div class="sec s3"><h3>Sens habituel de l'erreur</h3><p>${data.direction}</p></div>
+      <div class="sec s4"><h3>Comment trancher</h3><p>${data.discernment}</p></div>
+      <div class="panelFooter">
+        <a class="btn" href="profils/type${a}.html">Fiche Type ${a}</a>
+        <a class="btn" href="profils/type${b}.html">Fiche Type ${b}</a>
+        <button class="btn reset" onclick="reset()">↺ Nouvelle paire</button>
+      </div>
+    `;
+  }
+
+  // === Matrix ===
+  function renderMatrix(){
+    const m = document.getElementById('matrix');
+    m.innerHTML = '';
+    // Corner
+    const corner = document.createElement('div');
+    corner.className = 'corner';
+    m.appendChild(corner);
+    // Column headers
+    for(let c=1; c<=9; c++){
+      const h = document.createElement('div');
+      h.className = 'head col';
+      h.textContent = c;
+      m.appendChild(h);
+    }
+    // Rows
+    for(let r=1; r<=9; r++){
+      const rh = document.createElement('div');
+      rh.className = 'head row';
+      rh.textContent = r;
+      m.appendChild(rh);
+      for(let c=1; c<=9; c++){
+        const cell = document.createElement('div');
+        if(r === c){
+          cell.className = 'cell diag';
+          cell.textContent = '·';
+        } else {
+          const a = Math.min(r,c), b = Math.max(r,c);
+          // Determine relationship category from a's perspective
+          const r1 = relFromTo(a, b);
+          const r2 = relFromTo(b, a);
+          let cls = 'cell';
+          if(r1 === 'wing'){ cls += ' wing'; }
+          else if((r1 === 'growth' && r2 === 'stress') || (r1 === 'stress' && r2 === 'growth')){
+            cls += ' mixed';
+          }
+          else if(r1 === 'growth' || r2 === 'growth') cls += ' growth';
+          else if(r1 === 'stress' || r2 === 'stress') cls += ' stress';
+          cell.className = cls;
+          cell.textContent = `${a}·${b}`;
+          cell.dataset.a = a; cell.dataset.b = b;
+          // Apply filter
+          if(state.filter !== 'all'){
+            let inFilter = false;
+            if(state.filter === 'wing' && cls.includes('wing')) inFilter = true;
+            if(state.filter === 'growth' && (cls.includes('growth') || cls.includes('mixed'))) inFilter = true;
+            if(state.filter === 'stress' && (cls.includes('stress') || cls.includes('mixed'))) inFilter = true;
+            if(state.filter === 'none' && !cls.match(/wing|growth|stress|mixed/)) inFilter = true;
+            if(!inFilter) cell.classList.add('dimmed');
+          }
+          cell.addEventListener('click', ()=> openPair(Number(cell.dataset.a), Number(cell.dataset.b)));
+        }
+        m.appendChild(cell);
+      }
+    }
+  }
+
+  function renderAll(){
+    renderDiagram();
+    renderPanel();
+    renderMatrix();
+  }
+
+  // === Event bindings ===
+  document.querySelectorAll('.node').forEach(n=>{
+    n.addEventListener('click', ()=> selectNode(Number(n.dataset.n)));
+  });
+  document.querySelectorAll('#filterPills button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('#filterPills button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      state.filter = b.dataset.f;
+      renderMatrix();
+    });
+  });
+
+  // Expose reset for inline use
+  window.reset = reset;
+
+  // Initial render
+  renderAll();
+  </script>
+</body>
+</html>
