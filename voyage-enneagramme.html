@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Le Voyage — Ennéagramme</title>
+  <style>html{background:#070b14}</style>
+  <link rel="stylesheet" href="assets/css/base.css">
+
+  <style>
+    html,body{overflow-x:hidden}
+    .wrap{max-width:760px;margin:0 auto;padding:0 18px;min-height:100vh;display:flex;flex-direction:column}
+
+    .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0 8px}
+    .topBar a{font-size:12.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:700;text-decoration:none}
+    .topBar a:hover{color:var(--text)}
+
+    /* Fil de progression */
+    .trail{display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 0 0}
+    .trail .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.14);transition:all .4s ease}
+    .trail .dot.done{background:rgba(125,211,252,.5)}
+    .trail .dot.cur{background:#7dd3fc;width:22px;border-radius:4px;box-shadow:0 0 12px rgba(125,211,252,.5)}
+
+    /* Scène */
+    .scene{flex:1;display:flex;flex-direction:column;justify-content:center;padding:30px 0 50px;animation:fadeUp .5s ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+    .kicker{
+      text-align:center;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;
+      color:var(--muted);font-weight:700;margin:0 0 18px;
+    }
+
+    .situation{
+      font-size:clamp(20px,3.2vw,26px);line-height:1.45;text-align:center;
+      color:#fff;font-weight:600;margin:0 auto 8px;max-width:30ch;
+      letter-spacing:.2px;
+    }
+    .situation em{font-style:italic;color:#cfe9ff;font-weight:600}
+    .prompt{
+      text-align:center;color:var(--muted);font-size:15.5px;line-height:1.5;
+      margin:0 auto 28px;max-width:42ch;
+    }
+
+    .options{display:flex;flex-direction:column;gap:12px;max-width:560px;margin:0 auto;width:100%}
+    .option{
+      text-align:left;padding:16px 20px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.035);
+      color:#e8eeff;font-size:15.5px;line-height:1.5;cursor:pointer;
+      transition:transform .12s ease, background .18s ease, border-color .18s ease;
+      position:relative;
+    }
+    .option:hover{
+      background:rgba(125,211,252,.08);
+      border-color:rgba(125,211,252,.35);
+      transform:translateY(-2px);
+    }
+    .option:active{transform:translateY(0)}
+    .option .lead{display:block}
+
+    /* Embarquement */
+    .embark{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 0 60px;animation:fadeUp .6s ease}
+    .embark .glyph{
+      font-size:42px;color:#7dd3fc;letter-spacing:10px;margin-bottom:22px;
+      text-shadow:0 0 30px rgba(125,211,252,.4);
+    }
+    .embark h1{
+      margin:0 0 18px;font-size:clamp(30px,5vw,44px);letter-spacing:.3px;line-height:1.1;
+      background:linear-gradient(135deg,#fff 0%,#cfe9ff 55%,#e0d4ff 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .embark p{color:#cfe9ff;font-size:16.5px;line-height:1.65;max-width:46ch;margin:0 0 14px}
+    .embark p.muted{color:var(--muted);font-size:14.5px;max-width:44ch}
+    .embark .startBtn{
+      margin-top:26px;padding:15px 32px;border-radius:999px;
+      border:1px solid rgba(125,211,252,.45);
+      background:linear-gradient(135deg,rgba(125,211,252,.22),rgba(196,181,253,.12));
+      color:#fff;font-weight:800;font-size:16px;cursor:pointer;letter-spacing:.3px;
+      transition:transform .12s ease, background .18s ease;
+    }
+    .embark .startBtn:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(125,211,252,.32),rgba(196,181,253,.2))}
+
+    /* Transition / révélation douce de centre */
+    .reveal{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 0 60px;animation:fadeUp .6s ease}
+    .reveal .kicker{margin-bottom:10px}
+    .reveal h2{margin:0 0 8px;font-size:clamp(26px,4vw,36px);letter-spacing:.3px}
+    .reveal .centerName{
+      font-weight:850;
+    }
+    .reveal .centerName.instinctif{color:#fbbf24}
+    .reveal .centerName.emotionnel{color:#f472b6}
+    .reveal .centerName.mental{color:#60a5fa}
+    .reveal p{color:#cfe9ff;font-size:16px;line-height:1.65;max-width:48ch;margin:14px 0 0}
+    .reveal .small{color:var(--muted);font-size:14px;max-width:46ch;margin-top:18px}
+
+    .centerGlyph{
+      width:120px;height:120px;margin:10px auto 6px;border-radius:50%;
+      display:grid;place-items:center;font-size:40px;font-weight:850;
+      border:2px solid currentColor;
+    }
+    .centerGlyph.instinctif{color:#fbbf24;background:rgba(251,191,36,.08);box-shadow:0 0 40px rgba(251,191,36,.15)}
+    .centerGlyph.emotionnel{color:#f472b6;background:rgba(244,114,182,.08);box-shadow:0 0 40px rgba(244,114,182,.15)}
+    .centerGlyph.mental{color:#60a5fa;background:rgba(96,165,250,.08);box-shadow:0 0 40px rgba(96,165,250,.15)}
+
+    .reveal .actions{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .reveal .btn{
+      padding:12px 22px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);
+      color:var(--text);font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;
+      transition:background .14s ease,border-color .14s ease;
+    }
+    .reveal .btn:hover{background:rgba(255,255,255,.12)}
+    .reveal .btn.primary{border-color:rgba(125,211,252,.45);background:rgba(125,211,252,.14);color:#bae6fd}
+
+    .toAtSuivre{
+      margin-top:14px;font-size:12.5px;color:var(--muted);letter-spacing:.5px;
+      font-style:italic;
+    }
+
+    .siteFooter{text-align:center;color:var(--muted);font-size:12px;padding:16px 0 24px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topBar">
+      <a href="index.html">← Accueil</a>
+      <span class="trail" id="trail" hidden></span>
+      <a href="test-enneagramme-sans-indice.html">Test rapide</a>
+    </div>
+
+    <!-- Embarquement -->
+    <section class="embark" id="embark">
+      <div class="glyph">◌</div>
+      <h1>Le Voyage intérieur</h1>
+      <p>Ici, pas de test à réussir, pas de cases à cocher pour se définir. Juste un voyage, à travers des scènes de votre quotidien.</p>
+      <p>Au fil du chemin, votre profil se dessine tout doucement — votre manière unique de fonctionner, ce qui vous porte, ce qui vous pèse quand le stress monte.</p>
+      <p class="muted">Répondez simplement avec votre premier réflexe, sans réfléchir à « la bonne réponse ». Il n'y en a pas. Laissez-vous porter.</p>
+      <button class="startBtn" id="startBtn">Commencer le voyage →</button>
+    </section>
+
+    <!-- Scène (injectée par JS) -->
+    <section class="scene" id="scene" hidden></section>
+
+    <!-- Révélation de centre (fin du tronçon 1) -->
+    <section class="reveal" id="reveal" hidden></section>
+
+    <footer class="siteFooter">Un voyage, pas un verdict.</footer>
+  </div>
+
+  <script>
+  // ============================================================
+  // MOTEUR DE LECTURE INVISIBLE
+  // Chaque réponse ajoute des poids aux 9 types, jamais montrés.
+  // Le centre se déduit de la somme des types qui le composent.
+  // ============================================================
+  const scores = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+  const CENTERS = {
+    instinctif: [8,9,1],
+    emotionnel: [2,3,4],
+    mental: [5,6,7]
+  };
+  const CENTER_LABEL = { instinctif:"Instinctif", emotionnel:"Émotionnel", mental:"Mental" };
+
+  function addWeights(w){
+    for(const t in w){ scores[t] += w[t]; }
+  }
+  function centerScore(c){
+    return CENTERS[c].reduce((s,t)=> s + scores[t], 0);
+  }
+  function leadingCenter(){
+    let best=null, bestVal=-Infinity;
+    for(const c in CENTERS){
+      const v = centerScore(c);
+      if(v > bestVal){ bestVal=v; best=c; }
+    }
+    return best;
+  }
+
+  // ============================================================
+  // ACTE 2 — Scènes de détection du centre
+  // Aucune option ne nomme un trait. Chacune révèle un réflexe.
+  // Les poids penchent vers un centre (et nuancent les types).
+  // ============================================================
+  const SCENES = [
+    {
+      kicker:"Une scène du quotidien",
+      situation:"Un changement de dernière minute bouleverse votre journée.",
+      prompt:"Avant même d'avoir le temps de réfléchir, qu'est-ce qui monte d'abord en vous ?",
+      options:[
+        { text:"Une tension dans le corps, l'envie immédiate de reprendre la main.", w:{8:3, 1:1, 9:1} },
+        { text:"Une pensée vers les autres : qui est touché, comment ça va les affecter ?", w:{2:3, 4:1, 9:1} },
+        { text:"Un film mental : je calcule déjà les conséquences et les scénarios.", w:{6:3, 5:2, 7:1} },
+        { text:"Un agacement que les choses ne se passent pas comme elles devraient.", w:{1:3, 6:1} }
+      ]
+    },
+    {
+      kicker:"Un moment pour soi",
+      situation:"Une soirée entièrement libre s'ouvre devant vous.",
+      prompt:"Vers quoi votre énergie se tourne-t-elle le plus naturellement ?",
+      options:[
+        { text:"Faire quelque chose de concret : bouger, ranger, m'occuper les mains.", w:{8:1, 9:2, 1:2} },
+        { text:"Me relier à quelqu'un : appeler, partager, être en présence de l'autre.", w:{2:3, 3:1} },
+        { text:"Me retirer dans mon monde : lire, penser, comprendre, imaginer.", w:{5:3, 4:1} },
+        { text:"Remplir le temps de possibilités stimulantes, ne rien laisser filer.", w:{7:3} }
+      ]
+    },
+    {
+      kicker:"Quand ça frotte",
+      situation:"Une tension éclate avec une personne qui compte pour vous.",
+      prompt:"Quelle est votre toute première réaction intérieure ?",
+      options:[
+        { text:"Je tiens ma position, je ne me laisse pas faire.", w:{8:3, 1:1} },
+        { text:"Je me demande si le lien est abîmé, comment le réparer.", w:{2:2, 9:1, 6:1} },
+        { text:"Je me ferme et je prends de la distance pour analyser.", w:{5:3, 4:1} },
+        { text:"Je veux qu'on reconnaisse ce qui est juste, qui a raison.", w:{1:3, 6:1} }
+      ]
+    },
+    {
+      kicker:"L'heure du choix",
+      situation:"Une décision importante vous attend, et vous hésitez.",
+      prompt:"Sur quoi vous appuyez-vous d'abord pour trancher ?",
+      options:[
+        { text:"Ce que mon instinct me dit, ma sensation dans le corps.", w:{8:2, 9:2} },
+        { text:"L'effet sur mes proches et ce que je ressens vis-à-vis d'eux.", w:{2:2, 4:2} },
+        { text:"L'information, l'analyse, ce qui est le plus sûr et logique.", w:{5:2, 6:2} },
+        { text:"L'option qui garde le plus de portes ouvertes et d'élan.", w:{7:3, 3:1} }
+      ]
+    },
+    {
+      kicker:"Au réveil",
+      situation:"Vous repensez à une journée où vous vous êtes senti pleinement vous-même.",
+      prompt:"Qu'est-ce qui rendait ce moment si juste ?",
+      options:[
+        { text:"J'étais à ma place, solide, présent, maître de la situation.", w:{8:2, 1:2, 9:1} },
+        { text:"Je me sentais relié, apprécié, important pour quelqu'un.", w:{2:2, 3:2} },
+        { text:"J'avais compris quelque chose, vu clair, été dans mon élément intérieur.", w:{5:2, 6:1, 4:1} },
+        { text:"Tout était léger, ouvert, vivant — plein de promesses.", w:{7:3} }
+      ]
+    }
+  ];
+
+  // ============================================================
+  // DÉROULEMENT
+  // ============================================================
+  let idx = 0;
+  const total = SCENES.length;
+
+  const embarkEl = document.getElementById('embark');
+  const sceneEl = document.getElementById('scene');
+  const revealEl = document.getElementById('reveal');
+  const trailEl = document.getElementById('trail');
+
+  function renderTrail(){
+    trailEl.hidden = false;
+    trailEl.innerHTML = '';
+    for(let i=0;i<total;i++){
+      const d = document.createElement('span');
+      d.className = 'dot' + (i<idx?' done':'') + (i===idx?' cur':'');
+      trailEl.appendChild(d);
+    }
+  }
+
+  function renderScene(){
+    const s = SCENES[idx];
+    renderTrail();
+    sceneEl.innerHTML = `
+      <p class="kicker">${s.kicker}</p>
+      <p class="situation">${s.situation}</p>
+      <p class="prompt">${s.prompt}</p>
+      <div class="options"></div>
+    `;
+    const optsWrap = sceneEl.querySelector('.options');
+    s.options.forEach(opt=>{
+      const b = document.createElement('button');
+      b.className = 'option';
+      b.innerHTML = `<span class="lead">${opt.text}</span>`;
+      b.addEventListener('click', ()=> choose(opt));
+      optsWrap.appendChild(b);
+    });
+    // Re-trigger fade animation
+    sceneEl.style.animation = 'none';
+    void sceneEl.offsetWidth;
+    sceneEl.style.animation = '';
+  }
+
+  function choose(opt){
+    addWeights(opt.w);
+    idx++;
+    if(idx < total){
+      renderScene();
+    } else {
+      showReveal();
+    }
+  }
+
+  function showReveal(){
+    sceneEl.hidden = true;
+    trailEl.hidden = true;
+    revealEl.hidden = false;
+
+    const c = leadingCenter();
+    const label = CENTER_LABEL[c];
+    const glyph = {instinctif:"●", emotionnel:"♥", mental:"◆"}[c];
+
+    const desc = {
+      instinctif: "Vous abordez le monde d'abord par le corps, l'action et l'instinct. Votre énergie part de vos tripes : agir, tenir votre place, sentir ce qui est juste. Les types <strong>8, 9 et 1</strong> appartiennent à ce centre.",
+      emotionnel: "Vous abordez le monde d'abord par la relation et le ressenti. Votre attention va vers le lien, l'image, la valeur que vous avez aux yeux des autres. Les types <strong>2, 3 et 4</strong> appartiennent à ce centre.",
+      mental: "Vous abordez le monde d'abord par la pensée. Votre énergie part de la tête : comprendre, anticiper, sécuriser, imaginer les possibles. Les types <strong>5, 6 et 7</strong> appartiennent à ce centre."
+    };
+
+    revealEl.innerHTML = `
+      <p class="kicker">Votre centre se dessine</p>
+      <div class="centerGlyph ${c}">${glyph}</div>
+      <h2>Centre <span class="centerName ${c}">${label}</span></h2>
+      <p>${desc[c]}</p>
+      <p class="small">C'est seulement la première étape du voyage. La suite affinera lequel de ces trois types vous correspond vraiment — et comment vous fonctionnez au quotidien, en paix comme sous tension.</p>
+      <div class="actions">
+        <button class="btn primary" id="restart">↺ Recommencer le voyage</button>
+        <a class="btn" href="comprendre-son-type.html">Découvrir le fonctionnement d'un type</a>
+      </div>
+      <p class="toAtSuivre">La suite du voyage (les types, les confusions, la révélation) est en construction.</p>
+    `;
+    document.getElementById('restart').addEventListener('click', restart);
+  }
+
+  function restart(){
+    for(const t in scores) scores[t] = 0;
+    idx = 0;
+    revealEl.hidden = true;
+    sceneEl.hidden = false;
+    renderScene();
+  }
+
+  document.getElementById('startBtn').addEventListener('click', ()=>{
+    embarkEl.hidden = true;
+    sceneEl.hidden = false;
+    renderScene();
+  });
+  </script>
+</body>
+</html>
