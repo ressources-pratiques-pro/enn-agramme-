@@ -51,12 +51,20 @@
       transition:transform .12s ease, background .18s ease, border-color .18s ease;
       position:relative;
     }
-    .option:hover{
-      background:rgba(125,211,252,.08);
-      border-color:rgba(125,211,252,.35);
-      transform:translateY(-2px);
+    @media(hover:hover){
+      .option:hover{
+        background:rgba(125,211,252,.08);
+        border-color:rgba(125,211,252,.35);
+        transform:translateY(-2px);
+      }
     }
     .option:active{transform:translateY(0)}
+    .option.picked{
+      background:linear-gradient(135deg,rgba(125,211,252,.28),rgba(196,181,253,.18));
+      border-color:rgba(125,211,252,.7);
+      color:#fff;transform:translateY(0);
+      box-shadow:0 0 18px rgba(125,211,252,.35);
+    }
     .option .lead{display:block}
 
     /* Embarquement */
@@ -513,11 +521,18 @@
       const b = document.createElement('button');
       b.className = 'option';
       b.innerHTML = `<span class="lead">${opt.text}</span>`;
-      b.addEventListener('click', ()=> choose(opt));
+      b.addEventListener('click', ()=> pick(b, opt));
       optsWrap.appendChild(b);
     });
     sceneEl.style.animation='none'; void sceneEl.offsetWidth; sceneEl.style.animation='';
     window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function pick(btn, opt){
+    const all = sceneEl.querySelectorAll('.option');
+    all.forEach(b=>{ b.classList.remove('picked'); b.style.pointerEvents='none'; });
+    btn.classList.add('picked');
+    setTimeout(()=> choose(opt), 320);
   }
 
   function choose(opt){
