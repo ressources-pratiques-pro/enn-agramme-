@@ -81,6 +81,23 @@
     }
     .embark .startBtn:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(125,211,252,.32),rgba(196,181,253,.2))}
 
+    /* Apparition progressive, paragraphe par paragraphe */
+    .reveal-step{opacity:0;transform:translateY(10px);transition:opacity .9s ease, transform .9s ease}
+    .reveal-step.shown{opacity:1;transform:translateY(0)}
+
+    .embark .example{
+      font-size:14.5px;color:var(--muted);max-width:44ch;font-style:italic;
+      border-left:2px solid rgba(125,211,252,.3);padding-left:14px;text-align:left;
+    }
+    .embark .quote{
+      margin:6px 0 4px;max-width:44ch;border:0;
+      font-size:16px;line-height:1.6;color:#cfe9ff;font-style:italic;
+    }
+    .embark .quote cite{
+      display:block;margin-top:10px;font-style:normal;font-size:13px;
+      letter-spacing:1px;color:var(--muted);
+    }
+
     /* Transition / révélation douce de centre */
     .reveal{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 0 60px;animation:fadeUp .6s ease}
     .reveal .kicker{margin-bottom:10px}
@@ -132,13 +149,15 @@
 
     <!-- Embarquement -->
     <section class="embark" id="embark">
-      <div class="glyph">◌</div>
-      <h1>Le Voyage intérieur</h1>
-      <p>Ici, pas de test à réussir, pas de cases à cocher pour se définir. Juste un voyage, à travers des scènes de votre quotidien.</p>
-      <p>Au fil du chemin, votre profil se dessine tout doucement — votre manière unique de fonctionner, ce qui vous porte, ce qui vous pèse quand le stress monte.</p>
-      <p>Votre type, c'est votre point de départ : il ne change pas au fil de la vie. Mais on peut le vivre de mille façons. Une personne qui a beaucoup mûri reste du même type — elle en exprime simplement le meilleur, libérée de ses automatismes.</p>
-      <p class="muted">Répondez simplement avec votre premier réflexe, sans réfléchir à « la bonne réponse ». Il n'y en a pas. Laissez-vous porter.</p>
-      <button class="startBtn" id="startBtn">Commencer le voyage →</button>
+      <div class="glyph reveal-step">◌</div>
+      <h1 class="reveal-step">Le Voyage intérieur</h1>
+      <p class="reveal-step">Ici, pas de test à réussir, pas de cases à cocher pour se définir. Juste un voyage, à travers des scènes de votre quotidien.</p>
+      <p class="reveal-step">Au fil du chemin, votre profil se dessine tout doucement — votre manière unique de fonctionner, ce qui vous porte, ce qui vous pèse quand le stress monte.</p>
+      <p class="reveal-step">Votre type, c'est votre point de départ : il ne change pas au fil de la vie. Mais on peut le vivre de mille façons. Une personne qui a beaucoup mûri reste du même type — elle en exprime simplement le meilleur, libérée de ses automatismes.</p>
+      <p class="reveal-step example">Par exemple : quelqu'un de très perfectionniste autrefois, devenu aujourd'hui plus souple et apaisé, reste profondément de ce type — il en a simplement dépassé la rigidité, sans rien perdre de son sens du juste.</p>
+      <blockquote class="reveal-step quote">« La personnalité prend l'imitation pour le réel. Le voyage commence quand on ose regarder derrière l'image. »<cite>— A.H. Almaas</cite></blockquote>
+      <p class="reveal-step muted">Répondez simplement avec votre premier réflexe, sans réfléchir à « la bonne réponse ». Il n'y en a pas. Laissez-vous porter.</p>
+      <button class="startBtn reveal-step" id="startBtn">Commencer le voyage →</button>
     </section>
 
     <!-- Scène (injectée par JS) -->
@@ -369,6 +388,14 @@
     sceneEl.hidden = false;
     renderScene();
   });
+
+  // Apparition progressive des paragraphes de l'embarquement
+  (function(){
+    const steps = embarkEl.querySelectorAll('.reveal-step');
+    steps.forEach((el, i)=>{
+      setTimeout(()=> el.classList.add('shown'), 350 + i * 900);
+    });
+  })();
   </script>
 </body>
 </html>
