@@ -82,7 +82,7 @@
     .embark .startBtn:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(125,211,252,.32),rgba(196,181,253,.2))}
 
     /* Apparition progressive, paragraphe par paragraphe */
-    .reveal-step{opacity:0;transform:translateY(10px);transition:opacity .9s ease, transform .9s ease}
+    .reveal-step{opacity:0;transform:translateY(24px);transition:opacity 1s ease, transform 1s ease}
     .reveal-step.shown{opacity:1;transform:translateY(0)}
 
     .embark .example{
@@ -393,7 +393,7 @@
   (function(){
     const steps = embarkEl.querySelectorAll('.reveal-step');
     steps.forEach((el, i)=>{
-      setTimeout(()=> el.classList.add('shown'), 350 + i * 900);
+      setTimeout(()=> el.classList.add('shown'), 350 + i * 1200);
     });
   })();
   </script>
