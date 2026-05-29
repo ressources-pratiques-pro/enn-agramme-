@@ -9,6 +9,7 @@
 
   <style>
     html,body{overflow-x:hidden}
+    [hidden]{display:none!important}
     .wrap{max-width:760px;margin:0 auto;padding:0 18px;min-height:100vh;display:flex;flex-direction:column}
 
     .topBar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0 8px}
@@ -135,6 +136,7 @@
       <h1>Le Voyage intérieur</h1>
       <p>Ici, pas de test à réussir, pas de cases à cocher pour se définir. Juste un voyage, à travers des scènes de votre quotidien.</p>
       <p>Au fil du chemin, votre profil se dessine tout doucement — votre manière unique de fonctionner, ce qui vous porte, ce qui vous pèse quand le stress monte.</p>
+      <p>Votre type, c'est votre point de départ : il ne change pas au fil de la vie. Mais on peut le vivre de mille façons. Une personne qui a beaucoup mûri reste du même type — elle en exprime simplement le meilleur, libérée de ses automatismes.</p>
       <p class="muted">Répondez simplement avec votre premier réflexe, sans réfléchir à « la bonne réponse ». Il n'y en a pas. Laissez-vous porter.</p>
       <button class="startBtn" id="startBtn">Commencer le voyage →</button>
     </section>
@@ -236,6 +238,36 @@
         { text:"Je me sentais relié, apprécié, important pour quelqu'un.", w:{2:2, 3:2} },
         { text:"J'avais compris quelque chose, vu clair, été dans mon élément intérieur.", w:{5:2, 6:1, 4:1} },
         { text:"Tout était léger, ouvert, vivant — plein de promesses.", w:{7:3} }
+      ]
+    },
+    {
+      kicker:"Quand ça dérape",
+      situation:"Quelque chose d'important vous échappe et tourne mal.",
+      prompt:"Juste avant toute réflexion, qu'est-ce qui vous traverse en premier ?",
+      options:[
+        { text:"Une montée d'énergie, l'envie de réagir, de redresser la situation.", w:{8:3, 1:2, 9:1} },
+        { text:"Un pincement : « est-ce que ça dit quelque chose de moi, de ma valeur ? »", w:{2:2, 3:2, 4:2} },
+        { text:"Une vigilance qui se met en marche : « et maintenant, qu'est-ce qui peut arriver ? »", w:{6:3, 5:2, 7:1} }
+      ]
+    },
+    {
+      kicker:"Face à l'inconnu",
+      situation:"Vous arrivez quelque part où tout est nouveau, rien n'est balisé.",
+      prompt:"Quel est votre tout premier mouvement, presque sans y penser ?",
+      options:[
+        { text:"J'avance, j'occupe l'espace, je prends les choses en main.", w:{8:3, 1:1} },
+        { text:"Je sens l'ambiance, je regarde comment je suis accueilli, perçu.", w:{2:2, 3:2, 4:1} },
+        { text:"J'observe à distance, je me renseigne avant de m'engager.", w:{5:3, 6:2} }
+      ]
+    },
+    {
+      kicker:"Dans le silence",
+      situation:"Tout est calme, vous n'avez rien à faire ni personne à voir.",
+      prompt:"Quel fond intérieur reconnaissez-vous le plus, quand plus rien ne vous occupe ?",
+      options:[
+        { text:"Une envie d'agir, une difficulté à rester simplement immobile.", w:{8:2, 1:2, 9:1} },
+        { text:"Un besoin de présence, le manque léger d'un lien ou d'un regard.", w:{2:2, 4:2, 3:1} },
+        { text:"Une rumination, des pensées qui tournent, un fond d'anticipation.", w:{6:2, 5:2, 7:1} }
       ]
     }
   ];
