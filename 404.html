@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'application a déménagé — Ennéagramme</title>
+  <meta http-equiv="refresh" content="0; url=https://conscienceetpresence.github.io/enneagramme/" />
+  <script>
+    // Redirige toute URL profonde vers le nouveau site, en conservant le sous-chemin
+    var newBase = 'https://conscienceetpresence.github.io/enneagramme';
+    var path = window.location.pathname.replace(/^\/enn-agramme-/, '');
+    window.location.replace(newBase + (path === '/' ? '/' : path) + window.location.search + window.location.hash);
+  </script>
+</head>
+<body>
+  <p>Redirection vers <a href="https://conscienceetpresence.github.io/enneagramme/">la nouvelle adresse</a>…</p>
+</body>
+</html>

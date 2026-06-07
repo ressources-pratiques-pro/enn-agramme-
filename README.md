@@ -1,2 +1,8 @@
-# enn-agramme-
-L'Ennéagramme : Carte de la Conscience L'Ennéagramme est un outil dynamique décrivant neuf structures de personnalité (ennéatypes). Ce site permet d'explorer les mécanismes de l'ego — peurs, passions et fixations — pour s'en libérer et cheminer vers son identité essentielle et son équilibre profond.
+# enn-agramme- (archivé — déménagé)
+
+Ce dépôt a été déplacé vers **[ConscienceEtPresence/enneagramme](https://github.com/ConscienceEtPresence/enneagramme)**.
+
+L'application est désormais hébergée à :
+👉 **<https://conscienceetpresence.github.io/enneagramme/>**
+
+Cette ancienne URL (`ressources-pratiques-pro.github.io/enn-agramme-/`) redirige automatiquement vers la nouvelle. Les anciens liens partagés continuent donc de fonctionner.
